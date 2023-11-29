@@ -1,0 +1,33 @@
+//file:noinspection DependencyNotationArgument
+// TODO remove when fixed in RFG ^
+/*
+ * Add your dependencies here. Common configurations:
+ *  - implementation("group:name:version:classifier"): if you need this for internal implementation details of the mod.
+ *       Available at compiletime and runtime for your environment.
+ *
+ *  - compileOnlyApi("g:n:v:c"): if you need this for internal implementation details of the mod.
+ *       Available at compiletime but not runtime for your environment.
+ *
+ *  - annotationProcessor("g:n:v:c"): mostly for java compiler plugins, if you know you need this, use it, otherwise don't worry
+ *
+ *  - testCONFIG("g:n:v:c"): replace CONFIG by one of the above, same as above but for the test sources instead of main
+ *
+ * You can exclude transitive dependencies (dependencies of the chosen dependency) by appending { transitive = false } if needed.
+ *
+ * To add a mod with CurseMaven, replace '("g:n:v:c")' in the above with 'rfg.deobf("curse.maven:project_slug-project_id:file_id")'
+ * Example: implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:4527757")
+ *
+ * To shadow a dependency, use 'shadowImplementation'. For more info, see https://github.com/GregTechCEu/Buildscripts/blob/master/docs/shadow.md
+ *
+ * For more details, see https://docs.gradle.org/8.0.1/userguide/java_library_plugin.html#sec:java_library_configurations_graph
+ */
+dependencies {
+    // Hard Dependencies
+    implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:4910613") // GTCEu 2.7.4
+    implementation rfg.deobf("curse.maven:codechicken-lib-1-8-242818:2779848") // CCL 3.2.3.358
+    implementation rfg.deobf("curse.maven:gregicality-multiblocks-564858:4910674") //GCYM 1.2.7
+
+    // Soft Dependencies
+    compileOnlyApi rfg.deobf("curse.maven:ctm-267602:2915363") // CTM 1.0.2.31
+    compileOnlyApi rfg.deobf("curse.maven:ae2-extended-life-570458:4402048") // AE2UEL 0.55.6
+}
