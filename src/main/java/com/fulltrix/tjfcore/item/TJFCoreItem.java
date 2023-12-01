@@ -125,8 +125,6 @@ public class TJFCoreItem extends StandardMetaItem {
 
         UHASOC = addItem(422, "uhasoc");
         UHASOC_WAFER = addItem(423, "uhasoc.wafer");
-        UHPIC = addItem(424, "uhpic");
-        UHPIC_WAFER = addItem(425, "uhpic.wafer");
         ARAM = addItem(426, "plate.aram");
         ARAM_WAFER = addItem(427, "wafer.aram");
 

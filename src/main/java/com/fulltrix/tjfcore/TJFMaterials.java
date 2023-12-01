@@ -1,5 +1,6 @@
 package com.fulltrix.tjfcore;
 
+import gregtech.api.unification.Elements;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
 import gregtech.api.unification.material.materials.*;
@@ -16,6 +17,7 @@ import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 import static gregtech.api.unification.material.info.MaterialIconSet.*;
 import static gregtech.integration.crafttweaker.material.MaterialPropertyExpansion.*;
+import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
 
 public class TJFMaterials {
 
@@ -24,12 +26,15 @@ public class TJFMaterials {
 
     static {
         CORE_METAL.addAll(EXT2_METAL);
-        CORE_METAL.addAll(Arrays.asList(GENERATE_RING, GENERATE_FRAME , GENERATE_ROTOR, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_FINE_WIRE));
+        CORE_METAL.addAll(Arrays.asList(GENERATE_RING, GENERATE_FRAME, GENERATE_ROTOR, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_FINE_WIRE));
     }
+
     public static int id = 24000;
     public static Material Pikyonium;
 
     public static Material Inconel792;
+
+    public static Material HDCS;
 
     public static Material EglinSteel;
 
@@ -71,6 +76,22 @@ public class TJFMaterials {
 
     public static Material ErbiumDopedZBLANDust;
 
+    public static Material TungstenTitaniumCarbide;
+
+    public static Material Plutonium;
+
+    public static Material Prasiolite;
+    public static Material BismuthTellurite;
+    public static Material CubicZirconia;
+    public static Material MagnetoResonatic;
+    public static Material Jasper;
+    public static Material Americium241;
+    public static Material SiliconCarbide;
+    public static Material Quantum;
+
+    public static Material Adamantium;
+
+    public static Material Cinobite;
 
 
     public static void register() {
@@ -140,7 +161,7 @@ public class TJFMaterials {
                 .build();
 
         Polyetheretherketone = new Material.Builder(id++, tjfId("polyetheretherketone"))
-                .polymer(2)
+                .polymer(2).fluid()
                 .color(0x403e37)
                 .iconSet(DULL)
                 .flags(NO_SMASHING, GENERATE_FOIL, GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
@@ -251,15 +272,134 @@ public class TJFMaterials {
 
         SodiumFluoride = new Material.Builder(id++, tjfId("sodium_fluoride"))
                 .dust(2)
-                .color((Sodium.getMaterialRGB()+Fluorine.getMaterialRGB())/2)
+                .color((Sodium.getMaterialRGB() + Fluorine.getMaterialRGB()) / 2)
                 .iconSet(DULL)
                 .components(Sodium, 1, Fluorine, 1)
                 .build();
+
+        TungstenTitaniumCarbide = new Material.Builder(id++, tjfId("tungsten_titanium_carbide"))
+                .ingot(7)
+                .color(0x800d0d)
+                .iconSet(SHINY)
+                .flags(CORE_METAL, DISABLE_DECOMPOSITION)
+                .components(TungstenCarbide, 7, Titanium, 3)
+                .blast(4422)
+                .build();
+
+
+        Plutonium = new Material.Builder(id++, tjfId("plutonium_generic"))
+                .ingot(3)
+                .color(0xF03232)
+                .iconSet(METALLIC)
+                .flags(EXT_METAL)
+                .element(Elements.Pu)
+                .build();
+
+        Prasiolite = new Material.Builder(id++, tjfId("prasiolite"))
+                .gem(2).ore()
+                .color(0x9EB749)
+                .iconSet(QUARTZ)
+                .flags(GENERATE_LENS)
+                .components(Silicon, 5, Oxygen, 10, Iron, 1)
+                .build();
+
+        BismuthTellurite = new Material.Builder(id++, tjfId("bismuth_tellurite"))
+                .dust(2)
+                .color(0x006B38)
+                .iconSet(SAND)
+                .components(Bismuth, 2, Tellurium, 3)
+                .build();
+
+        CubicZirconia = new Material.Builder(id++, tjfId("cubic_zirconia"))
+                .gem(6)
+                .color(0xFFDFE2)
+                .iconSet(DIAMOND)
+                .flags(NO_SMELTING, GENERATE_LENS)
+                .components(Zirconium, 1, Oxygen, 2)
+                .build();
+
+        MagnetoResonatic = new Material.Builder(id++, tjfId("magneto_resonatic"))
+                .gem(2)
+                .color(0xFF97FF)
+                .iconSet(MAGNETIC)
+                .flags(DISABLE_DECOMPOSITION, FLAMMABLE, HIGH_SIFTER_OUTPUT, NO_SMELTING, GENERATE_LENS)
+                .components(Prasiolite, 3, BismuthTellurite, 6, CubicZirconia, 1, SteelMagnetic, 1)
+                .build();
+
+        HDCS = new Material.Builder(id++, tjfId("hdcs"))
+                .ingot(5)
+                .color(0x334433)
+                .iconSet(SHINY)
+                .flags(CORE_METAL, DISABLE_DECOMPOSITION)
+                .components(TungstenSteel, 12, HSSS, 9, HSSG, 6, Ruridit, 3, MagnetoResonatic, 2, Plutonium, 1)
+                .blast(6100)
+                .build();
+
+
+        Jasper = new Material.Builder(id++, tjfId("jasper"))
+                .gem(2)
+                .color(13127760)
+                .iconSet(EMERALD)
+                .flags(NO_SMELTING, HIGH_SIFTER_OUTPUT)
+                .build();
+
+        Americium241 = new Material.Builder(id++, tjfId("americium_241"))
+                .ingot()
+                .color(13158600)
+                .iconSet(METALLIC)
+                .flags(STD_METAL)
+                .build()
+                .setFormula("SiC", true);
+
+        SiliconCarbide = new Material.Builder(id++, tjfId("silicon_carbide"))
+                .dust()
+                .color((Silicon.getMaterialRGB() + Carbon.getMaterialRGB()) / 2)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("SiC", true);
+
+        Quantum = new Material.Builder(id++, tjfId("quantum"))
+                .ingot(7)
+                .color(0x0f0f0f)
+                .iconSet(SHINY)
+                .flags(CORE_METAL, DISABLE_DECOMPOSITION)
+                .components(Stellite100, 15, Jasper, 5, Gallium, 5, Americium241, 5, Palladium, 5, Bismuth, 5, Germanium, 5, SiliconCarbide, 5)
+                .blast(11400)
+                .build();
+
+        Adamantium = new Material.Builder(id++, tjfId("adamantium"))
+                .ingot(7).fluid()
+                .color(0x2d365c)
+                .iconSet(SHINY)
+                .flags(CORE_METAL)
+                .element(TJFElements.Ad)
+                .blast(10850)
+                .build();
+
+        Cinobite = new Material.Builder(id++, tjfId("cinobite"))
+                .ingot(5).fluid()
+                .color(0x010101)
+                .iconSet(SHINY)
+                .flags(CORE_METAL, DISABLE_DECOMPOSITION)
+                .components(Zeron100, 8, Naquadria, 4, Gadolinium, 3, Aluminium, 2, Mercury, 1, Tin, 1, Titanium, 6, Osmiridium, 1)
+                .blast(11465)
+                .build();
+
+
     }
 
     public static void materialChanges() {
 
         addDust(Germanium, 1, 0);
+        addFluid(Duranium);
+
         Germanium.addFlags(GENERATE_PLATE);
+
+        for (MaterialFlag flag : CORE_METAL) {
+            Bohrium.addFlags(flag);
+        }
+        addIngot(Bohrium);
+        addFluid(Bohrium);
+        Bohrium.addFlags(GENERATE_FRAME, GENERATE_ROUND);
     }
 }

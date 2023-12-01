@@ -43,7 +43,7 @@ public class CommonProxy {
         TJFMetaBlocks.init();
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void registerMaterials(MaterialEvent event) {
         TJFMaterials.register();
         TJFMaterials.materialChanges();
