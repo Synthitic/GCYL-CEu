@@ -286,8 +286,6 @@ public class TJFCoreItems {
 
     public static MetaItem<?>.MetaValueItem UHASOC;
     public static MetaItem<?>.MetaValueItem UHASOC_WAFER;
-    public static MetaItem<?>.MetaValueItem UHPIC;
-    public static MetaItem<?>.MetaValueItem UHPIC_WAFER;
     public static MetaItem<?>.MetaValueItem ARAM;
     public static MetaItem<?>.MetaValueItem ARAM_WAFER;
 

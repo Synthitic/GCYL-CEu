@@ -4,7 +4,9 @@ import com.fulltrix.tjfcore.item.TJFCoreItems;
 import com.fulltrix.tjfcore.item.TJFHeatingCoil;
 
 import com.fulltrix.tjfcore.item.TJFMetaBlocks;
+import com.fulltrix.tjfcore.recipes.RecipeHandler;
 import gregtech.api.block.VariantItemBlock;
+import gregtech.api.unification.material.event.MaterialEvent;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.FluidTooltipUtil;
 import net.minecraft.block.Block;
@@ -41,15 +43,12 @@ public class CommonProxy {
         TJFMetaBlocks.init();
     }
 
-    @SubscribeEvent(priority = EventPriority.LOW)
-    public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-
-
-
-        //RecipeHandler.initRecipes();
-
-        //RecipeHandler.registerLargeMachineRecipes();
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void registerMaterials(MaterialEvent event) {
+        TJFMaterials.register();
+        TJFMaterials.materialChanges();
     }
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
@@ -60,6 +59,17 @@ public class CommonProxy {
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
         registry.register(createItemBlock(HEATING_COIL, VariantItemBlock::new));
+    }
+
+
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+
+
+
+        RecipeHandler.initRecipes();
+
+        //RecipeHandler.registerLargeMachineRecipes();
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block, Function<T, ItemBlock> producer) {
