@@ -1,5 +1,8 @@
 package com.fulltrix.tjfcore;
 
+import com.fulltrix.tjfcore.item.TJFHeatingCoil;
+import com.fulltrix.tjfcore.item.TJFMetaBlocks;
+import com.fulltrix.tjfcore.machines.TJFTileEntities;
 import gregtech.GTInternalTags;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -11,8 +14,11 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.SidedProxy;
 
+import static com.fulltrix.tjfcore.item.TJFMetaBlocks.HEATING_COIL;
+import static gregtech.api.GregTechAPI.HEATING_COILS;
+
 @Mod(modid = TJFCore.MODID, name = TJFCore.NAME, version = TJFCore.VERSION,
-    dependencies = GTInternalTags.DEP_VERSION_STRING)
+        dependencies = GTInternalTags.DEP_VERSION_STRING)
 @SuppressWarnings("unused")
 public class TJFCore {
     public static final String MODID = "tjfcore";
@@ -25,6 +31,12 @@ public class TJFCore {
     public void preInit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(this);
         proxy.preInit();
+        TJFMetaBlocks.init();
+        TJFTileEntities.init();
+
+        for (TJFHeatingCoil.CoilType type : TJFHeatingCoil.CoilType.values()) {
+            HEATING_COILS.put(HEATING_COIL.getState(type), type);
+        }
     }
 
     @EventHandler

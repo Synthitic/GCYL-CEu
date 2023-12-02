@@ -9,6 +9,7 @@ import gregtech.integration.crafttweaker.material.MaterialPropertyExpansion;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -93,19 +94,62 @@ public class TJFMaterials {
 
     public static Material Cinobite;
 
+    public static Material Polyimide;
+
+    public static Material GermaniumTungstenNitride;
+
+    public static Material BariumTitanate;
+
+    public static Material PEDOT;
+
+    public static Material AluminiumComplex;
+
+    public static Material CopperGalliumIndiumMix;
+    public static Material CopperGalliumIndiumSelenide;
+
+    public static Material BismuthRuthenate;
+
+    public static Material BismuthIridiate;
+
+    public static Material RutheniumDioxide;
+
+    public static Material LanthanumCalciumManganate;
+
+    public static Material Polystyrene;
+    public static Material Shewanella;
+
+    public static Material GreenAlgae;
+
+    public static Material RedAlgae;
+
+    public static Material BrownAlgae;
+
+    public static Material DryRedAlgae;
+
+    public static Material RedAlgaePowder;
+
+    public static Material PreFreezeAgar;
+
+    public static Material FrozenAgarCrystals;
+
+    public static Material WaterAgarMix;
+
+    public static Material BacterialGrowthMedium;
+
+    public static Material DepletedGrowthMedium;
+
+    public static Material Titan_Steel;
+
+    public static Material Black_Titanium;
+
+    public static Material Cosmic_Neutronium;
+
+    public static Material Infinity;
+
+    public static Material Eternity;
+
 
     public static void register() {
-
-        /*
-        MATERIAL = new Material.Builder(id++, tjfId("material"))
-                .ingot()
-                .color()
-                .iconSet()
-                .flags()
-                .components()
-                .blast()
-                .build();
-         */
 
         EnrichedNaquadahAlloy = new Material.Builder(id++, tjfId("enriched_naquadah_alloy"))
                 .ingot(2)
@@ -386,6 +430,183 @@ public class TJFMaterials {
                 .build();
 
 
+        Polyimide = new Material.Builder(id++, tjfId("polyimide"))
+                .ingot(1).fluid()
+                .color(0xFF7F50)
+                .iconSet(DULL)
+                .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, FLAMMABLE, NO_SMASHING)
+                .components(Carbon, 22, Hydrogen, 12, Nitrogen, 2, Oxygen, 6)
+                .build();
+
+        GermaniumTungstenNitride = new Material.Builder(id++, tjfId("germanium_tungsten_nitride"))
+                .ingot(2)
+                .color(0x8f8fcf)
+                .iconSet(DULL)
+                .flags(GENERATE_PLATE)
+                .components(Germanium, 3, Tungsten, 3, Nitrogen, 10)
+                .blast(5400)
+                .build();
+
+        BariumTitanate = new Material.Builder(id++, tjfId("barium_titanate"))
+                .ingot(2)
+                .color(0x99FF99)
+                .iconSet(SHINY)
+                .flags(GENERATE_FOIL, DISABLE_DECOMPOSITION)
+                .components(Barium, 1, Titanium, 1, Oxygen, 3)
+                .build();
+
+        PEDOT = new Material.Builder(id++, tjfId("pedot"))
+                .ingot(22)
+                .color(0x5cef20)
+                .iconSet(DULL)
+                .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
+                .components(Carbon, 6, Hydrogen, 6, Oxygen, 2, Sulfur, 1)
+                .build();
+
+        AluminiumComplex = new Material.Builder(id++, tjfId("aluminium_complex"))
+                .dust()
+                .color(0x3f5a9f)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("AlC9H7NO", true);
+
+        CopperGalliumIndiumMix = new Material.Builder(id++, tjfId("copper_gallium_indium_mix"))
+                .dust()
+                .color((Indium.getMaterialRGB() + Copper.getMaterialRGB() + Gallium.getMaterialRGB()) / 3)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("CuGaIn", true);
+
+        CopperGalliumIndiumSelenide = new Material.Builder(id++, tjfId("copper_gallium_indium_selenide"))
+                .dust()
+                .color((CopperGalliumIndiumMix.getMaterialRGB() + Selenium.getMaterialRGB()) / 2)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("CuGaInSe2", true);
+
+        BismuthRuthenate = new Material.Builder(id++, tjfId("bismuth_ruthenate"))
+                .ingot(2)
+                .color(0x94cf5c)
+                .iconSet(DULL)
+                .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION)
+                .components(Bismuth, 2, Ruthenium, 2, Oxygen, 7)
+                .build();
+
+        BismuthIridiate = new Material.Builder(id++, tjfId("bismuth_iridiate"))
+                .ingot(22)
+                .color(0x478a6b)
+                .iconSet(DULL)
+                .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION)
+                .components(Bismuth, 2, Iridium, 2, Oxygen, 7)
+                .build();
+
+        RutheniumDioxide = new Material.Builder(id++, tjfId("ruthenium_dioxide"))
+                .ingot(2)
+                .color(RutheniumTetroxide.getMaterialRGB())
+                .iconSet(DULL)
+                .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION)
+                .components(Ruthenium, 1, Oxygen, 2)
+                .build();
+
+        LanthanumCalciumManganate = new Material.Builder(id++, tjfId("lanthanum_gallium_manganate"))
+                .dust()
+                .color(0x8aa07b)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("LaCaMnO3", true);
+
+        Polystyrene = new Material.Builder(id++, tjfId("polystyrene"))
+                .polymer(1).fluid()
+                .color(8945785)
+                .iconSet(DULL)
+                .flags(GENERATE_FOIL, DISABLE_DECOMPOSITION)
+                .components(Carbon, 8, Hydrogen, 8)
+                .build();
+
+        /*
+        MATERIAL = new Material.Builder(id++, tjfId("material"))
+                .ingot()
+                .color()
+                .iconSet()
+                .flags()
+                .components()
+                .blast()
+                .build();
+         */
+
+        Shewanella = new Material.Builder(id++, tjfId("shewanella"))
+                .dust()
+                .color(0x8752ab)
+                .iconSet(METALLIC)
+                .build()
+                .setFormula("Bacteria", true);
+
+        GreenAlgae = new Material.Builder(id++, tjfId("green_algae"))
+                .dust()
+                .color(0x228b22)
+                .iconSet(METALLIC)
+                .build()
+                .setFormula("An Algae", true);
+
+        BrownAlgae = new Material.Builder(id++, tjfId("brown_algae"))
+                .dust()
+                .color(0xa52a2a)
+                .iconSet(METALLIC)
+                .build()
+                .setFormula("An Algae", true);
+
+        RedAlgae = new Material.Builder(id++, tjfId("red_algae"))
+                .dust()
+                .color(0xf08080)
+                .iconSet(METALLIC)
+                .build()
+                .setFormula("An Algae", true);
+
+        DryRedAlgae = new Material.Builder(id++, tjfId("dry_red_algae"))
+                .dust()
+                .color(0xff7f50)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("A Dry Algae", true);
+
+        RedAlgaePowder = new Material.Builder(id++, tjfId("red_algae_powder"))
+                .dust()
+                .color(0xcc2f2f)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("A Powdered Algae", true);
+
+        PreFreezeAgar = new Material.Builder(id++, tjfId("pre_freeze_agar"))
+                .dust()
+                .color(0x132b0d)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("Warm Agar", true);
+
+        FrozenAgarCrystals = new Material.Builder(id++, tjfId("frozen_agar_crystals"))
+                .dust()
+                .color(0x68db4b)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("Cold Agar", true);
+
+        WaterAgarMix = new Material.Builder(id++, tjfId("water_agar_mix"))
+                .fluid()
+                .color(0x48dbbe)
+                .build()
+                .setFormula("H2O?", true);
+
+        BacterialGrowthMedium = new Material.Builder(id++, tjfId("bacterial_growth_medium"))
+                .fluid()
+                .color(0x0b2e12)
+                .build()
+                .setFormula("For Bacteria", true);
+
+        DepletedGrowthMedium = new Material.Builder(id++, tjfId("depleted_growth_medium"))
+                .fluid()
+                .color(0x071209)
+                .build()
+                .setFormula("Depleted", true);
     }
 
     public static void materialChanges() {
@@ -395,11 +616,20 @@ public class TJFMaterials {
 
         Germanium.addFlags(GENERATE_PLATE);
 
+        List<Material> mats = new ArrayList<>();
+        Collections.addAll(mats, Bohrium, Dubnium);
+
         for (MaterialFlag flag : CORE_METAL) {
             Bohrium.addFlags(flag);
+            Dubnium.addFlags(flag);
         }
-        addIngot(Bohrium);
-        addFluid(Bohrium);
+
+        for (Material mat : mats) {
+            addIngot(mat);
+            addFluid(mat);
+        }
+
         Bohrium.addFlags(GENERATE_FRAME, GENERATE_ROUND);
+        NaquadahAlloy.addFlags(GENERATE_FINE_WIRE);
     }
 }

@@ -15,7 +15,6 @@ import java.util.List;
 public class TJFCoreItems {
     private static final List<MetaItem<?>> ITEMS = MetaItem.getMetaItems();
 
-    public static MetaItem<?>.MetaValueItem PETRI_DISH;
     public static MetaItem<?>.MetaValueItem COMPRESSED_COKE_CLAY;
     public static MetaItem<?>.MetaValueItem ENERGY_MODULE;
     public static MetaItem<?>.MetaValueItem ENERGY_CLUSTER;
@@ -101,7 +100,6 @@ public class TJFCoreItems {
     public static MetaItem<?>.MetaValueItem CIRCUIT_MAGNETIC_UEV;
 
 
-    public static MetaItem<?>.MetaValueItem NEURO_PROCESSOR;
     public static MetaItem<?>.MetaValueItem RAW_CRYSTAL_CHIP;
 
     public static MetaItem<?>.MetaValueItem MICA_SHEET;

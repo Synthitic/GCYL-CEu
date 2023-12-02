@@ -1,5 +1,6 @@
 package com.fulltrix.tjfcore.item;
 
+import com.fulltrix.tjfcore.TJFMaterials;
 import gregtech.api.block.IHeatingCoilBlockStats;
 import gregtech.api.block.VariantActiveBlock;
 import gregtech.api.block.VariantItemBlock;
@@ -70,6 +71,7 @@ public class TJFHeatingCoil extends VariantActiveBlock<TJFHeatingCoil.CoilType> 
         return false;
     }
 
+
     @Override
     protected boolean isBloomEnabled(TJFHeatingCoil.CoilType value) {
         return ConfigHolder.client.coilsActiveEmissiveTextures;
@@ -77,13 +79,13 @@ public class TJFHeatingCoil extends VariantActiveBlock<TJFHeatingCoil.CoilType> 
 
     public enum CoilType implements IStringSerializable, IHeatingCoilBlockStats {
 
-        TITAN_STEEL_COIL("titan_steel_coil", 9600, 32, 8, null),
-        PIKYONIUM_COIL("pikyonium_coil", 10700, 32, 8, null),
-        BLACK_TITANIUM_COIL("black_titanium_coil", 11200, 64, 16, null),
-        NEUTRONIUM_COIL("neutronium_coil", 12600, 64, 16, null),
-        COSMIC_NEUTRONIUM_COIL("cosmic_neutronium_coil", 14200, 128, 32, null),
-        INFINITY_COIL("infinity_coil", 28400, 128, 48, null),
-        ETERNITY_COIL("eternity_coil", 56800, 512, 64, null);
+        TITAN_STEEL_COIL("titan_steel_coil", 9600, 32, 8, TJFMaterials.Titan_Steel),
+        PIKYONIUM_COIL("pikyonium_coil", 10700, 32, 8, TJFMaterials.Pikyonium),
+        BLACK_TITANIUM_COIL("black_titanium_coil", 11200, 64, 16, TJFMaterials.Black_Titanium),
+        NEUTRONIUM_COIL("neutronium_coil", 12600, 64, 16, Materials.Neutronium),
+        COSMIC_NEUTRONIUM_COIL("cosmic_neutronium_coil", 14200, 128, 32, TJFMaterials.Cosmic_Neutronium),
+        INFINITY_COIL("infinity_coil", 28400, 128, 48, TJFMaterials.Infinity),
+        ETERNITY_COIL("eternity_coil", 56800, 512, 64, TJFMaterials.Eternity);
 
         private final String name;
         private final int coilTemperature;
