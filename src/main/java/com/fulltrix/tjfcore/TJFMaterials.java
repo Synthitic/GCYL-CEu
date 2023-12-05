@@ -269,6 +269,13 @@ public class TJFMaterials {
     public static Material LithiumFluoride;
 
     public static Material AluminaSolution;
+
+    public static Material PreciousMetal;
+    public static Material GoldAlloy;
+    public static Material GoldLeach;
+    public static Material CopperLeach;
+    public static Material ChloroauricAcid;
+    public static Material PotassiumMetabisulfite;
     //COILS
     public static Material Titan_Steel;
 
@@ -1351,6 +1358,48 @@ public class TJFMaterials {
                 .iconSet(FLUID)
                 .build()
                 .setFormula("(Al2O3)(CH2Cl2)(C12H27N)2",true);
+
+        PreciousMetal= new Material.Builder(id++, tjfId("precious_metal"))
+                .ingot(2).ore()
+                .color(0xB99023)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("Au?", true);
+
+                GoldAlloy= new Material.Builder(id++, tjfId("gold_alloy"))
+                        .ingot(2)
+                        .color(0xBBA52B)
+                        .iconSet(SHINY)
+                        .build()
+                        .setFormula("Cu3Au?",true);
+
+        GoldLeach= new Material.Builder(id++, tjfId("gold_leach"))
+                .dust()
+                .color(0xBBA52B)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("Cu3Au?",true);
+
+                CopperLeach= new Material.Builder(id++, tjfId("copper_leach"))
+                        .dust()
+                        .color(0x765A30)
+                        .iconSet(SHINY)
+                        .build()
+                        .setFormula("Cu3?",true);
+
+        ChloroauricAcid= new Material.Builder(id++, tjfId("material"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(0xDFD11F)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("HAuCl?",true);
+
+                PotassiumMetabisulfite= new Material.Builder(id++, tjfId("potassium_metabisulfite"))
+                        .dust()
+                        .color(0xFFFFFF)
+                        .iconSet(DULL)
+                        .components(Potassium, 2, Sulfur, 2, Oxygen, 5)
+                        .build();
 
         /*
         MATERIAL = new Material.Builder(id++, tjfId("material"))
