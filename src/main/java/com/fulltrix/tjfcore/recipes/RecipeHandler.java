@@ -1,7 +1,10 @@
 package com.fulltrix.tjfcore.recipes;
 
 import com.fulltrix.tjfcore.recipes.categories.circuits.CircuitRecipes;
-import com.fulltrix.tjfcore.recipes.chain.*;
+import com.fulltrix.tjfcore.recipes.chain.GoldChain;
+import com.fulltrix.tjfcore.recipes.chain.OpticalChain;
+import com.fulltrix.tjfcore.recipes.chain.PEEKChain;
+import com.fulltrix.tjfcore.recipes.chain.PolymerChain;
 
 public class RecipeHandler {
     public static void initRecipes() {
@@ -25,10 +28,10 @@ public class RecipeHandler {
 
     public static void initChains() {
         /*
-        GoldChain.init();
+
         NaquadahChain.init();
         NuclearChain.init();
-        PolymerChain.init();
+
         PlatinumSludgeGroupChain.init();
         TungstenChain.init();
         REEChain.init();
@@ -37,6 +40,8 @@ public class RecipeHandler {
         UHVMaterials.init();
 
          */
+        PolymerChain.init();
+        GoldChain.init();
         PEEKChain.init();
         OpticalChain.init();
         /*

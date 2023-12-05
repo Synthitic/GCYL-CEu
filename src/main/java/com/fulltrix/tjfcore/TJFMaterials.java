@@ -2,31 +2,26 @@ package com.fulltrix.tjfcore;
 
 //import com.fulltrix.tjfcore.materials.IsotopeMaterial;
 //import com.fulltrix.tjfcore.materials.RadioactiveMaterial;
+
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.unification.Elements;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
-import gregtech.api.unification.material.materials.*;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.integration.crafttweaker.material.MaterialPropertyExpansion;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.fulltrix.tjfcore.TJFUtility.tjfId;
-import static gregtech.api.fluids.attribute.FluidAttributes.*;
-import static gregtech.api.unification.Element.*;
-import static gregtech.api.unification.Elements.*;
+import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
+import static gregicality.multiblocks.api.unification.GCYMMaterials.Stellite100;
+import static gregicality.multiblocks.api.unification.GCYMMaterials.Zeron100;
+import static gregtech.api.fluids.attribute.FluidAttributes.ACID;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 import static gregtech.api.unification.material.info.MaterialIconSet.*;
 import static gregtech.integration.crafttweaker.material.MaterialPropertyExpansion.*;
-import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
-import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.*;
-import static org.codehaus.groovy.runtime.InvokerHelper.asList;
 
 public class TJFMaterials {
 
@@ -155,12 +150,6 @@ public class TJFMaterials {
 
     public static Material DepletedGrowthMedium;
 
-    public static Material Hydrazine;
-
-    public static Material RP1;
-
-    public static Material TributylPhosphate;
-
     public static Material BoricAcid;
 
     public static Material FluoroBoricAcid;
@@ -276,6 +265,14 @@ public class TJFMaterials {
     public static Material CopperLeach;
     public static Material ChloroauricAcid;
     public static Material PotassiumMetabisulfite;
+
+    public static Material OrthoXylene;
+    public static Material Durene;
+    public static Material PyromelliticDianhydride;
+    public static Material Oxydianiline;
+    public static Material PolyamicAcid;
+    public static Material Hexafluoropropylene;
+    public static Material FluorinatedEthylenePropylene;
     //COILS
     public static Material Titan_Steel;
 
@@ -1392,14 +1389,63 @@ public class TJFMaterials {
                 .color(0xDFD11F)
                 .iconSet(FLUID)
                 .build()
-                .setFormula("HAuCl?",true);
+                .setFormula("HAuCl?", true);
 
-                PotassiumMetabisulfite= new Material.Builder(id++, tjfId("potassium_metabisulfite"))
-                        .dust()
-                        .color(0xFFFFFF)
-                        .iconSet(DULL)
-                        .components(Potassium, 2, Sulfur, 2, Oxygen, 5)
-                        .build();
+        PotassiumMetabisulfite = new Material.Builder(id++, tjfId("potassium_metabisulfite"))
+                .dust()
+                .color(0xFFFFFF)
+                .iconSet(DULL)
+                .components(Potassium, 2, Sulfur, 2, Oxygen, 5)
+                .build();
+
+        OrthoXylene = new Material.Builder(id++, tjfId("ortho_xylene"))
+                .fluid()
+                .color(0xB9575E)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C6H4(CH3)2", true);
+
+        Durene = new Material.Builder(id++, tjfId("durene"))
+                .dust()
+                .color(0xA39C95)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("C6H2(CH3)4", true);
+
+        PyromelliticDianhydride = new Material.Builder(id++, tjfId("pyromellitic_dianhydride"))
+                .dust()
+                .color(0xF0EAD6)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("C6H2(C2O3)2", true);
+
+        Oxydianiline = new Material.Builder(id++, tjfId("oxydianiline"))
+                .fluid()
+                .color(0xF0E130)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C12H12N2O", true);
+        PolyamicAcid = new Material.Builder(id++, tjfId("polyamic_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(0xFFAE42)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C22H14N2O7", true);
+
+        Hexafluoropropylene = new Material.Builder(id++, tjfId("hexafluoropropylene"))
+                .fluid()
+                .color(0x111111)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C3F6", true);
+
+        FluorinatedEthylenePropylene = new Material.Builder(id++, tjfId("fluorinated_ethylene_propylene"))
+                .ingot().fluid()
+                .color(0xC8C8C8)
+                .iconSet(DULL)
+                .flags(GENERATE_PLATE, FLAMMABLE, NO_SMASHING, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES)
+                .components(Carbon, 5, Fluorine, 10)
+                .build();
 
         /*
         MATERIAL = new Material.Builder(id++, tjfId("material"))
