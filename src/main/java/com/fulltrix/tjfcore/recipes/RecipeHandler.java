@@ -1,6 +1,7 @@
 package com.fulltrix.tjfcore.recipes;
 
 import com.fulltrix.tjfcore.recipes.categories.circuits.CircuitRecipes;
+import com.fulltrix.tjfcore.recipes.chain.*;
 
 public class RecipeHandler {
     public static void initRecipes() {
@@ -20,5 +21,62 @@ public class RecipeHandler {
          */
 
         CircuitRecipes.init();
+    }
+
+    public static void initChains() {
+        /*
+        GoldChain.init();
+        NaquadahChain.init();
+        NuclearChain.init();
+        PolymerChain.init();
+        PlatinumSludgeGroupChain.init();
+        TungstenChain.init();
+        REEChain.init();
+        Batteries.init();
+        RheniumChain.init();
+        UHVMaterials.init();
+
+         */
+        PEEKChain.init();
+        OpticalChain.init();
+        /*
+        ZylonChain.init();
+        FullereneChain.init();
+        BariumChain.init();
+        UraniumChain.init();
+        VanadiumChain.init();
+        IodineChain.init();
+        ZirconChain.init();
+        ZincChain.init();
+        AluminiumChain.init();
+        AmmoniaChain.init();
+        ChromiumChain.init();
+        LithiumChain.init();
+        BrineChain.init();
+        FusionElementsChain.init();
+        NanotubeChain.init();
+        VariousChains.init();
+        SuperconductorsSMDChain.init();
+        FusionComponents.init();
+        NiobiumTantalumChain.init();
+        Dyes.init();
+        SensorEmitter.init();
+        SeleniumChain.init();
+        WormholeGeneratorChain.init();
+        CosmicChain.init();
+        UltimateMaterials.init();
+        DigitalInterfaces.init();
+        InsulationWireAssemblyChain.init();
+        ArcFurnaceOxidation.init();
+        WetwareChain.init();
+
+        CombinedChains.init();
+        OrganometallicChains.init();
+        QuantumDotsChain.init();
+        HNIWChain.init();
+        TriniumChain.init();
+        TaraniumChain.init();
+
+         */
     }
 }
