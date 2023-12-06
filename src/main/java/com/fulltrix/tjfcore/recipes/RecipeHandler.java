@@ -1,10 +1,8 @@
 package com.fulltrix.tjfcore.recipes;
 
 import com.fulltrix.tjfcore.recipes.categories.circuits.CircuitRecipes;
-import com.fulltrix.tjfcore.recipes.chain.GoldChain;
-import com.fulltrix.tjfcore.recipes.chain.OpticalChain;
-import com.fulltrix.tjfcore.recipes.chain.PEEKChain;
-import com.fulltrix.tjfcore.recipes.chain.PolymerChain;
+import com.fulltrix.tjfcore.recipes.categories.machines.MachineCraftingRecipes;
+import com.fulltrix.tjfcore.recipes.chain.*;
 
 public class RecipeHandler {
     public static void initRecipes() {
@@ -12,7 +10,7 @@ public class RecipeHandler {
         /*
         RecipeOverride.init();
 
-        MachineCraftingRecipes.init();
+
         ComponentRecipes.init();
         MetaItemRecipes.init();
         CasingRecipes.init();
@@ -23,6 +21,7 @@ public class RecipeHandler {
         PlasmaCondenserPlasmaRecipes.init();
          */
 
+        MachineCraftingRecipes.init();
         CircuitRecipes.init();
     }
 
@@ -44,6 +43,7 @@ public class RecipeHandler {
         GoldChain.init();
         PEEKChain.init();
         OpticalChain.init();
+        FusionElementsChain.init();
         /*
         ZylonChain.init();
         FullereneChain.init();
@@ -58,7 +58,7 @@ public class RecipeHandler {
         ChromiumChain.init();
         LithiumChain.init();
         BrineChain.init();
-        FusionElementsChain.init();
+
         NanotubeChain.init();
         VariousChains.init();
         SuperconductorsSMDChain.init();

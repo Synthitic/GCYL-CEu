@@ -1,9 +1,10 @@
 package com.fulltrix.tjfcore;
 
 import com.fulltrix.tjfcore.item.TJFCoreItems;
-
 import com.fulltrix.tjfcore.recipes.RecipeHandler;
+import com.fulltrix.tjfcore.recipes.recipeproperties.AdvFusionCoilProperty;
 import gregtech.api.block.VariantItemBlock;
+import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
 import gregtech.api.unification.material.event.MaterialEvent;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -39,6 +40,10 @@ public class CommonProxy {
         registry.register(HEATING_COIL);
         registry.register(MULTIBLOCK_CASING2);
         registry.register(TRANSPARENT_CASING);
+        registry.register(FUSION_CASING);
+        registry.register(VACUUM_CASING);
+        registry.register(DIVERTOR_CASING);
+        registry.register(CRYOSTAT_CASING);
     }
 
     @SubscribeEvent
@@ -47,11 +52,23 @@ public class CommonProxy {
         registry.register(createItemBlock(HEATING_COIL, VariantItemBlock::new));
         registry.register(createItemBlock(MULTIBLOCK_CASING2, VariantItemBlock::new));
         registry.register(createItemBlock(TRANSPARENT_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(FUSION_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(VACUUM_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(DIVERTOR_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(CRYOSTAT_CASING, VariantItemBlock::new));
     }
 
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+        AdvFusionCoilProperty.registerAdvFusionTier(1, "1");
+        AdvFusionCoilProperty.registerAdvFusionTier(2, "2");
+        AdvFusionCoilProperty.registerAdvFusionTier(3, "3");
+        AdvFusionCoilProperty.registerAdvFusionTier(4, "4");
+        AdvFusionCoilProperty.registerAdvFusionTier(5, "5");
+        FusionEUToStartProperty.registerFusionTier(9, "(Adv MK1)");
+        FusionEUToStartProperty.registerFusionTier(10, "(Adv MK2)");
+        FusionEUToStartProperty.registerFusionTier(11, "(Adv MK3)");
 
         RecipeHandler.initRecipes();
         RecipeHandler.initChains();

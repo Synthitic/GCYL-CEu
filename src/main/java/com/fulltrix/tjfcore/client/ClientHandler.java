@@ -10,12 +10,16 @@ import net.minecraftforge.fml.relauncher.Side;
 public class ClientHandler {
     public static SimpleOverlayRenderer BIO_REACTOR;
     public static OrientedOverlayRenderer ORGANIC_REPLICATOR_OVERLAY;
+    public static OrientedOverlayRenderer FUSION_REACTOR_OVERLAY;
+    public static SimpleOverlayRenderer FUSION_TEXTURE;
 
     private ClientHandler() {
     }
 
     public static void preInit() {
         BIO_REACTOR = new SimpleOverlayRenderer("casings/solid/bio_reactor_casing");
+        FUSION_TEXTURE = new SimpleOverlayRenderer("casings/fusion/machine_casing_fusion_glass");
         ORGANIC_REPLICATOR_OVERLAY = new OrientedOverlayRenderer("machines/organic_replicator");
+        FUSION_REACTOR_OVERLAY = new OrientedOverlayRenderer("machines/fusion_reactor");
     }
 }

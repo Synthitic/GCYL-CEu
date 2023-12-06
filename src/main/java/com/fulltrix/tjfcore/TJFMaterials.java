@@ -3,6 +3,7 @@ package com.fulltrix.tjfcore;
 //import com.fulltrix.tjfcore.materials.IsotopeMaterial;
 //import com.fulltrix.tjfcore.materials.RadioactiveMaterial;
 
+import gregtech.api.GTValues;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.unification.Elements;
 import gregtech.api.unification.material.Material;
@@ -13,6 +14,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static com.fulltrix.tjfcore.TJFElements.Ad;
+import static com.fulltrix.tjfcore.TJFElements.Tn;
 import static com.fulltrix.tjfcore.TJFUtility.tjfId;
 import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.Stellite100;
@@ -273,6 +276,22 @@ public class TJFMaterials {
     public static Material PolyamicAcid;
     public static Material Hexafluoropropylene;
     public static Material FluorinatedEthylenePropylene;
+
+    public static Material Taranium;
+    public static Material NaquadriaticTaranium;
+    public static Material BlackTitanium;
+    public static Material FullerenePolymerMatrix;
+    public static Material Zylon;
+
+    public static Material SupercriticalSteam;
+    public static Material SodiumPotassiumAlloy;
+    public static Material SupercriticalSodiumPotassiumAlloy;
+    public static Material FLiNaK;
+    public static Material SupercriticalFLiNaK;
+    public static Material FLiBe;
+    public static Material SupercriticalFLiBe;
+    public static Material LeadBismuthEutectic;
+    public static Material SupercriticalLeadBismuthEutectic;
     //COILS
     public static Material Titan_Steel;
 
@@ -348,6 +367,7 @@ public class TJFMaterials {
                 .color(0x3467BA)
                 .flags(CORE_METAL)
                 .iconSet(SHINY)
+                .cableProperties(GTValues.V[GTValues.UEV], 4, 32)
                 .components(Inconel792, 8, EglinSteel, 5, NaquadahEnriched, 4, Cerium, 3, Antimony, 2, Platinum, 2, Ytterbium, 1, TungstenSteel, 4)
                 .blast(11500)
                 .build();
@@ -484,6 +504,7 @@ public class TJFMaterials {
                 .iconSet(SHINY)
                 .flags(CORE_METAL, DISABLE_DECOMPOSITION)
                 .components(TungstenCarbide, 7, Titanium, 3)
+                .cableProperties(GTValues.V[GTValues.UHV], 4, 16)
                 .blast(4422)
                 .build();
 
@@ -560,7 +581,7 @@ public class TJFMaterials {
                 .color(0x2d365c)
                 .iconSet(SHINY)
                 .flags(CORE_METAL)
-                .element(TJFElements.Ad)
+                .element(Ad)
                 .blast(10850)
                 .build();
 
@@ -570,6 +591,7 @@ public class TJFMaterials {
                 .iconSet(SHINY)
                 .flags(CORE_METAL, DISABLE_DECOMPOSITION)
                 .components(Zeron100, 8, Naquadria, 4, Gadolinium, 3, Aluminium, 2, Mercury, 1, Tin, 1, Titanium, 6, Osmiridium, 1)
+                .cableProperties(GTValues.V[GTValues.UIV], 4, 64)
                 .blast(11465)
                 .build();
 
@@ -1384,7 +1406,7 @@ public class TJFMaterials {
                         .build()
                         .setFormula("Cu3?",true);
 
-        ChloroauricAcid= new Material.Builder(id++, tjfId("material"))
+        ChloroauricAcid = new Material.Builder(id++, tjfId("chloroauric_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0xDFD11F)
                 .iconSet(FLUID)
@@ -1447,6 +1469,119 @@ public class TJFMaterials {
                 .components(Carbon, 5, Fluorine, 10)
                 .build();
 
+        Taranium = new Material.Builder(id++, tjfId("material"))
+                .ingot(7)
+                .color(0x0c0c0d)
+                .iconSet(SHINY)
+                .flags(CORE_METAL)
+                .element(Tn)
+                .blast(10000)
+                .build();
+
+        NaquadriaticTaranium = new Material.Builder(id++, tjfId("naquadriatic_taranium"))
+                .ingot()
+                .color((Naquadria.getMaterialRGB() + Taranium.getMaterialRGB()) / 2)
+                .iconSet(SHINY)
+                .flags(STD_METAL, GENERATE_LONG_ROD)
+                .components(Naquadria, 1, Taranium, 1)
+                .cableProperties(GTValues.V[GTValues.UXV], 2, 32)
+                .blast(11200)
+                .build();
+
+        BlackTitanium = new Material.Builder(id++, tjfId("black_titanium"))
+                .ingot()
+                .color(0x6C003B)
+                .iconSet(SHINY)
+                .flags(CORE_METAL, DISABLE_DECOMPOSITION)
+                .components(Titanium, 26, Lanthanum, 6, Tungsten, 4, Cobalt, 3, Manganese, 2, Phosphorus, 2, Palladium, 2, Niobium, 1, Argon, 5)
+                .cableProperties(GTValues.V[GTValues.UIV], 2, 32)
+                .blast(11500)
+                .build();
+
+        FullerenePolymerMatrix = new Material.Builder(id++, tjfId("fullerene_polymer_matrix"))
+                .polymer(2).fluid()
+                .color(0x403e37)
+                .iconSet(DULL)
+                .flags(EXCLUDE_BLOCK_CRAFTING_RECIPES, GENERATE_FOIL, NO_SMASHING, DISABLE_DECOMPOSITION)
+                .components(Palladium, 1, Iron, 1, Carbon, 153, Hydrogen, 36, Nitrogen, 1, Oxygen, 2)
+                .build();
+
+        Zylon = new Material.Builder(id++, tjfId("zylon"))
+                .polymer(2).fluid()
+                .color(0xFFE000)
+                .iconSet(SHINY)
+                .flags(EXCLUDE_BLOCK_CRAFTING_RECIPES, GENERATE_FOIL, NO_SMASHING, DISABLE_DECOMPOSITION)
+                .components(Carbon, 14, Hydrogen, 6, Nitrogen, 2, Oxygen, 2)
+                .build();
+
+        SupercriticalSteam = new Material.Builder(id++, tjfId("supercritical_steam"))
+                .fluid()
+                .color(Steam.getMaterialRGB())
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H2O", true);
+
+        SodiumPotassiumAlloy = new Material.Builder(id++, tjfId("sodium_potassium_alloy"))
+                .dust(2).fluid()
+                .color(0x252525)
+                .iconSet(SHINY)
+                .components(Sodium, 7, Potassium, 3)
+                .build();
+
+        SupercriticalSodiumPotassiumAlloy = new Material.Builder(id++, tjfId("supercritical_sodium_potassium_alloy"))
+                .fluid()
+                .color(SodiumPotassiumAlloy.getMaterialRGB())
+                .iconSet(FLUID)
+                .components(SodiumPotassiumAlloy, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("", true);
+
+        FLiNaK = new Material.Builder(id++, tjfId("flinak"))
+                .dust(2).fluid()
+                .color(0x252525)
+                .iconSet(DULL)
+                .components(Fluorine, 3, Lithium, 1, Sodium, 1, Potassium, 1)
+                .build();
+
+        SupercriticalFLiNaK = new Material.Builder(id++, tjfId("supercritical_flinak"))
+                .fluid()
+                .color(FLiNaK.getMaterialRGB())
+                .iconSet(FLUID)
+                .components(FLiNaK, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build();
+
+        FLiBe = new Material.Builder(id++, tjfId("flibe"))
+                .dust(2).fluid()
+                .color(0x252525)
+                .iconSet(DULL)
+                .components(Fluorine, 3, Lithium, 1, Beryllium, 1)
+                .build();
+
+        SupercriticalFLiBe = new Material.Builder(id++, tjfId("supercritical_flibe"))
+                .fluid()
+                .color(FLiBe.getMaterialRGB())
+                .components(FLiBe, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .build();
+
+        LeadBismuthEutectic = new Material.Builder(id++, tjfId("lead_bismuth_eutatic"))
+                .ingot().fluid()
+                .color(0x757575)
+                .iconSet(SHINY)
+                .components(Lead, 3, Bismuth, 7)
+                .build();
+
+        SupercriticalLeadBismuthEutectic = new Material.Builder(id++, tjfId("supercritical_lead_bismuth_eutatic"))
+                .fluid()
+                .color(LeadBismuthEutectic.getMaterialRGB())
+                .iconSet(FLUID)
+                .flags(DISABLE_DECOMPOSITION)
+                .components(LeadBismuthEutectic, 1)
+                .build();
+
         /*
         MATERIAL = new Material.Builder(id++, tjfId("material"))
                 .ingot()
@@ -1483,19 +1618,20 @@ public class TJFMaterials {
         Germanium.addFlags(GENERATE_PLATE);
 
         List<Material> mats = new ArrayList<>();
-        Collections.addAll(mats, Bohrium, Dubnium, Duranium);
-
-        for (MaterialFlag flag : CORE_METAL) {
-            Bohrium.addFlags(flag);
-            Dubnium.addFlags(flag);
-        }
+        Collections.addAll(mats, Bohrium, Dubnium, Duranium, Seaborgium);
 
         for (Material mat : mats) {
-            addIngot(mat);
-            addFluid(mat);
+            for (MaterialFlag flag : CORE_METAL) {
+                addIngot(mat);
+                addFluid(mat);
+                mat.addFlags(flag);
+            }
         }
 
         Bohrium.addFlags(GENERATE_FRAME, GENERATE_ROUND);
         NaquadahAlloy.addFlags(GENERATE_FINE_WIRE);
+
+        addFluid(Carbon, "plasma", false);
+
     }
 }
