@@ -3,13 +3,6 @@ package com.fulltrix.tjfcore.item;
 import gregtech.api.items.armor.ArmorMetaItem;
 import gregtech.api.items.metaitem.MetaItem;
 
-import gregtech.api.items.armor.ArmorMetaItem;
-import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.unification.OreDictUnifier;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 import java.util.List;
 
 public class TJFCoreItems {
@@ -461,16 +454,19 @@ public class TJFCoreItems {
     public static void init() {
         TJFCoreItem item = new TJFCoreItem();
         item.setRegistryName("tjf_meta_item");
+
+        TJFCoreItem2 item2 = new TJFCoreItem2((short) 0);
+        item2.setRegistryName("tjf_meta_item2");
         //GAMetaTool tool = new GAMetaTool();
         //tool.setRegistryName("ga_meta_tool");
-       // GAMetaArmor armor = new GAMetaArmor();
-       // armor.setRegistryName("ga_armor");
-      //  GADustItem dustItem = new GADustItem((short) 0);
-       // dustItem.setRegistryName("ga_dust");
-       // GAMetaItem2 item2 = new GAMetaItem2((short) 0);
-       // item2.setRegistryName("ga_meta_item2");
-      //  GAOredictItem oreDictItem = new GAOredictItem((short) 0);
-       // oreDictItem.setRegistryName("ga_oredict_item");
+        // GAMetaArmor armor = new GAMetaArmor();
+        // armor.setRegistryName("ga_armor");
+        //  GADustItem dustItem = new GADustItem((short) 0);
+        // dustItem.setRegistryName("ga_dust");
+        // GAMetaItem2 item2 = new GAMetaItem2((short) 0);
+        // item2.setRegistryName("ga_meta_item2");
+        //  GAOredictItem oreDictItem = new GAOredictItem((short) 0);
+        // oreDictItem.setRegistryName("ga_oredict_item");
     }
 
 }

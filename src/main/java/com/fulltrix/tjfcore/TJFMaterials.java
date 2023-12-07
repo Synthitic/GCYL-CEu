@@ -325,6 +325,8 @@ public class TJFMaterials {
     public static Material SuperheavyMix;
 
     public static Material NeutronPlasma;
+    public static Material FreeAlphaGas;
+    public static Material FreeElectronGas;
     //COILS
     public static Material TitanSteel;
 
@@ -1245,12 +1247,12 @@ public class TJFMaterials {
                 .build()
                 .setFormula("CsBr(H2O)",true);
 
-        Sarcosine= new Material.Builder(id++, tjfId("material"))
+        Sarcosine = new Material.Builder(id++, tjfId("sarcosine"))
                 .dust()
-                .color((Glycine.getMaterialRGB()+Oxygen.getMaterialRGB())/2)
+                .color((Glycine.getMaterialRGB() + Oxygen.getMaterialRGB()) / 2)
                 .iconSet(SHINY)
                 .build()
-                .setFormula("C3H7NO2",true);
+                .setFormula("C3H7NO2", true);
 
         PraseodymiumOxide = new Material.Builder(id++, tjfId("praseodymium_oxide"))
                 .dust()
@@ -1520,8 +1522,8 @@ public class TJFMaterials {
                 .components(Carbon, 5, Fluorine, 10)
                 .build();
 
-        Taranium = new Material.Builder(id++, tjfId("material"))
-                .ingot(7)
+        Taranium = new Material.Builder(id++, tjfId("taranium"))
+                .ingot(7).fluid()
                 .color(0x0c0c0d)
                 .iconSet(SHINY)
                 .flags(CORE_METAL)
@@ -1881,7 +1883,7 @@ public class TJFMaterials {
                 .build()
                 .setFormula("C6H6N12O12", true);
 
-        Glyceryl = new Material.Builder(id++, tjfId("material"))
+        Glyceryl = new Material.Builder(id++, tjfId("glyceryl"))
                 .fluid()
                 .color(38550)
                 .iconSet(FLUID)
@@ -1891,7 +1893,7 @@ public class TJFMaterials {
                 .setFormula("", true);
 
         ElectronDegenerateRheniumPlasma = new Material.Builder(id++, tjfId("degenerate_rhenium_plasma"))
-                .fluid()
+                .plasma()
                 .color(0x6666FF)
                 .iconSet(FLUID)
                 .build()
@@ -1910,6 +1912,20 @@ public class TJFMaterials {
                 .iconSet(FLUID)
                 .build()
                 .setFormula("n", true);
+
+        FreeAlphaGas = new Material.Builder(id++, tjfId("free_alpha_gas"))
+                .fluid()
+                .color(0xe0d407)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("a", true);
+
+        FreeElectronGas = new Material.Builder(id++, tjfId("free_electron_gas"))
+                .fluid()
+                .color(0x044c4c)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("e-", true);
 
         /*
         MATERIAL = new Material.Builder(id++, tjfId("material"))
@@ -1944,14 +1960,21 @@ public class TJFMaterials {
         addFluid(Bromine);
         addFluid(AmmoniumChloride);
 
+        //NUCLEAR STUFF
+        List<Material> nuclearMats = new ArrayList<>();
+        Collections.addAll(nuclearMats, Einsteinium, Fermium, Mendelevium);
+
+        for (Material mat : nuclearMats) {
+            addDust(mat, 1, 0);
+            addFluid(mat);
+            mat.addFlags(GENERATE_PLATE);
+        }
+
         Germanium.addFlags(GENERATE_PLATE);
-        Einsteinium.addFlags(GENERATE_PLATE);
-        Fermium.addFlags(GENERATE_PLATE);
-        Mendelevium.addFlags(GENERATE_PLATE);
 
-
+        //CORE METAL ADDITIONS
         List<Material> mats = new ArrayList<>();
-        Collections.addAll(mats, Bohrium, Dubnium, Duranium, Seaborgium);
+        Collections.addAll(mats, Bohrium, Dubnium, Duranium, Seaborgium, Rhenium, Rutherfordium);
 
         for (Material mat : mats) {
             for (MaterialFlag flag : CORE_METAL) {
@@ -1960,6 +1983,8 @@ public class TJFMaterials {
                 mat.addFlags(flag);
             }
         }
+
+        //SPECIFIC CASES
 
         Bohrium.addFlags(GENERATE_FRAME, GENERATE_ROUND);
         NaquadahAlloy.addFlags(GENERATE_FINE_WIRE);

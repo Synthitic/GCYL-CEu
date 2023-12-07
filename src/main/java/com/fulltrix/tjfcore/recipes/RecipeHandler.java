@@ -46,6 +46,7 @@ public class RecipeHandler {
         OpticalChain.init();
         FusionElementsChain.init();
         FusionComponents.init();
+        WormholeGeneratorChain.init();
         /*
         ZylonChain.init();
         FullereneChain.init();
@@ -69,7 +70,7 @@ public class RecipeHandler {
         Dyes.init();
         SensorEmitter.init();
         SeleniumChain.init();
-        WormholeGeneratorChain.init();
+
         CosmicChain.init();
         UltimateMaterials.init();
         DigitalInterfaces.init();

@@ -36,7 +36,7 @@ public class UHVMaterials {
         STELLAR_FORGE_RECIPES.recipeBuilder()
                 .input(ingot, Rhenium)
                 .inputs(TJFMetaBlocks.EXPLOSIVE.getItemVariant(TJFExplosive.ExplosiveType.NAQUADRIA_CHARGE))
-                .fluidOutputs(ElectronDegenerateRheniumPlasma.getFluid(1000))
+                .fluidOutputs(ElectronDegenerateRheniumPlasma.getPlasma(1000))
                 .EUt(1966080)
                 .duration(20)
                 .buildAndRegister();
@@ -44,14 +44,14 @@ public class UHVMaterials {
         STELLAR_FORGE_RECIPES.recipeBuilder()
                 .input(plateDense, Rhenium)
                 .inputs(TJFMetaBlocks.EXPLOSIVE.getItemVariant(TJFExplosive.ExplosiveType.NAQUADRIA_CHARGE))
-                .fluidOutputs(ElectronDegenerateRheniumPlasma.getFluid(10000))
+                .fluidOutputs(ElectronDegenerateRheniumPlasma.getPlasma(10000))
                 .EUt(1966080 * 4)
                 .duration(100)
                 .buildAndRegister();
 
         CANNER_RECIPES.recipeBuilder()
                 .inputs(PLASMA_CONTAINMENT_CELL.getStackForm())
-                .fluidInputs(ElectronDegenerateRheniumPlasma.getFluid(1000))
+                .fluidInputs(ElectronDegenerateRheniumPlasma.getPlasma(1000))
                 .outputs(RHENIUM_PLASMA_CONTAINMENT_CELL.getStackForm())
                 .EUt(30720)
                 .duration(20)
