@@ -49,4 +49,9 @@ public class TJFRecipeMaps {
             2, 2, 2, 2, (new SimpleRecipeBuilder()), false)
             .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressWidget.MoveType.HORIZONTAL)
             .setSound(GTSoundEvents.COOLING);
+
+    public static final RecipeMap<SimpleRecipeBuilder> CHEMICAL_PLANT_RECIPES = new RecipeMap<>("chemical_plant",
+            6, 4, 5, 4, (new SimpleRecipeBuilder()), false)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressWidget.MoveType.HORIZONTAL)
+            .setSound(GTSoundEvents.CHEMICAL_REACTOR);
 }

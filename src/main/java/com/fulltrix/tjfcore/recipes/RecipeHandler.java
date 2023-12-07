@@ -47,6 +47,7 @@ public class RecipeHandler {
         FusionElementsChain.init();
         FusionComponents.init();
         WormholeGeneratorChain.init();
+        HNIWChain.init();
         /*
         ZylonChain.init();
         FullereneChain.init();
@@ -81,7 +82,7 @@ public class RecipeHandler {
         CombinedChains.init();
         OrganometallicChains.init();
         QuantumDotsChain.init();
-        HNIWChain.init();
+
         TriniumChain.init();
         TaraniumChain.init();
 

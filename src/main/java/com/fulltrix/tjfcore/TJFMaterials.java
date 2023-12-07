@@ -327,6 +327,51 @@ public class TJFMaterials {
     public static Material NeutronPlasma;
     public static Material FreeAlphaGas;
     public static Material FreeElectronGas;
+    public static Material PotassiumCarbonate;
+    public static Material PotassiumBisulfite;
+    public static Material PotassiumNitrite;
+    public static Material NitrousAcid;
+    public static Material SodiumAcetate;
+    public static Material PotassiumHydroxylaminedisulfonate;
+    public static Material HydroxylammoniumSulfate;
+    public static Material BariumChloride;
+    public static Material BariumSulfateSolution;
+    public static Material HydroxylamineHydrochloride;
+    public static Material SuccinicAcid;
+    public static Material AceticAnhydride;
+    public static Material SuccinicAnhydride;
+    public static Material Tetrahydrofuran;
+    public static Material NHydroxysuccinimide;
+    public static Material Triethylamine;
+    public static Material SuccinimidylAcetate;
+    public static Material SeleniumOxide;
+    public static Material SelenousAcid;
+    public static Material AmmoniumAcetate;
+    public static Material Acetamide;
+    public static Material Acetonitrile;
+    public static Material BenzylChloride;
+    public static Material Hexamethylenetetramine;
+    public static Material Benzylamine;
+    public static Material Glyoxal;
+    public static Material Hexabenzylhexaazaisowurtzitane;
+    public static Material PalladiumChloride;
+    public static Material PdCCatalyst;
+    public static Material HydrobromicAcid;
+    public static Material Dimethylformamide;
+    public static Material DibenzylTetraacetylhexaazaisowurtzitane;
+    public static Material NitroniumTetrafluoroborate;
+    public static Material NitrosoniumTetrafluoroborate;
+    public static Material Tetraacetyldinitrosohexaazaisowurtzitane;
+    public static Material TetrafluoroboricAcid;
+    public static Material Benzaldehyde;
+    public static Material CrudeHexanitroHexaazaisowurtzitane;
+    public static Material SilicaGel;
+    public static Material BrevibacteriumFlavium;
+    public static Material Succinimide;
+    public static Material MaleicAnhydride;
+    public static Material Silvertetrafluoroborate;
+    public static Material SilverOxide;
+    public static Material Acetaldehyde;
     //COILS
     public static Material TitanSteel;
 
@@ -1926,6 +1971,325 @@ public class TJFMaterials {
                 .iconSet(FLUID)
                 .build()
                 .setFormula("e-", true);
+
+
+        PotassiumCarbonate = new Material.Builder(id++, tjfId("potassium_carbonate"))
+                .dust()
+                .color((Potassium.getMaterialRGB() + Carbon.getMaterialRGB() + Oxygen.getMaterialRGB()) / 3)
+                .iconSet(FINE)
+                .build()
+                .setFormula("K2CO3", true);
+
+        PotassiumBisulfite = new Material.Builder(id++, tjfId("potassium_bisulfite"))
+                .dust()
+                .color(0xF0EAD6)
+                .iconSet(DULL)
+                .build()
+                .setFormula("KHSO3", true);
+
+        PotassiumNitrite = new Material.Builder(id++, tjfId("potassium_nitrite"))
+                .dust()
+                .color(0xF0EAD6)
+                .iconSet(DULL)
+                .build()
+                .setFormula("KNO2", true);
+
+        NitrousAcid = new Material.Builder(id++, tjfId("nitrous_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(0x1e73b0)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("HNO2", true);
+
+
+        AceticAnhydride = new Material.Builder(id++, tjfId("acetic_anhydride"))
+                .fluid()
+                .color(0xD5DDDF)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(CH3CO)2O", true);
+
+        SodiumAcetate = new Material.Builder(id++, tjfId("sodium_acetate"))
+                .fluid()
+                .color((Sodium.getMaterialRGB() + AceticAnhydride.getMaterialRGB()) / 2)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C2H3NaO2", true);
+
+        PotassiumHydroxylaminedisulfonate = new Material.Builder(id++, tjfId("potassium_hydroxylaminedisulfonate"))
+                .dust()
+                .color((0xF0EAD6 + NitrousAcid.getMaterialRGB()) / 2)
+                .iconSet(DULL)
+                .build()
+                .setFormula("KHSO3", true);
+
+        HydroxylammoniumSulfate = new Material.Builder(id++, tjfId("hydroxylammonium_sulfate"))
+                .dust()
+                .color(0xF0EAD6)
+                .iconSet(DULL)
+                .build()
+                .setFormula("(NH3OH)2SO4", true);
+
+        BariumChloride = new Material.Builder(id++, tjfId("barium_chloride"))
+                .dust()
+                .color((Barium.getMaterialRGB() + Chlorine.getMaterialRGB()) / 2)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("BaCl2", true);
+
+
+        BariumSulfateSolution = new Material.Builder(id++, tjfId("barium_sulfate_solution"))
+                .fluid()
+                .color(Barite.getMaterialRGB())
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(H2O)BaSO4", true);
+
+        HydroxylamineHydrochloride = new Material.Builder(id++, tjfId("hydroxylamine_hydrochloride"))
+                .fluid()
+                .color(((Barium.getMaterialRGB() + Chlorine.getMaterialRGB()) / 2 + 0xF0EAD6) / 2)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("HONH2HCl", true);
+
+        MaleicAnhydride = new Material.Builder(id++, tjfId("maleic_anhydride"))
+                .fluid()
+                .color(0x3c20ad)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C4H2O3", true);
+
+        SuccinicAcid = new Material.Builder(id++, tjfId("succinic_acid"))
+                .dust()
+                .color((MaleicAnhydride.getMaterialRGB() + Water.getMaterialRGB() + Hydrogen.getMaterialRGB()) / 3)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("C4H6O4", true);
+
+        SuccinicAnhydride = new Material.Builder(id++, tjfId("succinic_anhydride"))
+                .dust()
+                .color((SuccinicAcid.getMaterialRGB() + AceticAnhydride.getMaterialRGB()) / 2)
+                .iconSet(DULL)
+                .build()
+                .setFormula("(CH2CO)2O", true);
+
+        Tetrahydrofuran = new Material.Builder(id++, tjfId("tetrahydrofuran"))
+                .fluid()
+                .color(0xb7ebcd)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(CH2)4O", true);
+
+        NHydroxysuccinimide = new Material.Builder(id++, tjfId("n-hydroxysuccinimide"))
+                .dust()
+                .color(0xdbcae3)
+                .iconSet(DULL)
+                .build()
+                .setFormula("(CH2CO)2NOH", true);
+
+        Triethylamine = new Material.Builder(id++, tjfId("triethylamine"))
+                .fluid()
+                .color(Ethylenediamine.getMaterialRGB())
+                .iconSet(FLUID)
+                .build()
+                .setFormula("N(CH2CH3)3", true);
+
+        SuccinimidylAcetate = new Material.Builder(id++, tjfId("succinimidyl_acetate"))
+                .dust()
+                .color(0xbd93a6)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C6H7NO4", true);
+
+        SeleniumOxide = new Material.Builder(id++, tjfId("selenium_oxide"))
+                .dust()
+                .color(0xFFFF66)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("SeO2", true);
+
+        SelenousAcid = new Material.Builder(id++, tjfId("selenous_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color((0xFFFF66 + Water.getMaterialRGB()) / 2)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H2SeO3", true);
+
+        AmmoniumAcetate = new Material.Builder(id++, tjfId("ammonium_acetate"))
+                .dust()
+                .color(0xb6dee0)
+                .iconSet(DULL)
+                .build()
+                .setFormula("NH4CH3CO2", true);
+
+        Acetamide = new Material.Builder(id++, tjfId("acetamide"))
+                .dust()
+                .color(0xa6bebf)
+                .iconSet(DULL)
+                .build()
+                .setFormula("CH3CONH2", true);
+
+        Acetonitrile = new Material.Builder(id++, tjfId("acetonitrile"))
+                .dust()
+                .color(0xa2afb0)
+                .iconSet(DULL)
+                .build()
+                .setFormula("CH3CN", true);
+
+        BenzylChloride = new Material.Builder(id++, tjfId("benzyl_chloride"))
+                .fluid()
+                .color(0xaef7fc)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C7H7Cl", true);
+
+        Hexamethylenetetramine = new Material.Builder(id++, tjfId("hexamethylenetetramine"))
+                .dust()
+                .color(0x7e8d94)
+                .iconSet(DULL)
+                .build()
+                .setFormula("(CH2)6N4", true);
+
+        Benzylamine = new Material.Builder(id++, tjfId("benzylamine"))
+                .fluid()
+                .color(0x5c8082)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C7H9N", true);
+
+        Glyoxal = new Material.Builder(id++, tjfId("glyoxal"))
+                .fluid()
+                .color(0xf2f068)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C2H2O2", true);
+
+        Hexabenzylhexaazaisowurtzitane = new Material.Builder(id++, tjfId("hexabenzylhexaazaisowurtzitane"))
+                .dust()
+                .color(0x624573)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C48N6H48", true);
+
+        PalladiumChloride = new Material.Builder(id++, tjfId("palladium_chloride"))
+                .dust()
+                .color(0xb9c0c7)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("PdCl2", true);
+
+        PdCCatalyst = new Material.Builder(id++, tjfId("pdc_catalyst"))
+                .dust()
+                .color((Palladium.getMaterialRGB() + Carbon.getMaterialRGB()) / 2)
+                .iconSet(DULL)
+                .build()
+                .setFormula("PdC", true);
+
+
+        HydrobromicAcid = new Material.Builder(id++, tjfId("hydrobromic_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(0xBC6C53)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("HBr", true);
+
+        Dimethylformamide = new Material.Builder(id++, tjfId("dimethylformamide"))
+                .fluid()
+                .color(0x42bdff)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(CH3)2NCH", true);
+
+        DibenzylTetraacetylhexaazaisowurtzitane = new Material.Builder(id++, tjfId("dibenzyltetraacetylhexaazaisowurtzitane"))
+                .dust()
+                .color(0xb3c98b)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C28N6H32O4", true);
+
+        NitroniumTetrafluoroborate = new Material.Builder(id++, tjfId("nitronium_tetrafluoroborate"))
+                .dust()
+                .color(0x686c6e)
+                .iconSet(DULL)
+                .build()
+                .setFormula("NO2BF4", true);
+
+        NitrosoniumTetrafluoroborate = new Material.Builder(id++, tjfId("nitrosonium_tetrafluoroborate"))
+                .dust()
+                .color(0x7e8d94)
+                .iconSet(DULL)
+                .build()
+                .setFormula("NOBF4", true);
+
+        Tetraacetyldinitrosohexaazaisowurtzitane = new Material.Builder(id++, tjfId("tetraacetyldinitrosohexaazaisowurtzitane"))
+                .dust()
+                .color((DibenzylTetraacetylhexaazaisowurtzitane.getMaterialRGB() + Hexabenzylhexaazaisowurtzitane.getMaterialRGB()) / 2)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C14N8H18O6", true);
+
+        SilverOxide = new Material.Builder(id++, tjfId("silver_oxide"))
+                .dust()
+                .color(0x4D4D4D)
+                .iconSet(DULL)
+                .components(Silver, 2, Oxygen, 1)
+                .build();
+
+        Silvertetrafluoroborate = new Material.Builder(id++, tjfId("silvertetrafluoroborate"))
+                .fluid()
+                .color((SilverOxide.getMaterialRGB() + BoronFluoride.getMaterialRGB()) / 2)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("AgBF4", true);
+
+        TetrafluoroboricAcid = new Material.Builder(id++, tjfId("tetrafluoroboric_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(Silvertetrafluoroborate.getMaterialRGB())
+                .iconSet(FLUID)
+                .build()
+                .setFormula("HBF4", true);
+
+        Benzaldehyde = new Material.Builder(id++, tjfId("benzaldehyde"))
+                .fluid()
+                .color(0xb26f22)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C7H6O", true);
+
+        CrudeHexanitroHexaazaisowurtzitane = new Material.Builder(id++, tjfId("crude_hexanitrohexaazaisowurtzitane"))
+                .dust()
+                .color(HexanitroHexaazaisowurtzitane.getMaterialRGB() * 5 / 7)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C6H6N12O12", true);
+
+        SilicaGel = new Material.Builder(id++, tjfId("silica_gel"))
+                .dust()
+                .color(0x61daff)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("SiO2", true);
+
+        BrevibacteriumFlavium = new Material.Builder(id++, tjfId("brevibacterium_flavium"))
+                .dust()
+                .color(0x2c4d24)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("Bacteria", true);
+
+        Succinimide = new Material.Builder(id++, tjfId("succinimide"))
+                .dust()
+                .color((SuccinicAcid.getMaterialRGB() + Ammonia.getMaterialRGB()) / 2)
+                .iconSet(METALLIC)
+                .build()
+                .setFormula("C4H4BrNO2", true);
+
+        Acetaldehyde = new Material.Builder(id++, tjfId("acetaldehyde"))
+                .fluid()
+                .color(0xFF9933)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C2H4O", true);
 
         /*
         MATERIAL = new Material.Builder(id++, tjfId("material"))

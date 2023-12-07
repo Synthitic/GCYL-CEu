@@ -79,7 +79,7 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
             SupercriticalSodiumPotassiumAlloy.getFluid(),
             SupercriticalFLiNaK.getFluid(), SupercriticalFLiBe.getFluid(), SupercriticalLeadBismuthEutectic.getFluid());
     private final FusionProgressSupplier progressBarSupplier;
-    private int tier;
+    private final int tier;
     private int coilTier;
     private int vacuumTier;
     private int divertorTier;
