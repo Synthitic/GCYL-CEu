@@ -372,6 +372,17 @@ public class TJFMaterials {
     public static Material Silvertetrafluoroborate;
     public static Material SilverOxide;
     public static Material Acetaldehyde;
+
+    public static Material Trichloroferane;
+    public static Material SeaborgiumDopedNanotubes;
+    public static Material PrHoYLF;
+    public static Material LuTmYVO;
+    public static Material NeodymiumDopedYttrium;
+    public static Material UnprocessedNdYAGSolution;
+    public static Material UnprocessedNdYAGDust;
+    public static Material NdYAGNanoparticles;
+    public static Material NdYAG;
+
     //COILS
     public static Material TitanSteel;
 
@@ -505,7 +516,7 @@ public class TJFMaterials {
                 .build();
 
         CarbonNanotubes = new Material.Builder(id++, tjfId("carbon_nanotubes"))
-                .ingot()
+                .ingot().fluid()
                 .color(0x2c2c2c)
                 .iconSet(SHINY)
                 .flags(EXCLUDE_BLOCK_CRAFTING_RECIPES, GENERATE_FOIL, DISABLE_DECOMPOSITION, GENERATE_FINE_WIRE)
@@ -576,7 +587,7 @@ public class TJFMaterials {
                 .setFormula("ErF3", true);
 
         ZBLANDust = new Material.Builder(id++, tjfId("zblan_dust"))
-                .dust()
+                .dust().fluid()
                 .color((ZirconiumTetrafluoride.getMaterialRGB()+BariumDifluoride.getMaterialRGB()+LanthanumTrifluoride.getMaterialRGB()+AluminiumTrifluoride.getMaterialRGB())/4)
                 .iconSet(SHINY)
                 .build()
@@ -2290,6 +2301,69 @@ public class TJFMaterials {
                 .iconSet(FLUID)
                 .build()
                 .setFormula("C2H4O", true);
+
+        Trichloroferane = new Material.Builder(id++, tjfId("trichloroferane"))
+                .fluid()
+                .color(0x521973)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("FlCl3", true);
+
+        SeaborgiumDopedNanotubes = new Material.Builder(id++, tjfId("seaborgium_doped_nanotubes"))
+                .fluid()
+                .color(0x2c2c8c)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("SgCNT", true);
+
+        PrHoYLF = new Material.Builder(id++, tjfId("prho_ylf"))
+                .dust(6).fluid()
+                .color(0x6f20af)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("PrHoYLF", true);
+
+        LuTmYVO = new Material.Builder(id++, tjfId("lutm_yvo"))
+                .dust(6).fluid()
+                .color(0x206faf)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("LuTmYVO", true);
+
+        NeodymiumDopedYttrium = new Material.Builder(id++, tjfId("neodymium_doped_yttrium"))
+                .dust()
+                .color(YttriumOxide.getMaterialRGB())
+                .iconSet(DULL)
+                .build()
+                .setFormula("Nd:Y?", true);
+
+        UnprocessedNdYAGSolution = new Material.Builder(id++, tjfId("unprocessed_ndyag_solution"))
+                .fluid()
+                .color(0x6f20af)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("", true);
+
+        UnprocessedNdYAGDust = new Material.Builder(id++, tjfId("unprocessed_ndyag_dust"))
+                .dust()
+                .color(0x6f20af)
+                .iconSet(DULL)
+                .build()
+                .setFormula("Nd:YAG?", true);
+
+        NdYAGNanoparticles = new Material.Builder(id++, tjfId("nd_yag_nanoparticles"))
+                .dust()
+                .color(0x6f20af)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("Nd:YAG", true);
+
+        NdYAG = new Material.Builder(id++, tjfId("nd_yag"))
+                .dust(6).fluid()
+                .color(0xcf8acf)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("Nd:YAG", true);
 
         /*
         MATERIAL = new Material.Builder(id++, tjfId("material"))

@@ -1,22 +1,20 @@
 package com.fulltrix.tjfcore.recipes.categories.circuits;
 
-import com.fulltrix.tjfcore.recipes.categories.circuits.components.*;
+import com.fulltrix.tjfcore.recipes.categories.circuits.components.OpticalComponents;
+import com.fulltrix.tjfcore.recipes.categories.circuits.components.WetwareComponents;
 
 import static com.fulltrix.tjfcore.TJFMaterials.*;
 import static com.fulltrix.tjfcore.item.TJFCoreItems.*;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.material.Materials.Tritanium;
 import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.api.unification.ore.OrePrefix.wireFine;
-import static gregtech.common.items.MetaItems.*;
+import static gregtech.common.items.MetaItems.NEURO_PROCESSOR;
+import static gregtech.common.items.MetaItems.STEM_CELLS;
 
 public class CircuitComponentRecipes {
 
     public static void init() { // TODO
-
-        //  circuitBoards();
 
         // primitiveSMD();
         //  refinedSMD();
@@ -24,6 +22,7 @@ public class CircuitComponentRecipes {
         // nanoSMD();
         //quantumSMD();
         //CrystalComponents.init();
+        circuitBoards();
         WetwareComponents.init();
         biowareSMD();
         OpticalComponents.init();
@@ -79,5 +78,32 @@ public class CircuitComponentRecipes {
                 .EUt(30720 * 16)
                 .duration(150)
                 .buildAndRegister();
+    }
+
+    private static void circuitBoards() {
+
+        // Kapton Circuit Board
+        CHEMICAL_BATH_RECIPES.recipeBuilder().duration(300).EUt(240)
+                .input(plate, Polyimide)
+                .fluidInputs(FluorinatedEthylenePropylene.getFluid(L / 2))
+                .outputs(KAPTON_BOARD.getStackForm())
+                .buildAndRegister();
+
+        // Insane Circuit Board
+        CHEMICAL_RECIPES.recipeBuilder().duration(500).EUt(240)
+                .inputs(KAPTON_BOARD.getStackForm())
+                .input(foil, VanadiumGallium, 24)
+                .fluidInputs(SodiumPersulfate.getFluid(6000))
+                .outputs(KAPTON_CIRCUIT_BOARD.getStackForm())
+                .buildAndRegister();
+
+        CHEMICAL_RECIPES.recipeBuilder().duration(500).EUt(240)
+                .inputs(KAPTON_BOARD.getStackForm())
+                .input(foil, VanadiumGallium, 24)
+                .fluidInputs(Iron3Chloride.getFluid(3000))
+                .outputs(KAPTON_CIRCUIT_BOARD.getStackForm())
+                .buildAndRegister();
+
+        //TODO Red circuit board from GTNH
     }
 }

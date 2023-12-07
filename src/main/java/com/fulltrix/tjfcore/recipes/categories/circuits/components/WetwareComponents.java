@@ -6,12 +6,12 @@ import net.minecraft.item.ItemStack;
 
 import static com.fulltrix.tjfcore.TJFMaterials.*;
 import static com.fulltrix.tjfcore.item.TJFCoreItems.*;
-import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.*;
+import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.BIO_REACTOR_RECIPES;
+import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.api.unification.ore.OrePrefix.stickLong;
 import static gregtech.common.items.MetaItems.*;
 
 public class WetwareComponents {
@@ -216,7 +216,7 @@ public class WetwareComponents {
                 .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
                 .buildAndRegister();
 
-        /*
+        /* TODO implement this
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(200)
                 .inputs(STREPTOCOCCUS_CULTURE.getStackForm())
                 .fluidInputs(BacterialGrowthMedium.getFluid(1000))

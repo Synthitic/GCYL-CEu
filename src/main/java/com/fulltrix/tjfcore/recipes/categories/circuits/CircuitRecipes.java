@@ -3,10 +3,9 @@ package com.fulltrix.tjfcore.recipes.categories.circuits;
 
 import static com.fulltrix.tjfcore.TJFMaterials.*;
 import static com.fulltrix.tjfcore.item.TJFCoreItems.*;
-import static gregtech.api.recipes.RecipeMaps.*;
-
 import static gregtech.api.GTValues.L;
-import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
+import static gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
+import static gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
@@ -25,7 +24,7 @@ public class CircuitRecipes {
         quantumCircuits();
         crystalCircuits();
         wetwareCircuits();
-        biowareCircuits();
+
 
         exoticCircuits(); // TBD
         cosmicCircuits();
@@ -33,13 +32,93 @@ public class CircuitRecipes {
 
         MagnetoRecipes.init();
         */
+        biowareCircuits();
         opticalCircuits();
         CircuitComponentRecipes.init();
-        //WaferRecipes.init();
+        WaferRecipes.init();
+    }
+
+    private static void biowareCircuits() {
+
+        //TODO Change these
+
+        // Bioware Processor
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(240000)
+                .inputs(QUBIT_CENTRAL_PROCESSING_UNIT.getStackForm(4))
+                .inputs(SMD_TRANSISTOR_BIOWARE.getStackForm(8))
+                .inputs(SMD_CAPACITOR_BIOWARE.getStackForm(4))
+                .inputs(NEURO_PROCESSOR.getStackForm())
+                .inputs(HIGHLY_ADVANCED_SOC.getStackForm(4))
+                .input(wireFine, NaquadahAlloy, 4)
+                .outputs(BIOWARE_PROCESSOR.getStackForm(4))
+                .solderMultiplier(4)
+                .buildAndRegister();
+
+        // Bioware Assembly
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(400).EUt(480000)
+                .inputs(BIOWARE_PROCESSOR.getStackForm(3))
+                .inputs(SMD_CAPACITOR_BIOWARE.getStackForm(16))
+                .inputs(SMD_TRANSISTOR_BIOWARE.getStackForm(16))
+                .inputs(SMD_DIODE_BIOWARE.getStackForm(16))
+                .inputs(SMD_RESISTOR_BIOWARE.getStackForm(16))
+                .input(wireGtSingle, UVSuperconductor, 4)
+                .input(wireFine, PEDOT, 64)
+                .inputs(ARAM.getStackForm(8))
+                .input(plate, Duranium, 2)
+                .input(foil, Polybenzimidazole, 16)
+                .fluidInputs(SterileGrowthMedium.getFluid(1000))
+                .fluidInputs(Titanium.getFluid(L * 9))
+                .fluidInputs(Polyethylene.getFluid(L * 18))
+                .fluidInputs(NaquadahEnriched.getFluid(L * 9))
+                .outputs(BIOWARE_ASSEMBLY.getStackForm())
+                .buildAndRegister();
+
+        // Bioware Computer
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(480000)
+                .inputs(BIOWARE_ASSEMBLY.getStackForm(4))
+                .inputs(SMD_CAPACITOR_BIOWARE.getStackForm(32))
+                .inputs(SMD_TRANSISTOR_BIOWARE.getStackForm(32))
+                .inputs(SMD_DIODE_BIOWARE.getStackForm(32))
+                .inputs(SMD_RESISTOR_BIOWARE.getStackForm(32))
+                .input(wireGtSingle, UVSuperconductor, 16)
+                .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(8))
+                .inputs(ARAM.getStackForm(16))
+                .input(plate, Seaborgium, 2)
+                .input(foil, Polybenzimidazole, 16)
+                .inputs(GRAVI_STAR.getStackForm(2))
+                .fluidInputs(SterileGrowthMedium.getFluid(1000))
+                .fluidInputs(Tritanium.getFluid(L * 2))
+                .fluidInputs(Polybenzimidazole.getFluid(L * 9))
+                .fluidInputs(NaquadahEnriched.getFluid(L * 9))
+                .outputs(BIOWARE_COMPUTER.getStackForm())
+                .buildAndRegister();
+
+        // Bioware Mainframe
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(800).EUt(1920000)
+                .inputs(BIOWARE_COMPUTER.getStackForm(2))
+                .inputs(SMD_CAPACITOR_BIOWARE.getStackForm(64))
+                .inputs(SMD_TRANSISTOR_BIOWARE.getStackForm(64))
+                .inputs(SMD_DIODE_BIOWARE.getStackForm(64))
+                .inputs(SMD_RESISTOR_BIOWARE.getStackForm(64))
+                .input(wireGtSingle, UVSuperconductor, 32)
+                .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(16))
+                .inputs(ARAM.getStackForm(32))
+                .input(foil, Tritanium, 16)
+                .inputs(STEM_CELLS.getStackForm(32))
+                .input(plate, Naquadria, 8)
+                .input(foil, Polybenzimidazole, 64)
+                .input(frameGt, Seaborgium, 4)
+                .fluidInputs(SterileGrowthMedium.getFluid(1000))
+                .fluidInputs(Tritanium.getFluid(L * 9))
+                .fluidInputs(Polybenzimidazole.getFluid(L * 18))
+                .fluidInputs(Naquadria.getFluid(L * 9))
+                .outputs(BIOWARE_MAINFRAME.getStackForm())
+                .buildAndRegister();
     }
 
     private static void opticalCircuits() {
 
+        //TODO change these
 
         // Optical Processor
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(960000)
