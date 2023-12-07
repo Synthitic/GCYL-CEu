@@ -1,8 +1,13 @@
 package com.fulltrix.tjfcore.machines;
 
+import com.fulltrix.tjfcore.TJFUtility;
 import com.fulltrix.tjfcore.machines.multi.MetaTileEntityBioReactor;
 import com.fulltrix.tjfcore.machines.multi.advance.MetaTileEntityAdvFusionReactor;
+import com.fulltrix.tjfcore.recipes.TJFRecipeMaps;
 import gregtech.api.GTValues;
+import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
+import gregtech.api.util.GTUtility;
+import gregtech.client.renderer.texture.Textures;
 import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.util.ResourceLocation;
 
@@ -12,6 +17,8 @@ public class TJFTileEntities {
     public static MetaTileEntityBioReactor BIO_REACTOR;
 
     public static MetaTileEntityAdvFusionReactor[] ADVANCED_FUSION_REACTOR = new MetaTileEntityAdvFusionReactor[5];
+
+    public static SimpleMachineMetaTileEntity[] DEHYDRATOR = new SimpleMachineMetaTileEntity[GTValues.V.length - 1];
 
     public static int id = 32000;
 
@@ -24,6 +31,8 @@ public class TJFTileEntities {
         ADVANCED_FUSION_REACTOR[2] = MetaTileEntities.registerMetaTileEntity(++id, new MetaTileEntityAdvFusionReactor(tjfId("adv_fusion_reactor.uiv"), GTValues.UIV));
         ADVANCED_FUSION_REACTOR[3] = MetaTileEntities.registerMetaTileEntity(++id, new MetaTileEntityAdvFusionReactor(tjfId("adv_fusion_reactor.uxv"), GTValues.UXV));
         ADVANCED_FUSION_REACTOR[4] = MetaTileEntities.registerMetaTileEntity(++id, new MetaTileEntityAdvFusionReactor(tjfId("adv_fusion_reactor.opv"), GTValues.OpV));
+
+        MetaTileEntities.registerSimpleMetaTileEntity(DEHYDRATOR, ++id, "dehydrator", TJFRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES, Textures.SIFTER_OVERLAY, true, TJFUtility::tjfId, GTUtility.hvCappedTankSizeFunction);
 
     }
 }
