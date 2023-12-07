@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 public class TJFFusionCasing extends VariantBlock<TJFFusionCasing.CasingType> {
     public TJFFusionCasing() {
         super(Material.IRON);
-        setTranslationKey("ga_fusion_casing");
+        setTranslationKey("tjf_fusion_casing");
         setHardness(5.0f);
         setResistance(10.0f);
         setSoundType(SoundType.METAL);

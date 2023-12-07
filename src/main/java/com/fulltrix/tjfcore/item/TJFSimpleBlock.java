@@ -10,7 +10,7 @@ public class TJFSimpleBlock extends VariantBlock<TJFSimpleBlock.BlockType> {
 
     public TJFSimpleBlock() {
         super(Material.IRON);
-        setTranslationKey("ga_simple_block");
+        setTranslationKey("tjf_simple_block");
         setHardness(5.0f);
         setResistance(10.0f);
         setSoundType(SoundType.METAL);

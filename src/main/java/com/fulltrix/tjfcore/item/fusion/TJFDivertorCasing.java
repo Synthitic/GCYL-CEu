@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 public class TJFDivertorCasing extends VariantBlock<TJFDivertorCasing.CasingType> {
     public TJFDivertorCasing() {
         super(Material.IRON);
-        setTranslationKey("ga_divertor_casing");
+        setTranslationKey("tjf_divertor_casing");
         setHardness(5.0f);
         setResistance(10.0f);
         setSoundType(SoundType.METAL);

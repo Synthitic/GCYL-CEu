@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 public class TJFVacuumCasing extends VariantBlock<TJFVacuumCasing.CasingType> {
     public TJFVacuumCasing() {
         super(Material.IRON);
-        setTranslationKey("ga_vacuum_casing");
+        setTranslationKey("tjf_vacuum_casing");
         setHardness(5.0f);
         setResistance(10.0f);
         setSoundType(SoundType.METAL);

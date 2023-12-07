@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 public class TJFCryostatCasing extends VariantBlock<TJFCryostatCasing.CasingType> {
     public TJFCryostatCasing() {
         super(Material.IRON);
-        setTranslationKey("ga_cryostat_casing");
+        setTranslationKey("tjf_cryostat_casing");
         setHardness(5.0f);
         setResistance(10.0f);
         setSoundType(SoundType.METAL);

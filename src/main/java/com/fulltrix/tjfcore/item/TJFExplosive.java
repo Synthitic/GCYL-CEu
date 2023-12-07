@@ -8,7 +8,7 @@ import net.minecraft.util.IStringSerializable;
 public class TJFExplosive extends VariantBlock<TJFExplosive.ExplosiveType> {
     public TJFExplosive() {
         super(Material.IRON);
-        setTranslationKey("ga_explosive");
+        setTranslationKey("tjf_explosive");
         setHardness(5.0f);
         setResistance(10.0f);
         setSoundType(SoundType.METAL);
