@@ -44,6 +44,8 @@ public class CommonProxy {
         registry.register(VACUUM_CASING);
         registry.register(DIVERTOR_CASING);
         registry.register(CRYOSTAT_CASING);
+        registry.register(EXPLOSIVE);
+        registry.register(SIMPLE_BLOCK);
     }
 
     @SubscribeEvent
@@ -56,6 +58,8 @@ public class CommonProxy {
         registry.register(createItemBlock(VACUUM_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(DIVERTOR_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(CRYOSTAT_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(EXPLOSIVE, VariantItemBlock::new));
+        registry.register(createItemBlock(SIMPLE_BLOCK, VariantItemBlock::new));
     }
 
 

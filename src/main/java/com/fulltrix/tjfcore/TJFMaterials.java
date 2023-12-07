@@ -318,6 +318,13 @@ public class TJFMaterials {
     public static Material Legendarium;
     public static Material LanthanumFullereneMix;
     public static Material LanthanumFullereneNanotubes;
+
+    public static Material HexanitroHexaazaisowurtzitane;
+    public static Material Glyceryl;
+    public static Material ElectronDegenerateRheniumPlasma;
+    public static Material SuperheavyMix;
+
+    public static Material NeutronPlasma;
     //COILS
     public static Material TitanSteel;
 
@@ -1866,6 +1873,43 @@ public class TJFMaterials {
                 .components(Rutherfordium, 1, Dubnium, 1, Seaborgium, 1, Bohrium, 1, MetastableHassium, 1, Meitnerium, 1, Roentgenium, 1)
                 .blast(10600)
                 .build();
+
+        HexanitroHexaazaisowurtzitane = new Material.Builder(id++, tjfId("hexanitrohexaazaisowurtzitane"))
+                .dust()
+                .color(0x414a4f)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("C6H6N12O12", true);
+
+        Glyceryl = new Material.Builder(id++, tjfId("material"))
+                .fluid()
+                .color(38550)
+                .iconSet(FLUID)
+                .flags(FLAMMABLE, EXPLOSIVE, NO_SMASHING)
+                .components(Carbon, 3, Hydrogen, 5, Nitrogen, 3, Oxygen, 9)
+                .build()
+                .setFormula("", true);
+
+        ElectronDegenerateRheniumPlasma = new Material.Builder(id++, tjfId("degenerate_rhenium_plasma"))
+                .fluid()
+                .color(0x6666FF)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Rh", true);
+
+        SuperheavyMix = new Material.Builder(id++, tjfId("superheavy_mix"))
+                .fluid()
+                .color(0x403737)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("SgBhRfDb", true);
+
+        NeutronPlasma = new Material.Builder(id++, tjfId("neutron_plasma"))
+                .plasma()
+                .color(0xf0e9e9)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("n", true);
 
         /*
         MATERIAL = new Material.Builder(id++, tjfId("material"))

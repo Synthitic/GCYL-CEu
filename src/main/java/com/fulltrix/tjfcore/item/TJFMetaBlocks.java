@@ -18,11 +18,13 @@ public class TJFMetaBlocks {
     public static TJFMultiblockCasing2 MULTIBLOCK_CASING2;
     public static TJFTransparentCasing TRANSPARENT_CASING;
     public static TJFHeatingCoil HEATING_COIL;
-
     public static TJFFusionCasing FUSION_CASING;
     public static TJFVacuumCasing VACUUM_CASING;
     public static TJFDivertorCasing DIVERTOR_CASING;
     public static TJFCryostatCasing CRYOSTAT_CASING;
+    public static TJFExplosive EXPLOSIVE;
+    public static TJFSimpleBlock SIMPLE_BLOCK;
+
 
     public static void init() {
         HEATING_COIL = new TJFHeatingCoil();
@@ -45,6 +47,12 @@ public class TJFMetaBlocks {
 
         CRYOSTAT_CASING = new TJFCryostatCasing();
         CRYOSTAT_CASING.setRegistryName("tjf_cryostat_casing");
+
+        EXPLOSIVE = new TJFExplosive();
+        EXPLOSIVE.setRegistryName("tjf_explosive");
+
+        SIMPLE_BLOCK = new TJFSimpleBlock();
+        SIMPLE_BLOCK.setRegistryName("tjf_simple_block");
     }
 
     @SideOnly(Side.CLIENT)
@@ -56,6 +64,8 @@ public class TJFMetaBlocks {
         registerItemModel(VACUUM_CASING);
         registerItemModel(DIVERTOR_CASING);
         registerItemModel(CRYOSTAT_CASING);
+        registerItemModel(EXPLOSIVE);
+        registerItemModel(SIMPLE_BLOCK);
 
         HEATING_COIL.onModelRegister();
 

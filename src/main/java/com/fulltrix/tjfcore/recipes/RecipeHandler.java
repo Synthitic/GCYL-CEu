@@ -36,9 +36,10 @@ public class RecipeHandler {
         REEChain.init();
         Batteries.init();
         RheniumChain.init();
-        UHVMaterials.init();
+
 
          */
+        UHVMaterials.init();
         PolymerChain.init();
         GoldChain.init();
         PEEKChain.init();
