@@ -44,6 +44,7 @@ public class RecipeHandler {
         PEEKChain.init();
         OpticalChain.init();
         FusionElementsChain.init();
+        FusionComponents.init();
         /*
         ZylonChain.init();
         FullereneChain.init();
@@ -62,7 +63,7 @@ public class RecipeHandler {
         NanotubeChain.init();
         VariousChains.init();
         SuperconductorsSMDChain.init();
-        FusionComponents.init();
+
         NiobiumTantalumChain.init();
         Dyes.init();
         SensorEmitter.init();

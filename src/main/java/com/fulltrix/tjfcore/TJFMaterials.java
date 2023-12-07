@@ -14,13 +14,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static com.fulltrix.tjfcore.TJFElements.Ad;
-import static com.fulltrix.tjfcore.TJFElements.Tn;
+import static com.fulltrix.tjfcore.TJFElements.*;
 import static com.fulltrix.tjfcore.TJFUtility.tjfId;
 import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.Stellite100;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.Zeron100;
 import static gregtech.api.fluids.attribute.FluidAttributes.ACID;
+import static gregtech.api.unification.Elements.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 import static gregtech.api.unification.material.info.MaterialIconSet.*;
@@ -292,16 +292,60 @@ public class TJFMaterials {
     public static Material SupercriticalFLiBe;
     public static Material LeadBismuthEutectic;
     public static Material SupercriticalLeadBismuthEutectic;
+
+    public static Material HastelloyN;
+
+    public static Material TantalumHafniumSeaborgiumCarbide;
+    public static Material Vibranium;
+    public static Material HeavyQuarkDegenerateMatter;
+    public static Material MetastableFlerovium;
+    public static Material MetastableHassium;
+    public static Material QCDMatter;
+    public static Material SuperheavyLAlloy;
+    public static Material Lafium;
+    public static Material TriniumTitanium;
+    public static Material Nitinol60;
+
+    public static Material ActiniumSuperhydride;
+    public static Material BETSPerrhenate;
+    public static Material BorocarbideDust;
+    public static Material FullereneSuperconductiveDust;
+    public static Material MetastableOganesson;
+    public static Material ProtoAdamantium;
+    public static Material SuperheavyHAlloy;
+    public static Material ChargedCaesiumCeriumCobaltIndium;
+    public static Material RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate;
+    public static Material Legendarium;
+    public static Material LanthanumFullereneMix;
+    public static Material LanthanumFullereneNanotubes;
     //COILS
-    public static Material Titan_Steel;
+    public static Material TitanSteel;
 
-    public static Material Black_Titanium;
-
-    public static Material Cosmic_Neutronium;
+    public static Material CosmicNeutronium;
 
     public static Material Infinity;
 
     public static Material Eternity;
+
+    //superconductors
+    public static Material LVSuperconductor = ManganesePhosphide;
+    public static Material MVSuperconductor = MagnesiumDiboride;
+    public static Material HVSuperconductor = MercuryBariumCalciumCuprate;
+    public static Material EVSuperconductor = UraniumTriplatinum;
+    public static Material IVSuperconductor = SamariumIronArsenicOxide;
+    public static Material LuVSuperconductor = IndiumTinBariumTitaniumCuprate;
+    public static Material ZPMSuperconductor = UraniumRhodiumDinaquadide;
+    public static Material UVSuperconductor = EnrichedNaquadahTriniumEuropiumDuranide;
+    public static Material UHVSuperconductor = RutheniumTriniumAmericiumNeutronate;
+
+    public static Material UEVSuperconductor;
+
+    public static Material UIVSuperconductor;
+
+    public static Material UXVSuperconductor;
+
+    public static Material OpVSuperconductor;
+
 
     ///////////////////////////////////////////
 
@@ -1582,6 +1626,247 @@ public class TJFMaterials {
                 .components(LeadBismuthEutectic, 1)
                 .build();
 
+        HastelloyN = new Material.Builder(id++, tjfId("hastelloy_n"))
+                .ingot(6)
+                .color(0xDDDDDD)
+                .iconSet(METALLIC)
+                .flags(EXT2_METAL, GENERATE_FRAME, GENERATE_DENSE)
+                .components(Yttrium, 2, Molybdenum, 4, Chrome, 2, Titanium, 2, Nickel, 15)
+                .blast(4350)
+                .build();
+
+        Lafium = new Material.Builder(id++, tjfId("lafium"))
+                .ingot(7)
+                .color(0x0d0d60)
+                .iconSet(SHINY)
+                .flags(CORE_METAL, DISABLE_DECOMPOSITION)
+                .fluidPipeProperties(23000, 2000, true, true, true, true)
+                .components(HastelloyN, 8, Naquadah, 4, Samarium, 2, Tungsten, 4, Argon, 2, Aluminium, 6, Nickel, 8, Carbon, 2)
+                .blast(9865)
+                .build();
+
+        HeavyQuarkDegenerateMatter = new Material.Builder(id++, tjfId("heavy_quark_degenerate_matter"))
+                .ingot(6)
+                .color(0x5dbd3a)
+                .iconSet(SHINY)
+                .flags(CORE_METAL)
+                .blast(13000)
+                .build()
+                .setFormula("?");
+
+        MetastableFlerovium = new Material.Builder(id++, tjfId("metastable_flerovium"))
+                .ingot(6)
+                .color(0x521973)
+                .iconSet(SHINY)
+                .flags(CORE_METAL)
+                .element(Fl)
+                .blast(11240)
+                .build();
+
+        QCDMatter = new Material.Builder(id++, tjfId("qcd_confined_matter"))
+                .ingot(7)
+                .color(0xeb9e3f)
+                .iconSet(SHINY)
+                .flags(GENERATE_PLATE, DISABLE_REPLICATION, NO_WORKING, NO_SMELTING, NO_SMASHING, GENERATE_FRAME, GENERATE_ROD)
+                .components()
+                .blast(13100)
+                .build()
+                .setFormula("?");
+
+        TitanSteel = new Material.Builder(id++, tjfId("titan_steel"))
+                .ingot(7)
+                .color(0xAA0d0d)
+                .iconSet(SHINY)
+                .flags(CORE_METAL, DISABLE_DECOMPOSITION)
+                .components(TungstenTitaniumCarbide, 3, Jasper, 3)
+                .cableProperties(GTValues.V[GTValues.UEV], 2, 16)
+                .blast(9200)
+                .build();
+
+        MetastableHassium = new Material.Builder(id++, tjfId("metastable_hassium"))
+                .ingot(6)
+                .color(0x2d3a9d)
+                .iconSet(SHINY)
+                .flags(CORE_METAL)
+                .element(Hs)
+                .blast(11240)
+                .build();
+
+        Vibranium = new Material.Builder(id++, tjfId("vibranium"))
+                .ingot(7)
+                .color(0x828aad)
+                .iconSet(SHINY)
+                .flags(CORE_METAL)
+                .element(Vb)
+                .blast(11220)
+                .build();
+
+        TriniumTitanium = new Material.Builder(id++, tjfId("trinium_titanium"))
+                .ingot(7)
+                .color(0x9986a3)
+                .iconSet(SHINY)
+                .flags(CORE_METAL)
+                .components(Trinium, 2, Titanium, 1)
+                .blast(11000)
+                .build();
+
+        TantalumHafniumSeaborgiumCarbide = new Material.Builder(id++, tjfId("tantalum_hafnium_seaborgium_carbide"))
+                .ingot(6)
+                .color(0x2c2c2c)
+                .iconSet(SHINY)
+                .flags(GENERATE_PLATE, EXCLUDE_BLOCK_CRAFTING_RECIPES, DISABLE_DECOMPOSITION)
+                .components(Tantalum, 12, Hafnium, 3, Seaborgium, 1, Carbon, 16)
+                .blast(5200)
+                .build();
+
+        Nitinol60 = new Material.Builder(id++, tjfId("nitinol_a"))
+                .ingot(4)
+                .color(0xCCB0EC)
+                .iconSet(METALLIC)
+                .flags(EXT2_METAL, GENERATE_FRAME)
+                .components(Nickel, 2, Titanium, 3)
+                .blast(Titanium.getBlastTemperature())
+                .build();
+
+        ActiniumSuperhydride = new Material.Builder(id++, tjfId("actinium_superhydride"))
+                .dust()
+                .color(Actinium.getMaterialRGB() * 9 / 8)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("AcH12", true);
+
+        BETSPerrhenate = new Material.Builder(id++, tjfId("bets_perrhenate"))
+                .dust()
+                .color(0x7ada00)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("ReC10H8S4Se4O4", true);
+
+        BorocarbideDust = new Material.Builder(id++, tjfId("borocarbide_dust"))
+                .dust()
+                .color(0x9a9a2a)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("B4C7Fr4At6Ho2Th2Fl2Cn2", true);
+
+        FullereneSuperconductiveDust = new Material.Builder(id++, tjfId("fullerene_superconductor_dust"))
+                .dust()
+                .color(0x99cc00)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("LaCsRb(C60)2", true);
+
+        MetastableOganesson = new Material.Builder(id++, tjfId("metastable_oganesson"))
+                .ingot(7)
+                .color(0xE61C24)
+                .iconSet(SHINY)
+                .flags(CORE_METAL)
+                .element(Og)
+                .blast(10380)
+                .build();
+
+        ProtoAdamantium = new Material.Builder(id++, tjfId("proto_adamantium"))
+                .ingot(7)
+                .color(0x4662d4)
+                .iconSet(SHINY)
+                .flags(CORE_METAL)
+                .components(Adamantium, 3, Promethium, 2)
+                .blast(11244)
+                .build();
+
+        SuperheavyHAlloy = new Material.Builder(id++, tjfId("superheavy_h_alloy"))
+                .ingot(6)
+                .color(0xE84B36)
+                .iconSet(SHINY)
+                .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION)
+                .components(Copernicium, 1, Nihonium, 1, MetastableFlerovium, 1, Moscovium, 1, Livermorium, 1, Tennessine, 1, MetastableOganesson, 1)
+                .blast(10600)
+                .build();
+
+        ChargedCaesiumCeriumCobaltIndium = new Material.Builder(id++, tjfId("charged_caesium_cerium_cobalt_indium"))
+                .dust()
+                .color(0x52ad25)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("CsCeCo2In10", true);
+
+        RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate = new Material.Builder(id++, tjfId("rhenium_hassium_thallium_isophtaloylbisdiethylthiourea"))
+                .dust()
+                .color(0xa26a8b)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("ReHsTlC60PN12H84S6O12F6", true);
+
+        Legendarium = new Material.Builder(id++, tjfId("legendarium"))
+                .dust()
+                .color(0xffffff)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("NqNq+*Nq*DrTrKeTnAdVb", true);
+
+        LanthanumFullereneMix = new Material.Builder(id++, tjfId("lanthanum_fullerene_mix"))
+                .dust()
+                .color(0xdfcafa)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("(C60)2La2?", true);
+
+        LanthanumFullereneNanotubes = new Material.Builder(id++, tjfId("lanthanum_fullerene_nanotubes"))
+                .dust()
+                .color(LanthanumFullereneMix.getMaterialRGB() * 3 / 5)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("La2(C60)2CNT", true);
+
+        UEVSuperconductor = new Material.Builder(id++, tjfId("uev_superconductor"))
+                .ingot(1)
+                .color(0x954fe0)
+                .iconSet(SHINY)
+                .flags(STD_METAL, DISABLE_DECOMPOSITION)
+                .components(ActiniumSuperhydride, 1, BETSPerrhenate, 1, TriniumTitanium, 2, Quantum, 1, Vibranium, 2)
+                .cableProperties(GTValues.V[GTValues.UEV], 4, 0, true)
+                .blast(11600)
+                .build();
+
+        UIVSuperconductor = new Material.Builder(id++, tjfId("uiv_superconductor"))
+                .ingot(1)
+                .color(0x8bf743)
+                .iconSet(SHINY)
+                .flags(STD_METAL, DISABLE_DECOMPOSITION)
+                .components(BorocarbideDust, 2, FullereneSuperconductiveDust, 1, MetastableOganesson, 2, ProtoAdamantium, 2)
+                .cableProperties(GTValues.V[GTValues.UIV], 4, 0, true)
+                .blast(11600)
+                .build();
+
+        UXVSuperconductor = new Material.Builder(id++, tjfId("uxv_superconductor"))
+                .ingot(1)
+                .color(0x883afc)
+                .iconSet(SHINY)
+                .flags(STD_METAL, DISABLE_DECOMPOSITION)
+                .components(BlackTitanium, 3, SuperheavyHAlloy, 2, ChargedCaesiumCeriumCobaltIndium, 3, RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate, 6)
+                .cableProperties(GTValues.V[GTValues.UXV], 4, 0, true)
+                .blast(12000)
+                .build();
+
+        OpVSuperconductor = new Material.Builder(id++, tjfId("opv_superconductor"))
+                .ingot(1)
+                .color(0xe34b5a)
+                .iconSet(SHINY)
+                .flags(STD_METAL, DISABLE_DECOMPOSITION)
+                .components(Neutronium, 4, Legendarium, 5, ActiniumSuperhydride, 5, LanthanumFullereneNanotubes, 4, RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate, 12)
+                .cableProperties(GTValues.V[GTValues.OpV], 4, 0, true)
+                .blast(14000)
+                .build();
+
+        SuperheavyLAlloy = new Material.Builder(id++, tjfId("superheavy_l_alloy"))
+                .ingot(6)
+                .color(0x2B45DF)
+                .iconSet(SHINY)
+                .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION)
+                .components(Rutherfordium, 1, Dubnium, 1, Seaborgium, 1, Bohrium, 1, MetastableHassium, 1, Meitnerium, 1, Roentgenium, 1)
+                .blast(10600)
+                .build();
+
         /*
         MATERIAL = new Material.Builder(id++, tjfId("material"))
                 .ingot()
@@ -1616,6 +1901,10 @@ public class TJFMaterials {
         addFluid(AmmoniumChloride);
 
         Germanium.addFlags(GENERATE_PLATE);
+        Einsteinium.addFlags(GENERATE_PLATE);
+        Fermium.addFlags(GENERATE_PLATE);
+        Mendelevium.addFlags(GENERATE_PLATE);
+
 
         List<Material> mats = new ArrayList<>();
         Collections.addAll(mats, Bohrium, Dubnium, Duranium, Seaborgium);
@@ -1630,6 +1919,14 @@ public class TJFMaterials {
 
         Bohrium.addFlags(GENERATE_FRAME, GENERATE_ROUND);
         NaquadahAlloy.addFlags(GENERATE_FINE_WIRE);
+
+        Copper.addFlags(GENERATE_DENSE);
+        StainlessSteel.addFlags(GENERATE_DENSE);
+
+        Naquadria.addFlags(GENERATE_FRAME);
+        Osmiridium.addFlags(GENERATE_FRAME);
+
+        addFluidPipes(Zeron100, 15000, 1750, true);
 
         addFluid(Carbon, "plasma", false);
 
