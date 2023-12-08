@@ -59,7 +59,6 @@ import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.util.GTTransferUtils.addItemsToItemHandler;
 
 public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase { //TODO: fix overlay
-    private static final MultiblockAbility<?>[] ALLOWED_ABILITIES = {MultiblockAbility.EXPORT_ITEMS, MultiblockAbility.IMPORT_FLUIDS, MultiblockAbility.EXPORT_FLUIDS, MultiblockAbility.INPUT_ENERGY, MultiblockAbility.MAINTENANCE_HATCH};
     private static final int CONSUME_START = 100;
     private final int maxTemperature;
     private final int tier;
