@@ -3,14 +3,12 @@ package com.fulltrix.tjfcore.recipes.chain;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Material;
 
 import static com.fulltrix.tjfcore.TJFMaterials.*;
-import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.*;
+import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.api.unification.ore.OrePrefix.dust;
 
 public class GoldChain {
     public static void init() {

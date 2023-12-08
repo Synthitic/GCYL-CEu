@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -45,7 +46,7 @@ public class TJFDivertorCasing extends VariantBlock<TJFDivertorCasing.CasingType
         }
 
         @Override
-        public String getName() {
+        public @NotNull String getName() {
             return this.name;
         }
 

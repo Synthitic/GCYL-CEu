@@ -5,6 +5,7 @@ import gregtech.api.unification.material.Material;
 import gregtech.client.renderer.ICubeRenderer;
 import net.minecraft.block.SoundType;
 import net.minecraft.util.IStringSerializable;
+import org.jetbrains.annotations.NotNull;
 
 import static com.fulltrix.tjfcore.TJFMaterials.Quantum;
 import static com.fulltrix.tjfcore.TJFMaterials.Staballoy;
@@ -37,7 +38,7 @@ public class MetalCasing2 extends VariantBlock<MetalCasing2.CasingType> {
         }
 
         @Override
-        public String getName() {
+        public @NotNull String getName() {
             return this.name;
         }
 
