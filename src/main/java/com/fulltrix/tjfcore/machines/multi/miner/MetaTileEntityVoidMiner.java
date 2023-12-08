@@ -49,7 +49,6 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import static com.fulltrix.tjfcore.client.ClientHandler.*;
 import static com.fulltrix.tjfcore.item.TJFMetaBlocks.METAL_CASING_1;
@@ -58,7 +57,7 @@ import static com.fulltrix.tjfcore.recipes.categories.handlers.VoidMinerHandler.
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.util.GTTransferUtils.addItemsToItemHandler;
 
-public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase { //TODO: fix overlay
+public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase { //TODO: fix overlay, OpenComputers implementation
     private static final int CONSUME_START = 100;
     private final int maxTemperature;
     private final int tier;
@@ -208,9 +207,7 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase { //TODO:
 
                 List<ItemStack> ores = getOres();
                 Collections.shuffle(ores);
-                ores.stream().limit(10).peek(itemStack -> itemStack.setCount(getWorld().rand.nextInt(nbOres * nbOres) + 1)).forEach(itemStack -> {
-                    addItemsToItemHandler(outputInventory, false, Collections.singletonList(itemStack));
-                });
+                ores.stream().limit(10).peek(itemStack -> itemStack.setCount(getWorld().rand.nextInt(nbOres * nbOres) + 1)).forEach(itemStack -> addItemsToItemHandler(outputInventory, false, Collections.singletonList(itemStack)));
 
 
             }
@@ -226,7 +223,7 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase { //TODO:
     }
 
     @Override
-    protected BlockPattern createStructurePattern() {
+    protected @NotNull BlockPattern createStructurePattern() {
         return FactoryBlockPattern.start()
                 .aisle("CCCCCCCCC", "CCCCCCCCC", "C#######C", "C#######C", "C#######C", "CCCCCCCCC", "CFFFFFFFC", "CFFFFFFFC", "C#######C", "C#######C")
                 .aisle("C#######C", "C#######C", "#########", "#########", "#########", "C###D###C", "F##DDD##F", "F##DDD##F", "###DDD###", "#########")
@@ -273,13 +270,6 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase { //TODO:
             predicate = predicate.or(abilities(MultiblockAbility.EXPORT_FLUIDS).setPreviewCount(1));
         }
         return predicate;
-    }
-
-    protected boolean checkStructureComponents(List<IMultiblockPart> parts, Map<MultiblockAbility<Object>, List<Object>> abilities) {
-        //basically check minimal requirements for inputs count
-        int fluidInputsCount = abilities.getOrDefault(MultiblockAbility.IMPORT_FLUIDS, Collections.emptyList()).size();
-        return fluidInputsCount >= 1 &&
-                abilities.containsKey(MultiblockAbility.INPUT_ENERGY);
     }
 
     @Override
