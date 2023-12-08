@@ -47,6 +47,10 @@ public class TJFMaterials {
 
     public static Material Plutonium;
 
+    public static Material Fermium258;
+
+    public static Material Californium252;
+
     /////////////////////////////////////////
     public static Material Pikyonium;
 
@@ -382,6 +386,14 @@ public class TJFMaterials {
     public static Material UnprocessedNdYAGDust;
     public static Material NdYAGNanoparticles;
     public static Material NdYAG;
+    public static Material Pyrotheum;
+    public static Material Cryotheum;
+    public static Material DrillingMud;
+    public static Material UsedDrillingMud;
+    public static Material HastelloyX78;
+    public static Material Incoloy813;
+    public static Material Staballoy;
+    public static Material Blizz;
 
     //COILS
     public static Material TitanSteel;
@@ -433,6 +445,22 @@ public class TJFMaterials {
                 .flags(STD_METAL)
                 .build()
                 .setFormula("Am_241", true);
+
+        Fermium258 = new Material.Builder(id++, tjfId("fermium_258"))
+                .ingot()
+                .color(0x984ACF)
+                .iconSet(METALLIC)
+                .flags(STD_METAL)
+                .build()
+                .setFormula("Fm_241", true);
+
+        Californium252 = new Material.Builder(id++, tjfId("californium_252"))
+                .ingot()
+                .color(0xA85A12)
+                .iconSet(METALLIC)
+                .flags(STD_METAL)
+                .build()
+                .setFormula("Cf_252", true);
 
         //////////////////////
 
@@ -2364,6 +2392,71 @@ public class TJFMaterials {
                 .iconSet(SHINY)
                 .build()
                 .setFormula("Nd:YAG", true);
+
+        Pyrotheum = new Material.Builder(id++, tjfId("pyrotheum"))
+                .dust().fluid()
+                .color(0xFF9A3C)
+                .iconSet(SAND)
+                .flags(DISABLE_DECOMPOSITION, EXCLUDE_BLOCK_CRAFTING_RECIPES)
+                .components(Redstone, 1, Blaze, 2, Sulfur, 1)
+                .build();
+
+        Blizz = new Material.Builder(id++, tjfId("blizz"))
+                .dust()
+                .color(0x01F3F6)
+                .iconSet(SAND)
+                .flags(NO_SMELTING, MORTAR_GRINDABLE)
+                .components(Redstone, 1, Water, 1)
+                .build();
+
+        Cryotheum = new Material.Builder(id++, tjfId("cryotheum"))
+                .dust().fluid()
+                .color(0x01F3F6)
+                .iconSet(DULL)
+                .flags(DISABLE_DECOMPOSITION, EXCLUDE_BLOCK_CRAFTING_RECIPES)
+                .components(Redstone, 1, Blizz, 2, Water, 1)
+                .build();
+
+        DrillingMud = new Material.Builder(id++, tjfId("drilling_mud"))
+                .fluid()
+                .color(0x996600)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("For the Void Miner", true);
+
+        UsedDrillingMud = new Material.Builder(id++, tjfId("used_drilling_mud"))
+                .fluid()
+                .color(0x998833)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Used Mud", true);
+
+        HastelloyX78 = new Material.Builder(id++, tjfId("hastelloyx_78"))
+                .ingot()
+                .color(0x6ba3e3)
+                .iconSet(SHINY)
+                .flags(EXT2_METAL, GENERATE_FRAME, DISABLE_DECOMPOSITION, GENERATE_SMALL_GEAR, GENERATE_ROUND, GENERATE_RING, GENERATE_ROTOR)
+                .components(NaquadahAlloy, 10, Rhenium, 5, Naquadria, 4, Gadolinium, 3, Strontium, 2, Polonium, 3, Rutherfordium, 2, Fermium258, 1)
+                .blast(12000)
+                .build();
+
+        Incoloy813 = new Material.Builder(id++, tjfId("incoloy_813"))
+                .ingot()
+                .color(0x37bf7e)
+                .iconSet(SHINY)
+                .flags()
+                .components(VanadiumSteel, 4, Osmiridium, 2, Technetium, 3, Germanium, 4, Iridium, 7, Duranium, 5, Californium252, 1)
+                .blast(10000)
+                .build();
+
+        Staballoy = new Material.Builder(id++, tjfId("staballoy"))
+                .ingot()
+                .color(0x444B42)
+                .iconSet(METALLIC)
+                .flags(EXT2_METAL, GENERATE_FRAME, DISABLE_DECOMPOSITION)
+                .components(Uranium238, 9, Titanium, 1)
+                .blast(3450)
+                .build();
 
         /*
         MATERIAL = new Material.Builder(id++, tjfId("material"))

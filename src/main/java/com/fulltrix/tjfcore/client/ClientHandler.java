@@ -13,6 +13,14 @@ public class ClientHandler {
     public static OrientedOverlayRenderer FUSION_REACTOR_OVERLAY;
     public static SimpleOverlayRenderer FUSION_TEXTURE;
 
+    public static SimpleOverlayRenderer STABALLOY_CASING;
+    public static SimpleOverlayRenderer QUANTUM_CASING;
+    public static SimpleOverlayRenderer TRITANIUM_CASING;
+    public static SimpleOverlayRenderer HASTELLOY_X78_CASING;
+    public static SimpleOverlayRenderer HASTELLOY_N_CASING;
+
+    public static SimpleOverlayRenderer INCOLOY_813_CASING;
+
     private ClientHandler() {
     }
 
@@ -21,5 +29,15 @@ public class ClientHandler {
         FUSION_TEXTURE = new SimpleOverlayRenderer("casings/fusion/machine_casing_fusion_glass");
         ORGANIC_REPLICATOR_OVERLAY = new OrientedOverlayRenderer("machines/organic_replicator");
         FUSION_REACTOR_OVERLAY = new OrientedOverlayRenderer("machines/fusion_reactor");
+
+        //MetaCasing1
+        STABALLOY_CASING = new SimpleOverlayRenderer("casings/metal_casings/staballoy");
+        QUANTUM_CASING = new SimpleOverlayRenderer("casings/metal_casings/quantum");
+        TRITANIUM_CASING = new SimpleOverlayRenderer("casings/metal_casings/tritanium");
+
+        //MetalCasing2
+        HASTELLOY_X78_CASING = new SimpleOverlayRenderer("casings/metal_casings/hastelloy_x78");
+        HASTELLOY_N_CASING = new SimpleOverlayRenderer("casings/metal_casings/hastelloy_n");
+        INCOLOY_813_CASING = new SimpleOverlayRenderer("casings/metal_casings/incoloy_813");
     }
 }

@@ -1,6 +1,5 @@
 package com.fulltrix.tjfcore.machines.multi.advance;
 
-import com.fulltrix.tjfcore.client.ClientHandler;
 import com.fulltrix.tjfcore.item.TJFMetaBlocks;
 import com.fulltrix.tjfcore.item.fusion.TJFCryostatCasing;
 import com.fulltrix.tjfcore.item.fusion.TJFDivertorCasing;
@@ -405,7 +404,7 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
 
     @Override
     protected @NotNull ICubeRenderer getFrontOverlay() {
-        return ClientHandler.FUSION_REACTOR_OVERLAY;
+        return Textures.FUSION_REACTOR_OVERLAY;
     }
 
     @Override

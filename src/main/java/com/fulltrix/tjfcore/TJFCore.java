@@ -3,16 +3,17 @@ package com.fulltrix.tjfcore;
 import com.fulltrix.tjfcore.item.TJFHeatingCoil;
 import com.fulltrix.tjfcore.item.TJFMetaBlocks;
 import com.fulltrix.tjfcore.machines.TJFTileEntities;
+import com.myname.mymodid.Tags;
 import gregtech.GTInternalTags;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.SidedProxy;
 
 import static com.fulltrix.tjfcore.item.TJFMetaBlocks.HEATING_COIL;
 import static gregtech.api.GregTechAPI.HEATING_COILS;
@@ -23,7 +24,7 @@ import static gregtech.api.GregTechAPI.HEATING_COILS;
 public class TJFCore {
     public static final String MODID = "tjfcore";
     public static final String NAME = "TJF: Core";
-    public static final String VERSION = "@VERSION@";
+    public static final String VERSION = Tags.VERSION;
     @SidedProxy(modId = MODID, clientSide = "com.fulltrix.tjfcore.ClientProxy", serverSide = "com.fulltrix.tjfcore.CommonProxy")
     public static CommonProxy proxy;
 

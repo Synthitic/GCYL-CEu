@@ -2,6 +2,7 @@ package com.fulltrix.tjfcore;
 
 import com.fulltrix.tjfcore.item.TJFCoreItems;
 import com.fulltrix.tjfcore.recipes.RecipeHandler;
+import com.fulltrix.tjfcore.recipes.categories.handlers.VoidMinerHandler;
 import com.fulltrix.tjfcore.recipes.recipeproperties.AdvFusionCoilProperty;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
@@ -11,7 +12,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -35,6 +39,13 @@ public class CommonProxy {
     }
 
     @SubscribeEvent
+    public static void syncConfigValues(ConfigChangedEvent.OnConfigChangedEvent event) {
+        if (event.getModID().equals(TJFCore.MODID)) {
+            ConfigManager.sync(TJFCore.MODID, Config.Type.INSTANCE);
+        }
+    }
+
+    @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
         registry.register(HEATING_COIL);
@@ -46,6 +57,8 @@ public class CommonProxy {
         registry.register(CRYOSTAT_CASING);
         registry.register(EXPLOSIVE);
         registry.register(SIMPLE_BLOCK);
+        registry.register(METAL_CASING_1);
+        registry.register(METAL_CASING_2);
     }
 
     @SubscribeEvent
@@ -60,6 +73,8 @@ public class CommonProxy {
         registry.register(createItemBlock(CRYOSTAT_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(EXPLOSIVE, VariantItemBlock::new));
         registry.register(createItemBlock(SIMPLE_BLOCK, VariantItemBlock::new));
+        registry.register(createItemBlock(METAL_CASING_1, VariantItemBlock::new));
+        registry.register(createItemBlock(METAL_CASING_2, VariantItemBlock::new));
     }
 
 
@@ -83,6 +98,7 @@ public class CommonProxy {
     @SubscribeEvent
     public static void registerOrePrefix(RegistryEvent.Register<IRecipe> event) {
         //NuclearHandler.register();
+        VoidMinerHandler.register();
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block, Function<T, ItemBlock> producer) {

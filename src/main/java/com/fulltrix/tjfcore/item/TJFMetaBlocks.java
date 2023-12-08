@@ -4,6 +4,8 @@ import com.fulltrix.tjfcore.item.fusion.TJFCryostatCasing;
 import com.fulltrix.tjfcore.item.fusion.TJFDivertorCasing;
 import com.fulltrix.tjfcore.item.fusion.TJFFusionCasing;
 import com.fulltrix.tjfcore.item.fusion.TJFVacuumCasing;
+import com.fulltrix.tjfcore.item.metal.MetalCasing1;
+import com.fulltrix.tjfcore.item.metal.MetalCasing2;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -24,6 +26,9 @@ public class TJFMetaBlocks {
     public static TJFCryostatCasing CRYOSTAT_CASING;
     public static TJFExplosive EXPLOSIVE;
     public static TJFSimpleBlock SIMPLE_BLOCK;
+
+    public static MetalCasing1 METAL_CASING_1;
+    public static MetalCasing2 METAL_CASING_2;
 
 
     public static void init() {
@@ -53,6 +58,12 @@ public class TJFMetaBlocks {
 
         SIMPLE_BLOCK = new TJFSimpleBlock();
         SIMPLE_BLOCK.setRegistryName("tjf_simple_block");
+
+        METAL_CASING_1 = new MetalCasing1();
+        METAL_CASING_1.setRegistryName("tjf_metal_casing_1");
+
+        METAL_CASING_2 = new MetalCasing2();
+        METAL_CASING_2.setRegistryName("tjf_metal_casing_2");
     }
 
     @SideOnly(Side.CLIENT)
@@ -66,6 +77,8 @@ public class TJFMetaBlocks {
         registerItemModel(CRYOSTAT_CASING);
         registerItemModel(EXPLOSIVE);
         registerItemModel(SIMPLE_BLOCK);
+        registerItemModel(METAL_CASING_1);
+        registerItemModel(METAL_CASING_2);
 
         HEATING_COIL.onModelRegister();
 
