@@ -15,6 +15,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
+import java.io.IOException;
+
 import static com.fulltrix.tjfcore.item.TJFMetaBlocks.HEATING_COIL;
 import static gregtech.api.GregTechAPI.HEATING_COILS;
 
@@ -41,14 +43,14 @@ public class TJFCore {
     }
 
     @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-        //CommonProxy.postInit();
+    // load "Do your mod setup. Build whatever data structures you care about." (Remove if not needed)
+    public void init(FMLInitializationEvent event) throws IOException {
+        proxy.onLoad();
     }
 
     @EventHandler
-    // load "Do your mod setup. Build whatever data structures you care about." (Remove if not needed)
-    public void init(FMLInitializationEvent event) {
-        //proxy.onLoad();
+    public void postInit(FMLPostInitializationEvent event) {
+        //CommonProxy.postInit();
     }
 
     @EventHandler

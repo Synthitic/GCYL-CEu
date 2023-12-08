@@ -3,6 +3,7 @@ package com.fulltrix.tjfcore.recipes;
 //import com.fulltrix.tjfcore.recipes.impl.NuclearReactorBuilder;
 
 import com.fulltrix.tjfcore.recipes.impl.AdvFusionRecipeBuilder;
+import gregtech.api.GTValues;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.gui.widgets.ProgressWidget.MoveType;
@@ -54,4 +55,8 @@ public class TJFRecipeMaps {
             6, 4, 5, 4, (new SimpleRecipeBuilder()), false)
             .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressWidget.MoveType.HORIZONTAL)
             .setSound(GTSoundEvents.CHEMICAL_REACTOR);
+
+    public static final RecipeMap<SimpleRecipeBuilder> ELECTRIC_IMPLOSION_RECIPES = new RecipeMap<>("electric_implosion",
+            2, 2, 0, 0, new SimpleRecipeBuilder().duration(1).EUt(GTValues.VA[10]), false
+    ); // UEV-tier, 1tick processing time
 }

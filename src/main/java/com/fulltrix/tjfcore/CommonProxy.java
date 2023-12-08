@@ -2,6 +2,7 @@ package com.fulltrix.tjfcore;
 
 import com.fulltrix.tjfcore.item.TJFCoreItems;
 import com.fulltrix.tjfcore.recipes.RecipeHandler;
+import com.fulltrix.tjfcore.recipes.categories.handlers.ElectricImplosionHandler;
 import com.fulltrix.tjfcore.recipes.categories.handlers.VoidMinerHandler;
 import com.fulltrix.tjfcore.recipes.recipeproperties.AdvFusionCoilProperty;
 import gregtech.api.block.VariantItemBlock;
@@ -21,6 +22,7 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import java.io.IOException;
 import java.util.function.Function;
 
 import static com.fulltrix.tjfcore.item.TJFMetaBlocks.*;
@@ -29,6 +31,14 @@ import static com.fulltrix.tjfcore.item.TJFMetaBlocks.*;
 public class CommonProxy {
     public void preInit() {
         TJFCoreItems.init();
+    }
+
+    private static void registerRecipesAfterCT() {
+        ElectricImplosionHandler.buildElectricImplosionRecipes();
+    }
+
+    public void onLoad() throws IOException {
+        registerRecipesAfterCT();
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
