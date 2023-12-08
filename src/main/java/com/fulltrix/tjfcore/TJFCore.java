@@ -3,7 +3,6 @@ package com.fulltrix.tjfcore;
 import com.fulltrix.tjfcore.item.TJFHeatingCoil;
 import com.fulltrix.tjfcore.item.TJFMetaBlocks;
 import com.fulltrix.tjfcore.machines.TJFTileEntities;
-import com.myname.mymodid.Tags;
 import gregtech.GTInternalTags;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -22,10 +21,9 @@ import static gregtech.api.GregTechAPI.HEATING_COILS;
 
 @Mod(modid = TJFCore.MODID, name = TJFCore.NAME, version = TJFCore.VERSION,
         dependencies = GTInternalTags.DEP_VERSION_STRING)
-@SuppressWarnings("unused")
 public class TJFCore {
-    public static final String MODID = "tjfcore";
-    public static final String NAME = "TJF: Core";
+    public static final String MODID = Tags.MODID;
+    public static final String NAME = Tags.MODNAME;
     public static final String VERSION = Tags.VERSION;
     @SidedProxy(modId = MODID, clientSide = "com.fulltrix.tjfcore.ClientProxy", serverSide = "com.fulltrix.tjfcore.CommonProxy")
     public static CommonProxy proxy;

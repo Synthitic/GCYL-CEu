@@ -67,7 +67,6 @@ import org.lwjgl.opengl.GL11;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.DoubleSupplier;
 
 import static com.fulltrix.tjfcore.TJFMaterials.*;
@@ -78,15 +77,16 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
             SupercriticalSodiumPotassiumAlloy.getFluid(),
             SupercriticalFLiNaK.getFluid(), SupercriticalFLiBe.getFluid(), SupercriticalLeadBismuthEutectic.getFluid());
     private final FusionProgressSupplier progressBarSupplier;
+
+    protected static final int NO_COLOR = 0;
     private final int tier;
     private int coilTier;
     private int vacuumTier;
     private int divertorTier;
     private boolean canWork;
-    @Nullable
-    private Integer color;
+    private int fusionRingColor = NO_COLOR;
     @SideOnly(Side.CLIENT)
-    private BloomEffectUtil.BloomRenderTicket bloomRenderTicket;
+    private boolean registeredBloomRenderTicket;
     private EnergyContainerList inputEnergyContainers;
     private long heat = 0;
 
@@ -104,11 +104,6 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
             }
         };
         this.progressBarSupplier = new MetaTileEntityAdvFusionReactor.FusionProgressSupplier();
-    }
-
-    private static BloomType getBloomType() {
-        ConfigHolder.FusionBloom fusionBloom = ConfigHolder.client.shader.fusionBloom;
-        return BloomType.fromValue(fusionBloom.useShader ? fusionBloom.bloomStyle : -1);
     }
 
     @Override
@@ -172,6 +167,11 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
         return TJFMetaBlocks.FUSION_CASING.getState(TJFFusionCasing.CasingType.ADV_FUSION_CASING);
     }
 
+    private static BloomType getBloomType() {
+        ConfigHolder.FusionBloom fusionBloom = ConfigHolder.client.shader.fusionBloom;
+        return BloomType.fromValue(fusionBloom.useShader ? fusionBloom.bloomStyle : -1);
+    }
+
     @Override
     protected void updateFormedValid() {
         if (this.inputEnergyContainers.getEnergyStored() > 0) {
@@ -179,51 +179,27 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
             if (energyAdded > 0) this.inputEnergyContainers.removeEnergy(energyAdded);
         }
         super.updateFormedValid();
-        if (recipeMapWorkable.isWorking() && color == null) {
+        if (recipeMapWorkable.isWorking() && fusionRingColor == NO_COLOR) {
             if (recipeMapWorkable.getPreviousRecipe() != null &&
                     !recipeMapWorkable.getPreviousRecipe().getFluidOutputs().isEmpty()) {
-                int newColor = 0xFF000000 |
-                        recipeMapWorkable.getPreviousRecipe().getFluidOutputs().get(0).getFluid().getColor();
-                if (!Objects.equals(color, newColor)) {
-                    color = newColor;
-                    writeCustomData(GregtechDataCodes.UPDATE_COLOR, this::writeColor);
-                }
+                setFusionRingColor(0xFF000000 |
+                        recipeMapWorkable.getPreviousRecipe().getFluidOutputs().get(0).getFluid().getColor());
             }
-        } else if (!recipeMapWorkable.isWorking() && isStructureFormed() && color != null) {
-            color = null;
-            writeCustomData(GregtechDataCodes.UPDATE_COLOR, this::writeColor);
+        } else if (!recipeMapWorkable.isWorking() && isStructureFormed()) {
+            setFusionRingColor(NO_COLOR);
         }
     }
 
     @Override
     public void writeInitialSyncData(PacketBuffer buf) {
         super.writeInitialSyncData(buf);
-        writeColor(buf);
+        buf.writeVarInt(this.fusionRingColor);
     }
 
     @Override
     public void receiveInitialSyncData(PacketBuffer buf) {
         super.receiveInitialSyncData(buf);
-        readColor(buf);
-    }
-
-    @Override
-    public void receiveCustomData(int dataId, PacketBuffer buf) {
-        super.receiveCustomData(dataId, buf);
-        if (dataId == GregtechDataCodes.UPDATE_COLOR) {
-            readColor(buf);
-        }
-    }
-
-    private void readColor(PacketBuffer buf) {
-        color = buf.readBoolean() ? buf.readVarInt() : null;
-    }
-
-    private void writeColor(PacketBuffer buf) {
-        buf.writeBoolean(color != null);
-        if (color != null) {
-            buf.writeVarInt(color);
-        }
+        this.fusionRingColor = buf.readVarInt();
     }
 
     @Override
@@ -510,20 +486,43 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
     }
 
     @Override
+    public void receiveCustomData(int dataId, PacketBuffer buf) {
+        if (dataId == GregtechDataCodes.UPDATE_COLOR) {
+            this.fusionRingColor = buf.readVarInt();
+        } else {
+            super.receiveCustomData(dataId, buf);
+        }
+    }
+
+    protected boolean hasFusionRingColor() {
+        return this.fusionRingColor != NO_COLOR;
+    }
+
+    protected int getFusionRingColor() {
+        return this.fusionRingColor;
+    }
+
+    protected void setFusionRingColor(int fusionRingColor) {
+        if (this.fusionRingColor != fusionRingColor) {
+            this.fusionRingColor = fusionRingColor;
+            writeCustomData(GregtechDataCodes.UPDATE_COLOR, buf -> buf.writeVarInt(fusionRingColor));
+        }
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public void renderMetaTileEntity(double x, double y, double z, float partialTicks) {
-        if (this.color != null && this.bloomRenderTicket == null) {
-            this.bloomRenderTicket = BloomEffectUtil.registerBloomRender(MetaTileEntityAdvFusionReactor.FusionBloomSetup.INSTANCE, getBloomType(),
-                    this);
+        if (this.hasFusionRingColor() && !this.registeredBloomRenderTicket) {
+            this.registeredBloomRenderTicket = true;
+            BloomEffectUtil.registerBloomRender(FusionBloomSetup.INSTANCE, getBloomType(), this, this);
         }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void renderBloomEffect(@NotNull BufferBuilder buffer, @NotNull EffectRenderContext context) {
-        Integer c = color;
-        if (c == null) return;
-        int color = RenderUtil.interpolateColor(c, -1, Eases.QUAD_IN.getInterpolation(
+        if (!this.hasFusionRingColor()) return;
+        int color = RenderUtil.interpolateColor(this.getFusionRingColor(), -1, Eases.QUAD_IN.getInterpolation(
                 Math.abs((Math.abs(getOffsetTimer() % 50) + context.partialTicks()) - 25) / 25));
         float a = (float) (color >> 24 & 255) / 255.0F;
         float r = (float) (color >> 16 & 255) / 255.0F;
@@ -536,7 +535,7 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
 
         RenderBufferHelper.renderRing(buffer,
                 getPos().getX() - context.cameraX() + relativeBack.getXOffset() * 7 + 0.5,
-                getPos().getY() - context.cameraY() + relativeBack.getYOffset() * 7 + 2,
+                getPos().getY() - context.cameraY() + relativeBack.getYOffset() * 7 + 0.5,
                 getPos().getZ() - context.cameraZ() + relativeBack.getZOffset() * 7 + 0.5,
                 6, 0.2, 10, 20,
                 r, g, b, a, axis);
@@ -545,7 +544,17 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldRenderBloomEffect(@NotNull EffectRenderContext context) {
-        return this.color != null;
+        return this.hasFusionRingColor();
+    }
+
+    @Override
+    public boolean shouldRenderInPass(int pass) {
+        return pass == 0;
+    }
+
+    @Override
+    public boolean isGlobalRenderer() {
+        return true;
     }
 
     @Override
@@ -560,14 +569,38 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
                 this.getPos().offset(relativeBack, 13).offset(relativeRight.getOpposite(), 6));
     }
 
-    @Override
-    public boolean shouldRenderInPass(int pass) {
-        return pass == 0;
-    }
+    @SideOnly(Side.CLIENT)
+    private static final class FusionBloomSetup implements IRenderSetup {
 
-    @Override
-    public boolean isGlobalRenderer() {
-        return true;
+        private static final FusionBloomSetup INSTANCE = new FusionBloomSetup();
+
+        float lastBrightnessX;
+        float lastBrightnessY;
+
+        @Override
+        public void preDraw(@NotNull BufferBuilder buffer) {
+            BloomEffect.strength = (float) ConfigHolder.client.shader.fusionBloom.strength;
+            BloomEffect.baseBrightness = (float) ConfigHolder.client.shader.fusionBloom.baseBrightness;
+            BloomEffect.highBrightnessThreshold = (float) ConfigHolder.client.shader.fusionBloom.highBrightnessThreshold;
+            BloomEffect.lowBrightnessThreshold = (float) ConfigHolder.client.shader.fusionBloom.lowBrightnessThreshold;
+            BloomEffect.step = 1;
+
+            lastBrightnessX = OpenGlHelper.lastBrightnessX;
+            lastBrightnessY = OpenGlHelper.lastBrightnessY;
+            GlStateManager.color(1, 1, 1, 1);
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
+            GlStateManager.disableTexture2D();
+
+            buffer.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION_COLOR);
+        }
+
+        @Override
+        public void postDraw(@NotNull BufferBuilder buffer) {
+            Tessellator.getInstance().draw();
+
+            GlStateManager.enableTexture2D();
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lastBrightnessX, lastBrightnessY);
+        }
     }
 
     private static class FusionProgressSupplier {
@@ -689,40 +722,6 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
                                                 instance.recipeMapWorkable.isActive())
                                         .addWorkingStatusLine());
             }
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    private static final class FusionBloomSetup implements IRenderSetup {
-
-        private static final MetaTileEntityAdvFusionReactor.FusionBloomSetup INSTANCE = new MetaTileEntityAdvFusionReactor.FusionBloomSetup();
-
-        float lastBrightnessX;
-        float lastBrightnessY;
-
-        @Override
-        public void preDraw(@NotNull BufferBuilder buffer) {
-            BloomEffect.strength = (float) ConfigHolder.client.shader.fusionBloom.strength;
-            BloomEffect.baseBrightness = (float) ConfigHolder.client.shader.fusionBloom.baseBrightness;
-            BloomEffect.highBrightnessThreshold = (float) ConfigHolder.client.shader.fusionBloom.highBrightnessThreshold;
-            BloomEffect.lowBrightnessThreshold = (float) ConfigHolder.client.shader.fusionBloom.lowBrightnessThreshold;
-            BloomEffect.step = 1;
-
-            lastBrightnessX = OpenGlHelper.lastBrightnessX;
-            lastBrightnessY = OpenGlHelper.lastBrightnessY;
-            GlStateManager.color(1, 1, 1, 1);
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
-            GlStateManager.disableTexture2D();
-
-            buffer.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION_COLOR);
-        }
-
-        @Override
-        public void postDraw(@NotNull BufferBuilder buffer) {
-            Tessellator.getInstance().draw();
-
-            GlStateManager.enableTexture2D();
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lastBrightnessX, lastBrightnessY);
         }
     }
 
