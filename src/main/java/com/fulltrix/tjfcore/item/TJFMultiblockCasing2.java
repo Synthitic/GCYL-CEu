@@ -1,7 +1,6 @@
 package com.fulltrix.tjfcore.item;
 
 import gregtech.api.block.VariantBlock;
-import gregtech.common.blocks.BlockMetalCasing;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -29,7 +28,8 @@ public class TJFMultiblockCasing2 extends VariantBlock<TJFMultiblockCasing2.Casi
     }
 
     public enum CasingType implements IStringSerializable {
-        BIO_REACTOR("bio_reactor_casing", -1);
+        BIO_REACTOR("bio_reactor_casing", -1),
+        STELLAR_CONTAINMENT("stellar_containment", -1);
 
         private final String name;
         private final int tier;

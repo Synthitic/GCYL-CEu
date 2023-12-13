@@ -3,6 +3,7 @@ package com.fulltrix.tjfcore.machines;
 import com.fulltrix.tjfcore.TJFConfig;
 import com.fulltrix.tjfcore.TJFUtility;
 import com.fulltrix.tjfcore.machines.multi.MetaTileEntityBioReactor;
+import com.fulltrix.tjfcore.machines.multi.MetaTileEntityStellarForge;
 import com.fulltrix.tjfcore.machines.multi.advance.MetaTileEntityAdvFusionReactor;
 import com.fulltrix.tjfcore.machines.multi.miner.MetaTileEntityVoidMiner;
 import com.fulltrix.tjfcore.recipes.TJFRecipeMaps;
@@ -24,6 +25,8 @@ public class TJFTileEntities {
 
     public static MetaTileEntityVoidMiner[] VOID_MINER = new MetaTileEntityVoidMiner[3];
 
+    public static MetaTileEntityStellarForge STELLAR_FORGE;
+
     public static int id = 32000;
 
     public static void init() {
@@ -39,6 +42,8 @@ public class TJFTileEntities {
         VOID_MINER[0] = MetaTileEntities.registerMetaTileEntity(++id, new MetaTileEntityVoidMiner(tjfId("void_miner"), GTValues.UV, TJFConfig.multis.voidMiner.maxTemp));
         VOID_MINER[1] = MetaTileEntities.registerMetaTileEntity(++id, new MetaTileEntityVoidMiner(tjfId("void_miner.uhv"), GTValues.UHV, TJFConfig.multis.voidMiner.maxTempUHV));
         VOID_MINER[2] = MetaTileEntities.registerMetaTileEntity(++id, new MetaTileEntityVoidMiner(tjfId("void_miner.uev"), GTValues.UEV, TJFConfig.multis.voidMiner.maxTempUEV));
+
+        STELLAR_FORGE = MetaTileEntities.registerMetaTileEntity(++id, new MetaTileEntityStellarForge(tjfId("stellar_forge")));
 
         MetaTileEntities.registerSimpleMetaTileEntity(DEHYDRATOR, ++id, "dehydrator", TJFRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES, Textures.SIFTER_OVERLAY, true, TJFUtility::tjfId, GTUtility.hvCappedTankSizeFunction);
 

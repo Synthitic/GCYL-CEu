@@ -1977,7 +1977,7 @@ public class TJFMaterials {
                 .setFormula("", true);
 
         ElectronDegenerateRheniumPlasma = new Material.Builder(id++, tjfId("degenerate_rhenium_plasma"))
-                .plasma()
+                .plasma(new FluidBuilder().temperature(100000000))//TODO fix temperature
                 .color(0x6666FF)
                 .iconSet(FLUID)
                 .build()
@@ -1991,7 +1991,7 @@ public class TJFMaterials {
                 .setFormula("SgBhRfDb", true);
 
         NeutronPlasma = new Material.Builder(id++, tjfId("neutron_plasma"))
-                .plasma()
+                .plasma(new FluidBuilder().temperature(1000000000))//TODO fix temperature
                 .color(0xf0e9e9)
                 .iconSet(FLUID)
                 .build()

@@ -7,8 +7,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.util.IStringSerializable;
 import org.jetbrains.annotations.NotNull;
 
-import static com.fulltrix.tjfcore.TJFMaterials.Quantum;
-import static com.fulltrix.tjfcore.TJFMaterials.Staballoy;
+import static com.fulltrix.tjfcore.TJFMaterials.*;
 import static com.fulltrix.tjfcore.client.ClientHandler.*;
 import static gregtech.api.unification.material.Materials.Tritanium;
 
@@ -27,7 +26,8 @@ public class MetalCasing2 extends VariantBlock<MetalCasing2.CasingType> {
 
         STABALLOY("casing_staballoy", Staballoy),
         QUANTUM("casing_quantum", Quantum),
-        TRITANIUM("casing_tritanium", Tritanium);
+        TRITANIUM("casing_tritanium", Tritanium),
+        ENRICHED_NAQUADAH_ALLOY("casing_enriched_naquadah_alloy", EnrichedNaquadahAlloy);
 
         private final String name;
         private final Material material;
@@ -56,6 +56,9 @@ public class MetalCasing2 extends VariantBlock<MetalCasing2.CasingType> {
                 }
                 case "casing_tritanium" -> {
                     return TRITANIUM_CASING;
+                }
+                case "casing_enriched_naquadah_alloy" -> {
+                    return ENRICHED_NAQUADAH_ALLOY_CASING;
                 }
                 default -> {
                     return STABALLOY_CASING;

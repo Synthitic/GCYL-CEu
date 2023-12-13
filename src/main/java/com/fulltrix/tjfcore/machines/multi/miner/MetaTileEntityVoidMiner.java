@@ -8,8 +8,7 @@ import com.fulltrix.tjfcore.item.metal.MetalCasing1;
 import com.fulltrix.tjfcore.item.metal.MetalCasing2;
 import com.google.common.collect.Lists;
 import gregtech.api.GTValues;
-import gregtech.api.capability.IEnergyContainer;
-import gregtech.api.capability.IMultipleTankHandler;
+import gregtech.api.capability.*;
 import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.capability.impl.FluidTankList;
 import gregtech.api.capability.impl.ItemHandlerList;
@@ -25,7 +24,7 @@ import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
-import gregtech.common.blocks.MetaBlocks;
+import gregtech.core.sound.GTSoundEvents;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
@@ -33,12 +32,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagDouble;
 import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -57,8 +59,10 @@ import static com.fulltrix.tjfcore.recipes.categories.handlers.VoidMinerHandler.
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.util.GTTransferUtils.addItemsToItemHandler;
 
-public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase { //TODO: fix overlay, OpenComputers implementation
+public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implements IControllable { //TODO: OpenComputers implementation
     private static final int CONSUME_START = 100;
+
+    public boolean isWorkingEnabled = false;
     private final int maxTemperature;
     private final int tier;
     private final long energyDrain;
@@ -118,9 +122,12 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase { //TODO:
         this.energyContainer = new EnergyContainerList(Lists.newArrayList());
     }
 
-    public boolean drainEnergy() {
-        if (energyContainer.getEnergyStored() >= energyDrain) {
-            energyContainer.removeEnergy(energyDrain);
+    public boolean drainEnergy(boolean simulate) {
+        long energyToDrain = GTValues.VA[this.tier];
+        long resultEnergy = energyContainer.getEnergyStored() - energyToDrain;
+        if (resultEnergy >= 0L && resultEnergy <= energyContainer.getEnergyCapacity()) {
+            if (!simulate)
+                energyContainer.changeEnergy(-energyToDrain);
             return true;
         }
         return false;
@@ -128,8 +135,8 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase { //TODO:
 
     @Override
     protected void updateFormedValid() {
-        if (!getWorld().isRemote && this.getNumMaintenanceProblems() < 6) {
-            if (overheat || !drainEnergy()) {
+        if (!getWorld().isRemote && this.getNumMaintenanceProblems() < 6 && isWorkingEnabled()) {
+            if (overheat || !drainEnergy(false)) {
                 if (temperature > 0) {
                     temperature--;
                 }
@@ -235,9 +242,9 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase { //TODO:
                 .aisle("C#######C", "C#######C", "#########", "#########", "#########", "C###D###C", "F##DDD##F", "F##DDD##F", "###DDD###", "#########")
                 .aisle("CCCCCCCCC", "CCCCSCCCC", "C#######C", "C#######C", "C#######C", "CCCCCCCCC", "CFFFFFFFC", "CFFFFFFFC", "C#######C", "C#######C")
                 .where('S', selfPredicate())
-                .where('C', states(getCasingState()).or(autoAbilities(true, true, false, true, true, true, false)))
+                .where('C', states(getCasingState()).setMinGlobalLimited(100).or(autoAbilities(true, true, false, true, true, true, false)))
                 .where('D', states(getSecondaryCasingState()))
-                .where('F', states(getFrameState()))
+                .where('F', getFramePredicate())
                 .where('#', any())
                 .build();
     }
@@ -317,11 +324,12 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase { //TODO:
         };
     }
 
-    public IBlockState getFrameState() {
+    @NotNull
+    public TraceabilityPredicate getFramePredicate() {
         return switch (tier) {
-            case 8 -> MetaBlocks.FRAMES.get(TungstenSteel).getDefaultState();
-            case 9 -> MetaBlocks.FRAMES.get(Seaborgium).getDefaultState();
-            default -> MetaBlocks.FRAMES.get(Bohrium).getDefaultState();
+            case 8 -> frames(TungstenSteel);
+            case 9 -> frames(Seaborgium);
+            default -> frames(Bohrium);
         };
     }
 
@@ -335,9 +343,10 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase { //TODO:
         };
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     protected @NotNull ICubeRenderer getFrontOverlay() {
-        return Textures.BLAST_FURNACE_OVERLAY;
+        return Textures.LARGE_MINER_OVERLAY_ADVANCED_2;
     }
 
     @Override
@@ -350,12 +359,14 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase { //TODO:
     public void writeInitialSyncData(PacketBuffer buf) {
         super.writeInitialSyncData(buf);
         buf.writeBoolean(isActive);
+        buf.writeBoolean(this.isWorkingEnabled);
     }
 
     @Override
     public void receiveInitialSyncData(PacketBuffer buf) {
         super.receiveInitialSyncData(buf);
         this.isActive = buf.readBoolean();
+        this.isWorkingEnabled = buf.readBoolean();
     }
 
     @Override
@@ -364,6 +375,8 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase { //TODO:
         data.setTag("temperature", new NBTTagInt(temperature));
         data.setTag("currentDrillingFluid", new NBTTagDouble(currentDrillingFluid));
         data.setTag("overheat", new NBTTagInt(overheat ? 1 : 0));
+        data.setBoolean("isActive", this.isActive);
+        data.setBoolean("isWorkingEnabled", this.isWorkingEnabled);
         return data;
     }
 
@@ -373,27 +386,69 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase { //TODO:
         temperature = data.getInteger("temperature");
         currentDrillingFluid = data.getDouble("currentDrillingFluid");
         overheat = data.getInteger("overheat") != 0;
+        this.isActive = data.getBoolean("isActive");
+        this.isWorkingEnabled = data.getBoolean("isWorkingEnabled");
     }
 
     @Override
     public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         super.renderMetaTileEntity(renderState, translation, pipeline);
-        Textures.MULTIBLOCK_WORKABLE_OVERLAY.render(renderState, translation, pipeline);
-    }
-
-    protected void setActive(boolean active) {
-        this.isActive = active;
-        markDirty();
-        if (!getWorld().isRemote) {
-            writeCustomData(1, buf -> buf.writeBoolean(active));
-        }
+        getFrontOverlay().renderOrientedState(renderState, translation, pipeline, getFrontFacing(), this.isActive(), this.isWorkingEnabled);
     }
 
     @Override
     public void receiveCustomData(int dataId, PacketBuffer buf) {
         super.receiveCustomData(dataId, buf);
-        if (dataId == 1) {
+        if (dataId == GregtechDataCodes.WORKABLE_ACTIVE) {
             this.isActive = buf.readBoolean();
+            scheduleRenderUpdate();
+        } else if (dataId == GregtechDataCodes.WORKING_ENABLED) {
+            this.isWorkingEnabled = buf.readBoolean();
+            scheduleRenderUpdate();
+        }
+    }
+
+    @Override
+    public SoundEvent getSound() {
+        return GTSoundEvents.MINER;
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing side) {
+        if (capability == GregtechTileCapabilities.CAPABILITY_CONTROLLABLE) {
+            return GregtechTileCapabilities.CAPABILITY_CONTROLLABLE.cast(this);
+        }
+        return super.getCapability(capability, side);
+    }
+
+    @Override
+    public boolean isWorkingEnabled() {
+        return isWorkingEnabled;
+    }
+
+    @Override
+    public void setWorkingEnabled(boolean isWorkingAllowed) {
+        this.isWorkingEnabled = isWorkingAllowed;
+        markDirty();
+        World world = getWorld();
+        if (world != null && !world.isRemote) {
+            writeCustomData(GregtechDataCodes.WORKING_ENABLED, buf -> buf.writeBoolean(isWorkingEnabled));
+        }
+    }
+
+    @Override
+    public boolean isActive() {
+        return super.isActive() && this.isWorkingEnabled;
+    }
+
+    protected void setActive(boolean active) {
+        if (this.isActive != active) {
+            this.isActive = active;
+            markDirty();
+            World world = getWorld();
+            if (world != null && !world.isRemote) {
+                writeCustomData(GregtechDataCodes.WORKABLE_ACTIVE, buf -> buf.writeBoolean(active));
+            }
         }
     }
 
@@ -412,5 +467,4 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase { //TODO:
     public double getCurrentDrillingFluid() {
         return currentDrillingFluid;
     }
-
 }

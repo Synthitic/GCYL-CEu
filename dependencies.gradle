@@ -23,10 +23,10 @@
  */
 dependencies {
     // Hard Dependencies
-    implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:4924179") // GTCEu 2.8.2
+    implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:4951281") // GTCEu 2.8.3
     implementation rfg.deobf("curse.maven:codechicken-lib-1-8-242818:2779848") // CCL 3.2.3.358
     implementation rfg.deobf("curse.maven:gregicality-multiblocks-564858:4910674") //GCYM 1.2.7
-    implementation rfg.deobf("curse.maven:groovyscript-687577:4905039") //Groovyscript 0.7.0
+    implementation rfg.deobf("curse.maven:groovyscript-687577:4941103") //Groovyscript 0.7.1
 
     // Soft Dependencies
     compileOnlyApi rfg.deobf("curse.maven:ctm-267602:2915363") // CTM 1.0.2.31
