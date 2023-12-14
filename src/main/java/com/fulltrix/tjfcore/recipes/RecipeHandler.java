@@ -48,8 +48,11 @@ public class RecipeHandler {
         FusionComponents.init();
         WormholeGeneratorChain.init();
         HNIWChain.init();
-        /*
+        QuantumDotsChain.init();
         ZylonChain.init();
+        UltimateMaterials.init();
+        /*
+
         FullereneChain.init();
         BariumChain.init();
         UraniumChain.init();
@@ -73,7 +76,7 @@ public class RecipeHandler {
         SeleniumChain.init();
 
         CosmicChain.init();
-        UltimateMaterials.init();
+
         DigitalInterfaces.init();
         InsulationWireAssemblyChain.init();
         ArcFurnaceOxidation.init();
@@ -81,7 +84,7 @@ public class RecipeHandler {
 
         CombinedChains.init();
         OrganometallicChains.init();
-        QuantumDotsChain.init();
+
 
         TriniumChain.init();
         TaraniumChain.init();

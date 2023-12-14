@@ -27,8 +27,10 @@ dependencies {
     implementation rfg.deobf("curse.maven:codechicken-lib-1-8-242818:2779848") // CCL 3.2.3.358
     implementation rfg.deobf("curse.maven:gregicality-multiblocks-564858:4910674") //GCYM 1.2.7
     implementation rfg.deobf("curse.maven:groovyscript-687577:4941103") //Groovyscript 0.7.1
+    implementation rfg.deobf("curse.maven:material-replication-874493:4919928") //Material replication 1.2.1
 
     // Soft Dependencies
+    implementation "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.684"
     compileOnlyApi rfg.deobf("curse.maven:ctm-267602:2915363") // CTM 1.0.2.31
     compileOnlyApi rfg.deobf("curse.maven:ae2-extended-life-570458:4402048") // AE2UEL 0.55.6
 }

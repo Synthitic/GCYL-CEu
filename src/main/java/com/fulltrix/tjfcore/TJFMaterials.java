@@ -8,6 +8,9 @@ import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.unification.Elements;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
+import gregtech.api.unification.material.properties.ToolProperty;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,14 +20,16 @@ import java.util.List;
 import static com.fulltrix.tjfcore.TJFElements.*;
 import static com.fulltrix.tjfcore.TJFUtility.tjfId;
 import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
-import static gregicality.multiblocks.api.unification.GCYMMaterials.Stellite100;
-import static gregicality.multiblocks.api.unification.GCYMMaterials.Zeron100;
+import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
 import static gregtech.api.fluids.attribute.FluidAttributes.ACID;
 import static gregtech.api.unification.Elements.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 import static gregtech.api.unification.material.info.MaterialIconSet.*;
 import static gregtech.integration.crafttweaker.material.MaterialPropertyExpansion.*;
+import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_DECONSTRUCTION;
+import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_REPLICATION;
+import static net.minecraft.util.text.TextFormatting.*;
 
 public class TJFMaterials {
 
@@ -32,24 +37,18 @@ public class TJFMaterials {
 
     public static final MaterialFlag GENERATE_ISOTOPES_COMPOUND = new MaterialFlag.Builder("generate_isotopes_compound").build();
 
-    public static final MaterialFlag DISABLE_REPLICATION = new MaterialFlag.Builder("disable_replication").build();
+    //public static final MaterialFlag DISABLE_REPLICATION = new MaterialFlag.Builder("disable_replication").build();
     public static final List<MaterialFlag> CORE_METAL = new ArrayList<>();
-
-    static {
-        CORE_METAL.addAll(EXT2_METAL);
-        CORE_METAL.addAll(Arrays.asList(GENERATE_RING, GENERATE_FRAME, GENERATE_ROTOR, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_FINE_WIRE));
-    }
+    private static final TextFormatting[] fanciness = new TextFormatting[]{RED, GOLD, YELLOW, GREEN, AQUA, BLUE, LIGHT_PURPLE};
 
     public static int id = 24000;
-
     //NUCLEAR_MARK
+    public static Material Uranium;
     public static Material Americium241;
-
     public static Material Plutonium;
-
     public static Material Fermium258;
-
     public static Material Californium252;
+    public static Material Mendelevium261;
 
     /////////////////////////////////////////
     public static Material Pikyonium;
@@ -394,6 +393,38 @@ public class TJFMaterials {
     public static Material Incoloy813;
     public static Material Staballoy;
     public static Material Blizz;
+    public static Material OrthoXyleneZeoliteMixture;
+    public static Material ParaXylene;
+    public static Material Dibromomethylbenzene;
+    public static Material Terephthalaldehyde;
+    public static Material AuPdCCatalyst;
+    public static Material Isochloropropane;
+    public static Material Dinitrodipropanyloxybenzene;
+    public static Material PreZylon;
+    public static Material Soap;
+    public static Material DeglyceratedSoap;
+    public static Material StearicAcid;
+    public static Material Trioctylphosphine;
+    public static Material QuantumDots;
+    public static Material HastelloyK243;
+    public static Material Enderium;
+    public static Material PreciousMetals;
+    public static Material RefractoryMetals;
+    public static Material LightTranstionMetals;
+    public static Material Alkalis;
+    public static Material PostTransitionMetals;
+    public static Material Lanthanoids;
+    public static Material Actinoids;
+    public static Material NonMetals;
+    public static Material NobleGases;
+    public static Material Periodicium;
+    public static Material HeavyLeptonMix;
+    public static Material Gluons;
+    public static Material DenseNeutronPlasma;
+    public static Material SuperfluidHelium;
+    public static Material Cycloparaphenylene;
+    public static Material NeutroniumDopedNanotubes;
+    public static Material CosmicMeshPlasma;
 
     //COILS
     public static Material TitanSteel;
@@ -426,11 +457,24 @@ public class TJFMaterials {
 
     ///////////////////////////////////////////
 
+    static {
+        CORE_METAL.addAll(EXT2_METAL);
+        CORE_METAL.addAll(Arrays.asList(GENERATE_RING, GENERATE_FRAME, GENERATE_ROTOR, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_FINE_WIRE, GENERATE_GEAR));
+    }
+
     public static void register() {
 
         //NUCLEAR_MARK
+        Uranium = new Material.Builder(id++, tjfId("uranium_generic"))
+                .ingot(3).fluid()
+                .color(0xF03232)
+                .iconSet(METALLIC)
+                .flags(EXT_METAL)
+                .element(Elements.U)
+                .build();
+
         Plutonium = new Material.Builder(id++, tjfId("plutonium_generic"))
-                .ingot(3)
+                .ingot(3).fluid()
                 .color(0xF03232)
                 .iconSet(METALLIC)
                 .flags(EXT_METAL)
@@ -461,6 +505,14 @@ public class TJFMaterials {
                 .flags(STD_METAL)
                 .build()
                 .setFormula("Cf_252", true);
+
+        Mendelevium261 = new Material.Builder(id++, tjfId("californium_261"))
+                .ingot()
+                .color(Mendelevium.getMaterialRGB())
+                .iconSet(METALLIC)
+                .flags(STD_METAL)
+                .build()
+                .setFormula("Md_252", true);
 
         //////////////////////
 
@@ -1720,10 +1772,10 @@ public class TJFMaterials {
                 .build();
 
         HastelloyN = new Material.Builder(id++, tjfId("hastelloy_n"))
-                .ingot(6)
+                .ingot(6).fluid()
                 .color(0xDDDDDD)
                 .iconSet(METALLIC)
-                .flags(EXT2_METAL, GENERATE_FRAME, GENERATE_DENSE)
+                .flags(EXT2_METAL, GENERATE_FRAME, GENERATE_DENSE, GENERATE_GEAR)
                 .components(Yttrium, 2, Molybdenum, 4, Chrome, 2, Titanium, 2, Nickel, 15)
                 .blast(4350)
                 .build();
@@ -1978,6 +2030,7 @@ public class TJFMaterials {
 
         ElectronDegenerateRheniumPlasma = new Material.Builder(id++, tjfId("degenerate_rhenium_plasma"))
                 .plasma(new FluidBuilder().temperature(100000000))//TODO fix temperature
+                .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
                 .color(0x6666FF)
                 .iconSet(FLUID)
                 .build()
@@ -1992,6 +2045,7 @@ public class TJFMaterials {
 
         NeutronPlasma = new Material.Builder(id++, tjfId("neutron_plasma"))
                 .plasma(new FluidBuilder().temperature(1000000000))//TODO fix temperature
+                .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
                 .color(0xf0e9e9)
                 .iconSet(FLUID)
                 .build()
@@ -2435,7 +2489,7 @@ public class TJFMaterials {
                 .ingot()
                 .color(0x6ba3e3)
                 .iconSet(SHINY)
-                .flags(EXT2_METAL, GENERATE_FRAME, DISABLE_DECOMPOSITION, GENERATE_SMALL_GEAR, GENERATE_ROUND, GENERATE_RING, GENERATE_ROTOR)
+                .flags(CORE_METAL)
                 .components(NaquadahAlloy, 10, Rhenium, 5, Naquadria, 4, Gadolinium, 3, Strontium, 2, Polonium, 3, Rutherfordium, 2, Fermium258, 1)
                 .blast(12000)
                 .build();
@@ -2444,7 +2498,7 @@ public class TJFMaterials {
                 .ingot()
                 .color(0x37bf7e)
                 .iconSet(SHINY)
-                .flags()
+                .flags(CORE_METAL)
                 .components(VanadiumSteel, 4, Osmiridium, 2, Technetium, 3, Germanium, 4, Iridium, 7, Duranium, 5, Californium252, 1)
                 .blast(10000)
                 .build();
@@ -2453,17 +2507,378 @@ public class TJFMaterials {
                 .ingot()
                 .color(0x444B42)
                 .iconSet(METALLIC)
-                .flags(EXT2_METAL, GENERATE_FRAME, DISABLE_DECOMPOSITION)
+                .flags(EXT2_METAL, GENERATE_FRAME, GENERATE_GEAR, DISABLE_DECOMPOSITION)
                 .components(Uranium238, 9, Titanium, 1)
                 .blast(3450)
                 .build();
 
+        OrthoXyleneZeoliteMixture = new Material.Builder(id++, tjfId("ortho_xylene_zeolite"))
+                .fluid()
+                .color(0xB9785E)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(NaC4Si27Al9(H2O)28O72)C6H4(CH3)2", true);
+
+        ParaXylene = new Material.Builder(id++, tjfId("para_xylene"))
+                .fluid()
+                .color(0xB9575E)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C6H4(CH3)2", true);
+
+        Dibromomethylbenzene = new Material.Builder(id++, tjfId("dibromomethylbenzene"))
+                .fluid()
+                .color(0x0A1D2C)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C7H6Br2", true);
+
+        Terephthalaldehyde = new Material.Builder(id++, tjfId("terephthalaldehyde"))
+                .dust()
+                .color((Dibromomethylbenzene.getMaterialRGB() + SulfuricAcid.getMaterialRGB()) / 2)
+                .iconSet(FINE)
+                .build()
+                .setFormula("C8H6O2", true);
+
+        AuPdCCatalyst = new Material.Builder(id++, tjfId("aupdc_catalyst"))
+                .dust()
+                .color((Gold.getMaterialRGB() + Palladium.getMaterialRGB() + Carbon.getMaterialRGB()) / 3)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("AuPdC", true);
+
+        Isochloropropane = new Material.Builder(id++, tjfId("isochloropropane"))
+                .fluid()
+                .color(0xD5DD95)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("CH3CClCH3", true);
+
+        Dinitrodipropanyloxybenzene = new Material.Builder(id++, tjfId("dinitrodipropanyloxybenzene"))
+                .fluid()
+                .color(0x83945F)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C12H16O2(NO2)2", true);
+
+        PreZylon = new Material.Builder(id++, tjfId("pre_zylon"))
+                .dust()
+                .color((Terephthalaldehyde.getMaterialRGB() + Dinitrodipropanyloxybenzene.getMaterialRGB()) / 2)
+                .iconSet(FINE)
+                .build()
+                .setFormula("", true);
+
+        Soap = new Material.Builder(id++, tjfId("soap"))
+                .fluid()
+                .color(0xFFAE42)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("?", true);
+
+        DeglyceratedSoap = new Material.Builder(id++, tjfId("deglyceratedsoap"))
+                .fluid()
+                .color(0xFFAE41)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("?", true);
+
+        StearicAcid = new Material.Builder(id++, tjfId("stearicacid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(0x2bbbb4)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C18H36O2", true);
+
+        Trioctylphosphine = new Material.Builder(id++, tjfId("trioctylphosphine"))
+                .fluid()
+                .color(0xF1E130)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C24H51P", true);
+
+        QuantumDots = new Material.Builder(id++, tjfId("quantumdots"))
+                .fluid()
+                .color(0xff0000)
+                .iconSet(FLUID)
+                .build()
+                .setFormula(makeFancy("qd"), true);
+
+        HastelloyK243 = new Material.Builder(id++, tjfId("hastelloyk_243"))
+                .ingot(2)
+                .color(0xa5f564)
+                .iconSet(SHINY)
+                .flags(EXT2_METAL, GENERATE_FRAME, DISABLE_DECOMPOSITION, GENERATE_SMALL_GEAR, GENERATE_ROUND, GENERATE_RING, GENERATE_ROTOR)
+                .components(HastelloyX78, 5, NiobiumNitride, 2, Tritanium, 4, TungstenCarbide, 4, Promethium, 4, Mendelevium261, 1)
+                .blast(12100)
+                .build();
+
+        Enderium = new Material.Builder(id++, tjfId("enderium"))
+                .ingot(3)
+                .toolStats(ToolProperty.Builder.of(8.0F, 3.0F, 1280, 3).build())
+                .color(0x23524a)
+                .iconSet(METALLIC)
+                .flags(EXT2_METAL, DISABLE_DECOMPOSITION)
+                .components(Lead, 3, Platinum, 1, EnderPearl, 1)
+                .blast(4500)
+                .build();
+
+        PreciousMetals = new Material.Builder(id++, tjfId("precious_metals"))
+                .dust()
+                .color((Ruthenium.getMaterialRGB() + Rhodium.getMaterialRGB() + Palladium.getMaterialRGB() + Silver.getMaterialRGB() + Rhenium.getMaterialRGB() + Osmium.getMaterialRGB() + Iridium.getMaterialRGB() + Platinum.getMaterialRGB() + Gold.getMaterialRGB()) / 9)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
+                .build()
+                .setFormula("RuRhPdAgReOsIrPtAu", true);
+
+        RefractoryMetals = new Material.Builder(id++, tjfId("refractory_metals"))
+                .dust()
+                .color((Zirconium.getMaterialRGB() + Niobium.getMaterialRGB() + Molybdenum.getMaterialRGB() + Technetium.getMaterialRGB() + Hafnium.getMaterialRGB() + Tantalum.getMaterialRGB() + Tungsten.getMaterialRGB()) / 7)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
+                .build()
+                .setFormula("ZrNbMoTcHfTaW", true);
+
+        LightTranstionMetals = new Material.Builder(id++, tjfId("light_transition_metals"))
+                .dust()
+                .color((Titanium.getMaterialRGB() + Vanadium.getMaterialRGB() + Chrome.getMaterialRGB() + Manganese.getMaterialRGB() + Iron.getMaterialRGB() + Cobalt.getMaterialRGB() + Nickel.getMaterialRGB() + Copper.getMaterialRGB()) / 8)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
+                .build()
+                .setFormula("TiVCrMnFeCoNiCu", true);
+
+        Alkalis = new Material.Builder(id++, tjfId("alkalis"))
+                .dust()
+                .color((Lithium.getMaterialRGB() + Beryllium.getMaterialRGB() + Sodium.getMaterialRGB() + Magnesium.getMaterialRGB() + Potassium.getMaterialRGB() + Calcium.getMaterialRGB() + Scandium.getMaterialRGB() + Rubidium.getMaterialRGB() + Strontium.getMaterialRGB() + Yttrium.getMaterialRGB() + Caesium.getMaterialRGB() + Barium.getMaterialRGB() + Francium.getMaterialRGB() + Radium.getMaterialRGB()) / 12)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
+                .build()
+                .setFormula("LiBeNaMgKCaScRbSrYCeBaFrRa", true);
+
+        PostTransitionMetals = new Material.Builder(id++, tjfId("post_transition_metals"))
+                .dust()
+                .color((Aluminium.getMaterialRGB() + Silicon.getMaterialRGB() + Zinc.getMaterialRGB() + Gallium.getMaterialRGB() + Germanium.getMaterialRGB() + Cadmium.getMaterialRGB() + Indium.getMaterialRGB() + Tin.getMaterialRGB() + Antimony.getMaterialRGB() + Mercury.getMaterialRGB() + Thallium.getMaterialRGB() + Lead.getMaterialRGB() + Bismuth.getMaterialRGB() + Polonium.getMaterialRGB()) / 14)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("AlSiZnGaGeCdInSnSbHgTlPbBiPo", true);
+
+        Lanthanoids = new Material.Builder(id++, tjfId("lanthanoids"))
+                .dust()
+                .color((Lanthanum.getMaterialRGB() + Cerium.getMaterialRGB() + Praseodymium.getMaterialRGB() + Neodymium.getMaterialRGB() + Promethium.getMaterialRGB() + Samarium.getMaterialRGB() + Europium.getMaterialRGB() + Gadolinium.getMaterialRGB() + Terbium.getMaterialRGB() + Dysprosium.getMaterialRGB() + Holmium.getMaterialRGB() + Erbium.getMaterialRGB() + Thulium.getMaterialRGB() + Ytterbium.getMaterialRGB() + Lutetium.getMaterialRGB()) / 15)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
+                .build()
+                .setFormula("LaPrNdPmSmEuGdTbDyHoErTmYbLu", true);
+        Actinoids = new Material.Builder(id++, tjfId("actinoids"))
+                .dust()
+                .color((Actinium.getMaterialRGB() + Thorium.getMaterialRGB() + Protactinium.getMaterialRGB() + Uranium.getMaterialRGB() + Neptunium.getMaterialRGB() + Plutonium.getMaterialRGB() + Americium.getMaterialRGB() + Curium.getMaterialRGB() + Berkelium.getMaterialRGB() + Californium.getMaterialRGB() + Einsteinium.getMaterialRGB() + Fermium.getMaterialRGB() + Mendelevium.getMaterialRGB()) / 13)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
+                .build()
+                .setFormula("AcThPaNpPuAmCmBkCfEsFmMd", true);
+
+        NonMetals = new Material.Builder(id++, tjfId("non_metals"))
+                .fluid()
+                .color((Hydrogen.getMaterialRGB() + Boron.getMaterialRGB() + Carbon.getMaterialRGB() + Nitrogen.getMaterialRGB() + Oxygen.getMaterialRGB() + Fluorine.getMaterialRGB() + Phosphorus.getMaterialRGB() + Sulfur.getMaterialRGB() + Chlorine.getMaterialRGB() + Arsenic.getMaterialRGB() + Selenium.getMaterialRGB() + Bromine.getMaterialRGB() + Tellurium.getMaterialRGB() + Iodine.getMaterialRGB() + Astatine.getMaterialRGB()))
+                .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
+                .build()
+                .setFormula("BCPSAsSeTeIAtONHFClBr", true);
+
+        NobleGases = new Material.Builder(id++, tjfId("noble_gases_mixture"))
+                .gas()
+                .color((Helium.getMaterialRGB() + Neon.getMaterialRGB() + Argon.getMaterialRGB() + Krypton.getMaterialRGB() + Xenon.getMaterialRGB() + Radon.getMaterialRGB()))
+                .flags(DISABLE_REPLICATION)
+                .build()
+                .setFormula("HeNeArKrXeRn", true);
+
+        Periodicium = new Material.Builder(id++, tjfId("periodicium"))
+                .ingot(6).fluid()
+                .color(0x3d4bf6)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
+                .components(Hydrogen, 1,
+                        Helium, 1,
+                        Lithium, 1,
+                        Beryllium, 1,
+                        Boron, 1,
+                        Carbon, 1,
+                        Nitrogen, 1,
+                        Oxygen, 1,
+                        Fluorine, 1,
+                        Neon, 1,
+                        Sodium, 1,
+                        Magnesium, 1,
+                        Aluminium, 1,
+                        Silicon, 1,
+                        Phosphorus, 1,
+                        Sulfur, 1,
+                        Chlorine, 1,
+                        Argon, 1,
+                        Potassium, 1,
+                        Calcium, 1,
+                        Scandium, 1,
+                        Titanium, 1,
+                        Vanadium, 1,
+                        Chrome, 1,
+                        Manganese, 1,
+                        Iron, 1,
+                        Cobalt, 1,
+                        Nickel, 1,
+                        Copper, 1,
+                        Zinc, 1,
+                        Gallium, 1,
+                        Germanium, 1,
+                        Arsenic, 1,
+                        Selenium, 1,
+                        Bromine, 1,
+                        Krypton, 1,
+                        Rubidium, 1,
+                        Strontium, 1,
+                        Yttrium, 1,
+                        Zirconium, 1,
+                        Niobium, 1,
+                        Molybdenum, 1,
+                        Technetium, 1,
+                        Ruthenium, 1,
+                        Rhodium, 1,
+                        Palladium, 1,
+                        Silver, 1,
+                        Cadmium, 1,
+                        Indium, 1,
+                        Tin, 1,
+                        Antimony, 1,
+                        Tellurium, 1,
+                        Iodine, 1,
+                        Xenon, 1,
+                        Caesium, 1,
+                        Barium, 1,
+                        Lanthanum, 1,
+                        Cerium, 1,
+                        Praseodymium, 1,
+                        Neodymium, 1,
+                        Promethium, 1,
+                        Samarium, 1,
+                        Europium, 1,
+                        Gadolinium, 1,
+                        Terbium, 1,
+                        Dysprosium, 1,
+                        Holmium, 1,
+                        Erbium, 1,
+                        Thulium, 1,
+                        Ytterbium, 1,
+                        Lutetium, 1,
+                        Hafnium, 1,
+                        Tantalum, 1,
+                        Tungsten, 1,
+                        Rhenium, 1,
+                        Osmium, 1,
+                        Iridium, 1,
+                        Platinum, 1,
+                        Gold, 1,
+                        Mercury, 1,
+                        Thallium, 1,
+                        Lead, 1,
+                        Bismuth, 1,
+                        Polonium, 1,
+                        Astatine, 1,
+                        Radon, 1,
+                        Francium, 1,
+                        Radium, 1,
+                        Actinium, 1,
+                        Thorium, 1,
+                        Protactinium, 1,
+                        Uranium, 1,
+                        Neptunium, 1,
+                        Plutonium, 1,
+                        Americium, 1,
+                        Curium, 1,
+                        Berkelium, 1,
+                        Californium, 1,
+                        Einsteinium, 1,
+                        Fermium, 1,
+                        Mendelevium, 1,
+                        Nobelium, 1,
+                        Lawrencium, 1,
+                        Rutherfordium, 1,
+                        Dubnium, 1,
+                        Seaborgium, 1,
+                        Bohrium, 1,
+                        Hassium, 1,
+                        Meitnerium, 1,
+                        Darmstadtium, 1,
+                        Roentgenium, 1,
+                        Copernicium, 1,
+                        Nihonium, 1,
+                        Flerovium, 1,
+                        Moscovium, 1,
+                        Livermorium, 1,
+                        Tennessine, 1,
+                        Oganesson, 1
+                )
+                .blast(13500)
+                .build();
+
+        HeavyLeptonMix = new Material.Builder(id++, tjfId("heavy_lepton_mix"))
+                .fluid()
+                .color(0x5adf52)
+                .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
+                .build()
+                .setFormula(TextFormatting.OBFUSCATED + "a" + TextFormatting.RESET + "(t2)u" + TextFormatting.OBFUSCATED + "a", true);
+
+        Gluons = new Material.Builder(id++, tjfId("gluons"))
+                .fluid()
+                .color(0xfcfcfa)
+                .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
+                .build()
+                .setFormula(TextFormatting.OBFUSCATED + "a" + TextFormatting.RESET + "g" + TextFormatting.OBFUSCATED + "a", true);
+
+        DenseNeutronPlasma = new Material.Builder(id++, tjfId("dense_neutron_plasma"))
+                .plasma(new FluidBuilder().temperature(1000000))
+                .color(0xacecac)
+                .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
+                .build()
+                .setFormula(TextFormatting.OBFUSCATED + "a" + TextFormatting.RESET + TextFormatting.GRAY + "n" + TextFormatting.OBFUSCATED + "a", true);
+
+        SuperfluidHelium = new Material.Builder(id++, tjfId("superfluid_helium"))
+                .fluid()
+                .color(Helium.getMaterialRGB())
+                .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
+                .build()
+                .setFormula("He", true);
+
+        Cycloparaphenylene = new Material.Builder(id++, tjfId("cycloparaphenylene"))
+                .fluid()
+                .color(0x333333)
+                .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
+                .build()
+                .setFormula("CPP", true);
+
+        NeutroniumDopedNanotubes = new Material.Builder(id++, tjfId("neutronium_doped_nanotubes"))
+                .fluid()
+                .color((Neutronium.getMaterialRGB() + CarbonNanotubes.getMaterialRGB()) / 2)
+                .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
+                .build()
+                .setFormula("Nt?", true);
+
+        CosmicMeshPlasma = new Material.Builder(id++, tjfId("cosmic_mesh_plasma"))
+                .plasma(new FluidBuilder().temperature(1000000))
+                .color(0x1c1c8c)
+                .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
+                .build()
+                .setFormula(TextFormatting.OBFUSCATED + "nn", true);
+
         /*
         MATERIAL = new Material.Builder(id++, tjfId("material"))
-                .ingot()
+                .ingot().fluid()
                 .color()
                 .iconSet()
-                .flags()
+                .flags(DISABLE_REPLICATION)
                 .components()
                 .blast()
                 .build();
@@ -2471,6 +2886,7 @@ public class TJFMaterials {
         MATERIAL = new Material.Builder(id++, tjfId("material"))
                 .fluid()
                 .color()
+                .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("",true);
@@ -2478,18 +2894,16 @@ public class TJFMaterials {
         MATERIAL = new Material.Builder(id++, tjfId("material"))
                 .dust()
                 .color()
+                .flags(DISABLE_REPLICATION)
                 .iconSet()
                 .build()
                 .setFormula("",true);
          */
     }
 
-
     public static void materialChanges() {
 
         addDust(Germanium, 1, 0);
-        addFluid(Bromine);
-        addFluid(AmmoniumChloride);
 
         //NUCLEAR STUFF
         List<Material> nuclearMats = new ArrayList<>();
@@ -2505,7 +2919,7 @@ public class TJFMaterials {
 
         //CORE METAL ADDITIONS
         List<Material> mats = new ArrayList<>();
-        Collections.addAll(mats, Bohrium, Dubnium, Duranium, Seaborgium, Rhenium, Rutherfordium);
+        Collections.addAll(mats, Bohrium, Dubnium, Duranium, Seaborgium, Rhenium, Rutherfordium, NaquadahEnriched, IncoloyMA956);
 
         for (Material mat : mats) {
             for (MaterialFlag flag : CORE_METAL) {
@@ -2513,6 +2927,14 @@ public class TJFMaterials {
                 addFluid(mat);
                 mat.addFlags(flag);
             }
+        }
+
+        //FLUID Additions
+        List<Material> fmats = new ArrayList<>();
+        Collections.addAll(fmats, Sodium, Bromine, AmmoniumChloride, Rubidium, Caesium, Francium, Polonium, Praseodymium, Ytterbium, Neptunium, ProtoAdamantium);
+
+        for (Material mat : fmats) {
+            addFluid(mat);
         }
 
         //SPECIFIC CASES
@@ -2530,5 +2952,30 @@ public class TJFMaterials {
 
         addFluid(Carbon, "plasma", false);
 
+    }
+
+    private static String makeFancy(String input) {
+        return fancyTest(input, fanciness, 80.0, 1);
+    }
+
+    private static String fancyTest(String input, TextFormatting[] colors, double delay, int posstep) {
+        StringBuilder sb = new StringBuilder();
+
+        int offset = (int) Math.floor(MinecraftServer.getCurrentTimeMillis() / delay) % colors.length;
+        String format = null;
+
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+
+            if (!(c == '&' || c == '\u00a7')) {
+                int col = ((i * posstep) + colors.length - offset) % colors.length;
+                sb.append(colors[col].toString());
+                if (format != null)
+                    sb.append(format);
+                sb.append(c);
+            } else
+                format = input.charAt(++i) == 'r' ? null : format == null ? "" + c + input.charAt(i) : format + c + input.charAt(i);
+        }
+        return sb.toString();
     }
 }
