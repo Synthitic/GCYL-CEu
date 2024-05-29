@@ -216,11 +216,11 @@ public class WetwareComponents {
                 .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
                 .buildAndRegister();
 
-        /* TODO implement this
+
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(200)
                 .inputs(STREPTOCOCCUS_CULTURE.getStackForm())
                 .fluidInputs(BacterialGrowthMedium.getFluid(1000))
-                .outputs(StreptococcusPyogenes.getItemStack())
+                .output(dust, StreptococcusPyogenes)
                 .fluidOutputs(DepletedGrowthMedium.getFluid(1000))
                 .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
                 .buildAndRegister();
@@ -228,7 +228,7 @@ public class WetwareComponents {
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(200)
                 .inputs(BIFIDOBACTERIUM_CULTURE.getStackForm())
                 .fluidInputs(BacterialGrowthMedium.getFluid(1000))
-                .outputs(BifidobacteriumBreve.getItemStack())
+                .output(dust, BifidobacteriumBreve)
                 .fluidOutputs(DepletedGrowthMedium.getFluid(1000))
                 .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
                 .buildAndRegister();
@@ -236,7 +236,7 @@ public class WetwareComponents {
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(200)
                 .inputs(ESCHERICHIA_CULTURE.getStackForm())
                 .fluidInputs(BacterialGrowthMedium.getFluid(1000))
-                .outputs(EschericiaColi.getItemStack())
+                .output(dust, EschericiaColi)
                 .fluidOutputs(DepletedGrowthMedium.getFluid(1000))
                 .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
                 .buildAndRegister();
@@ -244,7 +244,7 @@ public class WetwareComponents {
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(200)
                 .inputs(BREVIBACTERIUM_CULTURE.getStackForm())
                 .fluidInputs(BacterialGrowthMedium.getFluid(1000))
-                .outputs(BrevibacteriumFlavium.getItemStack())
+                .output(dust, BrevibacteriumFlavium)
                 .fluidOutputs(DepletedGrowthMedium.getFluid(1000))
                 .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
                 .buildAndRegister();
@@ -252,54 +252,53 @@ public class WetwareComponents {
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(200)
                 .inputs(CUPRIVADUS_CULTURE.getStackForm())
                 .fluidInputs(BacterialGrowthMedium.getFluid(1000))
-                .outputs(CupriavidusNecator.getItemStack())
+                .output(dust, CupriavidusNecator)
                 .fluidOutputs(DepletedGrowthMedium.getFluid(1000))
                 .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(120).duration(100)
-                .inputs(Shewanella.getItemStack())
-                .outputs(Shewanella.getItemStack(2))
+                .input(dust, Shewanella)
+                .output(dust, Shewanella)
                 .fluidInputs(BacterialGrowthMedium.getFluid(250))
                 .fluidOutputs(DepletedGrowthMedium.getFluid(250))
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(120).duration(100)
-                .inputs(BrevibacteriumFlavium.getItemStack())
-                .outputs(BrevibacteriumFlavium.getItemStack(2))
+                .input(dust, BrevibacteriumFlavium)
+                .output(dust, BrevibacteriumFlavium)
                 .fluidInputs(BacterialGrowthMedium.getFluid(250))
                 .fluidOutputs(DepletedGrowthMedium.getFluid(250))
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(120).duration(100)
-                .inputs(EschericiaColi.getItemStack())
-                .outputs(EschericiaColi.getItemStack(2))
+                .input(dust, EschericiaColi)
+                .output(dust, EschericiaColi)
                 .fluidInputs(BacterialGrowthMedium.getFluid(250))
                 .fluidOutputs(DepletedGrowthMedium.getFluid(250))
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(120).duration(100)
-                .inputs(StreptococcusPyogenes.getItemStack())
-                .outputs(StreptococcusPyogenes.getItemStack(2))
+                .input(dust, StreptococcusPyogenes)
+                .output(dust, StreptococcusPyogenes)
                 .fluidInputs(BacterialGrowthMedium.getFluid(250))
                 .fluidOutputs(DepletedGrowthMedium.getFluid(250))
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(120).duration(100)
-                .inputs(BifidobacteriumBreve.getItemStack())
-                .outputs(BifidobacteriumBreve.getItemStack(2))
+                .input(dust, BifidobacteriumBreve)
+                .output(dust, BifidobacteriumBreve)
                 .fluidInputs(BacterialGrowthMedium.getFluid(250))
                 .fluidOutputs(DepletedGrowthMedium.getFluid(250))
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(120).duration(100)
-                .inputs(CupriavidusNecator.getItemStack())
-                .outputs(CupriavidusNecator.getItemStack(2))
+                .input(dust, CupriavidusNecator)
+                .output(dust, CupriavidusNecator)
                 .fluidInputs(BacterialGrowthMedium.getFluid(250))
                 .fluidOutputs(DepletedGrowthMedium.getFluid(250))
                 .buildAndRegister();
 
 
-         */
     }
 }

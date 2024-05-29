@@ -64,4 +64,13 @@ public class TJFRecipeMaps {
             9, 1, 6, 1, new SimpleRecipeBuilder(), false)
             .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, MoveType.CIRCULAR)
             .setSound(GTSoundEvents.MIXER);
+
+    public static final RecipeMap<SimpleRecipeBuilder> LARGE_CENTRIFUGE_RECIPES = new RecipeMap<>("large_centrifuge",
+            2, 6, 2, 6, new SimpleRecipeBuilder(), false)
+            .setSlotOverlay(false, false, false, GuiTextures.EXTRACTOR_OVERLAY)
+            .setSlotOverlay(false, false, true, GuiTextures.CANISTER_OVERLAY)
+            .setSlotOverlay(false, true, true, GuiTextures.CENTRIFUGE_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, MoveType.HORIZONTAL)
+            .setSound(GTSoundEvents.CENTRIFUGE);
+
 }

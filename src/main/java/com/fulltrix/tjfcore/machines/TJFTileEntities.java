@@ -3,8 +3,10 @@ package com.fulltrix.tjfcore.machines;
 import com.fulltrix.tjfcore.TJFConfig;
 import com.fulltrix.tjfcore.TJFUtility;
 import com.fulltrix.tjfcore.machines.multi.MetaTileEntityBioReactor;
+import com.fulltrix.tjfcore.machines.multi.MetaTileEntityCosmicRayDetector;
 import com.fulltrix.tjfcore.machines.multi.MetaTileEntityStellarForge;
 import com.fulltrix.tjfcore.machines.multi.advance.MetaTileEntityAdvFusionReactor;
+import com.fulltrix.tjfcore.machines.multi.advance.MetaTileEntityVolcanus;
 import com.fulltrix.tjfcore.machines.multi.miner.MetaTileEntityVoidMiner;
 import com.fulltrix.tjfcore.recipes.TJFRecipeMaps;
 import gregtech.api.GTValues;
@@ -18,14 +20,12 @@ import static com.fulltrix.tjfcore.TJFUtility.tjfId;
 
 public class TJFTileEntities {
     public static MetaTileEntityBioReactor BIO_REACTOR;
-
     public static MetaTileEntityAdvFusionReactor[] ADVANCED_FUSION_REACTOR = new MetaTileEntityAdvFusionReactor[5];
-
     public static SimpleMachineMetaTileEntity[] DEHYDRATOR = new SimpleMachineMetaTileEntity[GTValues.V.length - 1];
-
     public static MetaTileEntityVoidMiner[] VOID_MINER = new MetaTileEntityVoidMiner[3];
-
     public static MetaTileEntityStellarForge STELLAR_FORGE;
+    public static MetaTileEntityCosmicRayDetector COSMIC_RAY_DETECTOR;
+    public static MetaTileEntityVolcanus VOLCANUS;
 
     public static int id = 32000;
 
@@ -44,6 +44,10 @@ public class TJFTileEntities {
         VOID_MINER[2] = MetaTileEntities.registerMetaTileEntity(++id, new MetaTileEntityVoidMiner(tjfId("void_miner.uev"), GTValues.UEV, TJFConfig.multis.voidMiner.maxTempUEV));
 
         STELLAR_FORGE = MetaTileEntities.registerMetaTileEntity(++id, new MetaTileEntityStellarForge(tjfId("stellar_forge")));
+
+        COSMIC_RAY_DETECTOR = MetaTileEntities.registerMetaTileEntity(++id, new MetaTileEntityCosmicRayDetector(tjfId("cosmic_ray_detector")));
+
+        VOLCANUS = MetaTileEntities.registerMetaTileEntity(++id, new MetaTileEntityVolcanus(tjfId("volcanus")));
 
         MetaTileEntities.registerSimpleMetaTileEntity(DEHYDRATOR, ++id, "dehydrator", TJFRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES, Textures.SIFTER_OVERLAY, true, TJFUtility::tjfId, GTUtility.hvCappedTankSizeFunction);
 

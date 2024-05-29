@@ -8,6 +8,8 @@ import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.unification.Elements;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
+import gregtech.api.unification.material.properties.OreProperty;
+import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.material.properties.ToolProperty;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextFormatting;
@@ -260,18 +262,14 @@ public class TJFMaterials {
     public static Material AmmoniumCyanate;
     public static Material PotassiumManganate;
     public static Material PotassiumHydroxide;
-
     public static Material LithiumFluoride;
-
     public static Material AluminaSolution;
-
     public static Material PreciousMetal;
     public static Material GoldAlloy;
     public static Material GoldLeach;
     public static Material CopperLeach;
     public static Material ChloroauricAcid;
     public static Material PotassiumMetabisulfite;
-
     public static Material OrthoXylene;
     public static Material Durene;
     public static Material PyromelliticDianhydride;
@@ -279,13 +277,11 @@ public class TJFMaterials {
     public static Material PolyamicAcid;
     public static Material Hexafluoropropylene;
     public static Material FluorinatedEthylenePropylene;
-
     public static Material Taranium;
     public static Material NaquadriaticTaranium;
     public static Material BlackTitanium;
     public static Material FullerenePolymerMatrix;
     public static Material Zylon;
-
     public static Material SupercriticalSteam;
     public static Material SodiumPotassiumAlloy;
     public static Material SupercriticalSodiumPotassiumAlloy;
@@ -295,9 +291,7 @@ public class TJFMaterials {
     public static Material SupercriticalFLiBe;
     public static Material LeadBismuthEutectic;
     public static Material SupercriticalLeadBismuthEutectic;
-
     public static Material HastelloyN;
-
     public static Material TantalumHafniumSeaborgiumCarbide;
     public static Material Vibranium;
     public static Material HeavyQuarkDegenerateMatter;
@@ -308,7 +302,6 @@ public class TJFMaterials {
     public static Material Lafium;
     public static Material TriniumTitanium;
     public static Material Nitinol60;
-
     public static Material ActiniumSuperhydride;
     public static Material BETSPerrhenate;
     public static Material BorocarbideDust;
@@ -321,12 +314,10 @@ public class TJFMaterials {
     public static Material Legendarium;
     public static Material LanthanumFullereneMix;
     public static Material LanthanumFullereneNanotubes;
-
     public static Material HexanitroHexaazaisowurtzitane;
     public static Material Glyceryl;
     public static Material ElectronDegenerateRheniumPlasma;
     public static Material SuperheavyMix;
-
     public static Material NeutronPlasma;
     public static Material FreeAlphaGas;
     public static Material FreeElectronGas;
@@ -375,7 +366,6 @@ public class TJFMaterials {
     public static Material Silvertetrafluoroborate;
     public static Material SilverOxide;
     public static Material Acetaldehyde;
-
     public static Material Trichloroferane;
     public static Material SeaborgiumDopedNanotubes;
     public static Material PrHoYLF;
@@ -425,6 +415,230 @@ public class TJFMaterials {
     public static Material Cycloparaphenylene;
     public static Material NeutroniumDopedNanotubes;
     public static Material CosmicMeshPlasma;
+    public static Material AcidicSaltWater;
+    public static Material SulfuricBromineSolution;
+    public static Material DebrominatedWater;
+    public static Material HotVapourMixture;
+    public static Material DampBromine;
+    public static Material Ethylhexanol;
+    public static Material DiethylhexylPhosphoricAcid;
+    public static Material SodiumHydroxideSolution;
+    public static Material RareEarthHydroxidesSolution;
+    public static Material RareEarthChloridesSolution;
+    public static Material ThUSludge;
+    public static Material LaNdOxidesSolution;
+    public static Material SmGdOxidesSolution;
+    public static Material TbHoOxidesSolution;
+    public static Material ErLuOxidesSolution;
+    public static Material LanthanumOxide;
+    public static Material CeriumOxide;
+    public static Material ScandiumOxide;
+    public static Material EuropiumOxide;
+    public static Material GadoliniumOxide;
+    public static Material SamariumOxide;
+    public static Material TerbiumOxide;
+    public static Material DysprosiumOxide;
+    public static Material ErbiumOxide;
+    public static Material YtterbiumOxide;
+    public static Material Dimethylether;
+    public static Material EthyleneOxide;
+    public static Material Dimethoxyethane;
+    public static Material Cyclooctadiene;
+    public static Material Cyclopentadiene;
+    public static Material ButylLithium;
+    public static Material LithiumCyclopentadienide;
+    public static Material GoldCyanide;
+    public static Material GoldDepleteMolybdenite;
+    public static Material MolybdenumConcentrate;
+    public static Material ChlorideLeachedSolution;
+    public static Material CopperChloride;
+    public static Material LeadChloride;
+    public static Material BismuthChloride;
+    public static Material Iron2Chloride;
+    public static Material MolybdenumFlue;
+    public static Material MolybdenumTrioxide;
+    public static Material RheniumSulfuricSolution;
+    public static Material AmmoniumPerrhenate;
+    public static Material MercuryAcetate;
+    public static Material Methylamine;
+    public static Material Methylethanolamine;
+    public static Material CalciumCarbide;
+    public static Material CalciumCyanamide;
+    public static Material Methylguanidine;
+    public static Material Methylnitronitrosoguanidine;
+    public static Material SelectivelyMutatedCupriavidiusNecator;
+    public static Material IsoamylAlcohol;
+    public static Material Oct1ene;
+    public static Material Octanol;
+    public static Material PalladiumLoadedRutileNanoparticles;
+    public static Material CupriavidusNecator;
+    public static Material Trioctylamine;
+    public static Material Kerosene;
+    public static Material MethylIsobutylKetone;
+    public static Material PlatinumSalt;
+    public static Material RheniumSeparationMixture;
+    public static Material RheniumScrubbedSolution;
+    public static Material LeachedColumbite;
+    public static Material PurifiedColumbite;
+    public static Material LeachedPyrochlore;
+    public static Material PurifiedPyrochlore;
+    public static Material MesitylOxide;
+    public static Material Glucose;
+    public static Material FluoroniobicAcid;
+    public static Material PlatinumSaltRefined;
+    public static Material DirtyHexafluorosilicicAcid;
+    public static Material StoneResidueDust;
+    public static Material DiluteHexafluorosilicicAcid;
+    public static Material UncommonResidues;
+    public static Material RedMud;
+    public static Material Dioxygendifluoride;
+    public static Material PartiallyOxidizedResidues;
+    public static Material OxidizedResidualSolution;
+    public static Material InertResidues;
+    public static Material CleanInertResidues;
+    public static Material NaquadricCompound;
+    public static Material OxidizedResidues;
+    public static Material HeavyOxidizedResidues;
+    public static Material MetallicResidues;
+    public static Material DiluteHydrofluoricAcid;
+    public static Material HeavyMetallicResidues;
+    public static Material DiamagneticResidues;
+    public static Material ParamagneticResidues;
+    public static Material FerromagneticResidues;
+    public static Material HeavyDiamagneticResidues;
+    public static Material HeavyParamagneticResidues;
+    public static Material HeavyFerromagneticResidues;
+    public static Material ExoticHeavyResidues;
+    public static Material TritiumHydride;
+    public static Material Helium3Hydride;
+    public static Material UltraacidicResidueSolution;
+    public static Material XenicAcid;
+    public static Material DustyLiquidHelium3;
+    public static Material Ozone;
+    public static Material TaraniumEnrichedLHelium3;
+    public static Material TaraniumSemidepletedLHelium3;
+    public static Material TaraniumDepletedLHelium3;
+    public static Material TaraniumRichDustyHeliumPlasma;
+    public static Material TaraniumRichHelium4;
+    public static Material TaraniumDepletedHeliumPlasma;
+    public static Material TaraniumPoorLiquidHelium;
+    public static Material TaraniumPoorLiquidHeliumMix;
+    public static Material Triniite;
+    public static Material EnrichedNaquadricCompound;
+    public static Material NaquadriaticCompound;
+    public static Material NitratedTriniiteSolution;
+    public static Material BariumOxide;
+    public static Material BariumStrontiumAcetateSolution;
+    public static Material IsopropylAlcohol;
+    public static Material TitaniumIsopropoxide;
+    public static Material BariumStrontiumTitanatePreparation;
+    public static Material BariumStrontiumTitanate;
+    public static Material IsopropylAcetate;
+    public static Material PotasssiumFluoroTantalate;
+    public static Material LeadNitrate;
+    public static Material LeadNitrateCalciumMixture;
+    public static Material LeadScandiumTantalate;
+    public static Material MagnetorestrictiveAlloy;
+    public static Material LeadSenenide;
+    public static Material ZincSelenide;
+    public static Material FranciumCaesiumCadmiumBromide;
+    public static Material SodiumIodide;
+    public static Material Iodobenzene;
+    public static Material PalladiumAcetate;
+    public static Material Stilbene;
+    public static Material Amino3phenol;
+    public static Material Ethylamine;
+    public static Material SodiumAzanide;
+    public static Material PhthalicAnhydride;
+    public static Material TetraethylammoniumNonahydridides;
+    public static Material RhodamineB;
+    public static Material Hydroxylamine;
+    public static Material SodiumPertechnetate;
+    public static Material PotassiumPerrhenate;
+    public static Material PotassiumPertechnate;
+    public static Material PotassiumNonahydridorhenate;
+    public static Material PotassiumEthoxide;
+    public static Material PotassiumNonahydridotechnetate;
+    public static Material TetraethylammoniumBromide;
+    public static Material PotassiumIodide;
+    public static Material Aminophenol;
+    public static Material Butylaniline;
+    public static Material LithiumIodide;
+    public static Material Trimethylchlorosilane;
+    public static Material Trimethylsilane;
+    public static Material PotassiumBromide;
+    public static Material PotassiumBromate;
+    public static Material IodobenzoicAcid;
+    public static Material IBX;
+    public static Material Methoxybenzaldehyde;
+    public static Material MBBA;
+    public static Material LiquidCrystalDetector;
+    public static Material IodineMonochloride;
+    public static Material RhReNqCatalyst;
+    public static Material AcetylatingReagent;
+    public static Material Dimethylnaphthalene;
+    public static Material Bromosuccinimide;
+    public static Material Dihydroiodotetracene;
+    public static Material Dichlorodicyanobenzoquinone;
+    public static Material VanadiumOxide;
+    public static Material LithiumChlorideSolution;
+    public static Material Dichlorodicyanohydroquinone;
+    public static Material Tetracene;
+    public static Material StreptococcusPyogenes;
+    public static Material BifidobacteriumBreve;
+    public static Material EschericiaColi;
+    public static Material SodiumHypochlorite;
+    public static Material HotNitrogen;
+    public static Material Lignite;
+    public static Material DehydratedLignite;
+    public static Material BCEPellet;
+    public static Material GlucoseIronSolution;
+    public static Material GrapheneOxidationSolution;
+    public static Material GraphiteOxide;
+    public static Material GrapheneOxidationResidue;
+    public static Material GrapheneOxide;
+    public static Material Hydrazine;
+    public static Material Snow;
+    public static Material SupercooledCryotheum;
+    public static Material RedOil;
+    public static Material RP1;
+    public static Material TributylPhosphate;
+    public static Material PhosphorusTrichloride;
+    public static Material PhosphorylChloride;
+    public static Material SodiumFormate;
+    public static Material FormicAcid;
+    public static Material OrganicFertilizer;
+    public static Material ZirconiumTetrachloride;
+    public static Material CarbonFluoride;
+    public static Material CalciumCarbonateSolution;
+    public static Material BentoniteClaySlurry;
+    public static Material AluminiumChloride;
+    public static Material EthylAnthraHydroQuinone;
+    public static Material Anthracene;
+    public static Material EthylAnthraQuinone;
+    public static Material Chloroethanol;
+    public static Material Trimethylamine;
+    public static Material Choline;
+    public static Material ATL;
+    public static Material EthyleneGlycol;
+    public static Material CaCBaSMixture;
+    public static Material LubricantClaySlurry;
+    public static Material ATLEthylene;
+    public static Material DrillingMudMixture;
+    public static Material WetEthyleneOxide;
+    public static Material Phosgene;
+    public static Material TolueneDiisocyanate;
+    public static Material Polyurethane;
+    public static Material ViscoelasticPolyurethane;
+    public static Material ViscoelasticPolyurethaneFoam;
+    public static Material RocketFuelH8N4C2O4;
+    public static Material MonoMethylHydrazine;
+    public static Material RocketFuelCN3H7O3;
+    public static Material DenseHydrazineFuelMixture;
+    public static Material RP1RocketFuel;
+    public static Material CoalTarOil;
+    public static Material SulfuricCoalTarOil;
+
 
     //COILS
     public static Material TitanSteel;
@@ -1082,7 +1296,7 @@ public class TJFMaterials {
                 .setFormula("SiF4",true);
 
         FluorosilicicAcid = new Material.Builder(id++, tjfId("fluorosilicic_acid"))
-                .fluid()
+                .liquid(new FluidBuilder().attribute(ACID))
                 .color(0x2ccf2a)
                 .iconSet(FLUID)
                 .build()
@@ -2873,8 +3087,1772 @@ public class TJFMaterials {
                 .build()
                 .setFormula(TextFormatting.OBFUSCATED + "nn", true);
 
+        AcidicSaltWater = new Material.Builder(id++, tjfId("acidic_salt_water"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(0x006960)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H2SO4(NaCl)3(H2O)3Cl2", true);
+
+        SulfuricBromineSolution = new Material.Builder(id++, tjfId("sulfuric_bromine_solution"))
+                .fluid()
+                .color(0xff5100)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H2SO4Br(H2O)Cl2", true);
+
+        DebrominatedWater = new Material.Builder(id++, tjfId("debrominated_brine"))
+                .fluid()
+                .color(0x0000ff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H2O", true);
+
+        HotVapourMixture = new Material.Builder(id++, tjfId("hot_vapour_mixture"))
+                .gas()
+                .color(0xff5100)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H2SO4Br(H2O)2Cl2", true);
+
+        Ethylhexanol = new Material.Builder(id++, tjfId("ethylhexanol"))
+                .fluid()
+                .color(0xfeea9a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C8H18O", true);
+
+        DampBromine = new Material.Builder(id++, tjfId("damp_bromine"))
+                .fluid()
+                .color(0xe17594)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Br(H2O)", true);
+
+        DiethylhexylPhosphoricAcid = new Material.Builder(id++, tjfId("di_ethylhexyl_phosphoric_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(0xffff99)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C16H35O4P", true);
+
+        SodiumHydroxideSolution = new Material.Builder(id++, tjfId("sodium_hydroxide_solution"))
+                .fluid()
+                .color(SodiumHydroxide.getMaterialRGB() + 50)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(H2O)NaOH", true);
+
+        RareEarthHydroxidesSolution = new Material.Builder(id++, tjfId("rare_earth_hydroxides_solution"))
+                .fluid()
+                .color(0xcfb37d)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("NaOH(H2O)?(OH)3", true);
+
+        RareEarthChloridesSolution = new Material.Builder(id++, tjfId("rare_earth_chlorides_solution"))
+                .fluid()
+                .color(0x164b45)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(?Cl3)H2O", true);
+
+        ThUSludge = new Material.Builder(id++, tjfId("thorium_uranium_sludge"))
+                .dust()
+                .color(0x002908)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("ThU", true);
+
+        LaNdOxidesSolution = new Material.Builder(id++, tjfId("la_nd_oxides_solution"))
+                .fluid()
+                .color(0x9ce3db)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(La2O3)(Pr2O3)(Nd2O3)(Ce2O3)", true);
+
+        SmGdOxidesSolution = new Material.Builder(id++, tjfId("sm_gd_oxides_solution"))
+                .fluid()
+                .color(0xffff99)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(Sc2O3)(Eu2O3)(Gd2O3)(Sm2O3)", true);
+
+        TbHoOxidesSolution = new Material.Builder(id++, tjfId("tb_ho_oxides_solution"))
+                .fluid()
+                .color(0x99ff99)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(Y2O3)(Tb2O3)(Dy2O3)(Ho2O3)", true);
+
+        ErLuOxidesSolution = new Material.Builder(id++, tjfId("er_lu_oxides_solution"))
+                .fluid()
+                .color(0xffb3ff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(Er2O3)(Tm2O3)(Yb2O3)(Lu2O3)", true);
+
+        LanthanumOxide = new Material.Builder(id++, tjfId("lanthanum_oxide"))
+                .dust()
+                .color(Lanthanum.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(Lanthanum.getMaterialIconSet())
+                .build()
+                .setFormula("La2O3", true);
+
+        CeriumOxide = new Material.Builder(id++, tjfId("cerium_oxide"))
+                .dust()
+                .color(Cerium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(Cerium.getMaterialIconSet())
+                .build()
+                .setFormula("Ce2O3", true);
+
+        ScandiumOxide = new Material.Builder(id++, tjfId("scandium_oxide"))
+                .dust()
+                .color(Scandium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(Scandium.getMaterialIconSet())
+                .build()
+                .setFormula("Sc2O3", true);
+
+        EuropiumOxide = new Material.Builder(id++, tjfId("europium_oxide"))
+                .dust()
+                .color(Europium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(Europium.getMaterialIconSet())
+                .build()
+                .setFormula("Eu2O3", true);
+
+        GadoliniumOxide = new Material.Builder(id++, tjfId("gadolinium_oxide"))
+                .dust()
+                .color(Gadolinium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(Gadolinium.getMaterialIconSet())
+                .build()
+                .setFormula("Gd2O3", true);
+
+        SamariumOxide = new Material.Builder(id++, tjfId("samarium_oxide"))
+                .dust()
+                .color(Samarium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(Samarium.getMaterialIconSet())
+                .build()
+                .setFormula("Sm2O3", true);
+
+        TerbiumOxide = new Material.Builder(id++, tjfId("terbium_oxide"))
+                .dust()
+                .color(Terbium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(Terbium.getMaterialIconSet())
+                .build()
+                .setFormula("Tb2O3", true);
+
+        DysprosiumOxide = new Material.Builder(id++, tjfId("dysprosium_oxide"))
+                .dust()
+                .color(Dysprosium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(Dysprosium.getMaterialIconSet())
+                .build()
+                .setFormula("Dy2O3", true);
+
+        ErbiumOxide = new Material.Builder(id++, tjfId("erbium_oxide"))
+                .dust()
+                .color(Erbium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(Erbium.getMaterialIconSet())
+                .build()
+                .setFormula("Er2O3", true);
+
+        YtterbiumOxide = new Material.Builder(id++, tjfId("ytterbium_oxide"))
+                .dust()
+                .color(Ytterbium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(Ytterbium.getMaterialIconSet())
+                .build()
+                .setFormula("Yb2O3", true);
+
+        Dimethylether = new Material.Builder(id++, tjfId("dimethylether"))
+                .fluid()
+                .color(0xe6cd11)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C2H6O", true);
+
+        EthyleneOxide = new Material.Builder(id++, tjfId("ethylene_oxide"))
+                .fluid()
+                .color(0xa0c3de)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C2H4O", true);
+
+        Dimethoxyethane = new Material.Builder(id++, tjfId("dimethoxyethane"))
+                .fluid()
+                .color(0x2acbb4)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C4H10O2", true);
+
+        Cyclooctadiene = new Material.Builder(id++, tjfId("cyclooctadiene"))
+                .fluid()
+                .color(0x33CC33)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C8H12", true);
+
+        Cyclopentadiene = new Material.Builder(id++, tjfId("cyclopentadiene"))
+                .fluid()
+                .color(Cyclooctadiene.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C5H6", true);
+
+        ButylLithium = new Material.Builder(id++, tjfId("butyl_lithium"))
+                .fluid()
+                .color(Butane.getMaterialRGB() + Lithium.getMaterialRGB() / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C4H9Li", true);
+
+        LithiumCyclopentadienide = new Material.Builder(id++, tjfId("lithiumcyclopentadienide"))
+                .fluid()
+                .color(0x95556a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("LiC5H5", true);
+
+        GoldCyanide = new Material.Builder(id++, tjfId("gold_cyanide"))
+                .fluid()
+                .color(0x8c8761)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("AuCN", true);
+
+        GoldDepleteMolybdenite = new Material.Builder(id++, tjfId("gold_deplete_molybdenite"))
+                .dust()
+                .color(0x7c7c8f)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("MoS2?", true);
+
+        MolybdenumConcentrate = new Material.Builder(id++, tjfId("molybdenum_concentrate"))
+                .dust()
+                .color(0x565666)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("MoS2Re", true);
+
+        ChlorideLeachedSolution = new Material.Builder(id++, tjfId("chloride_leached_solution"))
+                .fluid()
+                .color(0x41472e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("CaCl2(CuCl2)(PbCl2)(BiCl3)(FeCl2)", true);
+
+        CopperChloride = new Material.Builder(id++, tjfId("copper_chloride"))
+                .dust()
+                .color(0xf5b35d)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("CuCl2", true);
+
+        LeadChloride = new Material.Builder(id++, tjfId("lead_chloride"))
+                .dust()
+                .color(Lead.getMaterialRGB() + Chlorine.getMaterialRGB() / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("PbCl2", true);
+
+        BismuthChloride = new Material.Builder(id++, tjfId("bismuth_chloride"))
+                .dust()
+                .color(0x95f5d7)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("BiCl3", true);
+
+        Iron2Chloride = new Material.Builder(id++, tjfId("iron_ii_chloride"))
+                .fluid()
+                .color(Iron3Chloride.getMaterialRGB() - 10)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("FeCl2", true);
+
+        MolybdenumFlue = new Material.Builder(id++, tjfId("molybdenum_flue_gas"))
+                .gas()
+                .color(0x333338)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H2OReS?", true);
+
+        MolybdenumTrioxide = new Material.Builder(id++, tjfId("molybdenum_trioxide"))
+                .dust()
+                .color(0x666685)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("MoO3", true);
+
+        RheniumSulfuricSolution = new Material.Builder(id++, tjfId("rhenium_sulfuric_solution"))
+                .fluid()
+                .color(0xbabaff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("ReS?", true);
+
+        AmmoniumPerrhenate = new Material.Builder(id++, tjfId("ammonium_perrhenate"))
+                .fluid()
+                .color(0x1c1c45)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("NH4ReO4", true);
+
+        MercuryAcetate = new Material.Builder(id++, tjfId("mercury_acetate"))
+                .dust()
+                .color(0xcc8562)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("Hg(CH3COO)2", true);
+
+        Methylamine = new Material.Builder(id++, tjfId("methylamine"))
+                .fluid()
+                .color((Methanol.getMaterialRGB() + Ammonia.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("CH3NH2", true);
+
+        Methylethanolamine = new Material.Builder(id++, tjfId("methylethanolamine"))
+                .fluid()
+                .color(0x6a3baa)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C3H9NO", true);
+
+        CalciumCarbide = new Material.Builder(id++, tjfId("calcium_carbide"))
+                .dust()
+                .color(0x807b70)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("CaC2", true);
+
+        CalciumCyanamide = new Material.Builder(id++, tjfId("calcium_cyanamide"))
+                .dust()
+                .color(CalciumCarbide.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("CaCN2", true);
+
+        Methylguanidine = new Material.Builder(id++, tjfId("methylguanidine"))
+                .fluid()
+                .color(0x5a9a3c)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C2H7N3", true);
+
+        Methylnitronitrosoguanidine = new Material.Builder(id++, tjfId("methylnitronitrosoguanidine"))
+                .fluid()
+                .color(0x68b15d)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C2H5N5O3", true);
+
+        CupriavidusNecator = new Material.Builder(id++, tjfId("cupriavidus_necator"))
+                .dust()
+                .color(0x22704f)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("Bacteria", true);
+
+        SelectivelyMutatedCupriavidiusNecator = new Material.Builder(id++, tjfId("selectively_mutated_cupriavidius_necator"))
+                .dust()
+                .color(CupriavidusNecator.getMaterialRGB() * 5 / 4)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("Bacteria", true);
+
+        IsoamylAlcohol = new Material.Builder(id++, tjfId("isoamyl_alcohol"))
+                .fluid()
+                .color(0xcaba77)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C5H12O", true);
+
+        Oct1ene = new Material.Builder(id++, tjfId("1_octene"))
+                .fluid()
+                .color(0x7e8778)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C8H16", true);
+
+        Octanol = new Material.Builder(id++, tjfId("octanol"))
+                .fluid()
+                .color(0xa2b8c2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C8H18O", true);
+
+        PalladiumLoadedRutileNanoparticles = new Material.Builder(id++, tjfId("palladium_loaded_rutile_nanoparticles"))
+                .dust()
+                .color((Palladium.getMaterialRGB() + Rutile.getMaterialRGB()))
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FINE)
+                .build()
+                .setFormula("PdTiO2", true);
+
+        Trioctylamine = new Material.Builder(id++, tjfId("trioctylamine"))
+                .fluid()
+                .color(0x87a2bc)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C24H51N", true);
+
+        Kerosene = new Material.Builder(id++, tjfId("kerosene"))
+                .fluid()
+                .color(0xD570D5)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("?", true);
+
+        MesitylOxide = new Material.Builder(id++, tjfId("mesityl_oxide"))
+                .fluid()
+                .color(Acetone.getMaterialRGB() - 10)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C6H10O", true);
+
+        MethylIsobutylKetone = new Material.Builder(id++, tjfId("methyl_isobutyl_ketone"))
+                .fluid()
+                .color((MesitylOxide.getMaterialRGB() + WaterAgarMix.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C6H12O", true);
+
+        PlatinumSalt = new Material.Builder(id++, tjfId("platinum_salt"))
+                .dust()
+                .color(Platinum.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("Pt?", true);
+
+        RheniumSeparationMixture = new Material.Builder(id++, tjfId("rhenium_separation_mixture"))
+                .fluid()
+                .color(0xed2c3a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C11H24", true);
+
+        RheniumScrubbedSolution = new Material.Builder(id++, tjfId("rhenium_scrubbed_solution"))
+                .fluid()
+                .color(0xedccca)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Re?", true);
+
+        LeachedColumbite = new Material.Builder(id++, tjfId("leached_columbite"))
+                .dust()
+                .color(0xCCCC00)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("(Nb2O5)9Ta2O5?", true);
+
+        PurifiedColumbite = new Material.Builder(id++, tjfId("purified_columbite"))
+                .dust()
+                .color(LeachedColumbite.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("Ta2O5Nb18O45", true);
+
+        LeachedPyrochlore = new Material.Builder(id++, tjfId("leached_pyrochlore"))
+                .dust()
+                .color(0x996633)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("(Nb2O5)9Ta2O5?", true);
+
+        PurifiedPyrochlore = new Material.Builder(id++, tjfId("purified_pyrochlore"))
+                .dust()
+                .color(LeachedPyrochlore.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("Ta2O5Nb18O45", true);
+
+        Glucose = new Material.Builder(id++, tjfId("glucose"))
+                .dust()
+                .color((Sugar.getMaterialRGB() + 5))
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("C6H12O6", true);
+
+        FluoroniobicAcid = new Material.Builder(id++, tjfId("fluroniobic_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(0x73ff00)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("NbHF7", true);
+
+        PlatinumSaltRefined = new Material.Builder(id++, tjfId("refined_platinum_salt"))
+                .dust()
+                .color(Platinum.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(METALLIC)
+                .build()
+                .setFormula("PtCl?", true);
+
+        DirtyHexafluorosilicicAcid = new Material.Builder(id++, tjfId("dirty_hexafluorosilicic_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color((Stone.getMaterialRGB() + FluorosilicicAcid.getMaterialRGB() / 2))
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H2SiF6?", true);
+
+        StoneResidueDust = new Material.Builder(id++, tjfId("stone_residue_dust"))
+                .dust()
+                .color(Stone.getMaterialRGB() / 5 * 3)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build();
+
+        DiluteHexafluorosilicicAcid = new Material.Builder(id++, tjfId("dilute_hexafluorosilicic_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color((Water.getMaterialRGB() * 2 + FluorosilicicAcid.getMaterialRGB()) / 3)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(H2O)2(H2SiF6)", true);
+
+        Triniite = new Material.Builder(id++, tjfId("triniite"))
+                .dust(7)
+                .color(0x5F5A76)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(SHINY)
+                .components(Trinium, 3, Actinium, 3, Selenium, 4, Astatine, 4)
+                .build();
+
+        UncommonResidues = new Material.Builder(id++, tjfId("uncommon_residues"))
+                .dust()
+                .color((Triniite.getMaterialRGB() + NaquadriaticTaranium.getMaterialRGB() + PreciousMetals.getMaterialRGB()) / 5)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FINE)
+                .build()
+                .setFormula("?", true);
+
+        RedMud = new Material.Builder(id++, tjfId("red_mud"))
+                .fluid()
+                .color(0xcc3300)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("HCl?", true);
+
+        Dioxygendifluoride = new Material.Builder(id++, tjfId("dioxygen_difluoride"))
+                .fluid()
+                .color(0x32bdaf)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("FOOF", true);
+
+        PartiallyOxidizedResidues = new Material.Builder(id++, tjfId("partially_oxidized_residues"))
+                .dust()
+                .color(StoneResidueDust.getMaterialRGB() + Dioxygendifluoride.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build();
+
+        OxidizedResidualSolution = new Material.Builder(id++, tjfId("oxidized_residual_solution"))
+                .fluid()
+                .color(0x23ad7f)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        InertResidues = new Material.Builder(id++, tjfId("inert_residues"))
+                .dust()
+                .color(0x61587a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build();
+
+        CleanInertResidues = new Material.Builder(id++, tjfId("clean_inert_residues"))
+                .dust()
+                .color((Taranium.getMaterialRGB() + Xenon.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build();
+
+        NaquadricCompound = new Material.Builder(id++, tjfId("naquadric_compound"))
+                .dust()
+                .color(Naquadah.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(Naquadah.getMaterialIconSet())
+                .components(Naquadah.getMaterialComponents())
+                .build();
+
+        EnrichedNaquadricCompound = new Material.Builder(id++, tjfId("enriched_naquadric_compound"))
+                .dust()
+                .color(NaquadahEnriched.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(NaquadahEnriched.getMaterialIconSet())
+                .components(NaquadahEnriched.getMaterialComponents())
+                .build();
+
+        NaquadriaticCompound = new Material.Builder(id++, tjfId("naquadriatic_compound"))
+                .dust()
+                .color(Naquadria.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(Naquadria.getMaterialIconSet())
+                .components(Naquadria.getMaterialComponents())
+                .build();
+
+        DiamagneticResidues = new Material.Builder(id++, tjfId("diamagnetic_residues"))
+                .dust()
+                .color((Calcium.getMaterialRGB() + Zinc.getMaterialRGB() + Copper.getMaterialRGB() + Gallium.getMaterialRGB() + Beryllium.getMaterialRGB() + Tin.getMaterialRGB()) / 15)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build();
+
+        ParamagneticResidues = new Material.Builder(id++, tjfId("paramagnetic_residues"))
+                .dust()
+                .color((Sodium.getMaterialRGB() + Potassium.getMaterialRGB() + Magnesium.getMaterialRGB() + Titanium.getMaterialRGB() + Vanadium.getMaterialRGB() + Manganese.getMaterialRGB()) / 15)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build();
+
+        FerromagneticResidues = new Material.Builder(id++, tjfId("ferromagnetic_residues"))
+                .dust()
+                .color((Iron.getMaterialRGB() + Nickel.getMaterialRGB() + Cobalt.getMaterialRGB()) / 7)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build();
+
+        OxidizedResidues = new Material.Builder(id++, tjfId("oxidized_residues"))
+                .dust()
+                .color((DiamagneticResidues.getMaterialRGB() + ParamagneticResidues.getMaterialRGB() + FerromagneticResidues.getMaterialRGB() + 0x9f0000) / 4)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build();
+
+        HeavyOxidizedResidues = new Material.Builder(id++, tjfId("heavy_oxidized_residues"))
+                .dust()
+                .color(OxidizedResidues.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build();
+
+        MetallicResidues = new Material.Builder(id++, tjfId("metallic_residues"))
+                .dust()
+                .color((DiamagneticResidues.getMaterialRGB() + ParamagneticResidues.getMaterialRGB() + FerromagneticResidues.getMaterialRGB() + UncommonResidues.getMaterialRGB() / 3) / 4)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build();
+
+        HeavyDiamagneticResidues = new Material.Builder(id++, tjfId("heavy_diamagnetic_residues"))
+                .dust()
+                .color((Lead.getMaterialRGB() + Mercury.getMaterialRGB() + Cadmium.getMaterialRGB() + Indium.getMaterialRGB() + Gold.getMaterialRGB() + Bismuth.getMaterialRGB()))
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build();
+
+        HeavyParamagneticResidues = new Material.Builder(id++, tjfId("heavy_paramagnetic_residues"))
+                .dust()
+                .color((Thorium.getMaterialRGB() + Thallium.getMaterialRGB() + Uranium.getMaterialRGB() + Tungsten.getMaterialRGB() + Hafnium.getMaterialRGB() + Tantalum.getMaterialRGB()) / 15)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build();
+
+        HeavyFerromagneticResidues = new Material.Builder(id++, tjfId("heavy_ferromagnetic_residues"))
+                .dust()
+                .color(DysprosiumOxide.getMaterialRGB() * 3 / 11)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build();
+
+        HeavyMetallicResidues = new Material.Builder(id++, tjfId("heavy_metallic_residues"))
+                .dust()
+                .color((HeavyDiamagneticResidues.getMaterialRGB() + HeavyParamagneticResidues.getMaterialRGB() + HeavyFerromagneticResidues.getMaterialRGB() + UncommonResidues.getMaterialRGB() / 3) / 4)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build();
+
+        NitratedTriniiteSolution = new Material.Builder(id++, tjfId("nitrated_triniite_solution"))
+                .fluid()
+                .color(0x428c9f)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        ExoticHeavyResidues = new Material.Builder(id++, tjfId("exotic_heavy_residues"))
+                .dust()
+                .color(NitratedTriniiteSolution.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build();
+
+        DiluteHydrofluoricAcid = new Material.Builder(id++, tjfId("dilute_hydrofluoric_acid"))
+                .fluid()
+                .color((Water.getMaterialRGB() + HydrofluoricAcid.getMaterialRGB()) / 3)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(H2O)(HF)", true);
+
+        TritiumHydride = new Material.Builder(id++, tjfId("tritium_hydride"))
+                .fluid()
+                .color(Tritium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("TH", true);
+
+        Helium3Hydride = new Material.Builder(id++, tjfId("helium_iii_hydride"))
+                .fluid()
+                .color(Helium3.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("He_3H", true);
+
+        UltraacidicResidueSolution = new Material.Builder(id++, tjfId("ultraacidic_residue_solution"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color((FluoroantimonicAcid.getMaterialRGB() + Helium3Hydride.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        XenicAcid = new Material.Builder(id++, tjfId("xenic_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(0x5a4c9c)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H2XeO4", true);
+
+        DustyLiquidHelium3 = new Material.Builder(id++, tjfId("dusty_liquid_helium_3"))
+                .fluid()
+                .color(2 * Helium3.getMaterialRGB() / 3 + Taranium.getMaterialRGB() / 5)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("He_3", true);
+
+        Ozone = new Material.Builder(id++, tjfId("ozone"))
+                .gas()
+                .color(0x0099FF)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("O3", true);
+
+        TaraniumEnrichedLHelium3 = new Material.Builder(id++, tjfId("taranium_enriched_liquid_helium_3"))
+                .fluid()
+                .color(Helium3.getMaterialRGB() / 2 + Taranium.getMaterialRGB() / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        TaraniumSemidepletedLHelium3 = new Material.Builder(id++, tjfId("taranium_semidepleted_liquid_helium_3"))
+                .fluid()
+                .color(2 * Helium3.getMaterialRGB() / 3 + Taranium.getMaterialRGB() / 5)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        TaraniumSemidepletedLHelium3 = new Material.Builder(id++, tjfId("taranium_semidepleted_liquid_helium_3"))
+                .fluid()
+                .color(2 * Helium3.getMaterialRGB() / 3 + Taranium.getMaterialRGB() / 5)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        TaraniumDepletedLHelium3 = new Material.Builder(id++, tjfId("taranium_depleted_liquid_helium_3"))
+                .fluid()
+                .color(Helium3.getMaterialRGB() * 5 / 6 + Taranium.getMaterialRGB() / 8)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        TaraniumRichDustyHeliumPlasma = new Material.Builder(id++, tjfId("taranium_rich_dusty_helium_plasma"))
+                .plasma(new FluidBuilder().temperature(10000))
+                .color(Helium.getMaterialRGB() / 2 + Taranium.getMaterialRGB() / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        TaraniumRichHelium4 = new Material.Builder(id++, tjfId("taranium_rich_helium_4"))
+                .fluid()
+                .plasma()
+                .color(Helium.getMaterialRGB() / 2 + Taranium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        TaraniumDepletedHeliumPlasma = new Material.Builder(id++, tjfId("taranium_depleted_helium_plasma"))
+                .plasma(new FluidBuilder().temperature(10000))
+                .color(Helium.getMaterialRGB() / 2 + Taranium.getMaterialRGB() / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        TaraniumPoorLiquidHelium = new Material.Builder(id++, tjfId("taranium_poor_liquid_helium"))
+                .fluid()
+                .color(Helium3.getMaterialRGB() * 6 / 7 + Taranium.getMaterialRGB() / 14)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        TaraniumPoorLiquidHeliumMix = new Material.Builder(id++, tjfId("taranium_poor_liquid_helium_mix"))
+                .fluid()
+                .color(TaraniumPoorLiquidHelium.getMaterialRGB() * 10 / 11 + Helium.getMaterialRGB() / 11)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        BariumOxide = new Material.Builder(id++, tjfId("barium_oxide"))
+                .dust()
+                .color((Barium.getMaterialRGB() + Oxygen.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FINE)
+                .build()
+                .setFormula("BaO", true);
+
+        BariumStrontiumAcetateSolution = new Material.Builder(id++, tjfId("basr_acetate_solution"))
+                .fluid()
+                .color(0x9a9b98)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C2H3BaO2Sr", true);
+
+        IsopropylAlcohol = new Material.Builder(id++, tjfId("isopropyl_alcohol"))
+                .fluid()
+                .color((Water.getMaterialRGB() + Propene.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C3H8O", true);
+
+        TitaniumIsopropoxide = new Material.Builder(id++, tjfId("titanium_isopropoxide"))
+                .fluid()
+                .color(0xFF0066)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Ti(OCH(CH3)2)4", true);
+
+        BariumStrontiumTitanatePreparation = new Material.Builder(id++, tjfId("basr_titanate_preparation"))
+                .fluid()
+                .color(0xFF0066)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(BaTiO3)C2H3BaO2Sr", true);
+
+        BariumStrontiumTitanate = new Material.Builder(id++, tjfId("barium_strontium_titanate"))
+                .dust()
+                .color(0xFF0066)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("BaO4SrTi", true);
+
+        IsopropylAcetate = new Material.Builder(id++, tjfId("isopropyl_acetate"))
+                .fluid()
+                .color((Strontium.getMaterialRGB() + IsopropylAlcohol.getMaterialRGB() + Water.getMaterialRGB()) / 3)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(CH3)2CHCOOCH3", true);
+
+        PotasssiumFluoroTantalate = new Material.Builder(id++, tjfId("potassium_fluorotantalate"))
+                .dust()
+                .color(0x73ff00)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("K2TaF7", true);
+
+        LeadNitrate = new Material.Builder(id++, tjfId("lead_nitrate"))
+                .dust()
+                .color(0xFEFEFE)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .components(Lead, 1, Nitrogen, 2, Oxygen, 6)
+                .build();
+
+        LeadNitrateCalciumMixture = new Material.Builder(id++, tjfId("lead_nitrate_calcium_mixture"))
+                .dust()
+                .color((LeadNitrate.getMaterialRGB() + Calcium.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("(Pb(NO3)2)Ca9", true);
+
+        LeadScandiumTantalate = new Material.Builder(id++, tjfId("lead_scandium_tantalate"))
+                .dust()
+                .color((Lead.getMaterialRGB() + Scandium.getMaterialRGB() + Tantalum.getMaterialRGB()) / 3)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("Pb(ScTa)O3", true);
+
+        MagnetorestrictiveAlloy = new Material.Builder(id++, tjfId("magnetorestrictive_alloy"))
+                .dust()
+                .color(0xafefef)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("Tb4Dy7Fe10Co5B2SiC", true);
+
+        LeadSenenide = new Material.Builder(id++, tjfId("lead_selenide"))
+                .dust()
+                .color((Lead.getMaterialRGB() + Selenium.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("PbSe", true);
+
+        ZincSelenide = new Material.Builder(id++, tjfId("zinc_selenide"))
+                .dust()
+                .color(0xfcfc00)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FINE)
+                .build()
+                .setFormula("ZnSe", true);
+
+        FranciumCaesiumCadmiumBromide = new Material.Builder(id++, tjfId("francium_caesium_cadmium_bromide"))
+                .dust()
+                .color((Francium.getMaterialRGB() + Caesium.getMaterialRGB() + Cadmium.getMaterialRGB() + Bromine.getMaterialRGB()) / 4)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("FrCsCf2Br6", true);
+
+        SodiumIodide = new Material.Builder(id++, tjfId("sodium_iodide"))
+                .dust()
+                .color(0x555588)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("NaI", true);
+
+        Iodobenzene = new Material.Builder(id++, tjfId("iodobenzene"))
+                .fluid()
+                .color(0x2c2c6c0)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C6H5I", true);
+
+        PalladiumAcetate = new Material.Builder(id++, tjfId("palladium_acetate"))
+                .dust()
+                .color(0xcc3300)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("C4H6O4Pd", true);
+
+        Stilbene = new Material.Builder(id++, tjfId("stilbene"))
+                .dust()
+                .color(0x3c9c3c)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("C14H12", true);
+
+        Aminophenol = new Material.Builder(id++, tjfId("aminophenol"))
+                .fluid()
+                .color(0xafca3a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C6H4(OH)(NH2)", true);
+
+        Amino3phenol = new Material.Builder(id++, tjfId("3_aminophenol"))
+                .fluid()
+                .color(Aminophenol.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C6H7NO", true);
+
+        Ethylamine = new Material.Builder(id++, tjfId("ethylamine"))
+                .fluid()
+                .color(Ethylenediamine.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C2H5NH2", true);
+
+        SodiumAzanide = new Material.Builder(id++, tjfId("sodium_azanide"))
+                .dust()
+                .color((Sodium.getMaterialRGB() + Hydrogen.getMaterialRGB() + Nitrogen.getMaterialRGB()) / 3)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FINE)
+                .build()
+                .setFormula("NaNH2", true);
+
+        PhthalicAnhydride = new Material.Builder(id++, tjfId("phthalicanhydride"))
+                .dust()
+                .color(0xD1D1D1)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SAND)
+                .components(Carbon, 8, Hydrogen, 4, Oxygen, 3)
+                .build();
+
+        TetraethylammoniumNonahydridides = new Material.Builder(id++, tjfId("tetraethylammonium_nonahydrides"))
+                .dust()
+                .color(0xbee8b9)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("(C8H20N)(ReH9)(TcH9)", true);
+
+        RhodamineB = new Material.Builder(id++, tjfId("rhodamine_b"))
+                .dust()
+                .color(0xfc2020)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("C28H31ClN2O3", true);
+
+        Hydroxylamine = new Material.Builder(id++, tjfId("hydroxylamine"))
+                .fluid()
+                .color(0x99cc99)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H3NO", true);
+
+        SodiumPertechnetate = new Material.Builder(id++, tjfId("sodium_pertechnetate"))
+                .dust()
+                .color(0x6162c4)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("NaTcO4", true);
+
+        PotassiumPerrhenate = new Material.Builder(id++, tjfId("potassium_perrhenate"))
+                .dust()
+                .color(0xdec451)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("KReO4", true);
+
+        PotassiumPertechnate = new Material.Builder(id++, tjfId("potassium_pertechnate"))
+                .dust()
+                .color(0xdec451)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("KTcO4", true);
+
+        PotassiumNonahydridorhenate = new Material.Builder(id++, tjfId("potassium_nonahydridorhenate"))
+                .dust()
+                .color(0xeae2a8)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("H9K2ReO4", true);
+
+        PotassiumEthoxide = new Material.Builder(id++, tjfId("potassium_ethoxide"))
+                .fluid()
+                .color(Ethanol.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C2H5KO", true);
+
+        PotassiumNonahydridotechnetate = new Material.Builder(id++, tjfId("potassium_nonahydridotechnetate"))
+                .dust()
+                .color(0xede2a4)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("H9K2TcO4", true);
+
+        TetraethylammoniumBromide = new Material.Builder(id++, tjfId("tetraethylammonium_bromide"))
+                .fluid()
+                .color(0xcc33ff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C8H20NBr", true);
+
+        PotassiumIodide = new Material.Builder(id++, tjfId("potassium_iodide"))
+                .dust()
+                .color((Potassium.getMaterialRGB() + Iodine.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("KI", true);
+
+        Butylaniline = new Material.Builder(id++, tjfId("butylaniline"))
+                .fluid()
+                .color(Aniline.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C10H15N", true);
+
+        LithiumIodide = new Material.Builder(id++, tjfId("lithium_iodide"))
+                .dust()
+                .color((Lithium.getMaterialRGB() + Iodine.getMaterialRGB()))
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("LiI", true);
+
+        Trimethylchlorosilane = new Material.Builder(id++, tjfId("trimethylchlorosilane"))
+                .fluid()
+                .color(Dimethyldichlorosilane.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(CH3)3SiCl", true);
+
+        Trimethylsilane = new Material.Builder(id++, tjfId("trimethylsilane"))
+                .fluid()
+                .color(Trimethylchlorosilane.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C3H10Si", true);
+
+        PotassiumBromide = new Material.Builder(id++, tjfId("potassium_bromide"))
+                .dust()
+                .color(0xe066a3)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FINE)
+                .build()
+                .setFormula("KBr", true);
+
+        PotassiumBromate = new Material.Builder(id++, tjfId("potassium_bromate"))
+                .dust()
+                .color(0x8a4cd1)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("KBrO3", true);
+
+        IodobenzoicAcid = new Material.Builder(id++, tjfId("iodobenzoic_acid"))
+                .fluid()
+                .color(0x2cac6c0)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C7H5IO2", true);
+
+        IBX = new Material.Builder(id++, tjfId("ibx"))
+                .dust()
+                .color(0x20208c)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("C7H5IO4", true);
+
+        Methoxybenzaldehyde = new Material.Builder(id++, tjfId("methoxybenzaldehyde"))
+                .fluid()
+                .color(0x3c3a7a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C8H8O2", true);
+
+        MBBA = new Material.Builder(id++, tjfId("mbba"))
+                .fluid()
+                .color(0xfa30fa)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C18H21NO", true);
+
+        LiquidCrystalDetector = new Material.Builder(id++, tjfId("liquid_crystal_detector"))
+                .fluid()
+                .color(0xda20da)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        IodineMonochloride = new Material.Builder(id++, tjfId("iodine_monochloride"))
+                .fluid()
+                .color(0x004c4c)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("ICl", true);
+
+        RhReNqCatalyst = new Material.Builder(id++, tjfId("rhrenq_catalyst"))
+                .dust()
+                .color((Rhenium.getMaterialRGB() + Rhodium.getMaterialRGB() + Naquadah.getMaterialRGB()) / 3)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("ReRhNq", true);
+
+        AcetylatingReagent = new Material.Builder(id++, tjfId("acetylating_reagent"))
+                .fluid()
+                .color(0x8d5e63)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C9H12Si(MgBr)2", true);
+
+        Dimethylnaphthalene = new Material.Builder(id++, tjfId("dimethylnaphthalene"))
+                .fluid()
+                .color(0xe34fb0)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C12H12", true);
+
+        Bromosuccinimide = new Material.Builder(id++, tjfId("bromo_succinimide"))
+                .dust()
+                .color((Succinimide.getMaterialRGB() + Bromine.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(METALLIC)
+                .build()
+                .setFormula("C4H4BrNO2", true);
+
+        Dihydroiodotetracene = new Material.Builder(id++, tjfId("dihydroiodotetracene"))
+                .fluid()
+                .color(0x5c4d38)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H2C18H11I", true);
+
+        Dichlorodicyanobenzoquinone = new Material.Builder(id++, tjfId("dichlorodicyanobenzoquinone"))
+                .fluid()
+                .color(0x3a2aba)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C8Cl2N2O2", true);
+
+        VanadiumOxide = new Material.Builder(id++, tjfId("vanadium_oxide"))
+                .dust()
+                .color(0xf2ef1b)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FINE)
+                .build()
+                .setFormula("V2O5", true);
+
+        LithiumChlorideSolution = new Material.Builder(id++, tjfId("lithium_chloride_solution"))
+                .fluid()
+                .color((Lithium.getMaterialRGB() + Chlorine.getMaterialRGB()))
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("LiCl(H2O)", true);
+
+        Dichlorodicyanohydroquinone = new Material.Builder(id++, tjfId("dichlorodicyanohidroquinone"))
+                .fluid()
+                .color(0x3a2aba)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C8Cl2N2(OH)2", true);
+
+        Tetracene = new Material.Builder(id++, tjfId("tetracene"))
+                .dust()
+                .color(0x99801a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("C18H12", true);
+
+        StreptococcusPyogenes = new Material.Builder(id++, tjfId("streptococcus_pyogenes"))
+                .dust()
+                .color(0x1c3b15)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("Bacteria", true);
+
+        BifidobacteriumBreve = new Material.Builder(id++, tjfId("bifidobacterium_breve"))
+                .dust()
+                .color(0x377528)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("Bacteria", true);
+
+        EschericiaColi = new Material.Builder(id++, tjfId("eschericia_coli"))
+                .dust()
+                .color(0x2d4228)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("Bacteria", true);
+
+        SodiumHypochlorite = new Material.Builder(id++, tjfId("sodium_hypochlorite"))
+                .dust()
+                .color(0x6cff50)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("NaClO", true);
+
+        HotNitrogen = new Material.Builder(id++, tjfId("hot_nitrogen"))
+                .gas()
+                .color(Nitrogen.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("N", true);
+
+        Lignite = new Material.Builder(id++, tjfId("lignite"))
+                .gem(0, 1600)
+                .color(6571590)
+                .flags(DISABLE_REPLICATION, FLAMMABLE, NO_SMELTING, NO_SMASHING, MORTAR_GRINDABLE)
+                .iconSet(LIGNITE)
+                .components(Carbon, 2, Water, 4, DarkAsh, 1)
+                .build()
+                .setFormula("", true);
+
+        DehydratedLignite = new Material.Builder(id++, tjfId("dehydrated_lignite"))
+                .dust()
+                .color(0x5c4020)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C2(H2O)4C?", true);
+
+        BCEPellet = new Material.Builder(id++, tjfId("bce_pellet"))
+                .dust(1, 1600)
+                .color(0x3c3020)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(LIGNITE)
+                .build()
+                .setFormula("C2(H2O)4C", true);
+
+        GlucoseIronSolution = new Material.Builder(id++, tjfId("glucose_iron_solution"))
+                .fluid()
+                .color((Sugar.getMaterialRGB() + Iron.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(C6H12O6)FeCl3", true);
+
+        GrapheneOxidationSolution = new Material.Builder(id++, tjfId("graphene_oxidation_solution"))
+                .fluid()
+                .color(0x96821a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(KMnO4)(NaNO3)(H2SO4)", true);
+
+        GraphiteOxide = new Material.Builder(id++, tjfId("graphite_oxide"))
+                .dust()
+                .color(Graphite.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FINE)
+                .build()
+                .setFormula("C(O2)", true);
+
+        GrapheneOxidationResidue = new Material.Builder(id++, tjfId("graphene_oxidation_residue"))
+                .dust()
+                .color(0x96821a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FINE)
+                .build()
+                .setFormula("(KMnO4)(NaNO3)(H2SO4)", true);
+
+        GrapheneOxide = new Material.Builder(id++, tjfId("graphene_oxide"))
+                .dust()
+                .color(Graphene.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("C(O2)", true);
+
+        Hydrazine = new Material.Builder(id++, tjfId("hydrazine"))
+                .fluid()
+                .color(0xFFFFFF)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(Nitrogen, 2, Hydrogen, 4)
+                .build();
+
+        Snow = new Material.Builder(id++, tjfId("snow"))
+                .dust()
+                .color(0xFFFFFF)
+                .flags(DISABLE_REPLICATION, NO_SMELTING)
+                .iconSet(OPAL)
+                .components(Hydrogen, 2, Oxygen, 1)
+                .build();
+
+        SupercooledCryotheum = new Material.Builder(id++, tjfId("supercooled_cryotheum"))
+                .fluid()
+                .color(Cryotheum.getMaterialRGB() - 10)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .components(Cryotheum, 1)
+                .build();
+
+        RedOil = new Material.Builder(id++, tjfId("red_oil"))
+                .fluid()
+                .color(0x7C1500)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H2N4(RP-1)NiZnFe4", true);
+
+        RP1 = new Material.Builder(id++, tjfId("rp"))
+                .fluid()
+                .color(0xFF6E5D)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("?", true);
+
+        TributylPhosphate = new Material.Builder(id++, tjfId("tributyl_phosphate"))
+                .fluid()
+                .color(0x7C5B2C)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(C4H9)3PO4", true);
+
+        PhosphorusTrichloride = new Material.Builder(id++, tjfId("phosphorus_trichloride"))
+                .fluid()
+                .color((Phosphorus.getMaterialRGB() + Chlorine.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("PCl3", true);
+
+        PhosphorylChloride = new Material.Builder(id++, tjfId("phosphoryl_chloride"))
+                .fluid()
+                .color(0xE6E6E6)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("POCl3", true);
+
+        SodiumFormate = new Material.Builder(id++, tjfId("sodium_formate"))
+                .fluid()
+                .color(0xFFAAAA)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(Hydrogen, 1, Carbon, 1, Oxygen, 1, Oxygen, 1, Sodium, 1)
+                .build();
+
+        FormicAcid = new Material.Builder(id++, tjfId("formic_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(0xFFAA77)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .components(Carbon, 1, Hydrogen, 2, Oxygen, 2)
+                .build();
+
+        OrganicFertilizer = new Material.Builder(id++, tjfId("organic_fertilizer"))
+                .dust()
+                .color(0xDDDDDD)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(SHINY)
+                .components(Calcium, 5, Phosphate, 3, Hydrogen, 1, Oxygen, 1)
+                .build();
+
+        ZirconiumTetrachloride = new Material.Builder(id++, tjfId("zirconium_tetrachloride"))
+                .dust()
+                .color(0xF0F0F0)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("ZrCl4", true);
+
+        CarbonFluoride = new Material.Builder(id++, tjfId("carbone_fluoride"))
+                .fluid()
+                .color(0xE6E6E6)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("CF4", true);
+
+        CalciumCarbonateSolution = new Material.Builder(id++, tjfId("calcium_carbonate_solution"))
+                .fluid()
+                .color(Calcite.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(H2O)CaCO3", true);
+
+        BentoniteClaySlurry = new Material.Builder(id++, tjfId("bentonite_clay_solution"))
+                .fluid()
+                .color(0xdbc9c5)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H2O?", true);
+
+        AluminiumChloride = new Material.Builder(id++, tjfId("aluminium_chloride"))
+                .dust()
+                .color((Aluminium.getMaterialRGB() + Chlorine.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("AlCl3", true);
+
+        EthylAnthraQuinone = new Material.Builder(id++, tjfId("ethylanthraquinone"))
+                .fluid()
+                .color(0xFFFF00)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(Carbon, 16, Hydrogen, 12, Oxygen, 2)
+                .build();
+
+        EthylAnthraHydroQuinone = new Material.Builder(id++, tjfId("ethylanthrahydroquinone"))
+                .fluid()
+                .color(0xFFFF47)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(EthylAnthraQuinone, 1, Hydrogen, 2)
+                .build();
+
+        Anthracene = new Material.Builder(id++, tjfId("anthracene"))
+                .fluid()
+                .color(0xA2ACA2)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(Carbon, 14, Hydrogen, 10)
+                .build();
+
+        Chloroethanol = new Material.Builder(id++, tjfId("chloroethanol"))
+                .fluid()
+                .color(0xcfb050)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C2H5ClO", true);
+
+        Trimethylamine = new Material.Builder(id++, tjfId("trimetylamine"))
+                .fluid()
+                .color((Dimethylamine.getMaterialRGB() + 20))
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(CH3)3N", true);
+
+        Choline = new Material.Builder(id++, tjfId("choline"))
+                .fluid()
+                .color(0x63e45f)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C5H14NO", true);
+
+        ATL = new Material.Builder(id++, tjfId("atl"))
+                .fluid()
+                .color(0x709c4a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("ATL", true);
+
+        EthyleneGlycol = new Material.Builder(id++, tjfId("ethylene_glycol"))
+                .fluid()
+                .color(0x8080fa)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C2H6O2", true);
+
+        CaCBaSMixture = new Material.Builder(id++, tjfId("cacbas_mixture"))
+                .fluid()
+                .color((CalciumCarbonateSolution.getMaterialRGB() + BariumSulfateSolution.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        LubricantClaySlurry = new Material.Builder(id++, tjfId("lubricant_clay_slurry"))
+                .fluid()
+                .color((Lubricant.getMaterialRGB() + BentoniteClaySlurry.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        ATLEthylene = new Material.Builder(id++, tjfId("atl_ethylene_mixture"))
+                .fluid()
+                .color((ATL.getMaterialRGB() + EthyleneGlycol.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        DrillingMudMixture = new Material.Builder(id++, tjfId("drilling_mud_mixture"))
+                .fluid()
+                .color((CaCBaSMixture.getMaterialRGB() + LubricantClaySlurry.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        WetEthyleneOxide = new Material.Builder(id++, tjfId("wet_etylene_oxide"))
+                .fluid()
+                .color(0x90b3ff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("", true);
+
+        Phosgene = new Material.Builder(id++, tjfId("phosgene"))
+                .fluid()
+                .color((Chlorine.getMaterialRGB() + CarbonMonoxide.getMaterialRGB()) / 2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("COCl2", true);
+
+        TolueneDiisocyanate = new Material.Builder(id++, tjfId("toluene_diisocyanate"))
+                .fluid()
+                .color(0xbaf6ca)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C9H6N2O2", true);
+
+        Polyurethane = new Material.Builder(id++, tjfId("polyurethane"))
+                .ingot(2).fluid()
+                .color(0xeffcef)
+                .iconSet(DULL)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION, GENERATE_ROD, NO_SMASHING)
+                .components(Carbon, 17, Hydrogen, 16, Nitrogen, 2, Oxygen, 4)
+                .build();
+
+        ViscoelasticPolyurethane = new Material.Builder(id++, tjfId("viscoelastic_polyurethane"))
+                .fluid()
+                .color(0xeffcef)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C17H16N2O4?", true);
+
+        ViscoelasticPolyurethaneFoam = new Material.Builder(id++, tjfId("viscoelastic_polyurethane_foam"))
+                .fluid()
+                .color(0xeffcef)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C17H16N2O4?", true);
+
+        RocketFuelH8N4C2O4 = new Material.Builder(id++, tjfId("rocket_fuel_a"))
+                .fluid()
+                .color(0x5ECB22)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(Hydrogen, 8, Nitrogen, 4, Carbon, 2, Oxygen, 4)
+                .build();
+
+        MonoMethylHydrazine = new Material.Builder(id++, tjfId("monomethylhydrazine"))
+                .fluid()
+                .color(0xFFFFFF)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(Carbon, 1, Hydrogen, 6, Nitrogen, 2)
+                .build();
+
+        RocketFuelCN3H7O3 = new Material.Builder(id++, tjfId("rocket_fuel_b"))
+                .fluid()
+                .color(0xBE46C5)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(Carbon, 1, Nitrogen, 3, Hydrogen, 7, Oxygen, 3)
+                .build();
+
+        DenseHydrazineFuelMixture = new Material.Builder(id++, tjfId("dense_hydrazine_fuel_mixture"))
+                .fluid()
+                .color(0x5E2B4A)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(Hydrazine, 1, Methanol, 1)
+                .build();
+
+        RP1RocketFuel = new Material.Builder(id++, tjfId("rocket_fuel_c"))
+                .fluid()
+                .color(0xFF503C)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("?O", true);
+
+        CoalTarOil = new Material.Builder(id++, tjfId("coal_tar_oil"))
+                .fluid()
+                .color(0xB5B553)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(CoalTar, 1)
+                .build();
+
+        SulfuricCoalTarOil = new Material.Builder(id++, tjfId("sulfuric_coal_tar_oil"))
+                .fluid()
+                .color(0xFFFFAD)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(CoalTarOil, 1, SulfuricAcid, 1)
+                .build();
+
+
+
         /*
-        MATERIAL = new Material.Builder(id++, tjfId("material"))
+        = new Material.Builder(id++, tjfId("material"))
                 .ingot().fluid()
                 .color()
                 .iconSet()
@@ -2883,7 +4861,7 @@ public class TJFMaterials {
                 .blast()
                 .build();
 
-        MATERIAL = new Material.Builder(id++, tjfId("material"))
+        = new Material.Builder(id++, tjfId("material"))
                 .fluid()
                 .color()
                 .flags(DISABLE_REPLICATION)
@@ -2891,13 +4869,15 @@ public class TJFMaterials {
                 .build()
                 .setFormula("",true);
 
-        MATERIAL = new Material.Builder(id++, tjfId("material"))
+        = new Material.Builder(id++, tjfId("material"))
                 .dust()
                 .color()
                 .flags(DISABLE_REPLICATION)
                 .iconSet()
                 .build()
                 .setFormula("",true);
+
+
          */
     }
 
@@ -2929,6 +4909,13 @@ public class TJFMaterials {
             }
         }
 
+        //DUST ADDITIONS
+        List<Material> dmats = new ArrayList<>();
+        Collections.addAll(dmats, Dysprosium);
+        for (Material mat : dmats) {
+            addDust(mat, 1, 0);
+        }
+
         //FLUID Additions
         List<Material> fmats = new ArrayList<>();
         Collections.addAll(fmats, Sodium, Bromine, AmmoniumChloride, Rubidium, Caesium, Francium, Polonium, Praseodymium, Ytterbium, Neptunium, ProtoAdamantium);
@@ -2936,6 +4923,41 @@ public class TJFMaterials {
         for (Material mat : fmats) {
             addFluid(mat);
         }
+
+        //SPECIFIC FLUID ADDITIONS
+
+        //LIQUIDS
+        List<Material> lmats = new ArrayList<>();
+        Collections.addAll(lmats, Fluorine, Xenon, Helium3, Hydrogen);
+        for (Material mat : lmats) {
+            addFluid(mat, "liquid", false);
+        }
+
+        //PLASMAS
+        List<Material> pmats = new ArrayList<>();
+        Collections.addAll(lmats, Carbon, Hydrogen, Helium3);
+        for (Material mat : lmats) {
+            addFluid(mat, "plasma", false);
+        }
+
+        //ORE ADDITIONS
+        List<Material> omats = new ArrayList<>();
+        Collections.addAll(omats, Triniite, NaquadricCompound, EnrichedNaquadricCompound, NaquadriaticCompound, Lignite);
+        for (Material mat : omats) {
+            addOre(mat, 1, 1, true);
+        }
+
+        //ORE BYPRODUCTS
+        OreProperty oreProp;
+
+        oreProp = NaquadricCompound.getProperty(PropertyKey.ORE);
+        oreProp.addOreByProducts(EnrichedNaquadricCompound);
+
+        oreProp = EnrichedNaquadricCompound.getProperty(PropertyKey.ORE);
+        oreProp.addOreByProducts(NaquadricCompound, NaquadriaticCompound);
+
+        oreProp = Triniite.getProperty(PropertyKey.ORE);
+        oreProp.addOreByProducts(NaquadricCompound, Bismuth, Thallium);
 
         //SPECIFIC CASES
 
@@ -2949,8 +4971,6 @@ public class TJFMaterials {
         Osmiridium.addFlags(GENERATE_FRAME);
 
         addFluidPipes(Zeron100, 15000, 1750, true);
-
-        addFluid(Carbon, "plasma", false);
 
     }
 

@@ -33,9 +33,9 @@ public class RecipeHandler {
 
         PlatinumSludgeGroupChain.init();
         TungstenChain.init();
-        REEChain.init();
+
         Batteries.init();
-        RheniumChain.init();
+
 
 
          */
@@ -51,6 +51,12 @@ public class RecipeHandler {
         QuantumDotsChain.init();
         ZylonChain.init();
         UltimateMaterials.init();
+        TaraniumChain.init();
+        SensorEmitter.init();
+        RheniumChain.init();
+        REEChain.init();
+        OrganometallicChains.init();
+        VariousChains.init();
         /*
 
         FullereneChain.init();
@@ -67,12 +73,12 @@ public class RecipeHandler {
         BrineChain.init();
 
         NanotubeChain.init();
-        VariousChains.init();
+
         SuperconductorsSMDChain.init();
 
         NiobiumTantalumChain.init();
         Dyes.init();
-        SensorEmitter.init();
+
         SeleniumChain.init();
 
         CosmicChain.init();
@@ -83,11 +89,11 @@ public class RecipeHandler {
         WetwareChain.init();
 
         CombinedChains.init();
-        OrganometallicChains.init();
+
 
 
         TriniumChain.init();
-        TaraniumChain.init();
+
 
          */
     }
