@@ -8351,10 +8351,15 @@ public class TJFMaterials {
         //SPECIFIC FLUID ADDITIONS
 
         //LIQUIDS
+        //TODO: get proper temperatures
         List<Material> lmats = new ArrayList<>();
         Collections.addAll(lmats, Fluorine, Xenon, Helium3, Hydrogen);
         for (Material mat : lmats) {
-            addLiquid(mat);
+            addLiquid(mat, new FluidBuilder()
+                    .temperature(40)
+                    .color(mat.getMaterialRGB())
+                    .name("liquid_" + mat.getName())
+                    .translation("gregtech.fluid.liquid_generic"));
             mat.getProperty(PropertyKey.FLUID).setPrimaryKey(FluidStorageKeys.GAS);
         }
 

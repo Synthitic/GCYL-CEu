@@ -37,6 +37,7 @@ public class RecipeOverride {
 
         removeRecipesByInputs(CHEMICAL_RECIPES, Ethylbenzene.getFluid(1000));
         removeRecipesByInputs(CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, SodiumHydroxide, 3)}, new FluidStack[]{SulfuricAcid.getFluid(1000)});
+        removeRecipesByInputs(CHEMICAL_RECIPES, DinitrogenTetroxide.getFluid(1000), Dimethylhydrazine.getFluid(1000));
     }
 
     public static void chemistryOverride() {
