@@ -778,6 +778,7 @@ public class SuperconductorsSMDChain {
                 .fluidInputs(Ethane.getFluid(1000))
                 .fluidOutputs(Chloroethane.getFluid(1000))
                 .fluidOutputs(HydrochloricAcid.getFluid(1000))
+                .circuitMeta(1)
                 .notConsumable(UVA_HALIDE_LAMP.getStackForm())
                 .buildAndRegister();
 

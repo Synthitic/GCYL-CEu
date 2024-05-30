@@ -56,6 +56,7 @@ public class SensorEmitter {
         // C5H10O2 + H2O -> C3H8O + CH3COOH
         CHEMICAL_RECIPES.recipeBuilder().duration(200).EUt(480)
                 .notConsumable(dust, PhosphorusPentoxide)
+                .circuitMeta(1)
                 .fluidInputs(IsopropylAcetate.getFluid(1000))
                 .fluidInputs(Water.getFluid(1000))
                 .fluidOutputs(IsopropylAlcohol.getFluid(1000))

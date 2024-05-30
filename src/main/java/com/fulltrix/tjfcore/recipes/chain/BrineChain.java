@@ -353,7 +353,7 @@ public class BrineChain {
 
         // 2NaOH + H2SO4 + HBO2 -> H3BO3 + Na2SO4(H2O)
         CHEMICAL_RECIPES.recipeBuilder().duration(170).EUt(480)
-                .input(BORON_SATURATED_YARN.getStackForm().getItem())
+                .inputs(BORON_SATURATED_YARN.getStackForm())
                 .input(dust, SodiumHydroxide, 6)
                 .fluidInputs(SulfuricAcid.getFluid(1000))
                 .fluidOutputs(BoricAcid.getFluid(1000))

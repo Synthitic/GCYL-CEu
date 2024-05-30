@@ -189,11 +189,6 @@ public class VariousChains {
                 .output(dust, Pyrotheum, 4)
                 .buildAndRegister();
 
-        EXTRACTOR_RECIPES.recipeBuilder().duration(32).EUt(24)
-                .input(dust, Pyrotheum)
-                .fluidOutputs(Pyrotheum.getFluid(250))
-                .buildAndRegister();
-
         // Cryotheum ===================================================================================================
         CHEMICAL_RECIPES.recipeBuilder().duration(80).EUt(480)
                 .input(dust, Snow)
@@ -207,11 +202,6 @@ public class VariousChains {
                 .input(dust, Snow)
                 .input(dust, Blizz, 2)
                 .output(dust, Cryotheum, 4)
-                .buildAndRegister();
-
-        EXTRACTOR_RECIPES.recipeBuilder().duration(32).EUt(24)
-                .input(dust, Cryotheum)
-                .fluidOutputs(Cryotheum.getFluid(250))
                 .buildAndRegister();
 
         VACUUM_RECIPES.recipeBuilder()
@@ -394,6 +384,7 @@ public class VariousChains {
         // C8H4O3 + C8H10 -> C16H12O2 + H2O
         CHEMICAL_RECIPES.recipeBuilder().duration(300).EUt(120)
                 .input(dust, PhthalicAnhydride, 15)
+                .circuitMeta(1)
                 .fluidInputs(Ethylbenzene.getFluid(1000))
                 .fluidOutputs(EthylAnthraQuinone.getFluid(1000))
                 .fluidOutputs(Water.getFluid(1000))

@@ -340,16 +340,6 @@ public class WetwareChain {
                 .duration(25)
                 .buildAndRegister();
 
-        // [H2SO4 + HNO3] + C6H6 -> C6H5NO2 + H2O + H2SO4
-        CHEMICAL_RECIPES.recipeBuilder()
-                .fluidInputs(NitrationMixture.getFluid(2000))
-                .fluidInputs(Benzene.getFluid(1000))
-                .fluidOutputs(Nitrobenzene.getFluid(1000))
-                .fluidOutputs(DilutedSulfuricAcid.getFluid(2000))
-                .EUt(30)
-                .duration(100)
-                .buildAndRegister();
-
         // 6H + C6H5NO2 -> C6H5NH2 + 2H2O
         CHEMICAL_RECIPES.recipeBuilder()
                 .fluidInputs(Hydrogen.getFluid(6000))
