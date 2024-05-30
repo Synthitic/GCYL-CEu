@@ -66,7 +66,7 @@ public class CommonProxy {
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> registry = event.getRegistry();
-        registry.register(WIRE_COIL);
+        registry.register(HEATING_COIL);
         registry.register(MULTIBLOCK_CASING2);
         registry.register(TRANSPARENT_CASING);
         registry.register(FUSION_CASING);
@@ -77,12 +77,13 @@ public class CommonProxy {
         registry.register(SIMPLE_BLOCK);
         registry.register(METAL_CASING_1);
         registry.register(METAL_CASING_2);
+        registry.register(REACTOR_CASING);
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
-        registry.register(createItemBlock(WIRE_COIL, VariantItemBlock::new));
+        registry.register(createItemBlock(HEATING_COIL, VariantItemBlock::new));
         registry.register(createItemBlock(MULTIBLOCK_CASING2, VariantItemBlock::new));
         registry.register(createItemBlock(TRANSPARENT_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(FUSION_CASING, VariantItemBlock::new));
@@ -93,6 +94,7 @@ public class CommonProxy {
         registry.register(createItemBlock(SIMPLE_BLOCK, VariantItemBlock::new));
         registry.register(createItemBlock(METAL_CASING_1, VariantItemBlock::new));
         registry.register(createItemBlock(METAL_CASING_2, VariantItemBlock::new));
+        registry.register(createItemBlock(REACTOR_CASING, VariantItemBlock::new));
     }
 
 

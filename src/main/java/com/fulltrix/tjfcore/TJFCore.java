@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 import java.io.IOException;
 
-import static com.fulltrix.tjfcore.item.TJFMetaBlocks.WIRE_COIL;
+import static com.fulltrix.tjfcore.item.TJFMetaBlocks.HEATING_COIL;
 import static gregtech.api.GregTechAPI.HEATING_COILS;
 
 @Mod(modid = TJFCore.MODID, name = TJFCore.NAME, version = TJFCore.VERSION,
@@ -36,7 +36,7 @@ public class TJFCore {
         TJFTileEntities.init();
 
         for (TJFHeatingCoil.CoilType type : TJFHeatingCoil.CoilType.values()) {
-            HEATING_COILS.put(WIRE_COIL.getState(type), type);
+            HEATING_COILS.put(HEATING_COIL.getState(type), type);
         }
     }
 

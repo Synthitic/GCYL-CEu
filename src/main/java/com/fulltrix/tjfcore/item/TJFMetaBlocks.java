@@ -19,21 +19,22 @@ import static gregtech.common.blocks.MetaBlocks.statePropertiesToString;
 public class TJFMetaBlocks {
     public static TJFMultiblockCasing2 MULTIBLOCK_CASING2;
     public static TJFTransparentCasing TRANSPARENT_CASING;
-    public static TJFHeatingCoil WIRE_COIL;
+    public static TJFHeatingCoil HEATING_COIL;
     public static TJFFusionCasing FUSION_CASING;
     public static TJFVacuumCasing VACUUM_CASING;
     public static TJFDivertorCasing DIVERTOR_CASING;
     public static TJFCryostatCasing CRYOSTAT_CASING;
     public static TJFExplosive EXPLOSIVE;
     public static TJFSimpleBlock SIMPLE_BLOCK;
+    public static TJFReactorCasing REACTOR_CASING;
 
     public static MetalCasing1 METAL_CASING_1;
     public static MetalCasing2 METAL_CASING_2;
 
 
     public static void init() {
-        WIRE_COIL = new TJFHeatingCoil();
-        WIRE_COIL.setRegistryName("wire_coil");
+        HEATING_COIL = new TJFHeatingCoil();
+        HEATING_COIL.setRegistryName("wire_coil");
 
         TRANSPARENT_CASING = new TJFTransparentCasing();
         TRANSPARENT_CASING.setRegistryName("tjf_transparent_casing");
@@ -64,6 +65,10 @@ public class TJFMetaBlocks {
 
         METAL_CASING_2 = new MetalCasing2();
         METAL_CASING_2.setRegistryName("tjf_metal_casing_2");
+
+        REACTOR_CASING = new TJFReactorCasing();
+        REACTOR_CASING.setRegistryName("tjf_reactor_casing");
+
     }
 
     @SideOnly(Side.CLIENT)
@@ -79,8 +84,9 @@ public class TJFMetaBlocks {
         registerItemModel(SIMPLE_BLOCK);
         registerItemModel(METAL_CASING_1);
         registerItemModel(METAL_CASING_2);
+        registerItemModel(REACTOR_CASING);
 
-        WIRE_COIL.onModelRegister();
+        HEATING_COIL.onModelRegister();
 
     }
 

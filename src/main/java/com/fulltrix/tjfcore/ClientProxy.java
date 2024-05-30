@@ -1,6 +1,7 @@
 package com.fulltrix.tjfcore;
 
 import com.fulltrix.tjfcore.client.ClientHandler;
+import com.fulltrix.tjfcore.item.TJFCoreItems;
 import com.fulltrix.tjfcore.item.TJFMetaBlocks;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Mod;

@@ -2,6 +2,10 @@ package com.fulltrix.tjfcore.item;
 
 import gregtech.api.items.armor.ArmorMetaItem;
 import gregtech.api.items.metaitem.MetaItem;
+import gregtech.common.items.MetaItems;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
@@ -466,6 +470,15 @@ public class TJFCoreItems {
         // item2.setRegistryName("ga_meta_item2");
         //  GAOredictItem oreDictItem = new GAOredictItem((short) 0);
         // oreDictItem.setRegistryName("ga_oredict_item");
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void registerModels() {
+        MinecraftForge.EVENT_BUS.register(MetaItems.class);
+        for (MetaItem<?> item : ITEMS) {
+            item.registerModels();
+            item.registerTextureMesh();
+        }
     }
 
 }
