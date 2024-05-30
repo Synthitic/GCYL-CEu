@@ -3,6 +3,7 @@ package com.fulltrix.tjfcore;
 import com.fulltrix.tjfcore.item.TJFCoreItems;
 import com.fulltrix.tjfcore.recipes.RecipeHandler;
 import com.fulltrix.tjfcore.recipes.categories.handlers.ElectricImplosionHandler;
+import com.fulltrix.tjfcore.recipes.categories.handlers.FuelHandler;
 import com.fulltrix.tjfcore.recipes.categories.handlers.VoidMinerHandler;
 import com.fulltrix.tjfcore.recipes.recipeproperties.AdvFusionCoilProperty;
 import gregtech.api.block.VariantItemBlock;
@@ -111,6 +112,8 @@ public class CommonProxy {
 
         RecipeHandler.initRecipes();
         RecipeHandler.initChains();
+
+        FuelHandler.init();
 
         //RecipeHandler.registerLargeMachineRecipes();
     }

@@ -6,6 +6,7 @@ import com.fulltrix.tjfcore.machines.multi.MetaTileEntityBioReactor;
 import com.fulltrix.tjfcore.machines.multi.MetaTileEntityCosmicRayDetector;
 import com.fulltrix.tjfcore.machines.multi.MetaTileEntityStellarForge;
 import com.fulltrix.tjfcore.machines.multi.advance.MetaTileEntityAdvFusionReactor;
+import com.fulltrix.tjfcore.machines.multi.advance.MetaTileEntityHyperReactor;
 import com.fulltrix.tjfcore.machines.multi.advance.MetaTileEntityVolcanus;
 import com.fulltrix.tjfcore.machines.multi.miner.MetaTileEntityVoidMiner;
 import com.fulltrix.tjfcore.recipes.TJFRecipeMaps;
@@ -26,6 +27,7 @@ public class TJFTileEntities {
     public static MetaTileEntityStellarForge STELLAR_FORGE;
     public static MetaTileEntityCosmicRayDetector COSMIC_RAY_DETECTOR;
     public static MetaTileEntityVolcanus VOLCANUS;
+    public static MetaTileEntityHyperReactor[] HYPER_REACTOR = new MetaTileEntityHyperReactor[3];
 
     public static int id = 32000;
 
@@ -48,6 +50,10 @@ public class TJFTileEntities {
         COSMIC_RAY_DETECTOR = MetaTileEntities.registerMetaTileEntity(++id, new MetaTileEntityCosmicRayDetector(tjfId("cosmic_ray_detector")));
 
         VOLCANUS = MetaTileEntities.registerMetaTileEntity(++id, new MetaTileEntityVolcanus(tjfId("volcanus")));
+
+        HYPER_REACTOR[0] = MetaTileEntities.registerMetaTileEntity(++id, new MetaTileEntityHyperReactor(tjfId("hyper_reactor.i"), GTUtility.getTierByVoltage(TJFConfig.multis.hyperReactors.euGeneration[0])));
+        HYPER_REACTOR[1] = MetaTileEntities.registerMetaTileEntity(++id, new MetaTileEntityHyperReactor(tjfId("hyper_reactor.ii"), GTUtility.getTierByVoltage(TJFConfig.multis.hyperReactors.euGeneration[1])));
+        HYPER_REACTOR[2] = MetaTileEntities.registerMetaTileEntity(++id, new MetaTileEntityHyperReactor(tjfId("hyper_reactor.iii"), GTUtility.getTierByVoltage(TJFConfig.multis.hyperReactors.euGeneration[2])));
 
         MetaTileEntities.registerSimpleMetaTileEntity(DEHYDRATOR, ++id, "dehydrator", TJFRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES, Textures.SIFTER_OVERLAY, true, TJFUtility::tjfId, GTUtility.hvCappedTankSizeFunction);
 

@@ -20,10 +20,24 @@
         "all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uev"
       }
     },
+    "active=true,variant=pikyonium_coil": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uev",
+        "top_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.top.bottom"
+      }
+    },
     "active=false,variant=black_titanium_coil": {
       "model": "minecraft:cube_all",
       "textures": {
         "side": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uiv"
+      }
+    },
+    "active=true,variant=black_titanium_coil": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uiv",
+        "top_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.top.bottom"
       }
     },
     "active=false,variant=neutronium_coil": {

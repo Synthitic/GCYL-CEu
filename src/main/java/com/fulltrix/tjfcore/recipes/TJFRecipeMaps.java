@@ -7,7 +7,9 @@ import gregtech.api.GTValues;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.gui.widgets.ProgressWidget.MoveType;
+import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.builders.FuelRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.core.sound.GTSoundEvents;
 import net.minecraft.init.SoundEvents;
@@ -80,5 +82,10 @@ public class TJFRecipeMaps {
             2, 2, 1, 1, new SimpleRecipeBuilder(), false)
             .setSlotOverlay(false, false, true, GuiTextures.LENS_OVERLAY)
             .setSound(GTSoundEvents.ELECTROLYZER);
+
+    public static final RecipeMap<FuelRecipeBuilder> HYPER_REACTOR_FUELS = new RecipeMap<>("hyper_reactor",
+            0,0,1,0, new FuelRecipeBuilder(),false)
+            .allowEmptyOutput()
+            .setSound(GTSoundEvents.COOLING);
 
 }

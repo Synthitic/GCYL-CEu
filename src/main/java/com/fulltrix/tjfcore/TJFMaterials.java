@@ -967,6 +967,10 @@ public class TJFMaterials {
     public static Material Tanzanite;
     public static Material Dibismusthydroborat;
     public static Material CircuitCompoundMK3;
+    public static Material HyperFuelI;
+    public static Material HyperFuelII;
+    public static Material HyperFuelIII;
+    public static Material HyperFuelIV;
 
     //COILS
     public static Material TitanSteel;
@@ -8321,6 +8325,38 @@ public class TJFMaterials {
                 .iconSet(SAND)
                 .components(IndiumGalliumPhosphide,1,Dibismusthydroborat,3,BismuthTellurite,2)
                 .build();
+
+        HyperFuelI = new Material.Builder(id++, tjfId("hyper_fluid_i"))
+                .liquid()
+                .color(0xfaff5e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq(Nq+)(*Nq*)RfPu",true);
+
+        HyperFuelII = new Material.Builder(id++, tjfId("hyper_fluid_ii"))
+                .liquid()
+                .color(0xd8db67)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq(Nq+)(*Nq*)DbCm",true);
+
+        HyperFuelIII = new Material.Builder(id++, tjfId("hyper_fluid_iii"))
+                .liquid()
+                .color(0x8f9146)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq(Nq+)(*Nq*)AdCf",true);
+
+        HyperFuelIV = new Material.Builder(id++, tjfId("hyper_fluid_iv"))
+                .liquid()
+                .color(0x4d4e31)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq(Nq+)(*Nq*)AdCfNtTn",true);
 
                                 /*
         = new Material.Builder(id++, tjfId("material"))

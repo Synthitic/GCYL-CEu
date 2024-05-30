@@ -1,5 +1,6 @@
 package com.fulltrix.tjfcore;
 
+import gregtech.api.GTValues;
 import net.minecraftforge.common.config.Config;
 
 @Config(modid = TJFCore.MODID)
@@ -9,6 +10,37 @@ public class TJFConfig {
 
     public static class Multis {
         public VoidMiner voidMiner = new VoidMiner();
+        public HyperReactors hyperReactors = new HyperReactors();
+    }
+
+    public static class HyperReactors {
+        @Config.Comment("The base EU/t production of the Hyper Reactor.")
+        @Config.RequiresMcRestart
+        @Config.Name("Hyper Reactor EU/t generation")
+        @Config.RangeInt(min = 1)
+        public long[] euGeneration = {GTValues.V[GTValues.UHV], GTValues.V[GTValues.UEV], GTValues.V[GTValues.UIV]};
+
+        @Config.Comment("The fuel multiplier when the Reactor is boosted.")
+        @Config.RequiresMcRestart
+        @Config.Name("Hyper Reactor boosted fuel amount multiplier")
+        @Config.RangeInt(min = 1)
+        public int[] boostedFuelAmount = {2, 2, 2};
+
+        @Config.Comment("The EU/t multiplier when the Reactor is boosted.")
+        @Config.RequiresMcRestart
+        @Config.Name("Hyper Reactor boosted EU/t multiplier")
+        @Config.RangeInt(min = 1)
+        public int[] boostedEuAmount = {3, 3, 3};
+
+        @Config.Comment("The liquid that boosts the Reactor.")
+        @Config.RequiresMcRestart
+        @Config.Name("Hyper Reactor boosters")
+        public String[] boosterFluid = {"plasma.helium", "plasma.radon", "degenerate_rhenium_plasma"};
+
+        @Config.Comment("The amount of liquid that boosts the Reactor.")
+        @Config.RequiresMcRestart
+        @Config.Name("Hyper Reactor booster amount")
+        public int[] boosterFluidAmounts = {10, 15, 2};
     }
 
     public static class VoidMiner {

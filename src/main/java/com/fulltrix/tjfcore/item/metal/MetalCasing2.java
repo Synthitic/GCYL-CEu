@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static com.fulltrix.tjfcore.TJFMaterials.*;
 import static com.fulltrix.tjfcore.client.ClientHandler.*;
-import static gregtech.api.unification.material.Materials.Tritanium;
+import static gregtech.api.unification.material.Materials.*;
 
 public class MetalCasing2 extends VariantBlock<MetalCasing2.CasingType> {
     public MetalCasing2() {
@@ -27,7 +27,8 @@ public class MetalCasing2 extends VariantBlock<MetalCasing2.CasingType> {
         STABALLOY("casing_staballoy", Staballoy),
         QUANTUM("casing_quantum", Quantum),
         TRITANIUM("casing_tritanium", Tritanium),
-        ENRICHED_NAQUADAH_ALLOY("casing_enriched_naquadah_alloy", EnrichedNaquadahAlloy);
+        ENRICHED_NAQUADAH_ALLOY("casing_enriched_naquadah_alloy", EnrichedNaquadahAlloy),
+        NAQUADRIA("casing_naquadria", Naquadria);
 
         private final String name;
         private final Material material;
@@ -59,6 +60,9 @@ public class MetalCasing2 extends VariantBlock<MetalCasing2.CasingType> {
                 }
                 case "casing_enriched_naquadah_alloy" -> {
                     return ENRICHED_NAQUADAH_ALLOY_CASING;
+                }
+                case "casing_naquadria" -> {
+                    return NAQUADRIA_CASING;
                 }
                 default -> {
                     return STABALLOY_CASING;
