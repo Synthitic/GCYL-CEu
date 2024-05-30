@@ -1,2 +1,2 @@
-## TJF: Core
+## GCYL: CEu
 Gregicality Legacy Port to CEu.
