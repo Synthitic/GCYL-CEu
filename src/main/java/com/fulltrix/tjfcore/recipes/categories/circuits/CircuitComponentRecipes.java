@@ -1,7 +1,6 @@
 package com.fulltrix.tjfcore.recipes.categories.circuits;
 
-import com.fulltrix.tjfcore.recipes.categories.circuits.components.OpticalComponents;
-import com.fulltrix.tjfcore.recipes.categories.circuits.components.WetwareComponents;
+import com.fulltrix.tjfcore.recipes.categories.circuits.components.*;
 
 import static com.fulltrix.tjfcore.TJFMaterials.*;
 import static com.fulltrix.tjfcore.item.TJFCoreItems.*;
@@ -26,9 +25,9 @@ public class CircuitComponentRecipes {
         WetwareComponents.init();
         biowareSMD();
         OpticalComponents.init();
-        // ExoticComponents.init();
-        //  CosmicComponents.init();
-        //  SupracausalComponents.init();
+        ExoticComponents.init();
+        CosmicComponents.init();
+        SupraCausalComponents.init();
     }
 
     private static void biowareSMD() {

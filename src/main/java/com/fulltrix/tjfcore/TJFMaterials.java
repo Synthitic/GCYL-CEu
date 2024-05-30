@@ -44,6 +44,9 @@ public class TJFMaterials {
 
     //public static final MaterialFlag DISABLE_REPLICATION = new MaterialFlag.Builder("disable_replication").build();
     public static final List<MaterialFlag> CORE_METAL = new ArrayList<>();
+    public static final List<MaterialFlag> STD_SOLID = new ArrayList<>();
+    public static final List<MaterialFlag> STD_GEM = new ArrayList<>();
+
     private static final TextFormatting[] fanciness = new TextFormatting[]{RED, GOLD, YELLOW, GREEN, AQUA, BLUE, LIGHT_PURPLE};
 
     public static int id = 24000;
@@ -954,6 +957,16 @@ public class TJFMaterials {
     public static Material Nickel56;
     public static Material LiquidEnrichedHelium;
     public static Material AbyssalAlloy;
+    public static Material HighEnergyQGP;
+    public static Material CaliforniumCyclopentadienide;
+    public static Material IridiumTrioxide;
+    public static Material IridiumTrichlorideSolution;
+    public static Material SemisolidHydrogen;
+    public static Material MicrocrystallizingHydrogen;
+    public static Material Vinteum;
+    public static Material Tanzanite;
+    public static Material Dibismusthydroborat;
+    public static Material CircuitCompoundMK3;
 
     //COILS
     public static Material TitanSteel;
@@ -987,9 +1000,14 @@ public class TJFMaterials {
     ///////////////////////////////////////////
 
     static {
+        STD_SOLID.addAll(Arrays.asList(GENERATE_PLATE, GENERATE_ROD, GENERATE_BOLT_SCREW, GENERATE_LONG_ROD));
+        STD_GEM.addAll(STD_SOLID);
+        STD_GEM.add(GENERATE_LENS);
         CORE_METAL.addAll(EXT2_METAL);
         CORE_METAL.addAll(Arrays.asList(GENERATE_RING, GENERATE_FRAME, GENERATE_ROTOR, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_FINE_WIRE, GENERATE_GEAR));
     }
+
+
 
     public static void register() {
 
@@ -2209,7 +2227,7 @@ public class TJFMaterials {
                 .build();
 
         BlackTitanium = new Material.Builder(id++, tjfId("black_titanium"))
-                .ingot()
+                .ingot().liquid()
                 .color(0x6C003B)
                 .iconSet(SHINY)
                 .flags(CORE_METAL, DISABLE_DECOMPOSITION)
@@ -2340,7 +2358,7 @@ public class TJFMaterials {
                 .build();
 
         QCDMatter = new Material.Builder(id++, tjfId("qcd_confined_matter"))
-                .ingot(7)
+                .ingot(7).liquid()
                 .color(0xeb9e3f)
                 .iconSet(SHINY)
                 .flags(GENERATE_PLATE, DISABLE_REPLICATION, NO_WORKING, NO_SMELTING, NO_SMASHING, GENERATE_FRAME, GENERATE_ROD)
@@ -2451,7 +2469,7 @@ public class TJFMaterials {
                 .build();
 
         SuperheavyHAlloy = new Material.Builder(id++, tjfId("superheavy_h_alloy"))
-                .ingot(6)
+                .ingot(6).liquid()
                 .color(0xE84B36)
                 .iconSet(SHINY)
                 .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION)
@@ -2535,7 +2553,7 @@ public class TJFMaterials {
                 .build();
 
         SuperheavyLAlloy = new Material.Builder(id++, tjfId("superheavy_l_alloy"))
-                .ingot(6)
+                .ingot(6).liquid()
                 .color(0x2B45DF)
                 .iconSet(SHINY)
                 .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION)
@@ -8224,6 +8242,86 @@ public class TJFMaterials {
                 .blast(14100)
                 .build();
 
+        HighEnergyQGP = new Material.Builder(id++, tjfId("high_energy_qgp"))
+                .liquid()
+                .color(0x8f00ff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula(makeFancy(TextFormatting.OBFUSCATED + "a" + TextFormatting.RESET + "(u2)d(c2)s(t2)bg" + TextFormatting.OBFUSCATED + "a"),true);
+
+        CaliforniumCyclopentadienide = new Material.Builder(id++, tjfId("californiumcyclopentadienide"))
+                .liquid()
+                .color(0x94445b)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C15H15Cf",true);
+
+        IridiumTrioxide  = new Material.Builder(id++, tjfId("iridiumtrioxide"))
+                .dust()
+                .color(0x9a9a2b)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("Ir2O3",true);
+
+        IridiumTrichlorideSolution = new Material.Builder(id++, tjfId("iridiumtrichloridesolution"))
+                .liquid()
+                .color(0x96821a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("IrCl3",true);
+
+        SemisolidHydrogen = new Material.Builder(id++, tjfId("material"))
+                .liquid()
+                .color(0x044c4b)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H",true);
+
+        MicrocrystallizingHydrogen = new Material.Builder(id++, tjfId("microcrystallizinghydrogen"))
+                .liquid()
+                .color(0x155d5c)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H",true);
+
+        Vinteum = new Material.Builder(id++, tjfId("vinteum"))
+                .gem(3)
+                .color(6605055)
+                .flags(DISABLE_REPLICATION, NO_SMASHING, NO_SMELTING)
+                .iconSet(EMERALD)
+                .build()
+                .setFormula("Vt¤",true);
+
+        Tanzanite = new Material.Builder(id++, tjfId("tanzanite"))
+                .gem(2)
+                .color(4194504)
+                .flags(DISABLE_REPLICATION, NO_SMASHING, NO_SMELTING, HIGH_SIFTER_OUTPUT)
+                .iconSet(GEM_VERTICAL)
+                .components(Calcium,2,Aluminium,3,Silicon,3,Hydrogen,1,Oxygen,13)
+                .build();
+
+        Dibismusthydroborat = new Material.Builder(id++, tjfId("dibismuthhydroborat"))
+                .dust()
+                .color(0x00B749)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SAND)
+                .components(Bismuth,2,Hydrogen,1,Boron,1)
+                .build();
+
+        CircuitCompoundMK3 = new Material.Builder(id++, tjfId("circuit_compound_mkc"))
+                .dust()
+                .color(0x003316)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SAND)
+                .components(IndiumGalliumPhosphide,1,Dibismusthydroborat,3,BismuthTellurite,2)
+                .build();
+
                                 /*
         = new Material.Builder(id++, tjfId("material"))
                 .ingot().liquid()
@@ -8271,6 +8369,15 @@ public class TJFMaterials {
 
         Germanium.addFlags(GENERATE_PLATE);
 
+        //EXT METAL ADDITIONS
+        List<Material> e1mmats = new ArrayList<>();
+        Collections.addAll(e1mmats, Tanzanite);
+        for (Material mat : e1mmats) {
+            for (MaterialFlag flag : EXT_METAL) {
+                mat.addFlags(flag);
+            }
+        }
+
         //EXT2 METAL ADDITIONS
         List<Material> e2mmats = new ArrayList<>();
         Collections.addAll(e2mmats, MaragingSteel250, AbyssalAlloy);
@@ -8288,6 +8395,15 @@ public class TJFMaterials {
             for (MaterialFlag flag : CORE_METAL) {
                 addIngot(mat);
                 //addLiquid(mat);
+                mat.addFlags(flag);
+            }
+        }
+
+        //STD GEM ADDITIONS
+        List<Material> stdgem = new ArrayList<>();
+        Collections.addAll(stdgem, Vinteum);
+        for (Material mat: stdgem) {
+            for (MaterialFlag flag : STD_GEM) {
                 mat.addFlags(flag);
             }
         }
@@ -8325,7 +8441,7 @@ public class TJFMaterials {
 
         //STICK ADDITIONS
         List<Material> stickmats = new ArrayList<>();
-        Collections.addAll(stickmats, ReinforcedEpoxyResin);
+        Collections.addAll(stickmats, ReinforcedEpoxyResin, Californium);
         for (Material mat : stickmats) {
             mat.addFlags(GENERATE_ROD);
         }

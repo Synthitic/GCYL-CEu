@@ -23,6 +23,8 @@ public class WetwareComponents {
 
     private static void components() {
 
+        //TODO: add wetware inductor
+
         // SMD Capacitor
         ASSEMBLER_RECIPES.recipeBuilder().duration(80).EUt(30720)
                 .input(wireFine, NaquadahAlloy, 8)

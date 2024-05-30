@@ -15,10 +15,10 @@
           "top_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.top.bottom"
         }
       },
-      "active=false,variant=pikyonium_coil": {
+      "active=false,variant=pikyonium": {
         "model": "minecraft:cube_all",
         "textures": {
-          "side": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uev"
+          "all": "gregtech:blocks/casings/coils/machine_coil_pikyonium"
         }
       },
       "active=false,variant=black_titanium_coil": {

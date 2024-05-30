@@ -1,13 +1,13 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
+  "modid": "tjfcore",
+  "name": "GCYL: CEu",
   "description": "Example placeholder mod.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["CleanroomMC"],
+  "authorList": ["Original Gregicality team + Fulltrix for the port"],
   "credits": "Authors of this project",
   "logoFile": "",
   "screenshots": [],

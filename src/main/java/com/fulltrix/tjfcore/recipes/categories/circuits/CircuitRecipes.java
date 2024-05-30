@@ -11,6 +11,9 @@ import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 
 public class CircuitRecipes {
+
+    //TODO: higher tier soldering alloys
+
     public static void init() {
 
         /*

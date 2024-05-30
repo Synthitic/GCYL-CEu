@@ -15,12 +15,14 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -29,12 +31,18 @@ import java.util.List;
 public class TJFHeatingCoil extends VariantActiveBlock<TJFHeatingCoil.CoilType> {
     public TJFHeatingCoil() {
         super(net.minecraft.block.material.Material.IRON);
-        setTranslationKey("tjf_heating_coil");
+        setTranslationKey("wire_coil");
         setHardness(5.0f);
         setResistance(10.0f);
         setSoundType(SoundType.METAL);
         setHarvestLevel("wrench", 2);
-        setDefaultState(getState(CoilType.TITAN_STEEL_COIL));
+        setDefaultState(getState(CoilType.TITAN_STEEL));
+    }
+
+    @NotNull
+    @Override
+    public BlockRenderLayer getRenderLayer() {
+        return BlockRenderLayer.SOLID;
     }
 
     @Override
@@ -77,13 +85,13 @@ public class TJFHeatingCoil extends VariantActiveBlock<TJFHeatingCoil.CoilType> 
 
     public enum CoilType implements IStringSerializable, IHeatingCoilBlockStats {
 
-        TITAN_STEEL_COIL("titan_steel_coil", 9600, 32, 8, TJFMaterials.TitanSteel),
-        PIKYONIUM_COIL("pikyonium_coil", 10700, 32, 8, TJFMaterials.Pikyonium),
-        BLACK_TITANIUM_COIL("black_titanium_coil", 11200, 64, 16, TJFMaterials.BlackTitanium),
-        NEUTRONIUM_COIL("neutronium_coil", 12600, 64, 16, Materials.Neutronium),
-        COSMIC_NEUTRONIUM_COIL("cosmic_neutronium_coil", 14200, 128, 32, TJFMaterials.CosmicNeutronium),
-        INFINITY_COIL("infinity_coil", 28400, 128, 48, TJFMaterials.Infinity),
-        ETERNITY_COIL("eternity_coil", 56800, 512, 64, TJFMaterials.Eternity);
+        TITAN_STEEL("titan_steel", 9600, 32, 8, TJFMaterials.TitanSteel),
+        PIKYONIUM("pikyonium", 10700, 32, 8, TJFMaterials.Pikyonium),
+        BLACK_TITANIUM("black_titanium", 11200, 64, 16, TJFMaterials.BlackTitanium),
+        NEUTRONIUM("neutronium", 12600, 64, 16, Materials.Neutronium),
+        COSMIC_NEUTRONIUM("cosmic_neutronium", 14200, 128, 32, TJFMaterials.CosmicNeutronium),
+        INFINITY("infinity", 28400, 128, 48, TJFMaterials.Infinity),
+        ETERNITY("eternity", 56800, 512, 64, TJFMaterials.Eternity);
 
         private final String name;
         private final int coilTemperature;

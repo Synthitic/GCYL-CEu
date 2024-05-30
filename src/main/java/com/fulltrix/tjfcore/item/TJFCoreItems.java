@@ -92,9 +92,6 @@ public class TJFCoreItems {
     public static MetaItem<?>.MetaValueItem CIRCUIT_MAGNETIC_UHV;
     public static MetaItem<?>.MetaValueItem CIRCUIT_MAGNETIC_UEV;
 
-
-    public static MetaItem<?>.MetaValueItem RAW_CRYSTAL_CHIP;
-
     public static MetaItem<?>.MetaValueItem MICA_SHEET;
     public static MetaItem<?>.MetaValueItem MICA_INSULATOR_SHEET;
     public static MetaItem<?>.MetaValueItem MICA_INSULATOR_FOIL;

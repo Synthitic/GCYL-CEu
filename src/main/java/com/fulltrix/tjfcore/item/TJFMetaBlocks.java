@@ -19,7 +19,7 @@ import static gregtech.common.blocks.MetaBlocks.statePropertiesToString;
 public class TJFMetaBlocks {
     public static TJFMultiblockCasing2 MULTIBLOCK_CASING2;
     public static TJFTransparentCasing TRANSPARENT_CASING;
-    public static TJFHeatingCoil HEATING_COIL;
+    public static TJFHeatingCoil WIRE_COIL;
     public static TJFFusionCasing FUSION_CASING;
     public static TJFVacuumCasing VACUUM_CASING;
     public static TJFDivertorCasing DIVERTOR_CASING;
@@ -32,8 +32,8 @@ public class TJFMetaBlocks {
 
 
     public static void init() {
-        HEATING_COIL = new TJFHeatingCoil();
-        HEATING_COIL.setRegistryName("tjf_heating_coil");
+        WIRE_COIL = new TJFHeatingCoil();
+        WIRE_COIL.setRegistryName("wire_coil");
 
         TRANSPARENT_CASING = new TJFTransparentCasing();
         TRANSPARENT_CASING.setRegistryName("tjf_transparent_casing");
@@ -80,7 +80,7 @@ public class TJFMetaBlocks {
         registerItemModel(METAL_CASING_1);
         registerItemModel(METAL_CASING_2);
 
-        HEATING_COIL.onModelRegister();
+        WIRE_COIL.onModelRegister();
 
     }
 

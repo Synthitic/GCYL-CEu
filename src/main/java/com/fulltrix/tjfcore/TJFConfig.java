@@ -65,4 +65,18 @@ public class TJFConfig {
         @Config.Name("MK3 Void Miner Whitelist")
         public String[] oreWhitelistUEV = new String[]{""};
     }
+    @Config.Comment("Config options of miscellaneous features")
+    public static Misc Misc = new Misc();
+
+    public static class Misc {
+
+        @Config.Comment("List of Soldering fluid [<fluid>:<amount>] amount=[1 ~ 64000]")
+        @Config.RequiresMcRestart
+        public String[] solderingFluidList = new String[]{"soldering_alloy:72", "tin:144", "lead:288"};
+
+        @Config.Comment({"Whether to enable Magneto Resonatic Circuits. When false, they will have no recipes and will be hidden from JEI.", "default = true"})
+        @Config.Name("Enable Magneto Circuits")
+        @Config.RequiresMcRestart
+        public boolean enableMagnetoCircuits = true;
+    }
 }

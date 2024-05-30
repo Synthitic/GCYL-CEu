@@ -56,7 +56,7 @@ public class OpticalComponents {
                 .buildAndRegister();
 
         // SMD Inductor
-        // TODO add optical inductor
+        // TODO add optical inductor & research
 
         // Optical Processing Core
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(320).EUt(1474560)

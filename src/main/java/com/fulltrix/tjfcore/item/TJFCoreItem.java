@@ -344,7 +344,6 @@ public class TJFCoreItem extends StandardMetaItem {
         SMALL_COIL = addItem(611, "small_coil");
 
         PYROLYTIC_CARBON = addItem(16, "pyrolytic_carbon");
-        RAW_CRYSTAL_CHIP = addItem(17, "crystal.raw");
         MICA_SHEET = addItem(26, "mica_sheet");
         MICA_INSULATOR_SHEET = addItem(27, "mica_insulator_sheet");
         MICA_INSULATOR_FOIL = addItem(28, "mica_insulator_foil");
