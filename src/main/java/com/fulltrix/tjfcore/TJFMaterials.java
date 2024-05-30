@@ -29,6 +29,7 @@ import static gregtech.api.unification.Elements.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 import static gregtech.api.unification.material.info.MaterialIconSet.*;
+import static gregtech.api.unification.ore.OrePrefix.plate;
 import static gregtech.integration.crafttweaker.material.MaterialPropertyExpansion.*;
 import static gregtech.integration.groovy.MaterialPropertyExpansion.addLiquid;
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_DECONSTRUCTION;
@@ -56,144 +57,78 @@ public class TJFMaterials {
 
     /////////////////////////////////////////
     public static Material Pikyonium;
-
     public static Material Inconel792;
-
     public static Material HDCS;
-
     public static Material EglinSteel;
-
     public static Material EglinSteelBase;
-
     public static Material LithiumNiobate;
-
     public static Material Polyetheretherketone;
-
     public static Material LeadZirconateTitanate;
-
     public static Material LithiumTitanate;
-
     public static Material CarbonNanotubes;
-
     public static Material SodiumSeaborgate;
-
     public static Material TBCCODust;
-
     public static Material EnrichedNaquadahAlloy;
-
     public static Material FullereneDopedNanotubes;
-
     public static Material LithiumNiobateNanoparticles;
-
     public static Material ZirconiumTetrafluoride;
-
     public static Material BariumDifluoride;
-
     public static Material LanthanumTrifluoride;
-
     public static Material AluminiumTrifluoride;
-
     public static Material SodiumFluoride;
-
     public static Material ZBLANDust;
-
     public static Material ErbiumTrifluoride;
-
     public static Material ErbiumDopedZBLANDust;
-
     public static Material TungstenTitaniumCarbide;
-
     public static Material Prasiolite;
     public static Material BismuthTellurite;
     public static Material CubicZirconia;
     public static Material MagnetoResonatic;
     public static Material Jasper;
-
     public static Material SiliconCarbide;
     public static Material Quantum;
-
     public static Material Adamantium;
-
     public static Material Cinobite;
-
     public static Material Polyimide;
-
     public static Material GermaniumTungstenNitride;
-
     public static Material BariumTitanate;
-
     public static Material PEDOT;
-
     public static Material AluminiumComplex;
-
     public static Material CopperGalliumIndiumMix;
     public static Material CopperGalliumIndiumSelenide;
-
     public static Material BismuthRuthenate;
-
     public static Material BismuthIridiate;
-
     public static Material RutheniumDioxide;
-
     public static Material LanthanumCalciumManganate;
-
     public static Material Polystyrene;
     public static Material Shewanella;
-
     public static Material GreenAlgae;
-
     public static Material RedAlgae;
-
     public static Material BrownAlgae;
-
     public static Material DryRedAlgae;
-
     public static Material RedAlgaePowder;
-
     public static Material PreFreezeAgar;
-
     public static Material FrozenAgarCrystals;
-
     public static Material WaterAgarMix;
-
     public static Material BacterialGrowthMedium;
-
     public static Material DepletedGrowthMedium;
-
     public static Material BoricAcid;
-
     public static Material FluoroBoricAcid;
-
     public static Material Acetylene;
-
     public static Material CoAcABCatalyst;
-
     public static Material SodiumNitrate;
-
     public static Material SodiumNitrateSolution;
-
     public static Material SodiumNitrite;
-
     public static Material Aniline;
-
     public static Material BenzenediazoniumTetrafluoroborate;
-
     public static Material BoronFluoride;
-
     public static Material FluoroBenzene;
-
     public static Material Fluorotoluene;
-
     public static Material ZnFeAlClCatalyst;
-
     public static Material Difluorobenzophenone;
-
     public static Material Hydroquinone;
-
     public static Material Resorcinol;
-
     public static Material MgClBromide;
-
     public static Material SiliconFluoride;
     public static Material FluorosilicicAcid;
     public static Material AmmoniumFluoride;
@@ -207,7 +142,6 @@ public class TJFMaterials {
     public static Material LutetiumOxide;
     public static Material ThuliumOxide;
     public static Material LuTmYChlorideSolution;
-
     public static Material SodiumMetavanadate;
     public static Material Urea;
     public static Material LuTmYVOPrecipitate;
@@ -220,7 +154,6 @@ public class TJFMaterials {
     public static Material TantalumOxide;
     public static Material DielectricMirrorFormationMix;
     public static Material NiobiumChloride;
-
     public static Material LithiumAluminiumHydride;
     public static Material LithiumHydride;
     public static Material AluminiumHydride;
@@ -1019,6 +952,8 @@ public class TJFMaterials {
     public static Material Chromium48;
     public static Material Titanium44;
     public static Material Nickel56;
+    public static Material LiquidEnrichedHelium;
+    public static Material AbyssalAlloy;
 
     //COILS
     public static Material TitanSteel;
@@ -1351,7 +1286,7 @@ public class TJFMaterials {
                 .setFormula("SiC", true);
 
         Quantum = new Material.Builder(id++, tjfId("quantum"))
-                .ingot(7)
+                .ingot(7).liquid()
                 .color(0x0f0f0f)
                 .iconSet(SHINY)
                 .flags(CORE_METAL, DISABLE_DECOMPOSITION)
@@ -2434,7 +2369,7 @@ public class TJFMaterials {
                 .build();
 
         Vibranium = new Material.Builder(id++, tjfId("vibranium"))
-                .ingot(7)
+                .ingot(7).liquid()
                 .color(0x828aad)
                 .iconSet(SHINY)
                 .flags(CORE_METAL)
@@ -2443,7 +2378,7 @@ public class TJFMaterials {
                 .build();
 
         TriniumTitanium = new Material.Builder(id++, tjfId("trinium_titanium"))
-                .ingot(7)
+                .ingot(7).liquid()
                 .color(0x9986a3)
                 .iconSet(SHINY)
                 .flags(CORE_METAL)
@@ -8262,6 +8197,33 @@ public class TJFMaterials {
                 .build()
                 .setFormula("Ni_56", true);
 
+        LiquidEnrichedHelium = new Material.Builder(id++, tjfId("liquid_enriched_helium"))
+                .liquid()
+                .color(Helium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("HeHe_3", true);
+
+        AbyssalAlloy = new Material.Builder(id++, tjfId("abyssal_alloy"))
+                .ingot(6).liquid()
+                .color(0x9E706A)
+                .iconSet(METALLIC)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .cableProperties(GTValues.V[GTValues.UHV], 2, 8)
+                .components(StainlessSteel, 5, TungstenCarbide, 5, Nichrome, 5, Bronze, 5, IncoloyMA956, 5, Iodine, 1, Germanium, 1, Radon, 1)
+                .blast(9625)
+                .build();
+
+        CosmicNeutronium = new Material.Builder(id++, tjfId("cosmic_neutronium"))
+                .ingot(7).liquid()
+                .color(0x323232)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .components(Neutronium, 1)
+                .blast(14100)
+                .build();
+
                                 /*
         = new Material.Builder(id++, tjfId("material"))
                 .ingot().liquid()
@@ -8311,7 +8273,7 @@ public class TJFMaterials {
 
         //EXT2 METAL ADDITIONS
         List<Material> e2mmats = new ArrayList<>();
-        Collections.addAll(e2mmats, MaragingSteel250);
+        Collections.addAll(e2mmats, MaragingSteel250, AbyssalAlloy);
         for (Material mat : e2mmats) {
             for (MaterialFlag flag : EXT2_METAL) {
                 mat.addFlags(flag);
@@ -8320,7 +8282,7 @@ public class TJFMaterials {
 
         //CORE METAL ADDITIONS
         List<Material> cmmats = new ArrayList<>();
-        Collections.addAll(cmmats, Bohrium, Dubnium, Duranium, Seaborgium, Rhenium, Rutherfordium, NaquadahEnriched, IncoloyMA956);
+        Collections.addAll(cmmats, Bohrium, Dubnium, Duranium, Seaborgium, Rhenium, Rutherfordium, NaquadahEnriched, IncoloyMA956, CosmicNeutronium);
 
         for (Material mat : cmmats) {
             for (MaterialFlag flag : CORE_METAL) {
@@ -8330,9 +8292,49 @@ public class TJFMaterials {
             }
         }
 
+        //PLATE ADDITIONS
+        /*
+        List<Material> platemats = new ArrayList<>();
+        Collections.addAll(platemats, BorosilicateGlass);
+        for (Material mat : platemats) {
+            mat.addFlags(GENERATE_PLATE);
+        }
+
+         */
+
+        //FOIL ADDITIONS
+        List<Material> foilmats = new ArrayList<>();
+        Collections.addAll(foilmats, Barium, Calcium, Thallium);
+        for (Material mat : foilmats) {
+            mat.addFlags(GENERATE_FOIL);
+        }
+
+        //FINE WIRE ADDITIONS
+        List<Material> wirefinemats = new ArrayList<>();
+        Collections.addAll(wirefinemats, AbyssalAlloy, Titanium, Iron);
+        for (Material mat : wirefinemats) {
+            mat.addFlags(GENERATE_FINE_WIRE);
+        }
+
+        //LONG STICK ADDITIONS
+        List<Material> longstickmats = new ArrayList<>();
+        Collections.addAll(longstickmats, NeodymiumMagnetic);
+        for (Material mat : longstickmats) {
+            mat.addFlags(GENERATE_LONG_ROD);
+        }
+
+        //STICK ADDITIONS
+        List<Material> stickmats = new ArrayList<>();
+        Collections.addAll(stickmats, ReinforcedEpoxyResin);
+        for (Material mat : stickmats) {
+            mat.addFlags(GENERATE_ROD);
+        }
+
         //DUST ADDITIONS
         List<Material> dmats = new ArrayList<>();
-        Collections.addAll(dmats, Dysprosium, Iodine);
+        Collections.addAll(dmats, Dysprosium, Iodine, Gadolinium, Strontium, Holmium, Californium, Zirconium, Thallium, Rubidium, Technetium,
+                Terbium, Promethium, Radium, Tellurium, Francium, Berkelium, Curium, Actinium, Protactinium, Scandium, Thulium, Hafnium, Astatine,
+                Selenium, Praseodymium, Copernicium, Erbium);
         for (Material mat : dmats) {
             addDust(mat, 1, 0);
         }
@@ -8394,7 +8396,18 @@ public class TJFMaterials {
         Naquadria.addFlags(GENERATE_FRAME);
         Osmiridium.addFlags(GENERATE_FRAME);
 
+        //FLUID PIPES
         addFluidPipes(Zeron100, 15000, 1750, true);
+
+        //ORE PREFIX IGNORE FIXES
+        plate.removeIgnored(BorosilicateGlass);
+
+        //LENSES
+        List<Material> lensmats = new ArrayList<>();
+        Collections.addAll(lensmats, Amethyst);
+        for (Material mat : lensmats) {
+            mat.addFlags(GENERATE_LENS);
+        }
 
     }
 

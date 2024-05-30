@@ -263,18 +263,17 @@ public class FullereneChain {
                 .duration(50)
                 .buildAndRegister();
 
-        //TODO: mixin lcr recipe map instead of using chemical plant
 
         // C10H10Fe + C60 + C3H7NO2 + CHCl3 + 3 NaOC2H5 ->
         // 3 NaCl + 3 C2H5OH + [C73H15NFe] + CO2
-        CHEMICAL_PLANT_RECIPES.recipeBuilder()
+        LARGE_CHEMICAL_RECIPES.recipeBuilder()
                 .input(dust, Fullerene, 1)
                 .input(dust, Sarcosine, 13)
                 .input(dust, SodiumEthoxide, 27)
                 .fluidInputs(Chloroform.getFluid(1000))
                 .fluidInputs(Ferrocene.getFluid(1000))
-                .notConsumable(dust, TitaniumTetrachloride)
-                .notConsumable(dust, Toluene)
+                .notConsumable(TitaniumTetrachloride.getFluid())
+                .notConsumable(Toluene.getFluid())
                 .output(dust, Salt, 6)
                 .fluidOutputs(Ferrocenylfulleropyrrolidine.getFluid(1000))
                 .fluidOutputs(CarbonDioxide.getFluid(1000))

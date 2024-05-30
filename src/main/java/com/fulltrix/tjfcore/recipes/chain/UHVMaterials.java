@@ -68,10 +68,11 @@ public class UHVMaterials {
                 .duration(250)
                 .buildAndRegister();
 
+        //TODO: change pipe to fluid pipe?
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(stickLong, NeodymiumMagnetic, 2)
                 .input(wireGtSingle, UVSuperconductor, 16)
-                .input(pipeLargeFluid, Ultimet, 4)
+                .input(pipeLargeItem, Ultimet, 4)
                 .input(plate, NaquadahAlloy, 8)
                 .fluidInputs(Titanium.getFluid(2592))
                 .fluidInputs(NaquadahEnriched.getFluid(1584))

@@ -519,7 +519,15 @@ public class WetwareChain {
 
         MIXER_RECIPES.recipeBuilder()
                 .notConsumable(ULTRASONIC_HOMOGENIZER.getStackForm())
-                .input("listAllmushroom", 1)
+                .inputs(new ItemStack(Blocks.BROWN_MUSHROOM))
+                .fluidOutputs(Chitin.getFluid(100))
+                .EUt(30)
+                .duration(100)
+                .buildAndRegister();
+
+        MIXER_RECIPES.recipeBuilder()
+                .notConsumable(ULTRASONIC_HOMOGENIZER.getStackForm())
+                .inputs(new ItemStack(Blocks.RED_MUSHROOM))
                 .fluidOutputs(Chitin.getFluid(100))
                 .EUt(30)
                 .duration(100)

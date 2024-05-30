@@ -252,10 +252,11 @@ public class FusionComponents {
                         .EUt(VA[GTValues.UIV]))
                 .buildAndRegister();
 
+        //TODO: change pipe to fluid pipe?
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(100).EUt(32000000)
                 .input(frameGt, Osmiridium, 48)
                 .input(plate, Osmiridium, 48)
-                .input(pipeTinyFluid, Ultimet, 64)
+                .input(pipeSmallItem, Ultimet, 32)
                 .input(screw, TriniumTitanium, 64)
                 .inputs(ELECTRIC_PUMP_UXV.getStackForm())
                 .inputs(SENSOR_UXV.getStackForm())
@@ -334,10 +335,11 @@ public class FusionComponents {
                         .EUt(VA[GTValues.UIV]))
                 .buildAndRegister();
 
+        //TODO: change pipe to fluid pipe?
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(100).EUt(32000000)
                 .input(frameGt, Osmiridium, 48)
                 .input(plate, TitanSteel, 16)
-                .input(pipeTinyFluid, Ultimet, 64)
+                .input(pipeSmallItem, Ultimet, 32)
                 .input(screw, TriniumTitanium, 64)
                 .inputs(ELECTRIC_PUMP_UXV.getStackForm())
                 .inputs(SENSOR_UXV.getStackForm())

@@ -116,9 +116,9 @@ public class WaferRecipes {
         LASER_ENGRAVER_RECIPES.recipeBuilder().duration(25).EUt(122880).inputs(WAFER_NEUTRONIUM.getStackForm()).notConsumable(lens, NetherStar).outputs(CENTRAL_PROCESSING_UNIT_WAFER.getStackForm(20)).buildAndRegister();
 
         // RAM Wafer
-        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(100).EUt(7680).inputs(WAFER_RUTHERFORDIUM.getStackForm()).notConsumable(craftingLens, Silver).outputs(RANDOM_ACCESS_MEMORY_WAFER.getStackForm(12)).buildAndRegister();
-        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(50).EUt(30720).inputs(WAFER_DUBNIUM.getStackForm()).notConsumable(craftingLens, Silver).outputs(RANDOM_ACCESS_MEMORY_WAFER.getStackForm(16)).buildAndRegister();
-        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(25).EUt(122880).inputs(WAFER_NEUTRONIUM.getStackForm()).notConsumable(craftingLens, Silver).outputs(RANDOM_ACCESS_MEMORY_WAFER.getStackForm(20)).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(100).EUt(7680).inputs(WAFER_RUTHERFORDIUM.getStackForm()).notConsumable(craftingLens, LightGray).outputs(RANDOM_ACCESS_MEMORY_WAFER.getStackForm(12)).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(50).EUt(30720).inputs(WAFER_DUBNIUM.getStackForm()).notConsumable(craftingLens, LightGray).outputs(RANDOM_ACCESS_MEMORY_WAFER.getStackForm(16)).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(25).EUt(122880).inputs(WAFER_NEUTRONIUM.getStackForm()).notConsumable(craftingLens, LightGray).outputs(RANDOM_ACCESS_MEMORY_WAFER.getStackForm(20)).buildAndRegister();
 
         // SoC Wafer
         LASER_ENGRAVER_RECIPES.recipeBuilder().duration(100).EUt(7680).inputs(WAFER_RUTHERFORDIUM.getStackForm()).notConsumable(craftingLens, Yellow).outputs(SYSTEM_ON_CHIP_WAFER.getStackForm(8)).buildAndRegister();
