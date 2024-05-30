@@ -45,6 +45,7 @@ public class CommonProxy {
     public static void registerMaterials(MaterialEvent event) {
         //TJFMaterials.registerNuclearMaterials();
         TJFMaterials.register();
+        TJFMaterials.register2();
         TJFMaterials.materialChanges();
     }
 

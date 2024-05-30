@@ -68,13 +68,6 @@ public class UHVMaterials {
                 .duration(250)
                 .buildAndRegister();
 
-        VACUUM_RECIPES.recipeBuilder()
-                .fluidInputs(Helium.getFluid(5000))
-                .fluidOutputs(Helium.getFluid(FluidStorageKeys.LIQUID, 5000))
-                .EUt(7680)
-                .duration(20)
-                .buildAndRegister();
-
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(stickLong, NeodymiumMagnetic, 2)
                 .input(wireGtSingle, UVSuperconductor, 16)

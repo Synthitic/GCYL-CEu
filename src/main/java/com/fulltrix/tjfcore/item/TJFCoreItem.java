@@ -1,13 +1,10 @@
 package com.fulltrix.tjfcore.item;
 
 import gregtech.api.items.metaitem.StandardMetaItem;
-import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.MarkerMaterials.Tier;
 import gregtech.api.unification.ore.OrePrefix;
 
 import static com.fulltrix.tjfcore.item.TJFCoreItems.*;
-import static gregtech.api.unification.material.Materials.Americium;
-import static gregtech.api.unification.material.Materials.Thorium;
 
 public class TJFCoreItem extends StandardMetaItem {
 
@@ -343,6 +340,8 @@ public class TJFCoreItem extends StandardMetaItem {
 
         PROTONATED_FULLERENE_SIEVING_MATRIX = addItem(609, "protonated.fullerene.sieving.matrix");
         SATURATED_FULLERENE_SIEVING_MATRIX =addItem(610, "saturated.fullerene.sieving.matrix");
+
+        SMALL_COIL = addItem(611, "small_coil");
 
         PYROLYTIC_CARBON = addItem(16, "pyrolytic_carbon");
         RAW_CRYSTAL_CHIP = addItem(17, "crystal.raw");

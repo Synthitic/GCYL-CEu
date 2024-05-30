@@ -94,14 +94,8 @@ public class WetwareComponents {
 
     private static void bacteriaCultures() {
 
-        FLUID_SOLIDFICATION_RECIPES.recipeBuilder().duration(160).EUt(24)
+        FLUID_SOLIDFICATION_RECIPES.recipeBuilder().duration(160).EUt(480)
                 .fluidInputs(Polystyrene.getFluid(L / 4))
-                .notConsumable(SHAPE_MOLD_CYLINDER.getStackForm())
-                .outputs(PETRI_DISH.getStackForm())
-                .buildAndRegister();
-
-        FLUID_SOLIDFICATION_RECIPES.recipeBuilder().duration(160).EUt(24)
-                .fluidInputs(Polytetrafluoroethylene.getFluid(L / 4))
                 .notConsumable(SHAPE_MOLD_CYLINDER.getStackForm())
                 .outputs(PETRI_DISH.getStackForm())
                 .buildAndRegister();

@@ -451,6 +451,8 @@ public class TJFCoreItems {
     public static MetaItem<?>.MetaValueItem PROTONATED_FULLERENE_SIEVING_MATRIX;
     public static MetaItem<?>.MetaValueItem SATURATED_FULLERENE_SIEVING_MATRIX;
 
+    public static MetaItem<?>.MetaValueItem SMALL_COIL;
+
     public static void init() {
         TJFCoreItem item = new TJFCoreItem();
         item.setRegistryName("tjf_meta_item");

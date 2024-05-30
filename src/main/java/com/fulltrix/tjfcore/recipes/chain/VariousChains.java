@@ -569,13 +569,6 @@ public class VariousChains {
                 .fluidOutputs(HighOctaneGasoline.getFluid(1065))
                 .buildAndRegister();
 
-        // Gasoline
-        CHEMICAL_RECIPES.recipeBuilder().duration(10).EUt(480)
-                .fluidInputs(RawGasoline.getFluid(10000))
-                .fluidInputs(Toluene.getFluid(1000))
-                .fluidOutputs(Gasoline.getFluid(11000))
-                .buildAndRegister();
-
         // Rocket Fuel Tier T4
         // C2H8N2 + N2O4 = H8N4C2O4 (treat like chem reactor recipes)
         MIXER_RECIPES.recipeBuilder().duration(280).EUt(480)
@@ -630,12 +623,6 @@ public class VariousChains {
                 .fluidInputs(HydrogenPeroxide.getFluid(1000))
                 .fluidOutputs(Hydrazine.getFluid(1000))
                 .fluidOutputs(Water.getFluid(1000))
-                .buildAndRegister();
-
-        // LOX
-        VACUUM_RECIPES.recipeBuilder().duration(30).EUt(480)
-                .fluidInputs(Oxygen.getFluid(1000))
-                .fluidOutputs(Oxygen.getFluid(FluidStorageKeys.LIQUID, 1000))
                 .buildAndRegister();
 
         // Liquid Hydrogen

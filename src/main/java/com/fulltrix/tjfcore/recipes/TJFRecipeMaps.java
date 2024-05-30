@@ -60,11 +60,13 @@ public class TJFRecipeMaps {
             2, 2, 0, 0, new SimpleRecipeBuilder().duration(1).EUt(GTValues.VA[10]), false
     ); // UEV-tier, 1tick processing time
 
+    //TODO: mixin?
     public static final RecipeMap<SimpleRecipeBuilder> LARGE_MIXER_RECIPES = new RecipeMap<>("large_mixer",
             9, 1, 6, 1, new SimpleRecipeBuilder(), false)
             .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, MoveType.CIRCULAR)
             .setSound(GTSoundEvents.MIXER);
 
+    //TODO: mixin?
     public static final RecipeMap<SimpleRecipeBuilder> LARGE_CENTRIFUGE_RECIPES = new RecipeMap<>("large_centrifuge",
             2, 6, 2, 6, new SimpleRecipeBuilder(), false)
             .setSlotOverlay(false, false, false, GuiTextures.EXTRACTOR_OVERLAY)
@@ -72,5 +74,11 @@ public class TJFRecipeMaps {
             .setSlotOverlay(false, true, true, GuiTextures.CENTRIFUGE_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, MoveType.HORIZONTAL)
             .setSound(GTSoundEvents.CENTRIFUGE);
+
+    //TODO: mixin?
+    public static final RecipeMap<SimpleRecipeBuilder> ADVANCED_ENGRAVER_RECIPES = new RecipeMap<>("advanced_engraver",
+            2, 2, 1, 1, new SimpleRecipeBuilder(), false)
+            .setSlotOverlay(false, false, true, GuiTextures.LENS_OVERLAY)
+            .setSound(GTSoundEvents.ELECTROLYZER);
 
 }
