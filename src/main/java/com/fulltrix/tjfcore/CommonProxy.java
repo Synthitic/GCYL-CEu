@@ -6,6 +6,7 @@ import com.fulltrix.tjfcore.recipes.categories.handlers.ElectricImplosionHandler
 import com.fulltrix.tjfcore.recipes.categories.handlers.VoidMinerHandler;
 import com.fulltrix.tjfcore.recipes.recipeproperties.AdvFusionCoilProperty;
 import gregtech.api.block.VariantItemBlock;
+import gregtech.api.event.HighTierEvent;
 import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
 import gregtech.api.unification.material.event.MaterialEvent;
 import net.minecraft.block.Block;
@@ -39,6 +40,12 @@ public class CommonProxy {
 
     public void onLoad() throws IOException {
         registerRecipesAfterCT();
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void forceHighTierConfig(HighTierEvent event) {
+        //Force enable high tier content, regardless of config option
+        event.enableHighTier();
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
