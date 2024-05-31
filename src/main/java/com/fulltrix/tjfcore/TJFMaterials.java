@@ -971,6 +971,65 @@ public class TJFMaterials {
     public static Material HyperFuelII;
     public static Material HyperFuelIII;
     public static Material HyperFuelIV;
+    public static Material NaquadricSolution;
+    public static Material EnrichedNaquadricSolution;
+    public static Material NaquadriaticSolution;
+    public static Material EnrichedFluoronaquadricAcid;
+    public static Material FluoronaquadriaticAcid;
+    public static Material NaquadahDifluoride;
+    public static Material EnrichedNaquadahDifluoride;
+    public static Material NaquadriaDifluoride;
+    public static Material IndiumTrifluoride;
+    public static Material NaquadahConcentrate;
+    public static Material EnrichedNaquadahConcentrate;
+    public static Material NaquadriaConcentrate;
+    public static Material NaquadriaHexafluoride;
+    public static Material RadonDifluoride;
+    public static Material RadonNaquadriaoctafluoride;
+    public static Material CesiumFluoride;
+    public static Material CesiumXenontrioxideFluoride;
+    public static Material NaquadriaCesiumXenonNonfluoride;
+    public static Material NitrylFluoride;
+    public static Material NitrosoniumOctafluoroxenate;
+    public static Material NaquadriaCesiumfluoride;
+    public static Material EnrichedNaquadahhexafluoride;
+    public static Material EnrichedXenonHexafluoronaquadate;
+    public static Material BromineTrifluoride;
+    public static Material AuricFluoride;
+    public static Material XenoauricFluoroantimonicAcid;
+    public static Material NaquadahSulfate;
+    public static Material IndiumTrioxide;
+    public static Material NaquadahSolution;
+    public static Material ClearNaquadahLiquid;
+    public static Material ComplicatedNaquadahGas;
+    public static Material ComplicatedLightNaquadah;
+    public static Material ComplicatedMediumNaquadah;
+    public static Material ComplicatedHeavyNaquadah;
+    public static Material NaquadahGas;
+    public static Material HeavyNaquadah;
+    public static Material LightNaquadah;
+    public static Material MediumNaquadah;
+    public static Material FCrackedMediumNaquadah;
+    public static Material FCrackedLightNaquadah;
+    public static Material FCrackedHeavyNaquadah;
+    public static Material LightNaquadahFuel;
+    public static Material MediumNaquadahFuel;
+    public static Material HeavyNaquadahFuel;
+    public static Material ENaquadahSolution;
+    public static Material ClearENaquadahLiquid;
+    public static Material ComplicatedLightENaquadah;
+    public static Material ComplicatedMediumENaquadah;
+    public static Material ComplicatedHeavyENaquadah;
+    public static Material HeavyENaquadah;
+    public static Material MediumENaquadah;
+    public static Material LightENaquadah;
+    public static Material RnCrackedMediumENaquadah;
+    public static Material RnCrackedLightNaquadah;
+    public static Material RnCrackedHeavyENaquadah;
+    public static Material LightENaquadahFuel;
+    public static Material MediumENaquadahFuel;
+    public static Material HeavyENaquadahFuel;
+    public static Material FluoronaquadricAcid;
 
     //COILS
     public static Material TitanSteel;
@@ -8278,7 +8337,7 @@ public class TJFMaterials {
                 .build()
                 .setFormula("IrCl3",true);
 
-        SemisolidHydrogen = new Material.Builder(id++, tjfId("material"))
+        SemisolidHydrogen = new Material.Builder(id++, tjfId("semisolidhydrogen"))
                 .liquid()
                 .color(0x044c4b)
                 .flags(DISABLE_REPLICATION)
@@ -8358,7 +8417,478 @@ public class TJFMaterials {
                 .build()
                 .setFormula("Nq(Nq+)(*Nq*)AdCfNtTn",true);
 
-                                /*
+        NaquadricSolution = new Material.Builder(id++, tjfId("naquadric_solution"))
+                .liquid()
+                .color(0x232225)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("NqNO2",true);
+
+        EnrichedNaquadricSolution = new Material.Builder(id++, tjfId("enriched_naquadric_solution"))
+                .liquid()
+                .color(0x312735)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq+NO2",true);
+
+        NaquadriaticSolution = new Material.Builder(id++, tjfId("naquadriatic_solution"))
+                .liquid()
+                .color(0x312735)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("*Nq*NO2",true);
+
+        EnrichedFluoronaquadricAcid = new Material.Builder(id++, tjfId("enriched_fluoronaquadric_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(0x485d60)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H2Nq+F4",true);
+
+        FluoronaquadriaticAcid = new Material.Builder(id++, tjfId("fluoronaquadriatic_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(0x485d60)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H2*Nq*F4",true);
+
+        NaquadahDifluoride = new Material.Builder(id++, tjfId("naquadah_difluoride"))
+                .liquid()
+                .color(0x324649)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("NqF2",true);
+
+        EnrichedNaquadahDifluoride = new Material.Builder(id++, tjfId("enriched_naquadah_difluoride"))
+                .liquid()
+                .color(0x141e1f)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq+F2",true);
+
+        NaquadriaDifluoride = new Material.Builder(id++, tjfId("naquadria_difluoride"))
+                .liquid()
+                .color(0x141e1f)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("*Nq*F2",true);
+
+        IndiumTrifluoride = new Material.Builder(id++, tjfId("indium_trifluoride"))
+                .dust()
+                .color(0x2b0f48)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(Indium.getMaterialIconSet())
+                .build()
+                .setFormula("InF3",true);
+
+        NaquadahConcentrate = new Material.Builder(id++, tjfId("naquadah_concentrate"))
+                .dust()
+                .color(Naquadah.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(Naquadah.getMaterialIconSet())
+                .build()
+                .setFormula("Nq?",true);
+
+        EnrichedNaquadahConcentrate = new Material.Builder(id++, tjfId("enriched_naquadah_concentrate"))
+                .dust()
+                .color(NaquadahEnriched.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(NaquadahEnriched.getMaterialIconSet())
+                .build()
+                .setFormula("Nq+?",true);
+
+        NaquadriaConcentrate = new Material.Builder(id++, tjfId("naquadria_concentrate"))
+                .dust()
+                .color(Naquadria.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(Naquadria.getMaterialIconSet())
+                .build()
+                .setFormula("*Nq*?",true);
+
+        NaquadriaHexafluoride = new Material.Builder(id++, tjfId("naquadria_hexafluoride"))
+                .liquid()
+                .color(0x111c27)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("*Nq*F6",true);
+
+        RadonDifluoride = new Material.Builder(id++, tjfId("radon_difluoride"))
+                .liquid()
+                .color(0x9966ff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("RnF2",true);
+
+        RadonNaquadriaoctafluoride = new Material.Builder(id++, tjfId("radon_naquadriaoctafluoride"))
+                .liquid()
+                .color(0x111c27)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Rd*Nq*F8",true);
+
+        CesiumFluoride = new Material.Builder(id++, tjfId("cesium_fluoride"))
+                .liquid()
+                .color(0xabab69)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("CsF",true);
+
+        CesiumXenontrioxideFluoride = new Material.Builder(id++, tjfId("cesium_xenontrioxide_fluoride"))
+                .liquid()
+                .color(0x3333cc)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("CsXeO3F",true);
+
+        NaquadriaCesiumXenonNonfluoride = new Material.Builder(id++, tjfId("naquadria_cesium_xenon_nonfluoride"))
+                .liquid()
+                .color(0x1c1c5e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("*Nq*CsXeF9",true);
+
+        NitrylFluoride = new Material.Builder(id++, tjfId("nitryl_fluoride"))
+                .liquid()
+                .color(NitricOxide.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("NO2F",true);
+
+        NitrosoniumOctafluoroxenate = new Material.Builder(id++, tjfId("nitrosonium_octafluoroxenate"))
+                .liquid()
+                .color(0x3f3f83)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(NO2)2XeF8",true);
+
+        NaquadriaCesiumfluoride = new Material.Builder(id++, tjfId("naquadria_cesiumfluoride"))
+                .liquid()
+                .color(0x636379)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("*Nq*F2CsF",true);
+
+        EnrichedNaquadahhexafluoride = new Material.Builder(id++, tjfId("enriched_naquadahhexafluoride"))
+                .liquid()
+                .color(0x030330)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq+F6",true);
+
+        EnrichedXenonHexafluoronaquadate = new Material.Builder(id++, tjfId("enriched_xenon_hexafluoronaquadate"))
+                .liquid()
+                .color(0x1e1ec2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("XeNq+F6",true);
+
+        BromineTrifluoride = new Material.Builder(id++, tjfId("bromine_trifluoride"))
+                .liquid()
+                .color(0xfcde1d)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("BrF3",true);
+
+        AuricFluoride = new Material.Builder(id++, tjfId("auric_fluoride"))
+                .dust()
+                .color(0xdffb50)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("AuF3",true);
+
+        XenoauricFluoroantimonicAcid = new Material.Builder(id++, tjfId("xenoauric_fluoroantimonic_acid"))
+                .liquid()
+                .color(0x685b08)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("XeAuSbF6",true);
+
+        NaquadahSulfate = new Material.Builder(id++, tjfId("naquadah_sulfate"))
+                .liquid()
+                .color(0x38330f)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("NqSO4",true);
+
+        IndiumTrioxide = new Material.Builder(id++, tjfId("indium_trioxide"))
+                .dust()
+                .color(0x2b0f48)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(Indium.getMaterialIconSet())
+                .build()
+                .setFormula("In2O3",true);
+
+        NaquadahSolution = new Material.Builder(id++, tjfId("naquadah_solution"))
+                .liquid()
+                .color(0x523b3a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("NqNH4NO3",true);
+
+        ClearNaquadahLiquid = new Material.Builder(id++, tjfId("clear_naquadah_liquid"))
+                .liquid()
+                .color(0xa89f9e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq?",true);
+
+        ComplicatedNaquadahGas = new Material.Builder(id++, tjfId("complicated_naquadah_gas"))
+                .gas()
+                .color(0x403d3d)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq??",true);
+
+        ComplicatedLightNaquadah = new Material.Builder(id++, tjfId("complicated_light_naquadah"))
+                .liquid()
+                .color(0x403d3d)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq??",true);
+
+        ComplicatedMediumNaquadah = new Material.Builder(id++, tjfId("complicated_medium_naquadah"))
+                .liquid()
+                .color(0x403d3d)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq??",true);
+
+        ComplicatedHeavyNaquadah = new Material.Builder(id++, tjfId("complicated_heavy_naquadah"))
+                .liquid()
+                .color(0x403d3d)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq??",true);
+
+        NaquadahGas = new Material.Builder(id++, tjfId("naquadah_gas"))
+                .gas()
+                .color(0x575757)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq",true);
+
+        HeavyNaquadah = new Material.Builder(id++, tjfId("heavy_naquadah"))
+                .liquid()
+                .color(0x2e2e2e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq",true);
+
+        LightNaquadah = new Material.Builder(id++, tjfId("light_naquadah"))
+                .liquid()
+                .color(0x2e2e2e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq",true);
+
+        MediumNaquadah = new Material.Builder(id++, tjfId("medium_naquadah"))
+                .liquid()
+                .color(0x2e2e2e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq",true);
+
+        FCrackedMediumNaquadah = new Material.Builder(id++, tjfId("fl_cracked_medium_naquadah"))
+                .liquid()
+                .color(0x505e5b)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("FlNq",true);
+
+        FCrackedLightNaquadah = new Material.Builder(id++, tjfId("fl_cracked_light_naquadah"))
+                .liquid()
+                .color(0x505e5b)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("FlNq",true);
+
+        FCrackedHeavyNaquadah = new Material.Builder(id++, tjfId("fl_cracked_heavy_naquadah"))
+                .liquid()
+                .color(0x505e5b)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("FlNq",true);
+
+        LightNaquadahFuel = new Material.Builder(id++, tjfId("light_naquadah_fuel"))
+                .liquid()
+                .color(0x2e2e2e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq",true);
+
+        MediumNaquadahFuel = new Material.Builder(id++, tjfId("medium_naquadah_fuel"))
+                .liquid()
+                .color(0x2e2e2e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq",true);
+
+        HeavyNaquadahFuel = new Material.Builder(id++, tjfId("heavy_naquadah_fuel"))
+                .liquid()
+                .color(0x2e2e2e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq",true);
+
+        ENaquadahSolution = new Material.Builder(id++, tjfId("e_naquadah_solution"))
+                .liquid()
+                .color(0x523b3a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq+?",true);
+
+        ClearENaquadahLiquid = new Material.Builder(id++, tjfId("clear_e_naquadah_liquid"))
+                .liquid()
+                .color(0xa89f9e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq+?",true);
+
+        ComplicatedLightENaquadah = new Material.Builder(id++, tjfId("complicated_light_e_naquadah"))
+                .liquid()
+                .color(0x403d3d)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq+??",true);
+
+        ComplicatedMediumENaquadah = new Material.Builder(id++, tjfId("complicated_medium_e_naquadah"))
+                .liquid()
+                .color(0x403d3d)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq+??",true);
+        ComplicatedHeavyENaquadah = new Material.Builder(id++, tjfId("complicated_heavy_e_naquadah"))
+                .liquid()
+                .color(0x403d3d)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq+??",true);
+
+        HeavyENaquadah = new Material.Builder(id++, tjfId("heavy_e_naquadah"))
+                .liquid()
+                .color(0x2e2e2e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq+",true);
+
+        MediumENaquadah = new Material.Builder(id++, tjfId("medium_e_naquadah"))
+                .liquid()
+                .color(0x2e2e2e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq+",true);
+
+        LightENaquadah = new Material.Builder(id++, tjfId("light_e_naquadah"))
+                .liquid()
+                .color(0x2e2e2e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq+",true);
+
+        RnCrackedMediumENaquadah = new Material.Builder(id++, tjfId("rn_cracked_medium_e_naquadah"))
+                .liquid()
+                .color(0x505e5b)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("RnNq+",true);
+
+        RnCrackedLightNaquadah = new Material.Builder(id++, tjfId("rn_cracked_light_e_naquadah"))
+                .liquid()
+                .color(0x505e5b)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("RnNq+",true);
+
+        RnCrackedHeavyENaquadah = new Material.Builder(id++, tjfId("rn_cracked_heavy_e_naquadah"))
+                .liquid()
+                .color(0x505e5b)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("RnNq+",true);
+
+        LightENaquadahFuel = new Material.Builder(id++, tjfId("light_e_naquadah_fuel"))
+                .liquid()
+                .color(0x2e2e2e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq+",true);
+
+        MediumENaquadahFuel = new Material.Builder(id++, tjfId("medium_e_naquadah_fuel"))
+                .liquid()
+                .color(0x2e2e2e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq+",true);
+
+        HeavyENaquadahFuel = new Material.Builder(id++, tjfId("heavy_e_naquadah_fuel"))
+                .liquid()
+                .color(0x2e2e2e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Nq+",true);
+
+        FluoronaquadricAcid = new Material.Builder(id++, tjfId("fluoronaquadric_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(0x485d60)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H2NqF4",true);
+
+        /*
         = new Material.Builder(id++, tjfId("material"))
                 .ingot().liquid()
                 .color()

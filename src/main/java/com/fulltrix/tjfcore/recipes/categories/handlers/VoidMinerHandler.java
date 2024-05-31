@@ -27,6 +27,8 @@ public class VoidMinerHandler {
 
         OrePrefix currentOre = OrePrefix.ore;
 
+        //TODO: add support for other products in ore processing chain? or add ore processing factory from GTNH
+
         if (TJFConfig.multis.voidMiner.oreVariants) {
             if (!Arrays.asList(TJFConfig.multis.voidMiner.oreBlacklist).contains(material.toString())) {
                 ORES.addAll(OreDictUnifier.getAll(new UnificationEntry(currentOre, material)));
