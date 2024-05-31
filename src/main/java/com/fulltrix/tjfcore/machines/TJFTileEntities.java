@@ -4,6 +4,7 @@ import com.fulltrix.tjfcore.TJFConfig;
 import com.fulltrix.tjfcore.TJFUtility;
 import com.fulltrix.tjfcore.machines.multi.MetaTileEntityBioReactor;
 import com.fulltrix.tjfcore.machines.multi.MetaTileEntityCosmicRayDetector;
+import com.fulltrix.tjfcore.machines.multi.MetaTileEntityElectricImplosion;
 import com.fulltrix.tjfcore.machines.multi.MetaTileEntityStellarForge;
 import com.fulltrix.tjfcore.machines.multi.advance.*;
 import com.fulltrix.tjfcore.machines.multi.miner.MetaTileEntityVoidMiner;
@@ -34,6 +35,7 @@ public class TJFTileEntities {
     public static MetaTileEntityPlasmaCondenser PLASMA_CONDENSER;
     public static MetaTileEntityAdvMixer ADVANCED_MIXER;
     public static MetaTileEntityAdvCentrifuge ADVANCED_CENTRIFUGE;
+    public static MetaTileEntityElectricImplosion ELECTRIC_IMPLOSION;
 
     ///////////////////////////////////////////
     public static final MetaTileEntityEnergyHatch[] ENERGY_INPUT_HATCH_4A = new MetaTileEntityEnergyHatch[4]; // UEV, UIV, UXV, OPV
@@ -72,6 +74,8 @@ public class TJFTileEntities {
         ADVANCED_MIXER = registerMetaTileEntity(++id, new MetaTileEntityAdvMixer(tjfId("large_mixer")));
 
         ADVANCED_CENTRIFUGE = registerMetaTileEntity(++id, new MetaTileEntityAdvCentrifuge(tjfId("large_centrifuge")));
+
+        ELECTRIC_IMPLOSION = registerMetaTileEntity(++id, new MetaTileEntityElectricImplosion(tjfId("electric_implosion")));
         /*
         for(int i = 10; i<13 ; i++) {
             String voltageName = GTValues.VN[i].toLowerCase();
