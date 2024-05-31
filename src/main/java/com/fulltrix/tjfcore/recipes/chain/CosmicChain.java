@@ -37,7 +37,7 @@ public class CosmicChain {
                 .outputs(SEPARATION_ELECTROMAGNET.getStackForm())
                 .buildAndRegister();
 
-        LARGE_CENTRIFUGE_RECIPES.recipeBuilder().duration(200).EUt(1200000)
+        ADVANCED_CENTRIFUGE_RECIPES.recipeBuilder().duration(200).EUt(1200000)
                 .fluidInputs(QuarkGluonPlasma.getFluid(1000 * 5))
                 .notConsumable(SEPARATION_ELECTROMAGNET.getStackForm())
                 .fluidOutputs(HeavyQuarks.getFluid(750 * 5))
@@ -45,7 +45,7 @@ public class CosmicChain {
                 .fluidOutputs(LightQuarks.getFluid(250 * 5))
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(100).EUt(2400000)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(100).EUt(2400000)
                 .fluidInputs(HeavyLeptonMix.getFluid(1000))
                 .fluidInputs(HeavyQuarks.getFluid(1000))
                 .fluidInputs(Gluons.getFluid(1000))
@@ -70,7 +70,7 @@ public class CosmicChain {
                 .fluidOutputs(RadonRadiumMix.getFluid(288))
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(140).EUt(4500000)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(140).EUt(4500000)
                 .fluidInputs(Deuterium.getFluid(2000))
                 .fluidInputs(MetastableHassium.getFluid(144))
                 .fluidInputs(MetastableFlerovium.getFluid(144))

@@ -1,11 +1,8 @@
 package com.fulltrix.tjfcore.recipes.categories;
 
 import gregtech.api.fluids.store.FluidStorageKeys;
-import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.Material;
-import gregtech.api.unification.stack.UnificationEntry;
-import net.minecraft.item.ItemStack;
 
 import static com.fulltrix.tjfcore.TJFMaterials.*;
 import static com.fulltrix.tjfcore.item.TJFCoreItems.*;
@@ -172,7 +169,7 @@ public class SuperconductorRecipes {
                 .buildAndRegister();
 
         // UEV Superconductor Base Dust
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(11292).EUt(30)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(11292).EUt(30)
                 .input(dust,ActiniumSuperhydride,1)
                 .input(dust,BETSPerrhenate,1)
                 .input(dust, Vibranium, 2)
@@ -224,7 +221,7 @@ public class SuperconductorRecipes {
                 .buildAndRegister();
 
         // UXV Superconductor Base Dust
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(720).EUt(33500000)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(720).EUt(33500000)
                 .input(dust,Legendarium,5)
                 .input(dust, Neutronium, 4)
                 .input(dust,ActiniumSuperhydride,5)

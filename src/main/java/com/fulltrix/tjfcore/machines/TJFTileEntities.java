@@ -5,12 +5,11 @@ import com.fulltrix.tjfcore.TJFUtility;
 import com.fulltrix.tjfcore.machines.multi.MetaTileEntityBioReactor;
 import com.fulltrix.tjfcore.machines.multi.MetaTileEntityCosmicRayDetector;
 import com.fulltrix.tjfcore.machines.multi.MetaTileEntityStellarForge;
-import com.fulltrix.tjfcore.machines.multi.advance.MetaTileEntityAdvFusionReactor;
-import com.fulltrix.tjfcore.machines.multi.advance.MetaTileEntityHyperReactor;
-import com.fulltrix.tjfcore.machines.multi.advance.MetaTileEntityVolcanus;
+import com.fulltrix.tjfcore.machines.multi.advance.*;
 import com.fulltrix.tjfcore.machines.multi.miner.MetaTileEntityVoidMiner;
 import com.fulltrix.tjfcore.machines.multi.simple.MetaTileEntityPlasmaCondenser;
 import com.fulltrix.tjfcore.recipes.TJFRecipeMaps;
+import gregicality.multiblocks.common.metatileentities.multiblock.standard.MetaTileEntityLargeMixer;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
@@ -33,6 +32,8 @@ public class TJFTileEntities {
     public static MetaTileEntityVolcanus VOLCANUS;
     public static MetaTileEntityHyperReactor[] HYPER_REACTOR = new MetaTileEntityHyperReactor[3];
     public static MetaTileEntityPlasmaCondenser PLASMA_CONDENSER;
+    public static MetaTileEntityAdvMixer ADVANCED_MIXER;
+    public static MetaTileEntityAdvCentrifuge ADVANCED_CENTRIFUGE;
 
     ///////////////////////////////////////////
     public static final MetaTileEntityEnergyHatch[] ENERGY_INPUT_HATCH_4A = new MetaTileEntityEnergyHatch[4]; // UEV, UIV, UXV, OPV
@@ -68,6 +69,9 @@ public class TJFTileEntities {
 
         PLASMA_CONDENSER = registerMetaTileEntity(++id, new MetaTileEntityPlasmaCondenser(tjfId("plasma_condenser"), false));
 
+        ADVANCED_MIXER = registerMetaTileEntity(++id, new MetaTileEntityAdvMixer(tjfId("large_mixer")));
+
+        ADVANCED_CENTRIFUGE = registerMetaTileEntity(++id, new MetaTileEntityAdvCentrifuge(tjfId("large_centrifuge")));
         /*
         for(int i = 10; i<13 ; i++) {
             String voltageName = GTValues.VN[i].toLowerCase();

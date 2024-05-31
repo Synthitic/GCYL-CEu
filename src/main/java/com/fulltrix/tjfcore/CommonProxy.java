@@ -2,6 +2,7 @@ package com.fulltrix.tjfcore;
 
 import com.fulltrix.tjfcore.item.TJFCoreItems;
 import com.fulltrix.tjfcore.recipes.RecipeHandler;
+import com.fulltrix.tjfcore.recipes.TJFRecipeMaps;
 import com.fulltrix.tjfcore.recipes.categories.handlers.ElectricImplosionHandler;
 import com.fulltrix.tjfcore.recipes.categories.handlers.FuelHandler;
 import com.fulltrix.tjfcore.recipes.categories.handlers.VoidMinerHandler;
@@ -114,6 +115,8 @@ public class CommonProxy {
         FusionEUToStartProperty.registerFusionTier(9, "(Adv MK1)");
         FusionEUToStartProperty.registerFusionTier(10, "(Adv MK2)");
         FusionEUToStartProperty.registerFusionTier(11, "(Adv MK3)");
+
+        TJFRecipeMaps.modifyMaps();
 
         RecipeHandler.initRecipes();
         RecipeHandler.initChains();

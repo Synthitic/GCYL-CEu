@@ -107,7 +107,7 @@ public class FullereneChain {
         //TODO: advanced laser engraver?
 
         // C60H30 + 10N -> C60 + 10NH3
-        ADVANCED_ENGRAVER_RECIPES.recipeBuilder()
+        LASER_ENGRAVER_RECIPES.recipeBuilder()
                 .notConsumable(craftingLens, Magenta)
                 .input(dust, UnfoldedFullerene, 1)
                 .fluidInputs(Nitrogen.getFluid(10000))
@@ -250,7 +250,7 @@ public class FullereneChain {
                 .duration(100)
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder()
+        ADVANCED_MIXER_RECIPES.recipeBuilder()
                 .input(dust, Palladium)
                 .input(dust, Iridium)
                 .input(dust, Rhenium)

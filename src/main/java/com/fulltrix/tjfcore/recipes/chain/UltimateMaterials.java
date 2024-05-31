@@ -19,7 +19,7 @@ import static gregtech.common.items.MetaItems.*;
 public class UltimateMaterials {
     public static void init() { //TODO Verify Recipes
 
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(270).EUt(250000)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(270).EUt(250000)
                 .input(dust, Ruthenium)
                 .input(dust, Rhodium)
                 .input(dust, Palladium)
@@ -32,7 +32,7 @@ public class UltimateMaterials {
                 .output(dust, PreciousMetals, 9)
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(210).EUt(250000)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(210).EUt(250000)
                 .input(dust, Zirconium)
                 .input(dust, Hafnium)
                 .input(dust, Niobium)
@@ -43,7 +43,7 @@ public class UltimateMaterials {
                 .output(dust, RefractoryMetals, 7)
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(240).EUt(250000)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(240).EUt(250000)
                 .input(dust, Titanium)
                 .input(dust, Vanadium)
                 .input(dust, Manganese)
@@ -55,7 +55,7 @@ public class UltimateMaterials {
                 .output(dust, LightTranstionMetals, 8)
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(420).EUt(250000)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(420).EUt(250000)
                 .input(dust, Beryllium)
                 .input(dust, Magnesium)
                 .input(dust, Calcium)
@@ -73,7 +73,7 @@ public class UltimateMaterials {
                 .output(dust, Alkalis, 14)
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(420).EUt(250000)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(420).EUt(250000)
                 .input(dust, Zinc)
                 .input(dust, Cadmium)
                 .input(dust, Aluminium)
@@ -91,7 +91,7 @@ public class UltimateMaterials {
                 .output(dust, PostTransitionMetals, 14)
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(450).EUt(250000)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(450).EUt(250000)
                 .input(dust, Samarium)
                 .input(dust, Gadolinium)
                 .input(dust, Terbium)
@@ -110,7 +110,7 @@ public class UltimateMaterials {
                 .output(dust, Lanthanoids, 15)
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(390).EUt(250000)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(390).EUt(250000)
                 .input(dust, Actinium)
                 .input(dust, Thorium)
                 .input(dust, Protactinium)
@@ -127,7 +127,7 @@ public class UltimateMaterials {
                 .output(dust, Actinoids, 13)
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(450).EUt(250000)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(450).EUt(250000)
                 .input(dust, Boron)
                 .input(dust, Carbon)
                 .input(dust, Phosphorus)
@@ -146,7 +146,7 @@ public class UltimateMaterials {
                 .fluidOutputs(NonMetals.getFluid(15000))
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(180).EUt(250000)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(180).EUt(250000)
                 .fluidInputs(Helium.getFluid(1000))
                 .fluidInputs(Neon.getFluid(1000))
                 .fluidInputs(Argon.getFluid(1000))
@@ -156,7 +156,7 @@ public class UltimateMaterials {
                 .fluidOutputs(NobleGases.getFluid(6000))
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(360).EUt(5400000)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(360).EUt(5400000)
                 .input(dust, SuperheavyLAlloy, 7)
                 .input(dust, SuperheavyHAlloy, 7)
                 .input(dust, Alkalis, 14)

@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import static com.fulltrix.tjfcore.TJFMaterials.*;
 import static com.fulltrix.tjfcore.item.TJFCoreItems.*;
 import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
-import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.LARGE_MIXER_RECIPES;
+import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.ADVANCED_MIXER_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
@@ -31,7 +31,7 @@ public class VariousChains {
     private static void misc() {
 
         // UU-Matter ===================================================================================================
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(50).EUt(491520)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(50).EUt(491520)
                 .fluidInputs(ChargedMatter.getFluid(1000))
                 .fluidInputs(NeutralMatter.getFluid(1000))
                 .fluidInputs(FreeElectronGas.getFluid(2000))
@@ -439,7 +439,7 @@ public class VariousChains {
                 .fluidOutputs(ATL.getFluid(1000))
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(120).EUt(480)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(120).EUt(480)
                 .fluidInputs(BariumSulfateSolution.getFluid(1000))
                 .fluidInputs(CalciumCarbonateSolution.getFluid(1000))
                 .fluidInputs(BentoniteClaySlurry.getFluid(1000))

@@ -12,11 +12,7 @@ public class RecipeHandler {
         RecipeOverride.init();
 
         /*
-        CasingRecipes.init();
-        SuperconductorRecipes.init();
-        MiscRecipes.init();
         StagedRemovalRecipes.init();
-        MetalCasingRecipes.init();
          */
 
         MetaItemRecipes.init();
@@ -24,6 +20,10 @@ public class RecipeHandler {
         MachineCraftingRecipes.init();
         CircuitRecipes.init();
         PlasmaCondenserPlasmaRecipes.init();
+        MiscRecipes.init();
+        MetalCasingRecipes.init();
+        SuperconductorRecipes.init();
+        CasingRecipes.init();
     }
 
     public static void initChains() {
@@ -71,13 +71,13 @@ public class RecipeHandler {
         ZincChain.init();
         CombinedChains.init();
         NaquadahChain.init();
+        TriniumChain.init();
 
         /*
         UraniumChain.init();
         Dyes.init();
         DigitalInterfaces.init();
         ArcFurnaceOxidation.init();
-        TriniumChain.init();
          */
     }
 

@@ -7,7 +7,6 @@ import gregtech.api.GTValues;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.gui.widgets.ProgressWidget.MoveType;
-import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.builders.FuelRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
@@ -63,14 +62,12 @@ public class TJFRecipeMaps {
             2, 2, 0, 0, new SimpleRecipeBuilder().duration(1).EUt(GTValues.VA[10]), false
     ); // UEV-tier, 1tick processing time
 
-    //TODO: mixin?
-    public static final RecipeMap<SimpleRecipeBuilder> LARGE_MIXER_RECIPES = new RecipeMap<>("large_mixer",
+    public static final RecipeMap<SimpleRecipeBuilder> ADVANCED_MIXER_RECIPES = new RecipeMap<>("large_mixer",
             9, 1, 6, 1, new SimpleRecipeBuilder(), false)
             .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, MoveType.CIRCULAR)
             .setSound(GTSoundEvents.MIXER);
 
-    //TODO: mixin?
-    public static final RecipeMap<SimpleRecipeBuilder> LARGE_CENTRIFUGE_RECIPES = new RecipeMap<>("large_centrifuge",
+    public static final RecipeMap<SimpleRecipeBuilder> ADVANCED_CENTRIFUGE_RECIPES = new RecipeMap<>("large_centrifuge",
             2, 6, 2, 6, new SimpleRecipeBuilder(), false)
             .setSlotOverlay(false, false, false, GuiTextures.EXTRACTOR_OVERLAY)
             .setSlotOverlay(false, false, true, GuiTextures.CANISTER_OVERLAY)
@@ -78,15 +75,23 @@ public class TJFRecipeMaps {
             .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, MoveType.HORIZONTAL)
             .setSound(GTSoundEvents.CENTRIFUGE);
 
-    //TODO: mixin?
+    //TODO: ?
+    /*
     public static final RecipeMap<SimpleRecipeBuilder> ADVANCED_ENGRAVER_RECIPES = new RecipeMap<>("advanced_engraver",
             2, 2, 1, 1, new SimpleRecipeBuilder(), false)
             .setSlotOverlay(false, false, true, GuiTextures.LENS_OVERLAY)
             .setSound(GTSoundEvents.ELECTROLYZER);
 
+     */
+
     public static final RecipeMap<FuelRecipeBuilder> HYPER_REACTOR_FUELS = new RecipeMap<>("hyper_reactor",
             0,0,1,0, new FuelRecipeBuilder(),false)
             .allowEmptyOutput()
             .setSound(GTSoundEvents.COOLING);
+
+    public static void modifyMaps() {
+        LASER_ENGRAVER_RECIPES.setMaxFluidInputs(1);
+        LASER_ENGRAVER_RECIPES.setMaxFluidOutputs(1);
+    }
 
 }

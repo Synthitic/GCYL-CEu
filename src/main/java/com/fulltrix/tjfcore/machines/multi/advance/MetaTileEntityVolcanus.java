@@ -44,7 +44,7 @@ import static com.fulltrix.tjfcore.client.ClientHandler.HASTELLOY_N_CASING;
 import static com.fulltrix.tjfcore.item.TJFMetaBlocks.METAL_CASING_1;
 import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOverclockingLogic;
 
-//TODO: confirm limiting to ZPM
+//TODO: confirm limiting to ZPM & and rewrite because its written terribly
 
 public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController implements IHeatingCoil {
 
@@ -116,6 +116,9 @@ public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController im
 
         }
     }
+
+    @Override
+    public boolean isTiered() {return false;}
 
     public boolean drainFluid(boolean simulate) {
 

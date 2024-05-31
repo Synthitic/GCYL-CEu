@@ -2,7 +2,7 @@ package com.fulltrix.tjfcore.recipes.chain;
 
 import static com.fulltrix.tjfcore.TJFMaterials.*;
 import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
-import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.LARGE_CENTRIFUGE_RECIPES;
+import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.ADVANCED_CENTRIFUGE_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
@@ -130,7 +130,7 @@ public class REEChain {
 
 
         // 2 [REECl3 + 3 H2O] + C16H35O4P(cat.) -> [REE2O3](sep.) + 6 HCl + 3 H2O
-        LARGE_CENTRIFUGE_RECIPES.recipeBuilder()
+        ADVANCED_CENTRIFUGE_RECIPES.recipeBuilder()
                 .fluidInputs(RareEarthChloridesSolution.getFluid(6000))
                 .notConsumable(DiethylhexylPhosphoricAcid.getFluid(0))
                 .fluidOutputs(LaNdOxidesSolution.getFluid(250))

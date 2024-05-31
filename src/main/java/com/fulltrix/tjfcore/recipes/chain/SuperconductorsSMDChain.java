@@ -727,7 +727,7 @@ public class SuperconductorsSMDChain {
 
         //TODO: advanced laser engraver?
         //La2(C60H30)2 + 20 N -> La2(C60)2 + 20 NH3
-        ADVANCED_ENGRAVER_RECIPES.recipeBuilder().duration(320).EUt(1966080)
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(320).EUt(1966080)
                 .input(dust, LanthanumFullereneMix, 4)
                 .fluidInputs(Nitrogen.getFluid(20000))
                 .notConsumable(craftingLens, Magenta)
@@ -1100,7 +1100,7 @@ public class SuperconductorsSMDChain {
                 .fluidOutputs(Chlorine.getFluid(3000))
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(270).EUt(250000)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(270).EUt(250000)
                 .input(dust, Naquadah)
                 .input(dust, NaquadahEnriched)
                 .input(dust, Naquadria)

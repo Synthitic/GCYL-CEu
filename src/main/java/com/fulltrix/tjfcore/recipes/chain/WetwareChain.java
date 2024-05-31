@@ -244,7 +244,7 @@ public class WetwareChain {
                 .duration(50)
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder()
+        ADVANCED_MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(B27Supplement.getFluid(1000))
                 .fluidInputs(AmmoniumNitrate.getFluid(1000))
                 .input(dust, Glutamine, 20)

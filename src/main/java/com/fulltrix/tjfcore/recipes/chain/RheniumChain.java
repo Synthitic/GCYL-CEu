@@ -282,7 +282,7 @@ public class RheniumChain {
                 .buildAndRegister();
 
         // 2C12H26 + 0.5C24H51N + 0.25C8H18O + 0.5C6H12O + 0.375CH3COOH + 0.375C5H12O -> ~4C11H24
-        LARGE_MIXER_RECIPES.recipeBuilder()
+        ADVANCED_MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(Kerosene.getFluid(8000))
                 .fluidInputs(Trioctylamine.getFluid(500))
                 .fluidInputs(Octanol.getFluid(500))

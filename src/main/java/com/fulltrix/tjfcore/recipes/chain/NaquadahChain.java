@@ -3,8 +3,8 @@ package com.fulltrix.tjfcore.recipes.chain;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 
 import static com.fulltrix.tjfcore.TJFMaterials.*;
-import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.LARGE_CENTRIFUGE_RECIPES;
-import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.LARGE_MIXER_RECIPES;
+import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.ADVANCED_CENTRIFUGE_RECIPES;
+import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.ADVANCED_MIXER_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
@@ -685,7 +685,7 @@ public class NaquadahChain {
                 .duration(200)
                 .buildAndRegister();
 
-        LARGE_CENTRIFUGE_RECIPES.recipeBuilder()
+        ADVANCED_CENTRIFUGE_RECIPES.recipeBuilder()
                 .input(dust, Naquadria)
                 .fluidInputs(NitrogenDioxide.getFluid(500))
                 .fluidInputs(SulfuricAcid.getFluid(500))
@@ -734,7 +734,7 @@ public class NaquadahChain {
                 .buildAndRegister();
         */
 
-        LARGE_MIXER_RECIPES.recipeBuilder()
+        ADVANCED_MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(HyperFuelIII.getFluid(1000))
                 .input(dust, Neutronium)
                 .input(dust, Taranium)

@@ -112,7 +112,7 @@ public class TaraniumChain {
                 .EUt(200)
                 .buildAndRegister();
 
-        LARGE_CENTRIFUGE_RECIPES.recipeBuilder()
+        ADVANCED_CENTRIFUGE_RECIPES.recipeBuilder()
                 .input(dust, MetallicResidues, 10)
                 .notConsumable(SEPARATION_ELECTROMAGNET)
                 .output(dust, DiamagneticResidues, 3)
@@ -123,7 +123,7 @@ public class TaraniumChain {
                 .EUt(8000)
                 .buildAndRegister();
 
-        LARGE_CENTRIFUGE_RECIPES.recipeBuilder()
+        ADVANCED_CENTRIFUGE_RECIPES.recipeBuilder()
                 .input(dust, HeavyMetallicResidues, 10)
                 .notConsumable(SEPARATION_ELECTROMAGNET)
                 .output(dust, HeavyDiamagneticResidues, 3)
@@ -282,7 +282,7 @@ public class TaraniumChain {
                 .EUToStart(480000000)
                 .buildAndRegister();
 
-        LARGE_CENTRIFUGE_RECIPES.recipeBuilder()
+        ADVANCED_CENTRIFUGE_RECIPES.recipeBuilder()
                 .fluidInputs(TaraniumRichDustyHeliumPlasma.getPlasma(3000))
                 .notConsumable(SEPARATION_ELECTROMAGNET.getStackForm())
                 .fluidOutputs(TaraniumRichHelium4.getPlasma(500))
@@ -300,7 +300,7 @@ public class TaraniumChain {
                 .EUt(2000)
                 .buildAndRegister();
 
-        LARGE_CENTRIFUGE_RECIPES.recipeBuilder()
+        ADVANCED_CENTRIFUGE_RECIPES.recipeBuilder()
                 .fluidInputs(TaraniumDepletedHeliumPlasma.getPlasma(10000))
                 .notConsumable(SEPARATION_ELECTROMAGNET.getStackForm())
                 .fluidOutputs(Helium3.getPlasma(5000))
@@ -325,7 +325,7 @@ public class TaraniumChain {
                 .EUt(8000)
                 .buildAndRegister();
 
-        LARGE_CENTRIFUGE_RECIPES.recipeBuilder()
+        ADVANCED_CENTRIFUGE_RECIPES.recipeBuilder()
                 .input(dust, Stone, 3)
                 .chancedOutput(OreDictUnifier.get(dust, Taranium), 1000, 0)
                 .chancedOutput(OreDictUnifier.get(dust, Taranium), 1000, 0)

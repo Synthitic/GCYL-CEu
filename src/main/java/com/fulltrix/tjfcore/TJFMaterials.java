@@ -59,7 +59,6 @@ public class TJFMaterials {
     public static Material Mendelevium261;
 
     /////////////////////////////////////////
-    public static Material Pikyonium;
     public static Material Inconel792;
     public static Material HDCS;
     public static Material EglinSteel;
@@ -1031,29 +1030,42 @@ public class TJFMaterials {
     public static Material HeavyENaquadahFuel;
     public static Material FluoronaquadricAcid;
     public static Material Fluorescein;
+    public static Material SodiumBorohydride;
+    public static Material BoronTrifluorideEtherate;
+    public static Material Decaborane;
+    public static Material SodiumTetrafluoroborate;
+    public static Material CesiumCarboranePrecusor;
+    public static Material BoraneDimethylsulfide;
+    public static Material CesiumCarborane;
+    public static Material SilverNitrate;
+    public static Material Fluorocarborane;
+    public static Material CaesiumNitrate;
+    public static Material SilverIodide;
+    public static Material FumingNitricAcid;
+    public static Material PureCrystallineNitricAcid;
+    public static Material ActiniumTriniumHydroxides;
+    public static Material ResidualTriniiteSolution;
+    public static Material Perfluorobenzene;
+    public static Material ActiniumRadiumHydroxideSolution;
+    public static Material HeavilyFluorinatedTriniumSolution;
+    public static Material MoltenCalciumSalts;
+    public static Material TriniumTetrafluoride;
+    public static Material AcetylChloride;
+    public static Material EthylTrifluoroacetate;
+    public static Material PhosphorousPentasulfide;
+    public static Material Acetothienone;
+    public static Material TheonylTrifluoroacetate;
+    public static Material ActiniumRadiumNitrateSolution;
+    public static Material ActiniumNitrate;
+    public static Material RadiumNitrate;
 
     //COILS
+    public static Material Pikyonium;
     public static Material TitanSteel;
-
     public static Material CosmicNeutronium;
-
     public static Material Infinity;
-
     public static Material Eternity;
-
     //superconductors
-    /*
-    public static Material LVSuperconductor = ManganesePhosphide;
-    public static Material MVSuperconductor = MagnesiumDiboride;
-    public static Material HVSuperconductor = MercuryBariumCalciumCuprate;
-    public static Material EVSuperconductor = UraniumTriplatinum;
-    public static Material IVSuperconductor = SamariumIronArsenicOxide;
-    public static Material LuVSuperconductor = IndiumTinBariumTitaniumCuprate;
-    public static Material ZPMSuperconductor = UraniumRhodiumDinaquadide;
-    public static Material UVSuperconductor = EnrichedNaquadahTriniumEuropiumDuranide;
-    public static Material UHVSuperconductor = RutheniumTriniumAmericiumNeutronate;
-
-     */
     public static Material MVSuperconductor;
     public static Material HVSuperconductor;
     public static Material EVSuperconductor;
@@ -6657,7 +6669,7 @@ public class TJFMaterials {
                 .setFormula("KLi3Al4O11", true);
 
         Fluorite = new Material.Builder(id++, tjfId("fluorite"))
-                .dust(2)
+                .dust(2).liquid()
                 .color(0x009933)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(SHINY)
@@ -8923,6 +8935,233 @@ public class TJFMaterials {
                 .build()
                 .setFormula("C20H12O5",true);
 
+        SodiumBorohydride = new Material.Builder(id++, tjfId("sodium_borohydride"))
+                .dust()
+                .color(0xc2c2fa)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("NaBH4",true);
+
+        BoronTrifluorideEtherate = new Material.Builder(id++, tjfId("boron_trifluoride_etherate"))
+                .liquid()
+                .color((BoronFluoride.getMaterialRGB()+Diethylether.getMaterialRGB())/2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(BF3)(C2H5)2O",true);
+
+        Decaborane = new Material.Builder(id++, tjfId("decaborane"))
+                .dust()
+                .color(Diborane.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("B10H14",true);
+
+        SodiumTetrafluoroborate = new Material.Builder(id++, tjfId("sodium_tetrafluoroborate"))
+                .dust()
+                .color((SodiumBorohydride.getMaterialRGB()+Fluorine.getMaterialRGB())/2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("NaBF4",true);
+
+        CesiumCarboranePrecusor = new Material.Builder(id++, tjfId("cesium_carborane_precursor"))
+                .dust()
+                .color(0xb56487)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("CsB10H12CN(CH3)3Cl",true);
+
+        BoraneDimethylsulfide = new Material.Builder(id++, tjfId("borane_dimethylsulfide"))
+                .liquid()
+                .color((Diborane.getMaterialRGB()+Dimethylsulfide.getMaterialRGB())/2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(BH3)(CH3)2S",true);
+
+        CesiumCarborane = new Material.Builder(id++, tjfId("cesium_carborane"))
+                .dust()
+                .color(CesiumCarboranePrecusor.getMaterialRGB()*6/5)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("CsCB11H12",true);
+
+        SilverNitrate = new Material.Builder(id++, tjfId("silver_nitrate"))
+                .dust()
+                .color(0xfdfdca)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("AgNO3",true);
+
+        Fluorocarborane = new Material.Builder(id++, tjfId("fluorocarborane"))
+                .dust()
+                .color(0x20EB7A)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("HCHB11F11",true);
+
+        CaesiumNitrate = new Material.Builder(id++, tjfId("caesium_nitrate"))
+                .dust()
+                .color(0x7452DC)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("CsNO3",true);
+
+        SilverIodide = new Material.Builder(id++, tjfId("silver_iodide"))
+                .dust()
+                .color((SilverChloride.getMaterialRGB()*2+Iodine.getMaterialRGB())/3)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("AgI",true);
+
+        FumingNitricAcid = new Material.Builder(id++, tjfId("fuming_nitric_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color( NitricAcid.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("HNO3",true);
+
+        PureCrystallineNitricAcid = new Material.Builder(id++, tjfId("crystalline_nitric_acid"))
+                .dust()
+                .color(NitricAcid.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("HNO3",true);
+
+        ActiniumTriniumHydroxides = new Material.Builder(id++, tjfId("actinium_trinium_hydroxides"))
+                .dust()
+                .color((ActiniumOxalate.getMaterialRGB()+Trinium.getMaterialRGB())/2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("Ke3Ac2(OH)12",true);
+
+        ResidualTriniiteSolution = new Material.Builder(id++, tjfId("residual_triniite_solution"))
+                .liquid()
+                .color(0x219daf)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        Perfluorobenzene = new Material.Builder(id++, tjfId("perfluorobenzene"))
+                .liquid()
+                .color(0x226E22)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C6F6",true);
+
+        Fluorocarborane = new Material.Builder(id++, tjfId("fluorocarborane"))
+                .dust()
+                .color(0x20EB7A)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("HCHB11F11",true);
+
+        ActiniumRadiumHydroxideSolution = new Material.Builder(id++, tjfId("actinium_radium_hydroxide_solution"))
+                .liquid()
+                .color(0xe2f5ef)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        HeavilyFluorinatedTriniumSolution = new Material.Builder(id++, tjfId("heavily_fluorinated_trinium_solution"))
+                .liquid()
+                .color(0x348d41)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        MoltenCalciumSalts = new Material.Builder(id++, tjfId("molten_calcium_salts"))
+                .liquid()
+                .color((Fluorite.getMaterialRGB()+Calcium.getMaterialRGB())/2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        TriniumTetrafluoride = new Material.Builder(id++, tjfId("trinium_tetrafluoride"))
+                .dust()
+                .color(0x477347)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("KeF4",true);
+
+        AcetylChloride = new Material.Builder(id++, tjfId("acetyl_chloride"))
+                .liquid()
+                .color(AceticAcid.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C2H3OCl",true);
+
+        EthylTrifluoroacetate = new Material.Builder(id++, tjfId("ethyl_trifluoroacetate"))
+                .liquid()
+                .color(0x88a12d)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C4H5F3O2",true);
+
+        PhosphorousPentasulfide = new Material.Builder(id++, tjfId("phosphorous_pentasulfide"))
+                .dust()
+                .color(0xEBAD24)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("P4S10",true);
+
+        Acetothienone = new Material.Builder(id++, tjfId("acetothieone"))
+                .liquid()
+                .color(0x79882a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C6H6SO",true);
+
+        TheonylTrifluoroacetate = new Material.Builder(id++, tjfId("theonyl_trifluoroacetate"))
+                .liquid()
+                .color(0x88882b)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C8H5F3O2S",true);
+
+        ActiniumRadiumNitrateSolution = new Material.Builder(id++, tjfId("actinium_radium_nitrate_solution"))
+                .liquid()
+                .color(0xd2f0df)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build();
+
+        ActiniumNitrate = new Material.Builder(id++, tjfId("actinium_nitrate"))
+                .dust()
+                .color(YttriumNitrate.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("Ac(NO3)3",true);
+
+        RadiumNitrate = new Material.Builder(id++, tjfId("radium_nitrate"))
+                .dust()
+                .color(BariumNitrate.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("Ra(NO3)2",true);
+
         /*
         = new Material.Builder(id++, tjfId("material"))
                 .ingot().liquid()
@@ -9310,7 +9549,7 @@ public class TJFMaterials {
         //LIQUIDS
         //TODO: get proper temperatures
         List<Material> lmats = new ArrayList<>();
-        Collections.addAll(lmats, Fluorine, Xenon, Helium3, Hydrogen);
+        Collections.addAll(lmats, Fluorine, Xenon, Helium3, Hydrogen, Nitrogen);
         for (Material mat : lmats) {
             addLiquid(mat, new FluidBuilder()
                     .temperature(40)

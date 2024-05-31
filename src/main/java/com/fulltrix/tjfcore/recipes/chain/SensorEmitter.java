@@ -3,7 +3,7 @@ package com.fulltrix.tjfcore.recipes.chain;
 import static com.fulltrix.tjfcore.TJFMaterials.*;
 import static com.fulltrix.tjfcore.item.TJFCoreItems.*;
 import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.CHEMICAL_PLANT_RECIPES;
-import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.LARGE_MIXER_RECIPES;
+import static com.fulltrix.tjfcore.recipes.TJFRecipeMaps.ADVANCED_MIXER_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
@@ -136,7 +136,7 @@ public class SensorEmitter {
                 .buildAndRegister();
 
         // 4Tb + 7Ds + 10Fe + 5Co + 2B + Si + C -> [4Tb + 7Ds + 10Fe + 5Co + 2B + Si + C]
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(940).EUt(30)
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(940).EUt(30)
                 .input(dust, Terbium, 4)
                 .input(dust, Dysprosium, 7)
                 .input(dust, Iron, 10)
