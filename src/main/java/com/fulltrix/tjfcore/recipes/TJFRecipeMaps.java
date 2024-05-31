@@ -13,6 +13,7 @@ import gregtech.api.recipes.builders.FuelRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.core.sound.GTSoundEvents;
 import net.minecraft.init.SoundEvents;
+import static gregtech.api.recipes.RecipeMaps.*;
 
 public class TJFRecipeMaps {
 

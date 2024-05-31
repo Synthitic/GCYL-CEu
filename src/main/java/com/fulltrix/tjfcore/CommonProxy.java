@@ -6,6 +6,7 @@ import com.fulltrix.tjfcore.recipes.categories.handlers.ElectricImplosionHandler
 import com.fulltrix.tjfcore.recipes.categories.handlers.FuelHandler;
 import com.fulltrix.tjfcore.recipes.categories.handlers.VoidMinerHandler;
 import com.fulltrix.tjfcore.recipes.recipeproperties.AdvFusionCoilProperty;
+import gregicality.multiblocks.common.GCYMConfigHolder;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.api.event.HighTierEvent;
 import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
@@ -47,6 +48,9 @@ public class CommonProxy {
     public static void forceHighTierConfig(HighTierEvent event) {
         //Force enable high tier content, regardless of config option
         event.enableHighTier();
+
+        //Force enable tiered casings from GCYM
+        GCYMConfigHolder.globalMultiblocks.enableTieredCasings = true;
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)

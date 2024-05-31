@@ -13,7 +13,7 @@ public class TJFReactorCasing extends VariantBlock<TJFReactorCasing.CasingType> 
 
     public TJFReactorCasing() {
         super(Material.IRON);
-        setTranslationKey("ga_reactor_casing");
+        setTranslationKey("tjf_reactor_casing");
         setHardness(5.0f);
         setResistance(10.0f);
         setSoundType(SoundType.METAL);
