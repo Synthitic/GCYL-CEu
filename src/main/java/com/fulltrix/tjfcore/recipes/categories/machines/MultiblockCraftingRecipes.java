@@ -1,11 +1,13 @@
 package com.fulltrix.tjfcore.recipes.categories.machines;
 
+import com.fulltrix.tjfcore.item.TJFMetaBlocks;
 import gregtech.api.GTValues;
 
 import static com.fulltrix.tjfcore.TJFMaterials.*;
-import static com.fulltrix.tjfcore.machines.TJFTileEntities.BIO_REACTOR;
-import static com.fulltrix.tjfcore.machines.TJFTileEntities.VOID_MINER;
-import static gregicality.multiblocks.api.unification.GCYMMaterials.IncoloyMA956;
+import static com.fulltrix.tjfcore.item.TJFCoreItems.*;
+import static com.fulltrix.tjfcore.item.fusion.TJFFusionCasing.CasingType.ADV_FUSION_COIL_3;
+import static com.fulltrix.tjfcore.machines.TJFTileEntities.*;
+import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.GTValues.VA;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
@@ -145,6 +147,102 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .outputs(BIO_REACTOR.getStackForm())
                 .buildAndRegister();
 
+        // Hyper Reactor Mk1
+        /*
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(500).EUt(2000000)
+                .fluidInputs(SolderingAlloy.getFluid(L * 9))
+                .input(plate, Tritanium, 8)
+                .input(plate, Naquadria, 32)
+                .input(screw, Naquadria, 64)
+                .input(screw, Dubnium, 64)
+                .input(foil, Polyetheretherketone, 64)
+                .inputs(LARGE_NAQUADAH_REACTOR.getStackForm())
+                .inputs(UHPIC.getStackForm(16))
+                .inputs(ELECTRIC_PUMP_UIV.getStackForm(2))
+                .inputs(FIELD_GENERATOR_UIV.getStackForm(2))
+                .input(circuit, UIV, 4)
+                .outputs(HYPER_REACTOR_I.getStackForm())
+                .buildAndRegister();
+
+         */
+
+        // Hyper Reactor Mk2
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(500).EUt(8000000)
+                .fluidInputs(SolderingAlloy.getFluid(L * 36))
+                .input(plate, Incoloy813, 32)
+                .input(plate, EnrichedNaquadahAlloy, 32)
+                .input(screw, Ruridit, 64)
+                .input(stick, AbyssalAlloy, 16)
+                .input(gear, TungstenTitaniumCarbide, 8)
+                .input(circuit, UXV, 4)
+                .input(foil, Zylon, 64)
+                .inputs(FIELD_GENERATOR_UXV.getStackForm(2))
+                .inputs(ELECTRIC_PUMP_UXV.getStackForm(2))
+                .inputs(HYPER_REACTOR[0].getStackForm())
+                .outputs(HYPER_REACTOR[1].getStackForm())
+                .buildAndRegister();
+
+        // Hyper Reactor Mk3
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(500).EUt(32000000)
+                .fluidInputs(SolderingAlloy.getFluid(L * 144))
+                .input(plate, HastelloyX78, 32)
+                .input(plate, HastelloyK243, 32)
+                .input(screw, Zeron100, 64)
+                .input(stick, TitanSteel, 16)
+                .input(gear, Pikyonium, 8)
+                .input(circuit, UXV, 4)
+                .inputs(DEGENERATE_RHENIUM_PLATE.getStackForm(4))
+                .input(foil, Zylon, 64)
+                .input(foil, Zylon, 64)
+                .inputs(FIELD_GENERATOR_UXV.getStackForm(2))
+                .inputs(ELECTRIC_PUMP_UXV.getStackForm(2))
+                .inputs(HYPER_REACTOR[1].getStackForm())
+                .outputs(HYPER_REACTOR[2].getStackForm())
+                .buildAndRegister();
+
+        // Stellar Forge
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(500).EUt(2000000)
+                .fluidInputs(SolderingAlloy.getFluid(L * 144))
+                .input(plate, Trinium, 32)
+                .input(stick, HDCS, 16)
+                .input(gear, TungstenTitaniumCarbide, 16)
+                .input(screw, Incoloy813, 32)
+                .input(bolt, EnrichedNaquadahAlloy, 64)
+                .input(circuit, UIV, 2)
+                .inputs(SENSOR_UHV.getStackForm(4))
+                .inputs(EMITTER_UHV.getStackForm(4))
+                .inputs(FIELD_GENERATOR_UHV.getStackForm(2))
+                .outputs(STELLAR_FORGE.getStackForm())
+                .buildAndRegister();
+
+        // Plasma Condenser
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(250).EUt(7680)
+                .fluidInputs(SolderingAlloy.getFluid(L * 10))
+                .inputs(SENSOR_LuV.getStackForm())
+                .inputs(ELECTRIC_MOTOR_LuV.getStackForm(2))
+                .inputs(ELECTRIC_PUMP_LuV.getStackForm(2))
+                .input(plate, RhodiumPlatedPalladium, 8)
+                .input(gear, TungstenCarbide, 4)
+                .input(screw, Inconel792, 16)
+                .input(circuit, ZPM, 2)
+                .outputs(PLASMA_CONDENSER.getStackForm())
+                .buildAndRegister();
+
+        // Cosmic Ray Detector
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(410).EUt(24000000)
+                .fluidInputs(Cinobite.getFluid(L * 6))
+                .fluidInputs(SolderingAlloy.getFluid(L * 9))
+                .input(gear, Quantum, 12)
+                .input(plateDense, TitanSteel, 8)
+                .input(plate, Adamantium, 24)
+                .input(foil, FullerenePolymerMatrix, 6)
+                .inputs(SENSOR_UIV.getStackForm(4))
+                .inputs(SCINTILLATOR.getStackForm(2))
+                .inputs(LEPTON_TRAP_CRYSTAL.getStackForm(4))
+                .inputs(TJFMetaBlocks.FUSION_CASING.getItemVariant(ADV_FUSION_COIL_3, 2))
+                .outputs(COSMIC_RAY_DETECTOR.getStackForm())
+                .buildAndRegister();
+
             /*
             // Large Laser Engraver
             ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(30720).duration(500)
@@ -162,20 +260,7 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                     .outputs(LARGE_LASER_ENGRAVER.getStackForm())
                     .buildAndRegister();
 
-            // Cosmic Ray Detector
-            ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(410).EUt(24000000)
-                    .fluidInputs(Cinobite.getFluid(L * 6))
-                    .fluidInputs(SolderingAlloy.getFluid(L * 9))
-                    .input(gear, Quantum, 12)
-                    .input(plateDense, TitanSteel, 8)
-                    .input(plate, Adamantium, 24)
-                    .input(foil, FullerenePolymerMatrix, 6)
-                    .inputs(SENSOR_UIV.getStackForm(4))
-                    .inputs(SCINTILLATOR.getStackForm(2))
-                    .inputs(LEPTON_TRAP_CRYSTAL.getStackForm(4))
-                    .inputs(GAMetaBlocks.FUSION_CASING.getItemVariant(ADV_FUSION_COIL_3, 2))
-                    .outputs(COSMIC_RAY_DETECTOR.getStackForm())
-                    .buildAndRegister();
+
 
             // Naquadah Reactor
             ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(1000).EUt(90000)
@@ -245,83 +330,7 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                     .outputs(GATileEntities.FUSION_REACTOR[2].getStackForm())
                     .buildAndRegister();
 
-            // Hyper Reactor Mk1
-            ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(500).EUt(2000000)
-                    .fluidInputs(SolderingAlloy.getFluid(L * 9))
-                    .input(plate, Tritanium, 8)
-                    .input(plate, Naquadria, 32)
-                    .input(screw, Naquadria, 64)
-                    .input(screw, Dubnium, 64)
-                    .input(foil, Polyetheretherketone, 64)
-                    .inputs(LARGE_NAQUADAH_REACTOR.getStackForm())
-                    .inputs(UHPIC.getStackForm(16))
-                    .inputs(ELECTRIC_PUMP_UIV.getStackForm(2))
-                    .inputs(FIELD_GENERATOR_UIV.getStackForm(2))
-                    .input(circuit, UIV, 4)
-                    .outputs(HYPER_REACTOR_I.getStackForm())
-                    .buildAndRegister();
 
-            // Hyper Reactor Mk2
-            ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(500).EUt(8000000)
-                    .fluidInputs(SolderingAlloy.getFluid(L * 36))
-                    .input(plate, Incoloy813, 32)
-                    .input(plate, EnrichedNaquadahAlloy, 32)
-                    .input(screw, Ruridit, 64)
-                    .input(stick, AbyssalAlloy, 16)
-                    .input(gear, TungstenTitaniumCarbide, 8)
-                    .input(circuit, UMV, 4)
-                    .input(foil, Zylon, 64)
-                    .inputs(FIELD_GENERATOR_UMV.getStackForm(2))
-                    .inputs(ELECTRIC_PUMP_UMV.getStackForm(2))
-                    .inputs(HYPER_REACTOR_I.getStackForm())
-                    .outputs(HYPER_REACTOR_II.getStackForm())
-                    .buildAndRegister();
-
-            // Hyper Reactor Mk3
-            ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(500).EUt(32000000)
-                    .fluidInputs(SolderingAlloy.getFluid(L * 144))
-                    .input(plate, HastelloyX78, 32)
-                    .input(plate, HastelloyK243, 32)
-                    .input(screw, Zeron100, 64)
-                    .input(stick, TitanSteel, 16)
-                    .input(gear, Pikyonium, 8)
-                    .input(circuit, UXV, 4)
-                    .inputs(DEGENERATE_RHENIUM_PLATE.getStackForm(4))
-                    .input(foil, Zylon, 64)
-                    .input(foil, Zylon, 64)
-                    .inputs(FIELD_GENERATOR_UXV.getStackForm(2))
-                    .inputs(ELECTRIC_PUMP_UXV.getStackForm(2))
-                    .inputs(HYPER_REACTOR_II.getStackForm())
-                    .outputs(HYPER_REACTOR_III.getStackForm())
-                    .buildAndRegister();
-
-            // Stellar Forge
-            ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(500).EUt(2000000)
-                    .fluidInputs(SolderingAlloy.getFluid(L * 144))
-                    .input(plate, Trinium, 32)
-                    .input(stick, HDCS, 16)
-                    .input(gear, TungstenTitaniumCarbide, 16)
-                    .input(screw, Incoloy813, 32)
-                    .input(bolt, EnrichedNaquadahAlloy, 64)
-                    .input(circuit, UIV, 2)
-                    .inputs(SENSOR_UHV.getStackForm(4))
-                    .inputs(EMITTER_UHV.getStackForm(4))
-                    .inputs(FIELD_GENERATOR_UHV.getStackForm(2))
-                    .outputs(STELLAR_FORGE.getStackForm())
-                    .buildAndRegister();
-
-            // Plasma Condenser
-            ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(250).EUt(7680)
-                    .fluidInputs(SolderingAlloy.getFluid(L * 10))
-                    .inputs(SENSOR_LUV.getStackForm())
-                    .inputs(ELECTRIC_MOTOR_LUV.getStackForm(2))
-                    .inputs(ELECTRIC_PUMP_LUV.getStackForm(2))
-                    .input(plate, RhodiumPlatedPalladium, 8)
-                    .input(gear, TungstenCarbide, 4)
-                    .input(screw, Inconel792, 16)
-                    .input(circuit, Master, 2)
-                    .outputs(PLASMA_CONDENSER.getStackForm())
-                    .buildAndRegister();
 
             // Fluid Drilling Rig I
             ASSEMBLER_RECIPES.recipeBuilder().duration(400).EUt(120)

@@ -24,6 +24,7 @@ public class MachineCraftingRecipes {
     public static void init() {
         hullOverride();
         MultiblockCraftingRecipes.init();
+        SingleblockCraftingRecipes.init();
     }
 
     private static void hullOverride() { //TODO add OpV machine hull recipes
@@ -59,7 +60,7 @@ public class MachineCraftingRecipes {
     /*
     public static void init() {
         MultiblockCraftingRecipes.init();
-        SingleblockCraftingRecipes.init();
+
         hullOverride();
         misc();
     }

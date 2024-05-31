@@ -126,7 +126,7 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
                         .where('S', selfPredicate())
                         .where('F', frames(Naquadria))
                         .where('H', states(TJFMetaBlocks.REACTOR_CASING.getState(TJFReactorCasing.CasingType.HYPER_CORE_2)))
-                        .where('c', states(getCasingState(UEV)).setMinGlobalLimited(220))
+                        .where('c', states(getCasingState(UEV)).setMinGlobalLimited(250))
                         .build();
             } else if (tier == b) {
                 return FactoryBlockPattern.start()
@@ -141,7 +141,7 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
                         .aisle("##F#####F##","##F#####F##","##F#####F##","##F#####F##","##F#####F##", "##F#####F##", "##FCCCCCF##", "##C#####C##", "#C#######C#", "#C#######C#", "#C#######C#", "#C#######C#", "#C#######C#", "##C#####C##", "###CCCCC###", "###########")
                         .aisle("###########","###########","###########","###########","###########", "###########", "###########", "###CCCCC###", "##CC###CC##", "##C#####C##", "##C#####C##", "##C#####C##", "##CC###CC##", "###CCCCC###", "###########", "###########")
                         .aisle("###########","###########","###########","###########","###########", "###########", "###########", "###########", "####CCC####", "###CCCCC###", "###CCSCC###", "###CCCCC###", "####CCC####", "###########", "###########", "###########")
-                        .where('C', states(getCasingState(UIV)).or(autoAbilities(false,true,true,true,true,true,false)
+                        .where('C', states(getCasingState(UIV)).setMinGlobalLimited(250).or(autoAbilities(false,true,true,true,true,true,false)
                                 .or(abilities(MultiblockAbility.OUTPUT_ENERGY).setExactLimit(1))))
                         .where('#', any())
                         .where('S', selfPredicate())
@@ -164,7 +164,7 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
                         .where('G', states(TJFMetaBlocks.TRANSPARENT_CASING.getState(TJFTransparentCasing.CasingType.OSMIRIDIUM_GLASS)))
                         .where('H', states(TJFMetaBlocks.REACTOR_CASING.getState(TJFReactorCasing.CasingType.HYPER_CORE)))
                         .where('#', air())
-                        .where('c', states(getCasingState(UHV)).setMinGlobalLimited(55))
+                        .where('c', states(getCasingState(UHV)).setMinGlobalLimited(25))
                         .build();
             }
     }

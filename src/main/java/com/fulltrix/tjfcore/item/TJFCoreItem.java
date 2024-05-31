@@ -3,6 +3,7 @@ package com.fulltrix.tjfcore.item;
 import gregtech.api.items.metaitem.StandardMetaItem;
 import gregtech.api.unification.material.MarkerMaterials.Tier;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.common.items.behaviors.DataItemBehavior;
 
 import static com.fulltrix.tjfcore.item.TJFCoreItems.*;
 
@@ -342,6 +343,8 @@ public class TJFCoreItem extends StandardMetaItem {
         SATURATED_FULLERENE_SIEVING_MATRIX =addItem(610, "saturated.fullerene.sieving.matrix");
 
         SMALL_COIL = addItem(611, "small_coil");
+
+        TOOL_DATA_SUPRACAUSAL = addItem(615, "tool.datasupracausal").addComponents(new DataItemBehavior(true));
 
         PYROLYTIC_CARBON = addItem(16, "pyrolytic_carbon");
         MICA_SHEET = addItem(26, "mica_sheet");

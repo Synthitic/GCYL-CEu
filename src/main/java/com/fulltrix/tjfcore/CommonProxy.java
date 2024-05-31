@@ -6,17 +6,22 @@ import com.fulltrix.tjfcore.recipes.TJFRecipeMaps;
 import com.fulltrix.tjfcore.recipes.categories.handlers.ElectricImplosionHandler;
 import com.fulltrix.tjfcore.recipes.categories.handlers.FuelHandler;
 import com.fulltrix.tjfcore.recipes.categories.handlers.VoidMinerHandler;
+import com.fulltrix.tjfcore.recipes.helper.GCYLComponents;
 import com.fulltrix.tjfcore.recipes.recipeproperties.AdvFusionCoilProperty;
 import gregicality.multiblocks.common.GCYMConfigHolder;
+import gregtech.api.GregTechAPI;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.api.event.HighTierEvent;
+import gregtech.api.recipes.GTRecipeInputCache;
 import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
 import gregtech.api.unification.material.event.MaterialEvent;
+import gregtech.loaders.recipe.CraftingComponent;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.RegistryEvent;
@@ -102,6 +107,13 @@ public class CommonProxy {
         registry.register(createItemBlock(METAL_CASING_1, VariantItemBlock::new));
         registry.register(createItemBlock(METAL_CASING_2, VariantItemBlock::new));
         registry.register(createItemBlock(REACTOR_CASING, VariantItemBlock::new));
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void initComponents(RegistryEvent.Register<IRecipe> event) {
+        GTRecipeInputCache.enableCache();
+        GCYLComponents.initializeComponents();
+        MinecraftForge.EVENT_BUS.post(new GregTechAPI.RegisterEvent<>(null, GCYLComponents.class));
     }
 
 

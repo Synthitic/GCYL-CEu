@@ -4,8 +4,10 @@ import gregtech.api.unification.material.Materials;
 import net.minecraftforge.fml.common.Loader;
 
 import static com.fulltrix.tjfcore.TJFMaterials.*;
-import static com.fulltrix.tjfcore.recipes.helper.HelperMethods.registerHyperReactorFuel;
+import static com.fulltrix.tjfcore.recipes.helper.HelperMethods.*;
 import static gregtech.api.GTValues.*;
+import static gregtech.api.GTValues.EV;
+import static gregtech.api.GTValues.LuV;
 import static gregtech.api.GTValues.UV;
 import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -107,6 +109,9 @@ public class FuelHandler {
         registerSemiFluidGeneratorFuel(CoalTarOil        .getFluid(160),  10, LV);
         registerSemiFluidGeneratorFuel(SulfuricCoalTarOil.getFluid(120),  10, LV);
 
+
+         */
+
         // Rocket Fuel
         registerRocketFuel(RocketFuelH8N4C2O4       .getFluid( 3), 160, EV);
         registerRocketFuel(RocketFuelCN3H7O3        .getFluid( 6), 120, EV);
@@ -121,9 +126,6 @@ public class FuelHandler {
         registerNaquadahReactorFuel(HeavyNaquadahFuel  .getFluid(1), 320, LuV);
         registerNaquadahReactorFuel(MediumNaquadahFuel .getFluid(1),  182, LuV);
         registerNaquadahReactorFuel(LightNaquadahFuel  .getFluid( 1),  97, LuV);
-
-
-         */
 
         // Hyper Reactor Fuels
         registerHyperReactorFuel(HyperFuelI  .getFluid(1),  24, UV);

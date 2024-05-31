@@ -23,13 +23,23 @@ public class ClientHandler {
     public static SimpleOverlayRenderer NAQUADRIA_CASING;
     public static SimpleOverlayRenderer HYPER_CASING;
     public static SimpleOverlayRenderer HYPER_CASING_2;
-
     public static SimpleOverlayRenderer ENRICHED_NAQUADAH_ALLOY_CASING;
+    public static SimpleOverlayRenderer ADVANCED_FUSION;
+    public static SimpleOverlayRenderer ADVANCED_FUSION_ACTIVE;
+
+    public static OrientedOverlayRenderer NAQADAH_OVERLAY;
+    public static OrientedOverlayRenderer ROCKET_OVERLAY;
 
     private ClientHandler() {
     }
 
     public static void preInit() {
+        ADVANCED_FUSION = new SimpleOverlayRenderer("casings/fusion/machine_casing_adv_fusion_hatch");
+        ADVANCED_FUSION_ACTIVE = new SimpleOverlayRenderer("casings/fusion/machine_casing_adv_fusion_hatch_active");
+
+        NAQADAH_OVERLAY = new OrientedOverlayRenderer("machines/naquadah_reactor");
+        ROCKET_OVERLAY = new OrientedOverlayRenderer("machines/rocket_generator");
+
         BIO_REACTOR = new SimpleOverlayRenderer("casings/solid/bio_reactor_casing");
         FUSION_TEXTURE = new SimpleOverlayRenderer("casings/fusion/machine_casing_fusion_glass");
 

@@ -1,5 +1,6 @@
 package com.fulltrix.tjfcore.machines.multi.advance;
 
+import com.fulltrix.tjfcore.client.ClientHandler;
 import com.fulltrix.tjfcore.item.TJFMetaBlocks;
 import com.fulltrix.tjfcore.item.fusion.TJFCryostatCasing;
 import com.fulltrix.tjfcore.item.fusion.TJFDivertorCasing;
@@ -152,9 +153,9 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
     @Override
     public ICubeRenderer getBaseTexture(IMultiblockPart sourcePart) {
         if (this.recipeMapWorkable.isActive()) {
-            return Textures.ACTIVE_FUSION_TEXTURE;
+            return ClientHandler.ADVANCED_FUSION_ACTIVE;
         } else {
-            return Textures.FUSION_TEXTURE;
+            return ClientHandler.ADVANCED_FUSION;
         }
     }
 

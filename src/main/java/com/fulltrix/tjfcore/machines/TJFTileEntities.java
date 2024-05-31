@@ -2,6 +2,7 @@ package com.fulltrix.tjfcore.machines;
 
 import com.fulltrix.tjfcore.TJFConfig;
 import com.fulltrix.tjfcore.TJFUtility;
+import com.fulltrix.tjfcore.client.ClientHandler;
 import com.fulltrix.tjfcore.machines.multi.MetaTileEntityBioReactor;
 import com.fulltrix.tjfcore.machines.multi.MetaTileEntityCosmicRayDetector;
 import com.fulltrix.tjfcore.machines.multi.MetaTileEntityElectricImplosion;
@@ -10,9 +11,8 @@ import com.fulltrix.tjfcore.machines.multi.advance.*;
 import com.fulltrix.tjfcore.machines.multi.miner.MetaTileEntityVoidMiner;
 import com.fulltrix.tjfcore.machines.multi.simple.MetaTileEntityPlasmaCondenser;
 import com.fulltrix.tjfcore.recipes.TJFRecipeMaps;
-import gregicality.multiblocks.common.metatileentities.multiblock.standard.MetaTileEntityLargeMixer;
 import gregtech.api.GTValues;
-import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.metatileentity.SimpleGeneratorMetaTileEntity;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.texture.Textures;
@@ -36,6 +36,8 @@ public class TJFTileEntities {
     public static MetaTileEntityAdvMixer ADVANCED_MIXER;
     public static MetaTileEntityAdvCentrifuge ADVANCED_CENTRIFUGE;
     public static MetaTileEntityElectricImplosion ELECTRIC_IMPLOSION;
+    public static SimpleGeneratorMetaTileEntity[] NAQUADAH_REACTOR = new SimpleGeneratorMetaTileEntity[8];
+    public static SimpleGeneratorMetaTileEntity[] ROCKET_GENERATOR = new SimpleGeneratorMetaTileEntity[8];
 
     ///////////////////////////////////////////
     public static final MetaTileEntityEnergyHatch[] ENERGY_INPUT_HATCH_4A = new MetaTileEntityEnergyHatch[4]; // UEV, UIV, UXV, OPV
@@ -76,6 +78,36 @@ public class TJFTileEntities {
         ADVANCED_CENTRIFUGE = registerMetaTileEntity(++id, new MetaTileEntityAdvCentrifuge(tjfId("large_centrifuge")));
 
         ELECTRIC_IMPLOSION = registerMetaTileEntity(++id, new MetaTileEntityElectricImplosion(tjfId("electric_implosion")));
+
+
+        //TODO: configurable efficiency for naq reactors, efficiency implementation in general
+
+        /*
+        if (TJFConfig.Misc.naqEfficieny) {
+            NAQUADAH_REACTOR[4] = registerMetaTileEntity(++id, new SimpleGeneratorWithLossMetaTileEntity(tjfId("naquadah_reactor.mk2"), TJFRecipeMaps.NAQUADAH_REACTOR_FUELS, ClientHandler.NAQADAH_OVERLAY, 6, 100));
+            NAQUADAH_REACTOR[5] = registerMetaTileEntity(++id, new SimpleGeneratorWithLossMetaTileEntity(tjfId("naquadah_reactor.mk3"), TJFRecipeMaps.NAQUADAH_REACTOR_FUELS, ClientHandler.NAQADAH_OVERLAY, 7, 80));
+            NAQUADAH_REACTOR[6] = registerMetaTileEntity(++id, new SimpleGeneratorWithLossMetaTileEntity(tjfId("naquadah_reactor.mk4"), TJFRecipeMaps.NAQUADAH_REACTOR_FUELS, ClientHandler.NAQADAH_OVERLAY, 8, 50));
+        } else {
+
+         */
+            NAQUADAH_REACTOR[4] = registerMetaTileEntity(++id, new SimpleGeneratorMetaTileEntity(tjfId("naquadah_reactor.mk2"), TJFRecipeMaps.NAQUADAH_REACTOR_FUELS, ClientHandler.NAQADAH_OVERLAY, 6,GTUtility.genericGeneratorTankSizeFunction));
+            NAQUADAH_REACTOR[5] = registerMetaTileEntity(++id, new SimpleGeneratorMetaTileEntity(tjfId("naquadah_reactor.mk3"), TJFRecipeMaps.NAQUADAH_REACTOR_FUELS, ClientHandler.NAQADAH_OVERLAY, 7, GTUtility.genericGeneratorTankSizeFunction));
+            NAQUADAH_REACTOR[6] = registerMetaTileEntity(++id, new SimpleGeneratorMetaTileEntity(tjfId("naquadah_reactor.mk4"), TJFRecipeMaps.NAQUADAH_REACTOR_FUELS, ClientHandler.NAQADAH_OVERLAY, 8, GTUtility.genericGeneratorTankSizeFunction));
+        /*}
+
+        if (TJFConfig.Misc.rocketEfficiency) {
+            ROCKET_GENERATOR[3] = registerMetaTileEntity(++id, new SimpleGeneratorWithLossMetaTileEntity(tjfId("rocket_generator.mk1"), TJFRecipeMaps.ROCKET_FUEL_RECIPES, ClientHandler.ROCKET_OVERLAY, 4, TJFConfig.Misc.EVRocketEfficiency));
+            ROCKET_GENERATOR[4] = registerMetaTileEntity(++id, new SimpleGeneratorWithLossMetaTileEntity(tjfId("rocket_generator.mk2"), TJFRecipeMaps.ROCKET_FUEL_RECIPES, ClientHandler.ROCKET_OVERLAY, 5,  TJFConfig.Misc.IVRocketEfficiency));
+            ROCKET_GENERATOR[5] = registerMetaTileEntity(++id, new SimpleGeneratorWithLossMetaTileEntity(tjfId("rocket_generator.mk3"), TJFRecipeMaps.ROCKET_FUEL_RECIPES, ClientHandler.ROCKET_OVERLAY, 6,  TJFConfig.Misc.LuVRocketEfficiency));
+        } else {
+
+         */
+            ROCKET_GENERATOR[3] = registerMetaTileEntity(++id, new SimpleGeneratorMetaTileEntity(tjfId("rocket_generator.mk1"), TJFRecipeMaps.ROCKET_FUEL_RECIPES, ClientHandler.ROCKET_OVERLAY, 4, GTUtility.genericGeneratorTankSizeFunction));
+            ROCKET_GENERATOR[4] = registerMetaTileEntity(++id, new SimpleGeneratorMetaTileEntity(tjfId("rocket_generator.mk2"), TJFRecipeMaps.ROCKET_FUEL_RECIPES, ClientHandler.ROCKET_OVERLAY, 5, GTUtility.genericGeneratorTankSizeFunction));
+            ROCKET_GENERATOR[5] = registerMetaTileEntity(++id, new SimpleGeneratorMetaTileEntity(tjfId("rocket_generator.mk3"), TJFRecipeMaps.ROCKET_FUEL_RECIPES, ClientHandler.ROCKET_OVERLAY, 6, GTUtility.genericGeneratorTankSizeFunction));
+        //}
+
+        //TODO: figure this out
         /*
         for(int i = 10; i<13 ; i++) {
             String voltageName = GTValues.VN[i].toLowerCase();

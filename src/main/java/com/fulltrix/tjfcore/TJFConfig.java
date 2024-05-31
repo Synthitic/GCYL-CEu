@@ -110,5 +110,21 @@ public class TJFConfig {
         @Config.Name("Enable Magneto Circuits")
         @Config.RequiresMcRestart
         public boolean enableMagnetoCircuits = true;
+
+        @Config.Comment("Whether or not to add diminishing returns for Gregicality Naquadah Reactors. Does not affect the Large Nauqadah Reactor")
+        @Config.Name("Naquadah Reactor efficiency loss")
+        @Config.RequiresMcRestart
+        public boolean naqEfficieny = true;
+
+        @Config.Comment("Whether or not to add diminishing returns for Gregicality Rocket Engines. Does not affect the Large Rocket Engine")
+        @Config.Name("Rocket Engine efficiency loss")
+        @Config.RequiresMcRestart
+        public boolean rocketEfficiency = true;
+        @Config.Comment("Efficiency level for the EV rocket engine")
+        public int EVRocketEfficiency= 65;
+        @Config.Comment("Efficiency level for the IV rocket engine")
+        public int IVRocketEfficiency= 35;
+        @Config.Comment("Efficiency level for the LuV rocket engine")
+        public int LuVRocketEfficiency= 25;
     }
 }

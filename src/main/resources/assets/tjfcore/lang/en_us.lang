@@ -453,6 +453,9 @@ metaitem.data_stick.tooltip.capacity=Capacity: %,dmB
 metaitem.data_stick.tooltip.current=Current: %,dmB
 metaitem.data_stick.tooltip.fluid=Fluid: %d
 
+metaitem.tool.datasupracausal.name=Supra-Causal Data Module
+metaitem.tool.datasupracausal.tooltip=Storage for Causality Violating Data/n§cCan only be read by a Data Bank
+
 etaitem.acrylic_fibers=Acrylic Fibers
 tjfcore.material.uranyl_nitrate=Uranyl Nitrate
 tjfcore.material.calcium_salts=Calcium Salts

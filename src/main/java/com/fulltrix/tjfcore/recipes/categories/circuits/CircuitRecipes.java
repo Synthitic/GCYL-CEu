@@ -1,9 +1,15 @@
 package com.fulltrix.tjfcore.recipes.categories.circuits;
 
 
+import com.fulltrix.tjfcore.item.TJFMetaBlocks;
+import com.fulltrix.tjfcore.item.fusion.TJFFusionCasing;
+import gregtech.api.GTValues;
+import net.minecraft.block.BlockPotato;
+
 import static com.fulltrix.tjfcore.TJFMaterials.*;
 import static com.fulltrix.tjfcore.item.TJFCoreItems.*;
 import static gregtech.api.GTValues.L;
+import static gregtech.api.GTValues.VA;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
@@ -511,6 +517,11 @@ public class CircuitRecipes {
                 .fluidInputs(ProtoAdamantium.getFluid(L * 64))
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L * 64))
                 .outputs(SUPRACAUSAL_MAINFRAME.getStackForm())
+                .stationResearch(b -> b
+                        .researchStack(SUPRACAUSAL_COMPUTER.getStackForm())
+                        .dataStack(TOOL_DATA_SUPRACAUSAL.getStackForm())
+                        .CWUt(4096)
+                        .EUt(VA[GTValues.MAX]))
                 .buildAndRegister();
     }
 }

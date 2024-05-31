@@ -1058,6 +1058,10 @@ public class TJFMaterials {
     public static Material ActiniumRadiumNitrateSolution;
     public static Material ActiniumNitrate;
     public static Material RadiumNitrate;
+    public static Material Americium243;
+    public static Material Curium247;
+    public static Material Californium253;
+    public static Material Fermium259;
 
     //COILS
     public static Material Pikyonium;
@@ -1127,7 +1131,6 @@ public class TJFMaterials {
                 .element(Elements.Pu)
                 .build();
 
-
         Americium241 = new Material.Builder(id++, tjfId("americium_241"))
                 .ingot()
                 .color(13158600)
@@ -1152,13 +1155,45 @@ public class TJFMaterials {
                 .build()
                 .setFormula("Cf_252", true);
 
-        Mendelevium261 = new Material.Builder(id++, tjfId("californium_261"))
+        Mendelevium261 = new Material.Builder(id++, tjfId("mendelevium_261"))
                 .ingot()
                 .color(Mendelevium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
                 .build()
-                .setFormula("Md_252", true);
+                .setFormula("Md_261", true);
+
+        Americium243 = new Material.Builder(id++, tjfId("americium_243"))
+                .ingot()
+                .color(Americium.getMaterialRGB())
+                .iconSet(METALLIC)
+                .flags(STD_METAL)
+                .build()
+                .setFormula("Am_243", true);
+
+        Curium247 = new Material.Builder(id++, tjfId("curium_247"))
+                .ingot()
+                .color(Curium.getMaterialRGB())
+                .iconSet(METALLIC)
+                .flags(STD_METAL)
+                .build()
+                .setFormula("Cm_252", true);
+
+        Californium253 = new Material.Builder(id++, tjfId("californium_253"))
+                .ingot()
+                .color(Californium.getMaterialRGB())
+                .iconSet(METALLIC)
+                .flags(STD_METAL)
+                .build()
+                .setFormula("Cf_253", true);
+
+        Fermium259 = new Material.Builder(id++, tjfId("fermium_259"))
+                .ingot()
+                .color(Fermium.getMaterialRGB())
+                .iconSet(METALLIC)
+                .flags(STD_METAL)
+                .build()
+                .setFormula("Fm_259", true);
 
         //////////////////////
 
@@ -9593,6 +9628,7 @@ public class TJFMaterials {
 
         Copper.addFlags(GENERATE_DENSE);
         StainlessSteel.addFlags(GENERATE_DENSE);
+        Titanium.addFlags(GENERATE_DENSE);
 
         Naquadria.addFlags(GENERATE_FRAME);
         Osmiridium.addFlags(GENERATE_FRAME);

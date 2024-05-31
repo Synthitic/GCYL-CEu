@@ -453,6 +453,7 @@ public class TJFCoreItems {
     public static MetaItem<?>.MetaValueItem SATURATED_FULLERENE_SIEVING_MATRIX;
 
     public static MetaItem<?>.MetaValueItem SMALL_COIL;
+    public static MetaItem<?>.MetaValueItem TOOL_DATA_SUPRACAUSAL;
 
     public static void init() {
         TJFCoreItem item = new TJFCoreItem();

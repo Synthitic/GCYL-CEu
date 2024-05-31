@@ -89,6 +89,19 @@ public class TJFRecipeMaps {
             .allowEmptyOutput()
             .setSound(GTSoundEvents.COOLING);
 
+    public static final RecipeMap<FuelRecipeBuilder> NAQUADAH_REACTOR_FUELS = new RecipeMap<>("naquadah_reactor",
+            0,0,1,0, new FuelRecipeBuilder(),false)
+            .allowEmptyOutput()
+            .setSound(GTSoundEvents.COOLING);
+
+    public static final RecipeMap<FuelRecipeBuilder> ROCKET_FUEL_RECIPES = new RecipeMap<>("rocket_fuel",
+            0,0,1,0, new FuelRecipeBuilder(),false)
+            .allowEmptyOutput()
+            .setSound(GTSoundEvents.COMBUSTION);
+
+
+
+
     public static void modifyMaps() {
         LASER_ENGRAVER_RECIPES.setMaxFluidInputs(1);
         LASER_ENGRAVER_RECIPES.setMaxFluidOutputs(1);
