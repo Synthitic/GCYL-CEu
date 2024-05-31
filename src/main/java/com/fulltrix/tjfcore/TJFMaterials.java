@@ -29,7 +29,7 @@ import static gregtech.api.unification.Elements.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 import static gregtech.api.unification.material.info.MaterialIconSet.*;
-import static gregtech.api.unification.ore.OrePrefix.plate;
+import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.integration.crafttweaker.material.MaterialPropertyExpansion.*;
 import static gregtech.integration.groovy.MaterialPropertyExpansion.addLiquid;
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_DECONSTRUCTION;
@@ -1030,6 +1030,7 @@ public class TJFMaterials {
     public static Material MediumENaquadahFuel;
     public static Material HeavyENaquadahFuel;
     public static Material FluoronaquadricAcid;
+    public static Material Fluorescein;
 
     //COILS
     public static Material TitanSteel;
@@ -1041,6 +1042,7 @@ public class TJFMaterials {
     public static Material Eternity;
 
     //superconductors
+    /*
     public static Material LVSuperconductor = ManganesePhosphide;
     public static Material MVSuperconductor = MagnesiumDiboride;
     public static Material HVSuperconductor = MercuryBariumCalciumCuprate;
@@ -1051,13 +1053,35 @@ public class TJFMaterials {
     public static Material UVSuperconductor = EnrichedNaquadahTriniumEuropiumDuranide;
     public static Material UHVSuperconductor = RutheniumTriniumAmericiumNeutronate;
 
+     */
+    public static Material MVSuperconductor;
+    public static Material HVSuperconductor;
+    public static Material EVSuperconductor;
+    public static Material IVSuperconductor;
+    public static Material LuVSuperconductor;
+    public static Material ZPMSuperconductor;
+    public static Material UVSuperconductor;
+    public static Material UHVSuperconductor;
+
     public static Material UEVSuperconductor;
-
     public static Material UIVSuperconductor;
-
     public static Material UXVSuperconductor;
-
     public static Material OpVSuperconductor;
+    public static Material MAXSuperconductor;
+
+    public static Material MVSuperconductorBase;
+    public static Material HVSuperconductorBase;
+    public static Material EVSuperconductorBase;
+    public static Material IVSuperconductorBase;
+    public static Material LuVSuperconductorBase;
+    public static Material ZPMSuperconductorBase;
+    public static Material UVSuperconductorBase;
+
+    public static Material UHVSuperconductorBase;
+    public static Material UEVSuperconductorBase;
+    public static Material UIVSuperconductorBase;
+    public static Material UXVSuperconductorBase;
+    public static Material OpVSuperconductorBase;
 
 
     ///////////////////////////////////////////
@@ -2575,6 +2599,7 @@ public class TJFMaterials {
                 .build()
                 .setFormula("La2(C60)2CNT", true);
 
+        /*
         UEVSuperconductor = new Material.Builder(id++, tjfId("uev_superconductor"))
                 .ingot(1)
                 .color(0x954fe0)
@@ -2614,6 +2639,8 @@ public class TJFMaterials {
                 .cableProperties(GTValues.V[GTValues.OpV], 4, 0, true)
                 .blast(14000)
                 .build();
+
+         */
 
         SuperheavyLAlloy = new Material.Builder(id++, tjfId("superheavy_l_alloy"))
                 .ingot(6).liquid()
@@ -8888,6 +8915,14 @@ public class TJFMaterials {
                 .build()
                 .setFormula("H2NqF4",true);
 
+        Fluorescein = new Material.Builder(id++, tjfId("fluorescein"))
+                .dust()
+                .color(0x990000)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C20H12O5",true);
+
         /*
         = new Material.Builder(id++, tjfId("material"))
                 .ingot().liquid()
@@ -8917,6 +8952,246 @@ public class TJFMaterials {
 
          */
 
+    }
+
+    public static void registerSuperconductors() {
+
+        MVSuperconductorBase = new Material.Builder(id++, tjfId("mv_superconductor_base"))
+                .ingot().liquid()
+                .color(0x535353)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
+                .components(Cadmium,5,Magnesium,1,Oxygen,6)
+                .cableProperties(GTValues.V[GTValues.MV],4,1)
+                .blast(1200)
+                .build();
+
+        HVSuperconductorBase = new Material.Builder(id++, tjfId("hv_superconductor_base"))
+                .ingot().liquid()
+                .color(0x4a2400)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
+                .components(Titanium,1,Barium,9,Copper,10,Oxygen,20)
+                .cableProperties(GTValues.V[GTValues.HV],4,2)
+                .blast(3300)
+                .build();
+
+        EVSuperconductorBase = new Material.Builder(id++, tjfId("ev_superconductor_base"))
+                .ingot().liquid()
+                .color(0x005800)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .components(Uranium,1,Platinum,3)
+                .cableProperties(GTValues.V[GTValues.EV],4,4)
+                .blast(4400)
+                .build();
+
+        IVSuperconductorBase = new Material.Builder(id++, tjfId("iv_superconductor_base"))
+                .ingot().liquid()
+                .color(0x300030)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
+                .components(Vanadium,1,Indium,3)
+                .blast(5200)
+                .cableProperties(GTValues.V[GTValues.IV],6,8)
+                .build();
+
+        LuVSuperconductorBase = new Material.Builder(id++, tjfId("luv_superconductor_base"))
+                .ingot().liquid()
+                .color(0x7a3c00)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
+                .components(Indium,4,Bronze,8,Barium,4,Titanium,1,Oxygen,14)
+                .cableProperties(GTValues.V[GTValues.LuV],6, 16)
+                .blast(6000)
+                .build();
+
+        ZPMSuperconductorBase = new Material.Builder(id++, tjfId("zpm_superconductor_base"))
+                .ingot().liquid()
+                .color(0x111111)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .components(Naquadah,4,Indium,2,Palladium,6,Osmium,1)
+                .cableProperties(GTValues.V[GTValues.ZPM],6,32)
+                .blast(8100)
+                .build();
+
+        UVSuperconductorBase = new Material.Builder(id++, tjfId("uv_superconductor_base"))
+                .ingot().liquid()
+                .color(0xe0d207)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
+                .components(Naquadria,4,Osmiridium,3,Rutherfordium,1,Samarium,1)
+                .cableProperties(GTValues.V[GTValues.UV], 8, 64)
+                .blast(8900)
+                .build();
+
+        UHVSuperconductorBase = new Material.Builder(id++, tjfId("uhv_superconductor_base"))
+                .ingot().liquid()
+                .color(0x359ffc)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
+                .components(TBCCODust,4,StrontiumSuperconductorDust,4,Amethyst,1)
+                .cableProperties(GTValues.V[GTValues.UHV], 8, 128)
+                .blast(10000)
+                .build();
+
+        UEVSuperconductorBase = new Material.Builder(id++, tjfId("uev_superconductor_base"))
+                .ingot().liquid()
+                .color(0x954fe0)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
+                .components(ActiniumSuperhydride,1,BETSPerrhenate,1,TriniumTitanium,2,Quantum,1,Vibranium,2)
+                .cableProperties(GTValues.V[GTValues.UEV], 8, 256)
+                .blast(11150)
+                .build();
+
+        UIVSuperconductorBase = new Material.Builder(id++, tjfId("uiv_superconductor_base"))
+                .ingot().liquid()
+                .color(0x8bf743)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
+                .components(BorocarbideDust,2,FullereneSuperconductiveDust,1,MetastableOganesson,2,ProtoAdamantium,2)
+                .cableProperties(GTValues.V[GTValues.UIV], 16, 512)
+                .blast(11600)
+                .build();
+
+        UXVSuperconductorBase = new Material.Builder(id++, tjfId("uxv_superconductor_base"))
+                .ingot().liquid()
+                .color(0x883afc)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
+                .cableProperties(GTValues.V[GTValues.UXV], 16, 1024)
+                .components(BlackTitanium,3,SuperheavyHAlloy,2,ChargedCesiumCeriumCobaltIndium,3,RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate,6)
+                .blast(12000)
+                .build();
+
+        OpVSuperconductorBase = new Material.Builder(id++, tjfId("opv_superconductor_base"))
+                .ingot().liquid()
+                .color(0xe34b5a)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
+                .cableProperties(GTValues.V[GTValues.OpV], 16, 2048)
+                .components(Neutronium,4,Legendarium,5,ActiniumSuperhydride,5,LanthanumFullereneNanotubes,4,RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate,12)
+                .blast(14000)
+                .build();
+
+        MVSuperconductor = new Material.Builder(id++, tjfId("mv_superconductor"))
+                .ingot().liquid()
+                .color(MVSuperconductorBase.getMaterialRGB())
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .cableProperties(GTValues.V[GTValues.MV], 4,0,true)
+                .components(MVSuperconductorBase,1)
+                .build();
+
+        HVSuperconductor = new Material.Builder(id++, tjfId("hv_superconductor"))
+                .ingot().liquid()
+                .color(HVSuperconductorBase.getMaterialRGB())
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .cableProperties(GTValues.V[GTValues.HV], 4,0,true)
+                .components(HVSuperconductorBase,1)
+                .build();
+
+        EVSuperconductor = new Material.Builder(id++, tjfId("ev_superconductor"))
+                .ingot().liquid()
+                .color(EVSuperconductorBase.getMaterialRGB())
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .cableProperties(GTValues.V[GTValues.EV], 4,0,true)
+                .components(EVSuperconductorBase,1)
+                .build();
+
+        IVSuperconductor = new Material.Builder(id++, tjfId("iv_superconductor"))
+                .ingot().liquid()
+                .color(IVSuperconductorBase.getMaterialRGB())
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .cableProperties(GTValues.V[GTValues.IV], 6,0,true)
+                .components(IVSuperconductorBase,1)
+                .build();
+
+        LuVSuperconductor = new Material.Builder(id++, tjfId("luv_superconductor"))
+                .ingot().liquid()
+                .color(LuVSuperconductorBase.getMaterialRGB())
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .components(LuVSuperconductorBase,1)
+                .cableProperties(GTValues.V[GTValues.LuV], 6,0,true)
+                .build();
+
+        ZPMSuperconductor = new Material.Builder(id++, tjfId("zpm_superconductor"))
+                .ingot().liquid()
+                .color(ZPMSuperconductorBase.getMaterialRGB())
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .cableProperties(GTValues.V[GTValues.ZPM], 6,0,true)
+                .components(ZPMSuperconductorBase,1)
+                .build();
+
+        UVSuperconductor = new Material.Builder(id++, tjfId("uv_superconductor"))
+                .ingot().liquid()
+                .color(UVSuperconductorBase.getMaterialRGB())
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .cableProperties(GTValues.V[GTValues.UV], 8,0,true)
+                .components(UVSuperconductorBase,1)
+                .build();
+
+        UHVSuperconductor = new Material.Builder(id++, tjfId("uhv_superconductor"))
+                .ingot().liquid()
+                .color(UHVSuperconductorBase.getMaterialRGB())
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .cableProperties(GTValues.V[GTValues.UHV], 8,0,true)
+                .components(UHVSuperconductorBase,1)
+                .build();
+
+        UEVSuperconductor = new Material.Builder(id++, tjfId("uev_superconductor"))
+                .ingot().liquid()
+                .color(UEVSuperconductorBase.getMaterialRGB())
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .cableProperties(GTValues.V[GTValues.UEV], 8,0,true)
+                .components(UEVSuperconductorBase,1)
+                .build();
+
+        UIVSuperconductor = new Material.Builder(id++, tjfId("uiv_superconductor"))
+                .ingot().liquid()
+                .color(UIVSuperconductorBase.getMaterialRGB())
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .cableProperties(GTValues.V[GTValues.UIV], 16,0,true)
+                .components(UIVSuperconductorBase,1)
+                .build();
+
+        UXVSuperconductor = new Material.Builder(id++, tjfId("uxv_superconductor"))
+                .ingot().liquid()
+                .color(UXVSuperconductorBase.getMaterialRGB())
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .cableProperties(GTValues.V[GTValues.UXV], 16,0,true)
+                .components(UXVSuperconductorBase,1)
+                .build();
+
+        OpVSuperconductor = new Material.Builder(id++, tjfId("opv_superconductor"))
+                .ingot().liquid()
+                .color(OpVSuperconductorBase.getMaterialRGB())
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .cableProperties(GTValues.V[GTValues.OpV], 16,0,true)
+                .components(OpVSuperconductorBase,1)
+                .build();
+
+        MAXSuperconductor = new Material.Builder(id++, tjfId("max_superconductor"))
+                .ingot().liquid()
+                .color(0XFFFFFF)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .cableProperties(GTValues.V[GTValues.MAX], 32,0,true)
+                .components(OpVSuperconductorBase,1)
+                .build();
     }
 
     public static void materialChanges() {
@@ -9024,7 +9299,7 @@ public class TJFMaterials {
         //FLUID Additions
         List<Material> fmats = new ArrayList<>();
         Collections.addAll(fmats, Sodium, Bromine, AmmoniumChloride, Rubidium, Caesium, Francium, Polonium, Praseodymium, Ytterbium, Neptunium,
-                ProtoAdamantium, Scandium, Radium, MetastableHassium, MetastableFlerovium, MetastableOganesson, HeavyQuarkDegenerateMatter);
+                ProtoAdamantium, Scandium, Radium, MetastableHassium, MetastableFlerovium, MetastableOganesson, HeavyQuarkDegenerateMatter, Dubnium);
 
         for (Material mat : fmats) {
             addLiquid(mat);
@@ -9088,6 +9363,37 @@ public class TJFMaterials {
 
         //ORE PREFIX IGNORE FIXES
         plate.removeIgnored(BorosilicateGlass);
+
+        //TODO: invalid recipe issues
+        /*
+        List<Material> cablemats = new ArrayList<>();
+        Collections.addAll(cablemats, MVSuperconductorBase,HVSuperconductorBase,EVSuperconductorBase,IVSuperconductorBase,LuVSuperconductorBase,
+                ZPMSuperconductorBase,UVSuperconductorBase,UHVSuperconductorBase,UEVSuperconductorBase,UIVSuperconductorBase,UXVSuperconductorBase,
+                OpVSuperconductorBase);
+        for (Material mat : cablemats) {
+            cableGtSingle.setIgnored(mat);
+            cableGtDouble.setIgnored(mat);
+            cableGtQuadruple.setIgnored(mat);
+            cableGtOctal.setIgnored(mat);
+            cableGtHex.setIgnored(mat);
+        }
+         */
+            //Remove new superconductors
+        List<Material> wireMats = new ArrayList<>();
+        Collections.addAll(wireMats, ManganesePhosphide, MagnesiumDiboride, MercuryBariumCalciumCuprate, UraniumTriplatinum, SamariumIronArsenicOxide
+                /*IndiumTinBariumTitaniumCuprate TODO: fix crash from removing this, research recipe*/, UraniumRhodiumDinaquadide, EnrichedNaquadahTriniumEuropiumDuranide, RutheniumTriniumAmericiumNeutronate);
+
+
+        for (Material mat : wireMats) {
+            //ingot.setIgnored(mat);
+            //dust.setIgnored(mat);
+            wireGtSingle.setIgnored(mat);
+            wireGtDouble.setIgnored(mat);
+            wireGtHex.setIgnored(mat);
+            wireGtQuadruple.setIgnored(mat);
+            wireGtOctal.setIgnored(mat);
+        }
+
 
         //LENSES
         List<Material> lensmats = new ArrayList<>();

@@ -58,6 +58,7 @@ public class CommonProxy {
         //TJFMaterials.registerNuclearMaterials();
         TJFMaterials.register();
         TJFMaterials.register2();
+        TJFMaterials.registerSuperconductors();
         TJFMaterials.materialChanges();
     }
 

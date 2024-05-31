@@ -1,6 +1,6 @@
 package com.fulltrix.tjfcore.recipes;
 
-import com.fulltrix.tjfcore.recipes.categories.RecipeOverride;
+import com.fulltrix.tjfcore.recipes.categories.*;
 import com.fulltrix.tjfcore.recipes.categories.circuits.CircuitRecipes;
 import com.fulltrix.tjfcore.recipes.categories.machines.MachineCraftingRecipes;
 import com.fulltrix.tjfcore.recipes.chain.*;
@@ -12,8 +12,6 @@ public class RecipeHandler {
         RecipeOverride.init();
 
         /*
-        ComponentRecipes.init();
-        MetaItemRecipes.init();
         CasingRecipes.init();
         SuperconductorRecipes.init();
         MiscRecipes.init();
@@ -21,6 +19,8 @@ public class RecipeHandler {
         MetalCasingRecipes.init();
          */
 
+        MetaItemRecipes.init();
+        ComponentRecipes.init();
         MachineCraftingRecipes.init();
         CircuitRecipes.init();
         PlasmaCondenserPlasmaRecipes.init();
