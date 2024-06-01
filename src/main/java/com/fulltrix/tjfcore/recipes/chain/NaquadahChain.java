@@ -581,7 +581,7 @@ public class NaquadahChain {
         CENTRIFUGE_RECIPES.recipeBuilder()
                 .fluidInputs(ENaquadahSolution.getFluid(2000))
                 .output(dustTiny, PlatinumRaw, 3)
-                .fluidOutputs(AcidicOsmiumSolution.getFluid(350))
+                .fluidOutputs(OsmiumSolution.getFluid(350))
                 .output(dustTiny, NaquadahEnriched)
                 .fluidOutputs(ClearENaquadahLiquid.getFluid(1000))
                 .EUt(7680)
@@ -603,7 +603,7 @@ public class NaquadahChain {
                 .fluidOutputs(HeavyENaquadah.getFluid(1000))
                 .output(dustTiny, Naquadria)
                 .output(dustTiny, IridiumChloride, 8)
-                .fluidOutputs(AcidicOsmiumSolution.getFluid(350))
+                .fluidOutputs(OsmiumSolution.getFluid(350))
                 .EUt(7680)
                 .duration(200)
                 .buildAndRegister();
@@ -613,7 +613,7 @@ public class NaquadahChain {
                 .fluidOutputs(LightENaquadah.getFluid(1000))
                 .output(dustTiny, Naquadria)
                 .output(dustTiny, IridiumChloride, 8)
-                .fluidOutputs(AcidicOsmiumSolution.getFluid(350))
+                .fluidOutputs(OsmiumSolution.getFluid(350))
                 .EUt(7680)
                 .duration(200)
                 .buildAndRegister();
@@ -623,7 +623,7 @@ public class NaquadahChain {
                 .fluidOutputs(MediumENaquadah.getFluid(1000))
                 .output(dustTiny, Naquadria)
                 .output(dustTiny, IridiumChloride, 8)
-                .fluidOutputs(AcidicOsmiumSolution.getFluid(350))
+                .fluidOutputs(OsmiumSolution.getFluid(350))
                 .EUt(7680)
                 .duration(200)
                 .buildAndRegister();

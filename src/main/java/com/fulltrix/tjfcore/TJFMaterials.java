@@ -14,6 +14,7 @@ import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.material.properties.ToolProperty;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextFormatting;
+import scala.sys.Prop;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1083,6 +1084,30 @@ public class TJFMaterials {
     public static Material HafniumCarbide;
     public static Material SeaborgiumCarbide;
     public static Material Helium4;
+    public static Material OsmiumSolution;
+    public static Material LithiumHydroxide;
+    public static Material TungstenHexachloride;
+    public static Material Bowieite;
+    public static Material PlatinumMetallicPowder;
+    public static Material CrudeRhodiumMetal;
+    public static Material AcidicIridiumSolution;
+    public static Material PGSDResidue2;
+    public static Material PlatinumConcentrate;
+    public static Material PlatinumResidue;
+    public static Material PotassiumDisulfate;
+    public static Material LeachResidue;
+    public static Material PalladiumMetallicPowder;
+    public static Material PalladiumAmmonia;
+    public static Material PalladiumSalt;
+    public static Material PalladiumRawPowder;
+    public static Material RhodiumSulfateSolution;
+    public static Material RhodiumSalt;
+    public static Material RhodiumSaltSolution;
+    public static Material RhodiumNitrate;
+    public static Material RhodiumFilterCake;
+    public static Material RhodiumFilterCakeSolution;
+    public static Material RutheniumTetroxideSolution;
+    public static Material HotRutheniumTetroxideSolution;
 
     //COILS
     public static Material Pikyonium;
@@ -9394,6 +9419,199 @@ public class TJFMaterials {
                 .build()
                 .setFormula("He_4",true);
 
+        //TUNGSTEN & PLATINUM
+        PalladiumAmmonia = new Material.Builder(id++, tjfId("palladium_enriched_ammonia"))
+                .liquid()
+                .color(Palladium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(Palladium,1,Ammonia,1,RareEarth,1)
+                .build();
+
+        PlatinumConcentrate = new Material.Builder(id++, tjfId("platinum_concentrate"))
+                .liquid()
+                .color(Platinum.getMaterialRGB())
+                .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(Platinum,1,RareEarth,1)
+                .build();
+
+        RhodiumSulfateSolution = new Material.Builder(id++, tjfId("rhodium_sulfate_solution"))
+                .liquid()
+                .color(0xFFBB66)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(RhodiumSulfate,1,Water,1)
+                .build();
+
+        RhodiumSaltSolution = new Material.Builder(id++, tjfId("rhodium_salt_solution"))
+                .liquid()
+                .color(0x667788)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(Rhodium,1,Salt,2,Chlorine,1)
+                .build();
+
+        AcidicIridiumSolution = new Material.Builder(id++, tjfId("acidic_iridium_solution"))
+                .liquid()
+                .color(IridiumDioxide.getMaterialRGB()-20)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(HydrochloricAcid,2,IridiumDioxide,2)
+                .build();
+
+        RhodiumFilterCakeSolution = new Material.Builder(id++, tjfId("rhodium_filter_cake_solution"))
+                .liquid()
+                .color(0x667788)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(Rhodium,1,Water,2,RareEarth,1)
+                .build();
+
+        RutheniumTetroxideSolution = new Material.Builder(id++, tjfId("ruthenium_tetroxide_solution"))
+                .liquid()
+                .color(0xC7C7C7)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(Salt,2,Ruthenium,1,Oxygen,4)
+                .build();
+
+        HotRutheniumTetroxideSolution = new Material.Builder(id++, tjfId("hot_ruthenium_tetroxide_solution"))
+                .liquid()
+                .color(0xC7C7C7)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(RutheniumTetroxideSolution,1,Water,1)
+                .build();
+
+        OsmiumSolution = new Material.Builder(id++, tjfId("osmium_solution"))
+                .liquid()
+                .color((Osmium.getMaterialRGB() + Water.getMaterialRGB())/2)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(Osmium,1, Oxygen,4, Water,1)
+                .build();
+
+        LithiumHydroxide = new Material.Builder(id++, tjfId("lithium_hydroxide"))
+                .dust()
+                .color((Lithium.getMaterialRGB()+Oxygen.getMaterialRGB()+Hydrogen.getMaterialRGB())/3)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("LiOH",true);
+
+        TungstenHexachloride = new Material.Builder(id++, tjfId("tungsten_hexachloride"))
+                .dust()
+                .color(0x533f75)
+                .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
+                .iconSet(METALLIC)
+                .components(Tungsten,1,Oxygen,3)
+                .build();
+
+        Bowieite = new Material.Builder(id++, tjfId("bowieite"))
+                .dust()
+                .color(0x8b8995)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(ROUGH)
+                .components(Rhodium,1,Iridium,1,Platinum,1,Sulfur,3)
+                .build();
+
+        PlatinumMetallicPowder = new Material.Builder(id++, tjfId("platinum_metallic_powder"))
+                .dust()
+                .color(Platinum.getMaterialRGB())
+                .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
+                .iconSet(METALLIC)
+                .components(Platinum,1,RareEarth,1)
+                .build();
+
+        CrudeRhodiumMetal = new Material.Builder(id++, tjfId("crude_rhodium_metal"))
+                .dust()
+                .color(0x666666)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(DULL)
+                .components(Rhodium,1,RareEarth,1)
+                .build();
+
+        PGSDResidue2 = new Material.Builder(id++, tjfId("metallic_sludge_dust_residue"))
+                .dust()
+                .color((Copper.getMaterialRGB()+Nickel.getMaterialRGB())/2)
+                .flags(DISABLE_REPLICATION, DECOMPOSITION_BY_CENTRIFUGING)
+                .iconSet(DULL)
+                .components(Copper, 1, Nickel,1)
+                .build();
+
+        PlatinumResidue = new Material.Builder(id++, tjfId("platinum_residue"))
+                .dust()
+                .color(0x64632E)
+                .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
+                .iconSet(ROUGH)
+                .components(Iridium,2,RareEarth,1)
+                .build();
+
+        PotassiumDisulfate = new Material.Builder(id++, tjfId("potassium_disulfate"))
+                .dust()
+                .color(0xFBBB66)
+                .flags(DISABLE_REPLICATION, EXCLUDE_BLOCK_CRAFTING_RECIPES)
+                .iconSet(DULL)
+                .components(Potassium,2,Sulfur,2,Oxygen,7)
+                .build();
+
+        LeachResidue = new Material.Builder(id++, tjfId("leach_residue"))
+                .dust()
+                .color(0x644629)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(ROUGH)
+                .components(Iridium,2,RareEarth,1)
+                .build();
+
+        PalladiumSalt = new Material.Builder(id++, tjfId("palladium_salt"))
+                .dust()
+                .color(Palladium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(METALLIC)
+                .components(Palladium,1,RareEarth,1)
+                .build();
+
+        PalladiumRawPowder = new Material.Builder(id++, tjfId("reprecipitated_palladium"))
+                .dust()
+                .color(Palladium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(METALLIC)
+                .components(Palladium,1,Ammonia,1)
+                .build();
+
+        RhodiumNitrate = new Material.Builder(id++, tjfId("rhodium_nitrate"))
+                .dust()
+                .color((SodiumNitrate.getMaterialRGB()+Rhodium.getMaterialRGB())/2)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(QUARTZ)
+                .components(Rhodium,1,Ammonia,3)
+                .build();
+
+        RhodiumFilterCake = new Material.Builder(id++, tjfId("rhodium_filter_cake"))
+                .dust()
+                .color(RhodiumNitrate.getMaterialRGB()-10)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(QUARTZ)
+                .components(Rhodium,1,RareEarth,1)
+                .build();
+
+        RhodiumSalt = new Material.Builder(id++, tjfId("rhodium_salt"))
+                .gem()
+                .color(0x848484)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(GEM_VERTICAL)
+                .components(Rhodium,1,Salt,2)
+                .build();
+
+        PalladiumMetallicPowder = new Material.Builder(id++, tjfId("palladium_metallic_powder"))
+                .dust()
+                .color(Palladium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(METALLIC)
+                .components(Palladium,1,RareEarth,1)
+                .build();
+
         /*
         = new Material.Builder(id++, tjfId("material"))
                 .ingot().liquid()
@@ -9772,7 +9990,7 @@ public class TJFMaterials {
         Collections.addAll(fmats, Sodium, Bromine, AmmoniumChloride, Rubidium, Caesium, Francium, Polonium, Praseodymium, Ytterbium, Neptunium,
                 ProtoAdamantium, Scandium, Radium, MetastableHassium, MetastableFlerovium, MetastableOganesson, HeavyQuarkDegenerateMatter, Dubnium,
                 Sulfur, Calcium, Curium, Bohrium, Seaborgium, Copernicium, Rutherfordium,Meitnerium, Tennessine, Livermorium, Moscovium, Nihonium,
-                Roentgenium, Astatine, Hafnium);
+                Roentgenium, Astatine, Hafnium, RutheniumTetroxide);
 
         for (Material mat : fmats) {
             addLiquid(mat);
@@ -9811,13 +10029,20 @@ public class TJFMaterials {
 
         //ORE ADDITIONS
         List<Material> omats = new ArrayList<>();
-        Collections.addAll(omats, Triniite, NaquadricCompound, EnrichedNaquadricCompound, NaquadriaticCompound, Lignite, Witherite, Barytocalcite,
-                Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon);
+        Collections.addAll(omats, Lignite, Witherite, Barytocalcite, PlatinumMetallicPowder, IridiumMetalResidue,
+                RarestMetalMixture, PalladiumMetallicPowder, Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon, Bowieite);
         for (Material mat : omats) {
-            addOre(mat, 1, 1, true);
+            addOre(mat, 1, 1,false);
         }
 
-        //ORE BYPRODUCTS
+        //EMISSIVE ORES
+        List<Material> eomats = new ArrayList<>();
+        Collections.addAll(eomats,Triniite, NaquadricCompound, EnrichedNaquadricCompound, NaquadriaticCompound);
+        for (Material mat : eomats) {
+            addOre(mat, 1,1,true);
+        }
+
+        //ORE BYPRODUCTS & Multipliers & OTHER STUFF TODO: Finish this
         OreProperty oreProp;
 
         oreProp = NaquadricCompound.getProperty(PropertyKey.ORE);
@@ -9829,6 +10054,17 @@ public class TJFMaterials {
         oreProp = Triniite.getProperty(PropertyKey.ORE);
         oreProp.addOreByProducts(NaquadricCompound, Bismuth, Thallium);
 
+        oreProp = PlatinumMetallicPowder.getProperty(PropertyKey.ORE);
+        oreProp.setOreMultiplier(2);
+        oreProp.setWashedIn(SodiumPersulfate);
+        oreProp.addOreByProducts(Nickel,IridiumMetalResidue,RarestMetalMixture,PlatinumMetallicPowder);
+
+        oreProp = PalladiumMetallicPowder.getProperty(PropertyKey.ORE);
+        oreProp.setOreMultiplier(2);
+        oreProp.setWashedIn(SodiumPersulfate);
+
+        oreProp = Bowieite.getProperty(PropertyKey.ORE);
+        oreProp.addOreByProducts(Nickel,PlatinumMetallicPowder,RarestMetalMixture,CrudeRhodiumMetal);
         //SPECIFIC CASES
 
         Bohrium.addFlags(GENERATE_FRAME, GENERATE_ROUND);
@@ -9884,6 +10120,15 @@ public class TJFMaterials {
         for (Material mat : lensmats) {
             mat.addFlags(GENERATE_LENS);
         }
+
+        //REPLACE MATERIALS
+        IridiumMetalResidue.setFormula("Ir2O4(SiO2)2Au3", true);
+        IridiumMetalResidue.setMaterialRGB(0x846649);
+        IridiumMetalResidue.setMaterialIconSet(ROUGH);
+
+        RarestMetalMixture.setFormula("Ir2O2(SiO2)2Au3?",true);
+        RarestMetalMixture.setMaterialRGB(0x644629);
+        RarestMetalMixture.setMaterialIconSet(ROUGH);
 
     }
 
