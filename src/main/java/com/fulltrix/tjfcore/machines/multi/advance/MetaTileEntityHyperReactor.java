@@ -36,6 +36,8 @@ import static gregtech.api.unification.material.Materials.Naquadria;
 
 public class MetaTileEntityHyperReactor extends FuelMultiblockController implements IProgressBarMultiblock {
 
+    //TODO finish implementing UI and cleanup
+
     private final int tier;
 
     private static final int a = GTUtility.getTierByVoltage(TJFConfig.multis.hyperReactors.euGeneration[1]);
@@ -67,6 +69,11 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
             return 2;
         else
             return 0;
+    }
+
+    @Override
+    protected boolean shouldShowVoidingModeButton() {
+        return false;
     }
 
     @NotNull
@@ -120,13 +127,13 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
                         .aisle("###CCCCCCCCC###", "##C##CCCCC##C##", "###CCCCCCCCC###")
                         .aisle("####CCCCCCC####", "###CC#####CC###", "####CCCCCCC####")
                         .aisle("#######C#######", "#####CCSCC#####", "#######C#######")
-                        .where('C', states(getCasingState(UEV)).or(autoAbilities(false,true,true,true,true,true,false)
+                        .where('C', states(getCasingState(a)).or(autoAbilities(false,true,true,true,true,true,false)
                                 .or(abilities(MultiblockAbility.OUTPUT_ENERGY).setExactLimit(1))))
                         .where('#', any())
                         .where('S', selfPredicate())
                         .where('F', frames(Naquadria))
                         .where('H', states(TJFMetaBlocks.REACTOR_CASING.getState(TJFReactorCasing.CasingType.HYPER_CORE_2)))
-                        .where('c', states(getCasingState(UEV)).setMinGlobalLimited(250))
+                        .where('c', states(getCasingState(a)).setMinGlobalLimited(250))
                         .build();
             } else if (tier == b) {
                 return FactoryBlockPattern.start()
@@ -141,14 +148,14 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
                         .aisle("##F#####F##","##F#####F##","##F#####F##","##F#####F##","##F#####F##", "##F#####F##", "##FCCCCCF##", "##C#####C##", "#C#######C#", "#C#######C#", "#C#######C#", "#C#######C#", "#C#######C#", "##C#####C##", "###CCCCC###", "###########")
                         .aisle("###########","###########","###########","###########","###########", "###########", "###########", "###CCCCC###", "##CC###CC##", "##C#####C##", "##C#####C##", "##C#####C##", "##CC###CC##", "###CCCCC###", "###########", "###########")
                         .aisle("###########","###########","###########","###########","###########", "###########", "###########", "###########", "####CCC####", "###CCCCC###", "###CCSCC###", "###CCCCC###", "####CCC####", "###########", "###########", "###########")
-                        .where('C', states(getCasingState(UIV)).setMinGlobalLimited(250).or(autoAbilities(false,true,true,true,true,true,false)
+                        .where('C', states(getCasingState(b)).setMinGlobalLimited(250).or(autoAbilities(false,true,true,true,true,true,false)
                                 .or(abilities(MultiblockAbility.OUTPUT_ENERGY).setExactLimit(1))))
                         .where('#', any())
                         .where('S', selfPredicate())
                         .where('F', frames(Naquadria))
                         .where('H', states(TJFMetaBlocks.REACTOR_CASING.getState(TJFReactorCasing.CasingType.HYPER_CORE_3)))
                         .where('G', states(TJFMetaBlocks.TRANSPARENT_CASING.getState(TJFTransparentCasing.CasingType.OSMIRIDIUM_GLASS)))
-                        .where('c', states(getCasingState(UIV)).setMinGlobalLimited(250))
+                        .where('c', states(getCasingState(b)).setMinGlobalLimited(250))
                         .build();
             }
             else {
@@ -159,12 +166,12 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
                         .aisle("CCCCC", "G###G", "G#H#G", "G###G", "CCCCC")
                         .aisle("CCSCC", "CGGGC", "CGGGC", "CGGGC", "CCCCC")
                         .where('S', selfPredicate())
-                        .where('C', states(getCasingState(UHV)).or(autoAbilities(false,true,true,true,true,true,false)
+                        .where('C', states(getCasingState(c)).or(autoAbilities(false,true,true,true,true,true,false)
                                 .or(abilities(MultiblockAbility.OUTPUT_ENERGY).setExactLimit(1))))
                         .where('G', states(TJFMetaBlocks.TRANSPARENT_CASING.getState(TJFTransparentCasing.CasingType.OSMIRIDIUM_GLASS)))
                         .where('H', states(TJFMetaBlocks.REACTOR_CASING.getState(TJFReactorCasing.CasingType.HYPER_CORE)))
                         .where('#', air())
-                        .where('c', states(getCasingState(UHV)).setMinGlobalLimited(25))
+                        .where('c', states(getCasingState(c)).setMinGlobalLimited(25))
                         .build();
             }
     }
@@ -257,7 +264,7 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
         public long getMaxVoltage() {
             // this multiplies consumption through parallel
             if (isBoosted)
-                return GTValues.V[tier] * 2;
+                return GTValues.V[tier] * TJFConfig.multis.hyperReactors.boostedFuelAmount[hyperReactor.getIndex(tier)];
             else
                 return GTValues.V[tier];
         }
@@ -266,7 +273,7 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
         protected long boostProduction(long production) {
             // this multiplies production without increasing consumption
             if (isBoosted)
-                return production * 2;
+                return production * TJFConfig.multis.hyperReactors.boostedEuAmount[hyperReactor.getIndex(tier)];
 
             return production;
         }

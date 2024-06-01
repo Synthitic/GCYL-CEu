@@ -18,7 +18,7 @@ public class TJFConfig {
         @Config.RequiresMcRestart
         @Config.Name("Hyper Reactor EU/t generation")
         @Config.RangeInt(min = 1)
-        public long[] euGeneration = {GTValues.V[GTValues.UHV], GTValues.V[GTValues.UEV], GTValues.V[GTValues.UIV]};
+        public long[] euGeneration = {GTValues.V[GTValues.UIV], GTValues.V[GTValues.UXV], GTValues.V[GTValues.OpV]};
 
         @Config.Comment("The fuel multiplier when the Reactor is boosted.")
         @Config.RequiresMcRestart
@@ -30,7 +30,7 @@ public class TJFConfig {
         @Config.RequiresMcRestart
         @Config.Name("Hyper Reactor boosted EU/t multiplier")
         @Config.RangeInt(min = 1)
-        public int[] boostedEuAmount = {3, 3, 3};
+        public int[] boostedEuAmount = {2, 2, 2};
 
         @Config.Comment("The liquid that boosts the Reactor.")
         @Config.RequiresMcRestart
@@ -40,7 +40,7 @@ public class TJFConfig {
         @Config.Comment("The amount of liquid that boosts the Reactor.")
         @Config.RequiresMcRestart
         @Config.Name("Hyper Reactor booster amount")
-        public int[] boosterFluidAmounts = {10, 15, 2};
+        public int[] boosterFluidAmounts = {50, 20, 10};
     }
 
     public static class VoidMiner {

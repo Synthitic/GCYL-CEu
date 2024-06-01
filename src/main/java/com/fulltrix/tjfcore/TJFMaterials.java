@@ -64,6 +64,7 @@ public class TJFMaterials {
     public static Material Curium247;
     public static Material Californium253;
     public static Material Curium250;
+    public static Material Einsteinium253;
 
     /////////////////////////////////////////
     public static Material Inconel792;
@@ -1256,6 +1257,14 @@ public class TJFMaterials {
                 .flags(STD_METAL)
                 .build()
                 .setFormula("Cm_250", true);
+
+        Einsteinium253 = new Material.Builder(id++, tjfId("einsteinium_253"))
+                .ingot().liquid()
+                .color(Einsteinium.getMaterialRGB())
+                .iconSet(METALLIC)
+                .flags(STD_METAL)
+                .build()
+                .setFormula("Es_253", true);
 
         //////////////////////
 

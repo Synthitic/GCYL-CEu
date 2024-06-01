@@ -36,6 +36,7 @@ public class TJFTileEntities {
     public static MetaTileEntityAdvMixer ADVANCED_MIXER;
     public static MetaTileEntityAdvCentrifuge ADVANCED_CENTRIFUGE;
     public static MetaTileEntityElectricImplosion ELECTRIC_IMPLOSION;
+    public static MetaTileEntityLargeNaquadahReactor LARGE_NAQUADAH_REACTOR;
     public static SimpleGeneratorMetaTileEntity[] NAQUADAH_REACTOR = new SimpleGeneratorMetaTileEntity[8];
     public static SimpleGeneratorMetaTileEntity[] ROCKET_GENERATOR = new SimpleGeneratorMetaTileEntity[8];
 
@@ -78,6 +79,8 @@ public class TJFTileEntities {
         ADVANCED_CENTRIFUGE = registerMetaTileEntity(++id, new MetaTileEntityAdvCentrifuge(tjfId("large_centrifuge")));
 
         ELECTRIC_IMPLOSION = registerMetaTileEntity(++id, new MetaTileEntityElectricImplosion(tjfId("electric_implosion")));
+
+        LARGE_NAQUADAH_REACTOR = registerMetaTileEntity(++id, new MetaTileEntityLargeNaquadahReactor(tjfId("large_naquadah_reactor")));
 
 
         //TODO: configurable efficiency for naq reactors, efficiency implementation in general
