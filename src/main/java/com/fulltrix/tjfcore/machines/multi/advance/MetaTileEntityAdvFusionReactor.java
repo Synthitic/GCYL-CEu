@@ -8,6 +8,7 @@ import com.fulltrix.tjfcore.item.fusion.TJFFusionCasing;
 import com.fulltrix.tjfcore.item.fusion.TJFVacuumCasing;
 import com.fulltrix.tjfcore.recipes.TJFRecipeMaps;
 import com.fulltrix.tjfcore.recipes.recipeproperties.AdvFusionCoilProperty;
+import com.fulltrix.tjfcore.recipes.recipeproperties.AdvFusionEUReturnProperty;
 import com.google.common.util.concurrent.AtomicDouble;
 import gregtech.api.GTValues;
 import gregtech.api.capability.GregtechDataCodes;
@@ -30,6 +31,7 @@ import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
+import gregtech.api.recipes.recipeproperties.IRecipePropertyStorage;
 import gregtech.api.util.RelativeDirection;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.api.util.TextFormattingUtil;
@@ -42,6 +44,7 @@ import gregtech.client.shader.postprocessing.BloomType;
 import gregtech.client.utils.*;
 import gregtech.common.ConfigHolder;
 import gregtech.common.metatileentities.MetaTileEntities;
+import gregtech.common.metatileentities.multi.electric.MetaTileEntityFusionReactor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -73,6 +76,8 @@ import java.util.function.DoubleSupplier;
 import static com.fulltrix.tjfcore.TJFMaterials.*;
 
 public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockController implements ITieredMetaTileEntity, IFastRenderMetaTileEntity, IBloomEffect {
+
+    //TODO make this better. make coils independent of tier
 
     private static final List<Fluid> HOT = Arrays.asList(SupercriticalSteam.getFluid(),
             SupercriticalSodiumPotassiumAlloy.getFluid(),
@@ -744,6 +749,20 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
         }
 
         @Override
+        protected double getOverclockingDurationDivisor() {return 2.0;}
+
+        @Override
+        protected double getOverclockingVoltageMultiplier() {
+            return 2.0D;
+        }
+
+        @Override
+        public long getMaxVoltage() {
+            return Math.min(GTValues.V[tier], super.getMaxVoltage());
+        }
+
+
+        @Override
         public boolean checkRecipe(@NotNull Recipe recipe) {
             if (!super.checkRecipe(recipe))
                 return false;
@@ -767,9 +786,27 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
 
             // remove the energy needed
             energyContainer.removeEnergy(heatDiff);
+
             // increase the stored heat
             heat += heatDiff;
             return true;
+        }
+
+        @Override
+        protected void modifyOverclockPre(int @NotNull [] values, @NotNull IRecipePropertyStorage storage) {
+            super.modifyOverclockPre(values, storage);
+
+            // Limit the number of OCs to the difference in fusion reactor MK.
+            // I.e., a MK2 reactor can overclock a MK1 recipe once, and a
+            // MK3 reactor can overclock a MK2 recipe once, or a MK1 recipe twice.
+            long euToStart = storage.getRecipePropertyValue(FusionEUToStartProperty.getInstance(), 0L);
+            int fusionTier = FusionEUToStartProperty.getFusionTier(euToStart);
+            int coilTier = storage.getRecipePropertyValue(AdvFusionCoilProperty.getInstance(), 0);
+
+            if (fusionTier != 0) fusionTier = MetaTileEntityAdvFusionReactor.this.tier - fusionTier;
+            if (coilTier != 0) coilTier = MetaTileEntityAdvFusionReactor.this.coilTier - coilTier;
+
+            values[2] = Math.min(fusionTier + coilTier, values[2]);
         }
 
         /*
