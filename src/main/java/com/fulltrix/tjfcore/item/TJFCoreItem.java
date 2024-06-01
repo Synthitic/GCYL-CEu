@@ -1,16 +1,33 @@
 package com.fulltrix.tjfcore.item;
 
 import gregtech.api.items.metaitem.StandardMetaItem;
+import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.MarkerMaterials.Tier;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.behaviors.DataItemBehavior;
 
 import static com.fulltrix.tjfcore.item.TJFCoreItems.*;
+import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
 
 public class TJFCoreItem extends StandardMetaItem {
 
     @Override
     public void registerSubItems() {
+
+        CIRCUIT_MAGNETIC_ULV = addItem(220, "circuit.resonatic.ulv").setUnificationData(OrePrefix.circuit, ULV);
+        CIRCUIT_MAGNETIC_LV = addItem(221, "circuit.resonatic.lv").setUnificationData(OrePrefix.circuit, LV);
+        CIRCUIT_MAGNETIC_MV = addItem(222, "circuit.resonatic.mv").setUnificationData(OrePrefix.circuit, MV);
+        CIRCUIT_MAGNETIC_HV = addItem(223, "circuit.resonatic.hv").setUnificationData(OrePrefix.circuit, HV);
+        CIRCUIT_MAGNETIC_EV = addItem(224, "circuit.resonatic.ev").setUnificationData(OrePrefix.circuit, EV);
+        CIRCUIT_MAGNETIC_IV = addItem(225, "circuit.resonatic.iv").setUnificationData(OrePrefix.circuit, IV);
+        CIRCUIT_MAGNETIC_LUV = addItem(226, "circuit.resonatic.luv").setUnificationData(OrePrefix.circuit, LuV);
+        CIRCUIT_MAGNETIC_ZPM = addItem(227, "circuit.resonatic.zpm").setUnificationData(OrePrefix.circuit, ZPM);
+        CIRCUIT_MAGNETIC_UV = addItem(228, "circuit.resonatic.uv").setUnificationData(OrePrefix.circuit, UV);
+        CIRCUIT_MAGNETIC_UHV = addItem(229, "circuit.resonatic.uhv").setUnificationData(OrePrefix.circuit, UHV);
+        CIRCUIT_MAGNETIC_UEV = addItem(232, "circuit.resonatic.uev").setUnificationData(OrePrefix.circuit, UEV);
+        RAW_IMPRINT_SUPPORTED_BOARD = addItem(230, "board.raw.magnetic");
+        IMPRINT_SUPPORTED_BOARD = addItem(231, "board.magnetic");
+
         SMD_TRANSISTOR_REFINED = addItem(240, "component.smd.transistor.refined");
         SMD_RESISTOR_REFINED = addItem(241, "component.smd.resistor.refined");
         SMD_CAPACITOR_REFINED = addItem(242, "component.smd.capacitor.refined");
@@ -65,7 +82,7 @@ public class TJFCoreItem extends StandardMetaItem {
         WAFER_RUTHERFORDIUM = addItem(334, "wafer.rutherfordium");
         WAFER_NEUTRONIUM = addItem(335, "wafer.neutronium");
 
-        COSMIC_PROCESSOR = addItem(336, "circuit.processor.cosmic").setUnificationData(OrePrefix.circuit, Tier.UEV);
+        COSMIC_PROCESSOR = addItem(336, "circuit.processor.cosmic").setUnificationData(OrePrefix.circuit, UEV);
         COSMIC_ASSEMBLY = addItem(337, "circuit.assembly.cosmic").setUnificationData(OrePrefix.circuit, Tier.UIV);
         COSMIC_COMPUTER = addItem(338, "circuit.computer.cosmic").setUnificationData(OrePrefix.circuit, Tier.UXV);
         COSMIC_MAINFRAME = addItem(339, "circuit.mainframe.cosmic").setUnificationData(OrePrefix.circuit, Tier.OpV);
@@ -101,7 +118,7 @@ public class TJFCoreItem extends StandardMetaItem {
         BIOWARE_PROCESSOR = addItem(401, "circuit.processor.bioware").setUnificationData(OrePrefix.circuit, Tier.ZPM);
         BIOWARE_ASSEMBLY = addItem(402, "circuit.assembly.bioware").setUnificationData(OrePrefix.circuit, Tier.UV);
         BIOWARE_COMPUTER = addItem(403, "circuit.computer.bioware").setUnificationData(OrePrefix.circuit, Tier.UHV);
-        BIOWARE_MAINFRAME = addItem(404, "circuit.mainframe.bioware").setUnificationData(OrePrefix.circuit, Tier.UEV);
+        BIOWARE_MAINFRAME = addItem(404, "circuit.mainframe.bioware").setUnificationData(OrePrefix.circuit, UEV);
 
         SMD_TRANSISTOR_BIOWARE = addItem(405, "component.smd.transistor.bioware");
         SMD_CAPACITOR_BIOWARE = addItem(406, "component.smd.capacitor.bioware");
@@ -202,7 +219,7 @@ public class TJFCoreItem extends StandardMetaItem {
         OPTICAL_PROCESSING_CORE = addItem(500,"optical_processing_core");
         OPTICAL_PROCESSOR = addItem(501,"circuit.processor.optical").setUnificationData(OrePrefix.circuit, Tier.UV);
         OPTICAL_ASSEMBLY = addItem(502,"circuit.assembly.optical").setUnificationData(OrePrefix.circuit, Tier.UHV);
-        OPTICAL_COMPUTER = addItem(503,"circuit.computer.optical").setUnificationData(OrePrefix.circuit, Tier.UEV);
+        OPTICAL_COMPUTER = addItem(503,"circuit.computer.optical").setUnificationData(OrePrefix.circuit, UEV);
         OPTICAL_MAINFRAME = addItem(504,"circuit.mainframe.optical").setUnificationData(OrePrefix.circuit, Tier.UIV);
 
         PEEK_POLYAMIDE_FOIL = addItem(505,"peek_polyamide_foil");
@@ -335,7 +352,7 @@ public class TJFCoreItem extends StandardMetaItem {
         SMD_TRANSISTOR_EXOTIC = addItem(604, "component.smd.transistor.exotic");
 
         EXOTIC_PROCESSOR = addItem(605, "circuit.processor.exotic").setUnificationData(OrePrefix.circuit, Tier.UHV);
-        EXOTIC_ASSEMBLY = addItem(606, "circuit.assembly.exotic").setUnificationData(OrePrefix.circuit, Tier.UEV);
+        EXOTIC_ASSEMBLY = addItem(606, "circuit.assembly.exotic").setUnificationData(OrePrefix.circuit, UEV);
         EXOTIC_COMPUTER = addItem(607, "circuit.computer.exotic").setUnificationData(OrePrefix.circuit, Tier.UIV);
         EXOTIC_MAINFRAME = addItem(608, "circuit.mainframe.exotic").setUnificationData(OrePrefix.circuit, Tier.UXV);
 

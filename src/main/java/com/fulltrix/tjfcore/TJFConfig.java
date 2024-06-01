@@ -126,5 +126,6 @@ public class TJFConfig {
         public int IVRocketEfficiency= 35;
         @Config.Comment("Efficiency level for the LuV rocket engine")
         public int LuVRocketEfficiency= 25;
+
     }
 }
