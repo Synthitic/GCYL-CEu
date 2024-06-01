@@ -70,17 +70,17 @@ public class GCYLConfig {
         @Config.Comment("The name of the ores to blacklist for the MK1 Void Miner")
         @Config.RequiresMcRestart
         @Config.Name("MK1 Void Miner Blacklist")
-        public String[] oreBlacklist = new String[]{"trinium, triniite"};
+        public String[] oreBlacklist = new String[]{"trinium, triniite, duranium, tritanium, rutherfordium, californium, curium, seaborgium, berkelium, fermium, einsteinium, dubnium, bohrium"};
 
         @Config.Comment("The name of the ores to blacklist for the MK2 Void Miner")
         @Config.RequiresMcRestart
         @Config.Name("MK2 Void Miner Blacklist")
-        public String[] oreBlacklistUHV = new String[]{""};
+        public String[] oreBlacklistUHV = new String[]{"trinium, fermium, bohrium, seaborgium, einsteinium"};
 
         @Config.Comment("The name of the ores to blacklist for the MK3 Void Miner")
         @Config.RequiresMcRestart
         @Config.Name("MK3 Void Miner Blacklist")
-        public String[] oreBlacklistUEV = new String[]{""};
+        public String[] oreBlacklistUEV = new String[]{"bohrium, fermium"};
 
         @Config.Comment("The name of items you wish to add to the MK1 Void Miner. Example: \"minecraft:wool:2\"")
         @Config.RequiresMcRestart

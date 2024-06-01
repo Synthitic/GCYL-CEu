@@ -1650,7 +1650,7 @@ gcyl.machine.advanced_fusion_reactor.name=Advanced Fusion Reactor Computer (AFRC
 gcyl.machine.multiblock.description=The Advanced Fusion Reactor performs high level fusion reactions. It also turns a coolant into a hot version.
 gcyl.machine.central_monitor.name=Central Monitor (CM)
 gcyl.machine.monitor_screen.name=Monitor Screen (MS)
-gcyl.machine.chemical_plant.name=Advanced Large Chemical Reactor (ALCR)
+gcyl.machine.chemical_plant.name=Chemical Plant (CP)
 gcyl.multiblock.chemical_plant.description=The Advanced Large Chemical Reactor can be run in a Chemical Plant mode or a parallel Large Chemical Reactor mode.
 gcyl.machine.large_brewery.name=Large Brewery (LB)
 gcyl.multiblock.large_brewery.description=The Large Brewery is a multiblock version of the Brewery, Fermenter, and Chemical Dehydrator.
@@ -2142,6 +2142,8 @@ tile.cell_casing.tooltip.3=    Max Tier: §9%s
 
 metaitem.tool.bending_cylinder.name=%s Bending Cylinder
 metaitem.tool.bending_cylinder_small.name=Small %s Bending Cylinder
+
+metaitem.small_coil.name=Small Coil
 
 recipemap.blast_alloy.name=Blast Alloy
 recipemap.cluster_mill.name=Cluster Mill

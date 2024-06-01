@@ -118,6 +118,7 @@ public class CommonProxy {
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+
         AdvFusionCoilProperty.registerAdvFusionTier(1, "1");
         AdvFusionCoilProperty.registerAdvFusionTier(2, "2");
         AdvFusionCoilProperty.registerAdvFusionTier(3, "3");

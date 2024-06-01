@@ -608,6 +608,7 @@ public class SuperconductorsSMDChain {
                 .fluidInputs(Epichlorohydrin.getFluid(1000))
                 .fluidInputs(Water.getFluid(2000))
                 .input(dust, SodaAsh, 6)
+                .circuitMeta(1)
                 .fluidOutputs(Glycerol.getFluid(1000))
                 .output(dust, Salt, 2)
                 .output(dust, SodiumBicarbonate, 6)
@@ -621,7 +622,7 @@ public class SuperconductorsSMDChain {
                 .fluidInputs(HydrogenCyanide.getFluid(3000))
                 .fluidInputs(Water.getFluid(3000))
                 .notConsumable(dust, PotassiumDichromate)
-                .notConsumable(new IntCircuitIngredient(0))
+                .circuitMeta(1)
                 .fluidOutputs(CitricAcid.getFluid(1000))
                 .fluidOutputs(AmmoniumChloride.getFluid(3000))
                 .buildAndRegister();
@@ -778,7 +779,6 @@ public class SuperconductorsSMDChain {
                 .fluidInputs(Ethane.getFluid(1000))
                 .fluidOutputs(Chloroethane.getFluid(1000))
                 .fluidOutputs(HydrochloricAcid.getFluid(1000))
-                .circuitMeta(1)
                 .notConsumable(UVA_HALIDE_LAMP.getStackForm())
                 .buildAndRegister();
 

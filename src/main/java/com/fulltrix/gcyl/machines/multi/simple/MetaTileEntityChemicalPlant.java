@@ -1,4 +1,72 @@
 package com.fulltrix.gcyl.machines.multi.simple;
 
-public class MetaTileEntityChemicalPlant {
+import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
+import gregtech.api.capability.IHeatingCoil;
+import gregtech.api.capability.impl.MultiblockRecipeLogic;
+import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.metatileentity.multiblock.IMultiblockPart;
+import gregtech.api.pattern.BlockPattern;
+import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.client.renderer.ICubeRenderer;
+import gregtech.client.renderer.texture.Textures;
+import gregtech.common.blocks.BlockBoilerCasing;
+import gregtech.common.blocks.BlockMetalCasing;
+import gregtech.common.blocks.MetaBlocks;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
+
+//TODO implement coil bonus
+
+public class MetaTileEntityChemicalPlant extends GCYLRecipeMapMultiblockController implements IHeatingCoil {
+
+    private int temperature;
+
+    public MetaTileEntityChemicalPlant(ResourceLocation metaTileEntityId, boolean isParallel) {
+        super(metaTileEntityId, GCYLRecipeMaps.CHEMICAL_PLANT_RECIPES, isParallel);
+        this.recipeMapWorkable = new MultiblockRecipeLogic(this);
+    }
+
+    @Override
+    public MetaTileEntity createMetaTileEntity(IGregTechTileEntity iGregTechTileEntity) {
+        return new MetaTileEntityChemicalPlant(metaTileEntityId, this.isParallel());
+    }
+
+    @Override
+    protected @NotNull BlockPattern createStructurePattern() {
+        return FactoryBlockPattern.start()
+                .aisle("X###X", "XXXXX", "X###X", "XXXXX", "X###X")
+                .aisle("XXXXX", "XCCCX", "XPPPX", "XCCCX", "XXXXX")
+                .aisle("X###X", "XPPPX", "XMMMX", "XPPPX", "X###X")
+                .aisle("XXXXX", "XCCCX", "XPPPX", "XCCCX", "XXXXX")
+                .aisle("X###X", "SXXXX", "X###X", "XXXXX", "X###X")
+                .where('S', selfPredicate())
+                .where('X', states(getCasingState()).setMinGlobalLimited(22).or(autoAbilities(true,true,true,true,true,true,false)))
+                .where('C', heatingCoils())
+                .where('P', states(MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.POLYTETRAFLUOROETHYLENE_PIPE)))
+                .where('#', air())
+                .where('M', tieredCasing())
+                .build();
+    }
+
+    public int getCurrentTemperature() {return this.temperature;}
+
+    @Override
+    public ICubeRenderer getBaseTexture(IMultiblockPart iMultiblockPart) {
+        return Textures.INERT_PTFE_CASING;
+    }
+
+    public IBlockState getCasingState() {
+        return MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.PTFE_INERT_CASING);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @NotNull
+    @Override
+    protected ICubeRenderer getFrontOverlay() {
+        return Textures.LARGE_CHEMICAL_REACTOR_OVERLAY;
+    }
 }

@@ -235,11 +235,6 @@ public class TriniumChain {
                 .output(dust, Fluorite, 3)
                 .buildAndRegister();
 
-        EXTRACTOR_RECIPES.recipeBuilder().duration(40).EUt(30)
-                .input(dust, Fluorite)
-                .fluidOutputs(Fluorite.getFluid(GTValues.L))
-                .buildAndRegister();
-
         MIXER_RECIPES.recipeBuilder().duration(160).EUt(30)
                 .input(dust, Calcium)
                 .fluidInputs(Fluorite.getFluid(432))

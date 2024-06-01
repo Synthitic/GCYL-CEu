@@ -9,6 +9,7 @@ import com.fulltrix.gcyl.machines.multi.MetaTileEntityElectricImplosion;
 import com.fulltrix.gcyl.machines.multi.MetaTileEntityStellarForge;
 import com.fulltrix.gcyl.machines.multi.advance.*;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityVoidMiner;
+import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityChemicalPlant;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityPlasmaCondenser;
 import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
 import gregtech.api.GTValues;
@@ -37,6 +38,8 @@ public class GCYLTileEntities {
     public static MetaTileEntityAdvCentrifuge ADVANCED_CENTRIFUGE;
     public static MetaTileEntityElectricImplosion ELECTRIC_IMPLOSION;
     public static MetaTileEntityLargeNaquadahReactor LARGE_NAQUADAH_REACTOR;
+    public static MetaTileEntityChemicalPlant CHEMICAL_PLANT;
+
     public static SimpleGeneratorMetaTileEntity[] NAQUADAH_REACTOR = new SimpleGeneratorMetaTileEntity[8];
     public static SimpleGeneratorMetaTileEntity[] ROCKET_GENERATOR = new SimpleGeneratorMetaTileEntity[8];
 
@@ -81,6 +84,8 @@ public class GCYLTileEntities {
         ELECTRIC_IMPLOSION = registerMetaTileEntity(++id, new MetaTileEntityElectricImplosion(gcylId("electric_implosion")));
 
         LARGE_NAQUADAH_REACTOR = registerMetaTileEntity(++id, new MetaTileEntityLargeNaquadahReactor(gcylId("large_naquadah_reactor")));
+
+        CHEMICAL_PLANT = registerMetaTileEntity(++id, new MetaTileEntityChemicalPlant(gcylId("chemical_plant"),false));
 
 
         //TODO: configurable efficiency for naq reactors, efficiency implementation in general

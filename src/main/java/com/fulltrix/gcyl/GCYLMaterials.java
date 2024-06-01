@@ -7,13 +7,16 @@ import gregtech.api.GTValues;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.unification.Elements;
+import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
+import gregtech.api.unification.material.properties.BlastProperty;
 import gregtech.api.unification.material.properties.OreProperty;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.material.properties.ToolProperty;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -2587,7 +2590,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(CORE_METAL)
                 .element(Hs)
-                .blast(11240)
+                .blast(11240, BlastProperty.GasTier.HIGHEST)
                 .build();
 
         Vibranium = new Material.Builder(id++, gcylId("vibranium"))
@@ -10137,7 +10140,6 @@ public class GCYLMaterials {
         RarestMetalMixture.setFormula("Ir2O2(SiO2)2Au3?",true);
         RarestMetalMixture.setMaterialRGB(0x644629);
         RarestMetalMixture.setMaterialIconSet(ROUGH);
-
     }
 
     private static String makeFancy(String input) {

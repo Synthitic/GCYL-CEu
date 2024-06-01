@@ -73,7 +73,7 @@ public class WaferRecipes {
         BLAST_RECIPES.recipeBuilder().duration(240).EUt(17000000).blastFurnaceTemp(11200)
                 .input(dust, MetastableHassium, 2)
                 .inputs(HASSIUM_SEED_CRYSTAL.getStackForm())
-                .circuitMeta(1)
+                .circuitMeta(3)
                 .fluidInputs(Xenon.getFluid(1000))
                 .outputs(HASSIUM_BOULE.getStackForm())
                 .buildAndRegister();

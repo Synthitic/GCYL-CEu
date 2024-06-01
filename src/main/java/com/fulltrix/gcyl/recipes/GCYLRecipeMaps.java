@@ -109,6 +109,8 @@ public class GCYLRecipeMaps {
     public static void modifyMaps() {
         LASER_ENGRAVER_RECIPES.setMaxFluidInputs(1);
         LASER_ENGRAVER_RECIPES.setMaxFluidOutputs(1);
+
+        BLAST_RECIPES.setMaxInputs(4);
     }
 
 }

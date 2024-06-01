@@ -58,19 +58,19 @@ public class MetaTileEntityAdvMixer extends GCYMRecipeMapMultiblockController {
                 .build();
     }
 
-    private static IBlockState getCasingState() {
+    private IBlockState getCasingState() {
         return GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getState(BlockLargeMultiblockCasing.CasingType.MIXER_CASING);
     }
 
-    private static IBlockState getCasingState2() {
+    private IBlockState getCasingState2() {
         return MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.POLYTETRAFLUOROETHYLENE_PIPE);
     }
 
-    private static IBlockState getCasingState3() {
+    private IBlockState getCasingState3() {
         return MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.PTFE_INERT_CASING);
     }
 
-    private static IBlockState getCasingState4() {
+    private IBlockState getCasingState4() {
         return MetaBlocks.TURBINE_CASING.getState(BlockTurbineCasing.TurbineCasingType.STAINLESS_STEEL_GEARBOX);
     }
 

@@ -46,6 +46,7 @@ public class VariousChains {
                 .fluidOutputs(Water.getFluid(1000))
                 .output(dust, Salt, 2)
                 .output(dust, SodiumHypochlorite, 3)
+                .circuitMeta(1)
                 .buildAndRegister();
 
         // HClO + NaOH -> H2O + NaClO
@@ -329,14 +330,6 @@ public class VariousChains {
                 .input(dust, Clay)
                 .fluidInputs(Water.getFluid(2000))
                 .fluidOutputs(BentoniteClaySlurry.getFluid(2000))
-                .buildAndRegister();
-
-        // Fe + 3HCl -> FeCl3 + 3H
-        CHEMICAL_RECIPES.recipeBuilder().duration(100).EUt(30)
-                .input(dust, Iron)
-                .fluidInputs(HydrochloricAcid.getFluid(3000))
-                .fluidOutputs(Iron3Chloride.getFluid(1000))
-                .fluidOutputs(Hydrogen.getFluid(3000))
                 .buildAndRegister();
 
         // LiCl -> Li + Cl

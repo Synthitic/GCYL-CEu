@@ -1,17 +1,20 @@
 package com.fulltrix.gcyl.recipes.categories;
 
+import gregtech.api.GTValues;
 import gregtech.api.unification.stack.MaterialStack;
 
 import static com.fulltrix.gcyl.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.Zeron100;
 import static gregtech.api.GTValues.L;
+import static gregtech.api.GTValues.VA;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.Materials.Lubricant;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
+import static gregtech.common.metatileentities.MetaTileEntities.ADVANCED_LARGE_MINER;
 
 public class ComponentRecipes {
     private static final MaterialStack[] cableFluids = {
@@ -38,6 +41,8 @@ public class ComponentRecipes {
 
     private static void emitterInit() {
 
+        /*
+        Original LuV Emitter
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(15360)
                 .input(frameGt, HSSG)
                 .input(dust,ZincSelenide,16)
@@ -48,6 +53,36 @@ public class ComponentRecipes {
                 .fluidInputs(SolderingAlloy.getFluid(L))
                 .outputs(EMITTER_LuV.getStackForm())
                 .buildAndRegister();
+
+         */
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(15360)
+                .input(frameGt, HSSS)
+                .inputs(ELECTRIC_MOTOR_LuV.getStackForm())
+                .input(stickLong, Ruridit,4)
+                .inputs(QUANTUM_STAR.getStackForm())
+                .input(dust,ZincSelenide,16)
+                .input(wireGtDouble, YttriumBariumCuprate, 8)
+                .input(gemExquisite, Ruby, 2)
+                .input(circuit, LuV, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L*2))
+                .outputs(EMITTER_LuV.getStackForm())
+                .scannerResearch(EMITTER_IV.getStackForm())
+                .buildAndRegister();
+
+        /*
+        Original ZPM Emitter
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(61440)
+                .input(frameGt, HSSE)
+                .input(dust,Fluorescein,16)
+                .input(foil, Platinum, 64)
+                .input(wireGtDouble, Naquadah, 8)
+                .input(gemExquisite, Emerald, 2)
+                .input(circuit, ZPM, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .outputs(EMITTER_ZPM.getStackForm())
+                .buildAndRegister();
+         */
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(61440)
                 .input(frameGt, HSSE)

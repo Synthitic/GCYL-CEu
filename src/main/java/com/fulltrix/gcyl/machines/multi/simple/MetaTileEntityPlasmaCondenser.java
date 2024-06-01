@@ -25,8 +25,8 @@ import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_1;
 
 public class MetaTileEntityPlasmaCondenser extends GCYLRecipeMapMultiblockController {
 
-    public MetaTileEntityPlasmaCondenser(ResourceLocation metaTileENtityId, boolean isParallel) {
-        super(metaTileENtityId, GCYLRecipeMaps.PLASMA_CONDENSER_RECIPES, isParallel);
+    public MetaTileEntityPlasmaCondenser(ResourceLocation metaTileEntityId, boolean isParallel) {
+        super(metaTileEntityId, GCYLRecipeMaps.PLASMA_CONDENSER_RECIPES, isParallel);
         this.recipeMapWorkable = new MultiblockRecipeLogic(this);
     }
 

@@ -66,6 +66,7 @@ public class NiobiumTantalumChain {
                 .input(dust, NbTaContainingDust, 4)
                 .input(dust, Carbon)
                 .input(dust, SiliconDioxide, 3)
+                .circuitMeta(1)
                 .fluidOutputs(CarbonDioxide.getFluid(1000))
                 .output(ingot, Ferrosilite, 5)
                 .output(dust, NiobiumTantalumOxide, 14)
