@@ -52,12 +52,12 @@ public class MetaTileEntityAdvCentrifuge extends GCYMRecipeMapMultiblockControll
                 .build();
     }
 
-    private static IBlockState getCasingState() {
+    private IBlockState getCasingState() {
         return GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING
                 .getState(BlockLargeMultiblockCasing.CasingType.VIBRATION_SAFE_CASING);
     }
 
-    private static IBlockState getCasingState2() {
+    private IBlockState getCasingState2() {
         return MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.STEEL_PIPE);
     }
 

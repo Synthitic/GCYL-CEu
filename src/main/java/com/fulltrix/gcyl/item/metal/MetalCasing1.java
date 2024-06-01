@@ -38,7 +38,7 @@ public class MetalCasing1 extends VariantBlock<MetalCasing1.CasingType> {
 
         HASTELLOY_X78("casing_hastelloy_x78", HastelloyX78),
         HASTELLOY_N("casing_hastelloy_n", HastelloyN),
-
+        NITINOL_60("casing_nitinol_60", Nitinol60),
         INCOLOY_813("casing_incoloy_813", Incoloy813);
 
         private final String name;
@@ -68,6 +68,9 @@ public class MetalCasing1 extends VariantBlock<MetalCasing1.CasingType> {
                 }
                 case "casing_incoloy_813" -> {
                     return INCOLOY_813_CASING;
+                }
+                case "casing_nitinol_60" -> {
+                    return NITINOL_60_CASING;
                 }
                 default -> {
                     return HASTELLOY_X78_CASING;

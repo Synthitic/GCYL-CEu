@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.recipes.categories.machines;
 
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
+import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import gregtech.api.GTValues;
 import gregtech.common.blocks.BlockBoilerCasing;
 import gregtech.common.blocks.BlockMetalCasing;
@@ -28,25 +29,23 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
 
     private static void otherMultiblockInit() {
 
-        /*
             // Large Rocket Engine
             ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(1200).EUt(30720)
                     .fluidInputs(Lubricant.getFluid(L * 16))
                     .fluidInputs(SiliconeRubber.getFluid(L * 64))
                     .fluidInputs(SolderingAlloy.getFluid(L * 10))
                     .inputs(HULL[6].getStackForm(4))
-                    .input(circuit, Master)
-                    .input(circuit, Master)
-                    .input(circuit, Master)
-                    .input(circuit, Master)
+                    .input(circuit, ZPM)
+                    .input(circuit, ZPM)
+                    .input(circuit, ZPM)
+                    .input(circuit, ZPM)
                     .input(wireGtSingle, LuVSuperconductor, 64)
                     .input(gear, IncoloyMA956, 32)
                     .inputs(ELECTRIC_PISTON_LUV.getStackForm(16))
-                    .inputs(EMITTER_LUV.getStackForm(2))
+                    .inputs(EMITTER_LuV.getStackForm(2))
                     .outputs(LARGE_ROCKET_ENGINE.getStackForm())
+                    .scannerResearch(ROCKET_GENERATOR[5].getStackForm())
                     .buildAndRegister();
-
-         */
 
 
         // Void Miner Mk1
