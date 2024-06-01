@@ -57,6 +57,12 @@ public class TJFMaterials {
     public static Material Fermium258;
     public static Material Californium252;
     public static Material Mendelevium261;
+    public static Material Plutonium244;
+    public static Material Fermium259;
+    public static Material Americium243;
+    public static Material Curium247;
+    public static Material Californium253;
+    public static Material Curium250;
 
     /////////////////////////////////////////
     public static Material Inconel792;
@@ -1058,10 +1064,25 @@ public class TJFMaterials {
     public static Material ActiniumRadiumNitrateSolution;
     public static Material ActiniumNitrate;
     public static Material RadiumNitrate;
-    public static Material Americium243;
-    public static Material Curium247;
-    public static Material Californium253;
-    public static Material Fermium259;
+    public static Material LithiumPeroxideSolution;
+    public static Material NitrogenPentoxide;
+    public static Material TitaniumNitrate;
+    public static Material Carbon12;
+    public static Material Carbon13;
+    public static Material Nitrogen14;
+    public static Material NItrogen15;
+    public static Material CNOcatalyst;
+    public static Material Calcium44;
+    public static Material QuassifissioningPlasma;
+    public static Material FlYbPlasma;
+    public static Material Ytterbium178;
+    public static Material TitaniumTetrafluoride;
+    public static Material Titanium50Tetrafluoride;
+    public static Material OgannesonBreedingBase;
+    public static Material HotMetastableOganesson;
+    public static Material HafniumCarbide;
+    public static Material SeaborgiumCarbide;
+    public static Material Helium4;
 
     //COILS
     public static Material Pikyonium;
@@ -1132,7 +1153,7 @@ public class TJFMaterials {
                 .build();
 
         Americium241 = new Material.Builder(id++, tjfId("americium_241"))
-                .ingot()
+                .ingot().liquid()
                 .color(13158600)
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
@@ -1140,7 +1161,7 @@ public class TJFMaterials {
                 .setFormula("Am_241", true);
 
         Fermium258 = new Material.Builder(id++, tjfId("fermium_258"))
-                .ingot()
+                .ingot().liquid()
                 .color(0x984ACF)
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
@@ -1148,7 +1169,7 @@ public class TJFMaterials {
                 .setFormula("Fm_241", true);
 
         Californium252 = new Material.Builder(id++, tjfId("californium_252"))
-                .ingot()
+                .ingot().liquid()
                 .color(0xA85A12)
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
@@ -1156,7 +1177,7 @@ public class TJFMaterials {
                 .setFormula("Cf_252", true);
 
         Mendelevium261 = new Material.Builder(id++, tjfId("mendelevium_261"))
-                .ingot()
+                .ingot().liquid()
                 .color(Mendelevium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
@@ -1164,7 +1185,7 @@ public class TJFMaterials {
                 .setFormula("Md_261", true);
 
         Americium243 = new Material.Builder(id++, tjfId("americium_243"))
-                .ingot()
+                .ingot().liquid()
                 .color(Americium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
@@ -1172,7 +1193,7 @@ public class TJFMaterials {
                 .setFormula("Am_243", true);
 
         Curium247 = new Material.Builder(id++, tjfId("curium_247"))
-                .ingot()
+                .ingot().liquid()
                 .color(Curium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
@@ -1180,7 +1201,7 @@ public class TJFMaterials {
                 .setFormula("Cm_252", true);
 
         Californium253 = new Material.Builder(id++, tjfId("californium_253"))
-                .ingot()
+                .ingot().liquid()
                 .color(Californium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
@@ -1188,12 +1209,28 @@ public class TJFMaterials {
                 .setFormula("Cf_253", true);
 
         Fermium259 = new Material.Builder(id++, tjfId("fermium_259"))
-                .ingot()
+                .ingot().liquid()
                 .color(Fermium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
                 .build()
                 .setFormula("Fm_259", true);
+
+        Plutonium244 = new Material.Builder(id++, tjfId("plutonium_244"))
+                .ingot().liquid()
+                .color(Plutonium.getMaterialRGB())
+                .iconSet(METALLIC)
+                .flags(STD_METAL)
+                .build()
+                .setFormula("Pu_244", true);
+
+        Curium250 = new Material.Builder(id++, tjfId("curium_250"))
+                .ingot().liquid()
+                .color(Curium.getMaterialRGB())
+                .iconSet(METALLIC)
+                .flags(STD_METAL)
+                .build()
+                .setFormula("Cm_250", true);
 
         //////////////////////
 
@@ -9197,6 +9234,166 @@ public class TJFMaterials {
                 .build()
                 .setFormula("Ra(NO3)2",true);
 
+        LithiumPeroxideSolution = new Material.Builder(id++, tjfId("lithium_peroxide"))
+                .liquid()
+                .color((Lithium.getMaterialRGB()+Oxygen.getMaterialRGB())/2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(H2O)Li2O2",true);
+
+        NitrogenPentoxide = new Material.Builder(id++, tjfId("nitrogen_pentoxide"))
+                .liquid()
+                .color(0x0033C0)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("N2O5",true);
+
+        TitaniumNitrate = new Material.Builder(id++, tjfId("titanium_nitrate"))
+                .dust()
+                .color(0xFF0066)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FINE)
+                .build()
+                .setFormula("TiNO3",true);
+
+        Carbon12 = new Material.Builder(id++, tjfId("carbon_12"))
+                .gas()
+                .color(Carbon.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C_12",true);
+
+        Carbon13 = new Material.Builder(id++, tjfId("carbon_13"))
+                .gas()
+                .color(Carbon.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C_13",true);
+
+        Nitrogen14 = new Material.Builder(id++, tjfId("nitrogen_14"))
+                .gas()
+                .color(Nitrogen.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("N_14",true);
+
+        NItrogen15 = new Material.Builder(id++, tjfId("nitrogen_15"))
+                .liquid()
+                .color(Nitrogen.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("N_15",true);
+
+        CNOcatalyst = new Material.Builder(id++, tjfId("cno_catalyst"))
+                .liquid()
+                .color((Nitrogen.getMaterialRGB() + Carbon.getMaterialRGB())/2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(C_12)(C_13)(N_14)(N_15)",true);
+
+        Calcium44 = new Material.Builder(id++, tjfId("calcium_44"))
+                .liquid()
+                .color(Calcium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Ca_44",true);
+
+        QuassifissioningPlasma = new Material.Builder(id++, tjfId("quasifissioning_plasma"))
+                .plasma()
+                .color(0xD5CB54)
+                .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula(TextFormatting.OBFUSCATED + "???",true);
+
+        FlYbPlasma = new Material.Builder(id++, tjfId("flyb_plasma"))
+                .plasma()
+                .color((Ytterbium.getMaterialRGB() + 0x521973) / 2)
+                .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("FlYb",true);
+
+        Ytterbium178 = new Material.Builder(id++, tjfId("ytterbium_178"))
+                .liquid()
+                .color(Ytterbium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Yb_178",true);
+
+        TitaniumTetrafluoride = new Material.Builder(id++, tjfId("titanium_tetrafluoride"))
+                .liquid()
+                .color(Titanium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("TiF4",true);
+
+        Titanium50Tetrafluoride = new Material.Builder(id++, tjfId("titanium_50_tetrafluoride"))
+                .liquid()
+                .color( Titanium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Ti_50F4",true);
+
+        OgannesonBreedingBase = new Material.Builder(id++, tjfId("og_breeding_base"))
+                .liquid()
+                .color(((Titanium.getMaterialRGB() + 0xA85A12) / 2))
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(Ti_50)Cf_252",true);
+
+        HotMetastableOganesson = new Material.Builder(id++, tjfId("hot_oganesson"))
+                .liquid()
+                .color(0x521973)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Og",true);
+
+        HafniumCarbide = new Material.Builder(id++, tjfId("hafnium_carbide"))
+                .dust()
+                .color(0x2c2c2c)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("HfC",true);
+
+        SeaborgiumCarbide = new Material.Builder(id++, tjfId("seaborgium_carbide"))
+                .dust()
+                .color(0x2c2c2c)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("SgC",true);
+
+        Calcium44 = new Material.Builder(id++, tjfId("calcium_44"))
+                .liquid()
+                .color(Calcium.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Ca_44",true);
+
+        Helium4 = new Material.Builder(id++, tjfId("helium_4"))
+                .gas()
+                .color(Helium.getMaterialRGB()-10)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("He_4",true);
+
         /*
         = new Material.Builder(id++, tjfId("material"))
                 .ingot().liquid()
@@ -9573,7 +9770,9 @@ public class TJFMaterials {
         //FLUID Additions
         List<Material> fmats = new ArrayList<>();
         Collections.addAll(fmats, Sodium, Bromine, AmmoniumChloride, Rubidium, Caesium, Francium, Polonium, Praseodymium, Ytterbium, Neptunium,
-                ProtoAdamantium, Scandium, Radium, MetastableHassium, MetastableFlerovium, MetastableOganesson, HeavyQuarkDegenerateMatter, Dubnium);
+                ProtoAdamantium, Scandium, Radium, MetastableHassium, MetastableFlerovium, MetastableOganesson, HeavyQuarkDegenerateMatter, Dubnium,
+                Sulfur, Calcium, Curium, Bohrium, Seaborgium, Copernicium, Rutherfordium,Meitnerium, Tennessine, Livermorium, Moscovium, Nihonium,
+                Roentgenium, Astatine, Hafnium);
 
         for (Material mat : fmats) {
             addLiquid(mat);
@@ -9596,8 +9795,17 @@ public class TJFMaterials {
 
         //PLASMAS
         List<Material> pmats = new ArrayList<>();
-        Collections.addAll(pmats, Carbon, Hydrogen, Helium3, Radon, Krypton, Neon);
+        Collections.addAll(pmats, Carbon, Hydrogen, Helium3, Radon, Krypton, Neon, Magnesium, Silicon, Sulfur, Argon,Calcium, Titanium, Potassium);
         for (Material mat : pmats) {
+
+            /*addPlasma(mat, new FluidBuilder()
+                    .temperature(15000)
+                    .color(mat.getMaterialRGB())
+                    .name("plasma." + mat.getName())
+                    .translation("gregtech.fluid.plasma"));
+            mat.getProperty(PropertyKey.FLUID).setPrimaryKey(FluidStorageKeys.GAS);
+
+             */
             addFluid(mat, "plasma", false);
         }
 

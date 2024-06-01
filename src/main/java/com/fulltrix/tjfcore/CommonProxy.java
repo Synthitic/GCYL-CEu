@@ -127,6 +127,8 @@ public class CommonProxy {
         FusionEUToStartProperty.registerFusionTier(9, "(Adv MK1)");
         FusionEUToStartProperty.registerFusionTier(10, "(Adv MK2)");
         FusionEUToStartProperty.registerFusionTier(11, "(Adv MK3)");
+        FusionEUToStartProperty.registerFusionTier(12, "(Adv MK4)");
+        FusionEUToStartProperty.registerFusionTier(13, "(Adv MK5)");
 
         TJFRecipeMaps.modifyMaps();
 
