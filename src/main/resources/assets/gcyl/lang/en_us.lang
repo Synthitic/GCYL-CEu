@@ -4665,6 +4665,7 @@ tile.wire_coil.cosmic_neutronium_coil.name=Cosmic Neutronium Coil Block
 tile.wire_coil.infinity_coil.name=Infinity Coil Block
 tile.wire_coil.eternity_coil.name=Eternity Coil Block
 
-gcyl.material.unfolded_fullerene.name=Unfolded Fullerene
-gcyl.material.fullerene.name=Fullerene
-gcyl.material.pd_fullerene_matrix.name=Palladium Fullerene Matrix
+gcyl.material.unfolded_fullerene=Unfolded Fullerene
+gcyl.material.fullerene=Fullerene
+gcyl.material.pd_fullerene_matrix=Palladium Fullerene Matrix
+gcyl.material.lignite=Lignite Coal
