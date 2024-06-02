@@ -80,7 +80,7 @@ public class PlatinumSludgeGroupChain {
         // (SiO2)2Au3 -> 2SiO2 + 3Au
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
                 .input(dust, PlatinumSludgeResidue, 5)
-                .output(dust, SiliconDioxide, 6)
+                .output(dust, SiliconDioxide, 2)
                 .output(dust, Gold, 3)
                 .EUt(10)
                 .duration(226)
