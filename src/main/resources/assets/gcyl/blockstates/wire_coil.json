@@ -30,7 +30,7 @@
     "active=false,variant=black_titanium_coil": {
       "model": "minecraft:cube_all",
       "textures": {
-        "side": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uiv"
+        "all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uiv"
       }
     },
     "active=true,variant=black_titanium_coil": {
@@ -43,7 +43,7 @@
     "active=false,variant=neutronium_coil": {
       "model": "minecraft:cube_all",
       "textures": {
-        "side": "gregtech:blocks/casings/solid/heating_coil/heating.coil.umv"
+        "all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.umv"
       }
     },
     "active=true,variant=neutronium_coil": {
@@ -56,7 +56,7 @@
     "active=false,variant=cosmic_neutronium_coil": {
       "model": "minecraft:cube_all",
       "textures": {
-        "side": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uxv"
+        "all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uxv"
       }
     },
     "active=true,variant=cosmic_neutronium_coil": {
@@ -69,7 +69,7 @@
     "active=false,variant=infinity_coil": {
       "model": "minecraft:cube_all",
       "textures": {
-        "side": "gregtech:blocks/casings/solid/heating_coil/heating.coil.infinity"
+        "all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.infinity"
       }
     },
     "active=true,variant=infinity_coil": {
@@ -82,7 +82,7 @@
     "active=false,variant=eternity_coil": {
       "model": "minecraft:cube_all",
       "textures": {
-        "side": "gregtech:blocks/casings/solid/heating_coil/heating.coil.eternity"
+        "all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.eternity"
       }
     },
     "active=true,variant=eternity_coil": {
