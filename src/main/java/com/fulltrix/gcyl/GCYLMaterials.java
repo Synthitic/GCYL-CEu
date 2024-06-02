@@ -1306,7 +1306,7 @@ public class GCYLMaterials {
                 .build();
 
         Pikyonium = new Material.Builder(id++, gcylId("pikyonium"))
-                .ingot(7)
+                .ingot(7).liquid()
                 .color(0x3467BA)
                 .flags(CORE_METAL)
                 .iconSet(SHINY)
@@ -2575,7 +2575,7 @@ public class GCYLMaterials {
                 .setFormula("?");
 
         TitanSteel = new Material.Builder(id++, gcylId("titan_steel"))
-                .ingot(7)
+                .ingot(7).liquid()
                 .color(0xAA0d0d)
                 .iconSet(SHINY)
                 .flags(CORE_METAL, DISABLE_DECOMPOSITION)
@@ -10141,6 +10141,8 @@ public class GCYLMaterials {
         RarestMetalMixture.setFormula("Ir2O2(SiO2)2Au3?",true);
         RarestMetalMixture.setMaterialRGB(0x644629);
         RarestMetalMixture.setMaterialIconSet(ROUGH);
+
+        NaquadahAlloy.setFormula("Nq(Ir3Os)",true);
     }
 
     private static String makeFancy(String input) {
