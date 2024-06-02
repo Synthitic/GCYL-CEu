@@ -104,12 +104,5 @@ public class MetaItemRecipes {
                 .output(dust, Meat)
                 .buildAndRegister();
 
-        // Explosives
-        CHEMICAL_RECIPES.recipeBuilder().duration(80).EUt(480)
-                .inputs(GELLED_TOLUENE.getStackForm(4))
-                .fluidInputs(NitrationMixture.getFluid(200))
-                .outputs(GCYLMetaBlocks.EXPLOSIVE.getItemVariant(GCYLExplosive.ExplosiveType.ITNT))
-                .fluidOutputs(DilutedSulfuricAcid.getFluid(150))
-                .buildAndRegister();
     }
 }

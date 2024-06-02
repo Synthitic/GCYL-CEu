@@ -21,9 +21,7 @@ public class GCYLExplosive extends VariantBlock<GCYLExplosive.ExplosiveType> {
         TARANIUM_CHARGE("taranium_charge"),
         NAQUADRIA_CHARGE("naquadria_charge"),
         LEPTONIC_CHARGE("leptonic_charge"),
-        QCD_CHARGE("qcd_charge"),
-        ITNT("industrial_tnt"),
-        POWDER_BARREL("powder_barrel");
+        QCD_CHARGE("qcd_charge");
 
 
         private final String name;
