@@ -4655,3 +4655,11 @@ gregtech.multiblock.vol_cryo.description=This multiblock parallels once per over
 
 gregtech.recipe.adv_fusion_eu_return=EU Returned:
 gregtech.recipe.adv_fusion_coil_tier=Coil Tier:
+
+tile.wire_coil.titan_steel_coil.name=Titan Steel Coil Block
+tile.wire_coil.pikyonium_coil.name=Pikyonium Coil Block
+tile.wire_coil.black_titanium_coil.name=Black Titanium Coil Block
+tile.wire_coil.neutronium_coil.name=Neutronium Coil Block
+tile.wire_coil.cosmic_neutronium_coil.name=Cosmic Neutronium Coil Block
+tile.wire_coil.infinity_coil.name=Infinity Coil Block
+tile.wire_coil.eternity_coil.name=Eternity Coil Block
