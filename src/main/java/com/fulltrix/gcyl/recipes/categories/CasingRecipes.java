@@ -20,6 +20,7 @@ import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.common.blocks.BlockWireCoil.CoilType.*;
 import static gregtech.common.items.MetaItems.*;
 import static gregtech.common.items.MetaItems.EMITTER_UV;
 
@@ -360,7 +361,7 @@ public class CasingRecipes {
 
          */
 
-        /*
+
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(8)
                 .input(wireGtDouble, Cupronickel, 8)
                 .input(dust, AluminoSilicateWool, 12)
@@ -390,7 +391,7 @@ public class CasingRecipes {
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(500).EUt(480)
-                .input(wireGtDouble, TungstenSteel, 8)
+                .input(wireGtDouble, RTMAlloy, 8)
                 .inputs(MICA_INSULATOR_FOIL.getStackForm(8))
                 .fluidInputs(Nichrome.getFluid(L))
                 .outputs(MetaBlocks.WIRE_COIL.getItemVariant(RTM_ALLOY))
@@ -398,60 +399,62 @@ public class CasingRecipes {
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(600).EUt(1920)
                 .input(wireGtDouble, HSSG, 8)
-                .inputs(MICA_INSULATOR_FOIL.getStackForm(8))
+                .inputs(MICA_INSULATOR_FOIL.getStackForm(16))
                 .fluidInputs(Tungsten.getFluid(L))
                 .outputs(MetaBlocks.WIRE_COIL.getItemVariant(HSS_G))
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(700).EUt(4096)
                 .input(wireGtDouble, Naquadah, 8)
-                .inputs(MICA_INSULATOR_FOIL.getStackForm(8))
+                .inputs(MICA_INSULATOR_FOIL.getStackForm(16))
                 .fluidInputs(HSSG.getFluid(L))
                 .outputs(MetaBlocks.WIRE_COIL.getItemVariant(NAQUADAH))
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(800).EUt(7680)
                 .input(wireGtDouble, NaquadahAlloy, 8)
-                .inputs(MICA_INSULATOR_FOIL.getStackForm(8))
+                .inputs(MICA_INSULATOR_FOIL.getStackForm(16))
                 .fluidInputs(Naquadah.getFluid(L))
-                .outputs(MetaBlocks.WIRE_COIL.getItemVariant(NaquadahAlloy))
+                .outputs(GCYLMetaBlocks.HEATING_COIL.getItemVariant(NAQUADAH_ALLOY_COIL))
                 .buildAndRegister();
 
-         */
+
         ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(500000)
                 .input(wireGtDouble, TitanSteel, 8)
-                .inputs(MICA_INSULATOR_FOIL.getStackForm(8))
+                .inputs(MICA_INSULATOR_FOIL.getStackForm(32))
                 .fluidInputs(Tritanium.getFluid(L))
                 .outputs(GCYLMetaBlocks.HEATING_COIL.getItemVariant(TITAN_STEEL_COIL))
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(2000000)
                 .input(wireGtDouble, Pikyonium, 8)
-                .inputs(MICA_INSULATOR_FOIL.getStackForm(8))
+                .inputs(HIGHLY_INSULATING_FOIL.getStackForm(8))
                 .fluidInputs(Adamantium.getFluid(L))
                 .outputs(GCYLMetaBlocks.HEATING_COIL.getItemVariant(PIKYONIUM_COIL))
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(8000000)
                 .input(wireGtDouble, BlackTitanium, 8)
-                .inputs(MICA_INSULATOR_FOIL.getStackForm(8))
+                .inputs(HIGHLY_INSULATING_FOIL.getStackForm(8))
                 .fluidInputs(Vibranium.getFluid(L))
                 .outputs(GCYLMetaBlocks.HEATING_COIL.getItemVariant(BLACK_TITANIUM_COIL))
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(32000000)
                 .input(wireGtDouble, Neutronium, 8)
-                .inputs(MICA_INSULATOR_FOIL.getStackForm(8))
+                .inputs(HIGHLY_INSULATING_FOIL.getStackForm(16))
                 .fluidInputs(Cinobite.getFluid(L))
                 .outputs(GCYLMetaBlocks.HEATING_COIL.getItemVariant(NEUTRONIUM_COIL))
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(32000000)
                 .input(wireGtDouble, CosmicNeutronium, 8)
-                .inputs(MICA_INSULATOR_FOIL.getStackForm(8))
+                .inputs(HIGHLY_INSULATING_FOIL.getStackForm(32))
                 .fluidInputs(Neutronium.getFluid(L))
                 .outputs(GCYLMetaBlocks.HEATING_COIL.getItemVariant(COSMIC_NEUTRONIUM_COIL))
                 .buildAndRegister();
+
+        //TODO: eternity and infinity coils?
 
         /*
         ASSEMBLER_RECIPES.recipeBuilder().duration(1000).EUt(9001)
