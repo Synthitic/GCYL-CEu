@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregtech.api.GTValues.MV;
 import static gregtech.api.GTValues.VA;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
@@ -20,7 +21,6 @@ public class RecipeOverride {
     public static void init() {
 
         /*
-        gregtechOverride();
         vanillaOverride();
         brewingOverride();
         configCircuitOverride();
@@ -29,6 +29,7 @@ public class RecipeOverride {
 
         recipeRemoval();
         chemistryOverride();
+        gregtechOverride();
     }
 
     private static void recipeRemoval() {
@@ -69,6 +70,18 @@ public class RecipeOverride {
         removeRecipesByInputs(BLAST_RECIPES, OreDictUnifier.get(dust,SiliconDioxide,3), OreDictUnifier.get(dust,Carbon,2));
 
         removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Pink), NEUTRONIUM_WAFER.getStackForm());
+
+        //Coil removals
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, Trinium,8), OreDictUnifier.get(foil,NaquadahEnriched,8)}, new FluidStack[]{Naquadah.getFluid(144)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, Tritanium,8), OreDictUnifier.get(foil,Naquadria,8)}, new FluidStack[]{Trinium.getFluid(144)});
+
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, Cupronickel,8), OreDictUnifier.get(foil,Bronze,8)}, new FluidStack[]{TinAlloy.getFluid(144)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, Kanthal,8), OreDictUnifier.get(foil,Aluminium,8)}, new FluidStack[]{Copper.getFluid(144)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, Nichrome,8), OreDictUnifier.get(foil,StainlessSteel,8)}, new FluidStack[]{Aluminium.getFluid(144)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, RTMAlloy,8), OreDictUnifier.get(foil,VanadiumSteel,8)}, new FluidStack[]{Nichrome.getFluid(144)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, HSSG,8), OreDictUnifier.get(foil,TungstenCarbide,8)}, new FluidStack[]{Tungsten.getFluid(144)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, Naquadah,8), OreDictUnifier.get(foil,Osmium,8)}, new FluidStack[]{TungstenSteel.getFluid(144)});
+
 
 
         //Plat line fixes TODO: remove and replace the recipes that turn ore into platinum group sludge
@@ -130,6 +143,57 @@ public class RecipeOverride {
                 .output(ingotHot, Silicon)
                 .chancedOutput(dust, Ash, 1111, 0)
                 .fluidOutputs(CarbonMonoxide.getFluid(2000))
+                .buildAndRegister();
+
+    }
+
+    public static void gregtechOverride() {
+        MIXER_RECIPES.recipeBuilder().duration(400).EUt(8)
+                .input(dust, Mica, 3)
+                .input(dust, RawRubber, 2)
+                .output(dust, MicaPulp, 5)
+                .buildAndRegister();
+
+        MIXER_RECIPES.recipeBuilder().duration(400).EUt(8)
+                .input(dust, Mica, 3)
+                .inputs(STICKY_RESIN.getStackForm())
+                .output(dust, MicaPulp, 4)
+                .buildAndRegister();
+
+        ALLOY_SMELTER_RECIPES.recipeBuilder().duration(1200).EUt(30)
+                .input(dust, Sapphire)
+                .input(dust, SiliconDioxide, 3)
+                .output(dust, AluminoSilicateWool, 2)
+                .buildAndRegister();
+
+        ALLOY_SMELTER_RECIPES.recipeBuilder().duration(1200).EUt(30)
+                .input(dust, GreenSapphire)
+                .input(dust, SiliconDioxide, 3)
+                .output(dust, AluminoSilicateWool, 2)
+                .buildAndRegister();
+
+        ALLOY_SMELTER_RECIPES.recipeBuilder().duration(1200).EUt(30)
+                .input(dust, Ruby)
+                .input(dust, SiliconDioxide, 3)
+                .output(dust, AluminoSilicateWool, 2)
+                .buildAndRegister();
+
+        FORMING_PRESS_RECIPES.recipeBuilder().duration(400).EUt(28)
+                .input(dust, MicaPulp, 4)
+                .input(dust, Asbestos)
+                .outputs(MICA_SHEET.getStackForm(5))
+                .buildAndRegister();
+
+        ALLOY_SMELTER_RECIPES.recipeBuilder().duration(400).EUt(30)
+                .inputs(MICA_SHEET.getStackForm(5))
+                .input(dust, SiliconDioxide, 3)
+                .outputs(MICA_INSULATOR_SHEET.getStackForm(8))
+                .buildAndRegister();
+
+        BENDER_RECIPES.recipeBuilder().duration(100).EUt(30)
+                .inputs(MICA_INSULATOR_SHEET.getStackForm())
+                .circuitMeta(1)
+                .outputs(MICA_INSULATOR_FOIL.getStackForm(4))
                 .buildAndRegister();
 
     }

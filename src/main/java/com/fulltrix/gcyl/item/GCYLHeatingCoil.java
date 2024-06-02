@@ -28,6 +28,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import static gregtech.api.unification.material.Materials.NaquadahAlloy;
+
 public class GCYLHeatingCoil extends VariantActiveBlock<GCYLHeatingCoil.CoilType> {
     public GCYLHeatingCoil() {
         super(net.minecraft.block.material.Material.IRON);
@@ -85,6 +87,7 @@ public class GCYLHeatingCoil extends VariantActiveBlock<GCYLHeatingCoil.CoilType
 
     public enum CoilType implements IStringSerializable, IHeatingCoilBlockStats {
 
+        NAQUADAH_ALLOY_COIL("naquadah_alloy_coil",8600, 8,4,NaquadahAlloy),
         TITAN_STEEL_COIL("titan_steel_coil", 9600, 32, 8, GCYLMaterials.TitanSteel),
         PIKYONIUM_COIL("pikyonium_coil", 10700, 32, 8, GCYLMaterials.Pikyonium),
         BLACK_TITANIUM_COIL("black_titanium_coil", 11200, 64, 16, GCYLMaterials.BlackTitanium),

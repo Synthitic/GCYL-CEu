@@ -1,68 +1,109 @@
 {
   "forge_marker": 1,
   "variants": {
-      "active=false,variant=titan_steel_coil": {
-        "model": "minecraft:cube_all",
-        "textures": {
-          "all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uhv"
-        }
-      },
-      "active=true,variant=titan_steel_coil": {
-        "model": "gregtech:cube_2_layer_all",
-        "textures": {
-          "bot_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uhv",
-          "top_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.top.bottom"
-        }
-      },
-      "active=false,variant=pikyonium_coil": {
-        "model": "minecraft:cube_all",
-        "textures": {
-          "all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uev"
-        }
-      },
-      "active=true,variant=pikyonium_coil": {
-        "model": "gregtech:cube_2_layer_all",
-        "textures": {
-          "bot_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uev",
-          "top_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.top.bottom"
-        }
-      },
-      "active=false,variant=black_titanium_coil": {
-        "model": "minecraft:cube_all",
-        "textures": {
-          "side": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uiv"
-        }
-      },
-      "active=true,variant=black_titanium_coil": {
-        "model": "gregtech:cube_2_layer_all",
-        "textures": {
-          "bot_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uiv",
-          "top_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.top.bottom"
-        }
-      },
-      "active=false,variant=neutronium_coil": {
-        "model": "minecraft:cube_all",
-        "textures": {
-          "side": "gregtech:blocks/casings/solid/heating_coil/heating.coil.umv"
-        }
-      },
-      "active=false,variant=cosmic_neutronium_coil": {
-        "model": "minecraft:cube_all",
-        "textures": {
-          "side": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uxv"
-        }
-      },
-      "active=false,variant=infinity_coil": {
-        "model": "minecraft:cube_all",
-        "textures": {
-          "side": "gregtech:blocks/casings/solid/heating_coil/heating.coil.infinity"
-        }
-      },
-      "active=false,variant=eternity_coil": {
-        "model": "minecraft:cube_all",
-        "textures": {
-          "side": "gregtech:blocks/casings/solid/heating_coil/heating.coil.eternity"
-        }
+    "active=false,variant=naquadah_alloy_coil": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/coils/machine_coil_naquadah"
       }
+    },
+    "active=true,variant=naquadah_alloy_coil": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gregtech:blocks/casings/coils/machine_coil_naquadah",
+        "top_all":"gregtech:blocks/casings/coils/machine_coil_naquadah_bloom"
+      }
+    },
+    "active=false,variant=titan_steel_coil": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uhv"
+      }
+    },
+    "active=true,variant=titan_steel_coil": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uhv",
+        "top_all": "gregtech:blocks/casings/coils/machine_coil_naquadah_bloom"
+      }
+    },
+    "active=false,variant=pikyonium_coil": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uev"
+      }
+    },
+    "active=true,variant=pikyonium_coil": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uev",
+        "top_all": "gregtech:blocks/casings/coils/machine_coil_naquadah_bloom"
+      }
+    },
+    "active=false,variant=black_titanium_coil": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uiv"
+      }
+    },
+    "active=true,variant=black_titanium_coil": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uiv",
+        "top_all": "gregtech:blocks/casings/coils/machine_coil_naquadah_bloom"
+      }
+    },
+    "active=false,variant=neutronium_coil": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.umv"
+      }
+    },
+    "active=true,variant=neutronium_coil": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.umv",
+        "top_all": "gregtech:blocks/casings/coils/machine_coil_naquadah_bloom"
+      }
+    },
+    "active=false,variant=cosmic_neutronium_coil": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uxv"
+      }
+    },
+    "active=true,variant=cosmic_neutronium_coil": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.uxv",
+        "top_all": "gregtech:blocks/casings/coils/machine_coil_naquadah_bloom"
+      }
+    },
+    "active=false,variant=infinity_coil": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.infinity"
+      }
+    },
+    "active=true,variant=infinity_coil": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.infinity",
+        "top_all": "gregtech:blocks/casings/coils/machine_coil_naquadah_bloom"
+      }
+    },
+    "active=false,variant=eternity_coil": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.eternity"
+      }
+    },
+    "active=true,variant=eternity_coil": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gregtech:blocks/casings/solid/heating_coil/heating.coil.eternity",
+        "top_all": "gregtech:blocks/casings/coils/machine_coil_naquadah_bloom"
+      }
+    }
   }
 }

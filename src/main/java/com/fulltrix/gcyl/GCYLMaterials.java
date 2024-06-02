@@ -10,12 +10,10 @@ import gregtech.api.unification.Elements;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
-import gregtech.api.unification.material.properties.BlastProperty;
-import gregtech.api.unification.material.properties.OreProperty;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.unification.material.properties.ToolProperty;
+import gregtech.api.unification.material.properties.*;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.common.config.Property;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
@@ -27,6 +25,8 @@ import static com.fulltrix.gcyl.GCYLElements.*;
 import static com.fulltrix.gcyl.GCYLUtility.gcylId;
 import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
+import static gregtech.api.GTValues.MAX;
+import static gregtech.api.GTValues.OpV;
 import static gregtech.api.fluids.attribute.FluidAttributes.ACID;
 import static gregtech.api.unification.Elements.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -1111,6 +1111,7 @@ public class GCYLMaterials {
     public static Material RhodiumFilterCakeSolution;
     public static Material RutheniumTetroxideSolution;
     public static Material HotRutheniumTetroxideSolution;
+    public static Material MicaPulp;
 
     //COILS
     public static Material Pikyonium;
@@ -1306,7 +1307,7 @@ public class GCYLMaterials {
                 .build();
 
         Pikyonium = new Material.Builder(id++, gcylId("pikyonium"))
-                .ingot(7)
+                .ingot(7).liquid()
                 .color(0x3467BA)
                 .flags(CORE_METAL)
                 .iconSet(SHINY)
@@ -2575,7 +2576,7 @@ public class GCYLMaterials {
                 .setFormula("?");
 
         TitanSteel = new Material.Builder(id++, gcylId("titan_steel"))
-                .ingot(7)
+                .ingot(7).liquid()
                 .color(0xAA0d0d)
                 .iconSet(SHINY)
                 .flags(CORE_METAL, DISABLE_DECOMPOSITION)
@@ -8449,6 +8450,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
                 .components(Neutronium, 1)
+                .cableProperties(GTValues.V[MAX],64,64)
                 .blast(14100)
                 .build();
 
@@ -9623,6 +9625,14 @@ public class GCYLMaterials {
                 .components(Palladium,1,RareEarth,1)
                 .build();
 
+        MicaPulp = new Material.Builder(id++, gcylId("mica_based"))
+                .dust()
+                .color(0x917445)
+                .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
+                .iconSet(SAND)
+                .components(Mica,1,RareEarth,1)
+                .build();
+
 
         /*
         = new Material.Builder(id++, gcylId("material"))
@@ -9772,7 +9782,7 @@ public class GCYLMaterials {
                 .color(0xe34b5a)
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
-                .cableProperties(GTValues.V[GTValues.OpV], 16, 2048)
+                .cableProperties(GTValues.V[OpV], 16, 2048)
                 .components(Neutronium,4,Legendarium,5,ActiniumSuperhydride,5,LanthanumFullereneNanotubes,4,RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate,12)
                 .blast(14000)
                 .build();
@@ -9881,7 +9891,7 @@ public class GCYLMaterials {
                 .color(OpVSuperconductorBase.getMaterialRGB())
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
-                .cableProperties(GTValues.V[GTValues.OpV], 16,0,true)
+                .cableProperties(GTValues.V[OpV], 16,0,true)
                 .components(OpVSuperconductorBase,1)
                 .build();
 
@@ -10133,6 +10143,11 @@ public class GCYLMaterials {
             mat.addFlags(GENERATE_LENS);
         }
 
+        //WIRE PROPERTIES
+        Neutronium.setProperty(PropertyKey.WIRE, new WireProperties((int) GTValues.V[OpV], 4, 64));
+
+
+
         //REPLACE MATERIALS
         IridiumMetalResidue.setFormula("Ir2O4(SiO2)2Au3", true);
         IridiumMetalResidue.setMaterialRGB(0x846649);
@@ -10141,6 +10156,8 @@ public class GCYLMaterials {
         RarestMetalMixture.setFormula("Ir2O2(SiO2)2Au3?",true);
         RarestMetalMixture.setMaterialRGB(0x644629);
         RarestMetalMixture.setMaterialIconSet(ROUGH);
+
+        NaquadahAlloy.setFormula("Nq(Ir3Os)",true);
     }
 
     private static String makeFancy(String input) {

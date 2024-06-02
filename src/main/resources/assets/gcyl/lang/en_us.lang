@@ -157,8 +157,8 @@ metaitem.succinic_acid.name=Succinic Acid
 metaitem.succinimide.name=Succinimide
 metaitem.bromo_succinimide.name=Bromo Succinimide
 metaitem.benzophenanthrenylacetonitrile.name=Benzophenanthrenylacetonitrile
-metaitem.unfolded_fullerene.name=Unfolded Fullerene
-metaitem.fullerene.name=Fullerene
+
+
 metaitem.tial_chloride.name=TiAl Chloride
 metaitem.dimethylaminopyridine.name=Dimethylaminopyridine (DMAP)
 metaitem.pdirreoceos.name=PdIrReOCeOsSi Catalyst
@@ -169,7 +169,7 @@ metaitem.sodium_nitrite.name=Sodium Nitrite
 metaitem.znfealcl_catalyst.name=ZnFeAlCl Catalyst
 metaitem.difluorobenzophenone.name=Difluorobenzophenone
 metaitem.aluminium_chloride.name=Aluminium Chloride
-metaitem.pd_fullerene_matrix.name=Palladium Fullerene Matrix
+
 metaitem.terephthalaldehyde.name=Terephthalaldehyde
 metaitem.pre_zylon.name=Pre Zylon
 metaitem.aupdc_catalyst.name=AuPdC Catalyst
@@ -4655,3 +4655,16 @@ gregtech.multiblock.vol_cryo.description=This multiblock parallels once per over
 
 gregtech.recipe.adv_fusion_eu_return=EU Returned:
 gregtech.recipe.adv_fusion_coil_tier=Coil Tier:
+
+tile.wire_coil.naquadah_alloy_coil.name=Naquadah Alloy Coil Block
+tile.wire_coil.titan_steel_coil.name=Titan Steel Coil Block
+tile.wire_coil.pikyonium_coil.name=Pikyonium Coil Block
+tile.wire_coil.black_titanium_coil.name=Black Titanium Coil Block
+tile.wire_coil.neutronium_coil.name=Neutronium Coil Block
+tile.wire_coil.cosmic_neutronium_coil.name=Cosmic Neutronium Coil Block
+tile.wire_coil.infinity_coil.name=Infinity Coil Block
+tile.wire_coil.eternity_coil.name=Eternity Coil Block
+
+gcyl.material.unfolded_fullerene.name=Unfolded Fullerene
+gcyl.material.fullerene.name=Fullerene
+gcyl.material.pd_fullerene_matrix.name=Palladium Fullerene Matrix
