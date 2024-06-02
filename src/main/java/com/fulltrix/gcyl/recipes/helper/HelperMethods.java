@@ -63,6 +63,7 @@ public class HelperMethods {
                 .buildAndRegister();
     }
 
+    /*
     // Don't mind the extra "s" on the method name, just Java not recognizing
     // 2 Lists with different generic types as different parameters for overloading.
     public static void registerMachineRecipes(List<MetaTileEntityEnergyHatch> metaTileEntities, Object... recipe) {
@@ -81,5 +82,7 @@ public class HelperMethods {
         }
         return recipe;
     }
+
+     */
 
 }

@@ -13,6 +13,8 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
+import gregtech.common.blocks.BlockGlassCasing;
+import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 
@@ -43,7 +45,7 @@ public class MetaTileEntityBioReactor extends RecipeMapMultiblockController {
                 .where('X', states(getCasingState()).or(autoAbilities(true, true, true, true, true, true, false)))
                 .where('L', states(getCasingState()).setMinGlobalLimited(34))
                 .where('#', air())
-                .where('G', states(GCYLMetaBlocks.TRANSPARENT_CASING.getState(GCYLTransparentCasing.CasingType.OSMIRIDIUM_GLASS)))
+                .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.LAMINATED_GLASS)))
                 .build();
     }
 
