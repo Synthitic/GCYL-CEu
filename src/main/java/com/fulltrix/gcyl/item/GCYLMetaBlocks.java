@@ -18,7 +18,7 @@ import static gregtech.common.blocks.MetaBlocks.statePropertiesToString;
 
 public class GCYLMetaBlocks {
     public static GCYLMultiblockCasing2 MULTIBLOCK_CASING2;
-    public static GCYLTransparentCasing TRANSPARENT_CASING;
+    //public static GCYLTransparentCasing TRANSPARENT_CASING;
     public static GCYLHeatingCoil HEATING_COIL;
     public static GCYLFusionCasing FUSION_CASING;
     public static GCYLVacuumCasing VACUUM_CASING;
@@ -36,8 +36,8 @@ public class GCYLMetaBlocks {
         HEATING_COIL = new GCYLHeatingCoil();
         HEATING_COIL.setRegistryName("wire_coil");
 
-        TRANSPARENT_CASING = new GCYLTransparentCasing();
-        TRANSPARENT_CASING.setRegistryName("gcyl_transparent_casing");
+        //TRANSPARENT_CASING = new GCYLTransparentCasing();
+        //TRANSPARENT_CASING.setRegistryName("gcyl_transparent_casing");
 
         MULTIBLOCK_CASING2 = new GCYLMultiblockCasing2();
         MULTIBLOCK_CASING2.setRegistryName("gcyl_multiblock_casing2");
@@ -75,7 +75,7 @@ public class GCYLMetaBlocks {
     public static void registerItemModels() {
 
         registerItemModel(MULTIBLOCK_CASING2);
-        registerItemModel(TRANSPARENT_CASING);
+        //registerItemModel(TRANSPARENT_CASING);
         registerItemModel(FUSION_CASING);
         registerItemModel(VACUUM_CASING);
         registerItemModel(DIVERTOR_CASING);

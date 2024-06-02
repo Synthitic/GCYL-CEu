@@ -22,6 +22,7 @@ import static gregtech.api.unification.ore.OrePrefix.plate;
 
 
 public enum GCYLCraftingComponents {
+    /*
     CIRCUIT {
         @Override
         public Object getIngredient(int tier) {
@@ -999,5 +1000,7 @@ public enum GCYLCraftingComponents {
     };
 
     public abstract Object getIngredient(int tier);
+
+     */
 }
 

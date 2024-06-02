@@ -16,6 +16,8 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
+import gregtech.common.blocks.BlockGlassCasing;
+import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
@@ -151,7 +153,7 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
                         .where('S', selfPredicate())
                         .where('F', frames(Naquadria))
                         .where('H', states(GCYLMetaBlocks.REACTOR_CASING.getState(GCYLReactorCasing.CasingType.HYPER_CORE_3)))
-                        .where('G', states(GCYLMetaBlocks.TRANSPARENT_CASING.getState(GCYLTransparentCasing.CasingType.OSMIRIDIUM_GLASS)))
+                        .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.LAMINATED_GLASS)))
                         .where('c', states(getCasingState(b)).setMinGlobalLimited(250))
                         .build();
             }
@@ -165,7 +167,7 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
                         .where('S', selfPredicate())
                         .where('C', states(getCasingState(c)).or(autoAbilities(false,true,true,true,true,true,false)
                                 .or(abilities(MultiblockAbility.OUTPUT_ENERGY).setExactLimit(1))))
-                        .where('G', states(GCYLMetaBlocks.TRANSPARENT_CASING.getState(GCYLTransparentCasing.CasingType.OSMIRIDIUM_GLASS)))
+                        .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.LAMINATED_GLASS)))
                         .where('H', states(GCYLMetaBlocks.REACTOR_CASING.getState(GCYLReactorCasing.CasingType.HYPER_CORE)))
                         .where('#', air())
                         .where('c', states(getCasingState(c)).setMinGlobalLimited(25))
