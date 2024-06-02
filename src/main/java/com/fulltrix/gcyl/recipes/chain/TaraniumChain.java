@@ -202,9 +202,9 @@ public class TaraniumChain {
                 .fluidInputs(DistilledWater.getFluid(2000))
                 .input(dust, ExoticHeavyResidues, 16)
                 .input(dust, SodiumHydroxide, 3)
-                .input(PROTONATED_FULLERENE_SIEVING_MATRIX.getStackForm().getItem())
+                .inputs(PROTONATED_FULLERENE_SIEVING_MATRIX.getStackForm())
                 .fluidOutputs(SodiumHydroxideSolution.getFluid(1000))
-                .output(SATURATED_FULLERENE_SIEVING_MATRIX.getStackForm().getItem())
+                .outputs(SATURATED_FULLERENE_SIEVING_MATRIX.getStackForm())
                 .duration(40)
                 .EUt(2000000)
                 .buildAndRegister();

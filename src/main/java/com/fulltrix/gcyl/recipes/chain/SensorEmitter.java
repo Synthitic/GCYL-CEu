@@ -507,11 +507,11 @@ public class SensorEmitter {
                 .buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder().duration(240).EUt(491520)
-                .input(LEPTON_TRAP_CRYSTAL.getStackForm().getItem())
+                .inputs(LEPTON_TRAP_CRYSTAL.getStackForm())
                 .input(dustSmall, Vibranium, 2)
                 .fluidInputs(HeavyLeptonMix.getFluid(500))
                 .fluidInputs(FreeElectronGas.getFluid(500))
-                .output(CHARGED_LEPTON_TRAP_CRYSTAL.getStackForm().getItem())
+                .outputs(CHARGED_LEPTON_TRAP_CRYSTAL.getStackForm())
                 .buildAndRegister();
 
 

@@ -148,7 +148,7 @@ public class VariousChains {
 
         // [6CO + Fe] -> C6O + Fe
         ELECTROMAGNETIC_SEPARATOR_RECIPES.recipeBuilder().duration(120).EUt(30)
-                .input(GRAPHENE_IRON_PLATE.getStackForm().getItem())
+                .inputs(GRAPHENE_IRON_PLATE.getStackForm())
                 .output(dust, GrapheneOxide, 3)
                 .output(dust, Iron)
                 .buildAndRegister();
@@ -536,7 +536,7 @@ public class VariousChains {
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(260).EUt(8)
                 .input(stick, Wood, 3)
-                .input(MEMORY_FOAM_BLOCK.getStackForm().getItem(), 3)
+                .inputs(MEMORY_FOAM_BLOCK.getStackForm(3))
                 .outputs(new ItemStack(Items.BED))
                 .buildAndRegister();
     }
