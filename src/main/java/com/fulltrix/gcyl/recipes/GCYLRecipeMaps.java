@@ -66,11 +66,13 @@ public class GCYLRecipeMaps {
             2, 2, 0, 0, new SimpleRecipeBuilder().duration(1).EUt(GTValues.VA[10]), false
     ); // UEV-tier, 1tick processing time
 
+    //TODO: implement recipe overlap with mixer map
     public static final RecipeMap<SimpleRecipeBuilder> ADVANCED_MIXER_RECIPES = new RecipeMap<>("large_mixer",
             9, 1, 6, 1, new SimpleRecipeBuilder(), false)
             .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, MoveType.CIRCULAR)
             .setSound(GTSoundEvents.MIXER);
 
+    //TODO: implement recipe overlap with centrifuge map
     public static final RecipeMap<SimpleRecipeBuilder> ADVANCED_CENTRIFUGE_RECIPES = new RecipeMap<>("large_centrifuge",
             2, 6, 2, 6, new SimpleRecipeBuilder(), false)
             .setSlotOverlay(false, false, false, GuiTextures.EXTRACTOR_OVERLAY)

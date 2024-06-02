@@ -3,17 +3,25 @@ package com.fulltrix.gcyl.recipes.categories.machines;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import gregtech.api.GTValues;
+import gregtech.api.recipes.ModHandler;
+import gregtech.api.unification.material.MarkerMaterials;
+import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.blocks.BlockBoilerCasing;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.items.MetaItems;
+import gregtech.common.metatileentities.MetaTileEntities;
 
 import static com.fulltrix.gcyl.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.item.fusion.GCYLFusionCasing.CasingType.ADV_FUSION_COIL_3;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
+import static gregtech.api.GTValues.EV;
+import static gregtech.api.GTValues.IV;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.GTValues.VA;
+import static gregtech.api.recipes.ModHandler.removeRecipeByName;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
 import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -24,7 +32,51 @@ import static gregtech.common.metatileentities.MetaTileEntities.*;
 public class MultiblockCraftingRecipes { //TODO: finish this, add research
     public static void init() {
         otherMultiblockInit();
-        //multiblockOverride();
+        multiblockOverride();
+    }
+
+    public static void multiblockOverride() {
+        removeRecipeByName("gcym:large_mixer");
+        ModHandler.addShapedRecipe("large_mixer", ADVANCED_MIXER.getStackForm(),
+        "LCL", "RSR", "MWM",
+                'L', new UnificationEntry(pipeNormalFluid, Polybenzimidazole),
+                'R', new UnificationEntry(rotor, Iridium),
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'S', MetaTileEntities.MIXER[IV].getStackForm(),
+                'M', MetaItems.ELECTRIC_MOTOR_IV.getStackForm(),
+                'W', new UnificationEntry(cableGtSingle, Platinum));
+        /* Backup recipe
+        ModHandler.addShapedRecipe("large_mixer", ADVANCED_MIXER.getStackForm(),
+                "DED", "CHC", "DED",
+                'C', new UnificationEntry(plate, MaragingSteel300),
+                'E', new UnificationEntry(circuit, IV),
+                'H', MIXER[EV].getStackForm(),
+                'D', new UnificationEntry(plate, HastelloyX));
+
+         */
+
+
+        removeRecipeByName("gcym:large_centrifuge");
+        ModHandler.addShapedRecipe("large_centrifuge", ADVANCED_CENTRIFUGE.getStackForm(),
+        "HPH", "RCT", "MWM",
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'H', new UnificationEntry(spring, MolybdenumDisilicide),
+                'P', new UnificationEntry(pipeHugeFluid, StainlessSteel),
+                'R', MetaTileEntities.CENTRIFUGE[IV].getStackForm(),
+                'T', MetaTileEntities.THERMAL_CENTRIFUGE[IV].getStackForm(),
+                'M', MetaItems.ELECTRIC_MOTOR_IV.getStackForm(),
+                'W', new UnificationEntry(cableGtSingle, Platinum));
+        /* Backup recipe
+        ModHandler.addShapedRecipe("large_centrifuge", ADVANCED_CENTRIFUGE.getStackForm(),
+                "CBC", "RHR", "DED",
+                'H', CENTRIFUGE[EV].getStackForm(),
+                'E', new UnificationEntry(plateDense, IncoloyMA956),
+                'C', new UnificationEntry(circuit, IV),
+                'B', new UnificationEntry(pipeLargeFluid, TungstenSteel),
+                'D', new UnificationEntry(plate, IncoloyMA956),
+                'R', new UnificationEntry(gear, Titanium));
+
+         */
     }
 
     private static void otherMultiblockInit() {

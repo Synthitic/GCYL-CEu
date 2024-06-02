@@ -9623,8 +9623,9 @@ public class GCYLMaterials {
                 .components(Palladium,1,RareEarth,1)
                 .build();
 
+
         /*
-        = new Material.Builder(id++, tjfId("material"))
+        = new Material.Builder(id++, gcylId("material"))
                 .ingot().liquid()
                 .color()
                 .iconSet()
@@ -9633,7 +9634,7 @@ public class GCYLMaterials {
                 .blast()
                 .build();
 
-        = new Material.Builder(id++, tjfId("material"))
+        = new Material.Builder(id++, gcylId("material"))
                 .liquid()
                 .color()
                 .flags(DISABLE_REPLICATION)
@@ -9641,7 +9642,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("",true);
 
-        = new Material.Builder(id++, tjfId("material"))
+        = new Material.Builder(id++, gcylId("material"))
                 .dust()
                 .color()
                 .flags(DISABLE_REPLICATION)
@@ -10040,7 +10041,7 @@ public class GCYLMaterials {
 
         //ORE ADDITIONS
         List<Material> omats = new ArrayList<>();
-        Collections.addAll(omats, Lignite, Witherite, Barytocalcite, PlatinumMetallicPowder, IridiumMetalResidue,
+        Collections.addAll(omats, Lignite, Witherite, Barytocalcite, PlatinumMetallicPowder, IridiumMetalResidue, PreciousMetal,
                 RarestMetalMixture, PalladiumMetallicPowder, Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon, Bowieite);
         for (Material mat : omats) {
             addOre(mat, 1, 1,false);
