@@ -188,7 +188,7 @@ public class SensorEmitter {
                 .fluidInputs(Iodobenzene.getFluid(1000))
                 .fluidInputs(Styrene.getFluid(1000))
                 .fluidInputs(Chlorine.getFluid(1000))
-                .notConsumable(Tributylamine.getFluid(0))
+                .notConsumable(Tributylamine.getFluid(1))
                 .fluidOutputs(HydrochloricAcid.getFluid(1000))
                 .output(dust, Iodine)
                 .output(dust, Stilbene, 26)

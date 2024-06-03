@@ -568,7 +568,7 @@ public class BrineChain {
 
         CHEMICAL_RECIPES.recipeBuilder().duration(180).EUt(480)
                 .fluidInputs(Styrene.getFluid(1000))
-                .notConsumable(AmmoniumPersulfate.getFluid(0))
+                .notConsumable(AmmoniumPersulfate.getFluid(1))
                 .fluidInputs(CetaneTrimethylAmmoniumBromide.getFluid(20))
                 .output(dust, PolystyreneNanoParticles, 1)
                 .buildAndRegister();

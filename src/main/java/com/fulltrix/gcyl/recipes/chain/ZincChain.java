@@ -241,14 +241,14 @@ public class ZincChain {
         // Polyphenol Mix = Acidified Polyphenol Mix
         CHEMICAL_RECIPES.recipeBuilder().duration(200).EUt(30)
                 .fluidInputs(PolyphenolMix.getFluid(1000))
-                .notConsumable(HydrochloricAcid.getFluid(0))
+                .notConsumable(HydrochloricAcid.getFluid(1))
                 .fluidOutputs(AcidifiedPolyphenolMix.getFluid(1000))
                 .buildAndRegister();
 
         // 2C2H5OH = (C2H5)2O + H2O (H2O lost to dehydrator)
         CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder().duration(120).EUt(750)
                 .fluidInputs(Ethanol.getFluid(2000))
-                .notConsumable(SulfuricAcid.getFluid(0))
+                .notConsumable(SulfuricAcid.getFluid(1))
                 .notConsumable(new IntCircuitIngredient(1))
                 .fluidOutputs(Diethylether.getFluid(1000))
                 .buildAndRegister();

@@ -132,7 +132,7 @@ public class REEChain {
         // 2 [REECl3 + 3 H2O] + C16H35O4P(cat.) -> [REE2O3](sep.) + 6 HCl + 3 H2O
         ADVANCED_CENTRIFUGE_RECIPES.recipeBuilder()
                 .fluidInputs(RareEarthChloridesSolution.getFluid(6000))
-                .notConsumable(DiethylhexylPhosphoricAcid.getFluid(0))
+                .notConsumable(DiethylhexylPhosphoricAcid.getFluid(1))
                 .fluidOutputs(LaNdOxidesSolution.getFluid(250))
                 .fluidOutputs(SmGdOxidesSolution.getFluid(250))
                 .fluidOutputs(TbHoOxidesSolution.getFluid(250))
