@@ -1,21 +1,29 @@
 package com.fulltrix.gcyl.recipes.categories;
 
 import com.fulltrix.gcyl.recipes.categories.circuits.MagnetoRecipes;
+import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.material.MarkerMaterials;
+import net.minecraft.block.BlockCauldron;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import static com.fulltrix.gcyl.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
-import static gregtech.api.GTValues.MV;
-import static gregtech.api.GTValues.VA;
+import static gregicality.multiblocks.api.recipes.GCYMRecipeMaps.ALLOY_BLAST_RECIPES;
+import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
+import static gregtech.api.recipes.ModHandler.removeRecipeByName;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.recipes.ingredients.IntCircuitIngredient.getIntegratedCircuit;
 import static gregtech.api.unification.material.MarkerMaterials.Color.Pink;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
+import static gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH;
+import static gregtech.common.metatileentities.MetaTileEntities.RESERVOIR_HATCH;
 
 public class RecipeOverride {
     public static void init() {
@@ -36,6 +44,7 @@ public class RecipeOverride {
 
         //removeRecipesByInputs(FLUID_SOLIDFICATION_RECIPES, new ItemStack[]{MetaItems.SHAPE_MOLD_CYLINDER.getStackForm()},  new FluidStack[]{Polytetrafluoroethylene.getFluid(36)});
 
+        //conflict removal
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(1)}, new FluidStack[]{CoalTar.getFluid(100)});
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(2)}, new FluidStack[]{CoalTar.getFluid(100)});
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(3)}, new FluidStack[]{CoalTar.getFluid(200)});
@@ -82,7 +91,11 @@ public class RecipeOverride {
         removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, HSSG,8), OreDictUnifier.get(foil,TungstenCarbide,8)}, new FluidStack[]{Tungsten.getFluid(144)});
         removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, Naquadah,8), OreDictUnifier.get(foil,Osmium,8)}, new FluidStack[]{TungstenSteel.getFluid(144)});
 
+        //infinite water cover
+        removeRecipesByInputs(ASSEMBLER_RECIPES, ELECTRIC_PUMP_HV.getStackForm(2), new ItemStack(Items.CAULDRON), OreDictUnifier.get(circuit, MarkerMaterials.Tier.HV));
 
+        //reservoir hatch
+        removeRecipesByInputs(ASSEMBLER_RECIPES, COVER_INFINITE_WATER.getStackForm(), FLUID_IMPORT_HATCH[EV].getStackForm(), ELECTRIC_PUMP_EV.getStackForm());
 
         //Plat line fixes TODO: remove and replace the recipes that turn ore into platinum group sludge
         removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, RarestMetalMixture, 7)}, new FluidStack[]{HydrochloricAcid.getFluid(4000)});
@@ -92,7 +105,54 @@ public class RecipeOverride {
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(1)}, new FluidStack[]{AcidicOsmiumSolution.getFluid(400)});
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(2)}, new FluidStack[]{AcidicOsmiumSolution.getFluid(400)});
 
+        //Field generators
+        removeRecipeByName("gregtech:field_generator_lv");
+        removeRecipeByName("gregtech:field_generator_mv");
+        removeRecipeByName("gregtech:field_generator_hv");
+        removeRecipeByName("gregtech:field_generator_ev");
+        removeRecipeByName("gregtech:field_generator_iv");
 
+        removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, ManganesePhosphide,4), OreDictUnifier.get(plate, Steel, 2), OreDictUnifier.get(gem, EnderPearl), OreDictUnifier.get(circuit, MarkerMaterials.Tier.LV,2));
+        removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, MagnesiumDiboride,4), OreDictUnifier.get(plate, Aluminium, 2), OreDictUnifier.get(gem, EnderEye), OreDictUnifier.get(circuit, MarkerMaterials.Tier.MV,2));
+        removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, MercuryBariumCalciumCuprate,4), OreDictUnifier.get(plate, StainlessSteel, 2), QUANTUM_EYE.getStackForm(), OreDictUnifier.get(circuit, MarkerMaterials.Tier.HV,2));
+        removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, UraniumTriplatinum,4), OreDictUnifier.get(plate, Titanium, 2), OreDictUnifier.get(gem, NetherStar), OreDictUnifier.get(circuit, MarkerMaterials.Tier.EV,2));
+        removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, SamariumIronArsenicOxide,4), OreDictUnifier.get(plateDouble, TungstenSteel, 2), QUANTUM_STAR.getStackForm(), OreDictUnifier.get(circuit, MarkerMaterials.Tier.IV,2));
+
+
+        //Remove old superconductor mixer recipes
+        removeRecipesByInputs(MIXER_RECIPES, getIntegratedCircuit(4), OreDictUnifier.get(dust,Manganese), OreDictUnifier.get(dust,Phosphorus));
+        removeRecipesByInputs(MIXER_RECIPES, getIntegratedCircuit(4), OreDictUnifier.get(dust,Magnesium), OreDictUnifier.get(dust,Boron,2));
+        removeRecipesByInputs(MIXER_RECIPES, new ItemStack[]{getIntegratedCircuit(4), OreDictUnifier.get(dust, Barium,2), OreDictUnifier.get(dust,Calcium,2), OreDictUnifier.get(dust,Copper,3)},new FluidStack[]{Oxygen.getFluid(8000),Mercury.getFluid(1000)});
+        removeRecipesByInputs(MIXER_RECIPES, getIntegratedCircuit(4), OreDictUnifier.get(dust,Uranium238), OreDictUnifier.get(dust,Platinum,3));
+        removeRecipesByInputs(MIXER_RECIPES, new ItemStack[]{getIntegratedCircuit(4), OreDictUnifier.get(dust, Samarium), OreDictUnifier.get(dust,Iron,1), OreDictUnifier.get(dust,Arsenic,1)},new FluidStack[]{Oxygen.getFluid(1000)});
+        removeRecipesByInputs(MIXER_RECIPES, new ItemStack[]{getIntegratedCircuit(4), OreDictUnifier.get(dust, Indium,4), OreDictUnifier.get(dust,Tin,2), OreDictUnifier.get(dust,Barium,2), OreDictUnifier.get(dust,Titanium,1), OreDictUnifier.get(dust,Copper,7)},new FluidStack[]{Oxygen.getFluid(14000)});
+        removeRecipesByInputs(MIXER_RECIPES, getIntegratedCircuit(4), OreDictUnifier.get(dust,Uranium238), OreDictUnifier.get(dust,Rhodium,1), OreDictUnifier.get(dust, Naquadah,2));
+        removeRecipesByInputs(MIXER_RECIPES, getIntegratedCircuit(4), OreDictUnifier.get(dust,NaquadahEnriched,4), OreDictUnifier.get(dust,Trinium,3), OreDictUnifier.get(dust, Europium,2), OreDictUnifier.get(dust, Duranium));
+        removeRecipesByInputs(MIXER_RECIPES, new ItemStack[]{getIntegratedCircuit(4), OreDictUnifier.get(dust, Ruthenium,1), OreDictUnifier.get(dust,Trinium,2), OreDictUnifier.get(dust,Americium,1), OreDictUnifier.get(dust,Neutronium,2)},new FluidStack[]{Oxygen.getFluid(8000)});
+
+        //naquadah alloy
+        removeRecipesByInputs(MIXER_RECIPES, getIntegratedCircuit(2), OreDictUnifier.get(dust, Naquadah, 2), OreDictUnifier.get(dust, Osmiridium), OreDictUnifier.get(dust, Trinium));
+        removeRecipesByInputs(CENTRIFUGE_RECIPES, OreDictUnifier.get(dust, NaquadahAlloy, 4));
+
+        //Severely steam cracked naphtha
+        removeRecipesByInputs(DISTILLATION_RECIPES, SeverelySteamCrackedNaphtha.getFluid(1000));
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(1)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(1000)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(2)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(500)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(3)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(1000)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(4)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(500)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(5)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(500)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(6)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(500)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(7)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(1000)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(8)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(100)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(9)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(1000)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(10)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(100)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(11)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(100)});
+
+        //sticky resin extract
+        removeRecipesByInputs(EXTRACTOR_RECIPES, STICKY_RESIN.getStackForm());
+
+        //useless gcym electric implosion compressor
+        removeRecipeByName("gcym:electric_implosion_compressor");
     }
 
     public static void chemistryOverride() {
@@ -145,9 +205,29 @@ public class RecipeOverride {
                 .fluidOutputs(CarbonMonoxide.getFluid(2000))
                 .buildAndRegister();
 
+        //Severely steam cracked naphtha
+        DISTILLATION_RECIPES.recipeBuilder().duration(120).EUt(120)
+                .fluidInputs(SeverelySteamCrackedNaphtha.getFluid(1000))
+                .fluidOutputs(HeavyFuel.getFluid(25))
+                .fluidOutputs(LightFuel.getFluid(50))
+                .fluidOutputs(Toluene.getFluid(20))
+                .fluidOutputs(Benzene.getFluid(100))
+                .fluidOutputs(Butene.getFluid(50))
+                .fluidOutputs(Butadiene.getFluid(50))
+                .fluidOutputs(Propane.getFluid(15))
+                .fluidOutputs(Propene.getFluid(300))
+                .fluidOutputs(Ethane.getFluid(65))
+                .fluidOutputs(Ethylene.getFluid(500))
+                .fluidOutputs(Methane.getFluid(500))
+                .fluidOutputs(Cyclopentadiene.getFluid(75))
+                .buildAndRegister();
+
+
     }
 
     public static void gregtechOverride() {
+
+        //mica stuff
         MIXER_RECIPES.recipeBuilder().duration(400).EUt(8)
                 .input(dust, Mica, 3)
                 .input(dust, RawRubber, 2)
@@ -196,5 +276,96 @@ public class RecipeOverride {
                 .outputs(MICA_INSULATOR_FOIL.getStackForm(4))
                 .buildAndRegister();
 
+        //reservoir hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(EV_INFINITE_WATER_SOURCE)
+                .input(FLUID_IMPORT_HATCH[EV])
+                .input(ELECTRIC_PUMP_EV)
+                .output(RESERVOIR_HATCH)
+                .duration(300).EUt(VA[EV]).buildAndRegister();
+
+        //infinite water covers
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[MV])
+                .input(ELECTRIC_PUMP_MV)
+                .input(circuit, MarkerMaterials.Tier.MV)
+                .inputs(new ItemStack(Items.CAULDRON))
+                .output(MV_INFINITE_WATER_SOURCE)
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[HV])
+                .input(ELECTRIC_PUMP_HV)
+                .input(circuit, MarkerMaterials.Tier.HV)
+                .input(MV_INFINITE_WATER_SOURCE)
+                .output(HV_INFINITE_WATER_SOURCE)
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[EV])
+                .input(ELECTRIC_PUMP_EV)
+                .input(circuit, MarkerMaterials.Tier.EV)
+                .input(HV_INFINITE_WATER_SOURCE)
+                .output(EV_INFINITE_WATER_SOURCE)
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[IV])
+                .input(ELECTRIC_PUMP_IV)
+                .input(circuit, MarkerMaterials.Tier.IV)
+                .input(EV_INFINITE_WATER_SOURCE)
+                .output(IV_INFINITE_WATER_SOURCE)
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[LuV])
+                .input(ELECTRIC_PUMP_LuV)
+                .input(circuit, MarkerMaterials.Tier.LuV)
+                .input(IV_INFINITE_WATER_SOURCE)
+                .output(LuV_INFINITE_WATER_SOURCE)
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[ZPM])
+                .input(ELECTRIC_PUMP_ZPM)
+                .input(circuit, MarkerMaterials.Tier.ZPM)
+                .input(LuV_INFINITE_WATER_SOURCE)
+                .output(ZPM_INFINITE_WATER_SOURCE)
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[UV])
+                .input(ELECTRIC_PUMP_UV)
+                .input(circuit, MarkerMaterials.Tier.UV)
+                .input(ZPM_INFINITE_WATER_SOURCE)
+                .output(UV_INFINITE_WATER_SOURCE)
+                .buildAndRegister();
+
+        // naquadah alloy
+        MIXER_RECIPES.recipeBuilder().duration(400).EUt(VA[IV])
+                .input(dust, Naquadah)
+                .input(dust, Osmiridium)
+                .output(dust, NaquadahAlloy, 2)
+                .circuitMeta(2)
+                .buildAndRegister();
+
+        //sticky resin extract
+        EXTRACTOR_RECIPES.recipeBuilder()
+                .input(STICKY_RESIN)
+                .circuitMeta(1)
+                .output(dust, RawRubber, 3)
+                .EUt(2)
+                .duration(150)
+                .buildAndRegister();
+
+        EXTRACTOR_RECIPES.recipeBuilder()
+                .input(STICKY_RESIN)
+                .circuitMeta(2)
+                .fluidOutputs(Resin.getFluid(100))
+                .EUt(30)
+                .duration(150)
+                .buildAndRegister();
+
+        EXTRACTOR_RECIPES.recipeBuilder()
+                .input(STICKY_RESIN)
+                .circuitMeta(3)
+                .output(dust, RawRubber, 3)
+                .fluidOutputs(Resin.getFluid(100))
+                .EUt(480)
+                .duration(150)
+                .buildAndRegister();
     }
 }

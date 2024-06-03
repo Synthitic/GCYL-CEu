@@ -142,13 +142,13 @@ public class VariousChains {
         CHEMICAL_RECIPES.recipeBuilder().duration(30).EUt(480)
                 .input(dust, GrapheneOxide, 3)
                 .notConsumable(WHITE_HALIDE_LAMP.getStackForm())
-                .notConsumable(Hydrazine.getFluid(0))
+                .notConsumable(Hydrazine.getFluid(1))
                 .output(dust, Graphene)
                 .buildAndRegister();
 
         // [6CO + Fe] -> C6O + Fe
         ELECTROMAGNETIC_SEPARATOR_RECIPES.recipeBuilder().duration(120).EUt(30)
-                .input(GRAPHENE_IRON_PLATE.getStackForm().getItem())
+                .inputs(GRAPHENE_IRON_PLATE.getStackForm())
                 .output(dust, GrapheneOxide, 3)
                 .output(dust, Iron)
                 .buildAndRegister();
@@ -172,14 +172,14 @@ public class VariousChains {
         CHEMICAL_RECIPES.recipeBuilder().duration(80).EUt(480)
                 .input(dust, Coal)
                 .input(dust, Sulfur)
-                .notConsumable(Lava.getFluid(0))
+                .notConsumable(Lava.getFluid(1))
                 .output(dust, Blaze, 2)
                 .buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder().duration(80).EUt(480)
                 .input(dust, Charcoal)
                 .input(dust, Sulfur)
-                .notConsumable(Lava.getFluid(0))
+                .notConsumable(Lava.getFluid(1))
                 .output(dust, Blaze, 2)
                 .buildAndRegister();
 
@@ -194,7 +194,7 @@ public class VariousChains {
         CHEMICAL_RECIPES.recipeBuilder().duration(80).EUt(480)
                 .input(dust, Snow)
                 .input(dust, Redstone)
-                .notConsumable(Ice.getFluid(0))
+                .notConsumable(Ice.getFluid(1))
                 .output(dust, Blizz, 2)
                 .buildAndRegister();
 
@@ -536,7 +536,7 @@ public class VariousChains {
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(260).EUt(8)
                 .input(stick, Wood, 3)
-                .input(MEMORY_FOAM_BLOCK.getStackForm().getItem(), 3)
+                .inputs(MEMORY_FOAM_BLOCK.getStackForm(3))
                 .outputs(new ItemStack(Items.BED))
                 .buildAndRegister();
     }

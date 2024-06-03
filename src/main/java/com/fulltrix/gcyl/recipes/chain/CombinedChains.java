@@ -78,7 +78,7 @@ public class CombinedChains {
                 .fluidInputs(Oxygen.getFluid(8000))
                 .fluidInputs(Ethylene.getFluid(2000))
                 .fluidInputs(Propene.getFluid(1000))
-                .notConsumable(HydrochloricAcid.getFluid(0))
+                .notConsumable(HydrochloricAcid.getFluid(1))
                 .fluidOutputs(Epoxy.getFluid(1000))
                 .fluidOutputs(CarbonDioxide.getFluid(1000))
                 .fluidOutputs(Water.getFluid(3000))

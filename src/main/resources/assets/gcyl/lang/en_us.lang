@@ -2070,9 +2070,9 @@ tile.gcyl_explosive.industrial_tnt.name=Industrial TNT
 tile.gcyl_explosive.powder_barrel.name=Powder Barrel
 tile.gcyl_multiblock_casing2.laser_engraver_casing.name=Laser-Safe Casing
 
-tile.gcyl_metal_casing_1.casing_hastelloy_x78.name=Matrix-Stiffened Hastelloy X78 Casing
+tile.gcyl_metal_casing_1.casing_hastelloyx_78.name=Matrix-Stiffened Hastelloy X78 Casing
 tile.gcyl_metal_casing_1.casing_hastelloy_n.name=Oxidation Resistant Hastelloy N Casing
-tile.gcyl_metal_casing_1.casing_hastelloy_k243.name=High Stability Hastelloy K243 Casing
+tile.gcyl_metal_casing_1.casing_hastelloyk_243.name=High Stability Hastelloy K243 Casing
 tile.gcyl_metal_casing_1.casing_incoloy_813.name=Corrosion Proof Incoloy 813 Casing
 tile.gcyl_metal_casing_1.casing_incoloy_ma956.name=Spacecraft Grade Incoloy MA-956 Casing
 tile.gcyl_metal_casing_1.casing_maraging_steel_250.name=Long-Lasting Maraging Steel 250 Casing
@@ -4474,13 +4474,13 @@ metaitem.infinite.water.luv.name=LuV Infinite Water
 metaitem.infinite.water.zpm.name=ZPM Infinite Water
 metaitem.infinite.water.uv.name=UV Infinite Water
 
-metaitem.infinite.water.mv.tooltip=Cover That Produce 64 Buckets of Water Each 20 Ticks
-metaitem.infinite.water.hv.tooltip=Cover That Produce 64 Buckets of Water Each 15 Ticks
-metaitem.infinite.water.ev.tooltip=Cover That Produce 64 Buckets of Water Each 10 Ticks
-metaitem.infinite.water.iv.tooltip=Cover That Produce 64 Buckets of Water Each 6 Ticks
-metaitem.infinite.water.luv.tooltip=Cover That Produce 64 Buckets of Water Each 4 Ticks
-metaitem.infinite.water.zpm.tooltip=Cover That Produce 64 Buckets of Water Each 2 Ticks
-metaitem.infinite.water.uv.tooltip=Cover That Produce 64 Buckets of Water Each 1 Tick
+metaitem.infinite.water.mv.tooltip=Cover That Produces 4 Buckets of Water Each Second
+metaitem.infinite.water.hv.tooltip=Cover That Produces 12 Buckets of Water Each Second
+metaitem.infinite.water.ev.tooltip=Cover That Produces 32 Buckets of Water Each Second
+metaitem.infinite.water.iv.tooltip=Cover That Produces 80 Buckets of Water Each Second
+metaitem.infinite.water.luv.tooltip=Cover That Produces 192 Buckets of Water Each Second
+metaitem.infinite.water.zpm.tooltip=Cover That Produces 448 Buckets of Water Each Second
+metaitem.infinite.water.uv.tooltip=Cover That Produces 1024 Buckets of Water Each Second
 
 gcyl.machine.charger.uhv.name=UHV Voltage Battery Charger
 gcyl.machine.charger.uev.name=UEV Voltage Battery Charger
@@ -4665,6 +4665,11 @@ tile.wire_coil.cosmic_neutronium_coil.name=Cosmic Neutronium Coil Block
 tile.wire_coil.infinity_coil.name=Infinity Coil Block
 tile.wire_coil.eternity_coil.name=Eternity Coil Block
 
-gcyl.material.unfolded_fullerene.name=Unfolded Fullerene
-gcyl.material.fullerene.name=Fullerene
-gcyl.material.pd_fullerene_matrix.name=Palladium Fullerene Matrix
+gcyl.material.unfolded_fullerene=Unfolded Fullerene
+gcyl.material.fullerene=Fullerene
+gcyl.material.pd_fullerene_matrix=Palladium Fullerene Matrix
+gcyl.material.lignite=Lignite Coal
+gcyl.material.lv_superconductor_base=LV Superconductor Base
+gcyl.material.lv_superconductor=LV Superconductor
+gcyl.material.jasper=Jasper
+gcyl.material.glyceryl=Glyceryl

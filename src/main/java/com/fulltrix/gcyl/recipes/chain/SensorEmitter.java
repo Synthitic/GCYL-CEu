@@ -188,7 +188,7 @@ public class SensorEmitter {
                 .fluidInputs(Iodobenzene.getFluid(1000))
                 .fluidInputs(Styrene.getFluid(1000))
                 .fluidInputs(Chlorine.getFluid(1000))
-                .notConsumable(Tributylamine.getFluid(0))
+                .notConsumable(Tributylamine.getFluid(1))
                 .fluidOutputs(HydrochloricAcid.getFluid(1000))
                 .output(dust, Iodine)
                 .output(dust, Stilbene, 26)
@@ -507,11 +507,11 @@ public class SensorEmitter {
                 .buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder().duration(240).EUt(491520)
-                .input(LEPTON_TRAP_CRYSTAL.getStackForm().getItem())
+                .inputs(LEPTON_TRAP_CRYSTAL.getStackForm())
                 .input(dustSmall, Vibranium, 2)
                 .fluidInputs(HeavyLeptonMix.getFluid(500))
                 .fluidInputs(FreeElectronGas.getFluid(500))
-                .output(CHARGED_LEPTON_TRAP_CRYSTAL.getStackForm().getItem())
+                .outputs(CHARGED_LEPTON_TRAP_CRYSTAL.getStackForm())
                 .buildAndRegister();
 
 

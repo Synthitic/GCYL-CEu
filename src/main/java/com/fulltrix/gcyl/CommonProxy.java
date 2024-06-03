@@ -15,6 +15,7 @@ import gregtech.api.event.HighTierEvent;
 import gregtech.api.recipes.GTRecipeInputCache;
 import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
 import gregtech.api.unification.material.event.MaterialEvent;
+import gregtech.common.ConfigHolder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -56,6 +57,8 @@ public class CommonProxy {
 
         //Force enable tiered casings from GCYM
         GCYMConfigHolder.globalMultiblocks.enableTieredCasings = true;
+        //Force enable low quality gems
+        //ConfigHolder.recipes.generateLowQualityGems = true;
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
@@ -65,6 +68,7 @@ public class CommonProxy {
         GCYLMaterials.register2();
         GCYLMaterials.registerSuperconductors();
         GCYLMaterials.materialChanges();
+        GCYLMaterials.tempMaterialModifications();
     }
 
     @SubscribeEvent
@@ -116,7 +120,7 @@ public class CommonProxy {
     }
 
 
-    @SubscribeEvent(priority = EventPriority.LOW)
+    @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
 
         AdvFusionCoilProperty.registerAdvFusionTier(1, "1");

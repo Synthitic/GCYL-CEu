@@ -23,7 +23,7 @@ public class SupraCausalComponents {
         ASSEMBLER_RECIPES.recipeBuilder().duration(400).EUt(134217728)
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L))
                 .input(plateDense, ProtoAdamantium)
-                .inputs(MICA_INSULATOR_FOIL.getStackForm(64))
+                .inputs(HIGHLY_INSULATING_FOIL.getStackForm(64))
                 .notConsumable(MICROWORMHOLE_GENERATOR.getStackForm())
                 .outputs(SMD_CAPACITOR_SUPRACAUSAL.getStackForm(32))
                 .buildAndRegister();

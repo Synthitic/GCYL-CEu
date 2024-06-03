@@ -191,7 +191,7 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .buildAndRegister();
 
         // Hyper Reactor Mk1
-        /*
+
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(500).EUt(2000000)
                 .fluidInputs(SolderingAlloy.getFluid(L * 9))
                 .input(plate, Tritanium, 8)
@@ -200,14 +200,14 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .input(screw, Dubnium, 64)
                 .input(foil, Polyetheretherketone, 64)
                 .inputs(LARGE_NAQUADAH_REACTOR.getStackForm())
-                .inputs(UHPIC.getStackForm(16))
+                .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(16))
                 .inputs(ELECTRIC_PUMP_UIV.getStackForm(2))
                 .inputs(FIELD_GENERATOR_UIV.getStackForm(2))
                 .input(circuit, UIV, 4)
-                .outputs(HYPER_REACTOR_I.getStackForm())
+                .outputs(HYPER_REACTOR[0].getStackForm())
                 .buildAndRegister();
 
-         */
+
 
         // Hyper Reactor Mk2
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(500).EUt(8000000)

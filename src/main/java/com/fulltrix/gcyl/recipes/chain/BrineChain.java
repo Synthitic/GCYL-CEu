@@ -42,8 +42,8 @@ public class BrineChain {
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(240).EUt(7680)
                 .input(plate, RhodiumPlatedPalladium, 4)
-                .input(ELECTRIC_MOTOR_LuV.getStackForm().getItem())
-                .output(RAPIDLY_ROTATING_CRUCIBLE.getStackForm().getItem())
+                .inputs(ELECTRIC_MOTOR_LuV.getStackForm())
+                .outputs(RAPIDLY_ROTATING_CRUCIBLE.getStackForm())
                 .buildAndRegister();
 
         // [C3H3N]n -> NaSCN + (solidified)[C3H3N]n
@@ -57,7 +57,7 @@ public class BrineChain {
         ASSEMBLER_RECIPES.recipeBuilder().duration(60).EUt(24)
                 .input(dust, AcrylicFibers, 1)
                 .input(wireFine, Gold)
-                .output(ACRYLIC_YARN.getStackForm().getItem())
+                .outputs(ACRYLIC_YARN.getStackForm())
                 .buildAndRegister();
 
         // CH2O2 + CH3OH -> H2O + C2H4O2
@@ -116,20 +116,20 @@ public class BrineChain {
                 .buildAndRegister();
 
         CHEMICAL_BATH_RECIPES.recipeBuilder().duration(40).EUt(480)
-                .input(ACRYLIC_YARN.getStackForm().getItem())
+                .inputs(ACRYLIC_YARN.getStackForm())
                 .fluidInputs(Amidoxime.getFluid(100))
-                .output(HEAVY_METAL_ABSORBING_YARN.getStackForm().getItem())
+                .outputs(HEAVY_METAL_ABSORBING_YARN.getStackForm())
                 .buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder().duration(100).EUt(120)
-                .input(HEAVY_METAL_ABSORBING_YARN.getStackForm().getItem())
+                .inputs(HEAVY_METAL_ABSORBING_YARN.getStackForm())
                 .fluidInputs(SeaWater.getFluid(16000))
-                .output(URANIUM_SATURATED_YARN.getStackForm().getItem())
+                .outputs(URANIUM_SATURATED_YARN.getStackForm())
                 .fluidOutputs(SaltWater.getFluid(16000))
                 .buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder().duration(200).EUt(1920)
-                .input(URANIUM_SATURATED_YARN.getStackForm().getItem())
+                .inputs(URANIUM_SATURATED_YARN.getStackForm())
                 .fluidInputs(NitricAcid.getFluid(100))
                 .chancedOutput(HEAVY_METAL_ABSORBING_YARN.getStackForm(), 9900, 0)
                 .fluidOutputs(PureUranylNitrateSolution.getFluid(100))
@@ -213,9 +213,9 @@ public class BrineChain {
                 .buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder().duration(150).EUt(480)
-                .input(BORON_RETAINING_YARN.getStackForm().getItem())
+                .inputs(BORON_RETAINING_YARN.getStackForm())
                 .fluidInputs(PotassiumFreeBrine.getFluid(1000))
-                .output(BORON_SATURATED_YARN.getStackForm().getItem())
+                .outputs(BORON_SATURATED_YARN.getStackForm())
                 .fluidOutputs(BoronFreeSolution.getFluid(1000))
                 .buildAndRegister();
 
@@ -229,14 +229,14 @@ public class BrineChain {
                 .buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder().duration(150).EUt(480)
-                .input(LITHIUM_SIEVE.getStackForm().getItem())
+                .inputs(LITHIUM_SIEVE.getStackForm())
                 .fluidInputs(SodiumLithiumSolution.getFluid(1000))
                 .fluidOutputs(SaltWater.getFluid(1000))
-                .output(LITHIUM_SATURATED_LITHIUM_SIEVE.getStackForm().getItem())
+                .outputs(LITHIUM_SATURATED_LITHIUM_SIEVE.getStackForm())
                 .buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder().duration(320).EUt(480)
-                .input(LITHIUM_SATURATED_LITHIUM_SIEVE.getStackForm().getItem())
+                .inputs(LITHIUM_SATURATED_LITHIUM_SIEVE.getStackForm())
                 .fluidInputs(HydrochloricAcid.getFluid(1000))
                 .chancedOutput(LITHIUM_SIEVE.getStackForm(), 9000, 0)
                 .fluidOutputs(LithiumChlorideSolution.getFluid(1000))
@@ -348,7 +348,7 @@ public class BrineChain {
                 .input(dust, Glucosamine, 2)
                 .input(wireFine, Gold)
                 .fluidInputs(Polystyrene.getFluid(144))
-                .output(BORON_RETAINING_YARN.getStackForm().getItem())
+                .outputs(BORON_RETAINING_YARN.getStackForm())
                 .buildAndRegister();
 
         // 2NaOH + H2SO4 + HBO2 -> H3BO3 + Na2SO4(H2O)
@@ -568,7 +568,7 @@ public class BrineChain {
 
         CHEMICAL_RECIPES.recipeBuilder().duration(180).EUt(480)
                 .fluidInputs(Styrene.getFluid(1000))
-                .notConsumable(AmmoniumPersulfate.getFluid(0))
+                .notConsumable(AmmoniumPersulfate.getFluid(1))
                 .fluidInputs(CetaneTrimethylAmmoniumBromide.getFluid(20))
                 .output(dust, PolystyreneNanoParticles, 1)
                 .buildAndRegister();
@@ -576,7 +576,7 @@ public class BrineChain {
         CHEMICAL_RECIPES.recipeBuilder().duration(300).EUt(480)
                 .input(dust, LithiumTitanate, 2)
                 .input(dust, PolystyreneNanoParticles, 2)
-                .output(LITHIUM_SIEVE.getStackForm().getItem())
+                .outputs(LITHIUM_SIEVE.getStackForm())
                 .fluidOutputs(Styrene.getFluid(2000))
                 .buildAndRegister();
 

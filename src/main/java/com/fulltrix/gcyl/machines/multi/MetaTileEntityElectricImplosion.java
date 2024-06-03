@@ -56,6 +56,9 @@ public class MetaTileEntityElectricImplosion extends GCYLRecipeMapMultiblockCont
         return GCYMTextures.VIBRATION_SAFE_CASING;
     }
 
+    @Override
+    public boolean isTiered() {return false;}
+
     @Nonnull
     @Override
     protected OrientedOverlayRenderer getFrontOverlay() {

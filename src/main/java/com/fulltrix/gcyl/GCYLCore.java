@@ -1,9 +1,12 @@
 package com.fulltrix.gcyl;
 
+import com.fulltrix.gcyl.covers.GCYLCoverBehaviors;
 import com.fulltrix.gcyl.item.GCYLHeatingCoil;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import gregtech.GTInternalTags;
+import gregtech.api.GregTechAPI;
+import gregtech.api.cover.CoverDefinition;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -17,6 +20,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import java.io.IOException;
 
 import static com.fulltrix.gcyl.item.GCYLMetaBlocks.HEATING_COIL;
+import static gregtech.api.GregTechAPI.COVER_REGISTRY;
 import static gregtech.api.GregTechAPI.HEATING_COILS;
 
 @Mod(modid = GCYLCore.MODID, name = GCYLCore.NAME, version = GCYLCore.VERSION,
@@ -44,6 +48,11 @@ public class GCYLCore {
     // load "Do your mod setup. Build whatever data structures you care about." (Remove if not needed)
     public void init(FMLInitializationEvent event) throws IOException {
         proxy.onLoad();
+
+        COVER_REGISTRY.unfreeze();
+        GCYLCoverBehaviors.init();
+        MinecraftForge.EVENT_BUS.post(new GregTechAPI.RegisterEvent<>(COVER_REGISTRY, CoverDefinition.class));
+
     }
 
     @EventHandler

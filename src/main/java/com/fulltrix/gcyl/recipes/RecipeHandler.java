@@ -27,11 +27,9 @@ public class RecipeHandler {
     }
 
     public static void initChains() {
-        /*
-        NuclearChain.init();
 
+        NuclearChain.init();
         Batteries.init();
-         */
         PlatinumSludgeGroupChain.init();
         TungstenChain.init();
         UHVMaterials.init();
@@ -73,10 +71,10 @@ public class RecipeHandler {
         CombinedChains.init();
         NaquadahChain.init();
         TriniumChain.init();
+        Dyes.init();
 
         /*
         UraniumChain.init();
-        Dyes.init();
         DigitalInterfaces.init();
         ArcFurnaceOxidation.init();
          */
