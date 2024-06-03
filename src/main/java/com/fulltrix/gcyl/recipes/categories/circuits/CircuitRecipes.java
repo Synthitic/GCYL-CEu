@@ -30,8 +30,8 @@ public class CircuitRecipes {
         nanoCircuits();
         quantumCircuits();
         crystalCircuits();
-        MagnetoRecipes.init();
         */
+        MagnetoRecipes.init();
         wetwareCircuits();
         biowareCircuits();
         opticalCircuits();

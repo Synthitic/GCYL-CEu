@@ -15,6 +15,7 @@ import gregtech.api.event.HighTierEvent;
 import gregtech.api.recipes.GTRecipeInputCache;
 import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
 import gregtech.api.unification.material.event.MaterialEvent;
+import gregtech.common.ConfigHolder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -56,6 +57,8 @@ public class CommonProxy {
 
         //Force enable tiered casings from GCYM
         GCYMConfigHolder.globalMultiblocks.enableTieredCasings = true;
+        //Force enable low quality gems
+        //ConfigHolder.recipes.generateLowQualityGems = true;
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
