@@ -698,41 +698,40 @@ public class NaquadahChain {
                 .duration(100)
                 .buildAndRegister();
 
-        //TODO nuclear
-        /*
-        LARGE_MIXER_RECIPES.recipeBuilder()
+
+        ADVANCED_MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(LightNaquadahFuel.getFluid(500))
                 .fluidInputs(LightENaquadahFuel.getFluid(300))
                 .fluidInputs(NaquadriaSolution.getFluid(200))
                 .input(dust, Rutherfordium)
-                .fluidInputs(Plutonium244Isotope.getMaterial().getFluid(144))
+                .fluidInputs(Plutonium244.getFluid(144))
                 .fluidOutputs(HyperFuelI.getFluid(2000))
                 .EUt(1920)
                 .duration(200)
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder()
+        ADVANCED_MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(MediumNaquadahFuel.getFluid(400))
                 .fluidInputs(MediumENaquadahFuel.getFluid(350))
                 .fluidInputs(NaquadriaSolution.getFluid(250))
                 .input(dust, Dubnium)
-                .fluidInputs(Curium250.getMaterial().getFluid(144))
+                .fluidInputs(Curium250.getFluid(144))
                 .fluidOutputs(HyperFuelII.getFluid(2000))
                 .EUt(7680)
                 .duration(200)
                 .buildAndRegister();
 
-        LARGE_MIXER_RECIPES.recipeBuilder()
+        ADVANCED_MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(HeavyNaquadahFuel.getFluid(300))
                 .fluidInputs(HeavyENaquadahFuel.getFluid(400))
                 .fluidInputs(NaquadriaSolution.getFluid(300))
                 .input(dust, Adamantium)
-                .fluidInputs(Fermium258.getMaterial().getFluid(144))
+                .fluidInputs(Fermium258.getFluid(144))
                 .fluidOutputs(HyperFuelIII.getFluid(2000))
                 .EUt(30720)
                 .duration(200)
                 .buildAndRegister();
-        */
+
 
         ADVANCED_MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(HyperFuelIII.getFluid(1000))
