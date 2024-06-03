@@ -113,6 +113,8 @@ public class GCYLRecipeMaps {
         LASER_ENGRAVER_RECIPES.setMaxFluidOutputs(1);
 
         BLAST_RECIPES.setMaxInputs(4);
+
+        EXTRACTOR_RECIPES.setMaxInputs(2);
     }
 
 }

@@ -259,7 +259,6 @@ public class GCYLMaterials {
     public static Material LanthanumFullereneMix;
     public static Material LanthanumFullereneNanotubes;
     public static Material HexanitroHexaazaisowurtzitane;
-    public static Material Glyceryl;
     public static Material ElectronDegenerateRheniumPlasma;
     public static Material SuperheavyMix;
     public static Material NeutronPlasma;
@@ -1295,7 +1294,7 @@ public class GCYLMaterials {
                 .components(NaquadahEnriched, 4, Rhodium, 2, Ruthenium, 2, Dubnium, 1, Rubidium, 2, Einsteinium, 1)
                 .fluidPipeProperties(25000,2200,true)
                 .blast(10000)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         Inconel792 = new Material.Builder(id++, gcylId("inconel_b"))
                 .ingot(5)
@@ -1304,14 +1303,14 @@ public class GCYLMaterials {
                 .flags(CORE_METAL)
                 .components(Nickel, 2, Niobium, 1, Aluminium, 2, Nichrome, 1)
                 .blast(6200)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         EglinSteelBase = new Material.Builder(id++, gcylId("eglin_steel_base"))
                 .dust(6)
                 .color(0x8B4513)
                 .iconSet(SAND)
                 .components(Iron, 4, Kanthal, 1, Invar, 5)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         EglinSteel = new Material.Builder(id++, gcylId("eglin_steel"))
                 .ingot(6)
@@ -1320,7 +1319,7 @@ public class GCYLMaterials {
                 .flags(EXT2_METAL, GENERATE_FRAME)
                 .components(EglinSteelBase, 10, Sulfur, 1, Silicon, 1, Carbon, 1)
                 .blast(1048)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         Pikyonium = new Material.Builder(id++, gcylId("pikyonium"))
                 .ingot(7).liquid()
@@ -1330,7 +1329,7 @@ public class GCYLMaterials {
                 .cableProperties(GTValues.V[GTValues.UEV], 4, 32)
                 .components(Inconel792, 8, EglinSteel, 5, NaquadahEnriched, 4, Cerium, 3, Antimony, 2, Platinum, 2, Ytterbium, 1, TungstenSteel, 4)
                 .blast(11500)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         LithiumNiobate = new Material.Builder(id++, gcylId("lithium_niobate"))
                 .ingot()
@@ -1339,7 +1338,7 @@ public class GCYLMaterials {
                 .flags(GENERATE_PLATE)
                 .components(Lithium, 1, Niobium, 1, Oxygen, 4)
                 .blast(6700)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         Polyetheretherketone = new Material.Builder(id++, gcylId("polyetheretherketone"))
                 .polymer(2).liquid()
@@ -1348,7 +1347,7 @@ public class GCYLMaterials {
                 .flags(NO_SMASHING, GENERATE_FOIL, GENERATE_FINE_WIRE, NO_ALLOY_BLAST_RECIPES)
                 .components(Carbon, 20, Hydrogen, 12, Oxygen, 3)
                 .blast(6700)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         LeadZirconateTitanate = new Material.Builder(id++, gcylId("lead_zirconate_titanate"))
                 .gem(3)
@@ -1356,7 +1355,7 @@ public class GCYLMaterials {
                 .iconSet(OPAL)
                 .flags(GENERATE_PLATE)
                 .components(Lead, 1, Zirconium, 1, Titanium, 1, Oxygen, 3)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         LithiumTitanate = new Material.Builder(id++, gcylId("lithium_titanate"))
                 .ingot(5)
@@ -1364,7 +1363,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(CORE_METAL, GENERATE_PLATE)
                 .components(Lithium, 2, Titanium, 1, Oxygen, 3)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         CarbonNanotubes = new Material.Builder(id++, gcylId("carbon_nanotubes"))
                 .ingot().liquid()
@@ -1372,21 +1371,21 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(EXCLUDE_BLOCK_CRAFTING_RECIPES, GENERATE_FOIL, DISABLE_DECOMPOSITION, GENERATE_FINE_WIRE)
                 .components(Carbon, 1)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         SodiumSeaborgate = new Material.Builder(id++, gcylId("sodium_seaborgate"))
                 .ingot()
                 .color(0x55bbd4)
                 .iconSet(SHINY)
                 .components(Sodium, 2, Seaborgium, 1, Oxygen, 4)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         TBCCODust = new Material.Builder(id++, gcylId("TBCCODust"))
                 .dust()
                 .color(0x669900)
                 .iconSet(SHINY)
                 .components(Thallium, 1, Barium, 2, Calcium, 2, Copper, 3, Oxygen, 10)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         FullereneDopedNanotubes = new Material.Builder(id++, gcylId("fullerene_doped_nanotubes"))
                 .liquid()
@@ -1456,7 +1455,7 @@ public class GCYLMaterials {
                 .color((Sodium.getMaterialRGB() + Fluorine.getMaterialRGB()) / 2)
                 .iconSet(DULL)
                 .components(Sodium, 1, Fluorine, 1)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         TungstenTitaniumCarbide = new Material.Builder(id++, gcylId("tungsten_titanium_carbide"))
                 .ingot(7)
@@ -1466,7 +1465,7 @@ public class GCYLMaterials {
                 .components(TungstenCarbide, 7, Titanium, 3)
                 .cableProperties(GTValues.V[GTValues.UHV], 4, 16)
                 .blast(4422)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
 
 
@@ -1476,14 +1475,14 @@ public class GCYLMaterials {
                 .iconSet(QUARTZ)
                 .flags(GENERATE_LENS)
                 .components(Silicon, 5, Oxygen, 10, Iron, 1)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         BismuthTellurite = new Material.Builder(id++, gcylId("bismuth_tellurite"))
                 .dust(2)
                 .color(0x006B38)
                 .iconSet(SAND)
                 .components(Bismuth, 2, Tellurium, 3)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         CubicZirconia = new Material.Builder(id++, gcylId("cubic_zirconia"))
                 .gem(6)
@@ -1491,7 +1490,7 @@ public class GCYLMaterials {
                 .iconSet(DIAMOND)
                 .flags(NO_SMELTING, GENERATE_LENS)
                 .components(Zirconium, 1, Oxygen, 2)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         MagnetoResonatic = new Material.Builder(id++, gcylId("magneto_resonatic"))
                 .gem(2)
@@ -1499,7 +1498,7 @@ public class GCYLMaterials {
                 .iconSet(MAGNETIC)
                 .flags(DISABLE_DECOMPOSITION, FLAMMABLE, HIGH_SIFTER_OUTPUT, NO_SMELTING, GENERATE_LENS)
                 .components(Prasiolite, 3, BismuthTellurite, 6, CubicZirconia, 1, SteelMagnetic, 1)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         HDCS = new Material.Builder(id++, gcylId("hdcs"))
                 .ingot(5)
@@ -1508,7 +1507,7 @@ public class GCYLMaterials {
                 .flags(CORE_METAL, DISABLE_DECOMPOSITION)
                 .components(TungstenSteel, 12, HSSS, 9, HSSG, 6, Ruridit, 3, MagnetoResonatic, 2, Plutonium, 1)
                 .blast(6100)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
 
         Jasper = new Material.Builder(id++, gcylId("jasper"))
@@ -1516,7 +1515,7 @@ public class GCYLMaterials {
                 .color(13127760)
                 .iconSet(EMERALD)
                 .flags(NO_SMELTING, HIGH_SIFTER_OUTPUT)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
 
 
@@ -1534,7 +1533,7 @@ public class GCYLMaterials {
                 .flags(CORE_METAL, DISABLE_DECOMPOSITION)
                 .components(Stellite100, 15, Jasper, 5, Gallium, 5, Americium241, 5, Palladium, 5, Bismuth, 5, Germanium, 5, SiliconCarbide, 5)
                 .blast(11400)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         Adamantium = new Material.Builder(id++, gcylId("adamantium"))
                 .ingot(7).liquid()
@@ -1543,7 +1542,7 @@ public class GCYLMaterials {
                 .flags(CORE_METAL)
                 .element(Ad)
                 .blast(10850)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         Cinobite = new Material.Builder(id++, gcylId("cinobite"))
                 .ingot(5).liquid()
@@ -1553,7 +1552,7 @@ public class GCYLMaterials {
                 .components(Zeron100, 8, Naquadria, 4, Gadolinium, 3, Aluminium, 2, Mercury, 1, Tin, 1, Titanium, 6, Osmiridium, 1)
                 .cableProperties(GTValues.V[GTValues.UIV], 4, 64)
                 .blast(11465)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
 
         Polyimide = new Material.Builder(id++, gcylId("polyimide"))
@@ -1562,7 +1561,7 @@ public class GCYLMaterials {
                 .iconSet(DULL)
                 .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, FLAMMABLE, NO_SMASHING)
                 .components(Carbon, 22, Hydrogen, 12, Nitrogen, 2, Oxygen, 6)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         GermaniumTungstenNitride = new Material.Builder(id++, gcylId("germanium_tungsten_nitride"))
                 .ingot(2)
@@ -1571,7 +1570,7 @@ public class GCYLMaterials {
                 .flags(GENERATE_PLATE)
                 .components(Germanium, 3, Tungsten, 3, Nitrogen, 10)
                 .blast(5400)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         BariumTitanate = new Material.Builder(id++, gcylId("barium_titanate"))
                 .ingot(2)
@@ -1579,7 +1578,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(GENERATE_FOIL, DISABLE_DECOMPOSITION)
                 .components(Barium, 1, Titanium, 1, Oxygen, 3)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         PEDOT = new Material.Builder(id++, gcylId("pedot"))
                 .ingot(22)
@@ -1587,7 +1586,7 @@ public class GCYLMaterials {
                 .iconSet(DULL)
                 .flags(GENERATE_FINE_WIRE, DISABLE_DECOMPOSITION)
                 .components(Carbon, 6, Hydrogen, 6, Oxygen, 2, Sulfur, 1)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         AluminiumComplex = new Material.Builder(id++, gcylId("aluminium_complex"))
                 .dust()
@@ -1616,7 +1615,7 @@ public class GCYLMaterials {
                 .iconSet(DULL)
                 .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION)
                 .components(Bismuth, 2, Ruthenium, 2, Oxygen, 7)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         BismuthIridiate = new Material.Builder(id++, gcylId("bismuth_iridiate"))
                 .ingot(22)
@@ -1624,7 +1623,7 @@ public class GCYLMaterials {
                 .iconSet(DULL)
                 .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION)
                 .components(Bismuth, 2, Iridium, 2, Oxygen, 7)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         RutheniumDioxide = new Material.Builder(id++, gcylId("ruthenium_dioxide"))
                 .ingot(2)
@@ -1632,7 +1631,7 @@ public class GCYLMaterials {
                 .iconSet(DULL)
                 .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION)
                 .components(Ruthenium, 1, Oxygen, 2)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         LanthanumCalciumManganate = new Material.Builder(id++, gcylId("lanthanum_gallium_manganate"))
                 .dust()
@@ -1647,7 +1646,7 @@ public class GCYLMaterials {
                 .iconSet(DULL)
                 .flags(GENERATE_FOIL, DISABLE_DECOMPOSITION)
                 .components(Carbon, 8, Hydrogen, 8)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         Shewanella = new Material.Builder(id++, gcylId("shewanella"))
                 .dust()
@@ -1759,7 +1758,7 @@ public class GCYLMaterials {
                 .iconSet(ROUGH)
                 .flags(DISABLE_DECOMPOSITION)
                 .components(Sodium, 1, Nitrogen, 1, Oxygen, 3)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         SodiumNitrateSolution = new Material.Builder(id++, gcylId("sodium_nitrate_solution"))
                 .liquid()
@@ -1914,7 +1913,7 @@ public class GCYLMaterials {
                 .iconSet(SAND)
                 .components(Yttrium, 2, Oxygen, 3)
                 .flags(DISABLE_DECOMPOSITION)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
         LutetiumOxide = new Material.Builder(id++, gcylId("lutetium_oxide"))
                 .dust()
@@ -2055,7 +2054,7 @@ public class GCYLMaterials {
                 .iconSet(FLUID)
                 .components(Hydrogen, 2, Oxygen, 2)
                 .flags(DISABLE_DECOMPOSITION)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
                 NiobiumHydroxide= new Material.Builder(id++, gcylId("niobium_hydroxide"))
                         .dust()
@@ -2084,7 +2083,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(DISABLE_DECOMPOSITION)
                 .components(Indium, 1, Phosphorus, 1)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
                 AmmoniumNitrate= new Material.Builder(id++, gcylId("ammonium_nitrate"))
                         .liquid()
@@ -2212,7 +2211,7 @@ public class GCYLMaterials {
                 .color(0x757575)
                 .iconSet(SHINY)
                 .components(Beryllium, 1, Fluorine, 2)
-                .build();
+                .flags(DISABLE_REPLICATION).build();
 
                 ChlorinatedSolvents = new Material.Builder(id++, gcylId("chlorinated_solvents"))
                         .liquid()
@@ -2288,6 +2287,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xaf20af)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("K2MnO4",true);
 
@@ -2302,6 +2302,7 @@ public class GCYLMaterials {
                 .dust()
                 .color((Manganese.getMaterialRGB()+Sulfur.getMaterialRGB())/2)
                 .iconSet(ROUGH)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("MnSO4",true);
 
@@ -2309,6 +2310,7 @@ public class GCYLMaterials {
                         .dust()
                         .color((Potassium.getMaterialRGB()+Sulfur.getMaterialRGB())/2)
                         .iconSet(FINE)
+                        .flags(DISABLE_REPLICATION)
                         .build()
                         .setFormula("K2SO4",true);
 
@@ -2316,6 +2318,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0x3a5dcf)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("NH4CNO",true);
 
@@ -2330,6 +2333,7 @@ public class GCYLMaterials {
                 .ingot()
                 .color(0x757575)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .components(Lithium, 1, Fluorine, 1)
                 .build();
 
@@ -2337,6 +2341,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color((Aluminium.getMaterialRGB()-15))
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("(Al2O3)(CH2Cl2)(C12H27N)2",true);
 
@@ -2344,6 +2349,7 @@ public class GCYLMaterials {
                 .ingot(2).ore()
                 .color(0xB99023)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("Au?", true);
 
@@ -2351,6 +2357,7 @@ public class GCYLMaterials {
                         .ingot(2)
                         .color(0xBBA52B)
                         .iconSet(SHINY)
+                        .flags(DISABLE_REPLICATION)
                         .build()
                         .setFormula("Cu3Au?",true);
 
@@ -2358,6 +2365,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xBBA52B)
                 .iconSet(ROUGH)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("Cu3Au?",true);
 
@@ -2365,6 +2373,7 @@ public class GCYLMaterials {
                         .dust()
                         .color(0x765A30)
                         .iconSet(SHINY)
+                        .flags(DISABLE_REPLICATION)
                         .build()
                         .setFormula("Cu3?",true);
 
@@ -2372,6 +2381,7 @@ public class GCYLMaterials {
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0xDFD11F)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("HAuCl?", true);
 
@@ -2379,6 +2389,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xFFFFFF)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .components(Potassium, 2, Sulfur, 2, Oxygen, 5)
                 .build();
 
@@ -2386,6 +2397,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0xB9575E)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C6H4(CH3)2", true);
 
@@ -2393,6 +2405,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xA39C95)
                 .iconSet(ROUGH)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C6H2(CH3)4", true);
 
@@ -2400,6 +2413,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xF0EAD6)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C6H2(C2O3)2", true);
 
@@ -2407,12 +2421,15 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0xF0E130)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C12H12N2O", true);
+
         PolyamicAcid = new Material.Builder(id++, gcylId("polyamic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0xFFAE42)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C22H14N2O7", true);
 
@@ -2420,6 +2437,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0x111111)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C3F6", true);
 
@@ -2427,6 +2445,7 @@ public class GCYLMaterials {
                 .ingot().liquid()
                 .color(0xC8C8C8)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .flags(GENERATE_PLATE, FLAMMABLE, NO_SMASHING, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES)
                 .components(Carbon, 5, Fluorine, 10)
                 .build();
@@ -2444,6 +2463,7 @@ public class GCYLMaterials {
                 .ingot()
                 .color((Naquadria.getMaterialRGB() + Taranium.getMaterialRGB()) / 2)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .flags(STD_METAL, GENERATE_LONG_ROD)
                 .components(Naquadria, 1, Taranium, 1)
                 .cableProperties(GTValues.V[GTValues.UXV], 2, 32)
@@ -2454,6 +2474,7 @@ public class GCYLMaterials {
                 .ingot().liquid()
                 .color(0x6C003B)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .flags(CORE_METAL, DISABLE_DECOMPOSITION)
                 .components(Titanium, 26, Lanthanum, 6, Tungsten, 4, Cobalt, 3, Manganese, 2, Phosphorus, 2, Palladium, 2, Niobium, 1, Argon, 5)
                 .cableProperties(GTValues.V[GTValues.UIV], 2, 32)
@@ -2464,6 +2485,7 @@ public class GCYLMaterials {
                 .polymer(2).liquid()
                 .color(0x403e37)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .flags(EXCLUDE_BLOCK_CRAFTING_RECIPES, GENERATE_FOIL, NO_SMASHING, DISABLE_DECOMPOSITION)
                 .components(Palladium, 1, Iron, 1, Carbon, 153, Hydrogen, 36, Nitrogen, 1, Oxygen, 2)
                 .build();
@@ -2472,6 +2494,7 @@ public class GCYLMaterials {
                 .polymer(2).liquid()
                 .color(0xFFE000)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .flags(EXCLUDE_BLOCK_CRAFTING_RECIPES, GENERATE_FOIL, NO_SMASHING, DISABLE_DECOMPOSITION)
                 .components(Carbon, 14, Hydrogen, 6, Nitrogen, 2, Oxygen, 2)
                 .build();
@@ -2480,6 +2503,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(Steam.getMaterialRGB())
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("H2O", true);
 
@@ -2487,6 +2511,7 @@ public class GCYLMaterials {
                 .dust(2).liquid()
                 .color(0x252525)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .components(Sodium, 7, Potassium, 3)
                 .build();
 
@@ -2494,6 +2519,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(SodiumPotassiumAlloy.getMaterialRGB())
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .components(SodiumPotassiumAlloy, 1)
                 .flags(DISABLE_DECOMPOSITION)
                 .build()
@@ -2503,6 +2529,7 @@ public class GCYLMaterials {
                 .dust(2).liquid()
                 .color(0x252525)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .components(Fluorine, 3, Lithium, 1, Sodium, 1, Potassium, 1)
                 .build();
 
@@ -2510,6 +2537,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(FLiNaK.getMaterialRGB())
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .components(FLiNaK, 1)
                 .flags(DISABLE_DECOMPOSITION)
                 .build();
@@ -2518,6 +2546,7 @@ public class GCYLMaterials {
                 .dust(2).liquid()
                 .color(0x252525)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .components(Fluorine, 3, Lithium, 1, Beryllium, 1)
                 .build();
 
@@ -2525,6 +2554,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(FLiBe.getMaterialRGB())
                 .components(FLiBe, 1)
+                .flags(DISABLE_REPLICATION)
                 .flags(DISABLE_DECOMPOSITION)
                 .iconSet(FLUID)
                 .build();
@@ -2533,6 +2563,7 @@ public class GCYLMaterials {
                 .ingot().liquid()
                 .color(0x757575)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .components(Lead, 3, Bismuth, 7)
                 .build();
 
@@ -2540,6 +2571,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(LeadBismuthEutectic.getMaterialRGB())
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .flags(DISABLE_DECOMPOSITION)
                 .components(LeadBismuthEutectic, 1)
                 .build();
@@ -2548,6 +2580,7 @@ public class GCYLMaterials {
                 .ingot(6).liquid()
                 .color(0xDDDDDD)
                 .iconSet(METALLIC)
+                .flags(DISABLE_REPLICATION)
                 .flags(EXT2_METAL, GENERATE_FRAME, GENERATE_DENSE, GENERATE_GEAR)
                 .components(Yttrium, 2, Molybdenum, 4, Chrome, 2, Titanium, 2, Nickel, 15)
                 .blast(4350)
@@ -2567,6 +2600,7 @@ public class GCYLMaterials {
                 .ingot(6)
                 .color(0x5dbd3a)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .flags(CORE_METAL)
                 .blast(13000)
                 .build()
@@ -2576,6 +2610,7 @@ public class GCYLMaterials {
                 .ingot(6)
                 .color(0x521973)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .flags(CORE_METAL)
                 .element(Fl)
                 .blast(11240)
@@ -2585,6 +2620,7 @@ public class GCYLMaterials {
                 .ingot(7).liquid()
                 .color(0xeb9e3f)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .flags(GENERATE_PLATE, DISABLE_REPLICATION, NO_WORKING, NO_SMELTING, NO_SMASHING, GENERATE_FRAME, GENERATE_ROD)
                 .components()
                 .blast(13100)
@@ -2595,6 +2631,7 @@ public class GCYLMaterials {
                 .ingot(7).liquid()
                 .color(0xAA0d0d)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .flags(CORE_METAL, DISABLE_DECOMPOSITION)
                 .components(TungstenTitaniumCarbide, 3, Jasper, 3)
                 .cableProperties(GTValues.V[GTValues.UEV], 2, 16)
@@ -2605,6 +2642,7 @@ public class GCYLMaterials {
                 .ingot(6)
                 .color(0x2d3a9d)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .flags(CORE_METAL)
                 .element(Hs)
                 .blast(11240, BlastProperty.GasTier.HIGHEST)
@@ -2624,6 +2662,7 @@ public class GCYLMaterials {
                 .color(0x9986a3)
                 .iconSet(SHINY)
                 .flags(CORE_METAL)
+                .flags(DISABLE_REPLICATION)
                 .components(Trinium, 2, Titanium, 1)
                 .blast(11000)
                 .build();
@@ -2632,6 +2671,7 @@ public class GCYLMaterials {
                 .ingot(6)
                 .color(0x2c2c2c)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .flags(GENERATE_PLATE, EXCLUDE_BLOCK_CRAFTING_RECIPES, DISABLE_DECOMPOSITION)
                 .components(Tantalum, 12, Hafnium, 3, Seaborgium, 1, Carbon, 16)
                 .fluidPipeProperties(500000, 2400, true)
@@ -2642,6 +2682,7 @@ public class GCYLMaterials {
                 .ingot(4)
                 .color(0xCCB0EC)
                 .iconSet(METALLIC)
+                .flags(DISABLE_REPLICATION)
                 .flags(EXT2_METAL, GENERATE_FRAME)
                 .components(Nickel, 2, Titanium, 3)
                 .blast(Titanium.getBlastTemperature())
@@ -2651,6 +2692,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(Actinium.getMaterialRGB() * 9 / 8)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("AcH12", true);
 
@@ -2658,6 +2700,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0x7ada00)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("ReC10H8S4Se4O4", true);
 
@@ -2665,6 +2708,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0x9a9a2a)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("B4C7Fr4At6Ho2Th2Fl2Cn2", true);
 
@@ -2672,6 +2716,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0x99cc00)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("LaCsRb(C60)2", true);
 
@@ -2689,6 +2734,7 @@ public class GCYLMaterials {
                 .color(0x4662d4)
                 .iconSet(SHINY)
                 .flags(CORE_METAL)
+                .flags(DISABLE_REPLICATION)
                 .components(Adamantium, 3, Promethium, 2)
                 .blast(11244)
                 .build();
@@ -2697,6 +2743,7 @@ public class GCYLMaterials {
                 .ingot(6).liquid()
                 .color(0xE84B36)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION)
                 .components(Copernicium, 1, Nihonium, 1, MetastableFlerovium, 1, Moscovium, 1, Livermorium, 1, Tennessine, 1, MetastableOganesson, 1)
                 .blast(10600)
@@ -2706,6 +2753,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0x52ad25)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("CsCeCo2In10", true);
 
@@ -2713,6 +2761,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xa26a8b)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("ReHsTlC60PN12H84S6O12F6", true);
 
@@ -2720,6 +2769,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xffffff)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("NqNq+*Nq*DrTrKeTnAdVb", true);
 
@@ -2727,6 +2777,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xdfcafa)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("(C60)2La2?", true);
 
@@ -2734,56 +2785,15 @@ public class GCYLMaterials {
                 .dust()
                 .color(LanthanumFullereneMix.getMaterialRGB() * 3 / 5)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("La2(C60)2CNT", true);
-
-        /*
-        UEVSuperconductor = new Material.Builder(id++, tjfId("uev_superconductor"))
-                .ingot(1)
-                .color(0x954fe0)
-                .iconSet(SHINY)
-                .flags(STD_METAL, DISABLE_DECOMPOSITION)
-                .components(ActiniumSuperhydride, 1, BETSPerrhenate, 1, TriniumTitanium, 2, Quantum, 1, Vibranium, 2)
-                .cableProperties(GTValues.V[GTValues.UEV], 4, 0, true)
-                .blast(11600)
-                .build();
-
-        UIVSuperconductor = new Material.Builder(id++, tjfId("uiv_superconductor"))
-                .ingot(1)
-                .color(0x8bf743)
-                .iconSet(SHINY)
-                .flags(STD_METAL, DISABLE_DECOMPOSITION)
-                .components(BorocarbideDust, 2, FullereneSuperconductiveDust, 1, MetastableOganesson, 2, ProtoAdamantium, 2)
-                .cableProperties(GTValues.V[GTValues.UIV], 4, 0, true)
-                .blast(11600)
-                .build();
-
-        UXVSuperconductor = new Material.Builder(id++, tjfId("uxv_superconductor"))
-                .ingot(1)
-                .color(0x883afc)
-                .iconSet(SHINY)
-                .flags(STD_METAL, DISABLE_DECOMPOSITION)
-                .components(BlackTitanium, 3, SuperheavyHAlloy, 2, ChargedCaesiumCeriumCobaltIndium, 3, RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate, 6)
-                .cableProperties(GTValues.V[GTValues.UXV], 4, 0, true)
-                .blast(12000)
-                .build();
-
-        OpVSuperconductor = new Material.Builder(id++, tjfId("opv_superconductor"))
-                .ingot(1)
-                .color(0xe34b5a)
-                .iconSet(SHINY)
-                .flags(STD_METAL, DISABLE_DECOMPOSITION)
-                .components(Neutronium, 4, Legendarium, 5, ActiniumSuperhydride, 5, LanthanumFullereneNanotubes, 4, RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate, 12)
-                .cableProperties(GTValues.V[GTValues.OpV], 4, 0, true)
-                .blast(14000)
-                .build();
-
-         */
 
         SuperheavyLAlloy = new Material.Builder(id++, gcylId("superheavy_l_alloy"))
                 .ingot(6).liquid()
                 .color(0x2B45DF)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION)
                 .components(Rutherfordium, 1, Dubnium, 1, Seaborgium, 1, Bohrium, 1, MetastableHassium, 1, Meitnerium, 1, Roentgenium, 1)
                 .blast(10600)
@@ -2793,22 +2803,16 @@ public class GCYLMaterials {
                 .dust()
                 .color(0x414a4f)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C6H6N12O12", true);
-
-        Glyceryl = new Material.Builder(id++, gcylId("glyceryl"))
-                .liquid()
-                .color(38550)
-                .iconSet(FLUID)
-                .flags(FLAMMABLE, EXPLOSIVE, NO_SMASHING)
-                .components(Carbon, 3, Hydrogen, 5, Nitrogen, 3, Oxygen, 9)
-                .build();
 
         ElectronDegenerateRheniumPlasma = new Material.Builder(id++, gcylId("degenerate_rhenium_plasma"))
                 .plasma(new FluidBuilder().temperature(100000000))//TODO fix temperature
                 .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
                 .color(0x6666FF)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("Rh", true);
 
@@ -2816,6 +2820,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0x403737)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("SgBhRfDb", true);
 
@@ -2824,6 +2829,7 @@ public class GCYLMaterials {
                 .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
                 .color(0xf0e9e9)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("n", true);
 
@@ -2831,6 +2837,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0xe0d407)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("a", true);
 
@@ -2838,6 +2845,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0x044c4c)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("e-", true);
 
@@ -2846,6 +2854,7 @@ public class GCYLMaterials {
                 .dust()
                 .color((Potassium.getMaterialRGB() + Carbon.getMaterialRGB() + Oxygen.getMaterialRGB()) / 3)
                 .iconSet(FINE)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("K2CO3", true);
 
@@ -2853,6 +2862,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xF0EAD6)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("KHSO3", true);
 
@@ -2860,6 +2870,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xF0EAD6)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("KNO2", true);
 
@@ -2867,6 +2878,7 @@ public class GCYLMaterials {
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0x1e73b0)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("HNO2", true);
 
@@ -2875,6 +2887,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0xD5DDDF)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("(CH3CO)2O", true);
 
@@ -2882,6 +2895,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color((Sodium.getMaterialRGB() + AceticAnhydride.getMaterialRGB()) / 2)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C2H3NaO2", true);
 
@@ -2889,6 +2903,7 @@ public class GCYLMaterials {
                 .dust()
                 .color((0xF0EAD6 + NitrousAcid.getMaterialRGB()) / 2)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("KHSO3", true);
 
@@ -2896,6 +2911,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xF0EAD6)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("(NH3OH)2SO4", true);
 
@@ -2903,6 +2919,7 @@ public class GCYLMaterials {
                 .dust()
                 .color((Barium.getMaterialRGB() + Chlorine.getMaterialRGB()) / 2)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("BaCl2", true);
 
@@ -2911,6 +2928,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(Barite.getMaterialRGB())
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("(H2O)BaSO4", true);
 
@@ -2918,6 +2936,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(((Barium.getMaterialRGB() + Chlorine.getMaterialRGB()) / 2 + 0xF0EAD6) / 2)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("HONH2HCl", true);
 
@@ -2925,6 +2944,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0x3c20ad)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C4H2O3", true);
 
@@ -2932,6 +2952,7 @@ public class GCYLMaterials {
                 .dust()
                 .color((MaleicAnhydride.getMaterialRGB() + Water.getMaterialRGB() + Hydrogen.getMaterialRGB()) / 3)
                 .iconSet(ROUGH)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C4H6O4", true);
 
@@ -2939,6 +2960,7 @@ public class GCYLMaterials {
                 .dust()
                 .color((SuccinicAcid.getMaterialRGB() + AceticAnhydride.getMaterialRGB()) / 2)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("(CH2CO)2O", true);
 
@@ -2946,6 +2968,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0xb7ebcd)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("(CH2)4O", true);
 
@@ -2953,6 +2976,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xdbcae3)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("(CH2CO)2NOH", true);
 
@@ -2960,6 +2984,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(Ethylenediamine.getMaterialRGB())
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("N(CH2CH3)3", true);
 
@@ -2967,6 +2992,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xbd93a6)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C6H7NO4", true);
 
@@ -2974,6 +3000,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xFFFF66)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("SeO2", true);
 
@@ -2981,6 +3008,7 @@ public class GCYLMaterials {
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color((0xFFFF66 + Water.getMaterialRGB()) / 2)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("H2SeO3", true);
 
@@ -2988,6 +3016,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xb6dee0)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("NH4CH3CO2", true);
 
@@ -2995,6 +3024,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xa6bebf)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("CH3CONH2", true);
 
@@ -3002,6 +3032,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xa2afb0)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("CH3CN", true);
 
@@ -3009,6 +3040,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0xaef7fc)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C7H7Cl", true);
 
@@ -3016,6 +3048,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0x7e8d94)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("(CH2)6N4", true);
 
@@ -3023,6 +3056,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0x5c8082)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C7H9N", true);
 
@@ -3030,6 +3064,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0xf2f068)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C2H2O2", true);
 
@@ -3037,6 +3072,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0x624573)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C48N6H48", true);
 
@@ -3044,6 +3080,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xb9c0c7)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("PdCl2", true);
 
@@ -3051,6 +3088,7 @@ public class GCYLMaterials {
                 .dust()
                 .color((Palladium.getMaterialRGB() + Carbon.getMaterialRGB()) / 2)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("PdC", true);
 
@@ -3059,6 +3097,7 @@ public class GCYLMaterials {
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0xBC6C53)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("HBr", true);
 
@@ -3066,6 +3105,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0x42bdff)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("(CH3)2NCH", true);
 
@@ -3073,6 +3113,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0xb3c98b)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C28N6H32O4", true);
 
@@ -3080,6 +3121,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0x686c6e)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("NO2BF4", true);
 
@@ -3087,6 +3129,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0x7e8d94)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("NOBF4", true);
 
@@ -3094,6 +3137,7 @@ public class GCYLMaterials {
                 .dust()
                 .color((DibenzylTetraacetylhexaazaisowurtzitane.getMaterialRGB() + Hexabenzylhexaazaisowurtzitane.getMaterialRGB()) / 2)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C14N8H18O6", true);
 
@@ -3101,6 +3145,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0x4D4D4D)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .components(Silver, 2, Oxygen, 1)
                 .build();
 
@@ -3108,6 +3153,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color((SilverOxide.getMaterialRGB() + BoronFluoride.getMaterialRGB()) / 2)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("AgBF4", true);
 
@@ -3115,6 +3161,7 @@ public class GCYLMaterials {
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(Silvertetrafluoroborate.getMaterialRGB())
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("HBF4", true);
 
@@ -3122,6 +3169,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0xb26f22)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C7H6O", true);
 
@@ -3129,6 +3177,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(HexanitroHexaazaisowurtzitane.getMaterialRGB() * 5 / 7)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C6H6N12O12", true);
 
@@ -3136,6 +3185,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0x61daff)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("SiO2", true);
 
@@ -3143,6 +3193,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0x2c4d24)
                 .iconSet(ROUGH)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("Bacteria", true);
 
@@ -3150,6 +3201,7 @@ public class GCYLMaterials {
                 .dust()
                 .color((SuccinicAcid.getMaterialRGB() + Ammonia.getMaterialRGB()) / 2)
                 .iconSet(METALLIC)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C4H4BrNO2", true);
 
@@ -3157,6 +3209,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0xFF9933)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C2H4O", true);
 
@@ -3164,6 +3217,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0x521973)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("FlCl3", true);
 
@@ -3171,6 +3225,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0x2c2c8c)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("SgCNT", true);
 
@@ -3178,6 +3233,7 @@ public class GCYLMaterials {
                 .dust(6).liquid()
                 .color(0x6f20af)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("PrHoYLF", true);
 
@@ -3185,6 +3241,7 @@ public class GCYLMaterials {
                 .dust(6).liquid()
                 .color(0x206faf)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("LuTmYVO", true);
 
@@ -3192,6 +3249,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(YttriumOxide.getMaterialRGB())
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("Nd:Y?", true);
 
@@ -3199,6 +3257,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0x6f20af)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("Nd:YAG", true);
 
@@ -3206,6 +3265,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0x6f20af)
                 .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("Nd:YAG?", true);
 
@@ -3213,6 +3273,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(0x6f20af)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("Nd:YAG", true);
 
@@ -3220,6 +3281,7 @@ public class GCYLMaterials {
                 .dust(6).liquid()
                 .color(0xcf8acf)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("Nd:YAG", true);
 
@@ -3227,7 +3289,7 @@ public class GCYLMaterials {
                 .dust().liquid()
                 .color(0xFF9A3C)
                 .iconSet(SAND)
-                .flags(DISABLE_DECOMPOSITION, EXCLUDE_BLOCK_CRAFTING_RECIPES)
+                .flags(DISABLE_DECOMPOSITION, EXCLUDE_BLOCK_CRAFTING_RECIPES,DISABLE_REPLICATION)
                 .components(Redstone, 1, Blaze, 2, Sulfur, 1)
                 .build();
 
@@ -3243,7 +3305,7 @@ public class GCYLMaterials {
                 .dust().liquid()
                 .color(0x01F3F6)
                 .iconSet(DULL)
-                .flags(DISABLE_DECOMPOSITION, EXCLUDE_BLOCK_CRAFTING_RECIPES)
+                .flags(DISABLE_DECOMPOSITION, EXCLUDE_BLOCK_CRAFTING_RECIPES,DISABLE_REPLICATION)
                 .components(Redstone, 1, Blizz, 2, Water, 1)
                 .build();
 
@@ -3251,6 +3313,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0x996600)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("For the Void Miner", true);
 
@@ -3258,14 +3321,16 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0x998833)
                 .iconSet(FLUID)
+
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("Used Mud", true);
 
         HastelloyX78 = new Material.Builder(id++, gcylId("hastelloyx_78"))
-                .ingot()
+                .ingot().fluid()
                 .color(0x6ba3e3)
                 .iconSet(SHINY)
-                .flags(CORE_METAL)
+                .flags(CORE_METAL,DISABLE_REPLICATION)
                 .components(NaquadahAlloy, 10, Rhenium, 5, Naquadria, 4, Gadolinium, 3, Strontium, 2, Polonium, 3, Rutherfordium, 2, Fermium258, 1)
                 .blast(12000)
                 .build();
@@ -3274,16 +3339,16 @@ public class GCYLMaterials {
                 .ingot()
                 .color(0x37bf7e)
                 .iconSet(SHINY)
-                .flags(CORE_METAL)
+                .flags(CORE_METAL,DISABLE_REPLICATION)
                 .components(VanadiumSteel, 4, Osmiridium, 2, Technetium, 3, Germanium, 4, Iridium, 7, Duranium, 5, Californium252, 1)
                 .blast(10000)
                 .build();
 
         Staballoy = new Material.Builder(id++, gcylId("staballoy"))
-                .ingot()
+                .ingot().fluid()
                 .color(0x444B42)
                 .iconSet(METALLIC)
-                .flags(EXT2_METAL, GENERATE_FRAME, GENERATE_GEAR, DISABLE_DECOMPOSITION)
+                .flags(EXT2_METAL, GENERATE_FRAME, GENERATE_GEAR, DISABLE_DECOMPOSITION,DISABLE_REPLICATION)
                 .components(Uranium238, 9, Titanium, 1)
                 .blast(3450)
                 .build();
@@ -3292,6 +3357,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0xB9785E)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("(NaC4Si27Al9(H2O)28O72)C6H4(CH3)2", true);
 
@@ -3299,6 +3365,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0xB9575E)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C6H4(CH3)2", true);
 
@@ -3306,6 +3373,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0x0A1D2C)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C7H6Br2", true);
 
@@ -3313,6 +3381,7 @@ public class GCYLMaterials {
                 .dust()
                 .color((Dibromomethylbenzene.getMaterialRGB() + SulfuricAcid.getMaterialRGB()) / 2)
                 .iconSet(FINE)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C8H6O2", true);
 
@@ -3320,6 +3389,7 @@ public class GCYLMaterials {
                 .dust()
                 .color((Gold.getMaterialRGB() + Palladium.getMaterialRGB() + Carbon.getMaterialRGB()) / 3)
                 .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("AuPdC", true);
 
@@ -3327,6 +3397,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0xD5DD95)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("CH3CClCH3", true);
 
@@ -3334,6 +3405,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0x83945F)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C12H16O2(NO2)2", true);
 
@@ -3341,6 +3413,7 @@ public class GCYLMaterials {
                 .dust()
                 .color((Terephthalaldehyde.getMaterialRGB() + Dinitrodipropanyloxybenzene.getMaterialRGB()) / 2)
                 .iconSet(FINE)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C20H22N2O2", true);
 
@@ -3348,6 +3421,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0xFFAE42)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("?", true);
 
@@ -3355,6 +3429,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0xFFAE41)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("?", true);
 
@@ -3362,6 +3437,7 @@ public class GCYLMaterials {
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0x2bbbb4)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C18H36O2", true);
 
@@ -3369,6 +3445,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0xF1E130)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("C24H51P", true);
 
@@ -3376,6 +3453,7 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0xff0000)
                 .iconSet(FLUID)
+                .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula(makeFancy("qd"), true);
 
@@ -3393,7 +3471,7 @@ public class GCYLMaterials {
                 .toolStats(ToolProperty.Builder.of(8.0F, 3.0F, 1280, 3).build())
                 .color(0x23524a)
                 .iconSet(METALLIC)
-                .flags(EXT2_METAL, DISABLE_DECOMPOSITION)
+                .flags(EXT2_METAL, DISABLE_DECOMPOSITION, DISABLE_REPLICATION)
                 .components(Lead, 3, Platinum, 1, EnderPearl, 1)
                 .blast(4500)
                 .build();
@@ -10166,7 +10244,7 @@ public class GCYLMaterials {
         List<Material> dmats = new ArrayList<>();
         Collections.addAll(dmats, Dysprosium, Iodine, Gadolinium, Strontium, Holmium, Californium, Zirconium, Thallium, Rubidium, Technetium,
                 Terbium, Promethium, Radium, Tellurium, Francium, Berkelium, Curium, Actinium, Protactinium, Scandium, Thulium, Hafnium, Astatine,
-                Selenium, Praseodymium, Copernicium, Erbium);
+                Selenium, Praseodymium, Copernicium, Erbium, Polonium);
         for (Material mat : dmats) {
             addDust(mat, 1, 0);
         }

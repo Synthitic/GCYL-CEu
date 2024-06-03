@@ -12,6 +12,30 @@ public class PolymerChain {
     public static void init() {
         polyimideInit();
         fluorinatedEthylenePropyleneInit();
+        polybenzimidazoleInit();
+    }
+
+    public static void polybenzimidazoleInit() {
+        // C7H8 + CH3OH -> C8H10 + H2O
+        CHEMICAL_RECIPES.recipeBuilder()
+                .fluidInputs(Toluene.getFluid(1000))
+                .fluidInputs(Methanol.getFluid(1000))
+                .fluidOutputs(OrthoXylene.getFluid(1000))
+                .fluidOutputs(Water.getFluid(1000))
+                .EUt(120)
+                .duration(800)
+                .buildAndRegister();
+
+        // 6O + C8H10 -> 2H2O + C8H6O4
+        CHEMICAL_RECIPES.recipeBuilder()
+                .notConsumable(dust, PotassiumDichromate)
+                .fluidInputs(Oxygen.getFluid(6000))
+                .fluidInputs(OrthoXylene.getFluid(1000))
+                .fluidOutputs(Water.getFluid(2000))
+                .fluidOutputs(PhthalicAcid.getFluid(1000))
+                .EUt(1920)
+                .duration(100)
+                .buildAndRegister();
     }
 
     public static void polyimideInit() {

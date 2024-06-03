@@ -16,6 +16,7 @@ import java.util.List;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.common.blocks.BlockWireCoil.CoilType.*;
+import static gregtech.common.items.MetaItems.COVER_INFINITE_WATER;
 
 
 @JEIPlugin
@@ -29,15 +30,7 @@ public class JEIGCYLPlugin implements IModPlugin {
         itemBlacklist = registry.getJeiHelpers().getIngredientBlacklist();
         iItemRegistry = registry.getIngredientRegistry();
 
-        //The list has to be backwards for some godforsaken reason TODO: make it work on manganese phosphide all the way. hide fluids
-        List<Material> oldSuperConductors = Arrays.asList(RutheniumTriniumAmericiumNeutronate, EnrichedNaquadahTriniumEuropiumDuranide, UraniumRhodiumDinaquadide,
-                IndiumTinBariumTitaniumCuprate, SamariumIronArsenicOxide, SamariumIronArsenicOxide, MercuryBariumCalciumCuprate, MagnesiumDiboride, ManganesePhosphide);
 
-        for(Material mat : oldSuperConductors) {
-            superConductorRemoval(mat);
-        }
-
-        //TODO hide base infinite water cover from gregtech
 
     }
 
@@ -47,13 +40,21 @@ public class JEIGCYLPlugin implements IModPlugin {
 
         itemBlacklist.addIngredientToBlacklist(GCYMMetaTileEntities.LARGE_MIXER.getStackForm());
         itemBlacklist.addIngredientToBlacklist(GCYMMetaTileEntities.LARGE_CENTRIFUGE.getStackForm());
+        itemBlacklist.addIngredientToBlacklist(GCYMMetaTileEntities.ELECTRIC_IMPLOSION_COMPRESSOR.getStackForm());
 
         itemBlacklist.addIngredientToBlacklist(MetaBlocks.WIRE_COIL.getItemVariant(TRINIUM));
         itemBlacklist.addIngredientToBlacklist(MetaBlocks.WIRE_COIL.getItemVariant(TRITANIUM));
 
+        itemBlacklist.addIngredientToBlacklist(COVER_INFINITE_WATER.getStackForm());
 
+        //The list has to be backwards for some godforsaken reason TODO: make it work on manganese phosphide all the way. hide fluids
         //hide old superconductors
+        List<Material> oldSuperConductors = Arrays.asList(RutheniumTriniumAmericiumNeutronate, EnrichedNaquadahTriniumEuropiumDuranide, UraniumRhodiumDinaquadide,
+                IndiumTinBariumTitaniumCuprate, SamariumIronArsenicOxide, SamariumIronArsenicOxide, MercuryBariumCalciumCuprate, MagnesiumDiboride, ManganesePhosphide);
 
+        for(Material mat : oldSuperConductors) {
+            superConductorRemoval(mat);
+        }
 
 
     }

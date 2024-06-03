@@ -3,6 +3,7 @@ package com.fulltrix.gcyl.recipes.chain;
 import com.fulltrix.gcyl.item.GCYLExplosive;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.item.fusion.GCYLFusionCasing;
+import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.MarkerMaterials;
@@ -171,33 +172,23 @@ public class UltimateMaterials {
                 .output(dust, Periodicium, 115)
                 .buildAndRegister();
         
-        /* //TODO Needed?
 
-        VACUUM_RECIPES.recipeBuilder().duration(20).EUt(30720)
-                .fluidInputs(Helium3.getFluid(5000))
-                .fluidOutputs(Helium3.getFluid(FluidStorageKeys.LIQUID,5000))
-                .buildAndRegister();
 
-        VACUUM_RECIPES.recipeBuilder().duration(20).EUt(480)
-                .fluidInputs(Nitrogen.getFluid(5000))
-                .fluidOutputs(LiquidNitrogen.getFluid(5000))
-                .buildAndRegister();
-
-        LARGE_MIXER_RECIPES.recipeBuilder().duration(60).EUt(7680)
-                .fluidInputs(LiquidHelium.getFluid(1000))
-                .fluidInputs(LiquidHelium3.getFluid(1000))
+        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(60).EUt(7680)
+                .fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 1000))
+                .fluidInputs(Helium3.getFluid(FluidStorageKeys.LIQUID,1000))
                 .fluidOutputs(LiquidEnrichedHelium.getFluid(2000))
                 .buildAndRegister();
 
-        CHEMICAL_RECIPES.recipeBuilder().duration(150).EUt(725000)
+        LARGE_CHEMICAL_RECIPES.recipeBuilder().duration(150).EUt(725000)
                 .fluidInputs(LiquidEnrichedHelium.getFluid(2000))
-                .fluidInputs(LiquidNitrogen.getFluid(1000))
+                .fluidInputs(Nitrogen.getFluid(FluidStorageKeys.LIQUID,1000))
                 .fluidOutputs(SuperfluidHelium.getFluid(1000))
-                .fluidOutputs(LiquidHelium3.getFluid(1000))
+                .fluidOutputs(Helium3.getFluid(FluidStorageKeys.LIQUID,1000))
                 .fluidOutputs(Nitrogen.getFluid(1000))
                 .buildAndRegister();
                 
-         */
+
 
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(150).EUt(15000000)

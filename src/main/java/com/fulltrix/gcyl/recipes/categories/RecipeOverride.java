@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.recipes.categories;
 
 import com.fulltrix.gcyl.recipes.categories.circuits.MagnetoRecipes;
+import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import net.minecraft.block.BlockCauldron;
@@ -132,6 +133,26 @@ public class RecipeOverride {
         //naquadah alloy
         removeRecipesByInputs(MIXER_RECIPES, getIntegratedCircuit(2), OreDictUnifier.get(dust, Naquadah, 2), OreDictUnifier.get(dust, Osmiridium), OreDictUnifier.get(dust, Trinium));
         removeRecipesByInputs(CENTRIFUGE_RECIPES, OreDictUnifier.get(dust, NaquadahAlloy, 4));
+
+        //Severely steam cracked naphtha
+        removeRecipesByInputs(DISTILLATION_RECIPES, SeverelySteamCrackedNaphtha.getFluid(1000));
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(1)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(1000)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(2)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(500)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(3)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(1000)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(4)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(500)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(5)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(500)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(6)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(500)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(7)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(1000)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(8)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(100)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(9)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(1000)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(10)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(100)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(11)}, new FluidStack[]{SeverelySteamCrackedNaphtha.getFluid(100)});
+
+        //sticky resin extract
+        removeRecipesByInputs(EXTRACTOR_RECIPES, STICKY_RESIN.getStackForm());
+
+        //useless gcym electric implosion compressor
+        removeRecipeByName("gcym:electric_implosion_compressor");
     }
 
     public static void chemistryOverride() {
@@ -183,6 +204,24 @@ public class RecipeOverride {
                 .chancedOutput(dust, Ash, 1111, 0)
                 .fluidOutputs(CarbonMonoxide.getFluid(2000))
                 .buildAndRegister();
+
+        //Severely steam cracked naphtha
+        DISTILLATION_RECIPES.recipeBuilder().duration(120).EUt(120)
+                .fluidInputs(SeverelySteamCrackedNaphtha.getFluid(1000))
+                .fluidOutputs(HeavyFuel.getFluid(25))
+                .fluidOutputs(LightFuel.getFluid(50))
+                .fluidOutputs(Toluene.getFluid(20))
+                .fluidOutputs(Benzene.getFluid(100))
+                .fluidOutputs(Butene.getFluid(50))
+                .fluidOutputs(Butadiene.getFluid(50))
+                .fluidOutputs(Propane.getFluid(15))
+                .fluidOutputs(Propene.getFluid(300))
+                .fluidOutputs(Ethane.getFluid(65))
+                .fluidOutputs(Ethylene.getFluid(500))
+                .fluidOutputs(Methane.getFluid(500))
+                .fluidOutputs(Cyclopentadiene.getFluid(75))
+                .buildAndRegister();
+
 
     }
 
@@ -303,7 +342,30 @@ public class RecipeOverride {
                 .circuitMeta(2)
                 .buildAndRegister();
 
+        //sticky resin extract
+        EXTRACTOR_RECIPES.recipeBuilder()
+                .input(STICKY_RESIN)
+                .circuitMeta(1)
+                .output(dust, RawRubber, 3)
+                .EUt(2)
+                .duration(150)
+                .buildAndRegister();
 
+        EXTRACTOR_RECIPES.recipeBuilder()
+                .input(STICKY_RESIN)
+                .circuitMeta(2)
+                .fluidOutputs(Resin.getFluid(100))
+                .EUt(30)
+                .duration(150)
+                .buildAndRegister();
 
+        EXTRACTOR_RECIPES.recipeBuilder()
+                .input(STICKY_RESIN)
+                .circuitMeta(3)
+                .output(dust, RawRubber, 3)
+                .fluidOutputs(Resin.getFluid(100))
+                .EUt(480)
+                .duration(150)
+                .buildAndRegister();
     }
 }

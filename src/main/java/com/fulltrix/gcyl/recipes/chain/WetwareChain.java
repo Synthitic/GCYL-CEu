@@ -11,8 +11,7 @@ import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.dustSmall;
-import static gregtech.common.items.MetaItems.PETRI_DISH;
-import static gregtech.common.items.MetaItems.STEM_CELLS;
+import static gregtech.common.items.MetaItems.*;
 import static net.minecraft.init.Items.APPLE;
 
 public class WetwareChain {
@@ -85,16 +84,6 @@ public class WetwareChain {
                 .duration(100)
                 .buildAndRegister();
 
-        //TODO: figure this out
-        /*
-        EXTRACTOR_RECIPES.recipeBuilder()
-                .input(dust,RUBBER_DROP.getStackForm())
-                .fluidOutputs(Resin.getFluid(100))
-                .EUt(24)
-                .duration(100)
-                .buildAndRegister();
-
-         */
 
         DISTILLATION_RECIPES.recipeBuilder()
                 .output(dustSmall, RawRubber)
