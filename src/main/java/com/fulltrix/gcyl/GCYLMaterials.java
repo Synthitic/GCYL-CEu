@@ -3,18 +3,16 @@ package com.fulltrix.gcyl;
 //import com.fulltrix.tjfcore.materials.IsotopeMaterial;
 //import com.fulltrix.tjfcore.materials.RadioactiveMaterial;
 
+import gregicality.multiblocks.api.unification.GCYMMaterialFlags;
 import gregtech.api.GTValues;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.unification.Elements;
-import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
 import gregtech.api.unification.material.properties.*;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.common.config.Property;
-import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,8 +23,7 @@ import static com.fulltrix.gcyl.GCYLElements.*;
 import static com.fulltrix.gcyl.GCYLUtility.gcylId;
 import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
-import static gregtech.api.GTValues.MAX;
-import static gregtech.api.GTValues.OpV;
+import static gregtech.api.GTValues.*;
 import static gregtech.api.fluids.attribute.FluidAttributes.ACID;
 import static gregtech.api.unification.Elements.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -1120,6 +1117,7 @@ public class GCYLMaterials {
     public static Material Infinity;
     public static Material Eternity;
     //superconductors
+    public static Material LVSuperconductor;
     public static Material MVSuperconductor;
     public static Material HVSuperconductor;
     public static Material EVSuperconductor;
@@ -1135,6 +1133,7 @@ public class GCYLMaterials {
     public static Material OpVSuperconductor;
     public static Material MAXSuperconductor;
 
+    public static Material LVSuperconductorBase;
     public static Material MVSuperconductorBase;
     public static Material HVSuperconductorBase;
     public static Material EVSuperconductorBase;
@@ -1276,8 +1275,9 @@ public class GCYLMaterials {
                 .liquid()
                 .color(0x403f3d)
                 .iconSet(SHINY)
-                .flags(EXT2_METAL, DISABLE_DECOMPOSITION, GENERATE_FRAME, GENERATE_SMALL_GEAR, GENERATE_ROUND, GENERATE_RING, GENERATE_ROTOR)
+                .flags(EXT2_METAL, DISABLE_DECOMPOSITION, GENERATE_FRAME, GENERATE_SMALL_GEAR, GENERATE_ROUND, GENERATE_RING, GENERATE_ROTOR, GENERATE_GEAR)
                 .components(NaquadahEnriched, 4, Rhodium, 2, Ruthenium, 2, Dubnium, 1, Rubidium, 2, Einsteinium, 1)
+                .fluidPipeProperties(25000,2200,true)
                 .blast(10000)
                 .build();
 
@@ -2618,6 +2618,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(GENERATE_PLATE, EXCLUDE_BLOCK_CRAFTING_RECIPES, DISABLE_DECOMPOSITION)
                 .components(Tantalum, 12, Hafnium, 3, Seaborgium, 1, Carbon, 16)
+                .fluidPipeProperties(500000, 2400, true)
                 .blast(5200)
                 .build();
 
@@ -3366,7 +3367,7 @@ public class GCYLMaterials {
                 .ingot(2)
                 .color(0xa5f564)
                 .iconSet(SHINY)
-                .flags(EXT2_METAL, GENERATE_FRAME, DISABLE_DECOMPOSITION, GENERATE_SMALL_GEAR, GENERATE_ROUND, GENERATE_RING, GENERATE_ROTOR)
+                .flags(EXT2_METAL, GENERATE_FRAME, DISABLE_DECOMPOSITION, GENERATE_SMALL_GEAR, GENERATE_GEAR, GENERATE_ROUND, GENERATE_RING, GENERATE_ROTOR)
                 .components(HastelloyX78, 5, NiobiumNitride, 2, Tritanium, 4, TungstenCarbide, 4, Promethium, 4, Mendelevium261, 1)
                 .blast(12100)
                 .build();
@@ -9667,13 +9668,23 @@ public class GCYLMaterials {
 
     public static void registerSuperconductors() {
 
+        LVSuperconductorBase = new Material.Builder(id++, gcylId("lv_superconductor_base"))
+                .ingot().liquid()
+                .color(0xffffff)
+                .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
+                .components(SolderingAlloy,10,Gallium,2)
+                .cableProperties(GTValues.V[GTValues.LV],4,4)
+                .blast(1000)
+                .build();
+
         MVSuperconductorBase = new Material.Builder(id++, gcylId("mv_superconductor_base"))
                 .ingot().liquid()
                 .color(0x535353)
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
                 .components(Cadmium,5,Magnesium,1,Oxygen,6)
-                .cableProperties(GTValues.V[GTValues.MV],4,1)
+                .cableProperties(GTValues.V[GTValues.MV],4,16)
                 .blast(1200)
                 .build();
 
@@ -9683,7 +9694,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
                 .components(Titanium,1,Barium,9,Copper,10,Oxygen,20)
-                .cableProperties(GTValues.V[GTValues.HV],4,2)
+                .cableProperties(GTValues.V[GTValues.HV],4,64)
                 .blast(3300)
                 .build();
 
@@ -9693,7 +9704,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
                 .components(Uranium,1,Platinum,3)
-                .cableProperties(GTValues.V[GTValues.EV],4,4)
+                .cableProperties(GTValues.V[GTValues.EV],4,256)
                 .blast(4400)
                 .build();
 
@@ -9704,7 +9715,7 @@ public class GCYLMaterials {
                 .flags(DISABLE_REPLICATION)
                 .components(Vanadium,1,Indium,3)
                 .blast(5200)
-                .cableProperties(GTValues.V[GTValues.IV],6,8)
+                .cableProperties(GTValues.V[GTValues.IV],6,1024)
                 .build();
 
         LuVSuperconductorBase = new Material.Builder(id++, gcylId("luv_superconductor_base"))
@@ -9713,7 +9724,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
                 .components(Indium,4,Bronze,8,Barium,4,Titanium,1,Oxygen,14)
-                .cableProperties(GTValues.V[GTValues.LuV],6, 16)
+                .cableProperties(GTValues.V[GTValues.LuV],6, 4096)
                 .blast(6000)
                 .build();
 
@@ -9723,7 +9734,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
                 .components(Naquadah,4,Indium,2,Palladium,6,Osmium,1)
-                .cableProperties(GTValues.V[GTValues.ZPM],6,32)
+                .cableProperties(GTValues.V[GTValues.ZPM],6,16384)
                 .blast(8100)
                 .build();
 
@@ -9733,7 +9744,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
                 .components(Naquadria,4,Osmiridium,3,Rutherfordium,1,Samarium,1)
-                .cableProperties(GTValues.V[GTValues.UV], 8, 64)
+                .cableProperties(GTValues.V[UV], 8, 65536)
                 .blast(8900)
                 .build();
 
@@ -9743,7 +9754,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
                 .components(TBCCODust,4,StrontiumSuperconductorDust,4,Amethyst,1)
-                .cableProperties(GTValues.V[GTValues.UHV], 8, 128)
+                .cableProperties(GTValues.V[GTValues.UHV], 8, 262144)
                 .blast(10000)
                 .build();
 
@@ -9753,7 +9764,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
                 .components(ActiniumSuperhydride,1,BETSPerrhenate,1,TriniumTitanium,2,Quantum,1,Vibranium,2)
-                .cableProperties(GTValues.V[GTValues.UEV], 8, 256)
+                .cableProperties(GTValues.V[GTValues.UEV], 8, 1048576)
                 .blast(11150)
                 .build();
 
@@ -9763,7 +9774,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
                 .components(BorocarbideDust,2,FullereneSuperconductiveDust,1,MetastableOganesson,2,ProtoAdamantium,2)
-                .cableProperties(GTValues.V[GTValues.UIV], 16, 512)
+                .cableProperties(GTValues.V[GTValues.UIV], 16, 4194304)
                 .blast(11600)
                 .build();
 
@@ -9772,7 +9783,7 @@ public class GCYLMaterials {
                 .color(0x883afc)
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
-                .cableProperties(GTValues.V[GTValues.UXV], 16, 1024)
+                .cableProperties(GTValues.V[GTValues.UXV], 16, 16777216)
                 .components(BlackTitanium,3,SuperheavyHAlloy,2,ChargedCesiumCeriumCobaltIndium,3,RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate,6)
                 .blast(12000)
                 .build();
@@ -9782,9 +9793,18 @@ public class GCYLMaterials {
                 .color(0xe34b5a)
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
-                .cableProperties(GTValues.V[OpV], 16, 2048)
+                .cableProperties(GTValues.V[OpV], 16, 67108864)
                 .components(Neutronium,4,Legendarium,5,ActiniumSuperhydride,5,LanthanumFullereneNanotubes,4,RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate,12)
                 .blast(14000)
+                .build();
+
+        LVSuperconductor = new Material.Builder(id++, gcylId("lv_superconductor"))
+                .ingot().liquid()
+                .color(0xf8f8ff)
+                .iconSet(DULL)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .components(SolderingAlloy,10,Gallium,2)
+                .cableProperties(GTValues.V[GTValues.LV],4,0,true)
                 .build();
 
         MVSuperconductor = new Material.Builder(id++, gcylId("mv_superconductor"))
@@ -9846,7 +9866,7 @@ public class GCYLMaterials {
                 .color(UVSuperconductorBase.getMaterialRGB())
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
-                .cableProperties(GTValues.V[GTValues.UV], 8,0,true)
+                .cableProperties(GTValues.V[UV], 8,0,true)
                 .components(UVSuperconductorBase,1)
                 .build();
 
@@ -10101,6 +10121,7 @@ public class GCYLMaterials {
 
         //FLUID PIPES
         addFluidPipes(Zeron100, 15000, 1750, true);
+        addFluidPipes(Enderium, 1500,650,true);
 
         //ORE PREFIX IGNORE FIXES
         plate.removeIgnored(BorosilicateGlass);
@@ -10119,22 +10140,16 @@ public class GCYLMaterials {
             cableGtHex.setIgnored(mat);
         }
          */
-            //Remove new superconductors
+
+
+        //DISABLE ALLOY BLAST for old superconductors
         List<Material> wireMats = new ArrayList<>();
-        Collections.addAll(wireMats, ManganesePhosphide, MagnesiumDiboride, MercuryBariumCalciumCuprate, UraniumTriplatinum, SamariumIronArsenicOxide
-                /*IndiumTinBariumTitaniumCuprate TODO: fix crash from removing this, research recipe*/, UraniumRhodiumDinaquadide, EnrichedNaquadahTriniumEuropiumDuranide, RutheniumTriniumAmericiumNeutronate);
+        Collections.addAll(wireMats, ManganesePhosphide, MagnesiumDiboride, MercuryBariumCalciumCuprate, UraniumTriplatinum, SamariumIronArsenicOxide,
+                IndiumTinBariumTitaniumCuprate, UraniumRhodiumDinaquadide, EnrichedNaquadahTriniumEuropiumDuranide, RutheniumTriniumAmericiumNeutronate);
 
-
-        for (Material mat : wireMats) {
-            //ingot.setIgnored(mat);
-            //dust.setIgnored(mat);
-            wireGtSingle.setIgnored(mat);
-            wireGtDouble.setIgnored(mat);
-            wireGtHex.setIgnored(mat);
-            wireGtQuadruple.setIgnored(mat);
-            wireGtOctal.setIgnored(mat);
+        for(Material mat : wireMats) {
+            mat.addFlags(NO_ALLOY_BLAST_RECIPES);
         }
-
 
         //LENSES
         List<Material> lensmats = new ArrayList<>();
@@ -10176,6 +10191,27 @@ public class GCYLMaterials {
         for (Material mat : rmats) {
             mat.addFlags(GENERATE_ROUND);
         }
+
+        //Small Specific cases
+        HSSG.addFlags(GENERATE_RING);
+        Osmium.addFlags(GENERATE_RING);
+        HSSE.addFlags(GENERATE_SMALL_GEAR);
+        Zeron100.addFlags(GENERATE_BOLT_SCREW);
+        Trinium.addFlags(GENERATE_FINE_WIRE);
+        Trinium.addFlags(GENERATE_FRAME);
+        Naquadria.addFlags(GENERATE_DENSE);
+
+
+        //ADD ROTORS
+        List<Material> rotmats = new ArrayList<>();
+        Collections.addAll(rotmats, HSSG, Tritanium, HSSE);
+        for (Material mat : rotmats) {
+            mat.addFlags(GENERATE_ROTOR);
+        }
+
+        //Cable
+        Duranium.setProperty(PropertyKey.WIRE, new WireProperties((int) GTValues.V[UV], 1, 16));
+
 
 
     }

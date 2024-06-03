@@ -13,6 +13,7 @@ import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 
+
 public class CircuitRecipes {
 
     //TODO: higher tier soldering alloys
@@ -43,8 +44,6 @@ public class CircuitRecipes {
     }
 
     private static void wetwareCircuits() {
-
-        //TODO: change these
 
         // Wetware Processor
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(56000)
@@ -118,8 +117,6 @@ public class CircuitRecipes {
     }
 
     private static void biowareCircuits() {
-
-        //TODO Change these
 
         // Bioware Processor
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(240000)
@@ -197,8 +194,6 @@ public class CircuitRecipes {
 
     private static void opticalCircuits() {
 
-        //TODO change these
-
         // Optical Processor
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(960000)
                 .inputs(QUBIT_CENTRAL_PROCESSING_UNIT.getStackForm(4))
@@ -218,7 +213,7 @@ public class CircuitRecipes {
                 .inputs(SMD_TRANSISTOR_OPTICAL.getStackForm(16))
                 .inputs(SMD_DIODE_OPTICAL.getStackForm(16))
                 .inputs(SMD_RESISTOR_OPTICAL.getStackForm(16))
-                .input(wireGtSingle, RutheniumTriniumAmericiumNeutronate, 4)
+                .input(wireGtSingle, UHVSuperconductor, 4)
                 .input(wireFine, TungstenTitaniumCarbide, 64)
                 .inputs(ARAM.getStackForm(16))
                 .inputs(NANO_CENTRAL_PROCESSING_UNIT.getStackForm(64))
@@ -238,7 +233,7 @@ public class CircuitRecipes {
                 .inputs(SMD_DIODE_OPTICAL.getStackForm(32))
                 .inputs(SMD_RESISTOR_OPTICAL.getStackForm(32))
                 .inputs(OPTICAL_SOC.getStackForm(4))
-                .input(wireGtSingle, RutheniumTriniumAmericiumNeutronate, 16)
+                .input(wireGtSingle, UHVSuperconductor, 16)
                 .inputs(CLADDED_OPTICAL_FIBER_CORE.getStackForm(16))
                 .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(16))
                 .inputs(ARAM.getStackForm(32))
@@ -258,7 +253,7 @@ public class CircuitRecipes {
                 .inputs(SMD_TRANSISTOR_OPTICAL.getStackForm(64))
                 .inputs(SMD_DIODE_OPTICAL.getStackForm(64))
                 .inputs(SMD_RESISTOR_OPTICAL.getStackForm(64))
-                .input(wireGtSingle, RutheniumTriniumAmericiumNeutronate, 32)
+                .input(wireGtSingle, UHVSuperconductor, 32)
                 .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(32))
                 .inputs(UHASOC.getStackForm(16))
                 .inputs(ARAM.getStackForm(64))
@@ -276,10 +271,9 @@ public class CircuitRecipes {
     }
 
     private static void exoticCircuits() {
-        //TODO: change these
 
         //Exotic Processor
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt((int) 4E+6)
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt((int)4E+6)
                 .inputs(SMD_CAPACITOR_EXOTIC.getStackForm(8))
                 .inputs(SMD_TRANSISTOR_EXOTIC.getStackForm(8))
                 .inputs(EXOTIC_PROCESSING_CORE.getStackForm())
@@ -291,7 +285,7 @@ public class CircuitRecipes {
                 .buildAndRegister();
 
         //Exotic Assembly
-        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(200).EUt((int) 4E+6)
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(200).EUt((int)4E+6)
                 .inputs(SMD_RESISTOR_EXOTIC.getStackForm(16))
                 .inputs(SMD_DIODE_EXOTIC.getStackForm(16))
                 .inputs(SMD_TRANSISTOR_EXOTIC.getStackForm(16))
@@ -311,7 +305,7 @@ public class CircuitRecipes {
                 .buildAndRegister();
 
         //Exotic Computer
-        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(300).EUt((int) 4E+6)
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(300).EUt((int)4E+6)
                 .inputs(SMD_DIODE_EXOTIC.getStackForm(32))
                 .inputs(SMD_RESISTOR_EXOTIC.getStackForm(32))
                 .inputs(SMD_TRANSISTOR_EXOTIC.getStackForm(32))
@@ -331,7 +325,7 @@ public class CircuitRecipes {
                 .buildAndRegister();
 
         //Exotic Mainframe
-        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(400).EUt((int) 1E+7)
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(400).EUt((int)1E+7)
                 .inputs(SMD_RESISTOR_EXOTIC.getStackForm(64))
                 .inputs(SMD_DIODE_EXOTIC.getStackForm(64))
                 .inputs(SMD_TRANSISTOR_EXOTIC.getStackForm(64))
@@ -355,7 +349,6 @@ public class CircuitRecipes {
     }
 
     private static void cosmicCircuits() {
-//TODO: change these
 
         // Cosmic Processor
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(30_720_000)
@@ -436,7 +429,7 @@ public class CircuitRecipes {
 
 
     private static void supracausalCircuits() {
-//TODO: change these
+
         // Supracausal Processor
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(122_880_000)
                 .inputs(COSMIC_COMPUTE_UNIT.getStackForm(16))
@@ -506,7 +499,7 @@ public class CircuitRecipes {
                 .inputs(CTC_COMPUTATIONAL_UNIT.getStackForm())
                 .inputs(COSMIC_MESH.getStackForm(64))
                 .input(frameGt, QCDMatter, 4)
-                .input(wireGtSingle, UXVSuperconductor, 64)
+                .input(wireGtSingle, OpVSuperconductor, 64)
                 .inputs(COSMIC_FABRIC.getStackForm(64))
                 .input(plate, QCDMatter, 64)
                 .fluidInputs(Taranium.getFluid(L * 64))
@@ -514,11 +507,6 @@ public class CircuitRecipes {
                 .fluidInputs(ProtoAdamantium.getFluid(L * 64))
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L * 64))
                 .outputs(SUPRACAUSAL_MAINFRAME.getStackForm())
-                .stationResearch(b -> b
-                        .researchStack(SUPRACAUSAL_COMPUTER.getStackForm())
-                        .dataStack(TOOL_DATA_SUPRACAUSAL.getStackForm())
-                        .CWUt(4096)
-                        .EUt(VA[GTValues.MAX]))
                 .buildAndRegister();
     }
 }

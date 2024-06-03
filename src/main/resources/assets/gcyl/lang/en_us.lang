@@ -4669,3 +4669,5 @@ gcyl.material.unfolded_fullerene=Unfolded Fullerene
 gcyl.material.fullerene=Fullerene
 gcyl.material.pd_fullerene_matrix=Palladium Fullerene Matrix
 gcyl.material.lignite=Lignite Coal
+gcyl.material.lv_superconductor_base=LV Superconductor Base
+gcyl.material.lv_superconductor=LV Superconductor
