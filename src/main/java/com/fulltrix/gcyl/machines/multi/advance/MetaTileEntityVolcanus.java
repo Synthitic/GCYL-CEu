@@ -47,7 +47,7 @@ import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_1;
 import static gregtech.api.GTValues.ZPM;
 import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOverclockingLogic;
 
-//TODO: update ui so that voltage does not go above zpm
+//TODO: update ui & tooltip. improve performance
 
 public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController implements IHeatingCoil {
 
@@ -57,7 +57,7 @@ public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController im
     public MetaTileEntityVolcanus(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, RecipeMaps.BLAST_RECIPES);
         this.recipeMapWorkable = new MetaTileEntityVolcanus.VolcanusRecipeLogic(this);
-        this.recipeMapWorkable.setMaximumOverclockVoltage(GTValues.V[ZPM]);
+        this.recipeMapWorkable.setMaximumOverclockVoltage(Math.min(this.energyContainer.getInputVoltage() , GTValues.V[ZPM]));
         this.metaTileEntity = this;
     }
 
@@ -90,6 +90,11 @@ public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController im
                 Math.max(0, GTUtility.getTierByVoltage(getEnergyContainer().getInputVoltage()) - GTValues.MV);
 
 
+    }
+
+    @Override
+    public boolean isTiered() {
+        return false;
     }
 
     @Override
@@ -183,9 +188,7 @@ public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController im
         }
 
         protected void drainPyrotheum() {
-            if (getOffsetTimer() % 20 == 0) {
                 volcanus.getInputFluidInventory().drain(getPyrotheum(), true);
-            }
         }
 
         @Override
@@ -204,7 +207,7 @@ public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController im
 
         @Override
         public long getMaximumOverclockVoltage() {
-            return GTValues.V[ZPM];
+            return Math.min(volcanus.getEnergyContainer().getInputVoltage(), GTValues.V[ZPM]);
         }
 
         @Override

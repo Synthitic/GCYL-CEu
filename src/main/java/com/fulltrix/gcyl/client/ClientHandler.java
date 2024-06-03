@@ -12,6 +12,7 @@ public class ClientHandler {
     public static OrientedOverlayRenderer QUBIT_COMPUTER_OVERLAY;
     public static OrientedOverlayRenderer ORGANIC_REPLICATOR_OVERLAY;
     public static OrientedOverlayRenderer FUSION_REACTOR_OVERLAY;
+    public static OrientedOverlayRenderer FREEZER_OVERLAY;
     public static SimpleOverlayRenderer FUSION_TEXTURE;
     public static SimpleOverlayRenderer BIO_REACTOR;
     public static SimpleOverlayRenderer STABALLOY_CASING;
@@ -47,6 +48,8 @@ public class ClientHandler {
         ORGANIC_REPLICATOR_OVERLAY = new OrientedOverlayRenderer("machines/organic_replicator");
         FUSION_REACTOR_OVERLAY = new OrientedOverlayRenderer("machines/fusion_reactor");
         QUBIT_COMPUTER_OVERLAY = new OrientedOverlayRenderer("machines/qubit_computer");
+
+        FREEZER_OVERLAY = new OrientedOverlayRenderer("machines/freezer");
 
         //MetaCasing1
         STABALLOY_CASING = new SimpleOverlayRenderer("casings/metal_casings/staballoy");
