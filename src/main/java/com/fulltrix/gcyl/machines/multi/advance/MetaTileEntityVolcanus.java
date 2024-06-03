@@ -2,12 +2,14 @@ package com.fulltrix.gcyl.machines.multi.advance;
 
 import com.fulltrix.gcyl.GCYLMaterials;
 import com.fulltrix.gcyl.item.metal.MetalCasing1;
+import com.google.common.collect.ImmutableMultimap;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
 import gregicality.multiblocks.api.render.GCYMTextures;
 import gregtech.api.GTValues;
 import gregtech.api.block.IHeatingCoilBlockStats;
 import gregtech.api.capability.IHeatingCoil;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.api.capability.impl.FluidTankList;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
@@ -42,20 +44,20 @@ import java.util.List;
 
 import static com.fulltrix.gcyl.client.ClientHandler.HASTELLOY_N_CASING;
 import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_1;
+import static gregtech.api.GTValues.ZPM;
 import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOverclockingLogic;
 
-//TODO: confirm limiting to ZPM & and rewrite because its written terribly
+//TODO: update ui so that voltage does not go above zpm
 
 public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController implements IHeatingCoil {
 
     protected final MetaTileEntity metaTileEntity;
     private int blastFurnaceTemperature;
-    private FluidTankList heatHandler;
-    private boolean wasGoodAndRunning = false;
 
     public MetaTileEntityVolcanus(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, RecipeMaps.BLAST_RECIPES);
         this.recipeMapWorkable = new MetaTileEntityVolcanus.VolcanusRecipeLogic(this);
+        this.recipeMapWorkable.setMaximumOverclockVoltage(GTValues.V[ZPM]);
         this.metaTileEntity = this;
     }
 
@@ -87,7 +89,6 @@ public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController im
         this.blastFurnaceTemperature += 100 *
                 Math.max(0, GTUtility.getTierByVoltage(getEnergyContainer().getInputVoltage()) - GTValues.MV);
 
-        this.heatHandler = new FluidTankList(false, getAbilities(MultiblockAbility.IMPORT_FLUIDS));
 
     }
 
@@ -97,42 +98,6 @@ public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController im
         this.blastFurnaceTemperature = 0;
     }
 
-
-    @Override
-    protected void updateFormedValid() {
-        super.updateFormedValid();
-        if (!getWorld().isRemote) {
-            if (!wasGoodAndRunning || getOffsetTimer() % 20 == 4) {
-                if (drainFluid(true)) {
-                    if (this.isActive()) {
-                        drainFluid(false);
-                        wasGoodAndRunning = true;
-                    }
-                } else {
-                    energyContainer.removeEnergy(energyContainer.getEnergyCapacity());
-                    wasGoodAndRunning = false;
-                }
-            }
-
-        }
-    }
-
-    @Override
-    public boolean isTiered() {return false;}
-
-    public boolean drainFluid(boolean simulate) {
-
-        FluidStack heatingFluid = GCYLMaterials.Pyrotheum.getFluid((int) Math.pow(2, GTUtility.getTierByVoltage(energyContainer.getInputVoltage())) * 5);
-        FluidStack fluidStack = this.heatHandler.getTankAt(0).getFluid();
-
-        if (fluidStack != null && fluidStack.isFluidEqual(GCYLMaterials.Pyrotheum.getFluid(1)) &&
-                fluidStack.amount >= heatingFluid.amount) {
-            if (!simulate)
-                this.heatHandler.drain(heatingFluid, true);
-            return true;
-        }
-        return false;
-    }
 
     @Override
     public boolean checkRecipe(@NotNull Recipe recipe, boolean consumeIfSuccess) {
@@ -195,22 +160,51 @@ public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController im
     @SuppressWarnings("InnerClassMayBeStatic")
     private class VolcanusRecipeLogic extends GCYMMultiblockRecipeLogic {
 
+        private final MetaTileEntityVolcanus volcanus;
+
         public VolcanusRecipeLogic(RecipeMapMultiblockController metaTileEntity) {
             super(metaTileEntity);
-            setAllowOverclocking(false);
+            this.volcanus = (MetaTileEntityVolcanus) metaTileEntity;
+        }
+
+        protected FluidStack getPyrotheum() {
+           return GCYLMaterials.Pyrotheum.getFluid((int) Math.pow(2,GTUtility.getTierByVoltage(this.volcanus.energyContainer.getInputVoltage())));
+        }
+
+        protected boolean checkPyrotheum() {
+            IMultipleTankHandler inputTank = volcanus.getInputFluidInventory();
+            if(getPyrotheum().isFluidStackIdentical(inputTank.drain(getPyrotheum(), false))) {
+                return true;
+            }
+            else {
+                invalidate();
+                return false;
+            }
+        }
+
+        protected void drainPyrotheum() {
+            if (getOffsetTimer() % 20 == 0) {
+                volcanus.getInputFluidInventory().drain(getPyrotheum(), true);
+            }
         }
 
         @Override
-        public long getMaxVoltage() {
-            if (energyContainer.getInputVoltage() >= GTValues.V[7]) {
-                return Math.min(energyContainer.getInputVoltage() / energyContainer.getInputAmperage(), GTValues.V[7]);
-            } else
-                return GTValues.V[7] / energyContainer.getInputAmperage();
+        protected boolean shouldSearchForRecipes() {
+            return super.shouldSearchForRecipes() && checkPyrotheum();
+        }
+
+        @Override
+        protected boolean canProgressRecipe() {
+            if(checkPyrotheum() && volcanus.isActive()) {
+                drainPyrotheum();
+            }
+
+            return super.canProgressRecipe() && checkPyrotheum();
         }
 
         @Override
         public long getMaximumOverclockVoltage() {
-            return getMaxVoltage();
+            return GTValues.V[ZPM];
         }
 
         @Override
@@ -223,5 +217,7 @@ public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController im
                     ((IHeatingCoil) metaTileEntity).getCurrentTemperature(),
                     propertyStorage.getRecipePropertyValue(TemperatureProperty.getInstance(), 0));
         }
+
+
     }
 }
