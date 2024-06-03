@@ -10160,6 +10160,26 @@ public class GCYLMaterials {
         NaquadahAlloy.setFormula("Nq(Ir3Os)",true);
     }
 
+    public static void tempMaterialModifications() {
+
+        /*
+        List<Material> #mats = new ArrayList<>();
+        Collections.addAll(#mats, );
+        for (Material mat : #mats) {
+            mat.addFlags();
+        }
+         */
+
+        //Add rounds
+        List<Material> rmats = new ArrayList<>();
+        Collections.addAll(rmats, HDCS, HastelloyX78, HSSG, HSSE);
+        for (Material mat : rmats) {
+            mat.addFlags(GENERATE_ROUND);
+        }
+
+
+    }
+
     private static String makeFancy(String input) {
         return fancyTest(input, fanciness, 80.0, 1);
     }
