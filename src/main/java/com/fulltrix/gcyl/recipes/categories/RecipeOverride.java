@@ -128,6 +128,10 @@ public class RecipeOverride {
         removeRecipesByInputs(MIXER_RECIPES, getIntegratedCircuit(4), OreDictUnifier.get(dust,Uranium238), OreDictUnifier.get(dust,Rhodium,1), OreDictUnifier.get(dust, Naquadah,2));
         removeRecipesByInputs(MIXER_RECIPES, getIntegratedCircuit(4), OreDictUnifier.get(dust,NaquadahEnriched,4), OreDictUnifier.get(dust,Trinium,3), OreDictUnifier.get(dust, Europium,2), OreDictUnifier.get(dust, Duranium));
         removeRecipesByInputs(MIXER_RECIPES, new ItemStack[]{getIntegratedCircuit(4), OreDictUnifier.get(dust, Ruthenium,1), OreDictUnifier.get(dust,Trinium,2), OreDictUnifier.get(dust,Americium,1), OreDictUnifier.get(dust,Neutronium,2)},new FluidStack[]{Oxygen.getFluid(8000)});
+
+        //naquadah alloy
+        removeRecipesByInputs(MIXER_RECIPES, getIntegratedCircuit(2), OreDictUnifier.get(dust, Naquadah, 2), OreDictUnifier.get(dust, Osmiridium), OreDictUnifier.get(dust, Trinium));
+        removeRecipesByInputs(CENTRIFUGE_RECIPES, OreDictUnifier.get(dust, NaquadahAlloy, 4));
     }
 
     public static void chemistryOverride() {
@@ -291,9 +295,13 @@ public class RecipeOverride {
                 .output(UV_INFINITE_WATER_SOURCE)
                 .buildAndRegister();
 
-
-
-
+        // naquadah alloy
+        MIXER_RECIPES.recipeBuilder().duration(400).EUt(VA[IV])
+                .input(dust, Naquadah)
+                .input(dust, Osmiridium)
+                .output(dust, NaquadahAlloy, 2)
+                .circuitMeta(2)
+                .buildAndRegister();
 
 
 
