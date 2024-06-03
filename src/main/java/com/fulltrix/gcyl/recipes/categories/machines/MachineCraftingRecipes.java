@@ -1,16 +1,20 @@
 package com.fulltrix.gcyl.recipes.categories.machines;
 
+import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import gregtech.api.GTValues;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.blocks.BlockMachineCasing;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
 import static gregtech.api.recipes.ModHandler.removeTieredRecipeByName;
@@ -25,6 +29,7 @@ public class MachineCraftingRecipes {
         hullOverride();
         MultiblockCraftingRecipes.init();
         SingleblockCraftingRecipes.init();
+        misc();
     }
 
     private static void hullOverride() { //TODO add OpV machine hull recipes
@@ -128,8 +133,12 @@ public class MachineCraftingRecipes {
 
     }
 
+*/
     private static void misc() {
+        ModHandler.addShapedRecipe("gcyl_volcanus", GCYLTileEntities.VOLCANUS.getStackForm(), "GCG", "IHI", "PCP", 'H', MetaTileEntities.ELECTRIC_BLAST_FURNACE.getStackForm(), 'C', new UnificationEntry(circuit, MarkerMaterials.Tier.LuV), 'P', new UnificationEntry(plateDense, HastelloyN), 'G', new UnificationEntry(gear, HastelloyN), 'I', MetaItems.ROBOT_ARM_IV);
+        ModHandler.addShapedRecipe("gcyl_cryogenic_freezer", GCYLTileEntities.CRYOGENIC_FREEZER.getStackForm(), "GCG", "IHI", "PCP", 'H', MetaTileEntities.VACUUM_FREEZER.getStackForm(), 'C', new UnificationEntry(circuit, MarkerMaterials.Tier.LuV), 'P', new UnificationEntry(plateDense, HG1223), 'G', new UnificationEntry(gear, IncoloyMA956), 'I', MetaItems.ELECTRIC_PISTON_IV);
 
+/*
         // Fluid Export Hatch
         ModHandler.addShapedRecipe("ga_filtered_fluid_export_hatch_ulv", GATileEntities.OUTPUT_HATCH_FILTERED.get(GAValues.ULV).getStackForm(), "F", "M", "G", 'M', MetaTileEntities.HULL[ULV].getStackForm(), 'G', Blocks.GLASS, 'F', MetaItems.FLUID_FILTER);
         ModHandler.addShapedRecipe("ga_filtered_fluid_export_hatch_lv", GATileEntities.OUTPUT_HATCH_FILTERED.get(GAValues.LV).getStackForm(), "F", "M", "G", 'M', MetaTileEntities.HULL[LV].getStackForm(), 'G', Blocks.GLASS, 'F', MetaItems.FLUID_FILTER);
@@ -185,33 +194,9 @@ public class MachineCraftingRecipes {
         ModHandler.addShapedRecipe("ga_rotor_holder_luv", GATileEntities.ROTOR_HOLDER[1].getStackForm(), "WHW", "WRW", "WWW", 'H', MetaTileEntities.HULL[LuV].getStackForm(), 'W', new UnificationEntry(wireGtHex, YttriumBariumCuprate), 'R', new UnificationEntry(gear, RhodiumPlatedPalladium));
         ModHandler.addShapedRecipe("ga_rotor_holder_uhv", GATileEntities.ROTOR_HOLDER[2].getStackForm(), "WHW", "WRW", "WWW", 'H', GATileEntities.GA_HULLS[0].getStackForm(), 'W', new UnificationEntry(wireGtHex, Duranium), 'R', new UnificationEntry(gear, Seaborgium));
 
-        // UHV+ Energy Input/Output Hatches
-        ModHandler.addShapedRecipe("ga_energy_input_hatch_uhv", GATileEntities.ENERGY_INPUT[0].getStackForm(), "   ", "CM ", "   ", 'M', GATileEntities.GA_HULLS[0].getStackForm(), 'C', new UnificationEntry(cableGtSingle, TungstenTitaniumCarbide));
-        ModHandler.addShapedRecipe("ga_energy_input_hatch_uev", GATileEntities.ENERGY_INPUT[1].getStackForm(), "   ", "CM ", "   ", 'M', GATileEntities.GA_HULLS[1].getStackForm(), 'C', new UnificationEntry(cableGtSingle, Pikyonium));
-        ModHandler.addShapedRecipe("ga_energy_input_hatch_uiv", GATileEntities.ENERGY_INPUT[2].getStackForm(), "   ", "CM ", "   ", 'M', GATileEntities.GA_HULLS[2].getStackForm(), 'C', new UnificationEntry(cableGtSingle, Cinobite));
-        ModHandler.addShapedRecipe("ga_energy_input_hatch_umv", GATileEntities.ENERGY_INPUT[3].getStackForm(), "   ", "CM ", "   ", 'M', GATileEntities.GA_HULLS[3].getStackForm(), 'C', new UnificationEntry(cableGtSingle, NaquadriaticTaranium));
-        ModHandler.addShapedRecipe("ga_energy_output_hatch_uhv", GATileEntities.ENERGY_OUTPUT[0].getStackForm(), "   ", " MC", "   ", 'M', GATileEntities.GA_HULLS[0].getStackForm(), 'C', new UnificationEntry(cableGtSingle, TungstenTitaniumCarbide));
-        ModHandler.addShapedRecipe("ga_energy_output_hatch_uev", GATileEntities.ENERGY_OUTPUT[1].getStackForm(), "   ", " MC", "   ", 'M', GATileEntities.GA_HULLS[1].getStackForm(), 'C', new UnificationEntry(cableGtSingle, Pikyonium));
-        ModHandler.addShapedRecipe("ga_energy_output_hatch_uiv", GATileEntities.ENERGY_OUTPUT[2].getStackForm(), "   ", " MC", "   ", 'M', GATileEntities.GA_HULLS[2].getStackForm(), 'C', new UnificationEntry(cableGtSingle, Cinobite));
-        ModHandler.addShapedRecipe("ga_energy_output_hatch_umv", GATileEntities.ENERGY_OUTPUT[3].getStackForm(), "   ", " MC", "   ", 'M', GATileEntities.GA_HULLS[3].getStackForm(), 'C', new UnificationEntry(cableGtSingle, NaquadriaticTaranium));
 
-        // Maintenance Hatches
-        ModHandler.addShapedRecipe("ga_maintenance_hatch", GATileEntities.MAINTENANCE_HATCH[0].getStackForm(), "dwx", "hHc", "fsr", 'H', MetaTileEntities.HULL[1].getStackForm());
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(500).inputs(MetaTileEntities.HULL[LV].getStackForm()).circuitMeta(21).outputs(GATileEntities.MAINTENANCE_HATCH[0].getStackForm()).buildAndRegister();
-        ModHandler.addShapedRecipe("ga_maintenance_hatch_auto_tape", GATileEntities.MAINTENANCE_HATCH[1].getStackForm(), "CMC", "RHR", "CMC", 'C', new UnificationEntry(circuit, Elite), 'M', GATileEntities.MAINTENANCE_HATCH[0].getStackForm(), 'R', MetaItems.ROBOT_ARM_IV, 'H', MetaTileEntities.HULL[IV].getStackForm());
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(1920).duration(500).inputs(MetaTileEntities.HULL[IV].getStackForm(), MetaItems.ROBOT_ARM_IV.getStackForm(2), GATileEntities.MAINTENANCE_HATCH[0].getStackForm(2)).input(circuit, Elite, 2).outputs(GATileEntities.MAINTENANCE_HATCH[1].getStackForm()).buildAndRegister();
-        GARecipeMaps.ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(491520).duration(1000).input(wireFine, Dubnium, 64).input(circuit, Superconductor).inputs(MetaItems.ROBOT_ARM_UV.getStackForm(), MetaItems.ELECTRIC_PUMP_UV.getStackForm(), MetaItems.CONVEYOR_MODULE_UV.getStackForm(), GAMetaItems.INSULATING_TAPE.getStackForm(64), GAMetaItems.INSULATING_TAPE.getStackForm(64), GATileEntities.MAINTENANCE_HATCH[1].getStackForm()).fluidInputs(SolderingAlloy.getFluid(1296), Lubricant.getFluid(6400)).outputs(GATileEntities.MAINTENANCE_HATCH[2].getStackForm()).buildAndRegister();
-
-        //Quadruple and Nonuple Inputs and Outputs
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(120).duration(100).inputs(MetaTileEntities.HULL[HV].getStackForm()).input(pipeLarge, Titanium, 4).circuitMeta(0).outputs(GATileEntities.INPUT_HATCH_MULTI.get(0).getStackForm()).buildAndRegister();
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(120).duration(100).inputs(MetaTileEntities.HULL[HV].getStackForm()).input(pipeLarge, Titanium, 4).circuitMeta(1).outputs(GATileEntities.OUTPUT_HATCH_MULTI.get(0).getStackForm()).buildAndRegister();
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(1920).duration(100).inputs(MetaTileEntities.HULL[IV].getStackForm()).input(pipeLarge, TungstenSteel, 9).circuitMeta(0).outputs(GATileEntities.INPUT_HATCH_MULTI.get(1).getStackForm()).buildAndRegister();
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(1920).duration(100).inputs(MetaTileEntities.HULL[IV].getStackForm()).input(pipeLarge, TungstenSteel, 9).circuitMeta(1).outputs(GATileEntities.OUTPUT_HATCH_MULTI.get(1).getStackForm()).buildAndRegister();
-
-        ModHandler.addShapedRecipe("ga_volcanus", GATileEntities.VOLCANUS.getStackForm(), "GCG", "IHI", "PCP", 'H', GATileEntities.ELECTRIC_BLAST_FURNACE.getStackForm(), 'C', new UnificationEntry(circuit, Elite), 'P', new UnificationEntry(plateDense, HastelloyN), 'G', new UnificationEntry(gear, HastelloyN), 'I', MetaItems.ROBOT_ARM_IV);
-        ModHandler.addShapedRecipe("ga_cryogenic_freezer", GATileEntities.CRYOGENIC_FREEZER.getStackForm(), "GCG", "IHI", "PCP", 'H', GATileEntities.VACUUM_FREEZER.getStackForm(), 'C', new UnificationEntry(circuit, Elite), 'P', new UnificationEntry(plateDense, HG1223), 'G', new UnificationEntry(gear, IncoloyMA956), 'I', MetaItems.ELECTRIC_PISTON_IV);
-
+       */
     }
 
-         */
+
 }

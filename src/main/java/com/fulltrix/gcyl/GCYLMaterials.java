@@ -1124,7 +1124,7 @@ public class GCYLMaterials {
     public static Material SulfurCoatedHalloysite;
     public static Material FluorideBatteryElectrolyte;
     public static Material LanthanumNickelOxide;
-
+    public static Material HG1223;
 
     //COILS
     public static Material Pikyonium;
@@ -9770,7 +9770,14 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("La2NiO4",true);
 
-
+        HG1223 = new Material.Builder(id++, gcylId("hg_alloy"))
+                .ingot().liquid()
+                .color(0x245397)
+                .iconSet(METALLIC)
+                .flags(DISABLE_REPLICATION, GENERATE_FRAME, GENERATE_DENSE)
+                .components(Mercury,1,Barium,2,Calcium,2,Copper,3,Oxygen,8)
+                .blast(5325)
+                .build();
 
         /*
         = new Material.Builder(id++, gcylId("material"))
@@ -10089,7 +10096,7 @@ public class GCYLMaterials {
 
         //EXT2 METAL ADDITIONS
         List<Material> e2mmats = new ArrayList<>();
-        Collections.addAll(e2mmats, MaragingSteel250, AbyssalAlloy);
+        Collections.addAll(e2mmats, MaragingSteel250, AbyssalAlloy, HG1223);
         for (Material mat : e2mmats) {
             for (MaterialFlag flag : EXT2_METAL) {
                 mat.addFlags(flag);
