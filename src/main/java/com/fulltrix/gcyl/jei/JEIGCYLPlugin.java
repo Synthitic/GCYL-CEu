@@ -6,6 +6,7 @@ import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.items.MetaItems;
 import mezz.jei.api.*;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.ingredients.IIngredientRegistry;
@@ -35,13 +36,8 @@ public class JEIGCYLPlugin implements IModPlugin {
         for(Material mat : oldSuperConductors) {
             superConductorRemoval(mat);
         }
-        /*
-        superConductorRemoval(MercuryBariumCalciumCuprate);
-        superConductorRemoval(MagnesiumDiboride);
-        superConductorRemoval(ManganesePhosphide);
 
-         */
-
+        //TODO hide base infinite water cover from gregtech
 
     }
 
@@ -54,6 +50,7 @@ public class JEIGCYLPlugin implements IModPlugin {
 
         itemBlacklist.addIngredientToBlacklist(MetaBlocks.WIRE_COIL.getItemVariant(TRINIUM));
         itemBlacklist.addIngredientToBlacklist(MetaBlocks.WIRE_COIL.getItemVariant(TRITANIUM));
+
 
         //hide old superconductors
 

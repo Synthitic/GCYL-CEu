@@ -3,14 +3,16 @@ package com.fulltrix.gcyl.recipes.categories;
 import com.fulltrix.gcyl.recipes.categories.circuits.MagnetoRecipes;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
+import net.minecraft.block.BlockCauldron;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import static com.fulltrix.gcyl.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregicality.multiblocks.api.recipes.GCYMRecipeMaps.ALLOY_BLAST_RECIPES;
-import static gregtech.api.GTValues.MV;
-import static gregtech.api.GTValues.VA;
+import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
 import static gregtech.api.recipes.ModHandler.removeRecipeByName;
 import static gregtech.api.recipes.RecipeMaps.*;
@@ -19,6 +21,8 @@ import static gregtech.api.unification.material.MarkerMaterials.Color.Pink;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
+import static gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH;
+import static gregtech.common.metatileentities.MetaTileEntities.RESERVOIR_HATCH;
 
 public class RecipeOverride {
     public static void init() {
@@ -39,6 +43,7 @@ public class RecipeOverride {
 
         //removeRecipesByInputs(FLUID_SOLIDFICATION_RECIPES, new ItemStack[]{MetaItems.SHAPE_MOLD_CYLINDER.getStackForm()},  new FluidStack[]{Polytetrafluoroethylene.getFluid(36)});
 
+        //conflict removal
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(1)}, new FluidStack[]{CoalTar.getFluid(100)});
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(2)}, new FluidStack[]{CoalTar.getFluid(100)});
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(3)}, new FluidStack[]{CoalTar.getFluid(200)});
@@ -85,7 +90,11 @@ public class RecipeOverride {
         removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, HSSG,8), OreDictUnifier.get(foil,TungstenCarbide,8)}, new FluidStack[]{Tungsten.getFluid(144)});
         removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, Naquadah,8), OreDictUnifier.get(foil,Osmium,8)}, new FluidStack[]{TungstenSteel.getFluid(144)});
 
+        //infinite water cover
+        removeRecipesByInputs(ASSEMBLER_RECIPES, ELECTRIC_PUMP_HV.getStackForm(2), new ItemStack(Items.CAULDRON), OreDictUnifier.get(circuit, MarkerMaterials.Tier.HV));
 
+        //reservoir hatch
+        removeRecipesByInputs(ASSEMBLER_RECIPES, COVER_INFINITE_WATER.getStackForm(), FLUID_IMPORT_HATCH[EV].getStackForm(), ELECTRIC_PUMP_EV.getStackForm());
 
         //Plat line fixes TODO: remove and replace the recipes that turn ore into platinum group sludge
         removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, RarestMetalMixture, 7)}, new FluidStack[]{HydrochloricAcid.getFluid(4000)});
@@ -174,6 +183,8 @@ public class RecipeOverride {
     }
 
     public static void gregtechOverride() {
+
+        //mica stuff
         MIXER_RECIPES.recipeBuilder().duration(400).EUt(8)
                 .input(dust, Mica, 3)
                 .input(dust, RawRubber, 2)
@@ -221,6 +232,70 @@ public class RecipeOverride {
                 .circuitMeta(1)
                 .outputs(MICA_INSULATOR_FOIL.getStackForm(4))
                 .buildAndRegister();
+
+        //reservoir hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(EV_INFINITE_WATER_SOURCE)
+                .input(FLUID_IMPORT_HATCH[EV])
+                .input(ELECTRIC_PUMP_EV)
+                .output(RESERVOIR_HATCH)
+                .duration(300).EUt(VA[EV]).buildAndRegister();
+
+        //infinite water covers
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[MV])
+                .input(ELECTRIC_PUMP_MV)
+                .input(circuit, MarkerMaterials.Tier.MV)
+                .inputs(new ItemStack(Items.CAULDRON))
+                .output(MV_INFINITE_WATER_SOURCE)
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[HV])
+                .input(ELECTRIC_PUMP_HV)
+                .input(circuit, MarkerMaterials.Tier.HV)
+                .input(MV_INFINITE_WATER_SOURCE)
+                .output(HV_INFINITE_WATER_SOURCE)
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[EV])
+                .input(ELECTRIC_PUMP_EV)
+                .input(circuit, MarkerMaterials.Tier.EV)
+                .input(HV_INFINITE_WATER_SOURCE)
+                .output(EV_INFINITE_WATER_SOURCE)
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[IV])
+                .input(ELECTRIC_PUMP_IV)
+                .input(circuit, MarkerMaterials.Tier.IV)
+                .input(EV_INFINITE_WATER_SOURCE)
+                .output(IV_INFINITE_WATER_SOURCE)
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[LuV])
+                .input(ELECTRIC_PUMP_LuV)
+                .input(circuit, MarkerMaterials.Tier.LuV)
+                .input(IV_INFINITE_WATER_SOURCE)
+                .output(LuV_INFINITE_WATER_SOURCE)
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[ZPM])
+                .input(ELECTRIC_PUMP_ZPM)
+                .input(circuit, MarkerMaterials.Tier.ZPM)
+                .input(LuV_INFINITE_WATER_SOURCE)
+                .output(ZPM_INFINITE_WATER_SOURCE)
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[UV])
+                .input(ELECTRIC_PUMP_UV)
+                .input(circuit, MarkerMaterials.Tier.UV)
+                .input(ZPM_INFINITE_WATER_SOURCE)
+                .output(UV_INFINITE_WATER_SOURCE)
+                .buildAndRegister();
+
+
+
+
+
+
 
     }
 }

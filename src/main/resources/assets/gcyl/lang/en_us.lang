@@ -4474,13 +4474,13 @@ metaitem.infinite.water.luv.name=LuV Infinite Water
 metaitem.infinite.water.zpm.name=ZPM Infinite Water
 metaitem.infinite.water.uv.name=UV Infinite Water
 
-metaitem.infinite.water.mv.tooltip=Cover That Produce 64 Buckets of Water Each 20 Ticks
-metaitem.infinite.water.hv.tooltip=Cover That Produce 64 Buckets of Water Each 15 Ticks
-metaitem.infinite.water.ev.tooltip=Cover That Produce 64 Buckets of Water Each 10 Ticks
-metaitem.infinite.water.iv.tooltip=Cover That Produce 64 Buckets of Water Each 6 Ticks
-metaitem.infinite.water.luv.tooltip=Cover That Produce 64 Buckets of Water Each 4 Ticks
-metaitem.infinite.water.zpm.tooltip=Cover That Produce 64 Buckets of Water Each 2 Ticks
-metaitem.infinite.water.uv.tooltip=Cover That Produce 64 Buckets of Water Each 1 Tick
+metaitem.infinite.water.mv.tooltip=Cover That Produces 4 Buckets of Water Each Second
+metaitem.infinite.water.hv.tooltip=Cover That Produces 12 Buckets of Water Each Second
+metaitem.infinite.water.ev.tooltip=Cover That Produces 32 Buckets of Water Each Second
+metaitem.infinite.water.iv.tooltip=Cover That Produces 80 Buckets of Water Each Second
+metaitem.infinite.water.luv.tooltip=Cover That Produces 192 Buckets of Water Each Second
+metaitem.infinite.water.zpm.tooltip=Cover That Produces 448 Buckets of Water Each Second
+metaitem.infinite.water.uv.tooltip=Cover That Produces 1024 Buckets of Water Each Second
 
 gcyl.machine.charger.uhv.name=UHV Voltage Battery Charger
 gcyl.machine.charger.uev.name=UEV Voltage Battery Charger
