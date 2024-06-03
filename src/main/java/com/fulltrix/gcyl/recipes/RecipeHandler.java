@@ -29,9 +29,9 @@ public class RecipeHandler {
     public static void initChains() {
         /*
         NuclearChain.init();
-
+        */
         Batteries.init();
-         */
+
         PlatinumSludgeGroupChain.init();
         TungstenChain.init();
         UHVMaterials.init();

@@ -1109,6 +1109,22 @@ public class GCYLMaterials {
     public static Material RutheniumTetroxideSolution;
     public static Material HotRutheniumTetroxideSolution;
     public static Material MicaPulp;
+    public static Material NickelOxideHydroxide;
+    public static Material LithiumCobaltOxide;
+    public static Material LithiumTriflate;
+    public static Material Xylose;
+    public static Material SodiumAlginateSolution;
+    public static Material CalciumAlginate;
+    public static Material SiliconNanoparticles;
+    public static Material Sorbose;
+    public static Material AscorbicAcid;
+    public static Material DehydroascorbicAcid;
+    public static Material GalliumChloride;
+    public static Material Halloysite;
+    public static Material SulfurCoatedHalloysite;
+    public static Material FluorideBatteryElectrolyte;
+    public static Material LanthanumNickelOxide;
+
 
     //COILS
     public static Material Pikyonium;
@@ -9634,6 +9650,127 @@ public class GCYLMaterials {
                 .components(Mica,1,RareEarth,1)
                 .build();
 
+        NickelOxideHydroxide = new Material.Builder(id++, gcylId("nickel_oxide_hydroxide"))
+                .dust()
+                .color(0xa2f2a2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(METALLIC)
+                .build()
+                .setFormula("NiO(OH)",true);
+
+        LithiumCobaltOxide = new Material.Builder(id++, gcylId("lithium_cobalt_oxide"))
+                .dust()
+                .color(0xd2a4f3)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("LiCoO",true);
+
+        LithiumTriflate = new Material.Builder(id++, gcylId("lithium_triflate"))
+                .dust()
+                .color(0xe2dae3)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("LiCSO3F3",true);
+
+        Xylose = new Material.Builder(id++, gcylId("xylose"))
+                .dust()
+                .color(Glucose.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("C5H10O5",true);
+
+        SodiumAlginateSolution = new Material.Builder(id++, gcylId("sodium_alginate_solution"))
+                .liquid()
+                .color(0xca8642)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("NaC6H7O6",true);
+
+        CalciumAlginate = new Material.Builder(id++, gcylId("calcium_alginate"))
+                .dust()
+                .color(0x654321)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("CaC12H14O12",true);
+
+        SiliconNanoparticles = new Material.Builder(id++, gcylId("silicon_nanoparticles"))
+                .dust()
+                .color(Silicon.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("Si?",true);
+
+        Sorbose = new Material.Builder(id++, gcylId("sorbose"))
+                .dust()
+                .color(Glucose.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C6H12O6",true);
+
+        AscorbicAcid = new Material.Builder(id++, gcylId("ascorbic_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(0xe6cd00)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C6H8O6",true);
+
+        DehydroascorbicAcid = new Material.Builder(id++, gcylId("dehydroascorbic_acid"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(0xe6cd00)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C6H6O6",true);
+
+        GalliumChloride = new Material.Builder(id++, gcylId("gallium_chloride"))
+                .dust()
+                .color(0x92867a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("GaCl3",true);
+
+        Halloysite = new Material.Builder(id++, gcylId("halloysite"))
+                .dust()
+                .color(0x23423a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("Al9Si10O50Ga",true);
+
+        SulfurCoatedHalloysite = new Material.Builder(id++, gcylId("sulfur_coated_halloysite"))
+                .dust()
+                .color(0x23973a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("S2C2(Al9Si10O50Ga)",true);
+
+        FluorideBatteryElectrolyte = new Material.Builder(id++, gcylId("fluoride_battery_electrolyte"))
+                .dust()
+                .color(0x9a628a)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("La9BaF29(C8H7F)",true);
+
+        LanthanumNickelOxide = new Material.Builder(id++, gcylId("lanthanum_nickel_oxide"))
+                .dust()
+                .color(Garnierite.getMaterialRGB()/2+Lanthanum.getMaterialRGB()/2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("La2NiO4",true);
+
+
 
         /*
         = new Material.Builder(id++, gcylId("material"))
@@ -9981,14 +10118,14 @@ public class GCYLMaterials {
         }
 
         //PLATE ADDITIONS
-        /*
+
         List<Material> platemats = new ArrayList<>();
-        Collections.addAll(platemats, BorosilicateGlass);
+        Collections.addAll(platemats, Vanadium);
         for (Material mat : platemats) {
             mat.addFlags(GENERATE_PLATE);
         }
 
-         */
+
 
         //FOIL ADDITIONS
         List<Material> foilmats = new ArrayList<>();
