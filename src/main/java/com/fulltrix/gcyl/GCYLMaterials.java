@@ -10422,6 +10422,7 @@ public class GCYLMaterials {
         Trinium.addFlags(GENERATE_FINE_WIRE);
         Trinium.addFlags(GENERATE_FRAME);
         Naquadria.addFlags(GENERATE_DENSE);
+        RhodiumPlatedPalladium.addFlags(GENERATE_GEAR);
 
 
         //ADD ROTORS

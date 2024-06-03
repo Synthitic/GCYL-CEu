@@ -21,9 +21,11 @@ import static gregtech.api.recipes.ingredients.IntCircuitIngredient.getIntegrate
 import static gregtech.api.unification.material.MarkerMaterials.Color.Pink;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.common.blocks.BlockFusionCasing.CasingType.FUSION_COIL;
+import static gregtech.common.blocks.BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL;
+import static gregtech.common.blocks.MetaBlocks.FUSION_CASING;
 import static gregtech.common.items.MetaItems.*;
-import static gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH;
-import static gregtech.common.metatileentities.MetaTileEntities.RESERVOIR_HATCH;
+import static gregtech.common.metatileentities.MetaTileEntities.*;
 
 public class RecipeOverride {
     public static void init() {
@@ -153,6 +155,27 @@ public class RecipeOverride {
 
         //useless gcym electric implosion compressor
         removeRecipeByName("gcym:electric_implosion_compressor");
+
+        //Fusion reactor computers
+        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL), OreDictUnifier.get(circuit, MarkerMaterials.Tier.ZPM,4),
+                OreDictUnifier.get(plateDouble, Plutonium241), OreDictUnifier.get(plateDouble, Osmiridium), FIELD_GENERATOR_IV.getStackForm(2), ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64),
+                OreDictUnifier.get(wireGtSingle, IndiumTinBariumTitaniumCuprate, 32)}, new FluidStack[]{SolderingAlloy.getFluid(L*8), NiobiumTitanium.getFluid(L*8)});
+        removeRecipesByInputs(SCANNER_RECIPES, TOOL_DATA_STICK.getStackForm(), OreDictUnifier.get(wireGtSingle, IndiumTinBariumTitaniumCuprate));
+
+        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{FUSION_CASING.getItemVariant(FUSION_COIL), OreDictUnifier.get(circuit, MarkerMaterials.Tier.UV,4),
+                OreDictUnifier.get(plateDouble, Naquadria), OreDictUnifier.get(plateDouble, Europium), FIELD_GENERATOR_LuV.getStackForm(2), ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64),
+                ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(32), OreDictUnifier.get(wireGtSingle, UraniumRhodiumDinaquadide, 32)},
+                new FluidStack[]{SolderingAlloy.getFluid(L*8), VanadiumGallium.getFluid(L*8)});
+        removeRecipesByInputs(RESEARCH_STATION_RECIPES, TOOL_DATA_ORB.getStackForm(),FUSION_REACTOR[0].getStackForm());
+
+        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{FUSION_CASING.getItemVariant(FUSION_COIL), OreDictUnifier.get(circuit, MarkerMaterials.Tier.UHV,4),
+                        QUANTUM_STAR.getStackForm(), OreDictUnifier.get(plateDouble, Americium), FIELD_GENERATOR_ZPM.getStackForm(2), ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64),
+                        ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64), OreDictUnifier.get(wireGtSingle, EnrichedNaquadahTriniumEuropiumDuranide, 32)},
+                new FluidStack[]{SolderingAlloy.getFluid(L*8), YttriumBariumCuprate.getFluid(L*8)});
+        removeRecipesByInputs(RESEARCH_STATION_RECIPES, TOOL_DATA_MODULE.getStackForm(),FUSION_REACTOR[1].getStackForm());
+
+
+
     }
 
     public static void chemistryOverride() {
@@ -367,5 +390,59 @@ public class RecipeOverride {
                 .EUt(480)
                 .duration(150)
                 .buildAndRegister();
+
+        //fusion reactor computers
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL))
+                .input(circuit, MarkerMaterials.Tier.ZPM, 4)
+                .input(plateDouble, Plutonium241)
+                .input(plateDouble, Osmiridium)
+                .input(FIELD_GENERATOR_IV, 2)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
+                .input(wireGtSingle, LuVSuperconductor, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(NiobiumTitanium.getFluid(L * 8))
+                .outputs(FUSION_REACTOR[0].getStackForm())
+                .scannerResearch(b -> b
+                        .researchStack(OreDictUnifier.get(wireGtSingle, LuVSuperconductor))
+                        .duration(1200)
+                        .EUt(VA[IV]))
+                .duration(800).EUt(VA[LuV]).buildAndRegister();
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(FUSION_CASING.getItemVariant(FUSION_COIL))
+                .input(circuit, MarkerMaterials.Tier.UV, 4)
+                .input(plateDouble, Naquadria)
+                .input(plateDouble, Europium)
+                .input(FIELD_GENERATOR_LuV, 2)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 32)
+                .input(wireGtSingle, ZPMSuperconductor, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(VanadiumGallium.getFluid(L * 8))
+                .outputs(FUSION_REACTOR[1].getStackForm())
+                .stationResearch(b -> b
+                        .researchStack(FUSION_REACTOR[0].getStackForm())
+                        .CWUt(16)
+                        .EUt(VA[ZPM]))
+                .duration(1000).EUt(61440).buildAndRegister();
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(FUSION_CASING.getItemVariant(FUSION_COIL))
+                .input(circuit, MarkerMaterials.Tier.UHV, 4)
+                .input(QUANTUM_STAR)
+                .input(plateDouble, Americium)
+                .input(FIELD_GENERATOR_ZPM, 2)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
+                .input(wireGtSingle, UVSuperconductor, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(YttriumBariumCuprate.getFluid(L * 8))
+                .outputs(FUSION_REACTOR[2].getStackForm())
+                .stationResearch(b -> b
+                        .researchStack(FUSION_REACTOR[1].getStackForm())
+                        .CWUt(96)
+                        .EUt(VA[UV]))
+                .duration(1000).EUt(VA[ZPM]).buildAndRegister();
     }
 }
