@@ -2070,7 +2070,7 @@ tile.gcyl_explosive.industrial_tnt.name=Industrial TNT
 tile.gcyl_explosive.powder_barrel.name=Powder Barrel
 tile.gcyl_multiblock_casing2.laser_engraver_casing.name=Laser-Safe Casing
 
-tile.gcyl_metal_casing_1.casing_hastelloyx_78.name=Matrix-Stiffened Hastelloy X78 Casing
+tile.gcyl_metal_casing_1.casing_hastelloy_x78.name=Matrix-Stiffened Hastelloy X78 Casing
 tile.gcyl_metal_casing_1.casing_hastelloy_n.name=Oxidation Resistant Hastelloy N Casing
 tile.gcyl_metal_casing_1.casing_hastelloyk_243.name=High Stability Hastelloy K243 Casing
 tile.gcyl_metal_casing_1.casing_incoloy_813.name=Corrosion Proof Incoloy 813 Casing
@@ -2654,7 +2654,7 @@ gcyl.material.reactor_steel=Reactor Steel
 gcyl.material.zylon=Zylon
 gcyl.material.polyetheretherketone=Polyetheretherketone (PEEK)
 gcyl.material.hastelloy_k243=Hastelloy K243
-gcyl.material.hastelloy_x78=Hastelloy X78
+gcyl.material.hastelloyx_78=Hastelloy X78
 gcyl.material.enriched_naquadah_alloy=Enriched Naquadah Alloy
 gcyl.material.incoloy813=Incoloy 813
 gcyl.material.bohrium=Bohrium
