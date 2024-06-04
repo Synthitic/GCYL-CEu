@@ -3467,7 +3467,7 @@ public class GCYLMaterials {
                 .build();
 
         Enderium = new Material.Builder(id++, gcylId("enderium"))
-                .ingot(3)
+                .ingot(3).fluid()
                 .toolStats(ToolProperty.Builder.of(8.0F, 3.0F, 1280, 3).build())
                 .color(0x23524a)
                 .iconSet(METALLIC)
