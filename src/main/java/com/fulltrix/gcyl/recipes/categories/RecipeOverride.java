@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.recipes.categories;
 
 import com.fulltrix.gcyl.recipes.categories.circuits.MagnetoRecipes;
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
@@ -26,6 +27,7 @@ import static gregtech.common.blocks.BlockFusionCasing.CasingType.SUPERCONDUCTOR
 import static gregtech.common.blocks.MetaBlocks.FUSION_CASING;
 import static gregtech.common.items.MetaItems.*;
 import static gregtech.common.metatileentities.MetaTileEntities.*;
+import static gregtech.integration.crafttweaker.recipe.CTRecipeUtils.removeAll;
 
 public class RecipeOverride {
     public static void init() {
@@ -45,6 +47,9 @@ public class RecipeOverride {
     private static void recipeRemoval() {
 
         //removeRecipesByInputs(FLUID_SOLIDFICATION_RECIPES, new ItemStack[]{MetaItems.SHAPE_MOLD_CYLINDER.getStackForm()},  new FluidStack[]{Polytetrafluoroethylene.getFluid(36)});
+
+        //remove all circuit assembler recipes
+        removeAll(CIRCUIT_ASSEMBLER_RECIPES);
 
         //conflict removal
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(1)}, new FluidStack[]{CoalTar.getFluid(100)});
@@ -179,8 +184,6 @@ public class RecipeOverride {
                 OreDictUnifier.get( circuit, MarkerMaterials.Tier.LuV, 2), OreDictUnifier.get(foil, Palladium, 64), OreDictUnifier.get(foil, Palladium, 32), OreDictUnifier.get(cableGtSingle, NiobiumTitanium, 4)},
                 new FluidStack[]{SolderingAlloy.getFluid(L*2)});
         removeRecipesByInputs(SCANNER_RECIPES, TOOL_DATA_STICK.getStackForm(), EMITTER_IV.getStackForm());
-
-
 
 
     }
@@ -451,5 +454,48 @@ public class RecipeOverride {
                         .CWUt(96)
                         .EUt(VA[UV]))
                 .duration(1000).EUt(VA[ZPM]).buildAndRegister();
+
+        //Lapotronic energy orb
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(512).EUt(1024)
+                .input(EXTREME_CIRCUIT_BOARD)
+                .input(POWER_INTEGRATED_CIRCUIT, 4)
+                .input(ENGRAVED_LAPOTRON_CHIP, 24)
+                .input(NANO_CENTRAL_PROCESSING_UNIT, 2)
+                .input(wireFine, Platinum, 16)
+                .input(plate, Platinum, 8)
+                .output(ENERGY_LAPOTRONIC_ORB)
+                .solderMultiplier(2)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister();
+
+        //Nand chip
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().EUt(VA[MV]).duration(300)
+                .input(GOOD_CIRCUIT_BOARD)
+                .input(SIMPLE_SYSTEM_ON_CHIP)
+                .input(bolt, RedAlloy, 2)
+                .input(wireFine, Tin, 2)
+                .output(NAND_CHIP_ULV, 8)
+                .buildAndRegister();
+
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().EUt(VA[MV]).duration(300)
+                .input(PLASTIC_CIRCUIT_BOARD)
+                .input(SIMPLE_SYSTEM_ON_CHIP)
+                .input(bolt, RedAlloy, 2)
+                .input(wireFine, Tin, 2)
+                .output(NAND_CHIP_ULV, 12)
+                .buildAndRegister();
+
+        //Wetware life support
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(1200).EUt(VA[LuV])
+                .input(MULTILAYER_FIBER_BOARD, 16)
+                .input(PETRI_DISH)
+                .input(ELECTRIC_PUMP_LuV)
+                .input(SENSOR_IV)
+                .input(circuit, MarkerMaterials.Tier.IV)
+                .input(foil, NiobiumTitanium, 16)
+                .fluidInputs(SterileGrowthMedium.getFluid(4000))
+                .output(WETWARE_BOARD, 16)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister();
     }
 }

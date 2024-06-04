@@ -27,6 +27,7 @@ import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -148,6 +149,10 @@ public class CommonProxy {
     public static void registerOrePrefix(RegistryEvent.Register<IRecipe> event) {
         //NuclearHandler.register();
         VoidMinerHandler.register();
+
+        GCYLLang.init();
+        //TODO: remove ore prefixes from hidden & removed circuits
+
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block, Function<T, ItemBlock> producer) {
