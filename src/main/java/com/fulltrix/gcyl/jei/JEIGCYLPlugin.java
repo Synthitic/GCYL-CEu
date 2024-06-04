@@ -58,9 +58,9 @@ public class JEIGCYLPlugin implements IModPlugin {
         itemBlacklist.addIngredientToBlacklist(SMD_INDUCTOR.getStackForm());
 
 
-        //The list has to be backwards for some godforsaken reason TODO: make it work on manganese phosphide all the way. hide fluids
+        //The list has to be in this order for some godforsaken reason TODO: make it work on manganese phosphide all the way. hide fluids
         //hide old superconductors
-        List<Material> oldSuperConductors = Arrays.asList(RutheniumTriniumAmericiumNeutronate, EnrichedNaquadahTriniumEuropiumDuranide, UraniumRhodiumDinaquadide,
+        List<Material> oldSuperConductors = Arrays.asList(UraniumTriplatinum, RutheniumTriniumAmericiumNeutronate, EnrichedNaquadahTriniumEuropiumDuranide, UraniumRhodiumDinaquadide,
                 IndiumTinBariumTitaniumCuprate, SamariumIronArsenicOxide, SamariumIronArsenicOxide, MercuryBariumCalciumCuprate, MagnesiumDiboride, ManganesePhosphide);
 
         for(Material mat : oldSuperConductors) {
