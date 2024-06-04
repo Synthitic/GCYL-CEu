@@ -40,7 +40,7 @@ public class MetaTileEntityElectricImplosion extends GCYLRecipeMapMultiblockCont
                 .aisle("XSX", "GXG", "GXG", "GXG", "GXG", "GXG", "XXX")
                 .where('S', selfPredicate())
                 .where('#', air())
-                .where('X', states(getCasingState()).or(autoAbilities(true,true,true,true,false,false,false)))
+                .where('X', states(getCasingState()).setMinGlobalLimited(30).or(autoAbilities(true,true,true,true,false,false,false)))
                 .where('G', states(MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.GRATE_CASING)))
                 .where('M', abilities(MUFFLER_HATCH))
                 .build();

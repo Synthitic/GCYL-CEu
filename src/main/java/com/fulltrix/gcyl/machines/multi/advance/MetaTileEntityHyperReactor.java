@@ -126,7 +126,7 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
                         .aisle("###CCCCCCCCC###", "##C##CCCCC##C##", "###CCCCCCCCC###")
                         .aisle("####CCCCCCC####", "###CC#####CC###", "####CCCCCCC####")
                         .aisle("#######C#######", "#####CCSCC#####", "#######C#######")
-                        .where('C', states(getCasingState(a)).or(autoAbilities(false,true,true,true,true,true,false)
+                        .where('C', states(getCasingState(a)).setMinGlobalLimited(220).or(autoAbilities(false,true,true,true,true,true,false)
                                 .or(abilities(MultiblockAbility.OUTPUT_ENERGY).setExactLimit(1))))
                         .where('#', any())
                         .where('S', selfPredicate())

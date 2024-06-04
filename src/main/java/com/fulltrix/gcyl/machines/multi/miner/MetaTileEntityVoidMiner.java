@@ -242,7 +242,7 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implement
                 .aisle("C#######C", "C#######C", "#########", "#########", "#########", "C###D###C", "F##DDD##F", "F##DDD##F", "###DDD###", "#########")
                 .aisle("CCCCCCCCC", "CCCCSCCCC", "C#######C", "C#######C", "C#######C", "CCCCCCCCC", "CFFFFFFFC", "CFFFFFFFC", "C#######C", "C#######C")
                 .where('S', selfPredicate())
-                .where('C', states(getCasingState()).setMinGlobalLimited(100).or(autoAbilities(true, true, false, true, true, true, false)))
+                .where('C', states(getCasingState()).setMinGlobalLimited(110).or(autoAbilities(true, true, false, true, true, true, false)))
                 .where('D', states(getSecondaryCasingState()))
                 .where('F', getFramePredicate())
                 .where('#', any())

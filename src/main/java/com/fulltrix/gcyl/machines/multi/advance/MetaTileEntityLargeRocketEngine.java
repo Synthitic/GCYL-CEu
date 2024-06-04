@@ -43,7 +43,7 @@ public class MetaTileEntityLargeRocketEngine extends FuelMultiblockController im
                 .aisle("KKK", "KSK", "KKK")
                 .where('S', selfPredicate())
                 .where('C', states(getCasingState()))
-                .where('K', states(getCasingState()).or(abilities(MultiblockAbility.MAINTENANCE_HATCH)))
+                .where('K', states(getCasingState()).or(abilities(MultiblockAbility.MAINTENANCE_HATCH).setMaxGlobalLimited(1)))
                 .where('E', states(getCasingState()).or(abilities(MultiblockAbility.OUTPUT_ENERGY)))
                 .where('F', states(getCasingState()).or(abilities(MultiblockAbility.IMPORT_FLUIDS)))
                 .where('A', states(MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.ENGINE_INTAKE_CASING)))

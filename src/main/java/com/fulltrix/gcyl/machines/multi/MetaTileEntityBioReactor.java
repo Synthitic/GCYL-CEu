@@ -42,8 +42,8 @@ public class MetaTileEntityBioReactor extends RecipeMapMultiblockController {
                 .aisle("XXXXX", "G###G", "G###G", "G###G", "XXXXX")
                 .aisle("XXSXX", "XGGGX", "XGGGX", "XGGGX", "XXXXX")
                 .where('S', selfPredicate())
-                .where('X', states(getCasingState()).or(autoAbilities(true, true, true, true, true, true, false)))
-                .where('L', states(getCasingState()).setMinGlobalLimited(34))
+                .where('X', states(getCasingState()).setMinGlobalLimited(50).or(autoAbilities(true, true, true, true, true, true, false)))
+                .where('L', states(getCasingState()))
                 .where('#', air())
                 .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.LAMINATED_GLASS)))
                 .build();
