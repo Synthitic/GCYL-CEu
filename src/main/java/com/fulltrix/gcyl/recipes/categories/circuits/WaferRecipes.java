@@ -169,7 +169,7 @@ public class WaferRecipes {
                 .fluidInputs(ZBLANDust.getFluid(L))
                 .fluidInputs(CarbonNanotubes.getFluid(L))
                 .fluidInputs(SeaborgiumDopedNanotubes.getFluid(L))
-                .input(dust, IndiumPhospide)
+                .input(dust, IndiumPhosphide)
                 .fluidInputs(DielectricMirrorFormationMix.getFluid(250))
                 .outputs(OPTICAL_SOC_WAFER.getStackForm())
                 .buildAndRegister();

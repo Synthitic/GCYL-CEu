@@ -170,7 +170,6 @@ public class GCYLMaterials {
     public static Material NiobiumHydroxide;
     public static Material OxalicAcid;
     public static Material AmmoniumNiobiumOxalateSolution;
-    public static Material IndiumPhospide;
     public static Material AmmoniumNitrate;
     public static Material AmmoniumSulfate;
     public static Material Ethanolamine;
@@ -2076,14 +2075,6 @@ public class GCYLMaterials {
                         .iconSet(FLUID)
                         .build()
                         .setFormula("(NH4)C10Nb2O20",true);
-
-        IndiumPhospide= new Material.Builder(id++, gcylId("indium_phosphide"))
-                .dust()
-                .color(0x5c9c9c)
-                .iconSet(SHINY)
-                .flags(DISABLE_DECOMPOSITION)
-                .components(Indium, 1, Phosphorus, 1)
-                .flags(DISABLE_REPLICATION).build();
 
                 AmmoniumNitrate= new Material.Builder(id++, gcylId("ammonium_nitrate"))
                         .liquid()
@@ -10430,6 +10421,7 @@ public class GCYLMaterials {
         Naquadria.addFlags(GENERATE_DENSE);
         RhodiumPlatedPalladium.addFlags(GENERATE_GEAR);
         NaquadahAlloy.addFlags(DISABLE_DECOMPOSITION);
+
 
 
         //ADD ROTORS

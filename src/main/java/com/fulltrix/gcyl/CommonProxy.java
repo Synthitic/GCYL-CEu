@@ -15,6 +15,7 @@ import gregtech.api.event.HighTierEvent;
 import gregtech.api.recipes.GTRecipeInputCache;
 import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
 import gregtech.api.unification.material.event.MaterialEvent;
+import gregtech.api.unification.material.event.MaterialRegistryEvent;
 import gregtech.common.ConfigHolder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -120,6 +121,11 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.post(new GregTechAPI.RegisterEvent<>(null, GCYLComponents.class));
     }
 
+    @SubscribeEvent
+    public static void createMaterialRegistry(MaterialRegistryEvent event) {
+        GregTechAPI.materialManager.createRegistry(Tags.MODID);
+    }
+
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
@@ -144,6 +150,8 @@ public class CommonProxy {
 
         //RecipeHandler.registerLargeMachineRecipes();
     }
+
+
 
     @SubscribeEvent
     public static void registerOrePrefix(RegistryEvent.Register<IRecipe> event) {
