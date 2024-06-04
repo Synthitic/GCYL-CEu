@@ -10429,7 +10429,7 @@ public class GCYLMaterials {
         Trinium.addFlags(GENERATE_FRAME);
         Naquadria.addFlags(GENERATE_DENSE);
         RhodiumPlatedPalladium.addFlags(GENERATE_GEAR);
-
+        NaquadahAlloy.addFlags(DISABLE_DECOMPOSITION);
 
 
         //ADD ROTORS
