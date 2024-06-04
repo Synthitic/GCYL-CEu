@@ -144,6 +144,9 @@ public class ComponentRecipes {
                         .EUt(VA[GTValues.ZPM]))
                 .duration(600).EUt(245760).buildAndRegister();
 
+
+
+
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(983040)
                 .input(frameGt, HDCS, 1)
                 .input(dust,FranciumCaesiumCadmiumBromide,16)
@@ -191,7 +194,7 @@ public class ComponentRecipes {
     }
 
     private static void sensorInit() {
-
+/*  Original luv sensor
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(15360)
                 .input(frameGt, HSSG)
                 .input(dust, Germanium, 16)
@@ -202,6 +205,34 @@ public class ComponentRecipes {
                 .fluidInputs(SolderingAlloy.getFluid(L))
                 .outputs(SENSOR_LuV.getStackForm())
                 .buildAndRegister();
+
+ */
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(15360)
+                .input(frameGt, HSSG)
+                .input(dust, Germanium, 16)
+                .input(foil, Electrum, 64)
+                .input(wireGtDouble, YttriumBariumCuprate, 8)
+                .input(gemExquisite, Ruby, 2)
+                .input(circuit, LuV, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .outputs(SENSOR_LuV.getStackForm())
+                .buildAndRegister();
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, HSSS)
+                .input(ELECTRIC_MOTOR_LuV)
+                .input(plate, Ruridit, 4)
+                .input(QUANTUM_STAR)
+                .input(circuit, MarkerMaterials.Tier.LuV, 2)
+                .input(foil, Palladium, 64)
+                .input(foil, Palladium, 32)
+                .input(cableGtSingle, NiobiumTitanium, 4)
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
+                .output(SENSOR_LuV)
+                .scannerResearch(b -> b
+                        .researchStack(SENSOR_IV.getStackForm())
+                        .duration(2400))
+                .duration(600).EUt(6000).buildAndRegister();
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(61440)
                 .input(frameGt, HSSE)
@@ -224,6 +255,10 @@ public class ComponentRecipes {
                 .fluidInputs(SolderingAlloy.getFluid(L))
                 .outputs(SENSOR_UV.getStackForm())
                 .buildAndRegister();
+
+
+
+
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(983040)
                 .input(frameGt, HDCS)
