@@ -66,12 +66,15 @@ public class ComponentRecipes {
                 .input(stickLong, Ruridit,4)
                 .inputs(QUANTUM_STAR.getStackForm())
                 .input(dust,ZincSelenide,16)
+                .input(foil, Palladium, 64)
                 .input(wireGtDouble, YttriumBariumCuprate, 8)
                 .input(gemExquisite, Ruby, 2)
                 .input(circuit, LuV, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L*2))
                 .outputs(EMITTER_LuV.getStackForm())
-                .scannerResearch(EMITTER_IV.getStackForm())
+                .scannerResearch(b -> b
+                        .researchStack(EMITTER_IV.getStackForm())
+                        .duration(2400))
                 .buildAndRegister();
 
         /*
