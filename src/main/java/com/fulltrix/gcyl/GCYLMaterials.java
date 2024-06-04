@@ -49,7 +49,7 @@ public class GCYLMaterials {
 
     private static final TextFormatting[] fanciness = new TextFormatting[]{RED, GOLD, YELLOW, GREEN, AQUA, BLUE, LIGHT_PURPLE};
 
-    public static int id = 24000;
+    public static int id = 0;
     //NUCLEAR_MARK
     public static Material Uranium;
     public static Material Americium241;

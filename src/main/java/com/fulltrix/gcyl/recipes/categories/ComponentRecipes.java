@@ -433,7 +433,7 @@ public class ComponentRecipes {
                 .scannerResearch(b -> b
                         .researchStack(FIELD_GENERATOR_IV.getStackForm())
                         .duration(2400))
-                .duration(600).EUt(6000).buildAndRegister();
+                .duration(600).EUt(30720).buildAndRegister();
 
 
         /* original zpm field gen
@@ -461,7 +461,7 @@ public class ComponentRecipes {
                 .stationResearch(b -> b
                         .researchStack(FIELD_GENERATOR_LuV.getStackForm())
                         .CWUt(4))
-                .duration(600).EUt(24000).buildAndRegister();
+                .duration(600).EUt(122880).buildAndRegister();
 
         /* original uv field gen
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(491520)
@@ -491,7 +491,7 @@ public class ComponentRecipes {
                         .researchStack(FIELD_GENERATOR_ZPM.getStackForm())
                         .CWUt(48)
                         .EUt(VA[ZPM]))
-                .duration(600).EUt(100000).buildAndRegister();
+                .duration(600).EUt(491520).buildAndRegister();
 
 
 
@@ -587,7 +587,7 @@ public class ComponentRecipes {
                 .input(ingot, HDCS)
                 .inputs(ELECTRIC_MOTOR_UHV.getStackForm(2))
                 .inputs(ELECTRIC_PISTON_UHV.getStackForm())
-                .input(circuit, ZPM, 8)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 8)
                 .fluidInputs(SolderingAlloy.getFluid(L * 2))
                 .fluidInputs(Lubricant.getFluid(2000))
                 .outputs(ROBOT_ARM_UHV.getStackForm())
