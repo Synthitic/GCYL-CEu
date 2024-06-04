@@ -31,8 +31,8 @@ public class GCYLFusionCasing extends VariantBlock<GCYLFusionCasing.CasingType> 
     public enum CasingType implements IStringSerializable {
 
         ADV_FUSION_CASING("adv_fusion_casing"),
-        FUSION_COIL_2("fusion_coil_2"),
-        FUSION_COIL_3("fusion_coil_3"),
+        //FUSION_COIL_2("fusion_coil_2"),
+        //FUSION_COIL_3("fusion_coil_3"),
         ADV_FUSION_COIL_1("adv_fusion_coil_1"),
         ADV_FUSION_COIL_2("adv_fusion_coil_2"),
         ADV_FUSION_COIL_3("adv_fusion_coil_3"),
