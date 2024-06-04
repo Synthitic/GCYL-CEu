@@ -17,8 +17,7 @@ import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.api.unification.ore.OrePrefix.wireGtDouble;
-import static gregtech.common.items.MetaItems.GELLED_TOLUENE;
-import static gregtech.common.items.MetaItems.GRAVI_STAR;
+import static gregtech.common.items.MetaItems.*;
 
 public class MetaItemRecipes {
     public static void init() {
@@ -66,7 +65,7 @@ public class MetaItemRecipes {
 
         // Gravi Star
         AUTOCLAVE_RECIPES.recipeBuilder().duration(480).EUt(7680)
-                .inputs(new ItemStack(Items.NETHER_STAR))
+                .inputs(QUANTUM_STAR.getStackForm())
                 .fluidInputs(Dubnium.getFluid(L * 2))
                 .outputs(GRAVI_STAR.getStackForm())
                 .buildAndRegister();

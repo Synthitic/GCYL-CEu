@@ -67,6 +67,7 @@ public class ComponentRecipes {
                 .inputs(QUANTUM_STAR.getStackForm())
                 .input(dust,ZincSelenide,16)
                 .input(foil, Palladium, 64)
+                .input(foil, Palladium, 32)
                 .input(wireGtDouble, YttriumBariumCuprate, 8)
                 .input(gemExquisite, Ruby, 2)
                 .input(circuit, LuV, 2)
@@ -91,17 +92,26 @@ public class ComponentRecipes {
                 .buildAndRegister();
          */
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(61440)
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(frameGt, HSSE)
-                .input(dust,Fluorescein,16)
+                .input(ELECTRIC_MOTOR_ZPM)
+                .input(stickLong, Osmiridium, 4)
+                .input(QUANTUM_STAR, 2)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 2)
                 .input(foil, Platinum, 64)
+                .input(foil, Platinum, 32)
                 .input(wireGtDouble, Naquadah, 8)
+                .input(dust,Fluorescein,16)
                 .input(gemExquisite, Emerald, 2)
-                .input(circuit, ZPM, 2)
-                .fluidInputs(SolderingAlloy.getFluid(L))
-                .outputs(EMITTER_ZPM.getStackForm())
-                .buildAndRegister();
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
+                .output(EMITTER_ZPM)
+                .stationResearch(b -> b
+                        .researchStack(EMITTER_LuV.getStackForm())
+                        .CWUt(8))
+                .duration(600).EUt(61440).buildAndRegister();
 
+
+        /* ORIGINAL UV EMITTER
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(245760)
                 .input(frameGt, Tritanium)
                 .input(dust,Stilbene,16)
@@ -112,6 +122,27 @@ public class ComponentRecipes {
                 .fluidInputs(SolderingAlloy.getFluid(L))
                 .outputs(EMITTER_UV.getStackForm())
                 .buildAndRegister();
+
+         */
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Tritanium)
+                .input(ELECTRIC_MOTOR_UV)
+                .input(stickLong, Tritanium, 4)
+                .input(GRAVI_STAR)
+                .input(circuit, MarkerMaterials.Tier.UV, 2)
+                .input(foil, Osmiridium, 64)
+                .input(foil, Osmiridium, 32)
+                .input(wireGtDouble, Duranium, 8)
+                .input(dust,Stilbene,16)
+                .input(gemExquisite, Diamond, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(Naquadria.getFluid(L * 4))
+                .output(EMITTER_UV)
+                .stationResearch(b -> b
+                        .researchStack(EMITTER_ZPM.getStackForm())
+                        .CWUt(48)
+                        .EUt(VA[GTValues.ZPM]))
+                .duration(600).EUt(245760).buildAndRegister();
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(983040)
                 .input(frameGt, HDCS, 1)

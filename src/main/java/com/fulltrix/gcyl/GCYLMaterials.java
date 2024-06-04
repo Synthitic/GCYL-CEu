@@ -1180,7 +1180,7 @@ public class GCYLMaterials {
         //NUCLEAR_MARK
         Uranium = new Material.Builder(id++, gcylId("uranium_generic"))
                 .ingot(3).liquid()
-                .color(0xF03232)
+                .color((Uranium238.getMaterialRGB()+Uranium235.getMaterialRGB())/2)
                 .iconSet(METALLIC)
                 .flags(EXT_METAL)
                 .element(Elements.U)

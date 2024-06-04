@@ -184,7 +184,22 @@ public class RecipeOverride {
                 OreDictUnifier.get( circuit, MarkerMaterials.Tier.LuV, 2), OreDictUnifier.get(foil, Palladium, 64), OreDictUnifier.get(foil, Palladium, 32), OreDictUnifier.get(cableGtSingle, NiobiumTitanium, 4)},
                 new FluidStack[]{SolderingAlloy.getFluid(L*2)});
         removeRecipesByInputs(SCANNER_RECIPES, TOOL_DATA_STICK.getStackForm(), EMITTER_IV.getStackForm());
+        //zpm emitter
+        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{OreDictUnifier.get(frameGt, NaquadahAlloy), ELECTRIC_MOTOR_ZPM.getStackForm(), OreDictUnifier.get(stickLong, Osmiridium,4), QUANTUM_STAR.getStackForm(2),
+                        OreDictUnifier.get( circuit, MarkerMaterials.Tier.ZPM, 2), OreDictUnifier.get(foil, Trinium, 64), OreDictUnifier.get(foil, Trinium, 32), OreDictUnifier.get(cableGtSingle, VanadiumGallium, 4)},
+                new FluidStack[]{SolderingAlloy.getFluid(L*4)});
+        removeRecipesByInputs(RESEARCH_STATION_RECIPES, TOOL_DATA_ORB.getStackForm(), EMITTER_LuV.getStackForm());
+        //uv emitter
+        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{OreDictUnifier.get(frameGt, Tritanium), ELECTRIC_MOTOR_UV.getStackForm(), OreDictUnifier.get(stickLong, Tritanium,4), GRAVI_STAR.getStackForm(),
+                        OreDictUnifier.get( circuit, MarkerMaterials.Tier.UV, 2), OreDictUnifier.get(foil, Naquadria, 64), OreDictUnifier.get(foil, Naquadria, 32), OreDictUnifier.get(cableGtSingle, YttriumBariumCuprate, 4)},
+                new FluidStack[]{SolderingAlloy.getFluid(L*8), Naquadria.getFluid(L*4)});
+        removeRecipesByInputs(RESEARCH_STATION_RECIPES, TOOL_DATA_MODULE.getStackForm(), EMITTER_ZPM.getStackForm());
 
+
+
+        //gravi star
+        removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{QUANTUM_STAR.getStackForm()}, new FluidStack[]{Neutronium.getFluid(288)});
+        
 
     }
 
