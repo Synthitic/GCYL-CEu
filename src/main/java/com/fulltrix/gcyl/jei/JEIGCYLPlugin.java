@@ -50,8 +50,12 @@ public class JEIGCYLPlugin implements IModPlugin {
         itemBlacklist.addIngredientToBlacklist(MICROPROCESSOR_LV.getStackForm());
         itemBlacklist.addIngredientToBlacklist(WORKSTATION_EV.getStackForm());
         itemBlacklist.addIngredientToBlacklist(PROCESSOR_MV.getStackForm());
-
-
+        itemBlacklist.addIngredientToBlacklist(ADVANCED_SMD_CAPACITOR.getStackForm());
+        itemBlacklist.addIngredientToBlacklist(ADVANCED_SMD_INDUCTOR.getStackForm());
+        itemBlacklist.addIngredientToBlacklist(ADVANCED_SMD_DIODE.getStackForm());
+        itemBlacklist.addIngredientToBlacklist(ADVANCED_SMD_RESISTOR.getStackForm());
+        itemBlacklist.addIngredientToBlacklist(ADVANCED_SMD_TRANSISTOR.getStackForm());
+        itemBlacklist.addIngredientToBlacklist(SMD_INDUCTOR.getStackForm());
 
 
         //The list has to be backwards for some godforsaken reason TODO: make it work on manganese phosphide all the way. hide fluids

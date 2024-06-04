@@ -10414,16 +10414,22 @@ public class GCYLMaterials {
             mat.addFlags(GENERATE_ROUND);
         }
 
+        //add fine wire
+        List<Material> wirefinemats = new ArrayList<>();
+        Collections.addAll(wirefinemats, Trinium, TinAlloy, ReinforcedEpoxyResin, HSSS, Ruthenium, Plutonium, Cerium);
+        for (Material mat : wirefinemats) {
+            mat.addFlags(GENERATE_FINE_WIRE);
+        }
+
         //Small Specific cases
         HSSG.addFlags(GENERATE_RING);
         Osmium.addFlags(GENERATE_RING);
         HSSE.addFlags(GENERATE_SMALL_GEAR);
         Zeron100.addFlags(GENERATE_BOLT_SCREW);
-        Trinium.addFlags(GENERATE_FINE_WIRE);
         Trinium.addFlags(GENERATE_FRAME);
         Naquadria.addFlags(GENERATE_DENSE);
         RhodiumPlatedPalladium.addFlags(GENERATE_GEAR);
-        TinAlloy.addFlags(GENERATE_FINE_WIRE);
+
 
 
         //ADD ROTORS

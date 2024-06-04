@@ -4673,3 +4673,6 @@ gcyl.material.lv_superconductor_base=LV Superconductor Base
 gcyl.material.lv_superconductor=LV Superconductor
 gcyl.material.jasper=Jasper
 gcyl.material.glyceryl=Glyceryl
+
+metaitem.circuit.assembly.name=Micro Assembly
+metaitem.circuit.mainframe.name=Mirco Mainframe

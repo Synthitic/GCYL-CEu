@@ -150,7 +150,6 @@ public class CommonProxy {
         //NuclearHandler.register();
         VoidMinerHandler.register();
 
-        GCYLLang.init();
         //TODO: remove ore prefixes from hidden & removed circuits
 
     }
