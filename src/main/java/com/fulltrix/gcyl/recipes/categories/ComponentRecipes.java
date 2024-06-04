@@ -63,14 +63,14 @@ public class ComponentRecipes {
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(15360)
                 .input(frameGt, HSSS)
                 .inputs(ELECTRIC_MOTOR_LuV.getStackForm())
+                .input(gemExquisite, Ruby, 2)
+                .input(circuit, LuV, 2)
                 .input(stickLong, Ruridit,4)
                 .inputs(QUANTUM_STAR.getStackForm())
                 .input(dust,ZincSelenide,16)
                 .input(foil, Palladium, 64)
                 .input(foil, Palladium, 32)
                 .input(wireGtDouble, YttriumBariumCuprate, 8)
-                .input(gemExquisite, Ruby, 2)
-                .input(circuit, LuV, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L*2))
                 .outputs(EMITTER_LuV.getStackForm())
                 .scannerResearch(b -> b
@@ -95,14 +95,14 @@ public class ComponentRecipes {
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(frameGt, HSSE)
                 .input(ELECTRIC_MOTOR_ZPM)
+                .input(dust,Fluorescein,16)
+                .input(gemExquisite, Emerald, 2)
                 .input(stickLong, Osmiridium, 4)
                 .input(QUANTUM_STAR, 2)
                 .input(circuit, MarkerMaterials.Tier.ZPM, 2)
                 .input(foil, Platinum, 64)
                 .input(foil, Platinum, 32)
                 .input(wireGtDouble, Naquadah, 8)
-                .input(dust,Fluorescein,16)
-                .input(gemExquisite, Emerald, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .output(EMITTER_ZPM)
                 .stationResearch(b -> b
@@ -127,14 +127,14 @@ public class ComponentRecipes {
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(frameGt, Tritanium)
                 .input(ELECTRIC_MOTOR_UV)
+                .input(dust,Stilbene,16)
+                .input(gemExquisite, Diamond, 2)
                 .input(stickLong, Tritanium, 4)
                 .input(GRAVI_STAR)
                 .input(circuit, MarkerMaterials.Tier.UV, 2)
                 .input(foil, Osmiridium, 64)
                 .input(foil, Osmiridium, 32)
                 .input(wireGtDouble, Duranium, 8)
-                .input(dust,Stilbene,16)
-                .input(gemExquisite, Diamond, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L * 8))
                 .fluidInputs(Naquadria.getFluid(L * 4))
                 .output(EMITTER_UV)
@@ -207,33 +207,25 @@ public class ComponentRecipes {
                 .buildAndRegister();
 
  */
-        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(15360)
-                .input(frameGt, HSSG)
-                .input(dust, Germanium, 16)
-                .input(foil, Electrum, 64)
-                .input(wireGtDouble, YttriumBariumCuprate, 8)
-                .input(gemExquisite, Ruby, 2)
-                .input(circuit, LuV, 2)
-                .fluidInputs(SolderingAlloy.getFluid(L))
-                .outputs(SENSOR_LuV.getStackForm())
-                .buildAndRegister();
-
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(frameGt, HSSS)
                 .input(ELECTRIC_MOTOR_LuV)
+                .input(dust, Germanium, 16)
+                .input(gemExquisite, Ruby, 2)
                 .input(plate, Ruridit, 4)
                 .input(QUANTUM_STAR)
                 .input(circuit, MarkerMaterials.Tier.LuV, 2)
                 .input(foil, Palladium, 64)
                 .input(foil, Palladium, 32)
-                .input(cableGtSingle, NiobiumTitanium, 4)
+                .input(wireGtDouble, YttriumBariumCuprate, 8)
                 .fluidInputs(SolderingAlloy.getFluid(L * 2))
                 .output(SENSOR_LuV)
                 .scannerResearch(b -> b
                         .researchStack(SENSOR_IV.getStackForm())
                         .duration(2400))
-                .duration(600).EUt(6000).buildAndRegister();
+                .duration(600).EUt(15360).buildAndRegister();
 
+/*Original zpm sensor
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(61440)
                 .input(frameGt, HSSE)
                 .input(dust,LeadSenenide,16)
@@ -245,6 +237,27 @@ public class ComponentRecipes {
                 .outputs(SENSOR_ZPM.getStackForm())
                 .buildAndRegister();
 
+ */
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, HSSE)
+                .input(ELECTRIC_MOTOR_ZPM)
+                .input(dust,LeadSenenide,16)
+                .input(gemExquisite, Emerald, 2)
+                .input(plate, Osmiridium, 4)
+                .input(QUANTUM_STAR, 2)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 2)
+                .input(foil, Platinum, 64)
+                .input(foil, Platinum, 32)
+                .input(wireGtDouble, Naquadah, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
+                .output(SENSOR_ZPM)
+                .stationResearch(b -> b
+                        .researchStack(SENSOR_LuV.getStackForm())
+                        .CWUt(4))
+                .duration(600).EUt(61440).buildAndRegister();
+
+    /*
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(245760)
                 .input(frameGt, Tritanium, 1)
                 .input(dust,BariumStrontiumTitanate,16)
@@ -255,6 +268,27 @@ public class ComponentRecipes {
                 .fluidInputs(SolderingAlloy.getFluid(L))
                 .outputs(SENSOR_UV.getStackForm())
                 .buildAndRegister();
+
+     */
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Tritanium)
+                .input(ELECTRIC_MOTOR_UV)
+                .input(dust,BariumStrontiumTitanate,16)
+                .input(gemExquisite, Diamond, 2)
+                .input(plate, Tritanium, 4)
+                .input(GRAVI_STAR)
+                .input(circuit, MarkerMaterials.Tier.UV, 2)
+                .input(foil, Osmiridium, 64)
+                .input(foil, Osmiridium, 32)
+                .input(wireGtDouble, Duranium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(Naquadria.getFluid(L * 4))
+                .output(SENSOR_UV)
+                .stationResearch(b -> b
+                        .researchStack(SENSOR_ZPM.getStackForm())
+                        .CWUt(48)
+                        .EUt(VA[GTValues.ZPM]))
+                .duration(600).EUt(100000).buildAndRegister();
 
 
 
