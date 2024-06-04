@@ -10407,7 +10407,8 @@ public class GCYLMaterials {
 
         //add fine wire
         List<Material> wirefinemats = new ArrayList<>();
-        Collections.addAll(wirefinemats, Trinium, TinAlloy, ReinforcedEpoxyResin, HSSS, Ruthenium, Plutonium, Cerium);
+        Collections.addAll(wirefinemats, Trinium, TinAlloy, ReinforcedEpoxyResin, HSSS, Ruthenium, Plutonium, Cerium,
+                LuVSuperconductor, ZPMSuperconductor, UVSuperconductor, UHVSuperconductor, UEVSuperconductor, UIVSuperconductor, UXVSuperconductor, MAXSuperconductor);
         for (Material mat : wirefinemats) {
             mat.addFlags(GENERATE_FINE_WIRE);
         }

@@ -12,6 +12,7 @@ import static gregicality.multiblocks.api.unification.GCYMMaterials.Zeron100;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.GTValues.LV;
 import static gregtech.api.GTValues.VA;
+import static gregtech.api.GTValues.ZPM;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -347,28 +348,28 @@ public class ComponentRecipes {
     private static void fieldGenInit() {
         ModHandler.addShapedRecipe(true, "field_generator_lv", FIELD_GENERATOR_LV.getStackForm(), "WPW", "XGX", "WPW",
                 'W', new UnificationEntry(wireGtQuadruple, LVSuperconductor), 'P', new UnificationEntry(plate, Steel),
-                'G', new UnificationEntry(gem, EnderPearl), 'X', new UnificationEntry(circuit, MarkerMaterials.Tier.LV));
+                'G', new UnificationEntry(gem, EnderPearl), 'X', new UnificationEntry(circuit, MarkerMaterials.Tier.MV));
         ModHandler.addShapedRecipe(true, "field_generator_mv", FIELD_GENERATOR_MV.getStackForm(), "WPW", "XGX", "WPW",
                 'W', new UnificationEntry(wireGtQuadruple, MVSuperconductor), 'P',
                 new UnificationEntry(plate, Aluminium), 'G', new UnificationEntry(gem, EnderEye), 'X',
-                new UnificationEntry(circuit, MarkerMaterials.Tier.MV));
+                new UnificationEntry(circuit, MarkerMaterials.Tier.HV));
         ModHandler.addShapedRecipe(true, "field_generator_hv", FIELD_GENERATOR_HV.getStackForm(), "WPW", "XGX", "WPW",
                 'W', new UnificationEntry(wireGtQuadruple, HVSuperconductor), 'P',
                 new UnificationEntry(plate, StainlessSteel), 'G', QUANTUM_EYE.getStackForm(), 'X',
-                new UnificationEntry(circuit, MarkerMaterials.Tier.HV));
+                new UnificationEntry(circuit, MarkerMaterials.Tier.EV));
         ModHandler.addShapedRecipe(true, "field_generator_ev", FIELD_GENERATOR_EV.getStackForm(), "WPW", "XGX", "WPW",
                 'W', new UnificationEntry(wireGtQuadruple, EVSuperconductor), 'P',
                 new UnificationEntry(plateDouble, Titanium), 'G', new UnificationEntry(gem, NetherStar), 'X',
-                new UnificationEntry(circuit, MarkerMaterials.Tier.EV));
+                new UnificationEntry(circuit, MarkerMaterials.Tier.IV));
         ModHandler.addShapedRecipe(true, "field_generator_iv", FIELD_GENERATOR_IV.getStackForm(), "WPW", "XGX", "WPW",
                 'W', new UnificationEntry(wireGtQuadruple, IVSuperconductor), 'P',
                 new UnificationEntry(plateDouble, TungstenSteel), 'G', QUANTUM_STAR.getStackForm(), 'X',
-                new UnificationEntry(circuit, MarkerMaterials.Tier.IV));
+                new UnificationEntry(circuit, MarkerMaterials.Tier.LuV));
 
         ASSEMBLER_RECIPES.recipeBuilder()
                 .input(gem, EnderPearl)
                 .input(plate, Steel, 2)
-                .input(circuit, MarkerMaterials.Tier.LV, 2)
+                .input(circuit, MarkerMaterials.Tier.MV, 2)
                 .input(wireGtQuadruple, LVSuperconductor, 4)
                 .outputs(FIELD_GENERATOR_LV.getStackForm())
                 .duration(100).EUt(VA[LV]).buildAndRegister();
@@ -376,7 +377,7 @@ public class ComponentRecipes {
         ASSEMBLER_RECIPES.recipeBuilder()
                 .input(gem, EnderEye)
                 .input(plate, Aluminium, 2)
-                .input(circuit, MarkerMaterials.Tier.MV, 2)
+                .input(circuit, MarkerMaterials.Tier.HV, 2)
                 .input(wireGtQuadruple, MVSuperconductor, 4)
                 .outputs(FIELD_GENERATOR_MV.getStackForm())
                 .duration(100).EUt(VA[LV]).buildAndRegister();
@@ -384,7 +385,7 @@ public class ComponentRecipes {
         ASSEMBLER_RECIPES.recipeBuilder()
                 .input(QUANTUM_EYE)
                 .input(plate, StainlessSteel, 2)
-                .input(circuit, MarkerMaterials.Tier.HV, 2)
+                .input(circuit, MarkerMaterials.Tier.EV, 2)
                 .input(wireGtQuadruple, HVSuperconductor, 4)
                 .outputs(FIELD_GENERATOR_HV.getStackForm())
                 .duration(100).EUt(VA[LV]).buildAndRegister();
@@ -392,7 +393,7 @@ public class ComponentRecipes {
         ASSEMBLER_RECIPES.recipeBuilder()
                 .input(gem, NetherStar)
                 .input(plateDouble, Titanium, 2)
-                .input(circuit, MarkerMaterials.Tier.EV, 2)
+                .input(circuit, MarkerMaterials.Tier.IV, 2)
                 .input(wireGtQuadruple, EVSuperconductor, 4)
                 .outputs(FIELD_GENERATOR_EV.getStackForm())
                 .duration(100).EUt(VA[LV]).buildAndRegister();
@@ -400,12 +401,13 @@ public class ComponentRecipes {
         ASSEMBLER_RECIPES.recipeBuilder()
                 .input(QUANTUM_STAR)
                 .input(plateDouble, TungstenSteel, 2)
-                .input(circuit, MarkerMaterials.Tier.IV, 2)
+                .input(circuit, MarkerMaterials.Tier.LuV, 2)
                 .input(wireGtQuadruple, IVSuperconductor, 4)
                 .outputs(FIELD_GENERATOR_IV.getStackForm())
                 .duration(100).EUt(VA[LV]).buildAndRegister();
 
 
+        /* Original luv field gen
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(30720)
                 .input(frameGt, HSSG)
                 .inputs(QUANTUM_STAR.getStackForm())
@@ -415,7 +417,26 @@ public class ComponentRecipes {
                 .fluidInputs(SolderingAlloy.getFluid(L))
                 .outputs(FIELD_GENERATOR_LuV.getStackForm())
                 .buildAndRegister();
+         */
 
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, HSSS)
+                .input(plate, HSSS, 6)
+                .input(QUANTUM_STAR)
+                .input(EMITTER_LuV, 2)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 2)
+                .input(wireFine, LuVSuperconductor, 64)
+                .input(wireFine, LuVSuperconductor, 64)
+                .input(cableGtOctal, YttriumBariumCuprate, 4)
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
+                .output(FIELD_GENERATOR_LuV)
+                .scannerResearch(b -> b
+                        .researchStack(FIELD_GENERATOR_IV.getStackForm())
+                        .duration(2400))
+                .duration(600).EUt(6000).buildAndRegister();
+
+
+        /* original zpm field gen
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(122880)
                 .input(frameGt, HSSE)
                 .inputs(QUANTUM_STAR.getStackForm())
@@ -425,7 +446,24 @@ public class ComponentRecipes {
                 .fluidInputs(SolderingAlloy.getFluid(L))
                 .outputs(FIELD_GENERATOR_ZPM.getStackForm())
                 .buildAndRegister();
+         */
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, NaquadahAlloy)
+                .input(plate, NaquadahAlloy, 6)
+                .input(QUANTUM_STAR)
+                .input(EMITTER_ZPM, 2)
+                .input(circuit, MarkerMaterials.Tier.UV, 2)
+                .input(wireFine, ZPMSuperconductor, 64)
+                .input(wireFine, ZPMSuperconductor, 64)
+                .input(cableGtOctal, Naquadah, 4)
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .output(FIELD_GENERATOR_ZPM)
+                .stationResearch(b -> b
+                        .researchStack(FIELD_GENERATOR_LuV.getStackForm())
+                        .CWUt(4))
+                .duration(600).EUt(24000).buildAndRegister();
 
+        /* original uv field gen
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(491520)
                 .input(frameGt, Tritanium)
                 .inputs(GRAVI_STAR.getStackForm())
@@ -435,6 +473,27 @@ public class ComponentRecipes {
                 .fluidInputs(SolderingAlloy.getFluid(L))
                 .outputs(FIELD_GENERATOR_UV.getStackForm())
                 .buildAndRegister();
+         */
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Tritanium)
+                .input(plate, Tritanium, 6)
+                .input(GRAVI_STAR)
+                .input(EMITTER_UV, 2)
+                .input(circuit, MarkerMaterials.Tier.UHV, 2)
+                .input(wireFine, UVSuperconductor, 64)
+                .input(wireFine, UVSuperconductor, 64)
+                .input(cableGtOctal, Duranium, 4)
+                .fluidInputs(SolderingAlloy.getFluid(L * 12))
+                .fluidInputs(Naquadria.getFluid(L * 4))
+                .output(FIELD_GENERATOR_UV)
+                .stationResearch(b -> b
+                        .researchStack(FIELD_GENERATOR_ZPM.getStackForm())
+                        .CWUt(48)
+                        .EUt(VA[ZPM]))
+                .duration(600).EUt(100000).buildAndRegister();
+
+
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(1966080)
                 .input(frameGt, Seaborgium)
