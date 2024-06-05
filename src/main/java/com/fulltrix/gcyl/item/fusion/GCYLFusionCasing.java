@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
+//TODO: make coils have bloom while working.
 public class GCYLFusionCasing extends VariantBlock<GCYLFusionCasing.CasingType> {
     public GCYLFusionCasing() {
         super(Material.IRON);
