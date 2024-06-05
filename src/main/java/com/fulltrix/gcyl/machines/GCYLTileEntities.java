@@ -41,6 +41,7 @@ public class GCYLTileEntities {
     public static MetaTileEntityChemicalPlant CHEMICAL_PLANT;
     public static MetaTileEntityLargeRocketEngine LARGE_ROCKET_ENGINE;
     public static MetaTileEntityCryogenicFreezer CRYOGENIC_FREEZER;
+    public static MetaTileEntityOreFactory ORE_FACTORY;
 
     public static SimpleGeneratorMetaTileEntity[] NAQUADAH_REACTOR = new SimpleGeneratorMetaTileEntity[8];
     public static SimpleGeneratorMetaTileEntity[] ROCKET_GENERATOR = new SimpleGeneratorMetaTileEntity[8];
@@ -92,6 +93,8 @@ public class GCYLTileEntities {
         LARGE_ROCKET_ENGINE = registerMetaTileEntity(++id, new MetaTileEntityLargeRocketEngine(gcylId("large_rocket_engine")));
 
         CRYOGENIC_FREEZER = registerMetaTileEntity(++id, new MetaTileEntityCryogenicFreezer(gcylId("cryogenic_freezer")));
+
+        ORE_FACTORY = registerMetaTileEntity(++id, new MetaTileEntityOreFactory(gcylId("ore_factory")));
 
         //TODO: configurable efficiency for naq reactors, efficiency implementation in general
 

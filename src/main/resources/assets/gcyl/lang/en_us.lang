@@ -4709,3 +4709,10 @@ gcyl.machine.adv_fusion_reactor.tooltip.2=It also turns a coolant into a hot ver
 gcyl.machine.adv_fusion_reactor.tooltip.3=Gives a perfect overclock per tier above recipe.
 gcyl.machine.adv_fusion_reactor.tooltip.4=Returned EU is never outputted, only discounted from recipe EU/t.
 
+gcyl.machine.ore_factory.name=Ore Processing Factory
+gcyl.machine.ore_factory.config.0=Macerate>Ore Wash>Thermal Centrifuge>Macerate
+gcyl.machine.ore_factory.config.1=Macerate>Ore Wash>Macerate>Centrifuge
+gcyl.machine.ore_factory.config.2=Macerate>Ore Wash>Sifter
+gcyl.machine.ore_factory.config.3=Macerate>Macerate>Centrifuge
+gcyl.machine.ore_factory.config.4=Macerate>Thermal Centrifuge>Macerate
+
