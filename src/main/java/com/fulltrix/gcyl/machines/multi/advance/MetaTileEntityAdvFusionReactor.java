@@ -8,6 +8,7 @@ import com.fulltrix.gcyl.item.fusion.GCYLFusionCasing;
 import com.fulltrix.gcyl.item.fusion.GCYLVacuumCasing;
 import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
 import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionCoilProperty;
+import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionEUReturnProperty;
 import com.google.common.util.concurrent.AtomicDouble;
 import gregtech.api.GTValues;
 import gregtech.api.capability.GregtechDataCodes;
@@ -337,12 +338,15 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
     @Override
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
+        /*
         GCYLFusionCasing.CasingType coil = context.getOrDefault("Coil", GCYLFusionCasing.CasingType.ADV_FUSION_COIL_1);
         coilTier = Integer.parseInt(coil.getName().substring(coil.getName().length() - 1));
         vacuumTier = context.getOrDefault("Vacuum", GCYLVacuumCasing.CasingType.VACUUM_1).getTier();
         divertorTier = context.getOrDefault("Divertor", GCYLDivertorCasing.CasingType.DIVERTOR_1).getTier();
         int cryostatTier = context.getOrDefault("Cryostat", GCYLCryostatCasing.CasingType.CRYOSTAT_1).getTier();
         canWork = Math.min(Math.min(vacuumTier, divertorTier), cryostatTier) >= coilTier;
+         */
+        this.coilTier = this.tier - 8;
         long energyStored = this.energyContainer.getEnergyStored();
         this.initializeAbilities();
         ((EnergyContainerHandler) this.energyContainer).setEnergyStored(energyStored);
@@ -732,7 +736,7 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
     public class AdvFusionRecipeLogic extends MultiblockRecipeLogic {
 
 
-        public AdvFusionRecipeLogic(RecipeMapMultiblockController tileEntity) {
+        public AdvFusionRecipeLogic(MetaTileEntityAdvFusionReactor tileEntity) {
             super(tileEntity);
         }
 
@@ -759,6 +763,19 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
             return Math.min(GTValues.V[tier], super.getMaxVoltage());
         }
 
+        @Override
+        protected boolean drawEnergy(int recipeEUt, boolean simulate) {
+            long resultEnergy = this.getEnergyStored() - (long)recipeEUt;
+            if (resultEnergy >= 0L && resultEnergy <= this.getEnergyCapacity()) {
+                if (!simulate) {
+                    this.getEnergyContainer().changeEnergy((long)(-recipeEUt));
+                }
+
+                return true;
+            } else {
+                return false;
+            }
+        }
 
         @Override
         public boolean checkRecipe(@NotNull Recipe recipe) {
@@ -800,10 +817,12 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
             long euToStart = storage.getRecipePropertyValue(FusionEUToStartProperty.getInstance(), 0L);
             int fusionTier = FusionEUToStartProperty.getFusionTier(euToStart);
             int coilTier = storage.getRecipePropertyValue(AdvFusionCoilProperty.getInstance(), 0);
+            double euReturn = storage.getRecipePropertyValue(AdvFusionEUReturnProperty.getInstance(), 0);
 
             if (fusionTier != 0) fusionTier = MetaTileEntityAdvFusionReactor.this.tier - fusionTier;
             if (coilTier != 0) coilTier = MetaTileEntityAdvFusionReactor.this.coilTier - coilTier;
 
+            values[0] = (int) (values[0] - (values[0] * (euReturn / 100.0)));
             values[2] = Math.min(fusionTier + coilTier, values[2]);
         }
 
