@@ -3,7 +3,6 @@ package com.fulltrix.gcyl;
 //import com.fulltrix.tjfcore.materials.IsotopeMaterial;
 //import com.fulltrix.tjfcore.materials.RadioactiveMaterial;
 
-import gregicality.multiblocks.api.unification.GCYMMaterialFlags;
 import gregtech.api.GTValues;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.fluids.store.FluidStorageKeys;
@@ -252,7 +251,6 @@ public class GCYLMaterials {
     public static Material MetastableOganesson;
     public static Material ProtoAdamantium;
     public static Material SuperheavyHAlloy;
-    public static Material ChargedCaesiumCeriumCobaltIndium;
     public static Material RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate;
     public static Material Legendarium;
     public static Material LanthanumFullereneMix;
@@ -874,7 +872,7 @@ public class GCYLMaterials {
     public static Material AntimonyPentafluoride;
     public static Material AntimonyTrichloride;
     public static Material FluorophosphoricAcid;
-    public static Material ChargedCesiumCeriumCobaltIndium;
+    public static Material ChargedCaesiumCeriumCobaltIndium;
     public static Material VanadiumSlag;
     public static Material VanadiumSlagDust;
     public static Material VanadiumWasteSolution;
@@ -2740,14 +2738,6 @@ public class GCYLMaterials {
                 .blast(10600)
                 .build();
 
-        ChargedCaesiumCeriumCobaltIndium = new Material.Builder(id++, gcylId("charged_caesium_cerium_cobalt_indium"))
-                .dust()
-                .color(0x52ad25)
-                .iconSet(SHINY)
-                .flags(DISABLE_REPLICATION)
-                .build()
-                .setFormula("CsCeCo2In10", true);
-
         RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate = new Material.Builder(id++, gcylId("rhenium_hassium_thallium_isophtaloylbisdiethylthiourea"))
                 .dust()
                 .color(0xa26a8b)
@@ -3327,7 +3317,7 @@ public class GCYLMaterials {
                 .build();
 
         Incoloy813 = new Material.Builder(id++, gcylId("incoloy_813"))
-                .ingot()
+                .ingot().fluid()
                 .color(0x37bf7e)
                 .iconSet(SHINY)
                 .flags(CORE_METAL,DISABLE_REPLICATION)
@@ -7835,7 +7825,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HPF6", true);
 
-        ChargedCesiumCeriumCobaltIndium = new Material.Builder(id++, gcylId("charged_cesium_cerium_cobalt_indium"))
+        ChargedCaesiumCeriumCobaltIndium = new Material.Builder(id++, gcylId("charged_caesium_cerium_cobalt_indium"))
                 .dust()
                 .color(0x52ad25)
                 .flags(DISABLE_REPLICATION)
@@ -9997,7 +9987,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
                 .cableProperties(GTValues.V[GTValues.UXV], 16, 16777216)
-                .components(BlackTitanium,3,SuperheavyHAlloy,2,ChargedCesiumCeriumCobaltIndium,3,RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate,6)
+                .components(BlackTitanium,3,SuperheavyHAlloy,2, ChargedCaesiumCeriumCobaltIndium,3,RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate,6)
                 .blast(12000)
                 .build();
 

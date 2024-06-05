@@ -209,7 +209,10 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(
                 I18n.format("gregtech.machine.fusion_reactor.capacity", calculateEnergyStorageFactor(16) / 1000000L));
-        tooltip.add(I18n.format("gregtech.machine.fusion_reactor.overclocking"));
+        tooltip.add(I18n.format("gcyl.machine.adv_fusion_reactor.tooltip.1"));
+        tooltip.add(I18n.format("gcyl.machine.adv_fusion_reactor.tooltip.2"));
+        tooltip.add(I18n.format("gcyl.machine.adv_fusion_reactor.tooltip.3"));
+        tooltip.add(I18n.format("gcyl.machine.adv_fusion_reactor.tooltip.4"));
     }
 
     private IBlockState getCoilState() {

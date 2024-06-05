@@ -1120,7 +1120,7 @@ public class SuperconductorsSMDChain {
                 .input(dust, Cobalt, 2)
                 .input(dust, Indium, 10)
                 .fluidInputs(CosmicComputingMix.getFluid(1000))
-                .output(dust, ChargedCesiumCeriumCobaltIndium, 14)
+                .output(dust, ChargedCaesiumCeriumCobaltIndium, 14)
                 .buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder().duration(290).EUt(320000)

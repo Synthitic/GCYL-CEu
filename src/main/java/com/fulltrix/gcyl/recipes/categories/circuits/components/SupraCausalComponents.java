@@ -50,7 +50,7 @@ public class SupraCausalComponents {
         ASSEMBLER_RECIPES.recipeBuilder().duration(400).EUt(134217728)
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L))
                 .input(foil, TitanSteel, 16)
-                .input(dust,ChargedCesiumCeriumCobaltIndium,16)
+                .input(dust, ChargedCaesiumCeriumCobaltIndium,16)
                 .notConsumable(MICROWORMHOLE_GENERATOR.getStackForm())
                 .outputs(SMD_RESISTOR_SUPRACAUSAL.getStackForm(32))
                 .buildAndRegister();

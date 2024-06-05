@@ -5,8 +5,6 @@ import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.Material;
 
-import javax.sound.sampled.Mixer;
-
 import static com.fulltrix.gcyl.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.*;
@@ -287,7 +285,7 @@ public class SuperconductorRecipes {
         MIXER_RECIPES.recipeBuilder().duration(720).EUt(8500000)
                 .input(dust, BlackTitanium, 3)
                 .input(dust, SuperheavyHAlloy, 2)
-                .input(dust,ChargedCesiumCeriumCobaltIndium,3)
+                .input(dust, ChargedCaesiumCeriumCobaltIndium,3)
                 .input(dust,RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate,6)
                 .output(dust, UXVSuperconductorBase, 14)
                 .buildAndRegister();
@@ -296,7 +294,7 @@ public class SuperconductorRecipes {
                 .input(dust, UXVSuperconductorBase, 14)
                 .output(dust, BlackTitanium, 3)
                 .output(dust, SuperheavyHAlloy, 2)
-                .output(dust,ChargedCesiumCeriumCobaltIndium,3)
+                .output(dust, ChargedCaesiumCeriumCobaltIndium,3)
                 .output(dust,RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate,6)
                 .buildAndRegister();
 
