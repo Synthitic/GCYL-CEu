@@ -365,7 +365,9 @@ public class GCYLCoreItem extends StandardMetaItem {
         PROTONATED_FULLERENE_SIEVING_MATRIX = addItem(609, "protonated.fullerene.sieving.matrix");
         SATURATED_FULLERENE_SIEVING_MATRIX =addItem(610, "saturated.fullerene.sieving.matrix");
 
-        TOOL_DATA_SUPRACAUSAL = addItem(615, "tool.datasupracausal").addComponents(new DataItemBehavior(true));
+        TOOL_DATA_MODULE_CLUSTER = addItem(613, "tool.data.module_cluster").addComponents(new DataItemBehavior(true));
+        TOOL_DATA_ULTIMATE = addItem(614, "tool.data.ultimate").addComponents(new DataItemBehavior(true));
+        TOOL_DATA_SUPRACAUSAL = addItem(615, "tool.data.supracausal").addComponents(new DataItemBehavior(true));
 
         PYROLYTIC_CARBON = addItem(16, "pyrolytic_carbon");
         MICA_SHEET = addItem(26, "mica_sheet");

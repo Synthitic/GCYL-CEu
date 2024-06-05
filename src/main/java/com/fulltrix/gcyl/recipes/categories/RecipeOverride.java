@@ -852,5 +852,100 @@ public class RecipeOverride {
                         .CWUt(128)
                         .EUt(VA[UV]))
                 .duration(1000).EUt(VA[UHV]).buildAndRegister();
+
+        //indalloy_140
+        ALLOY_BLAST_RECIPES.recipeBuilder().duration(12000).EUt(7680).blastFurnaceTemp(9000)
+                .input(dust, Bismuth,47)
+                .input(dust, Lead, 25)
+                .input(dust, Tin, 13)
+                .input(dust, Cadmium, 10)
+                .input(dust, Indium, 5)
+                .circuitMeta(20)
+                .fluidOutputs(Indalloy140.getFluid(14400))
+                .buildAndRegister();
+
+        // Data Stick
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ADVANCED_CIRCUIT_BOARD)
+                .input(circuit, MarkerMaterials.Tier.HV, 2)
+                .input(RANDOM_ACCESS_MEMORY, 4)
+                .input(NOR_MEMORY_CHIP, 16)
+                .input(NAND_MEMORY_CHIP, 32)
+                .input(wireFine, HVSuperconductor, 32)
+                .output(TOOL_DATA_STICK)
+                .solderMultiplier(2)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .duration(400).EUt(1200).buildAndRegister();
+
+        // Data Orb
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(EXTREME_CIRCUIT_BOARD)
+                .input(circuit, MarkerMaterials.Tier.IV, 2)
+                .input(RANDOM_ACCESS_MEMORY, 8)
+                .input(NOR_MEMORY_CHIP, 32)
+                .input(NAND_MEMORY_CHIP, 48)
+                .input(wireFine, IVSuperconductor, 32)
+                .output(TOOL_DATA_ORB)
+                .solderMultiplier(2)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .duration(400).EUt(9600).buildAndRegister();
+
+        // Data Module
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(WETWARE_CIRCUIT_BOARD)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 2)
+                .input(RANDOM_ACCESS_MEMORY, 32)
+                .input(NOR_MEMORY_CHIP, 64)
+                .input(NAND_MEMORY_CHIP, 64)
+                .input(wireFine, ZPMSuperconductor, 32)
+                .output(TOOL_DATA_MODULE)
+                .solderMultiplier(2)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .duration(400).EUt(38400).buildAndRegister();
+
+
+        //TODO: make these require research, but a bugfix needs to happen, since assigning these to one another will cause other research recipes to fail.
+
+        // Data Module Cluster
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(NEURO_PROCESSOR.getStackForm(4))
+                .input(circuit, MarkerMaterials.Tier.UHV, 2)
+                .input(RANDOM_ACCESS_MEMORY, 64)
+                .input(RANDOM_ACCESS_MEMORY, 64)
+                .input(NOR_MEMORY_CHIP, 64)
+                .input(NAND_MEMORY_CHIP, 64)
+                .input(wireFine, UHVSuperconductor, 32)
+                .fluidInputs(Indalloy140.getFluid(L*8))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .outputs(TOOL_DATA_MODULE_CLUSTER.getStackForm())
+                .duration(400).EUt(614400).buildAndRegister();
+
+        //Ultimate Data Module
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(EXOTIC_PROCESSING_CORE.getStackForm(16))
+                .input(circuit, MarkerMaterials.Tier.UIV, 4)
+                .input(ARAM, 64)
+                .input(NOR_MEMORY_CHIP, 64)
+                .input(NAND_MEMORY_CHIP, 64)
+                .input(wireFine, UIVSuperconductor, 32)
+                .fluidInputs(Indalloy140.getFluid(L*16))
+                .outputs(TOOL_DATA_ULTIMATE.getStackForm())
+                .duration(400).EUt(9830400).buildAndRegister();
+
+        //Supracausal Data Module
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(COSMIC_PROCESSING_CORE.getStackForm(64))
+                .input(circuit, MarkerMaterials.Tier.OpV, 8)
+                .input(ARAM, 64)
+                .input(ARAM, 64)
+                .input(NOR_MEMORY_CHIP, 64)
+                .input(NAND_MEMORY_CHIP, 64)
+                .input(wireFine, OpVSuperconductor, 32)
+                .fluidInputs(Indalloy140.getFluid(L*32))
+                .outputs(TOOL_DATA_SUPRACAUSAL.getStackForm())
+                .duration(400).EUt(157286400).buildAndRegister();
+
+
+
     }
 }

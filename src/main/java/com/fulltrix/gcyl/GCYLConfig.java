@@ -104,7 +104,7 @@ public class GCYLConfig {
 
         @Config.Comment("List of Soldering fluid [<fluid>:<amount>] amount=[1 ~ 64000]")
         @Config.RequiresMcRestart
-        public String[] solderingFluidList = new String[]{"soldering_alloy:72", "tin:144", "lead:288"};
+        public String[] solderingFluidList = new String[]{"soldering_alloy:72", "tin:144", "lead:288", "indalloy_140:36"};
 
         @Config.Comment({"Whether to enable Magneto Resonatic Circuits. When false, they will have no recipes and will be hidden from JEI.", "default = true"})
         @Config.Name("Enable Magneto Circuits")

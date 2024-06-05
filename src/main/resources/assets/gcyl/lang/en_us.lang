@@ -452,8 +452,13 @@ metaitem.data_stick.tooltip.capacity=Capacity: %,dmB
 metaitem.data_stick.tooltip.current=Current: %,dmB
 metaitem.data_stick.tooltip.fluid=Fluid: %d
 
-metaitem.tool.datasupracausal.name=Supra-Causal Data Module
-metaitem.tool.datasupracausal.tooltip=Storage for Causality Violating Data/n§cCan only be read by a Data Bank
+
+metaitem.tool.data.module_cluster.name=Data Module Cluster
+metaitem.tool.data.module_cluster.tooltip=Cluster Storage for Complex Data/n§cCan only be read by a Data Bank
+metaitem.tool.data.ultimate.name=Ultimate Data Module
+metaitem.tool.data.ultimate.tooltip=Unfathomably Large Storage for Complex Data/n§cCan only be read by a Data Bank
+metaitem.tool.data.supracausal.name=Supra-Causal Data Module
+metaitem.tool.data.supracausal.tooltip=Storage for Causality Violating Data/n§cCan only be read by a Data Bank
 
 gcyl.material.acrylic_fibers=Acrylic Fibers
 gcyl.material.uranyl_nitrate=Uranyl Nitrate

@@ -1121,6 +1121,9 @@ public class GCYLMaterials {
     public static Material FluorideBatteryElectrolyte;
     public static Material LanthanumNickelOxide;
     public static Material HG1223;
+    public static Material Indalloy140;
+    public static Material Seabohrgium;
+    public static Material Fordnium;
 
     //COILS
     public static Material Pikyonium;
@@ -1176,7 +1179,7 @@ public class GCYLMaterials {
     public static void register() {
 
         //NUCLEAR_MARK
-        Uranium = new Material.Builder(id++, gcylId("uranium_generic"))
+        Uranium = new Material.Builder(++id, gcylId("uranium_generic"))
                 .ingot(3).liquid()
                 .color((Uranium238.getMaterialRGB()+Uranium235.getMaterialRGB())/2)
                 .iconSet(METALLIC)
@@ -1184,7 +1187,7 @@ public class GCYLMaterials {
                 .element(Elements.U)
                 .build();
 
-        Plutonium = new Material.Builder(id++, gcylId("plutonium_generic"))
+        Plutonium = new Material.Builder(++id, gcylId("plutonium_generic"))
                 .ingot(3).liquid()
                 .color(0xF03232)
                 .iconSet(METALLIC)
@@ -1192,7 +1195,7 @@ public class GCYLMaterials {
                 .element(Elements.Pu)
                 .build();
 
-        Americium241 = new Material.Builder(id++, gcylId("americium_241"))
+        Americium241 = new Material.Builder(++id, gcylId("americium_241"))
                 .ingot().liquid()
                 .color(13158600)
                 .iconSet(METALLIC)
@@ -1200,7 +1203,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Am_241", true);
 
-        Fermium258 = new Material.Builder(id++, gcylId("fermium_258"))
+        Fermium258 = new Material.Builder(++id, gcylId("fermium_258"))
                 .ingot().liquid()
                 .color(0x984ACF)
                 .iconSet(METALLIC)
@@ -1208,7 +1211,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Fm_241", true);
 
-        Californium252 = new Material.Builder(id++, gcylId("californium_252"))
+        Californium252 = new Material.Builder(++id, gcylId("californium_252"))
                 .ingot().liquid()
                 .color(0xA85A12)
                 .iconSet(METALLIC)
@@ -1216,7 +1219,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Cf_252", true);
 
-        Mendelevium261 = new Material.Builder(id++, gcylId("mendelevium_261"))
+        Mendelevium261 = new Material.Builder(++id, gcylId("mendelevium_261"))
                 .ingot().liquid()
                 .color(Mendelevium.getMaterialRGB())
                 .iconSet(METALLIC)
@@ -1224,7 +1227,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Md_261", true);
 
-        Americium243 = new Material.Builder(id++, gcylId("americium_243"))
+        Americium243 = new Material.Builder(++id, gcylId("americium_243"))
                 .ingot().liquid()
                 .color(Americium.getMaterialRGB())
                 .iconSet(METALLIC)
@@ -1232,7 +1235,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Am_243", true);
 
-        Curium247 = new Material.Builder(id++, gcylId("curium_247"))
+        Curium247 = new Material.Builder(++id, gcylId("curium_247"))
                 .ingot().liquid()
                 .color(Curium.getMaterialRGB())
                 .iconSet(METALLIC)
@@ -1240,7 +1243,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Cm_252", true);
 
-        Californium253 = new Material.Builder(id++, gcylId("californium_253"))
+        Californium253 = new Material.Builder(++id, gcylId("californium_253"))
                 .ingot().liquid()
                 .color(Californium.getMaterialRGB())
                 .iconSet(METALLIC)
@@ -1248,7 +1251,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Cf_253", true);
 
-        Fermium259 = new Material.Builder(id++, gcylId("fermium_259"))
+        Fermium259 = new Material.Builder(++id, gcylId("fermium_259"))
                 .ingot().liquid()
                 .color(Fermium.getMaterialRGB())
                 .iconSet(METALLIC)
@@ -1256,7 +1259,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Fm_259", true);
 
-        Plutonium244 = new Material.Builder(id++, gcylId("plutonium_244"))
+        Plutonium244 = new Material.Builder(++id, gcylId("plutonium_244"))
                 .ingot().liquid()
                 .color(Plutonium.getMaterialRGB())
                 .iconSet(METALLIC)
@@ -1264,7 +1267,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Pu_244", true);
 
-        Curium250 = new Material.Builder(id++, gcylId("curium_250"))
+        Curium250 = new Material.Builder(++id, gcylId("curium_250"))
                 .ingot().liquid()
                 .color(Curium.getMaterialRGB())
                 .iconSet(METALLIC)
@@ -1272,7 +1275,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Cm_250", true);
 
-        Einsteinium253 = new Material.Builder(id++, gcylId("einsteinium_253"))
+        Einsteinium253 = new Material.Builder(++id, gcylId("einsteinium_253"))
                 .ingot().liquid()
                 .color(Einsteinium.getMaterialRGB())
                 .iconSet(METALLIC)
@@ -1282,7 +1285,7 @@ public class GCYLMaterials {
 
         //////////////////////
 
-        EnrichedNaquadahAlloy = new Material.Builder(id++, gcylId("enriched_naquadah_alloy"))
+        EnrichedNaquadahAlloy = new Material.Builder(++id, gcylId("enriched_naquadah_alloy"))
                 .ingot(2)
                 .liquid()
                 .color(0x403f3d)
@@ -1293,7 +1296,7 @@ public class GCYLMaterials {
                 .blast(10000)
                 .flags(DISABLE_REPLICATION).build();
 
-        Inconel792 = new Material.Builder(id++, gcylId("inconel_b"))
+        Inconel792 = new Material.Builder(++id, gcylId("inconel_b"))
                 .ingot(5)
                 .color(0x6CF076)
                 .iconSet(SHINY)
@@ -1302,14 +1305,14 @@ public class GCYLMaterials {
                 .blast(6200)
                 .flags(DISABLE_REPLICATION).build();
 
-        EglinSteelBase = new Material.Builder(id++, gcylId("eglin_steel_base"))
+        EglinSteelBase = new Material.Builder(++id, gcylId("eglin_steel_base"))
                 .dust(6)
                 .color(0x8B4513)
                 .iconSet(SAND)
                 .components(Iron, 4, Kanthal, 1, Invar, 5)
                 .flags(DISABLE_REPLICATION).build();
 
-        EglinSteel = new Material.Builder(id++, gcylId("eglin_steel"))
+        EglinSteel = new Material.Builder(++id, gcylId("eglin_steel"))
                 .ingot(6)
                 .color(0x8B4513)
                 .iconSet(METALLIC)
@@ -1318,7 +1321,7 @@ public class GCYLMaterials {
                 .blast(1048)
                 .flags(DISABLE_REPLICATION).build();
 
-        Pikyonium = new Material.Builder(id++, gcylId("pikyonium"))
+        Pikyonium = new Material.Builder(++id, gcylId("pikyonium"))
                 .ingot(7).liquid()
                 .color(0x3467BA)
                 .flags(CORE_METAL)
@@ -1328,7 +1331,7 @@ public class GCYLMaterials {
                 .blast(11500)
                 .flags(DISABLE_REPLICATION).build();
 
-        LithiumNiobate = new Material.Builder(id++, gcylId("lithium_niobate"))
+        LithiumNiobate = new Material.Builder(++id, gcylId("lithium_niobate"))
                 .ingot()
                 .color(0xcfcf3a)
                 .iconSet(SHINY)
@@ -1337,7 +1340,7 @@ public class GCYLMaterials {
                 .blast(6700)
                 .flags(DISABLE_REPLICATION).build();
 
-        Polyetheretherketone = new Material.Builder(id++, gcylId("polyetheretherketone"))
+        Polyetheretherketone = new Material.Builder(++id, gcylId("polyetheretherketone"))
                 .polymer(2).liquid()
                 .color(0x403e37)
                 .iconSet(DULL)
@@ -1346,7 +1349,7 @@ public class GCYLMaterials {
                 .blast(6700)
                 .flags(DISABLE_REPLICATION).build();
 
-        LeadZirconateTitanate = new Material.Builder(id++, gcylId("lead_zirconate_titanate"))
+        LeadZirconateTitanate = new Material.Builder(++id, gcylId("lead_zirconate_titanate"))
                 .gem(3)
                 .color(0x359ade)
                 .iconSet(OPAL)
@@ -1354,7 +1357,7 @@ public class GCYLMaterials {
                 .components(Lead, 1, Zirconium, 1, Titanium, 1, Oxygen, 3)
                 .flags(DISABLE_REPLICATION).build();
 
-        LithiumTitanate = new Material.Builder(id++, gcylId("lithium_titanate"))
+        LithiumTitanate = new Material.Builder(++id, gcylId("lithium_titanate"))
                 .ingot(5)
                 .color(0xfe71a9)
                 .iconSet(SHINY)
@@ -1362,7 +1365,7 @@ public class GCYLMaterials {
                 .components(Lithium, 2, Titanium, 1, Oxygen, 3)
                 .flags(DISABLE_REPLICATION).build();
 
-        CarbonNanotubes = new Material.Builder(id++, gcylId("carbon_nanotubes"))
+        CarbonNanotubes = new Material.Builder(++id, gcylId("carbon_nanotubes"))
                 .ingot().liquid()
                 .color(0x2c2c2c)
                 .iconSet(SHINY)
@@ -1370,91 +1373,91 @@ public class GCYLMaterials {
                 .components(Carbon, 1)
                 .flags(DISABLE_REPLICATION).build();
 
-        SodiumSeaborgate = new Material.Builder(id++, gcylId("sodium_seaborgate"))
+        SodiumSeaborgate = new Material.Builder(++id, gcylId("sodium_seaborgate"))
                 .ingot()
                 .color(0x55bbd4)
                 .iconSet(SHINY)
                 .components(Sodium, 2, Seaborgium, 1, Oxygen, 4)
                 .flags(DISABLE_REPLICATION).build();
 
-        TBCCODust = new Material.Builder(id++, gcylId("TBCCODust"))
+        TBCCODust = new Material.Builder(++id, gcylId("TBCCODust"))
                 .dust()
                 .color(0x669900)
                 .iconSet(SHINY)
                 .components(Thallium, 1, Barium, 2, Calcium, 2, Copper, 3, Oxygen, 10)
                 .flags(DISABLE_REPLICATION).build();
 
-        FullereneDopedNanotubes = new Material.Builder(id++, gcylId("fullerene_doped_nanotubes"))
+        FullereneDopedNanotubes = new Material.Builder(++id, gcylId("fullerene_doped_nanotubes"))
                 .liquid()
                 .color(0x6c2c6c)
                 .components()
                 .build()
                 .setFormula("C60CNT",true);
 
-        LithiumNiobateNanoparticles = new Material.Builder(id++, gcylId("lithium_niobate_nanoparticles"))
+        LithiumNiobateNanoparticles = new Material.Builder(++id, gcylId("lithium_niobate_nanoparticles"))
                 .dust()
                 .color(LithiumNiobate.getMaterialRGB()-10)
                 .iconSet(SHINY)
                 .build()
                 .setFormula("LiNbO4",true);
 
-        ZirconiumTetrafluoride = new Material.Builder(id++, gcylId("zirconium_tetrafluoride"))
+        ZirconiumTetrafluoride = new Material.Builder(++id, gcylId("zirconium_tetrafluoride"))
                 .dust()
                 .color((Zirconium.getMaterialRGB()+Fluorine.getMaterialRGB())/2)
                 .iconSet(SHINY)
                 .build()
                 .setFormula("ZrF4", true);
 
-        BariumDifluoride = new Material.Builder(id++, gcylId("barium_difluoride"))
+        BariumDifluoride = new Material.Builder(++id, gcylId("barium_difluoride"))
                 .dust()
                 .color((Barium.getMaterialRGB()+Fluorine.getMaterialRGB())/2)
                 .iconSet(METALLIC)
                 .build()
                 .setFormula("BaF2", true);
 
-        LanthanumTrifluoride = new Material.Builder(id++, gcylId("lanthanum_trifluoride"))
+        LanthanumTrifluoride = new Material.Builder(++id, gcylId("lanthanum_trifluoride"))
                 .dust()
                 .color((Lanthanum.getMaterialRGB()+Fluorine.getMaterialRGB())/2)
                 .iconSet(METALLIC)
                 .build()
                 .setFormula("LaF3", true);
 
-        AluminiumTrifluoride = new Material.Builder(id++, gcylId("aluminium_trifluoride"))
+        AluminiumTrifluoride = new Material.Builder(++id, gcylId("aluminium_trifluoride"))
                 .dust()
                 .color((Aluminium.getMaterialRGB()+Fluorine.getMaterialRGB())/2)
                 .iconSet(ROUGH)
                 .build()
                 .setFormula("AlF3", true);
 
-        ErbiumTrifluoride = new Material.Builder(id++, gcylId("erbium_trifluoride"))
+        ErbiumTrifluoride = new Material.Builder(++id, gcylId("erbium_trifluoride"))
                 .dust()
                 .color((Erbium.getMaterialRGB()+Fluorine.getMaterialRGB())/2)
                 .iconSet(ROUGH)
                 .build()
                 .setFormula("ErF3", true);
 
-        ZBLANDust = new Material.Builder(id++, gcylId("zblan_dust"))
+        ZBLANDust = new Material.Builder(++id, gcylId("zblan_dust"))
                 .dust().liquid()
                 .color((ZirconiumTetrafluoride.getMaterialRGB()+BariumDifluoride.getMaterialRGB()+LanthanumTrifluoride.getMaterialRGB()+AluminiumTrifluoride.getMaterialRGB())/4)
                 .iconSet(SHINY)
                 .build()
                 .setFormula("(ZrF4)18(BaF2)7(LaF3)2(AlF3)(NaF)7", true);
 
-        ErbiumDopedZBLANDust = new Material.Builder(id++, gcylId("erbium_doped_zblan_dust"))
+        ErbiumDopedZBLANDust = new Material.Builder(++id, gcylId("erbium_doped_zblan_dust"))
                 .dust()
                 .color((ZBLANDust.getMaterialRGB()+ErbiumTrifluoride.getMaterialRGB())/2)
                 .iconSet(SHINY)
                 .build()
                 .setFormula("(ErF3)(ZrF4)18(BaF2)7(LaF3)2(AlF3)(NaF)7", true);
 
-        SodiumFluoride = new Material.Builder(id++, gcylId("sodium_fluoride"))
+        SodiumFluoride = new Material.Builder(++id, gcylId("sodium_fluoride"))
                 .dust(2)
                 .color((Sodium.getMaterialRGB() + Fluorine.getMaterialRGB()) / 2)
                 .iconSet(DULL)
                 .components(Sodium, 1, Fluorine, 1)
                 .flags(DISABLE_REPLICATION).build();
 
-        TungstenTitaniumCarbide = new Material.Builder(id++, gcylId("tungsten_titanium_carbide"))
+        TungstenTitaniumCarbide = new Material.Builder(++id, gcylId("tungsten_titanium_carbide"))
                 .ingot(7)
                 .color(0x800d0d)
                 .iconSet(SHINY)
@@ -1466,7 +1469,7 @@ public class GCYLMaterials {
 
 
 
-        Prasiolite = new Material.Builder(id++, gcylId("prasiolite"))
+        Prasiolite = new Material.Builder(++id, gcylId("prasiolite"))
                 .gem(2).ore()
                 .color(0x9EB749)
                 .iconSet(QUARTZ)
@@ -1474,14 +1477,14 @@ public class GCYLMaterials {
                 .components(Silicon, 5, Oxygen, 10, Iron, 1)
                 .flags(DISABLE_REPLICATION).build();
 
-        BismuthTellurite = new Material.Builder(id++, gcylId("bismuth_tellurite"))
+        BismuthTellurite = new Material.Builder(++id, gcylId("bismuth_tellurite"))
                 .dust(2)
                 .color(0x006B38)
                 .iconSet(SAND)
                 .components(Bismuth, 2, Tellurium, 3)
                 .flags(DISABLE_REPLICATION).build();
 
-        CubicZirconia = new Material.Builder(id++, gcylId("cubic_zirconia"))
+        CubicZirconia = new Material.Builder(++id, gcylId("cubic_zirconia"))
                 .gem(6)
                 .color(0xFFDFE2)
                 .iconSet(DIAMOND)
@@ -1489,7 +1492,7 @@ public class GCYLMaterials {
                 .components(Zirconium, 1, Oxygen, 2)
                 .flags(DISABLE_REPLICATION).build();
 
-        MagnetoResonatic = new Material.Builder(id++, gcylId("magneto_resonatic"))
+        MagnetoResonatic = new Material.Builder(++id, gcylId("magneto_resonatic"))
                 .gem(2)
                 .color(0xFF97FF)
                 .iconSet(MAGNETIC)
@@ -1497,7 +1500,7 @@ public class GCYLMaterials {
                 .components(Prasiolite, 3, BismuthTellurite, 6, CubicZirconia, 1, SteelMagnetic, 1)
                 .flags(DISABLE_REPLICATION).build();
 
-        HDCS = new Material.Builder(id++, gcylId("hdcs"))
+        HDCS = new Material.Builder(++id, gcylId("hdcs"))
                 .ingot(5)
                 .color(0x334433)
                 .iconSet(SHINY)
@@ -1507,7 +1510,7 @@ public class GCYLMaterials {
                 .flags(DISABLE_REPLICATION).build();
 
 
-        Jasper = new Material.Builder(id++, gcylId("jasper"))
+        Jasper = new Material.Builder(++id, gcylId("jasper"))
                 .gem(2)
                 .color(13127760)
                 .iconSet(EMERALD)
@@ -1516,14 +1519,14 @@ public class GCYLMaterials {
 
 
 
-        SiliconCarbide = new Material.Builder(id++, gcylId("silicon_carbide"))
+        SiliconCarbide = new Material.Builder(++id, gcylId("silicon_carbide"))
                 .dust()
                 .color((Silicon.getMaterialRGB() + Carbon.getMaterialRGB()) / 2)
                 .iconSet(SHINY)
                 .build()
                 .setFormula("SiC", true);
 
-        Quantum = new Material.Builder(id++, gcylId("quantum"))
+        Quantum = new Material.Builder(++id, gcylId("quantum"))
                 .ingot(7).liquid()
                 .color(0x0f0f0f)
                 .iconSet(SHINY)
@@ -1532,7 +1535,7 @@ public class GCYLMaterials {
                 .blast(11400)
                 .flags(DISABLE_REPLICATION).build();
 
-        Adamantium = new Material.Builder(id++, gcylId("adamantium"))
+        Adamantium = new Material.Builder(++id, gcylId("adamantium"))
                 .ingot(7).liquid()
                 .color(0x2d365c)
                 .iconSet(SHINY)
@@ -1541,7 +1544,7 @@ public class GCYLMaterials {
                 .blast(10850)
                 .flags(DISABLE_REPLICATION).build();
 
-        Cinobite = new Material.Builder(id++, gcylId("cinobite"))
+        Cinobite = new Material.Builder(++id, gcylId("cinobite"))
                 .ingot(5).liquid()
                 .color(0x010101)
                 .iconSet(SHINY)
@@ -1552,7 +1555,7 @@ public class GCYLMaterials {
                 .flags(DISABLE_REPLICATION).build();
 
 
-        Polyimide = new Material.Builder(id++, gcylId("polyimide"))
+        Polyimide = new Material.Builder(++id, gcylId("polyimide"))
                 .ingot(1).liquid()
                 .color(0xFF7F50)
                 .iconSet(DULL)
@@ -1560,7 +1563,7 @@ public class GCYLMaterials {
                 .components(Carbon, 22, Hydrogen, 12, Nitrogen, 2, Oxygen, 6)
                 .flags(DISABLE_REPLICATION).build();
 
-        GermaniumTungstenNitride = new Material.Builder(id++, gcylId("germanium_tungsten_nitride"))
+        GermaniumTungstenNitride = new Material.Builder(++id, gcylId("germanium_tungsten_nitride"))
                 .ingot(2)
                 .color(0x8f8fcf)
                 .iconSet(DULL)
@@ -1569,7 +1572,7 @@ public class GCYLMaterials {
                 .blast(5400)
                 .flags(DISABLE_REPLICATION).build();
 
-        BariumTitanate = new Material.Builder(id++, gcylId("barium_titanate"))
+        BariumTitanate = new Material.Builder(++id, gcylId("barium_titanate"))
                 .ingot(2)
                 .color(0x99FF99)
                 .iconSet(SHINY)
@@ -1577,7 +1580,7 @@ public class GCYLMaterials {
                 .components(Barium, 1, Titanium, 1, Oxygen, 3)
                 .flags(DISABLE_REPLICATION).build();
 
-        PEDOT = new Material.Builder(id++, gcylId("pedot"))
+        PEDOT = new Material.Builder(++id, gcylId("pedot"))
                 .ingot(22)
                 .color(0x5cef20)
                 .iconSet(DULL)
@@ -1585,28 +1588,28 @@ public class GCYLMaterials {
                 .components(Carbon, 6, Hydrogen, 6, Oxygen, 2, Sulfur, 1)
                 .flags(DISABLE_REPLICATION).build();
 
-        AluminiumComplex = new Material.Builder(id++, gcylId("aluminium_complex"))
+        AluminiumComplex = new Material.Builder(++id, gcylId("aluminium_complex"))
                 .dust()
                 .color(0x3f5a9f)
                 .iconSet(SHINY)
                 .build()
                 .setFormula("AlC9H7NO", true);
 
-        CopperGalliumIndiumMix = new Material.Builder(id++, gcylId("copper_gallium_indium_mix"))
+        CopperGalliumIndiumMix = new Material.Builder(++id, gcylId("copper_gallium_indium_mix"))
                 .dust()
                 .color((Indium.getMaterialRGB() + Copper.getMaterialRGB() + Gallium.getMaterialRGB()) / 3)
                 .iconSet(ROUGH)
                 .build()
                 .setFormula("CuGaIn", true);
 
-        CopperGalliumIndiumSelenide = new Material.Builder(id++, gcylId("copper_gallium_indium_selenide"))
+        CopperGalliumIndiumSelenide = new Material.Builder(++id, gcylId("copper_gallium_indium_selenide"))
                 .dust()
                 .color((CopperGalliumIndiumMix.getMaterialRGB() + Selenium.getMaterialRGB()) / 2)
                 .iconSet(SHINY)
                 .build()
                 .setFormula("CuGaInSe2", true);
 
-        BismuthRuthenate = new Material.Builder(id++, gcylId("bismuth_ruthenate"))
+        BismuthRuthenate = new Material.Builder(++id, gcylId("bismuth_ruthenate"))
                 .ingot(2)
                 .color(0x94cf5c)
                 .iconSet(DULL)
@@ -1614,7 +1617,7 @@ public class GCYLMaterials {
                 .components(Bismuth, 2, Ruthenium, 2, Oxygen, 7)
                 .flags(DISABLE_REPLICATION).build();
 
-        BismuthIridiate = new Material.Builder(id++, gcylId("bismuth_iridiate"))
+        BismuthIridiate = new Material.Builder(++id, gcylId("bismuth_iridiate"))
                 .ingot(22)
                 .color(0x478a6b)
                 .iconSet(DULL)
@@ -1622,7 +1625,7 @@ public class GCYLMaterials {
                 .components(Bismuth, 2, Iridium, 2, Oxygen, 7)
                 .flags(DISABLE_REPLICATION).build();
 
-        RutheniumDioxide = new Material.Builder(id++, gcylId("ruthenium_dioxide"))
+        RutheniumDioxide = new Material.Builder(++id, gcylId("ruthenium_dioxide"))
                 .ingot(2)
                 .color(RutheniumTetroxide.getMaterialRGB())
                 .iconSet(DULL)
@@ -1630,14 +1633,14 @@ public class GCYLMaterials {
                 .components(Ruthenium, 1, Oxygen, 2)
                 .flags(DISABLE_REPLICATION).build();
 
-        LanthanumCalciumManganate = new Material.Builder(id++, gcylId("lanthanum_gallium_manganate"))
+        LanthanumCalciumManganate = new Material.Builder(++id, gcylId("lanthanum_gallium_manganate"))
                 .dust()
                 .color(0x8aa07b)
                 .iconSet(SHINY)
                 .build()
                 .setFormula("LaCaMnO3", true);
 
-        Polystyrene = new Material.Builder(id++, gcylId("polystyrene"))
+        Polystyrene = new Material.Builder(++id, gcylId("polystyrene"))
                 .polymer(1).liquid()
                 .color(8945785)
                 .iconSet(DULL)
@@ -1645,82 +1648,82 @@ public class GCYLMaterials {
                 .components(Carbon, 8, Hydrogen, 8)
                 .flags(DISABLE_REPLICATION).build();
 
-        Shewanella = new Material.Builder(id++, gcylId("shewanella"))
+        Shewanella = new Material.Builder(++id, gcylId("shewanella"))
                 .dust()
                 .color(0x8752ab)
                 .iconSet(METALLIC)
                 .build()
                 .setFormula("Bacteria", true);
 
-        GreenAlgae = new Material.Builder(id++, gcylId("green_algae"))
+        GreenAlgae = new Material.Builder(++id, gcylId("green_algae"))
                 .dust()
                 .color(0x228b22)
                 .iconSet(METALLIC)
                 .build()
                 .setFormula("An Algae", true);
 
-        BrownAlgae = new Material.Builder(id++, gcylId("brown_algae"))
+        BrownAlgae = new Material.Builder(++id, gcylId("brown_algae"))
                 .dust()
                 .color(0xa52a2a)
                 .iconSet(METALLIC)
                 .build()
                 .setFormula("An Algae", true);
 
-        RedAlgae = new Material.Builder(id++, gcylId("red_algae"))
+        RedAlgae = new Material.Builder(++id, gcylId("red_algae"))
                 .dust()
                 .color(0xf08080)
                 .iconSet(METALLIC)
                 .build()
                 .setFormula("An Algae", true);
 
-        DryRedAlgae = new Material.Builder(id++, gcylId("dry_red_algae"))
+        DryRedAlgae = new Material.Builder(++id, gcylId("dry_red_algae"))
                 .dust()
                 .color(0xff7f50)
                 .iconSet(ROUGH)
                 .build()
                 .setFormula("A Dry Algae", true);
 
-        RedAlgaePowder = new Material.Builder(id++, gcylId("red_algae_powder"))
+        RedAlgaePowder = new Material.Builder(++id, gcylId("red_algae_powder"))
                 .dust()
                 .color(0xcc2f2f)
                 .iconSet(ROUGH)
                 .build()
                 .setFormula("A Powdered Algae", true);
 
-        PreFreezeAgar = new Material.Builder(id++, gcylId("pre_freeze_agar"))
+        PreFreezeAgar = new Material.Builder(++id, gcylId("pre_freeze_agar"))
                 .dust()
                 .color(0x132b0d)
                 .iconSet(ROUGH)
                 .build()
                 .setFormula("Warm Agar", true);
 
-        FrozenAgarCrystals = new Material.Builder(id++, gcylId("frozen_agar_crystals"))
+        FrozenAgarCrystals = new Material.Builder(++id, gcylId("frozen_agar_crystals"))
                 .dust()
                 .color(0x68db4b)
                 .iconSet(SHINY)
                 .build()
                 .setFormula("Cold Agar", true);
 
-        WaterAgarMix = new Material.Builder(id++, gcylId("water_agar_mix"))
+        WaterAgarMix = new Material.Builder(++id, gcylId("water_agar_mix"))
                 .liquid()
                 .color(0x48dbbe)
                 .build()
                 .setFormula("H2O?", true);
 
-        BacterialGrowthMedium = new Material.Builder(id++, gcylId("bacterial_growth_medium"))
+        BacterialGrowthMedium = new Material.Builder(++id, gcylId("bacterial_growth_medium"))
                 .liquid()
                 .color(0x0b2e12)
                 .build()
                 .setFormula("For Bacteria", true);
 
-        DepletedGrowthMedium = new Material.Builder(id++, gcylId("depleted_growth_medium"))
+        DepletedGrowthMedium = new Material.Builder(++id, gcylId("depleted_growth_medium"))
                 .liquid()
                 .color(0x071209)
                 .build()
                 .setFormula("Depleted", true);
 
 
-        BoricAcid = new Material.Builder(id++, gcylId("boric_acid"))
+        BoricAcid = new Material.Builder(++id, gcylId("boric_acid"))
                 .liquid()
                 .color(0xD5D2D7)
                 .iconSet(FLUID)
@@ -1728,28 +1731,28 @@ public class GCYLMaterials {
                 .setFormula("H3BO3", true);
 
 
-        FluoroBoricAcid = new Material.Builder(id++, gcylId("fluoroboric_acid"))
+        FluoroBoricAcid = new Material.Builder(++id, gcylId("fluoroboric_acid"))
                 .liquid()
                 .color(0xD5D2D7)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("HBF4", true);
 
-        Acetylene = new Material.Builder(id++, gcylId("acetylene"))
+        Acetylene = new Material.Builder(++id, gcylId("acetylene"))
                 .liquid()
                 .color(0x959c60)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("C2H2", true);
 
-        CoAcABCatalyst = new Material.Builder(id++, gcylId("coacab_catalyst"))
+        CoAcABCatalyst = new Material.Builder(++id, gcylId("coacab_catalyst"))
                 .dust()
                 .color(0x755f30)
                 .iconSet(FINE)
                 .build()
                 .setFormula("Co/AC-AB", true);
 
-        SodiumNitrate = new Material.Builder(id++, gcylId("sodium_nitrate"))
+        SodiumNitrate = new Material.Builder(++id, gcylId("sodium_nitrate"))
                 .dust()
                 .color(0x846684)
                 .iconSet(ROUGH)
@@ -1757,154 +1760,154 @@ public class GCYLMaterials {
                 .components(Sodium, 1, Nitrogen, 1, Oxygen, 3)
                 .flags(DISABLE_REPLICATION).build();
 
-        SodiumNitrateSolution = new Material.Builder(id++, gcylId("sodium_nitrate_solution"))
+        SodiumNitrateSolution = new Material.Builder(++id, gcylId("sodium_nitrate_solution"))
                 .liquid()
                 .color(0xA09ED7)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("H20NaNO3", true);
 
-        SodiumNitrite = new Material.Builder(id++, gcylId("sodium_nitrite"))
+        SodiumNitrite = new Material.Builder(++id, gcylId("sodium_nitrite"))
                 .dust()
                 .color((Sodium.getMaterialRGB()+Nitrogen.getMaterialRGB())/2)
                 .iconSet(ROUGH)
                 .build()
                 .setFormula("NaNO2",true);
 
-        Aniline = new Material.Builder(id++, gcylId("aniline"))
+        Aniline = new Material.Builder(++id, gcylId("aniline"))
                 .liquid()
                 .color(0x4c911d)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("C6H5NH2", true);
 
-        BenzenediazoniumTetrafluoroborate = new Material.Builder(id++, gcylId("benzenediazonium_tetrafluoroborate"))
+        BenzenediazoniumTetrafluoroborate = new Material.Builder(++id, gcylId("benzenediazonium_tetrafluoroborate"))
                 .liquid()
                 .color(0xD5D2D7)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("C6H5BF4N2",true);
 
-        BoronFluoride = new Material.Builder(id++, gcylId("boron_fluoride"))
+        BoronFluoride = new Material.Builder(++id, gcylId("boron_fluoride"))
                 .liquid()
                 .color(0xD5D2D7)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("BF3",true);
 
-        FluoroBenzene = new Material.Builder(id++, gcylId("fluoro_benzene"))
+        FluoroBenzene = new Material.Builder(++id, gcylId("fluoro_benzene"))
                 .liquid()
                 .color(0xD5D2D7)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("C6H5F", true);
 
-        Fluorotoluene = new Material.Builder(id++, gcylId("fluorotoluene"))
+        Fluorotoluene = new Material.Builder(++id, gcylId("fluorotoluene"))
                 .liquid()
                         .color(0xE0DA99)
                         .iconSet(FLUID)
                         .build()
                 .setFormula("C7H7F", true);
 
-        ZnFeAlClCatalyst = new Material.Builder(id++, gcylId("znfealcl_catalyst"))
+        ZnFeAlClCatalyst = new Material.Builder(++id, gcylId("znfealcl_catalyst"))
                 .dust()
                 .color((Zinc.getMaterialRGB()+Iron.getMaterialRGB()+Aluminium.getMaterialRGB()+Chlorine.getMaterialRGB())/4)
                 .iconSet(METALLIC)
                 .build()
                 .setFormula("ZnFeAlCl", true);
 
-        Difluorobenzophenone= new Material.Builder(id++, gcylId("difluorobenzophenone"))
+        Difluorobenzophenone= new Material.Builder(++id, gcylId("difluorobenzophenone"))
                         .dust()
                         .color((FluoroBenzene.getMaterialRGB()+Fluorotoluene.getMaterialRGB())/2)
                         .iconSet(SHINY)
                         .build()
                         .setFormula("(FC6H4)2CO", true);
 
-        Hydroquinone = new Material.Builder(id++, gcylId("hydroquinone"))
+        Hydroquinone = new Material.Builder(++id, gcylId("hydroquinone"))
                 .liquid()
                 .color((Oxygen.getMaterialRGB()+Propene.getMaterialRGB())/2)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("C6H4(OH)2", true);
 
-        Resorcinol = new Material.Builder(id++, gcylId("resorcinol"))
+        Resorcinol = new Material.Builder(++id, gcylId("resorcinol"))
                 .liquid()
                 .color(0xD5DDBE)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("C6H6O2", true);
 
-        MgClBromide = new Material.Builder(id++, gcylId("mgcl_bromide"))
+        MgClBromide = new Material.Builder(++id, gcylId("mgcl_bromide"))
                 .dust()
                 .color((MagnesiumChloride.getMaterialRGB()+Bromine.getMaterialRGB())/2)
                 .iconSet(ROUGH)
                 .build()
                 .setFormula("MgClBr", true);
 
-        SiliconFluoride = new Material.Builder(id++, gcylId("silicon_fluoride"))
+        SiliconFluoride = new Material.Builder(++id, gcylId("silicon_fluoride"))
                 .liquid()
                 .color(0xB2B4B4)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("SiF4",true);
 
-        FluorosilicicAcid = new Material.Builder(id++, gcylId("fluorosilicic_acid"))
+        FluorosilicicAcid = new Material.Builder(++id, gcylId("fluorosilicic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0x2ccf2a)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("H2SiF6",true);
 
-        AmmoniumFluoride = new Material.Builder(id++, gcylId("ammonium_fluoride"))
+        AmmoniumFluoride = new Material.Builder(++id, gcylId("ammonium_fluoride"))
                 .liquid()
                 .color(AmmoniumChloride.getMaterialRGB())
                 .iconSet(FLUID)
                 .build()
                 .setFormula("NH4F",true);
 
-        AmmoniumBifluoride = new Material.Builder(id++, gcylId("ammonium_bifluoride"))
+        AmmoniumBifluoride = new Material.Builder(++id, gcylId("ammonium_bifluoride"))
                 .dust()
                 .color(0x20cfcf)
                 .iconSet(ROUGH)
                 .build()
                 .setFormula("NH4HF2", true);
 
-        AmmoniumBifluorideSolution = new Material.Builder(id++, gcylId("ammonium_bifluoride_solution"))
+        AmmoniumBifluorideSolution = new Material.Builder(++id, gcylId("ammonium_bifluoride_solution"))
                 .liquid()
                 .color((Ammonia.getMaterialRGB()+Fluorine.getMaterialRGB())/2)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("(H2O)NH4FHF",true);
 
-        AmmoniumVanadate = new Material.Builder(id++, gcylId("ammonium_vanadate"))
+        AmmoniumVanadate = new Material.Builder(++id, gcylId("ammonium_vanadate"))
                 .dust()
                 .color(0xf2ff1c)
                 .iconSet(FINE)
                 .build()
                 .setFormula("NH4VO3", true);
 
-        SodiumOxide = new Material.Builder(id++, gcylId("sodium_oxide"))
+        SodiumOxide = new Material.Builder(++id, gcylId("sodium_oxide"))
                 .dust()
                 .color(0x0373fc)
                 .iconSet(SHINY)
                 .build()
                 .setFormula("Na2O",true);
 
-        SodiumVanadate = new Material.Builder(id++, gcylId("sodium_vanadate"))
+        SodiumVanadate = new Material.Builder(++id, gcylId("sodium_vanadate"))
                 .dust()
                 .color(0xf2df1d)
                 .iconSet(ROUGH)
                 .build()
                 .setFormula("Na3VO4",true);
 
-        PureSodiumVanadate = new Material.Builder(id++, gcylId("pure_sodium_vanadate"))
+        PureSodiumVanadate = new Material.Builder(++id, gcylId("pure_sodium_vanadate"))
                 .dust()
                 .color(SodiumVanadate.getMaterialRGB())
                 .iconSet(SHINY)
                 .build()
                 .setFormula("Na3VO4",true);
 
-        YttriumOxide = new Material.Builder(id++, gcylId("yttrium_oxide"))
+        YttriumOxide = new Material.Builder(++id, gcylId("yttrium_oxide"))
                 .dust()
                 .color(0xC6EBB3)
                 .iconSet(SAND)
@@ -1912,140 +1915,140 @@ public class GCYLMaterials {
                 .flags(DISABLE_DECOMPOSITION)
                 .flags(DISABLE_REPLICATION).build();
 
-        LutetiumOxide = new Material.Builder(id++, gcylId("lutetium_oxide"))
+        LutetiumOxide = new Material.Builder(++id, gcylId("lutetium_oxide"))
                 .dust()
                 .color(Lutetium.getMaterialRGB())
                 .iconSet(Lutetium.getMaterialIconSet())
                 .build()
                 .setFormula("Lu2O3",true);
 
-        ThuliumOxide = new Material.Builder(id++, gcylId("thulium_oxide"))
+        ThuliumOxide = new Material.Builder(++id, gcylId("thulium_oxide"))
                 .dust()
                 .color(Thulium.getMaterialRGB())
                 .iconSet(Thulium.getMaterialIconSet())
                 .build()
                 .setFormula("Tm2O3",true);
 
-        LuTmYChlorideSolution = new Material.Builder(id++, gcylId("lutmy_chloride_solution"))
+        LuTmYChlorideSolution = new Material.Builder(++id, gcylId("lutmy_chloride_solution"))
                 .liquid()
                 .color(0x00f2b2)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("(YCl3)6(LuCl3)2(TmCl3)2(H2O)15",true);
 
-        SodiumMetavanadate = new Material.Builder(id++, gcylId("sodium_metavanadate"))
+        SodiumMetavanadate = new Material.Builder(++id, gcylId("sodium_metavanadate"))
                 .dust()
                 .color(SodaAsh.getMaterialRGB())
                 .iconSet(FINE)
                 .build()
                 .setFormula("NaVO3",true);
 
-        Urea = new Material.Builder(id++, gcylId("urea"))
+        Urea = new Material.Builder(++id, gcylId("urea"))
                 .dust()
                 .color(0x30cf20)
                 .iconSet(ROUGH)
                 .build()
                 .setFormula("CH4N2O",true);
 
-        LuTmYVOPrecipitate = new Material.Builder(id++, gcylId("lutm_yvo_precipitate"))
+        LuTmYVOPrecipitate = new Material.Builder(++id, gcylId("lutm_yvo_precipitate"))
                 .dust()
                 .color(0xcf8acf)
                 .iconSet(DULL)
                 .build()
                 .setFormula("Lu/Tm:YVO?",true);
 
-        Ethanol100 = new Material.Builder(id++, gcylId("ethanol_100"))
+        Ethanol100 = new Material.Builder(++id, gcylId("ethanol_100"))
                 .liquid()
                 .color(Ethanol.getMaterialRGB())
                 .iconSet(FLUID)
                 .build()
                 .setFormula("C2H5OH",true);
 
-        LuTmYVONanoparticles = new Material.Builder(id++, gcylId("lutm_yvo_nanoparticles"))
+        LuTmYVONanoparticles = new Material.Builder(++id, gcylId("lutm_yvo_nanoparticles"))
                 .dust()
                 .color(0x206faf)
                 .iconSet(SHINY)
                 .build()
                 .setFormula("Lu/Tm:YVO",true);
 
-        AmmoniumSulfate = new Material.Builder(id++, gcylId("ammonium_sulfate"))
+        AmmoniumSulfate = new Material.Builder(++id, gcylId("ammonium_sulfate"))
                 .liquid()
                 .color(0x6464f5)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("(NH4)2SO4",true);
 
-        AmmoniumCarbonate = new Material.Builder(id++, gcylId("ammonium_carbonate"))
+        AmmoniumCarbonate = new Material.Builder(++id, gcylId("ammonium_carbonate"))
                 .dust()
                 .color(AmmoniumSulfate.getMaterialRGB())
                 .iconSet(DULL)
                 .build()
                 .setFormula("(NH4)2CO3",true);
 
-                SodiumHydride= new Material.Builder(id++, gcylId("sodium_hydride"))
+                SodiumHydride= new Material.Builder(++id, gcylId("sodium_hydride"))
                         .dust()
                         .color(0xcacac8)
                         .iconSet(ROUGH)
                         .build()
                         .setFormula("NaH",true);
 
-        CalciumHydroxide= new Material.Builder(id++, gcylId("calcium_hydroxide"))
+        CalciumHydroxide= new Material.Builder(++id, gcylId("calcium_hydroxide"))
                 .dust()
                 .color(0x5f8764)
                 .iconSet(DULL)
                 .build()
                 .setFormula("Ca(OH)2",true);
 
-                MagnesiumFluoride= new Material.Builder(id++, gcylId("magnesium_fluoride"))
+                MagnesiumFluoride= new Material.Builder(++id, gcylId("magnesium_fluoride"))
                         .dust()
                         .color(0xcfcfcf)
                         .iconSet(SHINY)
                         .build()
                         .setFormula("MgF2",true);
 
-        TantalumOxide= new Material.Builder(id++, gcylId("tantalum_oxide"))
+        TantalumOxide= new Material.Builder(++id, gcylId("tantalum_oxide"))
                 .dust()
                 .color((Tantalum.getMaterialRGB()+Oxygen.getMaterialRGB())/2)
                 .iconSet(SHINY)
                 .build()
                 .setFormula("Ta2O5",true);
 
-        DielectricMirrorFormationMix = new Material.Builder(id++, gcylId("dielectric_mirror_formation_mix"))
+        DielectricMirrorFormationMix = new Material.Builder(++id, gcylId("dielectric_mirror_formation_mix"))
                 .liquid()
                         .color(0xff992c)
                         .iconSet(FLUID)
                         .build()
                         .setFormula("MgF2ZnSTa2Ti(C2H6O8)",true);
 
-        NiobiumChloride= new Material.Builder(id++, gcylId("niobium_chloride"))
+        NiobiumChloride= new Material.Builder(++id, gcylId("niobium_chloride"))
                 .dust()
                 .color(Niobium.getMaterialRGB())
                 .iconSet(SHINY)
                 .build()
                 .setFormula("NbCl5",true);
 
-                LithiumAluminiumHydride= new Material.Builder(id++, gcylId("lithium_aluminium_hydride"))
+                LithiumAluminiumHydride= new Material.Builder(++id, gcylId("lithium_aluminium_hydride"))
                         .dust()
                         .color(0xc0defc)
                         .iconSet(ROUGH)
                         .build()
                         .setFormula("LiAlH4",true);
 
-        LithiumHydride= new Material.Builder(id++, gcylId("lithium_hydride"))
+        LithiumHydride= new Material.Builder(++id, gcylId("lithium_hydride"))
                 .dust()
                 .color((Lithium.getMaterialRGB()+Hydrogen.getMaterialRGB())/2)
                 .iconSet(ROUGH)
                 .build()
                 .setFormula("LiH",true);
 
-                AluminiumHydride= new Material.Builder(id++, gcylId("aluminium_hydride"))
+                AluminiumHydride= new Material.Builder(++id, gcylId("aluminium_hydride"))
                         .dust()
                         .color(0x0b585c)
                         .iconSet(ROUGH)
                         .build()
                         .setFormula("AlH3",true);
 
-        HydrogenPeroxide= new Material.Builder(id++, gcylId("hydrogen_peroxide"))
+        HydrogenPeroxide= new Material.Builder(++id, gcylId("hydrogen_peroxide"))
                 .liquid()
                 .color(0xD1FFFF)
                 .iconSet(FLUID)
@@ -2053,133 +2056,133 @@ public class GCYLMaterials {
                 .flags(DISABLE_DECOMPOSITION)
                 .flags(DISABLE_REPLICATION).build();
 
-                NiobiumHydroxide= new Material.Builder(id++, gcylId("niobium_hydroxide"))
+                NiobiumHydroxide= new Material.Builder(++id, gcylId("niobium_hydroxide"))
                         .dust()
                         .color(0x7c7c7c)
                         .iconSet(ROUGH)
                         .build()
                         .setFormula("Nb(OH)5",true);
 
-        OxalicAcid= new Material.Builder(id++, gcylId("oxalic_acid"))
+        OxalicAcid= new Material.Builder(++id, gcylId("oxalic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0x4aaae2)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("HOOCCOOH",true);
 
-                AmmoniumNiobiumOxalateSolution= new Material.Builder(id++, gcylId("ammonium_niobium_oxalate_solution"))
+                AmmoniumNiobiumOxalateSolution= new Material.Builder(++id, gcylId("ammonium_niobium_oxalate_solution"))
                         .liquid()
                         .color(0x6c6cac)
                         .iconSet(FLUID)
                         .build()
                         .setFormula("(NH4)C10Nb2O20",true);
 
-                AmmoniumNitrate= new Material.Builder(id++, gcylId("ammonium_nitrate"))
+                AmmoniumNitrate= new Material.Builder(++id, gcylId("ammonium_nitrate"))
                         .liquid()
                         .color(Ammonia.getMaterialRGB())
                         .iconSet(FLUID)
                         .build()
                         .setFormula("NH4NO3",true);
 
-        Ethanolamine= new Material.Builder(id++, gcylId("ethanolamine"))
+        Ethanolamine= new Material.Builder(++id, gcylId("ethanolamine"))
                 .liquid()
                 .color(0x6f7d87)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("HOCH2CH2NH2",true);
 
-        Ethylenediamine= new Material.Builder(id++, gcylId("ethylenediamine"))
+        Ethylenediamine= new Material.Builder(++id, gcylId("ethylenediamine"))
                 .liquid()
                         .color(Ethanolamine.getMaterialRGB())
                         .iconSet(FLUID)
                         .build()
                         .setFormula("C2H4(NH2)2",true);
 
-        Formaldehyde= new Material.Builder(id++, gcylId("formaldehyde"))
+        Formaldehyde= new Material.Builder(++id, gcylId("formaldehyde"))
                 .liquid()
                 .color(0x95a13a)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("CH2O",true);
 
-        SodiumCyanide = new Material.Builder(id++, gcylId("sodium_cyanide"))
+        SodiumCyanide = new Material.Builder(++id, gcylId("sodium_cyanide"))
                 .liquid()
                         .color(0x5f7c8c)
                         .iconSet(FLUID)
                         .build()
                         .setFormula("NaCN",true);
 
-        EDTASolution= new Material.Builder(id++, gcylId("edta_solution"))
+        EDTASolution= new Material.Builder(++id, gcylId("edta_solution"))
                 .liquid()
                 .color(0x0026d9)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("(C10H16N2O8)3(C2H8N2)O2",true);
 
-        EDTA = new Material.Builder(id++, gcylId("edta"))
+        EDTA = new Material.Builder(++id, gcylId("edta"))
                 .liquid()
                         .color(0x0026d9)
                         .iconSet(FLUID)
                         .build()
                         .setFormula("C10H16N2O8",true);
 
-        Glycine = new Material.Builder(id++, gcylId("glycine"))
+        Glycine = new Material.Builder(++id, gcylId("glycine"))
                 .liquid()
                 .color((Ethylenediamine.getMaterialRGB()+Formaldehyde.getMaterialRGB())/2)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("NH2CH2COOH",true);
 
-        CaesiumHydroxide = new Material.Builder(id++, gcylId("caesium_hydroxide"))
+        CaesiumHydroxide = new Material.Builder(++id, gcylId("caesium_hydroxide"))
                         .dust()
                         .color(Caesium.getMaterialRGB()-10)
                         .iconSet(ROUGH)
                         .build()
                         .setFormula("CsOH",true);
 
-        CaesiumBromideSolution= new Material.Builder(id++, gcylId("caesium_bromide_solution"))
+        CaesiumBromideSolution= new Material.Builder(++id, gcylId("caesium_bromide_solution"))
                 .liquid()
                 .color((Caesium.getMaterialRGB()-10+SaltWater.getMaterialRGB())/2)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("CsBr(H2O)",true);
 
-        Sarcosine = new Material.Builder(id++, gcylId("sarcosine"))
+        Sarcosine = new Material.Builder(++id, gcylId("sarcosine"))
                 .dust()
                 .color((Glycine.getMaterialRGB() + Oxygen.getMaterialRGB()) / 2)
                 .iconSet(SHINY)
                 .build()
                 .setFormula("C3H7NO2", true);
 
-        PraseodymiumOxide = new Material.Builder(id++, gcylId("praseodymium_oxide"))
+        PraseodymiumOxide = new Material.Builder(++id, gcylId("praseodymium_oxide"))
                 .dust()
                 .color(Praseodymium.getMaterialRGB())
                 .iconSet(Praseodymium.getMaterialIconSet())
                 .build()
                 .setFormula("Pr2O3",true);
 
-                HolmiumOxide = new Material.Builder(id++, gcylId("holmium_oxide"))
+                HolmiumOxide = new Material.Builder(++id, gcylId("holmium_oxide"))
                         .dust()
                         .color(Holmium.getMaterialRGB())
                         .iconSet(Holmium.getMaterialIconSet())
                         .build()
                         .setFormula("Ho2O3",true);
 
-        NeodymiumOxide = new Material.Builder(id++, gcylId("neodymium_oxide"))
+        NeodymiumOxide = new Material.Builder(++id, gcylId("neodymium_oxide"))
                         .dust()
                         .color(Neodymium.getMaterialRGB())
                         .iconSet(Neodymium.getMaterialIconSet())
                         .build()
                         .setFormula("Nd2O3",true);
 
-                PrYHoNitrateSolution = new Material.Builder(id++, gcylId("pryho_nitrate_solution"))
+                PrYHoNitrateSolution = new Material.Builder(++id, gcylId("pryho_nitrate_solution"))
                         .liquid()
                         .color(0x00f2b2)
                         .iconSet(FLUID)
                         .build()
                         .setFormula("(Y(NO3)3)6(Pr(NO3)3)2(Nd(NO3)3)2(H2O)15",true);
 
-        CetaneTrimethylAmmoniumBromide = new Material.Builder(id++, gcylId("cetane_trimethyl_ammonium_bromide"))
+        CetaneTrimethylAmmoniumBromide = new Material.Builder(++id, gcylId("cetane_trimethyl_ammonium_bromide"))
                 .liquid()
                 .color(0xb9c1c9)
                 .iconSet(FLUID)
@@ -2188,91 +2191,91 @@ public class GCYLMaterials {
 
 
 
-                PrHoYLFNanoparticles= new Material.Builder(id++, gcylId("prho_ylf_nanoparticles"))
+                PrHoYLFNanoparticles= new Material.Builder(++id, gcylId("prho_ylf_nanoparticles"))
                         .dust()
                         .color(0xcf8acf)
                         .iconSet(SHINY)
                         .build()
                         .setFormula("Pr/Ho:YLF",true);
 
-        BerylliumFluoride= new Material.Builder(id++, gcylId("beryllium_fluoride"))
+        BerylliumFluoride= new Material.Builder(++id, gcylId("beryllium_fluoride"))
                 .ingot(2)
                 .color(0x757575)
                 .iconSet(SHINY)
                 .components(Beryllium, 1, Fluorine, 2)
                 .flags(DISABLE_REPLICATION).build();
 
-                ChlorinatedSolvents = new Material.Builder(id++, gcylId("chlorinated_solvents"))
+                ChlorinatedSolvents = new Material.Builder(++id, gcylId("chlorinated_solvents"))
                         .liquid()
                         .color(0x40804c)
                         .iconSet(FLUID)
                         .build()
                         .setFormula("(CH4)2Cl5",true);
 
-        Dichloromethane= new Material.Builder(id++, gcylId("dichloromethane"))
+        Dichloromethane= new Material.Builder(++id, gcylId("dichloromethane"))
                 .liquid()
                 .color(Chloromethane.getMaterialRGB()-10)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("CH2Cl2",true);
 
-                CarbonTetrachloride = new Material.Builder(id++, gcylId("carbon_tetrachloride"))
+                CarbonTetrachloride = new Material.Builder(++id, gcylId("carbon_tetrachloride"))
                         .liquid()
                         .color(0x2d8020)
                         .iconSet(FLUID)
                         .build()
                         .setFormula("CCl4",true);
 
-        Butanol= new Material.Builder(id++, gcylId("butanol"))
+        Butanol= new Material.Builder(++id, gcylId("butanol"))
                 .liquid()
                 .color((FermentedBiomass.getMaterialRGB()+20))
                 .iconSet(FLUID)
                 .build()
                 .setFormula("C4H9OH",true);
 
-                ButanolGas = new Material.Builder(id++, gcylId("butanol_gas"))
+                ButanolGas = new Material.Builder(++id, gcylId("butanol_gas"))
                         .gas()
                         .color(Butanol.getMaterialRGB()+20)
                         .iconSet(FLUID)
                         .build()
                         .setFormula("C4H9OH",true);
 
-        Tributylamine = new Material.Builder(id++, gcylId("tributylamine"))
+        Tributylamine = new Material.Builder(++id, gcylId("tributylamine"))
                 .liquid()
                 .color(0x801a80)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("(C4H9)3N",true);
 
-                Alumina= new Material.Builder(id++, gcylId("alumina"))
+                Alumina= new Material.Builder(++id, gcylId("alumina"))
                         .dust()
                         .color(0x0b585c)
                         .iconSet(ROUGH)
                         .build()
                         .setFormula("Al2O3",true);
 
-        AluminiumNitrate= new Material.Builder(id++, gcylId("aluminium_nitrate"))
+        AluminiumNitrate= new Material.Builder(++id, gcylId("aluminium_nitrate"))
                 .dust()
                 .color(Alumina.getMaterialRGB())
                 .iconSet(SHINY)
                 .build()
                 .setFormula("Al(NO3)3",true);
 
-                CrudeAluminaSolution= new Material.Builder(id++, gcylId("crude_alumina_solution"))
+                CrudeAluminaSolution= new Material.Builder(++id, gcylId("crude_alumina_solution"))
                         .liquid()
                         .color(Aluminium.getMaterialRGB()-30)
                         .iconSet(FLUID)
                         .build()
                         .setFormula("Al(NO3)3)2(CH2Cl2)(C12H27N)",true);
 
-        HydrogenCyanide= new Material.Builder(id++, gcylId("hydrogen_cyanide"))
+        HydrogenCyanide= new Material.Builder(++id, gcylId("hydrogen_cyanide"))
                 .liquid()
                 .color(0xb6d1ae)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("HCN",true);
 
-        PotassiumManganate= new Material.Builder(id++, gcylId("potassium_manganate"))
+        PotassiumManganate= new Material.Builder(++id, gcylId("potassium_manganate"))
                 .dust()
                 .color(0xaf20af)
                 .iconSet(DULL)
@@ -2280,14 +2283,14 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("K2MnO4",true);
 
-                PotassiumPermanganate= new Material.Builder(id++, gcylId("potassium_permanganate"))
+                PotassiumPermanganate= new Material.Builder(++id, gcylId("potassium_permanganate"))
                         .dust()
                         .color(PotassiumManganate.getMaterialRGB()-15)
                         .iconSet(ROUGH)
                         .build()
                         .setFormula("KMnO4",true);
 
-        ManganeseSulfate= new Material.Builder(id++, gcylId("manganese_sulfate"))
+        ManganeseSulfate= new Material.Builder(++id, gcylId("manganese_sulfate"))
                 .dust()
                 .color((Manganese.getMaterialRGB()+Sulfur.getMaterialRGB())/2)
                 .iconSet(ROUGH)
@@ -2295,7 +2298,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("MnSO4",true);
 
-                PotassiumSulfate= new Material.Builder(id++, gcylId("potassium_sulfate"))
+                PotassiumSulfate= new Material.Builder(++id, gcylId("potassium_sulfate"))
                         .dust()
                         .color((Potassium.getMaterialRGB()+Sulfur.getMaterialRGB())/2)
                         .iconSet(FINE)
@@ -2303,7 +2306,7 @@ public class GCYLMaterials {
                         .build()
                         .setFormula("K2SO4",true);
 
-        AmmoniumCyanate= new Material.Builder(id++, gcylId("ammonium_cyanate"))
+        AmmoniumCyanate= new Material.Builder(++id, gcylId("ammonium_cyanate"))
                 .liquid()
                 .color(0x3a5dcf)
                 .iconSet(FLUID)
@@ -2311,14 +2314,14 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NH4CNO",true);
 
-        PotassiumHydroxide= new Material.Builder(id++, gcylId("potassium_hydroxide"))
+        PotassiumHydroxide= new Material.Builder(++id, gcylId("potassium_hydroxide"))
                 .liquid()
                 .color((Potassium.getMaterialRGB()+Hydrogen.getMaterialRGB()+Oxygen.getMaterialRGB())/3)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("KOH",true);
 
-        LithiumFluoride = new Material.Builder(id++, gcylId("lithium_fluoride"))
+        LithiumFluoride = new Material.Builder(++id, gcylId("lithium_fluoride"))
                 .ingot()
                 .color(0x757575)
                 .iconSet(SHINY)
@@ -2326,7 +2329,7 @@ public class GCYLMaterials {
                 .components(Lithium, 1, Fluorine, 1)
                 .build();
 
-        AluminaSolution = new Material.Builder(id++, gcylId("alumina_solution"))
+        AluminaSolution = new Material.Builder(++id, gcylId("alumina_solution"))
                 .liquid()
                 .color((Aluminium.getMaterialRGB()-15))
                 .iconSet(FLUID)
@@ -2334,7 +2337,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(Al2O3)(CH2Cl2)(C12H27N)2",true);
 
-        PreciousMetal= new Material.Builder(id++, gcylId("precious_metal"))
+        PreciousMetal= new Material.Builder(++id, gcylId("precious_metal"))
                 .ingot(2).ore()
                 .color(0xB99023)
                 .iconSet(SHINY)
@@ -2342,7 +2345,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Au?", true);
 
-                GoldAlloy= new Material.Builder(id++, gcylId("gold_alloy"))
+                GoldAlloy= new Material.Builder(++id, gcylId("gold_alloy"))
                         .ingot(2)
                         .color(0xBBA52B)
                         .iconSet(SHINY)
@@ -2350,7 +2353,7 @@ public class GCYLMaterials {
                         .build()
                         .setFormula("Cu3Au?",true);
 
-        GoldLeach= new Material.Builder(id++, gcylId("gold_leach"))
+        GoldLeach= new Material.Builder(++id, gcylId("gold_leach"))
                 .dust()
                 .color(0xBBA52B)
                 .iconSet(ROUGH)
@@ -2358,7 +2361,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Cu3Au?",true);
 
-                CopperLeach= new Material.Builder(id++, gcylId("copper_leach"))
+                CopperLeach= new Material.Builder(++id, gcylId("copper_leach"))
                         .dust()
                         .color(0x765A30)
                         .iconSet(SHINY)
@@ -2366,7 +2369,7 @@ public class GCYLMaterials {
                         .build()
                         .setFormula("Cu3?",true);
 
-        ChloroauricAcid = new Material.Builder(id++, gcylId("chloroauric_acid"))
+        ChloroauricAcid = new Material.Builder(++id, gcylId("chloroauric_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0xDFD11F)
                 .iconSet(FLUID)
@@ -2374,7 +2377,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HAuCl?", true);
 
-        PotassiumMetabisulfite = new Material.Builder(id++, gcylId("potassium_metabisulfite"))
+        PotassiumMetabisulfite = new Material.Builder(++id, gcylId("potassium_metabisulfite"))
                 .dust()
                 .color(0xFFFFFF)
                 .iconSet(DULL)
@@ -2382,7 +2385,7 @@ public class GCYLMaterials {
                 .components(Potassium, 2, Sulfur, 2, Oxygen, 5)
                 .build();
 
-        OrthoXylene = new Material.Builder(id++, gcylId("ortho_xylene"))
+        OrthoXylene = new Material.Builder(++id, gcylId("ortho_xylene"))
                 .liquid()
                 .color(0xB9575E)
                 .iconSet(FLUID)
@@ -2390,7 +2393,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H4(CH3)2", true);
 
-        Durene = new Material.Builder(id++, gcylId("durene"))
+        Durene = new Material.Builder(++id, gcylId("durene"))
                 .dust()
                 .color(0xA39C95)
                 .iconSet(ROUGH)
@@ -2398,7 +2401,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H2(CH3)4", true);
 
-        PyromelliticDianhydride = new Material.Builder(id++, gcylId("pyromellitic_dianhydride"))
+        PyromelliticDianhydride = new Material.Builder(++id, gcylId("pyromellitic_dianhydride"))
                 .dust()
                 .color(0xF0EAD6)
                 .iconSet(SHINY)
@@ -2406,7 +2409,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H2(C2O3)2", true);
 
-        Oxydianiline = new Material.Builder(id++, gcylId("oxydianiline"))
+        Oxydianiline = new Material.Builder(++id, gcylId("oxydianiline"))
                 .liquid()
                 .color(0xF0E130)
                 .iconSet(FLUID)
@@ -2414,7 +2417,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C12H12N2O", true);
 
-        PolyamicAcid = new Material.Builder(id++, gcylId("polyamic_acid"))
+        PolyamicAcid = new Material.Builder(++id, gcylId("polyamic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0xFFAE42)
                 .iconSet(FLUID)
@@ -2422,7 +2425,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C22H14N2O7", true);
 
-        Hexafluoropropylene = new Material.Builder(id++, gcylId("hexafluoropropylene"))
+        Hexafluoropropylene = new Material.Builder(++id, gcylId("hexafluoropropylene"))
                 .liquid()
                 .color(0x111111)
                 .iconSet(FLUID)
@@ -2430,7 +2433,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C3F6", true);
 
-        FluorinatedEthylenePropylene = new Material.Builder(id++, gcylId("fluorinated_ethylene_propylene"))
+        FluorinatedEthylenePropylene = new Material.Builder(++id, gcylId("fluorinated_ethylene_propylene"))
                 .ingot().liquid()
                 .color(0xC8C8C8)
                 .iconSet(DULL)
@@ -2439,7 +2442,7 @@ public class GCYLMaterials {
                 .components(Carbon, 5, Fluorine, 10)
                 .build();
 
-        Taranium = new Material.Builder(id++, gcylId("taranium"))
+        Taranium = new Material.Builder(++id, gcylId("taranium"))
                 .ingot(7).liquid()
                 .color(0x0c0c0d)
                 .iconSet(SHINY)
@@ -2448,7 +2451,7 @@ public class GCYLMaterials {
                 .blast(10000)
                 .build();
 
-        NaquadriaticTaranium = new Material.Builder(id++, gcylId("naquadriatic_taranium"))
+        NaquadriaticTaranium = new Material.Builder(++id, gcylId("naquadriatic_taranium"))
                 .ingot()
                 .color((Naquadria.getMaterialRGB() + Taranium.getMaterialRGB()) / 2)
                 .iconSet(SHINY)
@@ -2459,7 +2462,7 @@ public class GCYLMaterials {
                 .blast(11200)
                 .build();
 
-        BlackTitanium = new Material.Builder(id++, gcylId("black_titanium"))
+        BlackTitanium = new Material.Builder(++id, gcylId("black_titanium"))
                 .ingot().liquid()
                 .color(0x6C003B)
                 .iconSet(SHINY)
@@ -2470,7 +2473,7 @@ public class GCYLMaterials {
                 .blast(11500)
                 .build();
 
-        FullerenePolymerMatrix = new Material.Builder(id++, gcylId("fullerene_polymer_matrix"))
+        FullerenePolymerMatrix = new Material.Builder(++id, gcylId("fullerene_polymer_matrix"))
                 .polymer(2).liquid()
                 .color(0x403e37)
                 .iconSet(DULL)
@@ -2479,7 +2482,7 @@ public class GCYLMaterials {
                 .components(Palladium, 1, Iron, 1, Carbon, 153, Hydrogen, 36, Nitrogen, 1, Oxygen, 2)
                 .build();
 
-        Zylon = new Material.Builder(id++, gcylId("zylon"))
+        Zylon = new Material.Builder(++id, gcylId("zylon"))
                 .polymer(2).liquid()
                 .color(0xFFE000)
                 .iconSet(SHINY)
@@ -2488,7 +2491,7 @@ public class GCYLMaterials {
                 .components(Carbon, 14, Hydrogen, 6, Nitrogen, 2, Oxygen, 2)
                 .build();
 
-        SupercriticalSteam = new Material.Builder(id++, gcylId("supercritical_steam"))
+        SupercriticalSteam = new Material.Builder(++id, gcylId("supercritical_steam"))
                 .liquid()
                 .color(Steam.getMaterialRGB())
                 .iconSet(FLUID)
@@ -2496,7 +2499,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2O", true);
 
-        SodiumPotassiumAlloy = new Material.Builder(id++, gcylId("sodium_potassium_alloy"))
+        SodiumPotassiumAlloy = new Material.Builder(++id, gcylId("sodium_potassium_alloy"))
                 .dust(2).liquid()
                 .color(0x252525)
                 .iconSet(SHINY)
@@ -2504,7 +2507,7 @@ public class GCYLMaterials {
                 .components(Sodium, 7, Potassium, 3)
                 .build();
 
-        SupercriticalSodiumPotassiumAlloy = new Material.Builder(id++, gcylId("supercritical_sodium_potassium_alloy"))
+        SupercriticalSodiumPotassiumAlloy = new Material.Builder(++id, gcylId("supercritical_sodium_potassium_alloy"))
                 .liquid()
                 .color(SodiumPotassiumAlloy.getMaterialRGB())
                 .iconSet(FLUID)
@@ -2514,7 +2517,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Na7K3", true);
 
-        FLiNaK = new Material.Builder(id++, gcylId("flinak"))
+        FLiNaK = new Material.Builder(++id, gcylId("flinak"))
                 .dust(2).liquid()
                 .color(0x252525)
                 .iconSet(DULL)
@@ -2522,7 +2525,7 @@ public class GCYLMaterials {
                 .components(Fluorine, 3, Lithium, 1, Sodium, 1, Potassium, 1)
                 .build();
 
-        SupercriticalFLiNaK = new Material.Builder(id++, gcylId("supercritical_flinak"))
+        SupercriticalFLiNaK = new Material.Builder(++id, gcylId("supercritical_flinak"))
                 .liquid()
                 .color(FLiNaK.getMaterialRGB())
                 .iconSet(FLUID)
@@ -2531,7 +2534,7 @@ public class GCYLMaterials {
                 .flags(DISABLE_DECOMPOSITION)
                 .build();
 
-        FLiBe = new Material.Builder(id++, gcylId("flibe"))
+        FLiBe = new Material.Builder(++id, gcylId("flibe"))
                 .dust(2).liquid()
                 .color(0x252525)
                 .iconSet(DULL)
@@ -2539,7 +2542,7 @@ public class GCYLMaterials {
                 .components(Fluorine, 3, Lithium, 1, Beryllium, 1)
                 .build();
 
-        SupercriticalFLiBe = new Material.Builder(id++, gcylId("supercritical_flibe"))
+        SupercriticalFLiBe = new Material.Builder(++id, gcylId("supercritical_flibe"))
                 .liquid()
                 .color(FLiBe.getMaterialRGB())
                 .components(FLiBe, 1)
@@ -2548,7 +2551,7 @@ public class GCYLMaterials {
                 .iconSet(FLUID)
                 .build();
 
-        LeadBismuthEutectic = new Material.Builder(id++, gcylId("lead_bismuth_eutatic"))
+        LeadBismuthEutectic = new Material.Builder(++id, gcylId("lead_bismuth_eutatic"))
                 .ingot().liquid()
                 .color(0x757575)
                 .iconSet(SHINY)
@@ -2556,7 +2559,7 @@ public class GCYLMaterials {
                 .components(Lead, 3, Bismuth, 7)
                 .build();
 
-        SupercriticalLeadBismuthEutectic = new Material.Builder(id++, gcylId("supercritical_lead_bismuth_eutatic"))
+        SupercriticalLeadBismuthEutectic = new Material.Builder(++id, gcylId("supercritical_lead_bismuth_eutatic"))
                 .liquid()
                 .color(LeadBismuthEutectic.getMaterialRGB())
                 .iconSet(FLUID)
@@ -2565,7 +2568,7 @@ public class GCYLMaterials {
                 .components(LeadBismuthEutectic, 1)
                 .build();
 
-        HastelloyN = new Material.Builder(id++, gcylId("hastelloy_n"))
+        HastelloyN = new Material.Builder(++id, gcylId("hastelloy_n"))
                 .ingot(6).liquid()
                 .color(0xDDDDDD)
                 .iconSet(METALLIC)
@@ -2575,7 +2578,7 @@ public class GCYLMaterials {
                 .blast(4350)
                 .build();
 
-        Lafium = new Material.Builder(id++, gcylId("lafium"))
+        Lafium = new Material.Builder(++id, gcylId("lafium"))
                 .ingot(7)
                 .color(0x0d0d60)
                 .iconSet(SHINY)
@@ -2585,7 +2588,7 @@ public class GCYLMaterials {
                 .blast(9865)
                 .build();
 
-        HeavyQuarkDegenerateMatter = new Material.Builder(id++, gcylId("heavy_quark_degenerate_matter"))
+        HeavyQuarkDegenerateMatter = new Material.Builder(++id, gcylId("heavy_quark_degenerate_matter"))
                 .ingot(6)
                 .color(0x5dbd3a)
                 .iconSet(SHINY)
@@ -2595,7 +2598,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?");
 
-        MetastableFlerovium = new Material.Builder(id++, gcylId("metastable_flerovium"))
+        MetastableFlerovium = new Material.Builder(++id, gcylId("metastable_flerovium"))
                 .ingot(6)
                 .color(0x521973)
                 .iconSet(SHINY)
@@ -2605,7 +2608,7 @@ public class GCYLMaterials {
                 .blast(11240)
                 .build();
 
-        QCDMatter = new Material.Builder(id++, gcylId("qcd_confined_matter"))
+        QCDMatter = new Material.Builder(++id, gcylId("qcd_confined_matter"))
                 .ingot(7).liquid()
                 .color(0xeb9e3f)
                 .iconSet(SHINY)
@@ -2616,7 +2619,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?");
 
-        TitanSteel = new Material.Builder(id++, gcylId("titan_steel"))
+        TitanSteel = new Material.Builder(++id, gcylId("titan_steel"))
                 .ingot(7).liquid()
                 .color(0xAA0d0d)
                 .iconSet(SHINY)
@@ -2627,7 +2630,7 @@ public class GCYLMaterials {
                 .blast(9200)
                 .build();
 
-        MetastableHassium = new Material.Builder(id++, gcylId("metastable_hassium"))
+        MetastableHassium = new Material.Builder(++id, gcylId("metastable_hassium"))
                 .ingot(6)
                 .color(0x2d3a9d)
                 .iconSet(SHINY)
@@ -2637,7 +2640,7 @@ public class GCYLMaterials {
                 .blast(11240, BlastProperty.GasTier.HIGHEST)
                 .build();
 
-        Vibranium = new Material.Builder(id++, gcylId("vibranium"))
+        Vibranium = new Material.Builder(++id, gcylId("vibranium"))
                 .ingot(7).liquid()
                 .color(0x828aad)
                 .iconSet(SHINY)
@@ -2646,7 +2649,7 @@ public class GCYLMaterials {
                 .blast(11220)
                 .build();
 
-        TriniumTitanium = new Material.Builder(id++, gcylId("trinium_titanium"))
+        TriniumTitanium = new Material.Builder(++id, gcylId("trinium_titanium"))
                 .ingot(7).liquid()
                 .color(0x9986a3)
                 .iconSet(SHINY)
@@ -2656,7 +2659,7 @@ public class GCYLMaterials {
                 .blast(11000)
                 .build();
 
-        TantalumHafniumSeaborgiumCarbide = new Material.Builder(id++, gcylId("tantalum_hafnium_seaborgium_carbide"))
+        TantalumHafniumSeaborgiumCarbide = new Material.Builder(++id, gcylId("tantalum_hafnium_seaborgium_carbide"))
                 .ingot(6)
                 .color(0x2c2c2c)
                 .iconSet(SHINY)
@@ -2667,7 +2670,7 @@ public class GCYLMaterials {
                 .blast(5200)
                 .build();
 
-        Nitinol60 = new Material.Builder(id++, gcylId("nitinol_a"))
+        Nitinol60 = new Material.Builder(++id, gcylId("nitinol_a"))
                 .ingot(4)
                 .color(0xCCB0EC)
                 .iconSet(METALLIC)
@@ -2677,7 +2680,7 @@ public class GCYLMaterials {
                 .blast(Titanium.getBlastTemperature())
                 .build();
 
-        ActiniumSuperhydride = new Material.Builder(id++, gcylId("actinium_superhydride"))
+        ActiniumSuperhydride = new Material.Builder(++id, gcylId("actinium_superhydride"))
                 .dust()
                 .color(Actinium.getMaterialRGB() * 9 / 8)
                 .iconSet(SHINY)
@@ -2685,7 +2688,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("AcH12", true);
 
-        BETSPerrhenate = new Material.Builder(id++, gcylId("bets_perrhenate"))
+        BETSPerrhenate = new Material.Builder(++id, gcylId("bets_perrhenate"))
                 .dust()
                 .color(0x7ada00)
                 .iconSet(SHINY)
@@ -2693,7 +2696,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ReC10H8S4Se4O4", true);
 
-        BorocarbideDust = new Material.Builder(id++, gcylId("borocarbide_dust"))
+        BorocarbideDust = new Material.Builder(++id, gcylId("borocarbide_dust"))
                 .dust()
                 .color(0x9a9a2a)
                 .iconSet(SHINY)
@@ -2701,7 +2704,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("B4C7Fr4At6Ho2Th2Fl2Cn2", true);
 
-        FullereneSuperconductiveDust = new Material.Builder(id++, gcylId("fullerene_superconductor_dust"))
+        FullereneSuperconductiveDust = new Material.Builder(++id, gcylId("fullerene_superconductor_dust"))
                 .dust()
                 .color(0x99cc00)
                 .iconSet(SHINY)
@@ -2709,7 +2712,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("LaCsRb(C60)2", true);
 
-        MetastableOganesson = new Material.Builder(id++, gcylId("metastable_oganesson"))
+        MetastableOganesson = new Material.Builder(++id, gcylId("metastable_oganesson"))
                 .ingot(7)
                 .color(0xE61C24)
                 .iconSet(SHINY)
@@ -2718,7 +2721,7 @@ public class GCYLMaterials {
                 .blast(10380)
                 .build();
 
-        ProtoAdamantium = new Material.Builder(id++, gcylId("proto_adamantium"))
+        ProtoAdamantium = new Material.Builder(++id, gcylId("proto_adamantium"))
                 .ingot(7)
                 .color(0x4662d4)
                 .iconSet(SHINY)
@@ -2728,7 +2731,7 @@ public class GCYLMaterials {
                 .blast(11244)
                 .build();
 
-        SuperheavyHAlloy = new Material.Builder(id++, gcylId("superheavy_h_alloy"))
+        SuperheavyHAlloy = new Material.Builder(++id, gcylId("superheavy_h_alloy"))
                 .ingot(6).liquid()
                 .color(0xE84B36)
                 .iconSet(SHINY)
@@ -2738,7 +2741,7 @@ public class GCYLMaterials {
                 .blast(10600)
                 .build();
 
-        RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate = new Material.Builder(id++, gcylId("rhenium_hassium_thallium_isophtaloylbisdiethylthiourea"))
+        RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate = new Material.Builder(++id, gcylId("rhenium_hassium_thallium_isophtaloylbisdiethylthiourea"))
                 .dust()
                 .color(0xa26a8b)
                 .iconSet(SHINY)
@@ -2746,7 +2749,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ReHsTlC60PN12H84S6O12F6", true);
 
-        Legendarium = new Material.Builder(id++, gcylId("legendarium"))
+        Legendarium = new Material.Builder(++id, gcylId("legendarium"))
                 .dust()
                 .color(0xffffff)
                 .iconSet(SHINY)
@@ -2754,7 +2757,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NqNq+*Nq*DrTrKeTnAdVb", true);
 
-        LanthanumFullereneMix = new Material.Builder(id++, gcylId("lanthanum_fullerene_mix"))
+        LanthanumFullereneMix = new Material.Builder(++id, gcylId("lanthanum_fullerene_mix"))
                 .dust()
                 .color(0xdfcafa)
                 .iconSet(SHINY)
@@ -2762,7 +2765,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(C60)2La2?", true);
 
-        LanthanumFullereneNanotubes = new Material.Builder(id++, gcylId("lanthanum_fullerene_nanotubes"))
+        LanthanumFullereneNanotubes = new Material.Builder(++id, gcylId("lanthanum_fullerene_nanotubes"))
                 .dust()
                 .color(LanthanumFullereneMix.getMaterialRGB() * 3 / 5)
                 .iconSet(SHINY)
@@ -2770,7 +2773,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("La2(C60)2CNT", true);
 
-        SuperheavyLAlloy = new Material.Builder(id++, gcylId("superheavy_l_alloy"))
+        SuperheavyLAlloy = new Material.Builder(++id, gcylId("superheavy_l_alloy"))
                 .ingot(6).liquid()
                 .color(0x2B45DF)
                 .iconSet(SHINY)
@@ -2780,7 +2783,7 @@ public class GCYLMaterials {
                 .blast(10600)
                 .build();
 
-        HexanitroHexaazaisowurtzitane = new Material.Builder(id++, gcylId("hexanitrohexaazaisowurtzitane"))
+        HexanitroHexaazaisowurtzitane = new Material.Builder(++id, gcylId("hexanitrohexaazaisowurtzitane"))
                 .dust()
                 .color(0x414a4f)
                 .iconSet(SHINY)
@@ -2788,7 +2791,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H6N12O12", true);
 
-        ElectronDegenerateRheniumPlasma = new Material.Builder(id++, gcylId("degenerate_rhenium_plasma"))
+        ElectronDegenerateRheniumPlasma = new Material.Builder(++id, gcylId("degenerate_rhenium_plasma"))
                 .plasma(new FluidBuilder().temperature(100000000))//TODO fix temperature
                 .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
                 .color(0x6666FF)
@@ -2797,7 +2800,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Rh", true);
 
-        SuperheavyMix = new Material.Builder(id++, gcylId("superheavy_mix"))
+        SuperheavyMix = new Material.Builder(++id, gcylId("superheavy_mix"))
                 .liquid()
                 .color(0x403737)
                 .iconSet(FLUID)
@@ -2805,7 +2808,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("SgBhRfDb", true);
 
-        NeutronPlasma = new Material.Builder(id++, gcylId("neutron_plasma"))
+        NeutronPlasma = new Material.Builder(++id, gcylId("neutron_plasma"))
                 .plasma(new FluidBuilder().temperature(1000000000))//TODO fix temperature
                 .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
                 .color(0xf0e9e9)
@@ -2814,7 +2817,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("n", true);
 
-        FreeAlphaGas = new Material.Builder(id++, gcylId("free_alpha_gas"))
+        FreeAlphaGas = new Material.Builder(++id, gcylId("free_alpha_gas"))
                 .liquid()
                 .color(0xe0d407)
                 .iconSet(FLUID)
@@ -2822,7 +2825,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("a", true);
 
-        FreeElectronGas = new Material.Builder(id++, gcylId("free_electron_gas"))
+        FreeElectronGas = new Material.Builder(++id, gcylId("free_electron_gas"))
                 .liquid()
                 .color(0x044c4c)
                 .iconSet(FLUID)
@@ -2831,7 +2834,7 @@ public class GCYLMaterials {
                 .setFormula("e-", true);
 
 
-        PotassiumCarbonate = new Material.Builder(id++, gcylId("potassium_carbonate"))
+        PotassiumCarbonate = new Material.Builder(++id, gcylId("potassium_carbonate"))
                 .dust()
                 .color((Potassium.getMaterialRGB() + Carbon.getMaterialRGB() + Oxygen.getMaterialRGB()) / 3)
                 .iconSet(FINE)
@@ -2839,7 +2842,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("K2CO3", true);
 
-        PotassiumBisulfite = new Material.Builder(id++, gcylId("potassium_bisulfite"))
+        PotassiumBisulfite = new Material.Builder(++id, gcylId("potassium_bisulfite"))
                 .dust()
                 .color(0xF0EAD6)
                 .iconSet(DULL)
@@ -2847,7 +2850,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("KHSO3", true);
 
-        PotassiumNitrite = new Material.Builder(id++, gcylId("potassium_nitrite"))
+        PotassiumNitrite = new Material.Builder(++id, gcylId("potassium_nitrite"))
                 .dust()
                 .color(0xF0EAD6)
                 .iconSet(DULL)
@@ -2855,7 +2858,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("KNO2", true);
 
-        NitrousAcid = new Material.Builder(id++, gcylId("nitrous_acid"))
+        NitrousAcid = new Material.Builder(++id, gcylId("nitrous_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0x1e73b0)
                 .iconSet(FLUID)
@@ -2864,7 +2867,7 @@ public class GCYLMaterials {
                 .setFormula("HNO2", true);
 
 
-        AceticAnhydride = new Material.Builder(id++, gcylId("acetic_anhydride"))
+        AceticAnhydride = new Material.Builder(++id, gcylId("acetic_anhydride"))
                 .liquid()
                 .color(0xD5DDDF)
                 .iconSet(FLUID)
@@ -2872,7 +2875,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(CH3CO)2O", true);
 
-        SodiumAcetate = new Material.Builder(id++, gcylId("sodium_acetate"))
+        SodiumAcetate = new Material.Builder(++id, gcylId("sodium_acetate"))
                 .liquid()
                 .color((Sodium.getMaterialRGB() + AceticAnhydride.getMaterialRGB()) / 2)
                 .iconSet(FLUID)
@@ -2880,7 +2883,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2H3NaO2", true);
 
-        PotassiumHydroxylaminedisulfonate = new Material.Builder(id++, gcylId("potassium_hydroxylaminedisulfonate"))
+        PotassiumHydroxylaminedisulfonate = new Material.Builder(++id, gcylId("potassium_hydroxylaminedisulfonate"))
                 .dust()
                 .color((0xF0EAD6 + NitrousAcid.getMaterialRGB()) / 2)
                 .iconSet(DULL)
@@ -2888,7 +2891,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("KHSO3", true);
 
-        HydroxylammoniumSulfate = new Material.Builder(id++, gcylId("hydroxylammonium_sulfate"))
+        HydroxylammoniumSulfate = new Material.Builder(++id, gcylId("hydroxylammonium_sulfate"))
                 .dust()
                 .color(0xF0EAD6)
                 .iconSet(DULL)
@@ -2896,7 +2899,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(NH3OH)2SO4", true);
 
-        BariumChloride = new Material.Builder(id++, gcylId("barium_chloride"))
+        BariumChloride = new Material.Builder(++id, gcylId("barium_chloride"))
                 .dust()
                 .color((Barium.getMaterialRGB() + Chlorine.getMaterialRGB()) / 2)
                 .iconSet(SHINY)
@@ -2905,7 +2908,7 @@ public class GCYLMaterials {
                 .setFormula("BaCl2", true);
 
 
-        BariumSulfateSolution = new Material.Builder(id++, gcylId("barium_sulfate_solution"))
+        BariumSulfateSolution = new Material.Builder(++id, gcylId("barium_sulfate_solution"))
                 .liquid()
                 .color(Barite.getMaterialRGB())
                 .iconSet(FLUID)
@@ -2913,7 +2916,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)BaSO4", true);
 
-        HydroxylamineHydrochloride = new Material.Builder(id++, gcylId("hydroxylamine_hydrochloride"))
+        HydroxylamineHydrochloride = new Material.Builder(++id, gcylId("hydroxylamine_hydrochloride"))
                 .liquid()
                 .color(((Barium.getMaterialRGB() + Chlorine.getMaterialRGB()) / 2 + 0xF0EAD6) / 2)
                 .iconSet(FLUID)
@@ -2921,7 +2924,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HONH2HCl", true);
 
-        MaleicAnhydride = new Material.Builder(id++, gcylId("maleic_anhydride"))
+        MaleicAnhydride = new Material.Builder(++id, gcylId("maleic_anhydride"))
                 .liquid()
                 .color(0x3c20ad)
                 .iconSet(FLUID)
@@ -2929,7 +2932,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C4H2O3", true);
 
-        SuccinicAcid = new Material.Builder(id++, gcylId("succinic_acid"))
+        SuccinicAcid = new Material.Builder(++id, gcylId("succinic_acid"))
                 .dust()
                 .color((MaleicAnhydride.getMaterialRGB() + Water.getMaterialRGB() + Hydrogen.getMaterialRGB()) / 3)
                 .iconSet(ROUGH)
@@ -2937,7 +2940,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C4H6O4", true);
 
-        SuccinicAnhydride = new Material.Builder(id++, gcylId("succinic_anhydride"))
+        SuccinicAnhydride = new Material.Builder(++id, gcylId("succinic_anhydride"))
                 .dust()
                 .color((SuccinicAcid.getMaterialRGB() + AceticAnhydride.getMaterialRGB()) / 2)
                 .iconSet(DULL)
@@ -2945,7 +2948,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(CH2CO)2O", true);
 
-        Tetrahydrofuran = new Material.Builder(id++, gcylId("tetrahydrofuran"))
+        Tetrahydrofuran = new Material.Builder(++id, gcylId("tetrahydrofuran"))
                 .liquid()
                 .color(0xb7ebcd)
                 .iconSet(FLUID)
@@ -2953,7 +2956,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(CH2)4O", true);
 
-        NHydroxysuccinimide = new Material.Builder(id++, gcylId("n-hydroxysuccinimide"))
+        NHydroxysuccinimide = new Material.Builder(++id, gcylId("n-hydroxysuccinimide"))
                 .dust()
                 .color(0xdbcae3)
                 .iconSet(DULL)
@@ -2961,7 +2964,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(CH2CO)2NOH", true);
 
-        Triethylamine = new Material.Builder(id++, gcylId("triethylamine"))
+        Triethylamine = new Material.Builder(++id, gcylId("triethylamine"))
                 .liquid()
                 .color(Ethylenediamine.getMaterialRGB())
                 .iconSet(FLUID)
@@ -2969,7 +2972,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("N(CH2CH3)3", true);
 
-        SuccinimidylAcetate = new Material.Builder(id++, gcylId("succinimidyl_acetate"))
+        SuccinimidylAcetate = new Material.Builder(++id, gcylId("succinimidyl_acetate"))
                 .dust()
                 .color(0xbd93a6)
                 .iconSet(DULL)
@@ -2977,7 +2980,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H7NO4", true);
 
-        SeleniumOxide = new Material.Builder(id++, gcylId("selenium_oxide"))
+        SeleniumOxide = new Material.Builder(++id, gcylId("selenium_oxide"))
                 .dust()
                 .color(0xFFFF66)
                 .iconSet(SHINY)
@@ -2985,7 +2988,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("SeO2", true);
 
-        SelenousAcid = new Material.Builder(id++, gcylId("selenous_acid"))
+        SelenousAcid = new Material.Builder(++id, gcylId("selenous_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color((0xFFFF66 + Water.getMaterialRGB()) / 2)
                 .iconSet(FLUID)
@@ -2993,7 +2996,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2SeO3", true);
 
-        AmmoniumAcetate = new Material.Builder(id++, gcylId("ammonium_acetate"))
+        AmmoniumAcetate = new Material.Builder(++id, gcylId("ammonium_acetate"))
                 .dust()
                 .color(0xb6dee0)
                 .iconSet(DULL)
@@ -3001,7 +3004,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NH4CH3CO2", true);
 
-        Acetamide = new Material.Builder(id++, gcylId("acetamide"))
+        Acetamide = new Material.Builder(++id, gcylId("acetamide"))
                 .dust()
                 .color(0xa6bebf)
                 .iconSet(DULL)
@@ -3009,7 +3012,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CH3CONH2", true);
 
-        Acetonitrile = new Material.Builder(id++, gcylId("acetonitrile"))
+        Acetonitrile = new Material.Builder(++id, gcylId("acetonitrile"))
                 .dust()
                 .color(0xa2afb0)
                 .iconSet(DULL)
@@ -3017,7 +3020,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CH3CN", true);
 
-        BenzylChloride = new Material.Builder(id++, gcylId("benzyl_chloride"))
+        BenzylChloride = new Material.Builder(++id, gcylId("benzyl_chloride"))
                 .liquid()
                 .color(0xaef7fc)
                 .iconSet(FLUID)
@@ -3025,7 +3028,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C7H7Cl", true);
 
-        Hexamethylenetetramine = new Material.Builder(id++, gcylId("hexamethylenetetramine"))
+        Hexamethylenetetramine = new Material.Builder(++id, gcylId("hexamethylenetetramine"))
                 .dust()
                 .color(0x7e8d94)
                 .iconSet(DULL)
@@ -3033,7 +3036,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(CH2)6N4", true);
 
-        Benzylamine = new Material.Builder(id++, gcylId("benzylamine"))
+        Benzylamine = new Material.Builder(++id, gcylId("benzylamine"))
                 .liquid()
                 .color(0x5c8082)
                 .iconSet(FLUID)
@@ -3041,7 +3044,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C7H9N", true);
 
-        Glyoxal = new Material.Builder(id++, gcylId("glyoxal"))
+        Glyoxal = new Material.Builder(++id, gcylId("glyoxal"))
                 .liquid()
                 .color(0xf2f068)
                 .iconSet(FLUID)
@@ -3049,7 +3052,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2H2O2", true);
 
-        Hexabenzylhexaazaisowurtzitane = new Material.Builder(id++, gcylId("hexabenzylhexaazaisowurtzitane"))
+        Hexabenzylhexaazaisowurtzitane = new Material.Builder(++id, gcylId("hexabenzylhexaazaisowurtzitane"))
                 .dust()
                 .color(0x624573)
                 .iconSet(DULL)
@@ -3057,7 +3060,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C48N6H48", true);
 
-        PalladiumChloride = new Material.Builder(id++, gcylId("palladium_chloride"))
+        PalladiumChloride = new Material.Builder(++id, gcylId("palladium_chloride"))
                 .dust()
                 .color(0xb9c0c7)
                 .iconSet(SHINY)
@@ -3065,7 +3068,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("PdCl2", true);
 
-        PdCCatalyst = new Material.Builder(id++, gcylId("pdc_catalyst"))
+        PdCCatalyst = new Material.Builder(++id, gcylId("pdc_catalyst"))
                 .dust()
                 .color((Palladium.getMaterialRGB() + Carbon.getMaterialRGB()) / 2)
                 .iconSet(DULL)
@@ -3074,7 +3077,7 @@ public class GCYLMaterials {
                 .setFormula("PdC", true);
 
 
-        HydrobromicAcid = new Material.Builder(id++, gcylId("hydrobromic_acid"))
+        HydrobromicAcid = new Material.Builder(++id, gcylId("hydrobromic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0xBC6C53)
                 .iconSet(FLUID)
@@ -3082,7 +3085,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HBr", true);
 
-        Dimethylformamide = new Material.Builder(id++, gcylId("dimethylformamide"))
+        Dimethylformamide = new Material.Builder(++id, gcylId("dimethylformamide"))
                 .liquid()
                 .color(0x42bdff)
                 .iconSet(FLUID)
@@ -3090,7 +3093,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(CH3)2NCH", true);
 
-        DibenzylTetraacetylhexaazaisowurtzitane = new Material.Builder(id++, gcylId("dibenzyltetraacetylhexaazaisowurtzitane"))
+        DibenzylTetraacetylhexaazaisowurtzitane = new Material.Builder(++id, gcylId("dibenzyltetraacetylhexaazaisowurtzitane"))
                 .dust()
                 .color(0xb3c98b)
                 .iconSet(DULL)
@@ -3098,7 +3101,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C28N6H32O4", true);
 
-        NitroniumTetrafluoroborate = new Material.Builder(id++, gcylId("nitronium_tetrafluoroborate"))
+        NitroniumTetrafluoroborate = new Material.Builder(++id, gcylId("nitronium_tetrafluoroborate"))
                 .dust()
                 .color(0x686c6e)
                 .iconSet(DULL)
@@ -3106,7 +3109,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NO2BF4", true);
 
-        NitrosoniumTetrafluoroborate = new Material.Builder(id++, gcylId("nitrosonium_tetrafluoroborate"))
+        NitrosoniumTetrafluoroborate = new Material.Builder(++id, gcylId("nitrosonium_tetrafluoroborate"))
                 .dust()
                 .color(0x7e8d94)
                 .iconSet(DULL)
@@ -3114,7 +3117,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NOBF4", true);
 
-        Tetraacetyldinitrosohexaazaisowurtzitane = new Material.Builder(id++, gcylId("tetraacetyldinitrosohexaazaisowurtzitane"))
+        Tetraacetyldinitrosohexaazaisowurtzitane = new Material.Builder(++id, gcylId("tetraacetyldinitrosohexaazaisowurtzitane"))
                 .dust()
                 .color((DibenzylTetraacetylhexaazaisowurtzitane.getMaterialRGB() + Hexabenzylhexaazaisowurtzitane.getMaterialRGB()) / 2)
                 .iconSet(DULL)
@@ -3122,7 +3125,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C14N8H18O6", true);
 
-        SilverOxide = new Material.Builder(id++, gcylId("silver_oxide"))
+        SilverOxide = new Material.Builder(++id, gcylId("silver_oxide"))
                 .dust()
                 .color(0x4D4D4D)
                 .iconSet(DULL)
@@ -3130,7 +3133,7 @@ public class GCYLMaterials {
                 .components(Silver, 2, Oxygen, 1)
                 .build();
 
-        Silvertetrafluoroborate = new Material.Builder(id++, gcylId("silvertetrafluoroborate"))
+        Silvertetrafluoroborate = new Material.Builder(++id, gcylId("silvertetrafluoroborate"))
                 .liquid()
                 .color((SilverOxide.getMaterialRGB() + BoronFluoride.getMaterialRGB()) / 2)
                 .iconSet(FLUID)
@@ -3138,7 +3141,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("AgBF4", true);
 
-        TetrafluoroboricAcid = new Material.Builder(id++, gcylId("tetrafluoroboric_acid"))
+        TetrafluoroboricAcid = new Material.Builder(++id, gcylId("tetrafluoroboric_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(Silvertetrafluoroborate.getMaterialRGB())
                 .iconSet(FLUID)
@@ -3146,7 +3149,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HBF4", true);
 
-        Benzaldehyde = new Material.Builder(id++, gcylId("benzaldehyde"))
+        Benzaldehyde = new Material.Builder(++id, gcylId("benzaldehyde"))
                 .liquid()
                 .color(0xb26f22)
                 .iconSet(FLUID)
@@ -3154,7 +3157,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C7H6O", true);
 
-        CrudeHexanitroHexaazaisowurtzitane = new Material.Builder(id++, gcylId("crude_hexanitrohexaazaisowurtzitane"))
+        CrudeHexanitroHexaazaisowurtzitane = new Material.Builder(++id, gcylId("crude_hexanitrohexaazaisowurtzitane"))
                 .dust()
                 .color(HexanitroHexaazaisowurtzitane.getMaterialRGB() * 5 / 7)
                 .iconSet(DULL)
@@ -3162,7 +3165,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H6N12O12", true);
 
-        SilicaGel = new Material.Builder(id++, gcylId("silica_gel"))
+        SilicaGel = new Material.Builder(++id, gcylId("silica_gel"))
                 .dust()
                 .color(0x61daff)
                 .iconSet(SHINY)
@@ -3170,7 +3173,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("SiO2", true);
 
-        BrevibacteriumFlavium = new Material.Builder(id++, gcylId("brevibacterium_flavium"))
+        BrevibacteriumFlavium = new Material.Builder(++id, gcylId("brevibacterium_flavium"))
                 .dust()
                 .color(0x2c4d24)
                 .iconSet(ROUGH)
@@ -3178,7 +3181,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Bacteria", true);
 
-        Succinimide = new Material.Builder(id++, gcylId("succinimide"))
+        Succinimide = new Material.Builder(++id, gcylId("succinimide"))
                 .dust()
                 .color((SuccinicAcid.getMaterialRGB() + Ammonia.getMaterialRGB()) / 2)
                 .iconSet(METALLIC)
@@ -3186,7 +3189,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C4H4BrNO2", true);
 
-        Acetaldehyde = new Material.Builder(id++, gcylId("acetaldehyde"))
+        Acetaldehyde = new Material.Builder(++id, gcylId("acetaldehyde"))
                 .liquid()
                 .color(0xFF9933)
                 .iconSet(FLUID)
@@ -3194,7 +3197,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2H4O", true);
 
-        Trichloroferane = new Material.Builder(id++, gcylId("trichloroferane"))
+        Trichloroferane = new Material.Builder(++id, gcylId("trichloroferane"))
                 .liquid()
                 .color(0x521973)
                 .iconSet(FLUID)
@@ -3202,7 +3205,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("FlCl3", true);
 
-        SeaborgiumDopedNanotubes = new Material.Builder(id++, gcylId("seaborgium_doped_nanotubes"))
+        SeaborgiumDopedNanotubes = new Material.Builder(++id, gcylId("seaborgium_doped_nanotubes"))
                 .liquid()
                 .color(0x2c2c8c)
                 .iconSet(FLUID)
@@ -3210,7 +3213,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("SgCNT", true);
 
-        PrHoYLF = new Material.Builder(id++, gcylId("prho_ylf"))
+        PrHoYLF = new Material.Builder(++id, gcylId("prho_ylf"))
                 .dust(6).liquid()
                 .color(0x6f20af)
                 .iconSet(SHINY)
@@ -3218,7 +3221,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("PrHoYLF", true);
 
-        LuTmYVO = new Material.Builder(id++, gcylId("lutm_yvo"))
+        LuTmYVO = new Material.Builder(++id, gcylId("lutm_yvo"))
                 .dust(6).liquid()
                 .color(0x206faf)
                 .iconSet(SHINY)
@@ -3226,7 +3229,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("LuTmYVO", true);
 
-        NeodymiumDopedYttrium = new Material.Builder(id++, gcylId("neodymium_doped_yttrium"))
+        NeodymiumDopedYttrium = new Material.Builder(++id, gcylId("neodymium_doped_yttrium"))
                 .dust()
                 .color(YttriumOxide.getMaterialRGB())
                 .iconSet(DULL)
@@ -3234,7 +3237,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nd:Y?", true);
 
-        UnprocessedNdYAGSolution = new Material.Builder(id++, gcylId("unprocessed_ndyag_solution"))
+        UnprocessedNdYAGSolution = new Material.Builder(++id, gcylId("unprocessed_ndyag_solution"))
                 .liquid()
                 .color(0x6f20af)
                 .iconSet(FLUID)
@@ -3242,7 +3245,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nd:YAG", true);
 
-        UnprocessedNdYAGDust = new Material.Builder(id++, gcylId("unprocessed_ndyag_dust"))
+        UnprocessedNdYAGDust = new Material.Builder(++id, gcylId("unprocessed_ndyag_dust"))
                 .dust()
                 .color(0x6f20af)
                 .iconSet(DULL)
@@ -3250,7 +3253,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nd:YAG?", true);
 
-        NdYAGNanoparticles = new Material.Builder(id++, gcylId("nd_yag_nanoparticles"))
+        NdYAGNanoparticles = new Material.Builder(++id, gcylId("nd_yag_nanoparticles"))
                 .dust()
                 .color(0x6f20af)
                 .iconSet(SHINY)
@@ -3258,7 +3261,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nd:YAG", true);
 
-        NdYAG = new Material.Builder(id++, gcylId("nd_yag"))
+        NdYAG = new Material.Builder(++id, gcylId("nd_yag"))
                 .dust(6).liquid()
                 .color(0xcf8acf)
                 .iconSet(SHINY)
@@ -3266,7 +3269,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nd:YAG", true);
 
-        Pyrotheum = new Material.Builder(id++, gcylId("pyrotheum"))
+        Pyrotheum = new Material.Builder(++id, gcylId("pyrotheum"))
                 .dust().liquid()
                 .color(0xFF9A3C)
                 .iconSet(SAND)
@@ -3274,7 +3277,7 @@ public class GCYLMaterials {
                 .components(Redstone, 1, Blaze, 2, Sulfur, 1)
                 .build();
 
-        Blizz = new Material.Builder(id++, gcylId("blizz"))
+        Blizz = new Material.Builder(++id, gcylId("blizz"))
                 .dust()
                 .color(0x01F3F6)
                 .iconSet(SAND)
@@ -3282,7 +3285,7 @@ public class GCYLMaterials {
                 .components(Redstone, 1, Water, 1)
                 .build();
 
-        Cryotheum = new Material.Builder(id++, gcylId("cryotheum"))
+        Cryotheum = new Material.Builder(++id, gcylId("cryotheum"))
                 .dust().liquid()
                 .color(0x01F3F6)
                 .iconSet(DULL)
@@ -3290,7 +3293,7 @@ public class GCYLMaterials {
                 .components(Redstone, 1, Blizz, 2, Water, 1)
                 .build();
 
-        DrillingMud = new Material.Builder(id++, gcylId("drilling_mud"))
+        DrillingMud = new Material.Builder(++id, gcylId("drilling_mud"))
                 .liquid()
                 .color(0x996600)
                 .iconSet(FLUID)
@@ -3298,7 +3301,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("For the Void Miner", true);
 
-        UsedDrillingMud = new Material.Builder(id++, gcylId("used_drilling_mud"))
+        UsedDrillingMud = new Material.Builder(++id, gcylId("used_drilling_mud"))
                 .liquid()
                 .color(0x998833)
                 .iconSet(FLUID)
@@ -3307,7 +3310,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Used Mud", true);
 
-        HastelloyX78 = new Material.Builder(id++, gcylId("hastelloyx_78"))
+        HastelloyX78 = new Material.Builder(++id, gcylId("hastelloyx_78"))
                 .ingot().fluid()
                 .color(0x6ba3e3)
                 .iconSet(SHINY)
@@ -3316,7 +3319,7 @@ public class GCYLMaterials {
                 .blast(12000)
                 .build();
 
-        Incoloy813 = new Material.Builder(id++, gcylId("incoloy_813"))
+        Incoloy813 = new Material.Builder(++id, gcylId("incoloy_813"))
                 .ingot().fluid()
                 .color(0x37bf7e)
                 .iconSet(SHINY)
@@ -3325,7 +3328,7 @@ public class GCYLMaterials {
                 .blast(10000)
                 .build();
 
-        Staballoy = new Material.Builder(id++, gcylId("staballoy"))
+        Staballoy = new Material.Builder(++id, gcylId("staballoy"))
                 .ingot().fluid()
                 .color(0x444B42)
                 .iconSet(METALLIC)
@@ -3334,7 +3337,7 @@ public class GCYLMaterials {
                 .blast(3450)
                 .build();
 
-        OrthoXyleneZeoliteMixture = new Material.Builder(id++, gcylId("ortho_xylene_zeolite"))
+        OrthoXyleneZeoliteMixture = new Material.Builder(++id, gcylId("ortho_xylene_zeolite"))
                 .liquid()
                 .color(0xB9785E)
                 .iconSet(FLUID)
@@ -3342,7 +3345,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(NaC4Si27Al9(H2O)28O72)C6H4(CH3)2", true);
 
-        ParaXylene = new Material.Builder(id++, gcylId("para_xylene"))
+        ParaXylene = new Material.Builder(++id, gcylId("para_xylene"))
                 .liquid()
                 .color(0xB9575E)
                 .iconSet(FLUID)
@@ -3350,7 +3353,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H4(CH3)2", true);
 
-        Dibromomethylbenzene = new Material.Builder(id++, gcylId("dibromomethylbenzene"))
+        Dibromomethylbenzene = new Material.Builder(++id, gcylId("dibromomethylbenzene"))
                 .liquid()
                 .color(0x0A1D2C)
                 .iconSet(FLUID)
@@ -3358,7 +3361,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C7H6Br2", true);
 
-        Terephthalaldehyde = new Material.Builder(id++, gcylId("terephthalaldehyde"))
+        Terephthalaldehyde = new Material.Builder(++id, gcylId("terephthalaldehyde"))
                 .dust()
                 .color((Dibromomethylbenzene.getMaterialRGB() + SulfuricAcid.getMaterialRGB()) / 2)
                 .iconSet(FINE)
@@ -3366,7 +3369,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C8H6O2", true);
 
-        AuPdCCatalyst = new Material.Builder(id++, gcylId("aupdc_catalyst"))
+        AuPdCCatalyst = new Material.Builder(++id, gcylId("aupdc_catalyst"))
                 .dust()
                 .color((Gold.getMaterialRGB() + Palladium.getMaterialRGB() + Carbon.getMaterialRGB()) / 3)
                 .iconSet(SHINY)
@@ -3374,7 +3377,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("AuPdC", true);
 
-        Isochloropropane = new Material.Builder(id++, gcylId("isochloropropane"))
+        Isochloropropane = new Material.Builder(++id, gcylId("isochloropropane"))
                 .liquid()
                 .color(0xD5DD95)
                 .iconSet(FLUID)
@@ -3382,7 +3385,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CH3CClCH3", true);
 
-        Dinitrodipropanyloxybenzene = new Material.Builder(id++, gcylId("dinitrodipropanyloxybenzene"))
+        Dinitrodipropanyloxybenzene = new Material.Builder(++id, gcylId("dinitrodipropanyloxybenzene"))
                 .liquid()
                 .color(0x83945F)
                 .iconSet(FLUID)
@@ -3390,7 +3393,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C12H16O2(NO2)2", true);
 
-        PreZylon = new Material.Builder(id++, gcylId("pre_zylon"))
+        PreZylon = new Material.Builder(++id, gcylId("pre_zylon"))
                 .dust()
                 .color((Terephthalaldehyde.getMaterialRGB() + Dinitrodipropanyloxybenzene.getMaterialRGB()) / 2)
                 .iconSet(FINE)
@@ -3398,7 +3401,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C20H22N2O2", true);
 
-        Soap = new Material.Builder(id++, gcylId("soap"))
+        Soap = new Material.Builder(++id, gcylId("soap"))
                 .liquid()
                 .color(0xFFAE42)
                 .iconSet(FLUID)
@@ -3406,7 +3409,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        DeglyceratedSoap = new Material.Builder(id++, gcylId("deglyceratedsoap"))
+        DeglyceratedSoap = new Material.Builder(++id, gcylId("deglyceratedsoap"))
                 .liquid()
                 .color(0xFFAE41)
                 .iconSet(FLUID)
@@ -3414,7 +3417,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        StearicAcid = new Material.Builder(id++, gcylId("stearicacid"))
+        StearicAcid = new Material.Builder(++id, gcylId("stearicacid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0x2bbbb4)
                 .iconSet(FLUID)
@@ -3422,7 +3425,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C18H36O2", true);
 
-        Trioctylphosphine = new Material.Builder(id++, gcylId("trioctylphosphine"))
+        Trioctylphosphine = new Material.Builder(++id, gcylId("trioctylphosphine"))
                 .liquid()
                 .color(0xF1E130)
                 .iconSet(FLUID)
@@ -3430,7 +3433,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C24H51P", true);
 
-        QuantumDots = new Material.Builder(id++, gcylId("quantumdots"))
+        QuantumDots = new Material.Builder(++id, gcylId("quantumdots"))
                 .liquid()
                 .color(0xff0000)
                 .iconSet(FLUID)
@@ -3438,7 +3441,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula(makeFancy("qd"), true);
 
-        HastelloyK243 = new Material.Builder(id++, gcylId("hastelloyk_243"))
+        HastelloyK243 = new Material.Builder(++id, gcylId("hastelloyk_243"))
                 .ingot(2)
                 .color(0xa5f564)
                 .iconSet(SHINY)
@@ -3447,7 +3450,7 @@ public class GCYLMaterials {
                 .blast(12100)
                 .build();
 
-        Enderium = new Material.Builder(id++, gcylId("enderium"))
+        Enderium = new Material.Builder(++id, gcylId("enderium"))
                 .ingot(3).fluid()
                 .toolStats(ToolProperty.Builder.of(8.0F, 3.0F, 1280, 3).build())
                 .color(0x23524a)
@@ -3457,7 +3460,7 @@ public class GCYLMaterials {
                 .blast(4500)
                 .build();
 
-        PreciousMetals = new Material.Builder(id++, gcylId("precious_metals"))
+        PreciousMetals = new Material.Builder(++id, gcylId("precious_metals"))
                 .dust()
                 .color((Ruthenium.getMaterialRGB() + Rhodium.getMaterialRGB() + Palladium.getMaterialRGB() + Silver.getMaterialRGB() + Rhenium.getMaterialRGB() + Osmium.getMaterialRGB() + Iridium.getMaterialRGB() + Platinum.getMaterialRGB() + Gold.getMaterialRGB()) / 9)
                 .iconSet(SHINY)
@@ -3465,7 +3468,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("RuRhPdAgReOsIrPtAu", true);
 
-        RefractoryMetals = new Material.Builder(id++, gcylId("refractory_metals"))
+        RefractoryMetals = new Material.Builder(++id, gcylId("refractory_metals"))
                 .dust()
                 .color((Zirconium.getMaterialRGB() + Niobium.getMaterialRGB() + Molybdenum.getMaterialRGB() + Technetium.getMaterialRGB() + Hafnium.getMaterialRGB() + Tantalum.getMaterialRGB() + Tungsten.getMaterialRGB()) / 7)
                 .iconSet(SHINY)
@@ -3473,7 +3476,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ZrNbMoTcHfTaW", true);
 
-        LightTranstionMetals = new Material.Builder(id++, gcylId("light_transition_metals"))
+        LightTranstionMetals = new Material.Builder(++id, gcylId("light_transition_metals"))
                 .dust()
                 .color((Titanium.getMaterialRGB() + Vanadium.getMaterialRGB() + Chrome.getMaterialRGB() + Manganese.getMaterialRGB() + Iron.getMaterialRGB() + Cobalt.getMaterialRGB() + Nickel.getMaterialRGB() + Copper.getMaterialRGB()) / 8)
                 .iconSet(SHINY)
@@ -3481,7 +3484,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("TiVCrMnFeCoNiCu", true);
 
-        Alkalis = new Material.Builder(id++, gcylId("alkalis"))
+        Alkalis = new Material.Builder(++id, gcylId("alkalis"))
                 .dust()
                 .color((Lithium.getMaterialRGB() + Beryllium.getMaterialRGB() + Sodium.getMaterialRGB() + Magnesium.getMaterialRGB() + Potassium.getMaterialRGB() + Calcium.getMaterialRGB() + Scandium.getMaterialRGB() + Rubidium.getMaterialRGB() + Strontium.getMaterialRGB() + Yttrium.getMaterialRGB() + Caesium.getMaterialRGB() + Barium.getMaterialRGB() + Francium.getMaterialRGB() + Radium.getMaterialRGB()) / 12)
                 .iconSet(SHINY)
@@ -3489,7 +3492,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("LiBeNaMgKCaScRbSrYCeBaFrRa", true);
 
-        PostTransitionMetals = new Material.Builder(id++, gcylId("post_transition_metals"))
+        PostTransitionMetals = new Material.Builder(++id, gcylId("post_transition_metals"))
                 .dust()
                 .color((Aluminium.getMaterialRGB() + Silicon.getMaterialRGB() + Zinc.getMaterialRGB() + Gallium.getMaterialRGB() + Germanium.getMaterialRGB() + Cadmium.getMaterialRGB() + Indium.getMaterialRGB() + Tin.getMaterialRGB() + Antimony.getMaterialRGB() + Mercury.getMaterialRGB() + Thallium.getMaterialRGB() + Lead.getMaterialRGB() + Bismuth.getMaterialRGB() + Polonium.getMaterialRGB()) / 14)
                 .flags(DISABLE_REPLICATION)
@@ -3497,14 +3500,14 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("AlSiZnGaGeCdInSnSbHgTlPbBiPo", true);
 
-        Lanthanoids = new Material.Builder(id++, gcylId("lanthanoids"))
+        Lanthanoids = new Material.Builder(++id, gcylId("lanthanoids"))
                 .dust()
                 .color((Lanthanum.getMaterialRGB() + Cerium.getMaterialRGB() + Praseodymium.getMaterialRGB() + Neodymium.getMaterialRGB() + Promethium.getMaterialRGB() + Samarium.getMaterialRGB() + Europium.getMaterialRGB() + Gadolinium.getMaterialRGB() + Terbium.getMaterialRGB() + Dysprosium.getMaterialRGB() + Holmium.getMaterialRGB() + Erbium.getMaterialRGB() + Thulium.getMaterialRGB() + Ytterbium.getMaterialRGB() + Lutetium.getMaterialRGB()) / 15)
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("LaPrNdPmSmEuGdTbDyHoErTmYbLu", true);
-        Actinoids = new Material.Builder(id++, gcylId("actinoids"))
+        Actinoids = new Material.Builder(++id, gcylId("actinoids"))
                 .dust()
                 .color((Actinium.getMaterialRGB() + Thorium.getMaterialRGB() + Protactinium.getMaterialRGB() + Uranium.getMaterialRGB() + Neptunium.getMaterialRGB() + Plutonium.getMaterialRGB() + Americium.getMaterialRGB() + Curium.getMaterialRGB() + Berkelium.getMaterialRGB() + Californium.getMaterialRGB() + Einsteinium.getMaterialRGB() + Fermium.getMaterialRGB() + Mendelevium.getMaterialRGB()) / 13)
                 .iconSet(SHINY)
@@ -3512,7 +3515,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("AcThPaNpPuAmCmBkCfEsFmMd", true);
 
-        NonMetals = new Material.Builder(id++, gcylId("non_metals"))
+        NonMetals = new Material.Builder(++id, gcylId("non_metals"))
                 .liquid()
                 .color((Hydrogen.getMaterialRGB() + Boron.getMaterialRGB() + Carbon.getMaterialRGB() + Nitrogen.getMaterialRGB() + Oxygen.getMaterialRGB() + Fluorine.getMaterialRGB() + Phosphorus.getMaterialRGB() + Sulfur.getMaterialRGB() + Chlorine.getMaterialRGB() + Arsenic.getMaterialRGB() + Selenium.getMaterialRGB() + Bromine.getMaterialRGB() + Tellurium.getMaterialRGB() + Iodine.getMaterialRGB() + Astatine.getMaterialRGB()))
                 .iconSet(FLUID)
@@ -3520,14 +3523,14 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("BCPSAsSeTeIAtONHFClBr", true);
 
-        NobleGases = new Material.Builder(id++, gcylId("noble_gases_mixture"))
+        NobleGases = new Material.Builder(++id, gcylId("noble_gases_mixture"))
                 .gas()
                 .color((Helium.getMaterialRGB() + Neon.getMaterialRGB() + Argon.getMaterialRGB() + Krypton.getMaterialRGB() + Xenon.getMaterialRGB() + Radon.getMaterialRGB()))
                 .flags(DISABLE_REPLICATION)
                 .build()
                 .setFormula("HeNeArKrXeRn", true);
 
-        Periodicium = new Material.Builder(id++, gcylId("periodicium"))
+        Periodicium = new Material.Builder(++id, gcylId("periodicium"))
                 .ingot(6).liquid()
                 .color(0x3d4bf6)
                 .iconSet(SHINY)
@@ -3654,7 +3657,7 @@ public class GCYLMaterials {
                 .blast(13500)
                 .build();
 
-        HeavyLeptonMix = new Material.Builder(id++, gcylId("heavy_lepton_mix"))
+        HeavyLeptonMix = new Material.Builder(++id, gcylId("heavy_lepton_mix"))
                 .liquid()
                 .color(0x5adf52)
                 .iconSet(FLUID)
@@ -3662,7 +3665,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula(TextFormatting.OBFUSCATED + "a" + TextFormatting.RESET + "(t2)u" + TextFormatting.OBFUSCATED + "a", true);
 
-        Gluons = new Material.Builder(id++, gcylId("gluons"))
+        Gluons = new Material.Builder(++id, gcylId("gluons"))
                 .liquid()
                 .color(0xfcfcfa)
                 .iconSet(FLUID)
@@ -3670,14 +3673,14 @@ public class GCYLMaterials {
                 .build()
                 .setFormula(TextFormatting.OBFUSCATED + "a" + TextFormatting.RESET + "g" + TextFormatting.OBFUSCATED + "a", true);
 
-        DenseNeutronPlasma = new Material.Builder(id++, gcylId("dense_neutron_plasma"))
+        DenseNeutronPlasma = new Material.Builder(++id, gcylId("dense_neutron_plasma"))
                 .plasma(new FluidBuilder().temperature(1000000))
                 .color(0xacecac)
                 .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
                 .build()
                 .setFormula(TextFormatting.OBFUSCATED + "a" + TextFormatting.RESET + TextFormatting.GRAY + "n" + TextFormatting.OBFUSCATED + "a", true);
 
-        SuperfluidHelium = new Material.Builder(id++, gcylId("superfluid_helium"))
+        SuperfluidHelium = new Material.Builder(++id, gcylId("superfluid_helium"))
                 .liquid()
                 .color(Helium.getMaterialRGB())
                 .iconSet(FLUID)
@@ -3685,7 +3688,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("He", true);
 
-        Cycloparaphenylene = new Material.Builder(id++, gcylId("cycloparaphenylene"))
+        Cycloparaphenylene = new Material.Builder(++id, gcylId("cycloparaphenylene"))
                 .liquid()
                 .color(0x333333)
                 .iconSet(FLUID)
@@ -3693,7 +3696,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CPP", true);
 
-        NeutroniumDopedNanotubes = new Material.Builder(id++, gcylId("neutronium_doped_nanotubes"))
+        NeutroniumDopedNanotubes = new Material.Builder(++id, gcylId("neutronium_doped_nanotubes"))
                 .liquid()
                 .color((Neutronium.getMaterialRGB() + CarbonNanotubes.getMaterialRGB()) / 2)
                 .iconSet(FLUID)
@@ -3701,14 +3704,14 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nt?", true);
 
-        CosmicMeshPlasma = new Material.Builder(id++, gcylId("cosmic_mesh_plasma"))
+        CosmicMeshPlasma = new Material.Builder(++id, gcylId("cosmic_mesh_plasma"))
                 .plasma(new FluidBuilder().temperature(1000000))
                 .color(0x1c1c8c)
                 .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
                 .build()
                 .setFormula(TextFormatting.OBFUSCATED + "nn", true);
 
-        AcidicSaltWater = new Material.Builder(id++, gcylId("acidic_salt_water"))
+        AcidicSaltWater = new Material.Builder(++id, gcylId("acidic_salt_water"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0x006960)
                 .flags(DISABLE_REPLICATION)
@@ -3716,7 +3719,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2SO4(NaCl)3(H2O)3Cl2", true);
 
-        SulfuricBromineSolution = new Material.Builder(id++, gcylId("sulfuric_bromine_solution"))
+        SulfuricBromineSolution = new Material.Builder(++id, gcylId("sulfuric_bromine_solution"))
                 .liquid()
                 .color(0xff5100)
                 .flags(DISABLE_REPLICATION)
@@ -3724,7 +3727,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2SO4Br(H2O)Cl2", true);
 
-        DebrominatedWater = new Material.Builder(id++, gcylId("debrominated_brine"))
+        DebrominatedWater = new Material.Builder(++id, gcylId("debrominated_brine"))
                 .liquid()
                 .color(0x0000ff)
                 .flags(DISABLE_REPLICATION)
@@ -3732,7 +3735,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2O", true);
 
-        HotVapourMixture = new Material.Builder(id++, gcylId("hot_vapour_mixture"))
+        HotVapourMixture = new Material.Builder(++id, gcylId("hot_vapour_mixture"))
                 .gas()
                 .color(0xff5100)
                 .flags(DISABLE_REPLICATION)
@@ -3740,7 +3743,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2SO4Br(H2O)2Cl2", true);
 
-        Ethylhexanol = new Material.Builder(id++, gcylId("ethylhexanol"))
+        Ethylhexanol = new Material.Builder(++id, gcylId("ethylhexanol"))
                 .liquid()
                 .color(0xfeea9a)
                 .flags(DISABLE_REPLICATION)
@@ -3748,7 +3751,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C8H18O", true);
 
-        DampBromine = new Material.Builder(id++, gcylId("damp_bromine"))
+        DampBromine = new Material.Builder(++id, gcylId("damp_bromine"))
                 .liquid()
                 .color(0xe17594)
                 .flags(DISABLE_REPLICATION)
@@ -3756,7 +3759,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Br(H2O)", true);
 
-        DiethylhexylPhosphoricAcid = new Material.Builder(id++, gcylId("di_ethylhexyl_phosphoric_acid"))
+        DiethylhexylPhosphoricAcid = new Material.Builder(++id, gcylId("di_ethylhexyl_phosphoric_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0xffff99)
                 .flags(DISABLE_REPLICATION)
@@ -3764,7 +3767,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C16H35O4P", true);
 
-        SodiumHydroxideSolution = new Material.Builder(id++, gcylId("sodium_hydroxide_solution"))
+        SodiumHydroxideSolution = new Material.Builder(++id, gcylId("sodium_hydroxide_solution"))
                 .liquid()
                 .color(SodiumHydroxide.getMaterialRGB() + 50)
                 .flags(DISABLE_REPLICATION)
@@ -3772,7 +3775,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)NaOH", true);
 
-        RareEarthHydroxidesSolution = new Material.Builder(id++, gcylId("rare_earth_hydroxides_solution"))
+        RareEarthHydroxidesSolution = new Material.Builder(++id, gcylId("rare_earth_hydroxides_solution"))
                 .liquid()
                 .color(0xcfb37d)
                 .flags(DISABLE_REPLICATION)
@@ -3780,7 +3783,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaOH(H2O)?(OH)3", true);
 
-        RareEarthChloridesSolution = new Material.Builder(id++, gcylId("rare_earth_chlorides_solution"))
+        RareEarthChloridesSolution = new Material.Builder(++id, gcylId("rare_earth_chlorides_solution"))
                 .liquid()
                 .color(0x164b45)
                 .flags(DISABLE_REPLICATION)
@@ -3788,7 +3791,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(?Cl3)H2O", true);
 
-        ThUSludge = new Material.Builder(id++, gcylId("thorium_uranium_sludge"))
+        ThUSludge = new Material.Builder(++id, gcylId("thorium_uranium_sludge"))
                 .dust()
                 .color(0x002908)
                 .flags(DISABLE_REPLICATION)
@@ -3796,7 +3799,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ThU", true);
 
-        LaNdOxidesSolution = new Material.Builder(id++, gcylId("la_nd_oxides_solution"))
+        LaNdOxidesSolution = new Material.Builder(++id, gcylId("la_nd_oxides_solution"))
                 .liquid()
                 .color(0x9ce3db)
                 .flags(DISABLE_REPLICATION)
@@ -3804,7 +3807,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(La2O3)(Pr2O3)(Nd2O3)(Ce2O3)", true);
 
-        SmGdOxidesSolution = new Material.Builder(id++, gcylId("sm_gd_oxides_solution"))
+        SmGdOxidesSolution = new Material.Builder(++id, gcylId("sm_gd_oxides_solution"))
                 .liquid()
                 .color(0xffff99)
                 .flags(DISABLE_REPLICATION)
@@ -3812,7 +3815,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(Sc2O3)(Eu2O3)(Gd2O3)(Sm2O3)", true);
 
-        TbHoOxidesSolution = new Material.Builder(id++, gcylId("tb_ho_oxides_solution"))
+        TbHoOxidesSolution = new Material.Builder(++id, gcylId("tb_ho_oxides_solution"))
                 .liquid()
                 .color(0x99ff99)
                 .flags(DISABLE_REPLICATION)
@@ -3820,7 +3823,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(Y2O3)(Tb2O3)(Dy2O3)(Ho2O3)", true);
 
-        ErLuOxidesSolution = new Material.Builder(id++, gcylId("er_lu_oxides_solution"))
+        ErLuOxidesSolution = new Material.Builder(++id, gcylId("er_lu_oxides_solution"))
                 .liquid()
                 .color(0xffb3ff)
                 .flags(DISABLE_REPLICATION)
@@ -3828,7 +3831,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(Er2O3)(Tm2O3)(Yb2O3)(Lu2O3)", true);
 
-        LanthanumOxide = new Material.Builder(id++, gcylId("lanthanum_oxide"))
+        LanthanumOxide = new Material.Builder(++id, gcylId("lanthanum_oxide"))
                 .dust()
                 .color(Lanthanum.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -3836,7 +3839,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("La2O3", true);
 
-        CeriumOxide = new Material.Builder(id++, gcylId("cerium_oxide"))
+        CeriumOxide = new Material.Builder(++id, gcylId("cerium_oxide"))
                 .dust()
                 .color(Cerium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -3844,7 +3847,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ce2O3", true);
 
-        ScandiumOxide = new Material.Builder(id++, gcylId("scandium_oxide"))
+        ScandiumOxide = new Material.Builder(++id, gcylId("scandium_oxide"))
                 .dust()
                 .color(Scandium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -3852,7 +3855,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Sc2O3", true);
 
-        EuropiumOxide = new Material.Builder(id++, gcylId("europium_oxide"))
+        EuropiumOxide = new Material.Builder(++id, gcylId("europium_oxide"))
                 .dust()
                 .color(Europium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -3860,7 +3863,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Eu2O3", true);
 
-        GadoliniumOxide = new Material.Builder(id++, gcylId("gadolinium_oxide"))
+        GadoliniumOxide = new Material.Builder(++id, gcylId("gadolinium_oxide"))
                 .dust()
                 .color(Gadolinium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -3868,7 +3871,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Gd2O3", true);
 
-        SamariumOxide = new Material.Builder(id++, gcylId("samarium_oxide"))
+        SamariumOxide = new Material.Builder(++id, gcylId("samarium_oxide"))
                 .dust()
                 .color(Samarium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -3876,7 +3879,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Sm2O3", true);
 
-        TerbiumOxide = new Material.Builder(id++, gcylId("terbium_oxide"))
+        TerbiumOxide = new Material.Builder(++id, gcylId("terbium_oxide"))
                 .dust()
                 .color(Terbium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -3884,7 +3887,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Tb2O3", true);
 
-        DysprosiumOxide = new Material.Builder(id++, gcylId("dysprosium_oxide"))
+        DysprosiumOxide = new Material.Builder(++id, gcylId("dysprosium_oxide"))
                 .dust()
                 .color(Dysprosium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -3892,7 +3895,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Dy2O3", true);
 
-        ErbiumOxide = new Material.Builder(id++, gcylId("erbium_oxide"))
+        ErbiumOxide = new Material.Builder(++id, gcylId("erbium_oxide"))
                 .dust()
                 .color(Erbium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -3900,7 +3903,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Er2O3", true);
 
-        YtterbiumOxide = new Material.Builder(id++, gcylId("ytterbium_oxide"))
+        YtterbiumOxide = new Material.Builder(++id, gcylId("ytterbium_oxide"))
                 .dust()
                 .color(Ytterbium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -3908,7 +3911,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Yb2O3", true);
 
-        Dimethylether = new Material.Builder(id++, gcylId("dimethylether"))
+        Dimethylether = new Material.Builder(++id, gcylId("dimethylether"))
                 .liquid()
                 .color(0xe6cd11)
                 .flags(DISABLE_REPLICATION)
@@ -3916,7 +3919,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2H6O", true);
 
-        EthyleneOxide = new Material.Builder(id++, gcylId("ethylene_oxide"))
+        EthyleneOxide = new Material.Builder(++id, gcylId("ethylene_oxide"))
                 .liquid()
                 .color(0xa0c3de)
                 .flags(DISABLE_REPLICATION)
@@ -3924,7 +3927,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2H4O", true);
 
-        Dimethoxyethane = new Material.Builder(id++, gcylId("dimethoxyethane"))
+        Dimethoxyethane = new Material.Builder(++id, gcylId("dimethoxyethane"))
                 .liquid()
                 .color(0x2acbb4)
                 .flags(DISABLE_REPLICATION)
@@ -3932,7 +3935,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C4H10O2", true);
 
-        Cyclooctadiene = new Material.Builder(id++, gcylId("cyclooctadiene"))
+        Cyclooctadiene = new Material.Builder(++id, gcylId("cyclooctadiene"))
                 .liquid()
                 .color(0x33CC33)
                 .flags(DISABLE_REPLICATION)
@@ -3940,7 +3943,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C8H12", true);
 
-        Cyclopentadiene = new Material.Builder(id++, gcylId("cyclopentadiene"))
+        Cyclopentadiene = new Material.Builder(++id, gcylId("cyclopentadiene"))
                 .liquid()
                 .color(Cyclooctadiene.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -3948,7 +3951,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C5H6", true);
 
-        ButylLithium = new Material.Builder(id++, gcylId("butyl_lithium"))
+        ButylLithium = new Material.Builder(++id, gcylId("butyl_lithium"))
                 .liquid()
                 .color(Butane.getMaterialRGB() + Lithium.getMaterialRGB() / 2)
                 .flags(DISABLE_REPLICATION)
@@ -3956,7 +3959,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C4H9Li", true);
 
-        LithiumCyclopentadienide = new Material.Builder(id++, gcylId("lithiumcyclopentadienide"))
+        LithiumCyclopentadienide = new Material.Builder(++id, gcylId("lithiumcyclopentadienide"))
                 .liquid()
                 .color(0x95556a)
                 .flags(DISABLE_REPLICATION)
@@ -3964,7 +3967,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("LiC5H5", true);
 
-        GoldCyanide = new Material.Builder(id++, gcylId("gold_cyanide"))
+        GoldCyanide = new Material.Builder(++id, gcylId("gold_cyanide"))
                 .liquid()
                 .color(0x8c8761)
                 .flags(DISABLE_REPLICATION)
@@ -3972,7 +3975,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("AuCN", true);
 
-        GoldDepleteMolybdenite = new Material.Builder(id++, gcylId("gold_deplete_molybdenite"))
+        GoldDepleteMolybdenite = new Material.Builder(++id, gcylId("gold_deplete_molybdenite"))
                 .dust()
                 .color(0x7c7c8f)
                 .flags(DISABLE_REPLICATION)
@@ -3980,7 +3983,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("MoS2?", true);
 
-        MolybdenumConcentrate = new Material.Builder(id++, gcylId("molybdenum_concentrate"))
+        MolybdenumConcentrate = new Material.Builder(++id, gcylId("molybdenum_concentrate"))
                 .dust()
                 .color(0x565666)
                 .flags(DISABLE_REPLICATION)
@@ -3988,7 +3991,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("MoS2Re", true);
 
-        ChlorideLeachedSolution = new Material.Builder(id++, gcylId("chloride_leached_solution"))
+        ChlorideLeachedSolution = new Material.Builder(++id, gcylId("chloride_leached_solution"))
                 .liquid()
                 .color(0x41472e)
                 .flags(DISABLE_REPLICATION)
@@ -3996,7 +3999,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CaCl2(CuCl2)(PbCl2)(BiCl3)(FeCl2)", true);
 
-        CopperChloride = new Material.Builder(id++, gcylId("copper_chloride"))
+        CopperChloride = new Material.Builder(++id, gcylId("copper_chloride"))
                 .dust()
                 .color(0xf5b35d)
                 .flags(DISABLE_REPLICATION)
@@ -4004,7 +4007,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CuCl2", true);
 
-        LeadChloride = new Material.Builder(id++, gcylId("lead_chloride"))
+        LeadChloride = new Material.Builder(++id, gcylId("lead_chloride"))
                 .dust()
                 .color(Lead.getMaterialRGB() + Chlorine.getMaterialRGB() / 2)
                 .flags(DISABLE_REPLICATION)
@@ -4012,7 +4015,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("PbCl2", true);
 
-        BismuthChloride = new Material.Builder(id++, gcylId("bismuth_chloride"))
+        BismuthChloride = new Material.Builder(++id, gcylId("bismuth_chloride"))
                 .dust()
                 .color(0x95f5d7)
                 .flags(DISABLE_REPLICATION)
@@ -4020,7 +4023,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("BiCl3", true);
 
-        Iron2Chloride = new Material.Builder(id++, gcylId("iron_ii_chloride"))
+        Iron2Chloride = new Material.Builder(++id, gcylId("iron_ii_chloride"))
                 .liquid()
                 .color(Iron3Chloride.getMaterialRGB() - 10)
                 .flags(DISABLE_REPLICATION)
@@ -4028,7 +4031,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("FeCl2", true);
 
-        MolybdenumFlue = new Material.Builder(id++, gcylId("molybdenum_flue_gas"))
+        MolybdenumFlue = new Material.Builder(++id, gcylId("molybdenum_flue_gas"))
                 .gas()
                 .color(0x333338)
                 .flags(DISABLE_REPLICATION)
@@ -4036,7 +4039,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2OReS?", true);
 
-        MolybdenumTrioxide = new Material.Builder(id++, gcylId("molybdenum_trioxide"))
+        MolybdenumTrioxide = new Material.Builder(++id, gcylId("molybdenum_trioxide"))
                 .dust()
                 .color(0x666685)
                 .flags(DISABLE_REPLICATION)
@@ -4044,7 +4047,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("MoO3", true);
 
-        RheniumSulfuricSolution = new Material.Builder(id++, gcylId("rhenium_sulfuric_solution"))
+        RheniumSulfuricSolution = new Material.Builder(++id, gcylId("rhenium_sulfuric_solution"))
                 .liquid()
                 .color(0xbabaff)
                 .flags(DISABLE_REPLICATION)
@@ -4052,7 +4055,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ReS?", true);
 
-        AmmoniumPerrhenate = new Material.Builder(id++, gcylId("ammonium_perrhenate"))
+        AmmoniumPerrhenate = new Material.Builder(++id, gcylId("ammonium_perrhenate"))
                 .liquid()
                 .color(0x1c1c45)
                 .flags(DISABLE_REPLICATION)
@@ -4060,7 +4063,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NH4ReO4", true);
 
-        MercuryAcetate = new Material.Builder(id++, gcylId("mercury_acetate"))
+        MercuryAcetate = new Material.Builder(++id, gcylId("mercury_acetate"))
                 .dust()
                 .color(0xcc8562)
                 .flags(DISABLE_REPLICATION)
@@ -4068,7 +4071,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Hg(CH3COO)2", true);
 
-        Methylamine = new Material.Builder(id++, gcylId("methylamine"))
+        Methylamine = new Material.Builder(++id, gcylId("methylamine"))
                 .liquid()
                 .color((Methanol.getMaterialRGB() + Ammonia.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -4076,7 +4079,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CH3NH2", true);
 
-        Methylethanolamine = new Material.Builder(id++, gcylId("methylethanolamine"))
+        Methylethanolamine = new Material.Builder(++id, gcylId("methylethanolamine"))
                 .liquid()
                 .color(0x6a3baa)
                 .flags(DISABLE_REPLICATION)
@@ -4084,7 +4087,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C3H9NO", true);
 
-        CalciumCarbide = new Material.Builder(id++, gcylId("calcium_carbide"))
+        CalciumCarbide = new Material.Builder(++id, gcylId("calcium_carbide"))
                 .dust()
                 .color(0x807b70)
                 .flags(DISABLE_REPLICATION)
@@ -4092,7 +4095,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CaC2", true);
 
-        CalciumCyanamide = new Material.Builder(id++, gcylId("calcium_cyanamide"))
+        CalciumCyanamide = new Material.Builder(++id, gcylId("calcium_cyanamide"))
                 .dust()
                 .color(CalciumCarbide.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -4100,7 +4103,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CaCN2", true);
 
-        Methylguanidine = new Material.Builder(id++, gcylId("methylguanidine"))
+        Methylguanidine = new Material.Builder(++id, gcylId("methylguanidine"))
                 .liquid()
                 .color(0x5a9a3c)
                 .flags(DISABLE_REPLICATION)
@@ -4108,7 +4111,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2H7N3", true);
 
-        Methylnitronitrosoguanidine = new Material.Builder(id++, gcylId("methylnitronitrosoguanidine"))
+        Methylnitronitrosoguanidine = new Material.Builder(++id, gcylId("methylnitronitrosoguanidine"))
                 .liquid()
                 .color(0x68b15d)
                 .flags(DISABLE_REPLICATION)
@@ -4116,7 +4119,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2H5N5O3", true);
 
-        CupriavidusNecator = new Material.Builder(id++, gcylId("cupriavidus_necator"))
+        CupriavidusNecator = new Material.Builder(++id, gcylId("cupriavidus_necator"))
                 .dust()
                 .color(0x22704f)
                 .flags(DISABLE_REPLICATION)
@@ -4124,7 +4127,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Bacteria", true);
 
-        SelectivelyMutatedCupriavidiusNecator = new Material.Builder(id++, gcylId("selectively_mutated_cupriavidius_necator"))
+        SelectivelyMutatedCupriavidiusNecator = new Material.Builder(++id, gcylId("selectively_mutated_cupriavidius_necator"))
                 .dust()
                 .color(CupriavidusNecator.getMaterialRGB() * 5 / 4)
                 .flags(DISABLE_REPLICATION)
@@ -4132,7 +4135,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Bacteria", true);
 
-        IsoamylAlcohol = new Material.Builder(id++, gcylId("isoamyl_alcohol"))
+        IsoamylAlcohol = new Material.Builder(++id, gcylId("isoamyl_alcohol"))
                 .liquid()
                 .color(0xcaba77)
                 .flags(DISABLE_REPLICATION)
@@ -4140,7 +4143,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C5H12O", true);
 
-        Oct1ene = new Material.Builder(id++, gcylId("1_octene"))
+        Oct1ene = new Material.Builder(++id, gcylId("1_octene"))
                 .liquid()
                 .color(0x7e8778)
                 .flags(DISABLE_REPLICATION)
@@ -4148,7 +4151,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C8H16", true);
 
-        Octanol = new Material.Builder(id++, gcylId("octanol"))
+        Octanol = new Material.Builder(++id, gcylId("octanol"))
                 .liquid()
                 .color(0xa2b8c2)
                 .flags(DISABLE_REPLICATION)
@@ -4156,7 +4159,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C8H18O", true);
 
-        PalladiumLoadedRutileNanoparticles = new Material.Builder(id++, gcylId("palladium_loaded_rutile_nanoparticles"))
+        PalladiumLoadedRutileNanoparticles = new Material.Builder(++id, gcylId("palladium_loaded_rutile_nanoparticles"))
                 .dust()
                 .color((Palladium.getMaterialRGB() + Rutile.getMaterialRGB()))
                 .flags(DISABLE_REPLICATION)
@@ -4164,7 +4167,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("PdTiO2", true);
 
-        Trioctylamine = new Material.Builder(id++, gcylId("trioctylamine"))
+        Trioctylamine = new Material.Builder(++id, gcylId("trioctylamine"))
                 .liquid()
                 .color(0x87a2bc)
                 .flags(DISABLE_REPLICATION)
@@ -4172,7 +4175,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C24H51N", true);
 
-        Kerosene = new Material.Builder(id++, gcylId("kerosene"))
+        Kerosene = new Material.Builder(++id, gcylId("kerosene"))
                 .liquid()
                 .color(0xD570D5)
                 .flags(DISABLE_REPLICATION)
@@ -4180,7 +4183,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        MesitylOxide = new Material.Builder(id++, gcylId("mesityl_oxide"))
+        MesitylOxide = new Material.Builder(++id, gcylId("mesityl_oxide"))
                 .liquid()
                 .color(Acetone.getMaterialRGB() - 10)
                 .flags(DISABLE_REPLICATION)
@@ -4188,7 +4191,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H10O", true);
 
-        MethylIsobutylKetone = new Material.Builder(id++, gcylId("methyl_isobutyl_ketone"))
+        MethylIsobutylKetone = new Material.Builder(++id, gcylId("methyl_isobutyl_ketone"))
                 .liquid()
                 .color((MesitylOxide.getMaterialRGB() + WaterAgarMix.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -4196,7 +4199,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H12O", true);
 
-        PlatinumSalt = new Material.Builder(id++, gcylId("platinum_salt"))
+        PlatinumSalt = new Material.Builder(++id, gcylId("platinum_salt"))
                 .dust()
                 .color(Platinum.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -4204,7 +4207,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Pt?", true);
 
-        RheniumSeparationMixture = new Material.Builder(id++, gcylId("rhenium_separation_mixture"))
+        RheniumSeparationMixture = new Material.Builder(++id, gcylId("rhenium_separation_mixture"))
                 .liquid()
                 .color(0xed2c3a)
                 .flags(DISABLE_REPLICATION)
@@ -4212,7 +4215,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C11H24", true);
 
-        RheniumScrubbedSolution = new Material.Builder(id++, gcylId("rhenium_scrubbed_solution"))
+        RheniumScrubbedSolution = new Material.Builder(++id, gcylId("rhenium_scrubbed_solution"))
                 .liquid()
                 .color(0xedccca)
                 .flags(DISABLE_REPLICATION)
@@ -4220,7 +4223,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Re?", true);
 
-        LeachedColumbite = new Material.Builder(id++, gcylId("leached_columbite"))
+        LeachedColumbite = new Material.Builder(++id, gcylId("leached_columbite"))
                 .dust()
                 .color(0xCCCC00)
                 .flags(DISABLE_REPLICATION)
@@ -4228,7 +4231,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(Nb2O5)9Ta2O5?", true);
 
-        PurifiedColumbite = new Material.Builder(id++, gcylId("purified_columbite"))
+        PurifiedColumbite = new Material.Builder(++id, gcylId("purified_columbite"))
                 .dust()
                 .color(LeachedColumbite.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -4236,7 +4239,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ta2O5Nb18O45", true);
 
-        LeachedPyrochlore = new Material.Builder(id++, gcylId("leached_pyrochlore"))
+        LeachedPyrochlore = new Material.Builder(++id, gcylId("leached_pyrochlore"))
                 .dust()
                 .color(0x996633)
                 .flags(DISABLE_REPLICATION)
@@ -4244,7 +4247,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(Nb2O5)9Ta2O5?", true);
 
-        PurifiedPyrochlore = new Material.Builder(id++, gcylId("purified_pyrochlore"))
+        PurifiedPyrochlore = new Material.Builder(++id, gcylId("purified_pyrochlore"))
                 .dust()
                 .color(LeachedPyrochlore.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -4252,7 +4255,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ta2O5Nb18O45", true);
 
-        Glucose = new Material.Builder(id++, gcylId("glucose"))
+        Glucose = new Material.Builder(++id, gcylId("glucose"))
                 .dust()
                 .color((Sugar.getMaterialRGB() + 5))
                 .flags(DISABLE_REPLICATION)
@@ -4260,7 +4263,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H12O6", true);
 
-        FluoroniobicAcid = new Material.Builder(id++, gcylId("fluroniobic_acid"))
+        FluoroniobicAcid = new Material.Builder(++id, gcylId("fluroniobic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0x73ff00)
                 .flags(DISABLE_REPLICATION)
@@ -4268,7 +4271,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NbHF7", true);
 
-        PlatinumSaltRefined = new Material.Builder(id++, gcylId("refined_platinum_salt"))
+        PlatinumSaltRefined = new Material.Builder(++id, gcylId("refined_platinum_salt"))
                 .dust()
                 .color(Platinum.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -4276,7 +4279,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("PtCl?", true);
 
-        DirtyHexafluorosilicicAcid = new Material.Builder(id++, gcylId("dirty_hexafluorosilicic_acid"))
+        DirtyHexafluorosilicicAcid = new Material.Builder(++id, gcylId("dirty_hexafluorosilicic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color((Stone.getMaterialRGB() + FluorosilicicAcid.getMaterialRGB() / 2))
                 .flags(DISABLE_REPLICATION)
@@ -4284,14 +4287,14 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2SiF6?", true);
 
-        StoneResidueDust = new Material.Builder(id++, gcylId("stone_residue_dust"))
+        StoneResidueDust = new Material.Builder(++id, gcylId("stone_residue_dust"))
                 .dust()
                 .color(Stone.getMaterialRGB() / 5 * 3)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(ROUGH)
                 .build();
 
-        DiluteHexafluorosilicicAcid = new Material.Builder(id++, gcylId("dilute_hexafluorosilicic_acid"))
+        DiluteHexafluorosilicicAcid = new Material.Builder(++id, gcylId("dilute_hexafluorosilicic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color((Water.getMaterialRGB() * 2 + FluorosilicicAcid.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -4299,7 +4302,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)2(H2SiF6)", true);
 
-        Triniite = new Material.Builder(id++, gcylId("triniite"))
+        Triniite = new Material.Builder(++id, gcylId("triniite"))
                 .dust(7)
                 .color(0x5F5A76)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -4307,7 +4310,7 @@ public class GCYLMaterials {
                 .components(Trinium, 3, Actinium, 3, Selenium, 4, Astatine, 4)
                 .build();
 
-        UncommonResidues = new Material.Builder(id++, gcylId("uncommon_residues"))
+        UncommonResidues = new Material.Builder(++id, gcylId("uncommon_residues"))
                 .dust()
                 .color((Triniite.getMaterialRGB() + NaquadriaticTaranium.getMaterialRGB() + PreciousMetals.getMaterialRGB()) / 5)
                 .flags(DISABLE_REPLICATION)
@@ -4315,7 +4318,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        RedMud = new Material.Builder(id++, gcylId("red_mud"))
+        RedMud = new Material.Builder(++id, gcylId("red_mud"))
                 .liquid()
                 .color(0xcc3300)
                 .flags(DISABLE_REPLICATION)
@@ -4323,7 +4326,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HCl?", true);
 
-        Dioxygendifluoride = new Material.Builder(id++, gcylId("dioxygen_difluoride"))
+        Dioxygendifluoride = new Material.Builder(++id, gcylId("dioxygen_difluoride"))
                 .liquid()
                 .color(0x32bdaf)
                 .flags(DISABLE_REPLICATION)
@@ -4331,35 +4334,35 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("FOOF", true);
 
-        PartiallyOxidizedResidues = new Material.Builder(id++, gcylId("partially_oxidized_residues"))
+        PartiallyOxidizedResidues = new Material.Builder(++id, gcylId("partially_oxidized_residues"))
                 .dust()
                 .color(StoneResidueDust.getMaterialRGB() + Dioxygendifluoride.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
                 .iconSet(DULL)
                 .build();
 
-        OxidizedResidualSolution = new Material.Builder(id++, gcylId("oxidized_residual_solution"))
+        OxidizedResidualSolution = new Material.Builder(++id, gcylId("oxidized_residual_solution"))
                 .liquid()
                 .color(0x23ad7f)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        InertResidues = new Material.Builder(id++, gcylId("inert_residues"))
+        InertResidues = new Material.Builder(++id, gcylId("inert_residues"))
                 .dust()
                 .color(0x61587a)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(SHINY)
                 .build();
 
-        CleanInertResidues = new Material.Builder(id++, gcylId("clean_inert_residues"))
+        CleanInertResidues = new Material.Builder(++id, gcylId("clean_inert_residues"))
                 .dust()
                 .color((Taranium.getMaterialRGB() + Xenon.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(SHINY)
                 .build();
 
-        NaquadricCompound = new Material.Builder(id++, gcylId("naquadric_compound"))
+        NaquadricCompound = new Material.Builder(++id, gcylId("naquadric_compound"))
                 .dust()
                 .color(Naquadah.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -4367,7 +4370,7 @@ public class GCYLMaterials {
                 .components(Naquadah.getMaterialComponents())
                 .build();
 
-        EnrichedNaquadricCompound = new Material.Builder(id++, gcylId("enriched_naquadric_compound"))
+        EnrichedNaquadricCompound = new Material.Builder(++id, gcylId("enriched_naquadric_compound"))
                 .dust()
                 .color(NaquadahEnriched.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -4375,7 +4378,7 @@ public class GCYLMaterials {
                 .components(NaquadahEnriched.getMaterialComponents())
                 .build();
 
-        NaquadriaticCompound = new Material.Builder(id++, gcylId("naquadriatic_compound"))
+        NaquadriaticCompound = new Material.Builder(++id, gcylId("naquadriatic_compound"))
                 .dust()
                 .color(Naquadria.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -4383,91 +4386,91 @@ public class GCYLMaterials {
                 .components(Naquadria.getMaterialComponents())
                 .build();
 
-        DiamagneticResidues = new Material.Builder(id++, gcylId("diamagnetic_residues"))
+        DiamagneticResidues = new Material.Builder(++id, gcylId("diamagnetic_residues"))
                 .dust()
                 .color((Calcium.getMaterialRGB() + Zinc.getMaterialRGB() + Copper.getMaterialRGB() + Gallium.getMaterialRGB() + Beryllium.getMaterialRGB() + Tin.getMaterialRGB()) / 15)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(DULL)
                 .build();
 
-        ParamagneticResidues = new Material.Builder(id++, gcylId("paramagnetic_residues"))
+        ParamagneticResidues = new Material.Builder(++id, gcylId("paramagnetic_residues"))
                 .dust()
                 .color((Sodium.getMaterialRGB() + Potassium.getMaterialRGB() + Magnesium.getMaterialRGB() + Titanium.getMaterialRGB() + Vanadium.getMaterialRGB() + Manganese.getMaterialRGB()) / 15)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(DULL)
                 .build();
 
-        FerromagneticResidues = new Material.Builder(id++, gcylId("ferromagnetic_residues"))
+        FerromagneticResidues = new Material.Builder(++id, gcylId("ferromagnetic_residues"))
                 .dust()
                 .color((Iron.getMaterialRGB() + Nickel.getMaterialRGB() + Cobalt.getMaterialRGB()) / 7)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(DULL)
                 .build();
 
-        OxidizedResidues = new Material.Builder(id++, gcylId("oxidized_residues"))
+        OxidizedResidues = new Material.Builder(++id, gcylId("oxidized_residues"))
                 .dust()
                 .color((DiamagneticResidues.getMaterialRGB() + ParamagneticResidues.getMaterialRGB() + FerromagneticResidues.getMaterialRGB() + 0x9f0000) / 4)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(DULL)
                 .build();
 
-        HeavyOxidizedResidues = new Material.Builder(id++, gcylId("heavy_oxidized_residues"))
+        HeavyOxidizedResidues = new Material.Builder(++id, gcylId("heavy_oxidized_residues"))
                 .dust()
                 .color(OxidizedResidues.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
                 .iconSet(DULL)
                 .build();
 
-        MetallicResidues = new Material.Builder(id++, gcylId("metallic_residues"))
+        MetallicResidues = new Material.Builder(++id, gcylId("metallic_residues"))
                 .dust()
                 .color((DiamagneticResidues.getMaterialRGB() + ParamagneticResidues.getMaterialRGB() + FerromagneticResidues.getMaterialRGB() + UncommonResidues.getMaterialRGB() / 3) / 4)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(DULL)
                 .build();
 
-        HeavyDiamagneticResidues = new Material.Builder(id++, gcylId("heavy_diamagnetic_residues"))
+        HeavyDiamagneticResidues = new Material.Builder(++id, gcylId("heavy_diamagnetic_residues"))
                 .dust()
                 .color((Lead.getMaterialRGB() + Mercury.getMaterialRGB() + Cadmium.getMaterialRGB() + Indium.getMaterialRGB() + Gold.getMaterialRGB() + Bismuth.getMaterialRGB()))
                 .flags(DISABLE_REPLICATION)
                 .iconSet(DULL)
                 .build();
 
-        HeavyParamagneticResidues = new Material.Builder(id++, gcylId("heavy_paramagnetic_residues"))
+        HeavyParamagneticResidues = new Material.Builder(++id, gcylId("heavy_paramagnetic_residues"))
                 .dust()
                 .color((Thorium.getMaterialRGB() + Thallium.getMaterialRGB() + Uranium.getMaterialRGB() + Tungsten.getMaterialRGB() + Hafnium.getMaterialRGB() + Tantalum.getMaterialRGB()) / 15)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(DULL)
                 .build();
 
-        HeavyFerromagneticResidues = new Material.Builder(id++, gcylId("heavy_ferromagnetic_residues"))
+        HeavyFerromagneticResidues = new Material.Builder(++id, gcylId("heavy_ferromagnetic_residues"))
                 .dust()
                 .color(DysprosiumOxide.getMaterialRGB() * 3 / 11)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(DULL)
                 .build();
 
-        HeavyMetallicResidues = new Material.Builder(id++, gcylId("heavy_metallic_residues"))
+        HeavyMetallicResidues = new Material.Builder(++id, gcylId("heavy_metallic_residues"))
                 .dust()
                 .color((HeavyDiamagneticResidues.getMaterialRGB() + HeavyParamagneticResidues.getMaterialRGB() + HeavyFerromagneticResidues.getMaterialRGB() + UncommonResidues.getMaterialRGB() / 3) / 4)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(DULL)
                 .build();
 
-        NitratedTriniiteSolution = new Material.Builder(id++, gcylId("nitrated_triniite_solution"))
+        NitratedTriniiteSolution = new Material.Builder(++id, gcylId("nitrated_triniite_solution"))
                 .liquid()
                 .color(0x428c9f)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        ExoticHeavyResidues = new Material.Builder(id++, gcylId("exotic_heavy_residues"))
+        ExoticHeavyResidues = new Material.Builder(++id, gcylId("exotic_heavy_residues"))
                 .dust()
                 .color(NitratedTriniiteSolution.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
                 .iconSet(SHINY)
                 .build();
 
-        DiluteHydrofluoricAcid = new Material.Builder(id++, gcylId("dilute_hydrofluoric_acid"))
+        DiluteHydrofluoricAcid = new Material.Builder(++id, gcylId("dilute_hydrofluoric_acid"))
                 .liquid()
                 .color((Water.getMaterialRGB() + HydrofluoricAcid.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -4475,7 +4478,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)(HF)", true);
 
-        TritiumHydride = new Material.Builder(id++, gcylId("tritium_hydride"))
+        TritiumHydride = new Material.Builder(++id, gcylId("tritium_hydride"))
                 .liquid()
                 .color(Tritium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -4483,7 +4486,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("TH", true);
 
-        Helium3Hydride = new Material.Builder(id++, gcylId("helium_iii_hydride"))
+        Helium3Hydride = new Material.Builder(++id, gcylId("helium_iii_hydride"))
                 .liquid()
                 .color(Helium3.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -4491,14 +4494,14 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("He_3H", true);
 
-        UltraacidicResidueSolution = new Material.Builder(id++, gcylId("ultraacidic_residue_solution"))
+        UltraacidicResidueSolution = new Material.Builder(++id, gcylId("ultraacidic_residue_solution"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color((FluoroantimonicAcid.getMaterialRGB() + Helium3Hydride.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        XenicAcid = new Material.Builder(id++, gcylId("xenic_acid"))
+        XenicAcid = new Material.Builder(++id, gcylId("xenic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0x5a4c9c)
                 .flags(DISABLE_REPLICATION)
@@ -4506,7 +4509,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2XeO4", true);
 
-        DustyLiquidHelium3 = new Material.Builder(id++, gcylId("dusty_liquid_helium_3"))
+        DustyLiquidHelium3 = new Material.Builder(++id, gcylId("dusty_liquid_helium_3"))
                 .liquid()
                 .color(2 * Helium3.getMaterialRGB() / 3 + Taranium.getMaterialRGB() / 5)
                 .flags(DISABLE_REPLICATION)
@@ -4514,7 +4517,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("He_3", true);
 
-        Ozone = new Material.Builder(id++, gcylId("ozone"))
+        Ozone = new Material.Builder(++id, gcylId("ozone"))
                 .gas()
                 .color(0x0099FF)
                 .flags(DISABLE_REPLICATION)
@@ -4522,42 +4525,42 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("O3", true);
 
-        TaraniumEnrichedLHelium3 = new Material.Builder(id++, gcylId("taranium_enriched_liquid_helium_3"))
+        TaraniumEnrichedLHelium3 = new Material.Builder(++id, gcylId("taranium_enriched_liquid_helium_3"))
                 .liquid()
                 .color(Helium3.getMaterialRGB() / 2 + Taranium.getMaterialRGB() / 2)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        TaraniumSemidepletedLHelium3 = new Material.Builder(id++, gcylId("taranium_semidepleted_liquid_helium_3"))
+        TaraniumSemidepletedLHelium3 = new Material.Builder(++id, gcylId("taranium_semidepleted_liquid_helium_3"))
                 .liquid()
                 .color(2 * Helium3.getMaterialRGB() / 3 + Taranium.getMaterialRGB() / 5)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        TaraniumSemidepletedLHelium3 = new Material.Builder(id++, gcylId("taranium_semidepleted_liquid_helium_3"))
+        TaraniumSemidepletedLHelium3 = new Material.Builder(++id, gcylId("taranium_semidepleted_liquid_helium_3"))
                 .liquid()
                 .color(2 * Helium3.getMaterialRGB() / 3 + Taranium.getMaterialRGB() / 5)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        TaraniumDepletedLHelium3 = new Material.Builder(id++, gcylId("taranium_depleted_liquid_helium_3"))
+        TaraniumDepletedLHelium3 = new Material.Builder(++id, gcylId("taranium_depleted_liquid_helium_3"))
                 .liquid()
                 .color(Helium3.getMaterialRGB() * 5 / 6 + Taranium.getMaterialRGB() / 8)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        TaraniumRichDustyHeliumPlasma = new Material.Builder(id++, gcylId("taranium_rich_dusty_helium_plasma"))
+        TaraniumRichDustyHeliumPlasma = new Material.Builder(++id, gcylId("taranium_rich_dusty_helium_plasma"))
                 .plasma(new FluidBuilder().temperature(10000))
                 .color(Helium.getMaterialRGB() / 2 + Taranium.getMaterialRGB() / 2)
                 .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
                 .iconSet(FLUID)
                 .build();
 
-        TaraniumRichHelium4 = new Material.Builder(id++, gcylId("taranium_rich_helium_4"))
+        TaraniumRichHelium4 = new Material.Builder(++id, gcylId("taranium_rich_helium_4"))
                 .liquid()
                 .plasma()
                 .color(Helium.getMaterialRGB() / 2 + Taranium.getMaterialRGB())
@@ -4565,28 +4568,28 @@ public class GCYLMaterials {
                 .iconSet(FLUID)
                 .build();
 
-        TaraniumDepletedHeliumPlasma = new Material.Builder(id++, gcylId("taranium_depleted_helium_plasma"))
+        TaraniumDepletedHeliumPlasma = new Material.Builder(++id, gcylId("taranium_depleted_helium_plasma"))
                 .plasma(new FluidBuilder().temperature(10000))
                 .color(Helium.getMaterialRGB() / 2 + Taranium.getMaterialRGB() / 2)
                 .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
                 .iconSet(FLUID)
                 .build();
 
-        TaraniumPoorLiquidHelium = new Material.Builder(id++, gcylId("taranium_poor_liquid_helium"))
+        TaraniumPoorLiquidHelium = new Material.Builder(++id, gcylId("taranium_poor_liquid_helium"))
                 .liquid()
                 .color(Helium3.getMaterialRGB() * 6 / 7 + Taranium.getMaterialRGB() / 14)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        TaraniumPoorLiquidHeliumMix = new Material.Builder(id++, gcylId("taranium_poor_liquid_helium_mix"))
+        TaraniumPoorLiquidHeliumMix = new Material.Builder(++id, gcylId("taranium_poor_liquid_helium_mix"))
                 .liquid()
                 .color(TaraniumPoorLiquidHelium.getMaterialRGB() * 10 / 11 + Helium.getMaterialRGB() / 11)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        BariumOxide = new Material.Builder(id++, gcylId("barium_oxide"))
+        BariumOxide = new Material.Builder(++id, gcylId("barium_oxide"))
                 .dust()
                 .color((Barium.getMaterialRGB() + Oxygen.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -4594,7 +4597,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("BaO", true);
 
-        BariumStrontiumAcetateSolution = new Material.Builder(id++, gcylId("basr_acetate_solution"))
+        BariumStrontiumAcetateSolution = new Material.Builder(++id, gcylId("basr_acetate_solution"))
                 .liquid()
                 .color(0x9a9b98)
                 .flags(DISABLE_REPLICATION)
@@ -4602,7 +4605,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2H3BaO2Sr", true);
 
-        IsopropylAlcohol = new Material.Builder(id++, gcylId("isopropyl_alcohol"))
+        IsopropylAlcohol = new Material.Builder(++id, gcylId("isopropyl_alcohol"))
                 .liquid()
                 .color((Water.getMaterialRGB() + Propene.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -4610,7 +4613,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C3H8O", true);
 
-        TitaniumIsopropoxide = new Material.Builder(id++, gcylId("titanium_isopropoxide"))
+        TitaniumIsopropoxide = new Material.Builder(++id, gcylId("titanium_isopropoxide"))
                 .liquid()
                 .color(0xFF0066)
                 .flags(DISABLE_REPLICATION)
@@ -4618,7 +4621,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ti(OCH(CH3)2)4", true);
 
-        BariumStrontiumTitanatePreparation = new Material.Builder(id++, gcylId("basr_titanate_preparation"))
+        BariumStrontiumTitanatePreparation = new Material.Builder(++id, gcylId("basr_titanate_preparation"))
                 .liquid()
                 .color(0xFF0066)
                 .flags(DISABLE_REPLICATION)
@@ -4626,7 +4629,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(BaTiO3)C2H3BaO2Sr", true);
 
-        BariumStrontiumTitanate = new Material.Builder(id++, gcylId("barium_strontium_titanate"))
+        BariumStrontiumTitanate = new Material.Builder(++id, gcylId("barium_strontium_titanate"))
                 .dust()
                 .color(0xFF0066)
                 .flags(DISABLE_REPLICATION)
@@ -4634,7 +4637,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("BaO4SrTi", true);
 
-        IsopropylAcetate = new Material.Builder(id++, gcylId("isopropyl_acetate"))
+        IsopropylAcetate = new Material.Builder(++id, gcylId("isopropyl_acetate"))
                 .liquid()
                 .color((Strontium.getMaterialRGB() + IsopropylAlcohol.getMaterialRGB() + Water.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -4642,7 +4645,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(CH3)2CHCOOCH3", true);
 
-        PotasssiumFluoroTantalate = new Material.Builder(id++, gcylId("potassium_fluorotantalate"))
+        PotasssiumFluoroTantalate = new Material.Builder(++id, gcylId("potassium_fluorotantalate"))
                 .dust()
                 .color(0x73ff00)
                 .flags(DISABLE_REPLICATION)
@@ -4650,7 +4653,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("K2TaF7", true);
 
-        LeadNitrate = new Material.Builder(id++, gcylId("lead_nitrate"))
+        LeadNitrate = new Material.Builder(++id, gcylId("lead_nitrate"))
                 .dust()
                 .color(0xFEFEFE)
                 .flags(DISABLE_REPLICATION)
@@ -4658,7 +4661,7 @@ public class GCYLMaterials {
                 .components(Lead, 1, Nitrogen, 2, Oxygen, 6)
                 .build();
 
-        LeadNitrateCalciumMixture = new Material.Builder(id++, gcylId("lead_nitrate_calcium_mixture"))
+        LeadNitrateCalciumMixture = new Material.Builder(++id, gcylId("lead_nitrate_calcium_mixture"))
                 .dust()
                 .color((LeadNitrate.getMaterialRGB() + Calcium.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -4666,7 +4669,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(Pb(NO3)2)Ca9", true);
 
-        LeadScandiumTantalate = new Material.Builder(id++, gcylId("lead_scandium_tantalate"))
+        LeadScandiumTantalate = new Material.Builder(++id, gcylId("lead_scandium_tantalate"))
                 .dust()
                 .color((Lead.getMaterialRGB() + Scandium.getMaterialRGB() + Tantalum.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -4674,7 +4677,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Pb(ScTa)O3", true);
 
-        MagnetorestrictiveAlloy = new Material.Builder(id++, gcylId("magnetorestrictive_alloy"))
+        MagnetorestrictiveAlloy = new Material.Builder(++id, gcylId("magnetorestrictive_alloy"))
                 .dust()
                 .color(0xafefef)
                 .flags(DISABLE_REPLICATION)
@@ -4682,7 +4685,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Tb4Dy7Fe10Co5B2SiC", true);
 
-        LeadSenenide = new Material.Builder(id++, gcylId("lead_selenide"))
+        LeadSenenide = new Material.Builder(++id, gcylId("lead_selenide"))
                 .dust()
                 .color((Lead.getMaterialRGB() + Selenium.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -4690,7 +4693,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("PbSe", true);
 
-        ZincSelenide = new Material.Builder(id++, gcylId("zinc_selenide"))
+        ZincSelenide = new Material.Builder(++id, gcylId("zinc_selenide"))
                 .dust()
                 .color(0xfcfc00)
                 .flags(DISABLE_REPLICATION)
@@ -4698,7 +4701,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ZnSe", true);
 
-        FranciumCaesiumCadmiumBromide = new Material.Builder(id++, gcylId("francium_caesium_cadmium_bromide"))
+        FranciumCaesiumCadmiumBromide = new Material.Builder(++id, gcylId("francium_caesium_cadmium_bromide"))
                 .dust()
                 .color((Francium.getMaterialRGB() + Caesium.getMaterialRGB() + Cadmium.getMaterialRGB() + Bromine.getMaterialRGB()) / 4)
                 .flags(DISABLE_REPLICATION)
@@ -4706,7 +4709,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("FrCsCf2Br6", true);
 
-        SodiumIodide = new Material.Builder(id++, gcylId("sodium_iodide"))
+        SodiumIodide = new Material.Builder(++id, gcylId("sodium_iodide"))
                 .dust()
                 .color(0x555588)
                 .flags(DISABLE_REPLICATION)
@@ -4714,7 +4717,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaI", true);
 
-        Iodobenzene = new Material.Builder(id++, gcylId("iodobenzene"))
+        Iodobenzene = new Material.Builder(++id, gcylId("iodobenzene"))
                 .liquid()
                 .color(0x2c2c6c0)
                 .flags(DISABLE_REPLICATION)
@@ -4722,7 +4725,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H5I", true);
 
-        PalladiumAcetate = new Material.Builder(id++, gcylId("palladium_acetate"))
+        PalladiumAcetate = new Material.Builder(++id, gcylId("palladium_acetate"))
                 .dust()
                 .color(0xcc3300)
                 .flags(DISABLE_REPLICATION)
@@ -4730,7 +4733,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C4H6O4Pd", true);
 
-        Stilbene = new Material.Builder(id++, gcylId("stilbene"))
+        Stilbene = new Material.Builder(++id, gcylId("stilbene"))
                 .dust()
                 .color(0x3c9c3c)
                 .flags(DISABLE_REPLICATION)
@@ -4738,7 +4741,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C14H12", true);
 
-        Aminophenol = new Material.Builder(id++, gcylId("aminophenol"))
+        Aminophenol = new Material.Builder(++id, gcylId("aminophenol"))
                 .liquid()
                 .color(0xafca3a)
                 .flags(DISABLE_REPLICATION)
@@ -4746,7 +4749,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H4(OH)(NH2)", true);
 
-        Amino3phenol = new Material.Builder(id++, gcylId("3_aminophenol"))
+        Amino3phenol = new Material.Builder(++id, gcylId("3_aminophenol"))
                 .liquid()
                 .color(Aminophenol.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -4754,7 +4757,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H7NO", true);
 
-        Ethylamine = new Material.Builder(id++, gcylId("ethylamine"))
+        Ethylamine = new Material.Builder(++id, gcylId("ethylamine"))
                 .liquid()
                 .color(Ethylenediamine.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -4762,7 +4765,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2H5NH2", true);
 
-        SodiumAzanide = new Material.Builder(id++, gcylId("sodium_azanide"))
+        SodiumAzanide = new Material.Builder(++id, gcylId("sodium_azanide"))
                 .dust()
                 .color((Sodium.getMaterialRGB() + Hydrogen.getMaterialRGB() + Nitrogen.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -4770,7 +4773,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaNH2", true);
 
-        PhthalicAnhydride = new Material.Builder(id++, gcylId("phthalicanhydride"))
+        PhthalicAnhydride = new Material.Builder(++id, gcylId("phthalicanhydride"))
                 .dust()
                 .color(0xD1D1D1)
                 .flags(DISABLE_REPLICATION)
@@ -4778,7 +4781,7 @@ public class GCYLMaterials {
                 .components(Carbon, 8, Hydrogen, 4, Oxygen, 3)
                 .build();
 
-        TetraethylammoniumNonahydridides = new Material.Builder(id++, gcylId("tetraethylammonium_nonahydrides"))
+        TetraethylammoniumNonahydridides = new Material.Builder(++id, gcylId("tetraethylammonium_nonahydrides"))
                 .dust()
                 .color(0xbee8b9)
                 .flags(DISABLE_REPLICATION)
@@ -4786,7 +4789,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(C8H20N)(ReH9)(TcH9)", true);
 
-        RhodamineB = new Material.Builder(id++, gcylId("rhodamine_b"))
+        RhodamineB = new Material.Builder(++id, gcylId("rhodamine_b"))
                 .dust()
                 .color(0xfc2020)
                 .flags(DISABLE_REPLICATION)
@@ -4794,7 +4797,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C28H31ClN2O3", true);
 
-        Hydroxylamine = new Material.Builder(id++, gcylId("hydroxylamine"))
+        Hydroxylamine = new Material.Builder(++id, gcylId("hydroxylamine"))
                 .liquid()
                 .color(0x99cc99)
                 .flags(DISABLE_REPLICATION)
@@ -4802,7 +4805,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H3NO", true);
 
-        SodiumPertechnetate = new Material.Builder(id++, gcylId("sodium_pertechnetate"))
+        SodiumPertechnetate = new Material.Builder(++id, gcylId("sodium_pertechnetate"))
                 .dust()
                 .color(0x6162c4)
                 .flags(DISABLE_REPLICATION)
@@ -4810,7 +4813,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaTcO4", true);
 
-        PotassiumPerrhenate = new Material.Builder(id++, gcylId("potassium_perrhenate"))
+        PotassiumPerrhenate = new Material.Builder(++id, gcylId("potassium_perrhenate"))
                 .dust()
                 .color(0xdec451)
                 .flags(DISABLE_REPLICATION)
@@ -4818,7 +4821,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("KReO4", true);
 
-        PotassiumPertechnate = new Material.Builder(id++, gcylId("potassium_pertechnate"))
+        PotassiumPertechnate = new Material.Builder(++id, gcylId("potassium_pertechnate"))
                 .dust()
                 .color(0xdec451)
                 .flags(DISABLE_REPLICATION)
@@ -4826,7 +4829,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("KTcO4", true);
 
-        PotassiumNonahydridorhenate = new Material.Builder(id++, gcylId("potassium_nonahydridorhenate"))
+        PotassiumNonahydridorhenate = new Material.Builder(++id, gcylId("potassium_nonahydridorhenate"))
                 .dust()
                 .color(0xeae2a8)
                 .flags(DISABLE_REPLICATION)
@@ -4834,7 +4837,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H9K2ReO4", true);
 
-        PotassiumEthoxide = new Material.Builder(id++, gcylId("potassium_ethoxide"))
+        PotassiumEthoxide = new Material.Builder(++id, gcylId("potassium_ethoxide"))
                 .liquid()
                 .color(Ethanol.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -4842,7 +4845,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2H5KO", true);
 
-        PotassiumNonahydridotechnetate = new Material.Builder(id++, gcylId("potassium_nonahydridotechnetate"))
+        PotassiumNonahydridotechnetate = new Material.Builder(++id, gcylId("potassium_nonahydridotechnetate"))
                 .dust()
                 .color(0xede2a4)
                 .flags(DISABLE_REPLICATION)
@@ -4850,7 +4853,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H9K2TcO4", true);
 
-        TetraethylammoniumBromide = new Material.Builder(id++, gcylId("tetraethylammonium_bromide"))
+        TetraethylammoniumBromide = new Material.Builder(++id, gcylId("tetraethylammonium_bromide"))
                 .liquid()
                 .color(0xcc33ff)
                 .flags(DISABLE_REPLICATION)
@@ -4858,7 +4861,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C8H20NBr", true);
 
-        PotassiumIodide = new Material.Builder(id++, gcylId("potassium_iodide"))
+        PotassiumIodide = new Material.Builder(++id, gcylId("potassium_iodide"))
                 .dust()
                 .color((Potassium.getMaterialRGB() + Iodine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -4866,7 +4869,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("KI", true);
 
-        Butylaniline = new Material.Builder(id++, gcylId("butylaniline"))
+        Butylaniline = new Material.Builder(++id, gcylId("butylaniline"))
                 .liquid()
                 .color(Aniline.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -4874,7 +4877,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C10H15N", true);
 
-        LithiumIodide = new Material.Builder(id++, gcylId("lithium_iodide"))
+        LithiumIodide = new Material.Builder(++id, gcylId("lithium_iodide"))
                 .dust()
                 .color((Lithium.getMaterialRGB() + Iodine.getMaterialRGB()))
                 .flags(DISABLE_REPLICATION)
@@ -4882,7 +4885,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("LiI", true);
 
-        Trimethylchlorosilane = new Material.Builder(id++, gcylId("trimethylchlorosilane"))
+        Trimethylchlorosilane = new Material.Builder(++id, gcylId("trimethylchlorosilane"))
                 .liquid()
                 .color(Dimethyldichlorosilane.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -4890,7 +4893,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(CH3)3SiCl", true);
 
-        Trimethylsilane = new Material.Builder(id++, gcylId("trimethylsilane"))
+        Trimethylsilane = new Material.Builder(++id, gcylId("trimethylsilane"))
                 .liquid()
                 .color(Trimethylchlorosilane.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -4898,7 +4901,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C3H10Si", true);
 
-        PotassiumBromide = new Material.Builder(id++, gcylId("potassium_bromide"))
+        PotassiumBromide = new Material.Builder(++id, gcylId("potassium_bromide"))
                 .dust()
                 .color(0xe066a3)
                 .flags(DISABLE_REPLICATION)
@@ -4906,7 +4909,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("KBr", true);
 
-        PotassiumBromate = new Material.Builder(id++, gcylId("potassium_bromate"))
+        PotassiumBromate = new Material.Builder(++id, gcylId("potassium_bromate"))
                 .dust()
                 .color(0x8a4cd1)
                 .flags(DISABLE_REPLICATION)
@@ -4914,7 +4917,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("KBrO3", true);
 
-        IodobenzoicAcid = new Material.Builder(id++, gcylId("iodobenzoic_acid"))
+        IodobenzoicAcid = new Material.Builder(++id, gcylId("iodobenzoic_acid"))
                 .liquid()
                 .color(0x2cac6c0)
                 .flags(DISABLE_REPLICATION)
@@ -4922,7 +4925,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C7H5IO2", true);
 
-        IBX = new Material.Builder(id++, gcylId("ibx"))
+        IBX = new Material.Builder(++id, gcylId("ibx"))
                 .dust()
                 .color(0x20208c)
                 .flags(DISABLE_REPLICATION)
@@ -4930,7 +4933,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C7H5IO4", true);
 
-        Methoxybenzaldehyde = new Material.Builder(id++, gcylId("methoxybenzaldehyde"))
+        Methoxybenzaldehyde = new Material.Builder(++id, gcylId("methoxybenzaldehyde"))
                 .liquid()
                 .color(0x3c3a7a)
                 .flags(DISABLE_REPLICATION)
@@ -4938,7 +4941,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C8H8O2", true);
 
-        MBBA = new Material.Builder(id++, gcylId("mbba"))
+        MBBA = new Material.Builder(++id, gcylId("mbba"))
                 .liquid()
                 .color(0xfa30fa)
                 .flags(DISABLE_REPLICATION)
@@ -4946,14 +4949,14 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C18H21NO", true);
 
-        LiquidCrystalDetector = new Material.Builder(id++, gcylId("liquid_crystal_detector"))
+        LiquidCrystalDetector = new Material.Builder(++id, gcylId("liquid_crystal_detector"))
                 .liquid()
                 .color(0xda20da)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        IodineMonochloride = new Material.Builder(id++, gcylId("iodine_monochloride"))
+        IodineMonochloride = new Material.Builder(++id, gcylId("iodine_monochloride"))
                 .liquid()
                 .color(0x004c4c)
                 .flags(DISABLE_REPLICATION)
@@ -4961,7 +4964,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ICl", true);
 
-        RhReNqCatalyst = new Material.Builder(id++, gcylId("rhrenq_catalyst"))
+        RhReNqCatalyst = new Material.Builder(++id, gcylId("rhrenq_catalyst"))
                 .dust()
                 .color((Rhenium.getMaterialRGB() + Rhodium.getMaterialRGB() + Naquadah.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -4969,7 +4972,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ReRhNq", true);
 
-        AcetylatingReagent = new Material.Builder(id++, gcylId("acetylating_reagent"))
+        AcetylatingReagent = new Material.Builder(++id, gcylId("acetylating_reagent"))
                 .liquid()
                 .color(0x8d5e63)
                 .flags(DISABLE_REPLICATION)
@@ -4977,7 +4980,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C9H12Si(MgBr)2", true);
 
-        Dimethylnaphthalene = new Material.Builder(id++, gcylId("dimethylnaphthalene"))
+        Dimethylnaphthalene = new Material.Builder(++id, gcylId("dimethylnaphthalene"))
                 .liquid()
                 .color(0xe34fb0)
                 .flags(DISABLE_REPLICATION)
@@ -4985,7 +4988,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C12H12", true);
 
-        Bromosuccinimide = new Material.Builder(id++, gcylId("bromo_succinimide"))
+        Bromosuccinimide = new Material.Builder(++id, gcylId("bromo_succinimide"))
                 .dust()
                 .color((Succinimide.getMaterialRGB() + Bromine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -4993,7 +4996,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C4H4BrNO2", true);
 
-        Dihydroiodotetracene = new Material.Builder(id++, gcylId("dihydroiodotetracene"))
+        Dihydroiodotetracene = new Material.Builder(++id, gcylId("dihydroiodotetracene"))
                 .liquid()
                 .color(0x5c4d38)
                 .flags(DISABLE_REPLICATION)
@@ -5001,7 +5004,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2C18H11I", true);
 
-        Dichlorodicyanobenzoquinone = new Material.Builder(id++, gcylId("dichlorodicyanobenzoquinone"))
+        Dichlorodicyanobenzoquinone = new Material.Builder(++id, gcylId("dichlorodicyanobenzoquinone"))
                 .liquid()
                 .color(0x3a2aba)
                 .flags(DISABLE_REPLICATION)
@@ -5009,7 +5012,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C8Cl2N2O2", true);
 
-        VanadiumOxide = new Material.Builder(id++, gcylId("vanadium_oxide"))
+        VanadiumOxide = new Material.Builder(++id, gcylId("vanadium_oxide"))
                 .dust()
                 .color(0xf2ef1b)
                 .flags(DISABLE_REPLICATION)
@@ -5017,7 +5020,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("V2O5", true);
 
-        LithiumChlorideSolution = new Material.Builder(id++, gcylId("lithium_chloride_solution"))
+        LithiumChlorideSolution = new Material.Builder(++id, gcylId("lithium_chloride_solution"))
                 .liquid()
                 .color((Lithium.getMaterialRGB() + Chlorine.getMaterialRGB()))
                 .flags(DISABLE_REPLICATION)
@@ -5025,7 +5028,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("LiCl(H2O)", true);
 
-        Dichlorodicyanohydroquinone = new Material.Builder(id++, gcylId("dichlorodicyanohidroquinone"))
+        Dichlorodicyanohydroquinone = new Material.Builder(++id, gcylId("dichlorodicyanohidroquinone"))
                 .liquid()
                 .color(0x3a2aba)
                 .flags(DISABLE_REPLICATION)
@@ -5033,7 +5036,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C8Cl2N2(OH)2", true);
 
-        Tetracene = new Material.Builder(id++, gcylId("tetracene"))
+        Tetracene = new Material.Builder(++id, gcylId("tetracene"))
                 .dust()
                 .color(0x99801a)
                 .flags(DISABLE_REPLICATION)
@@ -5041,7 +5044,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C18H12", true);
 
-        StreptococcusPyogenes = new Material.Builder(id++, gcylId("streptococcus_pyogenes"))
+        StreptococcusPyogenes = new Material.Builder(++id, gcylId("streptococcus_pyogenes"))
                 .dust()
                 .color(0x1c3b15)
                 .flags(DISABLE_REPLICATION)
@@ -5049,7 +5052,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Bacteria", true);
 
-        BifidobacteriumBreve = new Material.Builder(id++, gcylId("bifidobacterium_breve"))
+        BifidobacteriumBreve = new Material.Builder(++id, gcylId("bifidobacterium_breve"))
                 .dust()
                 .color(0x377528)
                 .flags(DISABLE_REPLICATION)
@@ -5057,7 +5060,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Bacteria", true);
 
-        EschericiaColi = new Material.Builder(id++, gcylId("eschericia_coli"))
+        EschericiaColi = new Material.Builder(++id, gcylId("eschericia_coli"))
                 .dust()
                 .color(0x2d4228)
                 .flags(DISABLE_REPLICATION)
@@ -5065,7 +5068,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Bacteria", true);
 
-        SodiumHypochlorite = new Material.Builder(id++, gcylId("sodium_hypochlorite"))
+        SodiumHypochlorite = new Material.Builder(++id, gcylId("sodium_hypochlorite"))
                 .dust()
                 .color(0x6cff50)
                 .flags(DISABLE_REPLICATION)
@@ -5073,7 +5076,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaClO", true);
 
-        HotNitrogen = new Material.Builder(id++, gcylId("hot_nitrogen"))
+        HotNitrogen = new Material.Builder(++id, gcylId("hot_nitrogen"))
                 .gas()
                 .color(Nitrogen.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -5081,7 +5084,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("N", true);
 
-        Lignite = new Material.Builder(id++, gcylId("lignite"))
+        Lignite = new Material.Builder(++id, gcylId("lignite"))
                 .gem(0, 1600)
                 .color(6571590)
                 .flags(DISABLE_REPLICATION, FLAMMABLE, NO_SMELTING, NO_SMASHING, MORTAR_GRINDABLE)
@@ -5090,7 +5093,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2(H2O)4C", true);
 
-        DehydratedLignite = new Material.Builder(id++, gcylId("dehydrated_lignite"))
+        DehydratedLignite = new Material.Builder(++id, gcylId("dehydrated_lignite"))
                 .dust()
                 .color(0x5c4020)
                 .flags(DISABLE_REPLICATION)
@@ -5098,7 +5101,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2(H2O)4C?", true);
 
-        BCEPellet = new Material.Builder(id++, gcylId("bce_pellet"))
+        BCEPellet = new Material.Builder(++id, gcylId("bce_pellet"))
                 .dust(1, 1600)
                 .color(0x3c3020)
                 .flags(DISABLE_REPLICATION)
@@ -5106,7 +5109,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2(H2O)4C", true);
 
-        GlucoseIronSolution = new Material.Builder(id++, gcylId("glucose_iron_solution"))
+        GlucoseIronSolution = new Material.Builder(++id, gcylId("glucose_iron_solution"))
                 .liquid()
                 .color((Sugar.getMaterialRGB() + Iron.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -5114,7 +5117,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(C6H12O6)FeCl3", true);
 
-        GrapheneOxidationSolution = new Material.Builder(id++, gcylId("graphene_oxidation_solution"))
+        GrapheneOxidationSolution = new Material.Builder(++id, gcylId("graphene_oxidation_solution"))
                 .liquid()
                 .color(0x96821a)
                 .flags(DISABLE_REPLICATION)
@@ -5122,7 +5125,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(KMnO4)(NaNO3)(H2SO4)", true);
 
-        GraphiteOxide = new Material.Builder(id++, gcylId("graphite_oxide"))
+        GraphiteOxide = new Material.Builder(++id, gcylId("graphite_oxide"))
                 .dust()
                 .color(Graphite.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -5130,7 +5133,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C(O2)", true);
 
-        GrapheneOxidationResidue = new Material.Builder(id++, gcylId("graphene_oxidation_residue"))
+        GrapheneOxidationResidue = new Material.Builder(++id, gcylId("graphene_oxidation_residue"))
                 .dust()
                 .color(0x96821a)
                 .flags(DISABLE_REPLICATION)
@@ -5138,7 +5141,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(KMnO4)(NaNO3)(H2SO4)", true);
 
-        GrapheneOxide = new Material.Builder(id++, gcylId("graphene_oxide"))
+        GrapheneOxide = new Material.Builder(++id, gcylId("graphene_oxide"))
                 .dust()
                 .color(Graphene.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -5146,7 +5149,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C(O2)", true);
 
-        Hydrazine = new Material.Builder(id++, gcylId("hydrazine"))
+        Hydrazine = new Material.Builder(++id, gcylId("hydrazine"))
                 .liquid()
                 .color(0xFFFFFF)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -5154,7 +5157,7 @@ public class GCYLMaterials {
                 .components(Nitrogen, 2, Hydrogen, 4)
                 .build();
 
-        Snow = new Material.Builder(id++, gcylId("snow"))
+        Snow = new Material.Builder(++id, gcylId("snow"))
                 .dust()
                 .color(0xFFFFFF)
                 .flags(DISABLE_REPLICATION, NO_SMELTING)
@@ -5162,7 +5165,7 @@ public class GCYLMaterials {
                 .components(Hydrogen, 2, Oxygen, 1)
                 .build();
 
-        SupercooledCryotheum = new Material.Builder(id++, gcylId("supercooled_cryotheum"))
+        SupercooledCryotheum = new Material.Builder(++id, gcylId("supercooled_cryotheum"))
                 .liquid()
                 .color(Cryotheum.getMaterialRGB() - 10)
                 .flags(DISABLE_REPLICATION)
@@ -5170,7 +5173,7 @@ public class GCYLMaterials {
                 .components(Cryotheum, 1)
                 .build();
 
-        RedOil = new Material.Builder(id++, gcylId("red_oil"))
+        RedOil = new Material.Builder(++id, gcylId("red_oil"))
                 .liquid()
                 .color(0x7C1500)
                 .flags(DISABLE_REPLICATION)
@@ -5178,7 +5181,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2N4(RP-1)NiZnFe4", true);
 
-        RP1 = new Material.Builder(id++, gcylId("rp"))
+        RP1 = new Material.Builder(++id, gcylId("rp"))
                 .liquid()
                 .color(0xFF6E5D)
                 .flags(DISABLE_REPLICATION)
@@ -5186,7 +5189,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        TributylPhosphate = new Material.Builder(id++, gcylId("tributyl_phosphate"))
+        TributylPhosphate = new Material.Builder(++id, gcylId("tributyl_phosphate"))
                 .liquid()
                 .color(0x7C5B2C)
                 .flags(DISABLE_REPLICATION)
@@ -5194,7 +5197,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(C4H9)3PO4", true);
 
-        PhosphorusTrichloride = new Material.Builder(id++, gcylId("phosphorus_trichloride"))
+        PhosphorusTrichloride = new Material.Builder(++id, gcylId("phosphorus_trichloride"))
                 .liquid()
                 .color((Phosphorus.getMaterialRGB() + Chlorine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -5202,7 +5205,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("PCl3", true);
 
-        PhosphorylChloride = new Material.Builder(id++, gcylId("phosphoryl_chloride"))
+        PhosphorylChloride = new Material.Builder(++id, gcylId("phosphoryl_chloride"))
                 .liquid()
                 .color(0xE6E6E6)
                 .flags(DISABLE_REPLICATION)
@@ -5210,7 +5213,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("POCl3", true);
 
-        SodiumFormate = new Material.Builder(id++, gcylId("sodium_formate"))
+        SodiumFormate = new Material.Builder(++id, gcylId("sodium_formate"))
                 .liquid()
                 .color(0xFFAAAA)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -5218,7 +5221,7 @@ public class GCYLMaterials {
                 .components(Hydrogen, 1, Carbon, 1, Oxygen, 1, Oxygen, 1, Sodium, 1)
                 .build();
 
-        FormicAcid = new Material.Builder(id++, gcylId("formic_acid"))
+        FormicAcid = new Material.Builder(++id, gcylId("formic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0xFFAA77)
                 .flags(DISABLE_REPLICATION)
@@ -5226,7 +5229,7 @@ public class GCYLMaterials {
                 .components(Carbon, 1, Hydrogen, 2, Oxygen, 2)
                 .build();
 
-        OrganicFertilizer = new Material.Builder(id++, gcylId("organic_fertilizer"))
+        OrganicFertilizer = new Material.Builder(++id, gcylId("organic_fertilizer"))
                 .dust()
                 .color(0xDDDDDD)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -5234,7 +5237,7 @@ public class GCYLMaterials {
                 .components(Calcium, 5, Phosphate, 3, Hydrogen, 1, Oxygen, 1)
                 .build();
 
-        ZirconiumTetrachloride = new Material.Builder(id++, gcylId("zirconium_tetrachloride"))
+        ZirconiumTetrachloride = new Material.Builder(++id, gcylId("zirconium_tetrachloride"))
                 .dust()
                 .color(0xF0F0F0)
                 .flags(DISABLE_REPLICATION)
@@ -5242,7 +5245,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ZrCl4", true);
 
-        CarbonFluoride = new Material.Builder(id++, gcylId("carbone_fluoride"))
+        CarbonFluoride = new Material.Builder(++id, gcylId("carbone_fluoride"))
                 .liquid()
                 .color(0xE6E6E6)
                 .flags(DISABLE_REPLICATION)
@@ -5250,7 +5253,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CF4", true);
 
-        CalciumCarbonateSolution = new Material.Builder(id++, gcylId("calcium_carbonate_solution"))
+        CalciumCarbonateSolution = new Material.Builder(++id, gcylId("calcium_carbonate_solution"))
                 .liquid()
                 .color(Calcite.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -5258,7 +5261,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)CaCO3", true);
 
-        BentoniteClaySlurry = new Material.Builder(id++, gcylId("bentonite_clay_solution"))
+        BentoniteClaySlurry = new Material.Builder(++id, gcylId("bentonite_clay_solution"))
                 .liquid()
                 .color(0xdbc9c5)
                 .flags(DISABLE_REPLICATION)
@@ -5266,7 +5269,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2O?", true);
 
-        AluminiumChloride = new Material.Builder(id++, gcylId("aluminium_chloride"))
+        AluminiumChloride = new Material.Builder(++id, gcylId("aluminium_chloride"))
                 .dust()
                 .color((Aluminium.getMaterialRGB() + Chlorine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -5274,7 +5277,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("AlCl3", true);
 
-        EthylAnthraQuinone = new Material.Builder(id++, gcylId("ethylanthraquinone"))
+        EthylAnthraQuinone = new Material.Builder(++id, gcylId("ethylanthraquinone"))
                 .liquid()
                 .color(0xFFFF00)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -5282,7 +5285,7 @@ public class GCYLMaterials {
                 .components(Carbon, 16, Hydrogen, 12, Oxygen, 2)
                 .build();
 
-        EthylAnthraHydroQuinone = new Material.Builder(id++, gcylId("ethylanthrahydroquinone"))
+        EthylAnthraHydroQuinone = new Material.Builder(++id, gcylId("ethylanthrahydroquinone"))
                 .liquid()
                 .color(0xFFFF47)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -5290,7 +5293,7 @@ public class GCYLMaterials {
                 .components(EthylAnthraQuinone, 1, Hydrogen, 2)
                 .build();
 
-        Anthracene = new Material.Builder(id++, gcylId("anthracene"))
+        Anthracene = new Material.Builder(++id, gcylId("anthracene"))
                 .liquid()
                 .color(0xA2ACA2)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -5298,7 +5301,7 @@ public class GCYLMaterials {
                 .components(Carbon, 14, Hydrogen, 10)
                 .build();
 
-        Chloroethanol = new Material.Builder(id++, gcylId("chloroethanol"))
+        Chloroethanol = new Material.Builder(++id, gcylId("chloroethanol"))
                 .liquid()
                 .color(0xcfb050)
                 .flags(DISABLE_REPLICATION)
@@ -5306,7 +5309,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2H5ClO", true);
 
-        Trimethylamine = new Material.Builder(id++, gcylId("trimetylamine"))
+        Trimethylamine = new Material.Builder(++id, gcylId("trimetylamine"))
                 .liquid()
                 .color((Dimethylamine.getMaterialRGB() + 20))
                 .flags(DISABLE_REPLICATION)
@@ -5314,7 +5317,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(CH3)3N", true);
 
-        Choline = new Material.Builder(id++, gcylId("choline"))
+        Choline = new Material.Builder(++id, gcylId("choline"))
                 .liquid()
                 .color(0x63e45f)
                 .flags(DISABLE_REPLICATION)
@@ -5322,7 +5325,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C5H14NO", true);
 
-        ATL = new Material.Builder(id++, gcylId("atl"))
+        ATL = new Material.Builder(++id, gcylId("atl"))
                 .liquid()
                 .color(0x709c4a)
                 .flags(DISABLE_REPLICATION)
@@ -5330,7 +5333,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ATL", true);
 
-        EthyleneGlycol = new Material.Builder(id++, gcylId("ethylene_glycol"))
+        EthyleneGlycol = new Material.Builder(++id, gcylId("ethylene_glycol"))
                 .liquid()
                 .color(0x8080fa)
                 .flags(DISABLE_REPLICATION)
@@ -5338,35 +5341,35 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2H6O2", true);
 
-        CaCBaSMixture = new Material.Builder(id++, gcylId("cacbas_mixture"))
+        CaCBaSMixture = new Material.Builder(++id, gcylId("cacbas_mixture"))
                 .liquid()
                 .color((CalciumCarbonateSolution.getMaterialRGB() + BariumSulfateSolution.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        LubricantClaySlurry = new Material.Builder(id++, gcylId("lubricant_clay_slurry"))
+        LubricantClaySlurry = new Material.Builder(++id, gcylId("lubricant_clay_slurry"))
                 .liquid()
                 .color((Lubricant.getMaterialRGB() + BentoniteClaySlurry.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        ATLEthylene = new Material.Builder(id++, gcylId("atl_ethylene_mixture"))
+        ATLEthylene = new Material.Builder(++id, gcylId("atl_ethylene_mixture"))
                 .liquid()
                 .color((ATL.getMaterialRGB() + EthyleneGlycol.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        DrillingMudMixture = new Material.Builder(id++, gcylId("drilling_mud_mixture"))
+        DrillingMudMixture = new Material.Builder(++id, gcylId("drilling_mud_mixture"))
                 .liquid()
                 .color((CaCBaSMixture.getMaterialRGB() + LubricantClaySlurry.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        WetEthyleneOxide = new Material.Builder(id++, gcylId("wet_etylene_oxide"))
+        WetEthyleneOxide = new Material.Builder(++id, gcylId("wet_etylene_oxide"))
                 .liquid()
                 .color(0x90b3ff)
                 .flags(DISABLE_REPLICATION)
@@ -5374,7 +5377,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)C2H4O", true);
 
-        Phosgene = new Material.Builder(id++, gcylId("phosgene"))
+        Phosgene = new Material.Builder(++id, gcylId("phosgene"))
                 .liquid()
                 .color((Chlorine.getMaterialRGB() + CarbonMonoxide.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -5382,7 +5385,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("COCl2", true);
 
-        TolueneDiisocyanate = new Material.Builder(id++, gcylId("toluene_diisocyanate"))
+        TolueneDiisocyanate = new Material.Builder(++id, gcylId("toluene_diisocyanate"))
                 .liquid()
                 .color(0xbaf6ca)
                 .flags(DISABLE_REPLICATION)
@@ -5390,7 +5393,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C9H6N2O2", true);
 
-        Polyurethane = new Material.Builder(id++, gcylId("polyurethane"))
+        Polyurethane = new Material.Builder(++id, gcylId("polyurethane"))
                 .ingot(2).liquid()
                 .color(0xeffcef)
                 .iconSet(DULL)
@@ -5398,7 +5401,7 @@ public class GCYLMaterials {
                 .components(Carbon, 17, Hydrogen, 16, Nitrogen, 2, Oxygen, 4)
                 .build();
 
-        ViscoelasticPolyurethane = new Material.Builder(id++, gcylId("viscoelastic_polyurethane"))
+        ViscoelasticPolyurethane = new Material.Builder(++id, gcylId("viscoelastic_polyurethane"))
                 .liquid()
                 .color(0xeffcef)
                 .flags(DISABLE_REPLICATION)
@@ -5406,7 +5409,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C17H16N2O4?", true);
 
-        ViscoelasticPolyurethaneFoam = new Material.Builder(id++, gcylId("viscoelastic_polyurethane_foam"))
+        ViscoelasticPolyurethaneFoam = new Material.Builder(++id, gcylId("viscoelastic_polyurethane_foam"))
                 .liquid()
                 .color(0xeffcef)
                 .flags(DISABLE_REPLICATION)
@@ -5414,7 +5417,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C17H16N2O4?", true);
 
-        RocketFuelH8N4C2O4 = new Material.Builder(id++, gcylId("rocket_fuel_a"))
+        RocketFuelH8N4C2O4 = new Material.Builder(++id, gcylId("rocket_fuel_a"))
                 .liquid()
                 .color(0x5ECB22)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -5422,7 +5425,7 @@ public class GCYLMaterials {
                 .components(Hydrogen, 8, Nitrogen, 4, Carbon, 2, Oxygen, 4)
                 .build();
 
-        MonoMethylHydrazine = new Material.Builder(id++, gcylId("monomethylhydrazine"))
+        MonoMethylHydrazine = new Material.Builder(++id, gcylId("monomethylhydrazine"))
                 .liquid()
                 .color(0xFFFFFF)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -5430,7 +5433,7 @@ public class GCYLMaterials {
                 .components(Carbon, 1, Hydrogen, 6, Nitrogen, 2)
                 .build();
 
-        RocketFuelCN3H7O3 = new Material.Builder(id++, gcylId("rocket_fuel_b"))
+        RocketFuelCN3H7O3 = new Material.Builder(++id, gcylId("rocket_fuel_b"))
                 .liquid()
                 .color(0xBE46C5)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -5438,7 +5441,7 @@ public class GCYLMaterials {
                 .components(Carbon, 1, Nitrogen, 3, Hydrogen, 7, Oxygen, 3)
                 .build();
 
-        DenseHydrazineFuelMixture = new Material.Builder(id++, gcylId("dense_hydrazine_fuel_mixture"))
+        DenseHydrazineFuelMixture = new Material.Builder(++id, gcylId("dense_hydrazine_fuel_mixture"))
                 .liquid()
                 .color(0x5E2B4A)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -5446,7 +5449,7 @@ public class GCYLMaterials {
                 .components(Hydrazine, 1, Methanol, 1)
                 .build();
 
-        RP1RocketFuel = new Material.Builder(id++, gcylId("rocket_fuel_c"))
+        RP1RocketFuel = new Material.Builder(++id, gcylId("rocket_fuel_c"))
                 .liquid()
                 .color(0xFF503C)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -5454,7 +5457,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?O", true);
 
-        CoalTarOil = new Material.Builder(id++, gcylId("coal_tar_oil"))
+        CoalTarOil = new Material.Builder(++id, gcylId("coal_tar_oil"))
                 .liquid()
                 .color(0xB5B553)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -5462,7 +5465,7 @@ public class GCYLMaterials {
                 .components(CoalTar, 1)
                 .build();
 
-        SulfuricCoalTarOil = new Material.Builder(id++, gcylId("sulfuric_coal_tar_oil"))
+        SulfuricCoalTarOil = new Material.Builder(++id, gcylId("sulfuric_coal_tar_oil"))
                 .liquid()
                 .color(0xFFFFAD)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -5470,7 +5473,7 @@ public class GCYLMaterials {
                 .components(CoalTarOil, 1, SulfuricAcid, 1)
                 .build();
 
-        AluminiumHydroxide = new Material.Builder(id++, gcylId("aluminium_hydroxide"))
+        AluminiumHydroxide = new Material.Builder(++id, gcylId("aluminium_hydroxide"))
                 .dust()
                 .color(Aluminium.getMaterialRGB() - 25)
                 .flags(DISABLE_REPLICATION)
@@ -5478,7 +5481,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Al(OH)3", true);
 
-        SodiumHexafluoroaluminate = new Material.Builder(id++, gcylId("sodium_hexafluoroaluminate"))
+        SodiumHexafluoroaluminate = new Material.Builder(++id, gcylId("sodium_hexafluoroaluminate"))
                 .liquid()
                 .color((Sodium.getMaterialRGB() + Aluminium.getMaterialRGB() + Fluorine.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -5486,7 +5489,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Na3AlF6", true);
 
-        SodiumHydroxideBauxite = new Material.Builder(id++, gcylId("sodium_hydroxide_bauxite"))
+        SodiumHydroxideBauxite = new Material.Builder(++id, gcylId("sodium_hydroxide_bauxite"))
                 .liquid()
                 .color(0xbf731a)
                 .flags(DISABLE_REPLICATION)
@@ -5494,7 +5497,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Al2H2O4", true);
 
-        ImpureAluminiumHydroxideSolution = new Material.Builder(id++, gcylId("impure_aloh_3_soution"))
+        ImpureAluminiumHydroxideSolution = new Material.Builder(++id, gcylId("impure_aloh_3_soution"))
                 .liquid()
                 .color(0xd8653e)
                 .flags(DISABLE_REPLICATION)
@@ -5502,7 +5505,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)Al(OH)3?", true);
 
-        PureAluminiumHydroxideSolution = new Material.Builder(id++, gcylId("pure_aloh_3_soution"))
+        PureAluminiumHydroxideSolution = new Material.Builder(++id, gcylId("pure_aloh_3_soution"))
                 .liquid()
                 .color((Aluminium.getMaterialRGB() + Oxygen.getMaterialRGB() + Hydrogen.getMaterialRGB() + 40) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -5510,7 +5513,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)Al2(OH)6", true);
 
-        NeutralisedRedMud = new Material.Builder(id++, gcylId("neutralised_red_mud"))
+        NeutralisedRedMud = new Material.Builder(++id, gcylId("neutralised_red_mud"))
                 .liquid()
                 .color(0xcc3300)
                 .flags(DISABLE_REPLICATION)
@@ -5518,7 +5521,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Fe??", true);
 
-        RedSlurry = new Material.Builder(id++, gcylId("red_slurry"))
+        RedSlurry = new Material.Builder(++id, gcylId("red_slurry"))
                 .liquid()
                 .color(0xcc3300)
                 .flags(DISABLE_REPLICATION)
@@ -5526,7 +5529,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("TiO2?", true);
 
-        FerricREEChloride = new Material.Builder(id++, gcylId("ferric_ree_chloride"))
+        FerricREEChloride = new Material.Builder(++id, gcylId("ferric_ree_chloride"))
                 .liquid()
                 .color(0x30301a)
                 .flags(DISABLE_REPLICATION)
@@ -5534,7 +5537,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Fe?", true);
 
-        TitanylSulfate = new Material.Builder(id++, gcylId("titanyl_sulfate"))
+        TitanylSulfate = new Material.Builder(++id, gcylId("titanyl_sulfate"))
                 .liquid()
                 .color(0xdc3d7c)
                 .flags(DISABLE_REPLICATION)
@@ -5542,7 +5545,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("TiO(SO4)", true);
 
-        NiAlOCatalyst = new Material.Builder(id++, gcylId("nialo_catalyst"))
+        NiAlOCatalyst = new Material.Builder(++id, gcylId("nialo_catalyst"))
                 .dust()
                 .color(0x0af0af)
                 .flags(DISABLE_REPLICATION)
@@ -5550,7 +5553,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NiAl2O4", true);
 
-        RichNitrogenMix = new Material.Builder(id++, gcylId("rich_nitrogen_mix"))
+        RichNitrogenMix = new Material.Builder(++id, gcylId("rich_nitrogen_mix"))
                 .liquid()
                 .color(0x6891d8)
                 .flags(DISABLE_REPLICATION)
@@ -5558,7 +5561,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2O(CH4)?", true);
 
-        FeCrOCatalyst = new Material.Builder(id++, gcylId("fecro_catalyst"))
+        FeCrOCatalyst = new Material.Builder(++id, gcylId("fecro_catalyst"))
                 .dust()
                 .color(0x8C4517)
                 .flags(DISABLE_REPLICATION)
@@ -5566,7 +5569,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("FeCrO3", true);
 
-        OxidisedNitrogenMix = new Material.Builder(id++, gcylId("oxidised_nitrogen_mix"))
+        OxidisedNitrogenMix = new Material.Builder(++id, gcylId("oxidised_nitrogen_mix"))
                 .liquid()
                 .color(0x708ACD)
                 .flags(DISABLE_REPLICATION)
@@ -5574,7 +5577,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)2(CH4)??", true);
 
-        PurifiedNitrogenMix = new Material.Builder(id++, gcylId("purified_nitrogen_mix"))
+        PurifiedNitrogenMix = new Material.Builder(++id, gcylId("purified_nitrogen_mix"))
                 .liquid()
                 .color(0x6891d8)
                 .flags(DISABLE_REPLICATION)
@@ -5582,7 +5585,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)2(CH4)?", true);
 
-        CarbonatedEthanolamine = new Material.Builder(id++, gcylId("carbonated_ethanolamine"))
+        CarbonatedEthanolamine = new Material.Builder(++id, gcylId("carbonated_ethanolamine"))
                 .liquid()
                 .color(0x6f7d87)
                 .flags(DISABLE_REPLICATION)
@@ -5590,7 +5593,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2NCH2CH2OHC", true);
 
-        AmmoniaRichMix = new Material.Builder(id++, gcylId("ammonia_rich_mix"))
+        AmmoniaRichMix = new Material.Builder(++id, gcylId("ammonia_rich_mix"))
                 .liquid()
                 .color(0x2f5d99)
                 .flags(DISABLE_REPLICATION)
@@ -5598,7 +5601,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NH3((H2O)2(CH4)?)", true);
 
-        BariumCarbonate = new Material.Builder(id++, gcylId("barium_carbonate"))
+        BariumCarbonate = new Material.Builder(++id, gcylId("barium_carbonate"))
                 .dust()
                 .color(Salt.getMaterialRGB() + 10)
                 .flags(DISABLE_REPLICATION)
@@ -5606,7 +5609,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("BaCO3", true);
 
-        BariumAluminate = new Material.Builder(id++, gcylId("barium_aluminate"))
+        BariumAluminate = new Material.Builder(++id, gcylId("barium_aluminate"))
                 .dust()
                 .color(Saltpeter.getMaterialRGB() + 10)
                 .flags(DISABLE_REPLICATION)
@@ -5614,7 +5617,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("BaAl2O4", true);
 
-        Barytocalcite = new Material.Builder(id++, gcylId("barytocalcite"))
+        Barytocalcite = new Material.Builder(++id, gcylId("barytocalcite"))
                 .dust(2)
                 .color(0xbf9c7c)
                 .flags(DISABLE_REPLICATION)
@@ -5622,7 +5625,7 @@ public class GCYLMaterials {
                 .components(Barium, 1, Calcium, 1, Carbon, 2, Oxygen, 6)
                 .build();
 
-        Witherite = new Material.Builder(id++, gcylId("witherite"))
+        Witherite = new Material.Builder(++id, gcylId("witherite"))
                 .dust(2)
                 .color(0xc6c29d)
                 .flags(DISABLE_REPLICATION)
@@ -5630,7 +5633,7 @@ public class GCYLMaterials {
                 .components(Barium, 1, Carbon, 1, Oxygen, 3)
                 .build();
 
-        AcryloNitrile = new Material.Builder(id++, gcylId("acrylonitrile"))
+        AcryloNitrile = new Material.Builder(++id, gcylId("acrylonitrile"))
                 .liquid()
                 .color(0x9999ff)
                 .flags(DISABLE_REPLICATION)
@@ -5638,7 +5641,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CH2CHCN", true);
 
-        SodiumThiocyanate = new Material.Builder(id++, gcylId("sodium_thiocyanate"))
+        SodiumThiocyanate = new Material.Builder(++id, gcylId("sodium_thiocyanate"))
                 .liquid()
                 .color((Sodium.getMaterialRGB() + Sulfur.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -5646,7 +5649,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaSCN", true);
 
-        PolyacrylonitrileSolution = new Material.Builder(id++, gcylId("polyacrylonitrile_solution"))
+        PolyacrylonitrileSolution = new Material.Builder(++id, gcylId("polyacrylonitrile_solution"))
                 .liquid()
                 .color(0x9999ff)
                 .flags(DISABLE_REPLICATION)
@@ -5654,7 +5657,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(C3H3N)n(NaSCN)", true);
 
-        AcrylicFibers = new Material.Builder(id++, gcylId("acrylic_fibers"))
+        AcrylicFibers = new Material.Builder(++id, gcylId("acrylic_fibers"))
                 .dust()
                 .color(0xfdfdfb)
                 .flags(DISABLE_REPLICATION)
@@ -5662,7 +5665,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(C5O2H8)n", true);
 
-        MethylFormate = new Material.Builder(id++, gcylId("methyl_formate"))
+        MethylFormate = new Material.Builder(++id, gcylId("methyl_formate"))
                 .liquid()
                 .color(0Xff9999)
                 .flags(DISABLE_REPLICATION)
@@ -5670,7 +5673,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HCOOCH3", true);
 
-        WetFormamide = new Material.Builder(id++, gcylId("wet_formamide"))
+        WetFormamide = new Material.Builder(++id, gcylId("wet_formamide"))
                 .liquid()
                 .color(0x33CCFF)
                 .flags(DISABLE_REPLICATION)
@@ -5678,7 +5681,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)CH3NO", true);
 
-        Formamide = new Material.Builder(id++, gcylId("formamide"))
+        Formamide = new Material.Builder(++id, gcylId("formamide"))
                 .liquid()
                 .color(0x33CCFF)
                 .flags(DISABLE_REPLICATION)
@@ -5686,7 +5689,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CH3NO", true);
 
-        HydroxylamineDisulfate = new Material.Builder(id++, gcylId("hydroxylamine_disulfate"))
+        HydroxylamineDisulfate = new Material.Builder(++id, gcylId("hydroxylamine_disulfate"))
                 .liquid()
                 .color(0x99add6)
                 .flags(DISABLE_REPLICATION)
@@ -5694,7 +5697,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(NH3OH)2(NH4)2(SO4)2", true);
 
-        Amidoxime = new Material.Builder(id++, gcylId("amidoxime"))
+        Amidoxime = new Material.Builder(++id, gcylId("amidoxime"))
                 .liquid()
                 .color(0x66ff33)
                 .flags(DISABLE_REPLICATION)
@@ -5702,7 +5705,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H3N2O(CH)", true);
 
-        SeaWater = new Material.Builder(id++, gcylId("sea_water"))
+        SeaWater = new Material.Builder(++id, gcylId("sea_water"))
                 .liquid()
                 .color(0x0000FF)
                 .flags(DISABLE_REPLICATION)
@@ -5710,7 +5713,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2O?", true);
 
-        PureUranylNitrateSolution = new Material.Builder(id++, gcylId("pure_uranyl_nitrate"))
+        PureUranylNitrateSolution = new Material.Builder(++id, gcylId("pure_uranyl_nitrate"))
                 .liquid()
                 .color(0x33bd45)
                 .flags(DISABLE_REPLICATION)
@@ -5718,7 +5721,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)UO2(NO3)2", true);
 
-        UranylNitrate = new Material.Builder(id++, gcylId("uranyl_nitrate"))
+        UranylNitrate = new Material.Builder(++id, gcylId("uranyl_nitrate"))
                 .dust()
                 .color(0x33bd45)
                 .flags(DISABLE_REPLICATION)
@@ -5726,7 +5729,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("UO2(NO3)2", true);
 
-        DiluteNitricAcid = new Material.Builder(id++, gcylId("dilute_nitric_acid"))
+        DiluteNitricAcid = new Material.Builder(++id, gcylId("dilute_nitric_acid"))
                 .liquid()
                 .color((NitricAcid.getMaterialRGB() + Water.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -5734,7 +5737,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)HNO3", true);
 
-        Brine = new Material.Builder(id++, gcylId("brine"))
+        Brine = new Material.Builder(++id, gcylId("brine"))
                 .liquid()
                 .color(0xfcfc8a)
                 .flags(DISABLE_REPLICATION)
@@ -5742,7 +5745,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        ConcentratedBrine = new Material.Builder(id++, gcylId("concentrated_brine"))
+        ConcentratedBrine = new Material.Builder(++id, gcylId("concentrated_brine"))
                 .liquid()
                 .color(0xfcfc95)
                 .flags(DISABLE_REPLICATION)
@@ -5750,7 +5753,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        BrominatedBrine = new Material.Builder(id++, gcylId("brominated_brine"))
+        BrominatedBrine = new Material.Builder(++id, gcylId("brominated_brine"))
                 .liquid()
                 .color(0xfdd48d)
                 .flags(DISABLE_REPLICATION)
@@ -5758,7 +5761,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Br?", true);
 
-        AcidicBrominatedBrine = new Material.Builder(id++, gcylId("acidic_brominated_brine"))
+        AcidicBrominatedBrine = new Material.Builder(++id, gcylId("acidic_brominated_brine"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0xfdd48d)
                 .flags(DISABLE_REPLICATION)
@@ -5766,7 +5769,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2SO4)Cl?", true);
 
-        CalciumFreeBrine = new Material.Builder(id++, gcylId("calcium_free_brine"))
+        CalciumFreeBrine = new Material.Builder(++id, gcylId("calcium_free_brine"))
                 .liquid()
                 .color(0xfcfca6)
                 .flags(DISABLE_REPLICATION)
@@ -5774,7 +5777,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        CalciumSalts = new Material.Builder(id++, gcylId("calcium_salts"))
+        CalciumSalts = new Material.Builder(++id, gcylId("calcium_salts"))
                 .dust()
                 .color(Calcium.getMaterialRGB() - 10)
                 .flags(DISABLE_REPLICATION)
@@ -5782,7 +5785,7 @@ public class GCYLMaterials {
                 .components(Calcite, 1, Gypsum, 1)
                 .build();
 
-        SodiumFreeBrine = new Material.Builder(id++, gcylId("sodium_free_brine"))
+        SodiumFreeBrine = new Material.Builder(++id, gcylId("sodium_free_brine"))
                 .liquid()
                 .color(0xfcfcb1)
                 .flags(DISABLE_REPLICATION)
@@ -5790,7 +5793,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        SodiumSalts = new Material.Builder(id++, gcylId("sodium_salts"))
+        SodiumSalts = new Material.Builder(++id, gcylId("sodium_salts"))
                 .dust()
                 .color(Sodium.getMaterialRGB() - 5)
                 .flags(DISABLE_REPLICATION)
@@ -5798,7 +5801,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaCl?", true);
 
-        PotassiumFreeBrine = new Material.Builder(id++, gcylId("potassium_free_brine"))
+        PotassiumFreeBrine = new Material.Builder(++id, gcylId("potassium_free_brine"))
                 .liquid()
                 .color(0xfcfcbc)
                 .flags(DISABLE_REPLICATION)
@@ -5806,7 +5809,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        PotassiumMagnesiumSalts = new Material.Builder(id++, gcylId("kmg_salts"))
+        PotassiumMagnesiumSalts = new Material.Builder(++id, gcylId("kmg_salts"))
                 .dust()
                 .color(0xcacac8)
                 .flags(DISABLE_REPLICATION)
@@ -5814,7 +5817,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("KClMg(SO4)K2(SO4)KF", true);
 
-        BoronFreeSolution = new Material.Builder(id++, gcylId("boron_free_solution"))
+        BoronFreeSolution = new Material.Builder(++id, gcylId("boron_free_solution"))
                 .liquid()
                 .color(0xfcfccd)
                 .flags(DISABLE_REPLICATION)
@@ -5822,7 +5825,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        CalciumMagnesiumSalts = new Material.Builder(id++, gcylId("camg_salts"))
+        CalciumMagnesiumSalts = new Material.Builder(++id, gcylId("camg_salts"))
                 .dust()
                 .color(0xcacac8)
                 .flags(DISABLE_REPLICATION)
@@ -5830,7 +5833,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ca(CO3)(Sr(CO3))(CO2)(MgO)", true);
 
-        SodiumLithiumSolution = new Material.Builder(id++, gcylId("sodium_lithium_solution"))
+        SodiumLithiumSolution = new Material.Builder(++id, gcylId("sodium_lithium_solution"))
                 .liquid()
                 .color(0xfcfccd)
                 .flags(DISABLE_REPLICATION)
@@ -5838,7 +5841,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaLi?", true);
 
-        SodiumAluminiumHydride = new Material.Builder(id++, gcylId("sodium_aluminium_hydride"))
+        SodiumAluminiumHydride = new Material.Builder(++id, gcylId("sodium_aluminium_hydride"))
                 .dust()
                 .color(0x98cafc)
                 .flags(DISABLE_REPLICATION)
@@ -5846,7 +5849,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaAlH4", true);
 
-        Cellulose = new Material.Builder(id++, gcylId("cellulose"))
+        Cellulose = new Material.Builder(++id, gcylId("cellulose"))
                 .dust()
                 .color(0xfefefc)
                 .flags(DISABLE_REPLICATION)
@@ -5854,7 +5857,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H10O5", true);
 
-        Fructose = new Material.Builder(id++, gcylId("fructose"))
+        Fructose = new Material.Builder(++id, gcylId("fructose"))
                 .dust()
                 .color((Cellulose.getMaterialRGB() + Sugar.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -5862,7 +5865,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H12O6", true);
 
-        SodiumAzide = new Material.Builder(id++, gcylId("sodium_azide"))
+        SodiumAzide = new Material.Builder(++id, gcylId("sodium_azide"))
                 .dust()
                 .color((Sodium.getMaterialRGB() + Nitrogen.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -5870,7 +5873,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaN3", true);
 
-        LithiumHydroxideSolution = new Material.Builder(id++, gcylId("lithium_hydroxide_solution"))
+        LithiumHydroxideSolution = new Material.Builder(++id, gcylId("lithium_hydroxide_solution"))
                 .liquid()
                 .color((Lithium.getMaterialRGB() + Oxygen.getMaterialRGB() + Hydrogen.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -5878,7 +5881,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2O)LiOH", true);
 
-        Glucosamine = new Material.Builder(id++, gcylId("glucosamine"))
+        Glucosamine = new Material.Builder(++id, gcylId("glucosamine"))
                 .dust()
                 .color((Cellulose.getMaterialRGB() + Water.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -5886,7 +5889,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H13NO5", true);
 
-        Chitosan = new Material.Builder(id++, gcylId("chitosan"))
+        Chitosan = new Material.Builder(++id, gcylId("chitosan"))
                 .liquid()
                 .color(0xb1bd42)
                 .flags(DISABLE_REPLICATION)
@@ -5894,7 +5897,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        SodiumSulfate = new Material.Builder(id++, gcylId("sodium_sulfate"))
+        SodiumSulfate = new Material.Builder(++id, gcylId("sodium_sulfate"))
                 .dust()
                 .color(0xFFFFFF)
                 .flags(DISABLE_REPLICATION)
@@ -5902,7 +5905,7 @@ public class GCYLMaterials {
                 .components(Sodium, 2, Sulfur, 1, Oxygen, 4)
                 .build();
 
-        SodiumSulfateSolution = new Material.Builder(id++, gcylId("sodium_sulfate_solution"))
+        SodiumSulfateSolution = new Material.Builder(++id, gcylId("sodium_sulfate_solution"))
                 .liquid()
                 .color((SodiumSulfate.getMaterialRGB() + 30))
                 .flags(DISABLE_REPLICATION)
@@ -5910,7 +5913,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Na2SO4(H2O)", true);
 
-        BoronOxide = new Material.Builder(id++, gcylId("boron_oxide"))
+        BoronOxide = new Material.Builder(++id, gcylId("boron_oxide"))
                 .dust()
                 .color((Boron.getMaterialRGB() + Oxygen.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -5918,7 +5921,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("B2O3", true);
 
-        Diborane = new Material.Builder(id++, gcylId("diborane"))
+        Diborane = new Material.Builder(++id, gcylId("diborane"))
                 .liquid()
                 .color(Boron.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -5926,7 +5929,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(BH3)2", true);
 
-        LithiumAluminiumFluoride = new Material.Builder(id++, gcylId("lithium_aluminium_fluoride"))
+        LithiumAluminiumFluoride = new Material.Builder(++id, gcylId("lithium_aluminium_fluoride"))
                 .dust()
                 .color((Lithium.getMaterialRGB() + Aluminium.getMaterialRGB() + Fluorine.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -5934,7 +5937,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("AlF4Li", true);
 
-        CarbonSulfide = new Material.Builder(id++, gcylId("carbon_sulfide"))
+        CarbonSulfide = new Material.Builder(++id, gcylId("carbon_sulfide"))
                 .liquid()
                 .color(0x40ffbf)
                 .flags(DISABLE_REPLICATION)
@@ -5942,7 +5945,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CS2", true);
 
-        DimethylthiocarbamoilChloride = new Material.Builder(id++, gcylId("dimethylthiocarbamoil_chloride"))
+        DimethylthiocarbamoilChloride = new Material.Builder(++id, gcylId("dimethylthiocarbamoil_chloride"))
                 .liquid()
                 .color(0xd9ff26)
                 .flags(DISABLE_REPLICATION)
@@ -5950,7 +5953,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(CH3)2NC(S)Cl", true);
 
-        Mercaptophenol = new Material.Builder(id++, gcylId("mercaptophenol"))
+        Mercaptophenol = new Material.Builder(++id, gcylId("mercaptophenol"))
                 .liquid()
                 .color(0xbaaf18)
                 .flags(DISABLE_REPLICATION)
@@ -5958,7 +5961,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H6OS", true);
 
-        AmineMixture = new Material.Builder(id++, gcylId("amine_mixture"))
+        AmineMixture = new Material.Builder(++id, gcylId("amine_mixture"))
                 .liquid()
                 .color((Methanol.getMaterialRGB() - 20 + Ammonia.getMaterialRGB() - 10) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -5966,7 +5969,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(NH3)CH4", true);
 
-        SodiumMolybdate = new Material.Builder(id++, gcylId("sodium_molybdate"))
+        SodiumMolybdate = new Material.Builder(++id, gcylId("sodium_molybdate"))
                 .dust()
                 .color(0xfcfc00)
                 .flags(DISABLE_REPLICATION)
@@ -5974,7 +5977,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Na2MoO4", true);
 
-        SodiumPhosphomolybdate = new Material.Builder(id++, gcylId("sodium_phosphomolybdate"))
+        SodiumPhosphomolybdate = new Material.Builder(++id, gcylId("sodium_phosphomolybdate"))
                 .dust()
                 .color(0xfcfc00)
                 .flags(DISABLE_REPLICATION)
@@ -5982,7 +5985,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(MoO3)12Na3PO4", true);
 
-        SodiumTungstate = new Material.Builder(id++, gcylId("sodium_tungstate"))
+        SodiumTungstate = new Material.Builder(++id, gcylId("sodium_tungstate"))
                 .liquid()
                 .color(0x7a7777)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -5990,7 +5993,7 @@ public class GCYLMaterials {
                 .components(Sodium, 2, Tungsten, 1, Oxygen, 4)
                 .build();
 
-        SodiumPhosphotungstate = new Material.Builder(id++, gcylId("sodium_phosphotungstate"))
+        SodiumPhosphotungstate = new Material.Builder(++id, gcylId("sodium_phosphotungstate"))
                 .dust()
                 .color(0x7a7777)
                 .flags(DISABLE_REPLICATION)
@@ -5998,7 +6001,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(WO3)12Na3PO4", true);
 
-        Dichlorocycloctadieneplatinium = new Material.Builder(id++, gcylId("dichlorocyclooctadieneplatinium"))
+        Dichlorocycloctadieneplatinium = new Material.Builder(++id, gcylId("dichlorocyclooctadieneplatinium"))
                 .dust()
                 .color(0xe0f78a)
                 .flags(DISABLE_REPLICATION)
@@ -6006,7 +6009,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C8H12Cl2Pt", true);
 
-        IridiumCyclooctadienylChlorideDimer = new Material.Builder(id++, gcylId("iridium_cyclooctadienyl_chloride_dimer"))
+        IridiumCyclooctadienylChlorideDimer = new Material.Builder(++id, gcylId("iridium_cyclooctadienyl_chloride_dimer"))
                 .dust()
                 .color((Dichlorocycloctadieneplatinium.getMaterialRGB() + Iridium.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6014,14 +6017,14 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ir2(C8H12)2Cl2", true);
 
-        ChlorodiisopropylPhosphine = new Material.Builder(id++, gcylId("chlorodiisopropyl_phosphine"))
+        ChlorodiisopropylPhosphine = new Material.Builder(++id, gcylId("chlorodiisopropyl_phosphine"))
                 .liquid()
                 .color(0xa2c122)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        DehydrogenationCatalyst = new Material.Builder(id++, gcylId("dehydrogenation_catalyst"))
+        DehydrogenationCatalyst = new Material.Builder(++id, gcylId("dehydrogenation_catalyst"))
                 .dust()
                 .color(0x6464f5)
                 .flags(DISABLE_REPLICATION)
@@ -6029,7 +6032,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        AmmoniumPersulfate = new Material.Builder(id++, gcylId("ammonium_persulfate"))
+        AmmoniumPersulfate = new Material.Builder(++id, gcylId("ammonium_persulfate"))
                 .liquid()
                 .color(0x6464f5)
                 .flags(DISABLE_REPLICATION)
@@ -6037,7 +6040,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(NH4)2S2O8", true);
 
-        PolystyreneNanoParticles = new Material.Builder(id++, gcylId("polystryrene_nanoparticles"))
+        PolystyreneNanoParticles = new Material.Builder(++id, gcylId("polystryrene_nanoparticles"))
                 .dust()
                 .color(0x888079)
                 .flags(DISABLE_REPLICATION)
@@ -6045,7 +6048,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(C8H8)n", true);
 
-        Celestine = new Material.Builder(id++, gcylId("celestine"))
+        Celestine = new Material.Builder(++id, gcylId("celestine"))
                 .dust()
                 .color(0x9db1b8)
                 .flags(DISABLE_REPLICATION)
@@ -6053,7 +6056,7 @@ public class GCYLMaterials {
                 .components(Strontium, 1, Sulfur, 1, Oxygen, 4)
                 .build();
 
-        MagnesiumSulfate = new Material.Builder(id++, gcylId("magnesium_sulfate"))
+        MagnesiumSulfate = new Material.Builder(++id, gcylId("magnesium_sulfate"))
                 .dust()
                 .color(0xcacac8)
                 .flags(DISABLE_REPLICATION)
@@ -6061,7 +6064,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("MgSO4", true);
 
-        StrontiumCarbonate = new Material.Builder(id++, gcylId("strontium_carbonate"))
+        StrontiumCarbonate = new Material.Builder(++id, gcylId("strontium_carbonate"))
                 .dust()
                 .color(0xcacac8)
                 .flags(DISABLE_REPLICATION)
@@ -6069,7 +6072,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("SrCO3", true);
 
-        StrontiumOxide = new Material.Builder(id++, gcylId("strontium_oxide"))
+        StrontiumOxide = new Material.Builder(++id, gcylId("strontium_oxide"))
                 .dust()
                 .color(0xcacac8)
                 .flags(DISABLE_REPLICATION)
@@ -6077,7 +6080,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("SrO", true);
 
-        ChilledBrine = new Material.Builder(id++, gcylId("chilled_brine"))
+        ChilledBrine = new Material.Builder(++id, gcylId("chilled_brine"))
                 .liquid()
                 .color(0xfcfc95)
                 .flags(DISABLE_REPLICATION)
@@ -6085,7 +6088,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        MagnesiumContainingBrine = new Material.Builder(id++, gcylId("magnesium_containing_brine"))
+        MagnesiumContainingBrine = new Material.Builder(++id, gcylId("magnesium_containing_brine"))
                 .liquid()
                 .color(0xfcfcbc)
                 .flags(DISABLE_REPLICATION)
@@ -6093,7 +6096,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Mg?", true);
 
-        PotassiumFluoride = new Material.Builder(id++, gcylId("potassium_fluoride"))
+        PotassiumFluoride = new Material.Builder(++id, gcylId("potassium_fluoride"))
                 .dust()
                 .color(0xFDFDFD)
                 .flags(DISABLE_REPLICATION)
@@ -6101,7 +6104,7 @@ public class GCYLMaterials {
                 .components(Potassium, 1, Fluorine, 1)
                 .build();
 
-        SodiumCarbonateSolution = new Material.Builder(id++, gcylId("sodium_carbonate_solution"))
+        SodiumCarbonateSolution = new Material.Builder(++id, gcylId("sodium_carbonate_solution"))
                 .liquid()
                 .color((SodaAsh.getMaterialRGB() + 30))
                 .flags(DISABLE_REPLICATION)
@@ -6109,7 +6112,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Na2CO3(H2O)", true);
 
-        SodiumChromateSolution = new Material.Builder(id++, gcylId("sodium_chromate_solution"))
+        SodiumChromateSolution = new Material.Builder(++id, gcylId("sodium_chromate_solution"))
                 .liquid()
                 .color(0xf2e70f)
                 .flags(DISABLE_REPLICATION)
@@ -6117,7 +6120,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Na2CrO4(H2O)", true);
 
-        SodiumDichromateSolution = new Material.Builder(id++, gcylId("sodium_dichromate_solution"))
+        SodiumDichromateSolution = new Material.Builder(++id, gcylId("sodium_dichromate_solution"))
                 .liquid()
                 .color(0xf2750f)
                 .flags(DISABLE_REPLICATION)
@@ -6125,7 +6128,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Na2Cr2O7", true);
 
-        ChromiumIIIOxide = new Material.Builder(id++, gcylId("chromium_iii_oxide"))
+        ChromiumIIIOxide = new Material.Builder(++id, gcylId("chromium_iii_oxide"))
                 .dust()
                 .color(0x4bf25f)
                 .flags(DISABLE_REPLICATION)
@@ -6133,7 +6136,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Cr2O3", true);
 
-        Naphthaldehyde = new Material.Builder(id++, gcylId("napthaldehyde"))
+        Naphthaldehyde = new Material.Builder(++id, gcylId("napthaldehyde"))
                 .liquid()
                 .color(0xBCA853)
                 .flags(DISABLE_REPLICATION)
@@ -6141,7 +6144,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C10H7CHO", true);
 
-        Benzophenanthrenylacetonitrile = new Material.Builder(id++, gcylId("benzophenanthrenylacetonitrile"))
+        Benzophenanthrenylacetonitrile = new Material.Builder(++id, gcylId("benzophenanthrenylacetonitrile"))
                 .dust()
                 .color((Naphthaldehyde.getMaterialRGB() + Ethylene.getMaterialRGB() - 20) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6149,7 +6152,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C20H13N", true);
 
-        UnfoldedFullerene = new Material.Builder(id++, gcylId("unfolded_fullerene"))
+        UnfoldedFullerene = new Material.Builder(++id, gcylId("unfolded_fullerene"))
                 .dust()
                 .color((Benzophenanthrenylacetonitrile.getMaterialRGB() + Oxygen.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6157,7 +6160,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C60H30", true);
 
-        PotassiumPeroxymonosulfate = new Material.Builder(id++, gcylId("potassium_peroxymonosulfate"))
+        PotassiumPeroxymonosulfate = new Material.Builder(++id, gcylId("potassium_peroxymonosulfate"))
                 .dust()
                 .color((PotassiumMetabisulfite.getMaterialRGB() + 20))
                 .flags(DISABLE_REPLICATION)
@@ -6165,7 +6168,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("KHSO5", true);
 
-        AuricChloride = new Material.Builder(id++, gcylId("auric_chloride"))
+        AuricChloride = new Material.Builder(++id, gcylId("auric_chloride"))
                 .liquid()
                 .color(0xdffb50)
                 .flags(DISABLE_REPLICATION)
@@ -6173,7 +6176,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Au2Cl6", true);
 
-        XenonTrioxide = new Material.Builder(id++, gcylId("xenon_trioxide"))
+        XenonTrioxide = new Material.Builder(++id, gcylId("xenon_trioxide"))
                 .liquid()
                 .color(0x432791)
                 .flags(DISABLE_REPLICATION)
@@ -6181,7 +6184,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("XeO3", true);
 
-        RadonTrioxide = new Material.Builder(id++, gcylId("radon_trioxide"))
+        RadonTrioxide = new Material.Builder(++id, gcylId("radon_trioxide"))
                 .liquid()
                 .color(0x9966ff)
                 .flags(DISABLE_REPLICATION)
@@ -6189,7 +6192,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("RnO3", true);
 
-        Fullerene = new Material.Builder(id++, gcylId("fullerene"))
+        Fullerene = new Material.Builder(++id, gcylId("fullerene"))
                 .dust()
                 .color((UnfoldedFullerene.getMaterialRGB() - 20))
                 .flags(DISABLE_REPLICATION)
@@ -6197,7 +6200,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C60", true);
 
-        Ferrocene = new Material.Builder(id++, gcylId("ferrocene"))
+        Ferrocene = new Material.Builder(++id, gcylId("ferrocene"))
                 .liquid()
                 .color((Water.getMaterialRGB() + Chlorine.getMaterialRGB() + Iron.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -6205,7 +6208,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C10H10Fe", true);
 
-        SodiumEthoxide = new Material.Builder(id++, gcylId("sodium_ethoxide"))
+        SodiumEthoxide = new Material.Builder(++id, gcylId("sodium_ethoxide"))
                 .dust()
                 .color((Ethanol.getMaterialRGB() + SodiumHydroxide.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6213,7 +6216,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2H5ONa", true);
 
-        PdFullereneMatrix = new Material.Builder(id++, gcylId("pd_fullerene_matrix"))
+        PdFullereneMatrix = new Material.Builder(++id, gcylId("pd_fullerene_matrix"))
                 .dust()
                 .color((Palladium.getMaterialRGB() + Fullerene.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6221,7 +6224,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("PdC73H15NFe", true);
 
-        Pyridine = new Material.Builder(id++, gcylId("pyridine"))
+        Pyridine = new Material.Builder(++id, gcylId("pyridine"))
                 .liquid()
                 .color((Ammonia.getMaterialRGB() + Formaldehyde.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6229,7 +6232,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C5H5N", true);
 
-        Dimethylaminopyridine = new Material.Builder(id++, gcylId("dimethylaminopyridine"))
+        Dimethylaminopyridine = new Material.Builder(++id, gcylId("dimethylaminopyridine"))
                 .dust()
                 .color((Dimethylamine.getMaterialRGB() + Pyridine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6237,7 +6240,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(CH3)2NC5H4N", true);
 
-        Phenylpentanoicacid = new Material.Builder(id++, gcylId("phenylpentanoicacid"))
+        Phenylpentanoicacid = new Material.Builder(++id, gcylId("phenylpentanoicacid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color((Butene.getMaterialRGB() + CarbonMonoxide.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6245,7 +6248,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C11H14O2", true);
 
-        Dimethylsulfide = new Material.Builder(id++, gcylId("dimethylsulfide"))
+        Dimethylsulfide = new Material.Builder(++id, gcylId("dimethylsulfide"))
                 .liquid()
                 .color((Methanol.getMaterialRGB() + HydrogenSulfide.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6253,7 +6256,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(CH3)2S", true);
 
-        PCBA = new Material.Builder(id++, gcylId("pcba"))
+        PCBA = new Material.Builder(++id, gcylId("pcba"))
                 .liquid()
                 .color((Chlorobenzene.getMaterialRGB() + Dimethylsulfide.getMaterialRGB() + Phenylpentanoicacid.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -6261,7 +6264,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C72H14O2", true);
 
-        PCBS = new Material.Builder(id++, gcylId("pcbs"))
+        PCBS = new Material.Builder(++id, gcylId("pcbs"))
                 .liquid()
                 .color((Styrene.getMaterialRGB() + PCBA.getMaterialRGB() - 40) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6269,7 +6272,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C80H21O2", true);
 
-        QuarkGluonPlasma = new Material.Builder(id++, gcylId("quark_gluon_plasma"))
+        QuarkGluonPlasma = new Material.Builder(++id, gcylId("quark_gluon_plasma"))
                 .liquid()
                 .color(0x8f00ff)
                 .flags(DISABLE_REPLICATION)
@@ -6277,7 +6280,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula(makeFancy(TextFormatting.OBFUSCATED + "a" + TextFormatting.RESET + "(u2)d(c2)s(t2)bg" + TextFormatting.OBFUSCATED + "a"), true);
 
-        HeavyQuarks = new Material.Builder(id++, gcylId("heavy_quarks"))
+        HeavyQuarks = new Material.Builder(++id, gcylId("heavy_quarks"))
                 .liquid()
                 .color(0x008800)
                 .flags(DISABLE_REPLICATION)
@@ -6285,7 +6288,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula(makeFancy(TextFormatting.OBFUSCATED + "a" + TextFormatting.RESET + "(u2)ds" + TextFormatting.OBFUSCATED + "a"), true);
 
-        LightQuarks = new Material.Builder(id++, gcylId("light_quarks"))
+        LightQuarks = new Material.Builder(++id, gcylId("light_quarks"))
                 .liquid()
                 .color(0x0000ff)
                 .flags(DISABLE_REPLICATION)
@@ -6293,7 +6296,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula(makeFancy(TextFormatting.OBFUSCATED + "a" + TextFormatting.RESET + "(c2)(t2)b" + TextFormatting.OBFUSCATED + "a"), true);
 
-        CosmicComputingMix = new Material.Builder(id++, gcylId("cosmic_computing_mix"))
+        CosmicComputingMix = new Material.Builder(++id, gcylId("cosmic_computing_mix"))
                 .liquid()
                 .color(0xafad2f)
                 .flags(DISABLE_REPLICATION)
@@ -6301,7 +6304,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula(makeFancy(TextFormatting.OBFUSCATED + "aaaaa"), true);
 
-        HeavyQuarkEnrichedMix = new Material.Builder(id++, gcylId("heavy_quark_enriched_mix"))
+        HeavyQuarkEnrichedMix = new Material.Builder(++id, gcylId("heavy_quark_enriched_mix"))
                 .liquid()
                 .color(0xefefef)
                 .flags(DISABLE_REPLICATION)
@@ -6309,7 +6312,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula(makeFancy(TextFormatting.OBFUSCATED + "a" + TextFormatting.RESET + "(u2)d(c2)s(t2)b" + TextFormatting.OBFUSCATED + "a"), true);
 
-        Titanium50 = new Material.Builder(id++, gcylId("titanium_50"))
+        Titanium50 = new Material.Builder(++id, gcylId("titanium_50"))
                 .ingot(5).liquid()
                 .color(Titanium.getMaterialRGB())
                 .iconSet(SHINY)
@@ -6318,7 +6321,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ti_50");
 
-        ScandiumTitanium50Mix = new Material.Builder(id++, gcylId("scandium_titanium_50_mix"))
+        ScandiumTitanium50Mix = new Material.Builder(++id, gcylId("scandium_titanium_50_mix"))
                 .liquid()
                 .color((Scandium.getMaterialRGB() + Titanium.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6326,7 +6329,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ScTi_50", true);
 
-        RadonRadiumMix = new Material.Builder(id++, gcylId("radon_radium_mix"))
+        RadonRadiumMix = new Material.Builder(++id, gcylId("radon_radium_mix"))
                 .liquid()
                 .color((Radium.getMaterialRGB() + Radon.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6334,7 +6337,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("RnRa", true);
 
-        DeuteriumSuperheavyMix = new Material.Builder(id++, gcylId("deuterium_superheavy_mix"))
+        DeuteriumSuperheavyMix = new Material.Builder(++id, gcylId("deuterium_superheavy_mix"))
                 .liquid()
                 .color(0xa2d2a4)
                 .flags(DISABLE_REPLICATION)
@@ -6342,7 +6345,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H_2)FlHsOg", true);
 
-        Phenylsodium = new Material.Builder(id++, gcylId("phenylsodium"))
+        Phenylsodium = new Material.Builder(++id, gcylId("phenylsodium"))
                 .liquid()
                 .color(0x2c2cc8)
                 .flags(DISABLE_REPLICATION)
@@ -6350,7 +6353,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H5Na", true);
 
-        Succinaldehyde = new Material.Builder(id++, gcylId("succinaldehyde"))
+        Succinaldehyde = new Material.Builder(++id, gcylId("succinaldehyde"))
                 .liquid()
                 .color(0x7c6d9a)
                 .flags(DISABLE_REPLICATION)
@@ -6358,7 +6361,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C4H6O2", true);
 
-        Difluoroaniline = new Material.Builder(id++, gcylId("difluoroaniline"))
+        Difluoroaniline = new Material.Builder(++id, gcylId("difluoroaniline"))
                 .liquid()
                 .color(0x3fac4a)
                 .flags(DISABLE_REPLICATION)
@@ -6366,7 +6369,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H5F2N", true);
 
-        NDifluorophenylpyrrole = new Material.Builder(id++, gcylId("n_difluorophenylpyrrole"))
+        NDifluorophenylpyrrole = new Material.Builder(++id, gcylId("n_difluorophenylpyrrole"))
                 .liquid()
                 .color(0x3a9aa9)
                 .flags(DISABLE_REPLICATION)
@@ -6374,7 +6377,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C10H7F2N", true);
 
-        SilverChloride = new Material.Builder(id++, gcylId("silver_chloride"))
+        SilverChloride = new Material.Builder(++id, gcylId("silver_chloride"))
                 .dust()
                 .color(0xFEFEFE)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -6382,7 +6385,7 @@ public class GCYLMaterials {
                 .components(Silver, 1, Chlorine, 1)
                 .build();
 
-        SilverPerchlorate = new Material.Builder(id++, gcylId("silver_perchlorate"))
+        SilverPerchlorate = new Material.Builder(++id, gcylId("silver_perchlorate"))
                 .dust()
                 .color(SilverChloride.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -6390,7 +6393,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("AgClO4", true);
 
-        TitaniumCyclopentadienyl = new Material.Builder(id++, gcylId("titanium_cyclopentadienyl"))
+        TitaniumCyclopentadienyl = new Material.Builder(++id, gcylId("titanium_cyclopentadienyl"))
                 .dust()
                 .color(0xbc30bc)
                 .flags(DISABLE_REPLICATION)
@@ -6398,7 +6401,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(C5H5)2Cl2Ti", true);
 
-        SodiumBromide = new Material.Builder(id++, gcylId("sodium_bromide"))
+        SodiumBromide = new Material.Builder(++id, gcylId("sodium_bromide"))
                 .dust()
                 .color(0xfeaffc)
                 .flags(DISABLE_REPLICATION)
@@ -6406,7 +6409,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaBr", true);
 
-        PhotopolymerSolution = new Material.Builder(id++, gcylId("photopolymer_solution"))
+        PhotopolymerSolution = new Material.Builder(++id, gcylId("photopolymer_solution"))
                 .liquid()
                 .color(0x8a526d)
                 .flags(DISABLE_REPLICATION)
@@ -6414,7 +6417,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C149H97N10O2(TiBF20)", true);
 
-        SodiumChlorate = new Material.Builder(id++, gcylId("sodium_chlorate"))
+        SodiumChlorate = new Material.Builder(++id, gcylId("sodium_chlorate"))
                 .dust()
                 .color(Salt.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -6422,7 +6425,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaClO3", true);
 
-        SodiumPerchlorate = new Material.Builder(id++, gcylId("sodium_perchlorate"))
+        SodiumPerchlorate = new Material.Builder(++id, gcylId("sodium_perchlorate"))
                 .dust()
                 .color(Salt.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -6430,7 +6433,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaClO4", true);
 
-        GermaniumOxide = new Material.Builder(id++, gcylId("germanium_oxide"))
+        GermaniumOxide = new Material.Builder(++id, gcylId("germanium_oxide"))
                 .dust()
                 .color((Germanium.getMaterialRGB() + 10))
                 .flags(DISABLE_REPLICATION)
@@ -6438,7 +6441,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("GeO2", true);
 
-        GermaniumSulfide = new Material.Builder(id++, gcylId("germanium_sulfide"))
+        GermaniumSulfide = new Material.Builder(++id, gcylId("germanium_sulfide"))
                 .dust()
                 .color(GermaniumOxide.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -6446,7 +6449,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("GeS2", true);
 
-        TungstenTrioxide = new Material.Builder(id++, gcylId("tungsten_trioxide"))
+        TungstenTrioxide = new Material.Builder(++id, gcylId("tungsten_trioxide"))
                 .dust()
                 .color(0x99FF97)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -6454,7 +6457,7 @@ public class GCYLMaterials {
                 .components(Tungsten, 1, Oxygen, 3)
                 .build();
 
-        CadmiumSulfide = new Material.Builder(id++, gcylId("cadmium_sulfide"))
+        CadmiumSulfide = new Material.Builder(++id, gcylId("cadmium_sulfide"))
                 .dust()
                 .color(0xffff00)
                 .flags(DISABLE_REPLICATION)
@@ -6462,7 +6465,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CdS", true);
 
-        CalciumTungstate = new Material.Builder(id++, gcylId("calcium_tungstate"))
+        CalciumTungstate = new Material.Builder(++id, gcylId("calcium_tungstate"))
                 .dust()
                 .color(0x6e6867)
                 .flags(DISABLE_REPLICATION)
@@ -6470,7 +6473,7 @@ public class GCYLMaterials {
                 .components(Tungsten, 1, Calcium, 1)
                 .build();
 
-        CadmiumTungstate = new Material.Builder(id++, gcylId("cadmium_tungstate"))
+        CadmiumTungstate = new Material.Builder(++id, gcylId("cadmium_tungstate"))
                 .dust()
                 .color(CalciumTungstate.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -6478,7 +6481,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CdWO4", true);
 
-        CesiumIodide = new Material.Builder(id++, gcylId("cesium_iodide"))
+        CesiumIodide = new Material.Builder(++id, gcylId("cesium_iodide"))
                 .dust()
                 .color(CaesiumHydroxide.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -6486,7 +6489,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CsI", true);
 
-        TlTmCesiumIodide = new Material.Builder(id++, gcylId("tl_tm_cesium_iodide"))
+        TlTmCesiumIodide = new Material.Builder(++id, gcylId("tl_tm_cesium_iodide"))
                 .dust()
                 .color(CaesiumHydroxide.getMaterialRGB() * 9 / 10 + Thallium.getMaterialRGB() / 10)
                 .flags(DISABLE_REPLICATION)
@@ -6494,7 +6497,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CsITlTm", true);
 
-        PolycyclicAromaticMix = new Material.Builder(id++, gcylId("polycyclic_aromatic_mix"))
+        PolycyclicAromaticMix = new Material.Builder(++id, gcylId("polycyclic_aromatic_mix"))
                 .dust()
                 .color(Tetracene.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -6502,7 +6505,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C18H12", true);
 
-        BismuthNitrateSoluton = new Material.Builder(id++, gcylId("bismuth_nitrate_solution"))
+        BismuthNitrateSoluton = new Material.Builder(++id, gcylId("bismuth_nitrate_solution"))
                 .liquid()
                 .color((Bismuth.getMaterialRGB() + Chlorine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6510,7 +6513,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)Bi(NO3)3", true);
 
-        BismuthGermanate = new Material.Builder(id++, gcylId("bismuth_germanate"))
+        BismuthGermanate = new Material.Builder(++id, gcylId("bismuth_germanate"))
                 .dust()
                 .color(0x94cf5c)
                 .flags(DISABLE_REPLICATION)
@@ -6518,7 +6521,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Bi12GeO20", true);
 
-        DisodiumPhosphate = new Material.Builder(id++, gcylId("sodium_diphosphate"))
+        DisodiumPhosphate = new Material.Builder(++id, gcylId("sodium_diphosphate"))
                 .dust()
                 .color((Sodium.getMaterialRGB() + Phosphorus.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6526,7 +6529,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Na2HPO4", true);
 
-        Cyanonaphthalene = new Material.Builder(id++, gcylId("cyanonaphthalene"))
+        Cyanonaphthalene = new Material.Builder(++id, gcylId("cyanonaphthalene"))
                 .dust()
                 .color((SodiumCyanide.getMaterialRGB() + Naphthalene.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6534,7 +6537,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C11H7N", true);
 
-        TinChloride = new Material.Builder(id++, gcylId("tin_chloride"))
+        TinChloride = new Material.Builder(++id, gcylId("tin_chloride"))
                 .dust()
                 .color(0x8c8075)
                 .flags(DISABLE_REPLICATION)
@@ -6542,7 +6545,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(CH3)3SnCl", true);
 
-        Triphenylphosphine = new Material.Builder(id++, gcylId("triphenylphosphine"))
+        Triphenylphosphine = new Material.Builder(++id, gcylId("triphenylphosphine"))
                 .dust()
                 .color((Chlorobenzene.getMaterialRGB() + PhosphorusTrichloride.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6550,7 +6553,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(C6H5)3P", true);
 
-        Methylbenzophenanthrene = new Material.Builder(id++, gcylId("methylbenzophenanthrene"))
+        Methylbenzophenanthrene = new Material.Builder(++id, gcylId("methylbenzophenanthrene"))
                 .dust()
                 .color((Naphthaldehyde.getMaterialRGB() + Ethylbenzene.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6558,7 +6561,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C19H14", true);
 
-        PotassiumCyanide = new Material.Builder(id++, gcylId("potassium_cyanide"))
+        PotassiumCyanide = new Material.Builder(++id, gcylId("potassium_cyanide"))
                 .dust()
                 .color((Potassium.getMaterialRGB() + Nitrogen.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6566,7 +6569,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("KCN", true);
 
-        TiAlChloride = new Material.Builder(id++, gcylId("tial_chloride"))
+        TiAlChloride = new Material.Builder(++id, gcylId("tial_chloride"))
                 .dust()
                 .color((Titanium.getMaterialRGB() + Aluminium.getMaterialRGB() + Chlorine.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -6574,7 +6577,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("TiAlCl7", true);
 
-        ThionylChloride = new Material.Builder(id++, gcylId("thionyl_chloride"))
+        ThionylChloride = new Material.Builder(++id, gcylId("thionyl_chloride"))
                 .liquid()
                 .color(0xF9F7E5)
                 .flags(DISABLE_REPLICATION)
@@ -6582,7 +6585,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("SOCl2", true);
 
-        ZeoliteSievingPellets = new Material.Builder(id++, gcylId("zeolite_sieving_pellets"))
+        ZeoliteSievingPellets = new Material.Builder(++id, gcylId("zeolite_sieving_pellets"))
                 .dust()
                 .color(0xa17bd1)
                 .flags(DISABLE_REPLICATION)
@@ -6590,7 +6593,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Al2O3SiO2", true);
 
-        WetZeoliteSievingPellets = new Material.Builder(id++, gcylId("wet_zeolite_sieving_pellets"))
+        WetZeoliteSievingPellets = new Material.Builder(++id, gcylId("wet_zeolite_sieving_pellets"))
                 .dust()
                 .color(0x392f45)
                 .flags(DISABLE_REPLICATION)
@@ -6598,7 +6601,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Al2O3SiO2?", true);
 
-        PdIrReOCeOS = new Material.Builder(id++, gcylId("pdirreoceos"))
+        PdIrReOCeOS = new Material.Builder(++id, gcylId("pdirreoceos"))
                 .dust()
                 .color((Palladium.getMaterialRGB() + Iridium.getMaterialRGB() + Rhenium.getMaterialRGB() + Cerium.getMaterialRGB() + Osmium.getMaterialRGB() + Silicon.getMaterialRGB() + Oxygen.getMaterialRGB()) / 7)
                 .flags(DISABLE_REPLICATION)
@@ -6606,7 +6609,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("PdIrReCeOsSiO4", true);
 
-        Ferrocenylfulleropyrrolidine = new Material.Builder(id++, gcylId("ferrocenylfulleropyrddolidine"))
+        Ferrocenylfulleropyrrolidine = new Material.Builder(++id, gcylId("ferrocenylfulleropyrddolidine"))
                 .liquid()
                 .color((Ferrocene.getMaterialRGB() + Ethylene.getMaterialRGB() + CarbonMonoxide.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -6614,7 +6617,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C74H19FeN", true);
 
-        BenzoylChloride = new Material.Builder(id++, gcylId("benzoyl_chloride"))
+        BenzoylChloride = new Material.Builder(++id, gcylId("benzoyl_chloride"))
                 .liquid()
                 .color((Toluene.getMaterialRGB() + ThionylChloride.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6622,7 +6625,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C7H5ClO", true);
 
-        BenzoylPeroxide = new Material.Builder(id++, gcylId("benzoyl_peroxide"))
+        BenzoylPeroxide = new Material.Builder(++id, gcylId("benzoyl_peroxide"))
                 .liquid()
                 .color((Barium.getMaterialRGB() + BenzoylChloride.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6630,7 +6633,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C14H10O4", true);
 
-        HydroiodicAcid = new Material.Builder(id++, gcylId("hydroiodic_acid"))
+        HydroiodicAcid = new Material.Builder(++id, gcylId("hydroiodic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(Hydrogen.getMaterialRGB() / 2 + Iodine.getMaterialRGB() / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6638,7 +6641,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HI :)", true);
 
-        TrimethyltinChloride = new Material.Builder(id++, gcylId("trimethyltin_chloride"))
+        TrimethyltinChloride = new Material.Builder(++id, gcylId("trimethyltin_chloride"))
                 .liquid()
                 .color(0x8c8075)
                 .flags(DISABLE_REPLICATION)
@@ -6646,7 +6649,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(CH3)3SnCl", true);
 
-        Diisopropylcarbodiimide = new Material.Builder(id++, gcylId("diisopropylcarbodiimide"))
+        Diisopropylcarbodiimide = new Material.Builder(++id, gcylId("diisopropylcarbodiimide"))
                 .liquid()
                 .color(0xA0CFFE)
                 .flags(DISABLE_REPLICATION)
@@ -6654,7 +6657,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C7H14N2", true);
 
-        Hexanediol = new Material.Builder(id++, gcylId("hexanediol"))
+        Hexanediol = new Material.Builder(++id, gcylId("hexanediol"))
                 .liquid()
                 .color(EthyleneGlycol.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -6662,7 +6665,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H14O2", true);
 
-        Hexamethylenediamine = new Material.Builder(id++, gcylId("hexamethylenediamine"))
+        Hexamethylenediamine = new Material.Builder(++id, gcylId("hexamethylenediamine"))
                 .liquid()
                 .color(Ethylenediamine.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -6670,7 +6673,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H16N2", true);
 
-        SaccharicAcid = new Material.Builder(id++, gcylId("saccharic_acid"))
+        SaccharicAcid = new Material.Builder(++id, gcylId("saccharic_acid"))
                 .dust()
                 .color(Glucose.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -6678,7 +6681,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H10O8", true);
 
-        AdipicAcid = new Material.Builder(id++, gcylId("adipic_acid"))
+        AdipicAcid = new Material.Builder(++id, gcylId("adipic_acid"))
                 .dust()
                 .color(0xda9288)
                 .flags(DISABLE_REPLICATION)
@@ -6686,7 +6689,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H10O4", true);
 
-        Tertbutanol = new Material.Builder(id++, gcylId("tertbutanol"))
+        Tertbutanol = new Material.Builder(++id, gcylId("tertbutanol"))
                 .liquid()
                 .color(0xcccc2c)
                 .flags(DISABLE_REPLICATION)
@@ -6694,7 +6697,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C4H10O", true);
 
-        DitertbutylDicarbonate = new Material.Builder(id++, gcylId("ditertbutyl_dicarbonate"))
+        DitertbutylDicarbonate = new Material.Builder(++id, gcylId("ditertbutyl_dicarbonate"))
                 .dust()
                 .color(0xccccf6)
                 .flags(DISABLE_REPLICATION)
@@ -6702,7 +6705,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C10H18O5", true);
 
-        Triaminoethaneamine = new Material.Builder(id++, gcylId("triaminoethaneamine"))
+        Triaminoethaneamine = new Material.Builder(++id, gcylId("triaminoethaneamine"))
                 .liquid()
                 .color(0x6f7d87)
                 .flags(DISABLE_REPLICATION)
@@ -6710,7 +6713,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(NH2CH2CH2)3N", true);
 
-        TertButylAzidoformate = new Material.Builder(id++, gcylId("tertbuthylcarbonylazide"))
+        TertButylAzidoformate = new Material.Builder(++id, gcylId("tertbuthylcarbonylazide"))
                 .liquid()
                 .color(0x888818)
                 .flags(DISABLE_REPLICATION)
@@ -6718,7 +6721,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C5H9N3O2", true);
 
-        AminatedFullerene = new Material.Builder(id++, gcylId("aminated_fullerene"))
+        AminatedFullerene = new Material.Builder(++id, gcylId("aminated_fullerene"))
                 .liquid()
                 .color(0x2c2caa)
                 .flags(DISABLE_REPLICATION)
@@ -6726,7 +6729,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C60N12H12", true);
 
-        Azafullerene = new Material.Builder(id++, gcylId("azafullerene"))
+        Azafullerene = new Material.Builder(++id, gcylId("azafullerene"))
                 .liquid()
                 .color(0x8a7a1a)
                 .flags(DISABLE_REPLICATION)
@@ -6734,7 +6737,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C60N12H12", true);
 
-        GrapheneGelSuspension = new Material.Builder(id++, gcylId("graphene_gel_suspension"))
+        GrapheneGelSuspension = new Material.Builder(++id, gcylId("graphene_gel_suspension"))
                 .dust()
                 .color(0xadadad)
                 .flags(DISABLE_REPLICATION)
@@ -6742,7 +6745,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C", true);
 
-        DryGrapheneGel = new Material.Builder(id++, gcylId("dry_graphene_gel"))
+        DryGrapheneGel = new Material.Builder(++id, gcylId("dry_graphene_gel"))
                 .dust()
                 .color(0x3a3ada)
                 .flags(DISABLE_REPLICATION)
@@ -6750,7 +6753,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C", true);
 
-        SupercriticalCO2 = new Material.Builder(id++, gcylId("supercritcal_co_2"))
+        SupercriticalCO2 = new Material.Builder(++id, gcylId("supercritcal_co_2"))
                 .liquid()
                 .color(CarbonDioxide.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -6758,7 +6761,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CO2", true);
 
-        Caliche = new Material.Builder(id++, gcylId("caliche"))
+        Caliche = new Material.Builder(++id, gcylId("caliche"))
                 .dust(3)
                 .color(0xeb9e3f)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -6766,7 +6769,7 @@ public class GCYLMaterials {
                 .components(SodiumNitrate, 1, Potassium, 1, Nitrogen, 1, Oxygen, 3, RockSalt, 1, Sodium, 1, Iodine, 1, Oxygen, 3)
                 .build();
 
-        CalicheIodateBrine = new Material.Builder(id++, gcylId("caliche_iodate_brine"))
+        CalicheIodateBrine = new Material.Builder(++id, gcylId("caliche_iodate_brine"))
                 .liquid()
                 .color(0xffe6660)
                 .flags(DISABLE_REPLICATION)
@@ -6774,7 +6777,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)NaNO3KNO3KClNaIO3", true);
 
-        IodideSolution = new Material.Builder(id++, gcylId("iodide_solution"))
+        IodideSolution = new Material.Builder(++id, gcylId("iodide_solution"))
                 .liquid()
                 .color(0x08081c)
                 .flags(DISABLE_REPLICATION)
@@ -6782,7 +6785,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)NaNO3KNO3KClNaI", true);
 
-        CalicheIodineBrine = new Material.Builder(id++, gcylId("caliche_iodine_brine"))
+        CalicheIodineBrine = new Material.Builder(++id, gcylId("caliche_iodine_brine"))
                 .liquid()
                 .color(0xffe6660)
                 .flags(DISABLE_REPLICATION)
@@ -6790,7 +6793,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)NaNO3KNO3KClNaOHI", true);
 
-        CalicheNitrateSolution = new Material.Builder(id++, gcylId("caliche_nitrate_solution"))
+        CalicheNitrateSolution = new Material.Builder(++id, gcylId("caliche_nitrate_solution"))
                 .liquid()
                 .color(0xffe6660)
                 .flags(DISABLE_REPLICATION)
@@ -6798,7 +6801,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)NaNO3KNO3KClNaOH", true);
 
-        KeroseneIodineSolution = new Material.Builder(id++, gcylId("kerosene_iodine_solution"))
+        KeroseneIodineSolution = new Material.Builder(++id, gcylId("kerosene_iodine_solution"))
                 .liquid()
                 .color(0x08081c)
                 .flags(DISABLE_REPLICATION)
@@ -6806,14 +6809,14 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C12H26I", true);
 
-        IodizedOil = new Material.Builder(id++, gcylId("iodized_oil"))
+        IodizedOil = new Material.Builder(++id, gcylId("iodized_oil"))
                 .liquid()
                 .color(0x666666)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        IodizedBrine = new Material.Builder(id++, gcylId("iodized_brine"))
+        IodizedBrine = new Material.Builder(++id, gcylId("iodized_brine"))
                 .liquid()
                 .color(0x525242)
                 .flags(DISABLE_REPLICATION)
@@ -6821,7 +6824,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("I?", true);
 
-        IodineBrineMix = new Material.Builder(id++, gcylId("iodine_brine_mix"))
+        IodineBrineMix = new Material.Builder(++id, gcylId("iodine_brine_mix"))
                 .liquid()
                 .color(0x525242)
                 .flags(DISABLE_REPLICATION)
@@ -6829,7 +6832,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("I??", true);
 
-        IodineSlurry = new Material.Builder(id++, gcylId("iodine_slurry"))
+        IodineSlurry = new Material.Builder(++id, gcylId("iodine_slurry"))
                 .liquid()
                 .color(0x08081c)
                 .flags(DISABLE_REPLICATION)
@@ -6837,7 +6840,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("I?", true);
 
-        RoastedSpodumene = new Material.Builder(id++, gcylId("roasted_spodumene"))
+        RoastedSpodumene = new Material.Builder(++id, gcylId("roasted_spodumene"))
                 .dust()
                 .color(0x3d3d29)
                 .flags(DISABLE_REPLICATION)
@@ -6845,7 +6848,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("LiAlSi2O6", true);
 
-        RoastedLepidolite = new Material.Builder(id++, gcylId("roasted_lepidolite"))
+        RoastedLepidolite = new Material.Builder(++id, gcylId("roasted_lepidolite"))
                 .dust()
                 .color(0x470024)
                 .flags(DISABLE_REPLICATION)
@@ -6853,7 +6856,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("KLi3Al4O11", true);
 
-        Fluorite = new Material.Builder(id++, gcylId("fluorite"))
+        Fluorite = new Material.Builder(++id, gcylId("fluorite"))
                 .dust(2).liquid()
                 .color(0x009933)
                 .flags(DISABLE_REPLICATION)
@@ -6861,7 +6864,7 @@ public class GCYLMaterials {
                 .components(Calcium, 1, Fluorine, 2)
                 .build();
 
-        DissolvedLithiumOre = new Material.Builder(id++, gcylId("dissolved_lithium_ores"))
+        DissolvedLithiumOre = new Material.Builder(++id, gcylId("dissolved_lithium_ores"))
                 .liquid()
                 .color(0x664850)
                 .flags(DISABLE_REPLICATION)
@@ -6869,7 +6872,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("LiAlO2(H2SO4)", true);
 
-        AluminiumSulfate = new Material.Builder(id++, gcylId("aluminium_sulfate"))
+        AluminiumSulfate = new Material.Builder(++id, gcylId("aluminium_sulfate"))
                 .dust()
                 .color((Aluminium.getMaterialRGB() + Sulfur.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6877,7 +6880,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Al2(SO4)3", true);
 
-        LithiumCarbonateSolution = new Material.Builder(id++, gcylId("lithium_carbonate_solution"))
+        LithiumCarbonateSolution = new Material.Builder(++id, gcylId("lithium_carbonate_solution"))
                 .liquid()
                 .color((Lithium.getMaterialRGB() + Carbon.getMaterialRGB() + Oxygen.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -6885,7 +6888,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Li2CO3(H2O)", true);
 
-        Diiodobiphenyl = new Material.Builder(id++, gcylId("diiodobiphenyl"))
+        Diiodobiphenyl = new Material.Builder(++id, gcylId("diiodobiphenyl"))
                 .dust()
                 .color(0x000f66)
                 .flags(DISABLE_REPLICATION)
@@ -6893,7 +6896,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C12H8I2", true);
 
-        ThalliumChloride = new Material.Builder(id++, gcylId("thallium_chloride"))
+        ThalliumChloride = new Material.Builder(++id, gcylId("thallium_chloride"))
                 .dust()
                 .color((Thallium.getMaterialRGB() + Chlorine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -6901,7 +6904,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("TlCl", true);
 
-        NiAlCatalyst = new Material.Builder(id++, gcylId("nial_catalyst"))
+        NiAlCatalyst = new Material.Builder(++id, gcylId("nial_catalyst"))
                 .dust()
                 .color(0x6ea2ff)
                 .flags(DISABLE_REPLICATION)
@@ -6909,7 +6912,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NiAl", true);
 
-        Bipyridine = new Material.Builder(id++, gcylId("bipyridine"))
+        Bipyridine = new Material.Builder(++id, gcylId("bipyridine"))
                 .dust()
                 .color(0X978662)
                 .flags(DISABLE_REPLICATION)
@@ -6917,7 +6920,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C10H8N2", true);
 
-        Dibenzylideneacetone = new Material.Builder(id++, gcylId("dibenzylideneacetone"))
+        Dibenzylideneacetone = new Material.Builder(++id, gcylId("dibenzylideneacetone"))
                 .liquid()
                 .color(0Xcc6699)
                 .flags(DISABLE_REPLICATION)
@@ -6925,7 +6928,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C17H14O", true);
 
-        PalladiumBisDibenzylidieneacetone = new Material.Builder(id++, gcylId("palladium_bisdibenzylidieneacetone"))
+        PalladiumBisDibenzylidieneacetone = new Material.Builder(++id, gcylId("palladium_bisdibenzylidieneacetone"))
                 .dust()
                 .color(0Xbe81a0)
                 .flags(DISABLE_REPLICATION)
@@ -6933,7 +6936,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C51H42O3Pd2", true);
 
-        ChloroPlatinicAcid = new Material.Builder(id++, gcylId("chloroplatinic_acid"))
+        ChloroPlatinicAcid = new Material.Builder(++id, gcylId("chloroplatinic_acid"))
                 .liquid()
                 .color(0xffba54)
                 .flags(DISABLE_REPLICATION)
@@ -6941,7 +6944,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2PtCl6", true);
 
-        PotassiumTetrachloroplatinate = new Material.Builder(id++, gcylId("potassium_tetrachloroplatinate"))
+        PotassiumTetrachloroplatinate = new Material.Builder(++id, gcylId("potassium_tetrachloroplatinate"))
                 .dust()
                 .color(0xffba54)
                 .flags(DISABLE_REPLICATION)
@@ -6949,7 +6952,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("K2PtCl4", true);
 
-        NickelChloride = new Material.Builder(id++, gcylId("nickel_chloride"))
+        NickelChloride = new Material.Builder(++id, gcylId("nickel_chloride"))
                 .dust()
                 .color(Nickel.getMaterialRGB() + 10)
                 .flags(DISABLE_REPLICATION)
@@ -6957,7 +6960,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NiCl2", true);
 
-        NickelTriphenylPhosphite = new Material.Builder(id++, gcylId("nickel_triphenyl_phosphite"))
+        NickelTriphenylPhosphite = new Material.Builder(++id, gcylId("nickel_triphenyl_phosphite"))
                 .dust()
                 .color(0xd9d973)
                 .flags(DISABLE_REPLICATION)
@@ -6965,7 +6968,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C36H30Cl2NiP2", true);
 
-        GrapheneNanotubeMix = new Material.Builder(id++, gcylId("graphene_nanotube_mix"))
+        GrapheneNanotubeMix = new Material.Builder(++id, gcylId("graphene_nanotube_mix"))
                 .dust()
                 .color(0x2c2c2c)
                 .flags(DISABLE_REPLICATION)
@@ -6973,7 +6976,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(C)C?", true);
 
-        GrapheneAlignedCNT = new Material.Builder(id++, gcylId("graphene_aligned_cnt"))
+        GrapheneAlignedCNT = new Material.Builder(++id, gcylId("graphene_aligned_cnt"))
                 .dust()
                 .color(0x2c2c2c)
                 .flags(DISABLE_REPLICATION)
@@ -6981,7 +6984,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(C)C30H20", true);
 
-        Rhodocrosite = new Material.Builder(id++, gcylId("rhodocrosite"))
+        Rhodocrosite = new Material.Builder(++id, gcylId("rhodocrosite"))
                 .dust(2)
                 .color(0xff6699)
                 .flags(DISABLE_REPLICATION)
@@ -6989,7 +6992,7 @@ public class GCYLMaterials {
                 .components(Manganese, 1, Carbon, 1, Oxygen, 3)
                 .build();
 
-        CassiteriteCokePellets = new Material.Builder(id++, gcylId("cassiterite_coke_pellets"))
+        CassiteriteCokePellets = new Material.Builder(++id, gcylId("cassiterite_coke_pellets"))
                 .dust()
                 .color(0x8f8f8f)
                 .flags(DISABLE_REPLICATION)
@@ -6997,7 +7000,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("SnO2C?", true);
 
-        TinSlag = new Material.Builder(id++, gcylId("tin_slag"))
+        TinSlag = new Material.Builder(++id, gcylId("tin_slag"))
                 .dust()
                 .color(0xc8b9a9)
                 .flags(DISABLE_REPLICATION)
@@ -7005,7 +7008,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NbTa?", true);
 
-        NbTaContainingDust = new Material.Builder(id++, gcylId("nbta_containing_dust"))
+        NbTaContainingDust = new Material.Builder(++id, gcylId("nbta_containing_dust"))
                 .dust()
                 .color(0xc8b9a9)
                 .flags(DISABLE_REPLICATION)
@@ -7013,7 +7016,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NbTa", true);
 
-        NiobiumTantalumOxide = new Material.Builder(id++, gcylId("niobium_tantalum_oxide"))
+        NiobiumTantalumOxide = new Material.Builder(++id, gcylId("niobium_tantalum_oxide"))
                 .dust()
                 .color((Niobium.getMaterialRGB() + Tantalum.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -7021,7 +7024,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(Nb2O5)(Ta2O5)", true);
 
-        NbTaFluorideMix = new Material.Builder(id++, gcylId("nbta_fluoride_mix"))
+        NbTaFluorideMix = new Material.Builder(++id, gcylId("nbta_fluoride_mix"))
                 .liquid()
                 .color(0xbcac93)
                 .flags(DISABLE_REPLICATION)
@@ -7029,7 +7032,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2NbOF5)(H2TaF7)", true);
 
-        Columbite = new Material.Builder(id++, gcylId("columbite"))
+        Columbite = new Material.Builder(++id, gcylId("columbite"))
                 .dust(2)
                 .color(0xCCCC00)
                 .flags(DISABLE_REPLICATION)
@@ -7037,7 +7040,7 @@ public class GCYLMaterials {
                 .components(Iron, 1, Niobium, 2, Oxygen, 6)
                 .build();
 
-        FusedColumbite = new Material.Builder(id++, gcylId("fused_columbite"))
+        FusedColumbite = new Material.Builder(++id, gcylId("fused_columbite"))
                 .dust()
                 .color(0xCCCC00)
                 .flags(DISABLE_REPLICATION)
@@ -7045,7 +7048,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(Fe2O3)(NaO)Nb2O5", true);
 
-        BariumPeroxide = new Material.Builder(id++, gcylId("barium_peroxide"))
+        BariumPeroxide = new Material.Builder(++id, gcylId("barium_peroxide"))
                 .dust()
                 .color((Barium.getMaterialRGB() + Oxygen.getMaterialRGB() - 30) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -7053,7 +7056,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("BaO2", true);
 
-        ColumbiteMinorOxideResidue = new Material.Builder(id++, gcylId("columbite_minor_oxide_residue"))
+        ColumbiteMinorOxideResidue = new Material.Builder(++id, gcylId("columbite_minor_oxide_residue"))
                 .dust()
                 .color(0x915028)
                 .flags(DISABLE_REPLICATION)
@@ -7061,7 +7064,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(BaO)(SnO2)(WO3)(Al2O3)", true);
 
-        IronSulfateDust = new Material.Builder(id++, gcylId("iron_sulfate_dust"))
+        IronSulfateDust = new Material.Builder(++id, gcylId("iron_sulfate_dust"))
                 .dust()
                 .color((Iron.getMaterialRGB() + Sulfur.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -7069,7 +7072,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("FeSO4", true);
 
-        FusedTantalite = new Material.Builder(id++, gcylId("fused_tantalite"))
+        FusedTantalite = new Material.Builder(++id, gcylId("fused_tantalite"))
                 .dust()
                 .color(0x915028)
                 .flags(DISABLE_REPLICATION)
@@ -7077,7 +7080,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(Fe2O3)(NaO)Ta2O5", true);
 
-        TantaliteMinorOxideResidue = new Material.Builder(id++, gcylId("tantalite_minor_oxide_residue"))
+        TantaliteMinorOxideResidue = new Material.Builder(++id, gcylId("tantalite_minor_oxide_residue"))
                 .dust()
                 .color(0xCCCC00)
                 .flags(DISABLE_REPLICATION)
@@ -7085,7 +7088,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(BaO)(ZrO2)(TiO2)(SiO2)", true);
 
-        LeachedTantalite = new Material.Builder(id++, gcylId("leached_tantalite"))
+        LeachedTantalite = new Material.Builder(++id, gcylId("leached_tantalite"))
                 .dust()
                 .color(0x915028)
                 .flags(DISABLE_REPLICATION)
@@ -7093,7 +7096,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(Ta2O5)9Nb2O5?", true);
 
-        FluorotantalicAcid = new Material.Builder(id++, gcylId("flurotantalic_acid"))
+        FluorotantalicAcid = new Material.Builder(++id, gcylId("flurotantalic_acid"))
                 .liquid()
                 .color(0x73ff00)
                 .flags(DISABLE_REPLICATION)
@@ -7101,7 +7104,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("TaHF7", true);
 
-        NbTaSeparationMixture = new Material.Builder(id++, gcylId("nbta_separation_mixture"))
+        NbTaSeparationMixture = new Material.Builder(++id, gcylId("nbta_separation_mixture"))
                 .liquid()
                 .color(0xbcac93)
                 .flags(DISABLE_REPLICATION)
@@ -7109,7 +7112,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C18H39O5P", true);
 
-        AcidicLeachedPyrochlore = new Material.Builder(id++, gcylId("acidic_leached_pyrochlore"))
+        AcidicLeachedPyrochlore = new Material.Builder(++id, gcylId("acidic_leached_pyrochlore"))
                 .dust()
                 .color(0x996633)
                 .flags(DISABLE_REPLICATION)
@@ -7117,7 +7120,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2SO4)Ca12Sr6Ba6?ThUNb26O78F26", true);
 
-        REEThUSulfateSolution = new Material.Builder(id++, gcylId("reethu_sulfate_solution"))
+        REEThUSulfateSolution = new Material.Builder(++id, gcylId("reethu_sulfate_solution"))
                 .liquid()
                 .color(0x89be5c)
                 .flags(DISABLE_REPLICATION)
@@ -7125,7 +7128,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?SO4", true);
 
-        AlkalineEarthSulfateSolution = new Material.Builder(id++, gcylId("alkalineearth_sulfate"))
+        AlkalineEarthSulfateSolution = new Material.Builder(++id, gcylId("alkalineearth_sulfate"))
                 .liquid()
                 .color(0xe6ebff)
                 .flags(DISABLE_REPLICATION)
@@ -7133,7 +7136,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?SO4", true);
 
-        UranylThoriumNitrate = new Material.Builder(id++, gcylId("uranium_thorium_nitrate"))
+        UranylThoriumNitrate = new Material.Builder(++id, gcylId("uranium_thorium_nitrate"))
                 .dust()
                 .color(0xe7e848)
                 .flags(DISABLE_REPLICATION)
@@ -7141,7 +7144,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("UO2(NO3)2Th(NO3)4", true);
 
-        RareEarthNitrateSolution = new Material.Builder(id++, gcylId("rare_earth_nitrate_solution"))
+        RareEarthNitrateSolution = new Material.Builder(++id, gcylId("rare_earth_nitrate_solution"))
                 .liquid()
                 .color(0xcfb37d)
                 .flags(DISABLE_REPLICATION)
@@ -7149,7 +7152,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?NO3", true);
 
-        OxypentafluoroNiobate = new Material.Builder(id++, gcylId("oxypentafluoroniobate"))
+        OxypentafluoroNiobate = new Material.Builder(++id, gcylId("oxypentafluoroniobate"))
                 .liquid()
                 .color(0x73ff00)
                 .flags(DISABLE_REPLICATION)
@@ -7157,7 +7160,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2NbOF5", true);
 
-        HeptafluoroTantalate = new Material.Builder(id++, gcylId("heptafluorotantalate"))
+        HeptafluoroTantalate = new Material.Builder(++id, gcylId("heptafluorotantalate"))
                 .liquid()
                 .color(0x73ff00)
                 .flags(DISABLE_REPLICATION)
@@ -7165,7 +7168,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2TaF7", true);
 
-        PotasssiumFluoroNiobate = new Material.Builder(id++, gcylId("potassium_fluoroniobate"))
+        PotasssiumFluoroNiobate = new Material.Builder(++id, gcylId("potassium_fluoroniobate"))
                 .dust()
                 .color(0x73ff00)
                 .flags(DISABLE_REPLICATION)
@@ -7173,7 +7176,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("K2NbF7", true);
 
-        AluminoSilicateWool = new Material.Builder(id++, gcylId("alumino_silicate_wool"))
+        AluminoSilicateWool = new Material.Builder(++id, gcylId("alumino_silicate_wool"))
                 .dust(1)
                 .color(0xbbbbbb)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -7181,7 +7184,7 @@ public class GCYLMaterials {
                 .components(Aluminium, 2, Silicon, 1, Oxygen, 5)
                 .build();
 
-        ScandiumTriflate = new Material.Builder(id++, gcylId("scandium_triflate"))
+        ScandiumTriflate = new Material.Builder(++id, gcylId("scandium_triflate"))
                 .dust()
                 .color(0xdfcfcf)
                 .flags(DISABLE_REPLICATION)
@@ -7189,7 +7192,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Sc(OSO2CF3)3", true);
 
-        Toluenesulfonate = new Material.Builder(id++, gcylId("toluenesulfonate"))
+        Toluenesulfonate = new Material.Builder(++id, gcylId("toluenesulfonate"))
                 .liquid()
                 .color(0x8f8f00)
                 .flags(DISABLE_REPLICATION)
@@ -7197,7 +7200,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C7H7SO3Na", true);
 
-        Niter = new Material.Builder(id++, gcylId("niter"))
+        Niter = new Material.Builder(++id, gcylId("niter"))
                 .dust(1)
                 .color(16763080)
                 .flags(DISABLE_REPLICATION, NO_SMASHING, NO_SMELTING)
@@ -7205,7 +7208,7 @@ public class GCYLMaterials {
                 .components(Saltpeter, 1)
                 .build();
 
-        ElectricallyImpureCopper = new Material.Builder(id++, gcylId("electrically_impure_copper"))
+        ElectricallyImpureCopper = new Material.Builder(++id, gcylId("electrically_impure_copper"))
                 .ingot(2).liquid()
                 .color(0x765A30)
                 .iconSet(DULL)
@@ -7213,7 +7216,7 @@ public class GCYLMaterials {
                 .components(Copper, 1, RareEarth, 1)
                 .build();
 
-        CopperRefiningSolution = new Material.Builder(id++, gcylId("copper_refining_solution"))
+        CopperRefiningSolution = new Material.Builder(++id, gcylId("copper_refining_solution"))
                 .liquid()
                 .color(0x765A30)
                 .flags(DISABLE_REPLICATION)
@@ -7221,7 +7224,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CuH2SO4", true);
 
-        AnodicSlime = new Material.Builder(id++, gcylId("anodic_slime"))
+        AnodicSlime = new Material.Builder(++id, gcylId("anodic_slime"))
                 .dust()
                 .color(0x765A30)
                 .flags(DISABLE_REPLICATION)
@@ -7229,7 +7232,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("SeTe??", true);
 
-        SeleniteTelluriteMix = new Material.Builder(id++, gcylId("selenite_tellurite_mixture"))
+        SeleniteTelluriteMix = new Material.Builder(++id, gcylId("selenite_tellurite_mixture"))
                 .liquid()
                 .color(0x765A30)
                 .flags(DISABLE_REPLICATION)
@@ -7237,7 +7240,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("TeO2SeO2(Na2CO3)2", true);
 
-        TelluriumOxide = new Material.Builder(id++, gcylId("tellurium_oxide"))
+        TelluriumOxide = new Material.Builder(++id, gcylId("tellurium_oxide"))
                 .dust()
                 .color(0xFFFF66)
                 .flags(DISABLE_REPLICATION)
@@ -7245,7 +7248,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("TeO2", true);
 
-        SeleniteSolution = new Material.Builder(id++, gcylId("selenite_solution"))
+        SeleniteSolution = new Material.Builder(++id, gcylId("selenite_solution"))
                 .liquid()
                 .color(0xc1c46a)
                 .flags(DISABLE_REPLICATION)
@@ -7253,7 +7256,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Na2SeO3", true);
 
-        HydroselenicAcid = new Material.Builder(id++, gcylId("hydroselenic_acid"))
+        HydroselenicAcid = new Material.Builder(++id, gcylId("hydroselenic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(Selenium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -7261,7 +7264,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2Se", true);
 
-        IronPlatinumCatalyst = new Material.Builder(id++, gcylId("iron_platinum_catalyst"))
+        IronPlatinumCatalyst = new Material.Builder(++id, gcylId("iron_platinum_catalyst"))
                 .dust()
                 .color(Iron.getMaterialRGB() / 2 + Platinum.getMaterialRGB() / 2)
                 .flags(DISABLE_REPLICATION)
@@ -7269,7 +7272,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("FePt", true);
 
-        Hydroxyquinoline = new Material.Builder(id++, gcylId("hydroxyquinoline"))
+        Hydroxyquinoline = new Material.Builder(++id, gcylId("hydroxyquinoline"))
                 .liquid()
                 .color(0x3a9a71)
                 .flags(DISABLE_REPLICATION)
@@ -7277,7 +7280,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C9H7NO", true);
 
-        SodiumRuthenate = new Material.Builder(id++, gcylId("sodium_ruthenate"))
+        SodiumRuthenate = new Material.Builder(++id, gcylId("sodium_ruthenate"))
                 .dust(2)
                 .color(0x3A40CB)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -7285,7 +7288,7 @@ public class GCYLMaterials {
                 .components(Sodium, 2, Oxygen, 4, Ruthenium, 1)
                 .build();
 
-        IridiumDioxide = new Material.Builder(id++, gcylId("iridium_dioxide"))
+        IridiumDioxide = new Material.Builder(++id, gcylId("iridium_dioxide"))
                 .dust()
                 .color((Iridium.getMaterialRGB() + Oxygen.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION, EXCLUDE_BLOCK_CRAFTING_RECIPES, DISABLE_DECOMPOSITION)
@@ -7293,7 +7296,7 @@ public class GCYLMaterials {
                 .components(Iridium, 1, Oxygen, 2)
                 .build();
 
-        BariumChlorideSolution = new Material.Builder(id++, gcylId("barium_chloride_solution"))
+        BariumChlorideSolution = new Material.Builder(++id, gcylId("barium_chloride_solution"))
                 .liquid()
                 .color((Barium.getMaterialRGB() + Chlorine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -7301,7 +7304,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)BaCl3", true);
 
-        BariumTitanatePreparation = new Material.Builder(id++, gcylId("barium_titanate_preparation"))
+        BariumTitanatePreparation = new Material.Builder(++id, gcylId("barium_titanate_preparation"))
                 .liquid()
                 .color(0x99FF99)
                 .flags(DISABLE_REPLICATION)
@@ -7309,7 +7312,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("BaTiO3", true);
 
-        Perbromothiophene = new Material.Builder(id++, gcylId("perbromothiophene"))
+        Perbromothiophene = new Material.Builder(++id, gcylId("perbromothiophene"))
                 .liquid()
                 .color(0x87cc17)
                 .flags(DISABLE_REPLICATION)
@@ -7317,7 +7320,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C4Br4S", true);
 
-        Diethoxythiophene = new Material.Builder(id++, gcylId("dietoxythiophene"))
+        Diethoxythiophene = new Material.Builder(++id, gcylId("dietoxythiophene"))
                 .liquid()
                 .color(0x90ff43)
                 .flags(DISABLE_REPLICATION)
@@ -7325,7 +7328,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C4H2(OC2H5)2S", true);
 
-        EDOT = new Material.Builder(id++, gcylId("ethylenedioxythiophene"))
+        EDOT = new Material.Builder(++id, gcylId("ethylenedioxythiophene"))
                 .liquid()
                 .color(0x7a9996)
                 .flags(DISABLE_REPLICATION)
@@ -7333,7 +7336,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2H4O2C4H2S", true);
 
-        ZirconylChloride = new Material.Builder(id++, gcylId("zirconyl_chloride"))
+        ZirconylChloride = new Material.Builder(++id, gcylId("zirconyl_chloride"))
                 .dust()
                 .color(ZirconiumTetrachloride.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -7341,7 +7344,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ZrOCl2", true);
 
-        WoodsGlass = new Material.Builder(id++, gcylId("woods_glass"))
+        WoodsGlass = new Material.Builder(++id, gcylId("woods_glass"))
                 .ingot(2).liquid()
                 .color(0x730099)
                 .iconSet(SHINY)
@@ -7349,7 +7352,7 @@ public class GCYLMaterials {
                 .components(SiliconDioxide, 1, Barium, 1, Oxygen, 1, Garnierite, 1, SodaAsh, 1)
                 .build();
 
-        IronIodide = new Material.Builder(id++, gcylId("iron_iodide"))
+        IronIodide = new Material.Builder(++id, gcylId("iron_iodide"))
                 .dust()
                 .color((Iron.getMaterialRGB() + Iodine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -7357,7 +7360,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("FeI2", true);
 
-        ThalliumIodide = new Material.Builder(id++, gcylId("thallium_iodide"))
+        ThalliumIodide = new Material.Builder(++id, gcylId("thallium_iodide"))
                 .dust()
                 .color((Thallium.getMaterialRGB() + Iodine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -7365,7 +7368,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("TlI", true);
 
-        RubidiumIodide = new Material.Builder(id++, gcylId("rubidium_iodide"))
+        RubidiumIodide = new Material.Builder(++id, gcylId("rubidium_iodide"))
                 .dust()
                 .color((Rubidium.getMaterialRGB() + Iodine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -7373,7 +7376,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("RbI", true);
 
-        IndiumIodide = new Material.Builder(id++, gcylId("indium_iodide"))
+        IndiumIodide = new Material.Builder(++id, gcylId("indium_iodide"))
                 .dust()
                 .color((Indium.getMaterialRGB() + Iodine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -7381,7 +7384,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("InI3", true);
 
-        GalliumIodide = new Material.Builder(id++, gcylId("gallium_iodide"))
+        GalliumIodide = new Material.Builder(++id, gcylId("gallium_iodide"))
                 .dust()
                 .color((Gallium.getMaterialRGB() + Iodine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -7389,7 +7392,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("GaI3", true);
 
-        ScandiumIodide = new Material.Builder(id++, gcylId("scandium_iodide"))
+        ScandiumIodide = new Material.Builder(++id, gcylId("scandium_iodide"))
                 .dust()
                 .color((Scandium.getMaterialRGB() + Iodine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -7397,7 +7400,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ScI3", true);
 
-        IronCarbonyl = new Material.Builder(id++, gcylId("iron_carbonyl"))
+        IronCarbonyl = new Material.Builder(++id, gcylId("iron_carbonyl"))
                 .liquid()
                 .color(0xff8000)
                 .flags(DISABLE_REPLICATION)
@@ -7405,7 +7408,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Fe?", true);
 
-        PurifiedIronCarbonyl = new Material.Builder(id++, gcylId("purified_iron_carbonyl"))
+        PurifiedIronCarbonyl = new Material.Builder(++id, gcylId("purified_iron_carbonyl"))
                 .liquid()
                 .color(0xff8000)
                 .flags(DISABLE_REPLICATION)
@@ -7413,7 +7416,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Fe", true);
 
-        CarbonylPurifiedIron = new Material.Builder(id++, gcylId("carbonyl_purified_iron"))
+        CarbonylPurifiedIron = new Material.Builder(++id, gcylId("carbonyl_purified_iron"))
                 .dust()
                 .color(Iron.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -7421,7 +7424,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Fe", true);
 
-        YttriumEuropiumVanadate = new Material.Builder(id++, gcylId("yttrium_europium_vanadate"))
+        YttriumEuropiumVanadate = new Material.Builder(++id, gcylId("yttrium_europium_vanadate"))
                 .dust()
                 .color((Yttrium.getMaterialRGB() + Europium.getMaterialRGB() + Vanadium.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -7429,7 +7432,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("YEuVO4", true);
 
-        StrontiumChloride = new Material.Builder(id++, gcylId("strontium_chloride"))
+        StrontiumChloride = new Material.Builder(++id, gcylId("strontium_chloride"))
                 .dust()
                 .color(0x3a9aba)
                 .flags(DISABLE_REPLICATION)
@@ -7437,7 +7440,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("SrCl2", true);
 
-        StrontiumEuropiumAluminate = new Material.Builder(id++, gcylId("strontium_europium_aluminate"))
+        StrontiumEuropiumAluminate = new Material.Builder(++id, gcylId("strontium_europium_aluminate"))
                 .dust()
                 .color((Strontium.getMaterialRGB() + Europium.getMaterialRGB() + Aluminium.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -7445,7 +7448,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("SrEuAl2O4", true);
 
-        GreenHalideMix = new Material.Builder(id++, gcylId("green_halide_mix"))
+        GreenHalideMix = new Material.Builder(++id, gcylId("green_halide_mix"))
                 .dust()
                 .color((ThalliumIodide.getMaterialRGB() + PotassiumIodide.getMaterialRGB() + Mercury.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -7453,7 +7456,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Hg(TlI)KI", true);
 
-        RedHalideMix = new Material.Builder(id++, gcylId("red_halide_mix"))
+        RedHalideMix = new Material.Builder(++id, gcylId("red_halide_mix"))
                 .dust()
                 .color((RubidiumIodide.getMaterialRGB() + PotassiumIodide.getMaterialRGB() + Mercury.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -7461,7 +7464,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Hg(RbI)KI", true);
 
-        BlueHalideMix = new Material.Builder(id++, gcylId("blue_halide_mix"))
+        BlueHalideMix = new Material.Builder(++id, gcylId("blue_halide_mix"))
                 .dust()
                 .color((IndiumIodide.getMaterialRGB() + PotassiumIodide.getMaterialRGB() + Mercury.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -7469,7 +7472,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Hg(InI3)KI", true);
 
-        WhiteHalideMix = new Material.Builder(id++, gcylId("white_halide_mix"))
+        WhiteHalideMix = new Material.Builder(++id, gcylId("white_halide_mix"))
                 .dust()
                 .color((ScandiumIodide.getMaterialRGB() + PotassiumIodide.getMaterialRGB() + Mercury.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -7477,7 +7480,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Hg(ScI3)KI", true);
 
-        UVAHalideMix = new Material.Builder(id++, gcylId("uva_halide_mix"))
+        UVAHalideMix = new Material.Builder(++id, gcylId("uva_halide_mix"))
                 .dust()
                 .color((GalliumIodide.getMaterialRGB() + PotassiumIodide.getMaterialRGB() + Mercury.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -7485,7 +7488,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Hg(GaI3)KI", true);
 
-        ThoriumDopedTungsten = new Material.Builder(id++, gcylId("thoria_doped_tungsten"))
+        ThoriumDopedTungsten = new Material.Builder(++id, gcylId("thoria_doped_tungsten"))
                 .ingot(2).liquid()
                 .color(Tungsten.getMaterialRGB())
                 .iconSet(SHINY)
@@ -7493,7 +7496,7 @@ public class GCYLMaterials {
                 .components(Thorium, 1, Tungsten, 9)
                 .build();
 
-        MaragingSteel250 = new Material.Builder(id++, gcylId("maraging_steel_a"))
+        MaragingSteel250 = new Material.Builder(++id, gcylId("maraging_steel_a"))
                 .ingot(6).liquid()
                 .color(0x92918D)
                 .iconSet(METALLIC)
@@ -7502,7 +7505,7 @@ public class GCYLMaterials {
                 .blast(2413)
                 .build();
 
-        Biperfluoromethanedisulfide = new Material.Builder(id++, gcylId("biperfluoromethanedisulfide"))
+        Biperfluoromethanedisulfide = new Material.Builder(++id, gcylId("biperfluoromethanedisulfide"))
                 .liquid()
                 .color(0x3ada40)
                 .flags(DISABLE_REPLICATION)
@@ -7513,7 +7516,7 @@ public class GCYLMaterials {
 
     public static void register2() {
 
-        BariumTriflateSolution = new Material.Builder(id++, gcylId("barium_triflate_solution"))
+        BariumTriflateSolution = new Material.Builder(++id, gcylId("barium_triflate_solution"))
                 .liquid()
                 .color((Barium.getMaterialRGB() + Fluorine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -7521,7 +7524,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)3(Hg)C2BaF6O6S2", true);
 
-        BariumTriflate = new Material.Builder(id++, gcylId("barium_triflate"))
+        BariumTriflate = new Material.Builder(++id, gcylId("barium_triflate"))
                 .dust()
                 .color((Barium.getMaterialRGB() + Fluorine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -7529,7 +7532,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ba(OSO2CF3)2", true);
 
-        BariumNitrate = new Material.Builder(id++, gcylId("barium_nitrate"))
+        BariumNitrate = new Material.Builder(++id, gcylId("barium_nitrate"))
                 .dust()
                 .color((Barium.getMaterialRGB() + NitricAcid.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -7537,7 +7540,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ba(NO3)2", true);
 
-        CopperNitrate = new Material.Builder(id++, gcylId("copper_nitrate"))
+        CopperNitrate = new Material.Builder(++id, gcylId("copper_nitrate"))
                 .dust()
                 .color(0xcaecec)
                 .flags(DISABLE_REPLICATION)
@@ -7545,7 +7548,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Cu(NO3)2", true);
 
-        YttriumNitrate = new Material.Builder(id++, gcylId("yttrium_nitrate"))
+        YttriumNitrate = new Material.Builder(++id, gcylId("yttrium_nitrate"))
                 .dust()
                 .color(0xdadafc)
                 .flags(DISABLE_REPLICATION)
@@ -7553,7 +7556,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Y(NO3)3", true);
 
-        CitricAcid = new Material.Builder(id++, gcylId("citric_acid"))
+        CitricAcid = new Material.Builder(++id, gcylId("citric_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0xffcc00)
                 .flags(DISABLE_REPLICATION)
@@ -7561,7 +7564,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H8O7", true);
 
-        WellMixedYBCOxides = new Material.Builder(id++, gcylId("well_mixed_ybc_oxides"))
+        WellMixedYBCOxides = new Material.Builder(++id, gcylId("well_mixed_ybc_oxides"))
                 .dust()
                 .color(0x2c3429)
                 .flags(DISABLE_REPLICATION)
@@ -7569,7 +7572,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("YBa2Cu3O6", true);
 
-        PiledTBCC = new Material.Builder(id++, gcylId("piled_tbcc"))
+        PiledTBCC = new Material.Builder(++id, gcylId("piled_tbcc"))
                 .dust()
                 .color(0x669900)
                 .flags(DISABLE_REPLICATION)
@@ -7577,7 +7580,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Tl2Ba2Cu3Ca2", true);
 
-        ActiniumOxalate = new Material.Builder(id++, gcylId("actinium_oxalate"))
+        ActiniumOxalate = new Material.Builder(++id, gcylId("actinium_oxalate"))
                 .dust()
                 .color(Actinium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -7585,7 +7588,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ac(CO2)4", true);
 
-        ActiniumHydride = new Material.Builder(id++, gcylId("actinium_hydride"))
+        ActiniumHydride = new Material.Builder(++id, gcylId("actinium_hydride"))
                 .dust()
                 .color(Actinium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -7593,7 +7596,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("AcH3", true);
 
-        ActiniumSuperhydridePlasma = new Material.Builder(id++, gcylId("actinium_superhydride_plasma"))
+        ActiniumSuperhydridePlasma = new Material.Builder(++id, gcylId("actinium_superhydride_plasma"))
                 .plasma()
                 .color(Actinium.getMaterialRGB() * 9 / 8)
                 .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
@@ -7601,7 +7604,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("AcH12", true);
 
-        LanthanumEmbeddedFullerene = new Material.Builder(id++, gcylId("lanthanum_embedded_fullerene"))
+        LanthanumEmbeddedFullerene = new Material.Builder(++id, gcylId("lanthanum_embedded_fullerene"))
                 .dust()
                 .color(0x99cc00)
                 .flags(DISABLE_REPLICATION)
@@ -7609,7 +7612,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(C60)2La2", true);
 
-        Dibromoacrolein = new Material.Builder(id++, gcylId("dibromoacrolein"))
+        Dibromoacrolein = new Material.Builder(++id, gcylId("dibromoacrolein"))
                 .liquid()
                 .color(0x4a4a4a)
                 .flags(DISABLE_REPLICATION)
@@ -7617,7 +7620,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2H2Br2O2", true);
 
-        SodiumThiosulfate = new Material.Builder(id++, gcylId("sodium_thiosulfate"))
+        SodiumThiosulfate = new Material.Builder(++id, gcylId("sodium_thiosulfate"))
                 .dust()
                 .color(0x2090fc)
                 .flags(DISABLE_REPLICATION)
@@ -7625,7 +7628,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Na2S2O3", true);
 
-        Chloroethane = new Material.Builder(id++, gcylId("chloroethane"))
+        Chloroethane = new Material.Builder(++id, gcylId("chloroethane"))
                 .liquid()
                 .color(0x33aa33)
                 .flags(DISABLE_REPLICATION)
@@ -7633,7 +7636,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CH3CH2Cl", true);
 
-        Bromohydrothiine = new Material.Builder(id++, gcylId("bromodihydrothiine"))
+        Bromohydrothiine = new Material.Builder(++id, gcylId("bromodihydrothiine"))
                 .liquid()
                 .color(0x40ff3a)
                 .flags(DISABLE_REPLICATION)
@@ -7641,7 +7644,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C4H4S2Br2", true);
 
-        Bromobutane = new Material.Builder(id++, gcylId("bromobutane"))
+        Bromobutane = new Material.Builder(++id, gcylId("bromobutane"))
                 .liquid()
                 .color(0xff3333)
                 .flags(DISABLE_REPLICATION)
@@ -7649,7 +7652,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CH3(CH2)3Br", true);
 
-        Lithiumthiinediselenide = new Material.Builder(id++, gcylId("lithiumthiinediselenide"))
+        Lithiumthiinediselenide = new Material.Builder(++id, gcylId("lithiumthiinediselenide"))
                 .dust()
                 .color(0x7ada00)
                 .flags(DISABLE_REPLICATION)
@@ -7657,7 +7660,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C4H4S2Li2Se2", true);
 
-        Propadiene = new Material.Builder(id++, gcylId("propadiene"))
+        Propadiene = new Material.Builder(++id, gcylId("propadiene"))
                 .liquid()
                 .color((Butanol.getMaterialRGB() - 20))
                 .flags(DISABLE_REPLICATION)
@@ -7665,7 +7668,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C3H4", true);
 
-        BETS = new Material.Builder(id++, gcylId("bets"))
+        BETS = new Material.Builder(++id, gcylId("bets"))
                 .dust()
                 .color(0x7ada00)
                 .flags(DISABLE_REPLICATION)
@@ -7673,7 +7676,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C10H8S4Se4", true);
 
-        FranciumCarbide = new Material.Builder(id++, gcylId("francium_carbide"))
+        FranciumCarbide = new Material.Builder(++id, gcylId("francium_carbide"))
                 .dust()
                 .color(Francium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -7681,7 +7684,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Fr2C2", true);
 
-        BoronCarbide = new Material.Builder(id++, gcylId("boron_carbide"))
+        BoronCarbide = new Material.Builder(++id, gcylId("boron_carbide"))
                 .dust()
                 .color(0x303030)
                 .flags(DISABLE_REPLICATION)
@@ -7689,7 +7692,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("B4C3", true);
 
-        BoronFranciumCarbide = new Material.Builder(id++, gcylId("boron_francium_carbide"))
+        BoronFranciumCarbide = new Material.Builder(++id, gcylId("boron_francium_carbide"))
                 .dust()
                 .color(0x808080)
                 .flags(DISABLE_REPLICATION)
@@ -7697,7 +7700,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Fr4B4C7", true);
 
-        AstatideSolution = new Material.Builder(id++, gcylId("astatide_solution"))
+        AstatideSolution = new Material.Builder(++id, gcylId("astatide_solution"))
                 .liquid()
                 .color(0x6df63f)
                 .flags(DISABLE_REPLICATION)
@@ -7705,7 +7708,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("At(H2O)(SO3)", true);
 
-        MixedAstatideSalts = new Material.Builder(id++, gcylId("mixed_astatide_salts"))
+        MixedAstatideSalts = new Material.Builder(++id, gcylId("mixed_astatide_salts"))
                 .dust()
                 .color(0x6df63f)
                 .flags(DISABLE_REPLICATION)
@@ -7713,7 +7716,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(At3)(Ho)(Th)(Cn)(Fl)", true);
 
-        SodiumIodate = new Material.Builder(id++, gcylId("sodium_iodate"))
+        SodiumIodate = new Material.Builder(++id, gcylId("sodium_iodate"))
                 .dust()
                 .color(0x11116d)
                 .flags(DISABLE_REPLICATION)
@@ -7721,7 +7724,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaIO3", true);
 
-        CopperSulfateSolution = new Material.Builder(id++, gcylId("blue_vitriol_water_solution"))
+        CopperSulfateSolution = new Material.Builder(++id, gcylId("blue_vitriol_water_solution"))
                 .liquid()
                 .color(4761024)
                 .flags(DISABLE_REPLICATION)
@@ -7729,7 +7732,7 @@ public class GCYLMaterials {
                 .components(Copper, 1, Sulfur, 1, Oxygen, 4, Water, 5)
                 .build();
 
-        SodiumPeriodate = new Material.Builder(id++, gcylId("sodium_periodate"))
+        SodiumPeriodate = new Material.Builder(++id, gcylId("sodium_periodate"))
                 .dust()
                 .color(0x11116d)
                 .flags(DISABLE_REPLICATION)
@@ -7737,7 +7740,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaIO4", true);
 
-        StrontiumSuperconductorDust = new Material.Builder(id++, gcylId("strontium_superconductor_dust"))
+        StrontiumSuperconductorDust = new Material.Builder(++id, gcylId("strontium_superconductor_dust"))
                 .dust()
                 .color(0x45abf4)
                 .flags(DISABLE_REPLICATION)
@@ -7745,7 +7748,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Sr2RuSgO8", true);
 
-        KryptonDifluoride = new Material.Builder(id++, gcylId("krypton_difluoride"))
+        KryptonDifluoride = new Material.Builder(++id, gcylId("krypton_difluoride"))
                 .liquid()
                 .color(Krypton.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -7753,7 +7756,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("KrF2", true);
 
-        ManganeseFluoride = new Material.Builder(id++, gcylId("manganese_fluoride"))
+        ManganeseFluoride = new Material.Builder(++id, gcylId("manganese_fluoride"))
                 .dust()
                 .color(Pyrolusite.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -7761,7 +7764,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("MnF2", true);
 
-        PhenylenedioxydiaceticAcid = new Material.Builder(id++, gcylId("phenylenedioxydiacetic_acid"))
+        PhenylenedioxydiaceticAcid = new Material.Builder(++id, gcylId("phenylenedioxydiacetic_acid"))
                 .liquid()
                 .color(0x99546a)
                 .flags(DISABLE_REPLICATION)
@@ -7769,7 +7772,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C10H10O6", true);
 
-        Diethylthiourea = new Material.Builder(id++, gcylId("diethylthiourea"))
+        Diethylthiourea = new Material.Builder(++id, gcylId("diethylthiourea"))
                 .liquid()
                 .color(0x2acaa4)
                 .flags(DISABLE_REPLICATION)
@@ -7777,7 +7780,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(C2H5NH)2CS", true);
 
-        Isophthaloylbisdiethylthiourea = new Material.Builder(id++, gcylId("isophthaloylbisdiethylthiourea"))
+        Isophthaloylbisdiethylthiourea = new Material.Builder(++id, gcylId("isophthaloylbisdiethylthiourea"))
                 .liquid()
                 .color(0x8a7b9c)
                 .flags(DISABLE_REPLICATION)
@@ -7785,7 +7788,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C18H26N4O2S2", true);
 
-        HassiumChloride = new Material.Builder(id++, gcylId("hassium_chloride"))
+        HassiumChloride = new Material.Builder(++id, gcylId("hassium_chloride"))
                 .dust()
                 .color(0x5d2abc)
                 .flags(DISABLE_REPLICATION)
@@ -7793,7 +7796,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HsCl4", true);
 
-        RheniumChloride = new Material.Builder(id++, gcylId("rhenium_chloride"))
+        RheniumChloride = new Material.Builder(++id, gcylId("rhenium_chloride"))
                 .dust()
                 .color(0x3c2a5c)
                 .flags(DISABLE_REPLICATION)
@@ -7801,7 +7804,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ReCl5", true);
 
-        AntimonyPentafluoride = new Material.Builder(id++, gcylId("antimony_pentafluoride"))
+        AntimonyPentafluoride = new Material.Builder(++id, gcylId("antimony_pentafluoride"))
                 .liquid()
                 .color(Antimony.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -7809,7 +7812,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("SbF5", true);
 
-        AntimonyTrichloride = new Material.Builder(id++, gcylId("antimony_trichloride"))
+        AntimonyTrichloride = new Material.Builder(++id, gcylId("antimony_trichloride"))
                 .dust()
                 .color(AntimonyTrifluoride.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -7817,7 +7820,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("SbCl3", true);
 
-        FluorophosphoricAcid = new Material.Builder(id++, gcylId("fluorophosphoric_acid"))
+        FluorophosphoricAcid = new Material.Builder(++id, gcylId("fluorophosphoric_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(PhosphorusTrichloride.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -7825,7 +7828,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HPF6", true);
 
-        ChargedCaesiumCeriumCobaltIndium = new Material.Builder(id++, gcylId("charged_caesium_cerium_cobalt_indium"))
+        ChargedCaesiumCeriumCobaltIndium = new Material.Builder(++id, gcylId("charged_caesium_cerium_cobalt_indium"))
                 .dust()
                 .color(0x52ad25)
                 .flags(DISABLE_REPLICATION)
@@ -7833,7 +7836,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CsCeCo2In10", true);
 
-        VanadiumSlag = new Material.Builder(id++, gcylId("vanadium_slag"))
+        VanadiumSlag = new Material.Builder(++id, gcylId("vanadium_slag"))
                 .dust()
                 .color((Vanadium.getMaterialRGB() + Titanium.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -7841,7 +7844,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(VO)C(TiO2)", true);
 
-        VanadiumSlagDust = new Material.Builder(id++, gcylId("vanadium_slag_dust"))
+        VanadiumSlagDust = new Material.Builder(++id, gcylId("vanadium_slag_dust"))
                 .dust()
                 .color(0xf2ef1b)
                 .flags(DISABLE_REPLICATION)
@@ -7849,7 +7852,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("VO", true);
 
-        VanadiumWasteSolution = new Material.Builder(id++, gcylId("vanadium_waste_solution"))
+        VanadiumWasteSolution = new Material.Builder(++id, gcylId("vanadium_waste_solution"))
                 .liquid()
                 .color(0xbf95f5)
                 .flags(DISABLE_REPLICATION)
@@ -7857,7 +7860,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaCl(Na2SO4)(SiO2)(Al(OH)3)", true);
 
-        PropargylAlcohol = new Material.Builder(id++, gcylId("propargyl_alcohol"))
+        PropargylAlcohol = new Material.Builder(++id, gcylId("propargyl_alcohol"))
                 .liquid()
                 .color(0xbfb32a)
                 .flags(DISABLE_REPLICATION)
@@ -7865,7 +7868,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CHCCH2OH", true);
 
-        PropargylChloride = new Material.Builder(id++, gcylId("propargyl_chloride"))
+        PropargylChloride = new Material.Builder(++id, gcylId("propargyl_chloride"))
                 .liquid()
                 .color(0x918924)
                 .flags(DISABLE_REPLICATION)
@@ -7873,7 +7876,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HC2CH2Cl", true);
 
-        Resin = new Material.Builder(id++, gcylId("resin"))
+        Resin = new Material.Builder(++id, gcylId("resin"))
                 .liquid()
                 .color(0x3d2f11)
                 .flags(DISABLE_REPLICATION)
@@ -7881,7 +7884,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        Turpentine = new Material.Builder(id++, gcylId("turpentine"))
+        Turpentine = new Material.Builder(++id, gcylId("turpentine"))
                 .liquid()
                 .color(0x93bd46)
                 .flags(DISABLE_REPLICATION)
@@ -7889,7 +7892,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C10H16", true);
 
-        BetaPinene = new Material.Builder(id++, gcylId("beta_pinene"))
+        BetaPinene = new Material.Builder(++id, gcylId("beta_pinene"))
                 .dust()
                 .color(0x61ad6b)
                 .flags(DISABLE_REPLICATION)
@@ -7897,7 +7900,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C10H16", true);
 
-        Citral = new Material.Builder(id++, gcylId("citral"))
+        Citral = new Material.Builder(++id, gcylId("citral"))
                 .liquid()
                 .color(0xf2e541)
                 .flags(DISABLE_REPLICATION)
@@ -7905,7 +7908,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C10H16O", true);
 
-        BetaIonone = new Material.Builder(id++, gcylId("beta_ionone"))
+        BetaIonone = new Material.Builder(++id, gcylId("beta_ionone"))
                 .liquid()
                 .color(0xdc5ce6)
                 .flags(DISABLE_REPLICATION)
@@ -7913,7 +7916,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C13H20O", true);
 
-        VitaminA = new Material.Builder(id++, gcylId("vitamin_a"))
+        VitaminA = new Material.Builder(++id, gcylId("vitamin_a"))
                 .liquid()
                 .color(0x8d5c91)
                 .flags(DISABLE_REPLICATION)
@@ -7921,7 +7924,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C20H30O", true);
 
-        Yeast = new Material.Builder(id++, gcylId("yeast"))
+        Yeast = new Material.Builder(++id, gcylId("yeast"))
                 .dust()
                 .color(0xf0e660)
                 .flags(DISABLE_REPLICATION)
@@ -7929,7 +7932,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("???", true);
 
-        LinoleicAcid = new Material.Builder(id++, gcylId("linoleic_acid"))
+        LinoleicAcid = new Material.Builder(++id, gcylId("linoleic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0xD5D257)
                 .flags(DISABLE_REPLICATION)
@@ -7937,7 +7940,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C18H32O2", true);
 
-        Biotin = new Material.Builder(id++, gcylId("biotin"))
+        Biotin = new Material.Builder(++id, gcylId("biotin"))
                 .liquid()
                 .color(0x68cc6a)
                 .flags(DISABLE_REPLICATION)
@@ -7945,7 +7948,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C10H16N2O3S", true);
 
-        Catalase = new Material.Builder(id++, gcylId("catalase"))
+        Catalase = new Material.Builder(++id, gcylId("catalase"))
                 .liquid()
                 .color(0xdb6596)
                 .flags(DISABLE_REPLICATION)
@@ -7953,7 +7956,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        B27Supplement = new Material.Builder(id++, gcylId("b_27_supplement"))
+        B27Supplement = new Material.Builder(++id, gcylId("b_27_supplement"))
                 .liquid()
                 .color(0x386939)
                 .flags(DISABLE_REPLICATION)
@@ -7961,7 +7964,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C142H230N36O44S", true);
 
-        CleanAmmoniaSolution = new Material.Builder(id++, gcylId("clear_ammonia_solution"))
+        CleanAmmoniaSolution = new Material.Builder(++id, gcylId("clear_ammonia_solution"))
                 .liquid()
                 .color(0x53c9a0)
                 .flags(DISABLE_REPLICATION)
@@ -7969,7 +7972,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NH3(H2O)", true);
 
-        Glutamine = new Material.Builder(id++, gcylId("glutamine"))
+        Glutamine = new Material.Builder(++id, gcylId("glutamine"))
                 .dust()
                 .color(0xede9b4)
                 .flags(DISABLE_REPLICATION)
@@ -7977,7 +7980,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C5H10N2O3", true);
 
-        Blood = new Material.Builder(id++, gcylId("blood"))
+        Blood = new Material.Builder(++id, gcylId("blood"))
                 .liquid()
                 .color(0x5c0606)
                 .flags(DISABLE_REPLICATION)
@@ -7985,7 +7988,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Blood", true);
 
-        BloodCells = new Material.Builder(id++, gcylId("blood_cells"))
+        BloodCells = new Material.Builder(++id, gcylId("blood_cells"))
                 .liquid()
                 .color(0xad2424)
                 .flags(DISABLE_REPLICATION)
@@ -7993,7 +7996,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("???", true);
 
-        BloodPlasma = new Material.Builder(id++, gcylId("blood_plasma"))
+        BloodPlasma = new Material.Builder(++id, gcylId("blood_plasma"))
                 .liquid()
                 .color(0xe37171)
                 .flags(DISABLE_REPLICATION)
@@ -8001,7 +8004,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("???", true);
 
-        BFGF = new Material.Builder(id++, gcylId("bfgf"))
+        BFGF = new Material.Builder(++id, gcylId("bfgf"))
                 .liquid()
                 .color(0xb365e0)
                 .flags(DISABLE_REPLICATION)
@@ -8009,7 +8012,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("bFGF", true);
 
-        EGF = new Material.Builder(id++, gcylId("egf"))
+        EGF = new Material.Builder(++id, gcylId("egf"))
                 .liquid()
                 .color(0x815799)
                 .flags(DISABLE_REPLICATION)
@@ -8017,7 +8020,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C257H381N73O83S7", true);
 
-        SilicaGelBase = new Material.Builder(id++, gcylId("silica_gel_base"))
+        SilicaGelBase = new Material.Builder(++id, gcylId("silica_gel_base"))
                 .liquid()
                 .color(0x27a176)
                 .flags(DISABLE_REPLICATION)
@@ -8025,7 +8028,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("SiO2(HCl)(NaOH)(H2O)", true);
 
-        SilicaAluminaGel = new Material.Builder(id++, gcylId("silica_alumina_gel"))
+        SilicaAluminaGel = new Material.Builder(++id, gcylId("silica_alumina_gel"))
                 .dust()
                 .color(0x558d9e)
                 .flags(DISABLE_REPLICATION)
@@ -8033,7 +8036,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Al2O3SiO2", true);
 
-        PiranhaSolution = new Material.Builder(id++, gcylId("piranha_solution"))
+        PiranhaSolution = new Material.Builder(++id, gcylId("piranha_solution"))
                 .liquid()
                 .color(0x4820ab)
                 .flags(DISABLE_REPLICATION)
@@ -8041,7 +8044,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2SO4)H2O2", true);
 
-        ChlorosulfonicAcid = new Material.Builder(id++, gcylId("chlorosulfonic_acid"))
+        ChlorosulfonicAcid = new Material.Builder(++id, gcylId("chlorosulfonic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0x916c1d)
                 .flags(DISABLE_REPLICATION)
@@ -8049,7 +8052,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HSO3Cl", true);
 
-        AcetylsulfanilylChloride = new Material.Builder(id++, gcylId("acetylsulfanilyl_chloride"))
+        AcetylsulfanilylChloride = new Material.Builder(++id, gcylId("acetylsulfanilyl_chloride"))
                 .liquid()
                 .color((Aniline.getMaterialRGB() + AceticAnhydride.getMaterialRGB() + ChlorosulfonicAcid.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -8057,7 +8060,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C8H8ClNO3S", true);
 
-        Sulfanilamide = new Material.Builder(id++, gcylId("sulfanilamide"))
+        Sulfanilamide = new Material.Builder(++id, gcylId("sulfanilamide"))
                 .liquid()
                 .color(0x523b0a)
                 .flags(DISABLE_REPLICATION)
@@ -8065,7 +8068,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H8N2O2S", true);
 
-        AnimalCells = new Material.Builder(id++, gcylId("animal_cells"))
+        AnimalCells = new Material.Builder(++id, gcylId("animal_cells"))
                 .liquid()
                 .color(0xc94996)
                 .flags(DISABLE_REPLICATION)
@@ -8073,7 +8076,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("???", true);
 
-        RapidlyReplicatingAnimalCells = new Material.Builder(id++, gcylId("rapidly_replicating_animal_cells"))
+        RapidlyReplicatingAnimalCells = new Material.Builder(++id, gcylId("rapidly_replicating_animal_cells"))
                 .liquid()
                 .color(0x7a335e)
                 .flags(DISABLE_REPLICATION)
@@ -8081,7 +8084,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula(TextFormatting.OBFUSCATED + "????", true);
 
-        Oct4Gene = new Material.Builder(id++, gcylId("oct_4_gene"))
+        Oct4Gene = new Material.Builder(++id, gcylId("oct_4_gene"))
                 .liquid()
                 .color(0x374f0d)
                 .flags(DISABLE_REPLICATION)
@@ -8089,7 +8092,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        SOX2Gene = new Material.Builder(id++, gcylId("sox_2_gene"))
+        SOX2Gene = new Material.Builder(++id, gcylId("sox_2_gene"))
                 .liquid()
                 .color(0x5d8714)
                 .flags(DISABLE_REPLICATION)
@@ -8097,7 +8100,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        KFL4Gene = new Material.Builder(id++, gcylId("kfl_4_gene"))
+        KFL4Gene = new Material.Builder(++id, gcylId("kfl_4_gene"))
                 .liquid()
                 .color(0x759143)
                 .flags(DISABLE_REPLICATION)
@@ -8105,7 +8108,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        GeneTherapyFluid = new Material.Builder(id++, gcylId("pluripotency_induction_gene_therapy_fluid"))
+        GeneTherapyFluid = new Material.Builder(++id, gcylId("pluripotency_induction_gene_therapy_fluid"))
                 .liquid()
                 .color(0x6b2f66)
                 .flags(DISABLE_REPLICATION)
@@ -8113,7 +8116,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        Cas9 = new Material.Builder(id++, gcylId("cas_9"))
+        Cas9 = new Material.Builder(++id, gcylId("cas_9"))
                 .liquid()
                 .color(0x5f6e46)
                 .flags(DISABLE_REPLICATION)
@@ -8121,7 +8124,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        MycGene = new Material.Builder(id++, gcylId("myc_gene"))
+        MycGene = new Material.Builder(++id, gcylId("myc_gene"))
                 .liquid()
                 .color(0x445724)
                 .flags(DISABLE_REPLICATION)
@@ -8129,7 +8132,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        GenePlasmids = new Material.Builder(id++, gcylId("pluripotency_induction_gene_plasmids"))
+        GenePlasmids = new Material.Builder(++id, gcylId("pluripotency_induction_gene_plasmids"))
                 .liquid()
                 .color(0xabe053)
                 .flags(DISABLE_REPLICATION)
@@ -8137,7 +8140,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        Chitin = new Material.Builder(id++, gcylId("chitin"))
+        Chitin = new Material.Builder(++id, gcylId("chitin"))
                 .liquid()
                 .color(0xcbd479)
                 .flags(DISABLE_REPLICATION)
@@ -8145,7 +8148,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        ZincCokePellets = new Material.Builder(id++, gcylId("zinc_coke_pellets"))
+        ZincCokePellets = new Material.Builder(++id, gcylId("zinc_coke_pellets"))
                 .dust()
                 .color((Zinc.getMaterialRGB() + Coke.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -8153,7 +8156,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)(ZnS)C", true);
 
-        ZincResidualSlag = new Material.Builder(id++, gcylId("zinc_residual_slag"))
+        ZincResidualSlag = new Material.Builder(++id, gcylId("zinc_residual_slag"))
                 .dust()
                 .color((Zinc.getMaterialRGB() - 20))
                 .flags(DISABLE_REPLICATION)
@@ -8161,7 +8164,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        ZincExhaustMixture = new Material.Builder(id++, gcylId("zinc_exhaust_mixture"))
+        ZincExhaustMixture = new Material.Builder(++id, gcylId("zinc_exhaust_mixture"))
                 .liquid()
                 .color((CarbonDioxide.getMaterialRGB() + SulfurDioxide.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -8169,7 +8172,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(SO2)(CO2)?", true);
 
-        ZincSulfate = new Material.Builder(id++, gcylId("zinc_sulfate"))
+        ZincSulfate = new Material.Builder(++id, gcylId("zinc_sulfate"))
                 .dust()
                 .color((Zinc.getMaterialRGB() + Sulfur.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -8177,7 +8180,7 @@ public class GCYLMaterials {
                 .components(Zinc, 1, Sulfur, 1, Oxygen, 4)
                 .build();
 
-        ZincLeachingResidue = new Material.Builder(id++, gcylId("zinc_leaching_residue"))
+        ZincLeachingResidue = new Material.Builder(++id, gcylId("zinc_leaching_residue"))
                 .dust()
                 .color((Germanium.getMaterialRGB() + Oxygen.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -8185,7 +8188,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ge?", true);
 
-        ZincFlueDust = new Material.Builder(id++, gcylId("zinc_flue_dust"))
+        ZincFlueDust = new Material.Builder(++id, gcylId("zinc_flue_dust"))
                 .dust()
                 .color(0xfcfca)
                 .flags(DISABLE_REPLICATION)
@@ -8193,7 +8196,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        FineZincSlagDust = new Material.Builder(id++, gcylId("fine_zinc_slag_dust"))
+        FineZincSlagDust = new Material.Builder(++id, gcylId("fine_zinc_slag_dust"))
                 .dust()
                 .color((Zinc.getMaterialRGB() - 10))
                 .flags(DISABLE_REPLICATION)
@@ -8201,7 +8204,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        ZincSlagSlurry = new Material.Builder(id++, gcylId("zinc_slag_slurry"))
+        ZincSlagSlurry = new Material.Builder(++id, gcylId("zinc_slag_slurry"))
                 .liquid()
                 .color((Zinc.getMaterialRGB() - 20))
                 .flags(DISABLE_REPLICATION)
@@ -8209,7 +8212,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2O?", true);
 
-        MetalRichSlagSlurry = new Material.Builder(id++, gcylId("metal_slag_slurry"))
+        MetalRichSlagSlurry = new Material.Builder(++id, gcylId("metal_slag_slurry"))
                 .liquid()
                 .color((Zinc.getMaterialRGB() - 20))
                 .flags(DISABLE_REPLICATION)
@@ -8217,7 +8220,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2O?", true);
 
-        AcidicMetalSlurry = new Material.Builder(id++, gcylId("acidic_metal_slurry"))
+        AcidicMetalSlurry = new Material.Builder(++id, gcylId("acidic_metal_slurry"))
                 .liquid()
                 .color((Zinc.getMaterialRGB() - 10 + PhosphoricAcid.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -8225,7 +8228,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H3PO4?", true);
 
-        SeparatedMetalSlurry = new Material.Builder(id++, gcylId("separated_metal_slurry"))
+        SeparatedMetalSlurry = new Material.Builder(++id, gcylId("separated_metal_slurry"))
                 .liquid()
                 .color((Zinc.getMaterialRGB() - 20))
                 .flags(DISABLE_REPLICATION)
@@ -8233,28 +8236,28 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H3PO4?", true);
 
-        MetalHydroxideMix = new Material.Builder(id++, gcylId("metal_hydroxide_mix"))
+        MetalHydroxideMix = new Material.Builder(++id, gcylId("metal_hydroxide_mix"))
                 .liquid()
                 .color((Zinc.getMaterialRGB() - 30))
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("?ZnOH", true);
-        ZincPoorMix = new Material.Builder(id++, gcylId("zinc_poor_mix"))
+        ZincPoorMix = new Material.Builder(++id, gcylId("zinc_poor_mix"))
                 .liquid()
                 .color((Iron.getMaterialRGB() - 10))
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("?Fe", true);
-        IronPoorMix = new Material.Builder(id++, gcylId("iron_poor_mix"))
+        IronPoorMix = new Material.Builder(++id, gcylId("iron_poor_mix"))
                 .liquid()
                 .color((Copper.getMaterialRGB() + 10))
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("?In", true);
-        IndiumHydroxideConcentrate = new Material.Builder(id++, gcylId("indium_hydroxide_concentrate"))
+        IndiumHydroxideConcentrate = new Material.Builder(++id, gcylId("indium_hydroxide_concentrate"))
                 .liquid()
                 .color((Indium.getMaterialRGB() + Hydrogen.getMaterialRGB() + 10) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -8262,7 +8265,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("In(OH)3", true);
 
-        IndiumHydroxide = new Material.Builder(id++, gcylId("indium_hydroxide"))
+        IndiumHydroxide = new Material.Builder(++id, gcylId("indium_hydroxide"))
                 .dust()
                 .color((Indium.getMaterialRGB() + SodiumHydroxide.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -8270,7 +8273,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("In(OH)3", true);
 
-        CadmiumZincDust = new Material.Builder(id++, gcylId("cadmium_zinc_dust"))
+        CadmiumZincDust = new Material.Builder(++id, gcylId("cadmium_zinc_dust"))
                 .dust()
                 .color((Cadmium.getMaterialRGB() + Zinc.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -8278,7 +8281,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2SO4)CdZn?", true);
 
-        CadmiumThalliumLiquor = new Material.Builder(id++, gcylId("cdtl_liquor"))
+        CadmiumThalliumLiquor = new Material.Builder(++id, gcylId("cdtl_liquor"))
                 .liquid()
                 .color((Cadmium.getMaterialRGB() + Thallium.getMaterialRGB() + RareEarth.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -8286,7 +8289,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2SO4)CdTl", true);
 
-        ZincAmalgam = new Material.Builder(id++, gcylId("zinc_amalgam"))
+        ZincAmalgam = new Material.Builder(++id, gcylId("zinc_amalgam"))
                 .liquid()
                 .color((Zinc.getMaterialRGB() - 20))
                 .flags(DISABLE_REPLICATION)
@@ -8294,7 +8297,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ZnHg", true);
 
-        ThalliumResidue = new Material.Builder(id++, gcylId("thallium_residue"))
+        ThalliumResidue = new Material.Builder(++id, gcylId("thallium_residue"))
                 .dust()
                 .color((Thallium.getMaterialRGB() - 10))
                 .flags(DISABLE_REPLICATION)
@@ -8302,7 +8305,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Tl?", true);
 
-        CadmiumSulfateSolution = new Material.Builder(id++, gcylId("cadmium_sulfate"))
+        CadmiumSulfateSolution = new Material.Builder(++id, gcylId("cadmium_sulfate"))
                 .liquid()
                 .color((Cadmium.getMaterialRGB() + SulfuricAcid.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -8310,7 +8313,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CdSO4?", true);
 
-        ThalliumSulfateSolution = new Material.Builder(id++, gcylId("thallium_sulfate"))
+        ThalliumSulfateSolution = new Material.Builder(++id, gcylId("thallium_sulfate"))
                 .liquid()
                 .color((Thallium.getMaterialRGB() + SulfuricAcid.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -8318,7 +8321,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Tl2SO4?", true);
 
-        ZincChloride = new Material.Builder(id++, gcylId("zinc_chloride"))
+        ZincChloride = new Material.Builder(++id, gcylId("zinc_chloride"))
                 .dust()
                 .color((Zinc.getMaterialRGB() + Chlorine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -8326,7 +8329,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ZnCl2", true);
 
-        SodiumSulfite = new Material.Builder(id++, gcylId("sodium_sulfite"))
+        SodiumSulfite = new Material.Builder(++id, gcylId("sodium_sulfite"))
                 .dust()
                 .color((SodiumHydroxide.getMaterialRGB() + Sulfur.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -8334,7 +8337,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Na2SO3", true);
 
-        PolyphenolMix = new Material.Builder(id++, gcylId("polyphenol_mix"))
+        PolyphenolMix = new Material.Builder(++id, gcylId("polyphenol_mix"))
                 .liquid()
                 .color((Phenol.getMaterialRGB() + 10))
                 .flags(DISABLE_REPLICATION)
@@ -8342,7 +8345,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        AcidifiedPolyphenolMix = new Material.Builder(id++, gcylId("acidified_polyphenol_mix"))
+        AcidifiedPolyphenolMix = new Material.Builder(++id, gcylId("acidified_polyphenol_mix"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color((PolyphenolMix.getMaterialRGB() + SulfuricAcid.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -8350,7 +8353,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        Diethylether = new Material.Builder(id++, gcylId("diethylether"))
+        Diethylether = new Material.Builder(++id, gcylId("diethylether"))
                 .liquid()
                 .color(AcidifiedPolyphenolMix.getMaterialRGB() - 20)
                 .flags(DISABLE_REPLICATION)
@@ -8358,7 +8361,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(C2H5)2O", true);
 
-        TannicAcid = new Material.Builder(id++, gcylId("tannic_acid"))
+        TannicAcid = new Material.Builder(++id, gcylId("tannic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color((Diethylether.getMaterialRGB() + AcidifiedPolyphenolMix.getMaterialRGB()) / 4)
                 .flags(DISABLE_REPLICATION)
@@ -8366,7 +8369,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C76H52O46", true);
 
-        GermanicAcidSolution = new Material.Builder(id++, gcylId("germanic_acid_solution"))
+        GermanicAcidSolution = new Material.Builder(++id, gcylId("germanic_acid_solution"))
                 .liquid()
                 .color((Germanium.getMaterialRGB() - 10))
                 .flags(DISABLE_REPLICATION)
@@ -8374,7 +8377,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H4GeO4", true);
 
-        GermaniumChloride = new Material.Builder(id++, gcylId("germanium_chloride"))
+        GermaniumChloride = new Material.Builder(++id, gcylId("germanium_chloride"))
                 .liquid()
                 .color((Germanium.getMaterialRGB() + Chlorine.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
@@ -8382,7 +8385,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("GeCl4", true);
 
-        BariumHydroxide = new Material.Builder(id++, gcylId("barium_hydroxide"))
+        BariumHydroxide = new Material.Builder(++id, gcylId("barium_hydroxide"))
                 .dust()
                 .color((Barium.getMaterialRGB() + Hydrogen.getMaterialRGB() + Oxygen.getMaterialRGB()) / 3)
                 .flags(DISABLE_REPLICATION)
@@ -8390,7 +8393,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ba(OH)2", true);
 
-        ThiocyanicAcid = new Material.Builder(id++, gcylId("thiocyanic_acid"))
+        ThiocyanicAcid = new Material.Builder(++id, gcylId("thiocyanic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0xfcfc30)
                 .flags(DISABLE_REPLICATION)
@@ -8398,7 +8401,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HSCN", true);
 
-        ZrHfSeparationMix = new Material.Builder(id++, gcylId("zrhf_separation_mix"))
+        ZrHfSeparationMix = new Material.Builder(++id, gcylId("zrhf_separation_mix"))
                 .liquid()
                 .color(0xfcfc95)
                 .flags(DISABLE_REPLICATION)
@@ -8406,7 +8409,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?", true);
 
-        Zircon = new Material.Builder(id++, gcylId("zircon"))
+        Zircon = new Material.Builder(++id, gcylId("zircon"))
                 .gem(3)
                 .color(0xeb9e3f)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -8414,7 +8417,7 @@ public class GCYLMaterials {
                 .components(Zirconium, 1, Silicon, 1, Oxygen, 4)
                 .build();
 
-        ZrHfChloride = new Material.Builder(id++, gcylId("zrhf_chloride"))
+        ZrHfChloride = new Material.Builder(++id, gcylId("zrhf_chloride"))
                 .liquid()
                 .color(0x51d351)
                 .flags(DISABLE_REPLICATION)
@@ -8422,7 +8425,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("ZrHfCl4", true);
 
-        ZirconChlorinatingResidue = new Material.Builder(id++, gcylId("zircon_chlorinating_residue"))
+        ZirconChlorinatingResidue = new Material.Builder(++id, gcylId("zircon_chlorinating_residue"))
                 .liquid()
                 .color(0x51d351)
                 .flags(DISABLE_REPLICATION)
@@ -8430,7 +8433,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(SiCl4)Co?", true);
 
-        SiliconChloride = new Material.Builder(id++, gcylId("silicon_chloride"))
+        SiliconChloride = new Material.Builder(++id, gcylId("silicon_chloride"))
                 .dust()
                 .color(Silicon.getMaterialRGB() - 15)
                 .flags(DISABLE_REPLICATION)
@@ -8438,7 +8441,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("SiCl4", true);
 
-        ZrHfOxyChloride = new Material.Builder(id++, gcylId("zrhf_oxychloride"))
+        ZrHfOxyChloride = new Material.Builder(++id, gcylId("zrhf_oxychloride"))
                 .liquid()
                 .color(0x51d351)
                 .flags(DISABLE_REPLICATION)
@@ -8446,7 +8449,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Cl2HfOZr", true);
 
-        HafniumOxide = new Material.Builder(id++, gcylId("hafnium_oxide"))
+        HafniumOxide = new Material.Builder(++id, gcylId("hafnium_oxide"))
                 .dust()
                 .color(0x404040)
                 .flags(DISABLE_REPLICATION)
@@ -8454,7 +8457,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HfO2", true);
 
-        HafniumChloride = new Material.Builder(id++, gcylId("hafnium_chloride"))
+        HafniumChloride = new Material.Builder(++id, gcylId("hafnium_chloride"))
                 .dust()
                 .color(Hafnium.getMaterialRGB() + 20)
                 .flags(DISABLE_REPLICATION)
@@ -8462,7 +8465,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HfCl4", true);
 
-        HeliumCNO = new Material.Builder(id++, gcylId("helium_rich_cno"))
+        HeliumCNO = new Material.Builder(++id, gcylId("helium_rich_cno"))
                 .liquid().plasma()
                 .color(0x59ffa6)
                 .flags(DISABLE_REPLICATION)
@@ -8470,7 +8473,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("He?", true);
 
-        Iron52 = new Material.Builder(id++, gcylId("iron_52"))
+        Iron52 = new Material.Builder(++id, gcylId("iron_52"))
                 .liquid().plasma()
                 .color(Iron.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -8478,7 +8481,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Fe_52", true);
 
-        Chromium48 = new Material.Builder(id++, gcylId("chromium_48"))
+        Chromium48 = new Material.Builder(++id, gcylId("chromium_48"))
                 .liquid().plasma()
                 .color(Chrome.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -8486,7 +8489,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Cr_48", true);
 
-        Titanium44 = new Material.Builder(id++, gcylId("titanium_44"))
+        Titanium44 = new Material.Builder(++id, gcylId("titanium_44"))
                 .liquid().plasma()
                 .color(Titanium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -8494,7 +8497,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ti_44", true);
 
-        Nickel56 = new Material.Builder(id++, gcylId("nickel_56"))
+        Nickel56 = new Material.Builder(++id, gcylId("nickel_56"))
                 .liquid().plasma()
                 .color(Nickel.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -8502,7 +8505,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ni_56", true);
 
-        LiquidEnrichedHelium = new Material.Builder(id++, gcylId("liquid_enriched_helium"))
+        LiquidEnrichedHelium = new Material.Builder(++id, gcylId("liquid_enriched_helium"))
                 .liquid()
                 .color(Helium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -8510,7 +8513,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HeHe_3", true);
 
-        AbyssalAlloy = new Material.Builder(id++, gcylId("abyssal_alloy"))
+        AbyssalAlloy = new Material.Builder(++id, gcylId("abyssal_alloy"))
                 .ingot(6).liquid()
                 .color(0x9E706A)
                 .iconSet(METALLIC)
@@ -8520,7 +8523,7 @@ public class GCYLMaterials {
                 .blast(9625)
                 .build();
 
-        CosmicNeutronium = new Material.Builder(id++, gcylId("cosmic_neutronium"))
+        CosmicNeutronium = new Material.Builder(++id, gcylId("cosmic_neutronium"))
                 .ingot(7).liquid()
                 .color(0x323232)
                 .iconSet(SHINY)
@@ -8530,7 +8533,7 @@ public class GCYLMaterials {
                 .blast(14100)
                 .build();
 
-        HighEnergyQGP = new Material.Builder(id++, gcylId("high_energy_qgp"))
+        HighEnergyQGP = new Material.Builder(++id, gcylId("high_energy_qgp"))
                 .liquid()
                 .color(0x8f00ff)
                 .flags(DISABLE_REPLICATION)
@@ -8538,7 +8541,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula(makeFancy(TextFormatting.OBFUSCATED + "a" + TextFormatting.RESET + "(u2)d(c2)s(t2)bg" + TextFormatting.OBFUSCATED + "a"),true);
 
-        CaliforniumCyclopentadienide = new Material.Builder(id++, gcylId("californiumcyclopentadienide"))
+        CaliforniumCyclopentadienide = new Material.Builder(++id, gcylId("californiumcyclopentadienide"))
                 .liquid()
                 .color(0x94445b)
                 .flags(DISABLE_REPLICATION)
@@ -8546,7 +8549,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C15H15Cf",true);
 
-        IridiumTrioxide  = new Material.Builder(id++, gcylId("iridiumtrioxide"))
+        IridiumTrioxide  = new Material.Builder(++id, gcylId("iridiumtrioxide"))
                 .dust()
                 .color(0x9a9a2b)
                 .flags(DISABLE_REPLICATION)
@@ -8554,7 +8557,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ir2O3",true);
 
-        IridiumTrichlorideSolution = new Material.Builder(id++, gcylId("iridiumtrichloridesolution"))
+        IridiumTrichlorideSolution = new Material.Builder(++id, gcylId("iridiumtrichloridesolution"))
                 .liquid()
                 .color(0x96821a)
                 .flags(DISABLE_REPLICATION)
@@ -8562,7 +8565,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("IrCl3",true);
 
-        SemisolidHydrogen = new Material.Builder(id++, gcylId("semisolidhydrogen"))
+        SemisolidHydrogen = new Material.Builder(++id, gcylId("semisolidhydrogen"))
                 .liquid()
                 .color(0x044c4b)
                 .flags(DISABLE_REPLICATION)
@@ -8570,7 +8573,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H",true);
 
-        MicrocrystallizingHydrogen = new Material.Builder(id++, gcylId("microcrystallizinghydrogen"))
+        MicrocrystallizingHydrogen = new Material.Builder(++id, gcylId("microcrystallizinghydrogen"))
                 .liquid()
                 .color(0x155d5c)
                 .flags(DISABLE_REPLICATION)
@@ -8578,7 +8581,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H",true);
 
-        Vinteum = new Material.Builder(id++, gcylId("vinteum"))
+        Vinteum = new Material.Builder(++id, gcylId("vinteum"))
                 .gem(3)
                 .color(6605055)
                 .flags(DISABLE_REPLICATION, NO_SMASHING, NO_SMELTING)
@@ -8586,7 +8589,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Vt¤",true);
 
-        Tanzanite = new Material.Builder(id++, gcylId("tanzanite"))
+        Tanzanite = new Material.Builder(++id, gcylId("tanzanite"))
                 .gem(2)
                 .color(4194504)
                 .flags(DISABLE_REPLICATION, NO_SMASHING, NO_SMELTING, HIGH_SIFTER_OUTPUT)
@@ -8594,7 +8597,7 @@ public class GCYLMaterials {
                 .components(Calcium,2,Aluminium,3,Silicon,3,Hydrogen,1,Oxygen,13)
                 .build();
 
-        Dibismusthydroborat = new Material.Builder(id++, gcylId("dibismuthhydroborat"))
+        Dibismusthydroborat = new Material.Builder(++id, gcylId("dibismuthhydroborat"))
                 .dust()
                 .color(0x00B749)
                 .flags(DISABLE_REPLICATION)
@@ -8602,7 +8605,7 @@ public class GCYLMaterials {
                 .components(Bismuth,2,Hydrogen,1,Boron,1)
                 .build();
 
-        CircuitCompoundMK3 = new Material.Builder(id++, gcylId("circuit_compound_mkc"))
+        CircuitCompoundMK3 = new Material.Builder(++id, gcylId("circuit_compound_mkc"))
                 .dust()
                 .color(0x003316)
                 .flags(DISABLE_REPLICATION)
@@ -8610,7 +8613,7 @@ public class GCYLMaterials {
                 .components(IndiumGalliumPhosphide,1,Dibismusthydroborat,3,BismuthTellurite,2)
                 .build();
 
-        HyperFuelI = new Material.Builder(id++, gcylId("hyper_fluid_i"))
+        HyperFuelI = new Material.Builder(++id, gcylId("hyper_fluid_i"))
                 .liquid()
                 .color(0xfaff5e)
                 .flags(DISABLE_REPLICATION)
@@ -8618,7 +8621,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq(Nq+)(*Nq*)RfPu",true);
 
-        HyperFuelII = new Material.Builder(id++, gcylId("hyper_fluid_ii"))
+        HyperFuelII = new Material.Builder(++id, gcylId("hyper_fluid_ii"))
                 .liquid()
                 .color(0xd8db67)
                 .flags(DISABLE_REPLICATION)
@@ -8626,7 +8629,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq(Nq+)(*Nq*)DbCm",true);
 
-        HyperFuelIII = new Material.Builder(id++, gcylId("hyper_fluid_iii"))
+        HyperFuelIII = new Material.Builder(++id, gcylId("hyper_fluid_iii"))
                 .liquid()
                 .color(0x8f9146)
                 .flags(DISABLE_REPLICATION)
@@ -8634,7 +8637,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq(Nq+)(*Nq*)AdCf",true);
 
-        HyperFuelIV = new Material.Builder(id++, gcylId("hyper_fluid_iv"))
+        HyperFuelIV = new Material.Builder(++id, gcylId("hyper_fluid_iv"))
                 .liquid()
                 .color(0x4d4e31)
                 .flags(DISABLE_REPLICATION)
@@ -8642,7 +8645,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq(Nq+)(*Nq*)AdCfNtTn",true);
 
-        NaquadricSolution = new Material.Builder(id++, gcylId("naquadric_solution"))
+        NaquadricSolution = new Material.Builder(++id, gcylId("naquadric_solution"))
                 .liquid()
                 .color(0x232225)
                 .flags(DISABLE_REPLICATION)
@@ -8650,7 +8653,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NqNO2",true);
 
-        EnrichedNaquadricSolution = new Material.Builder(id++, gcylId("enriched_naquadric_solution"))
+        EnrichedNaquadricSolution = new Material.Builder(++id, gcylId("enriched_naquadric_solution"))
                 .liquid()
                 .color(0x312735)
                 .flags(DISABLE_REPLICATION)
@@ -8658,7 +8661,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq+NO2",true);
 
-        NaquadriaticSolution = new Material.Builder(id++, gcylId("naquadriatic_solution"))
+        NaquadriaticSolution = new Material.Builder(++id, gcylId("naquadriatic_solution"))
                 .liquid()
                 .color(0x312735)
                 .flags(DISABLE_REPLICATION)
@@ -8666,7 +8669,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("*Nq*NO2",true);
 
-        EnrichedFluoronaquadricAcid = new Material.Builder(id++, gcylId("enriched_fluoronaquadric_acid"))
+        EnrichedFluoronaquadricAcid = new Material.Builder(++id, gcylId("enriched_fluoronaquadric_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0x485d60)
                 .flags(DISABLE_REPLICATION)
@@ -8674,7 +8677,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2Nq+F4",true);
 
-        FluoronaquadriaticAcid = new Material.Builder(id++, gcylId("fluoronaquadriatic_acid"))
+        FluoronaquadriaticAcid = new Material.Builder(++id, gcylId("fluoronaquadriatic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0x485d60)
                 .flags(DISABLE_REPLICATION)
@@ -8682,7 +8685,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2*Nq*F4",true);
 
-        NaquadahDifluoride = new Material.Builder(id++, gcylId("naquadah_difluoride"))
+        NaquadahDifluoride = new Material.Builder(++id, gcylId("naquadah_difluoride"))
                 .liquid()
                 .color(0x324649)
                 .flags(DISABLE_REPLICATION)
@@ -8690,7 +8693,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NqF2",true);
 
-        EnrichedNaquadahDifluoride = new Material.Builder(id++, gcylId("enriched_naquadah_difluoride"))
+        EnrichedNaquadahDifluoride = new Material.Builder(++id, gcylId("enriched_naquadah_difluoride"))
                 .liquid()
                 .color(0x141e1f)
                 .flags(DISABLE_REPLICATION)
@@ -8698,7 +8701,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq+F2",true);
 
-        NaquadriaDifluoride = new Material.Builder(id++, gcylId("naquadria_difluoride"))
+        NaquadriaDifluoride = new Material.Builder(++id, gcylId("naquadria_difluoride"))
                 .liquid()
                 .color(0x141e1f)
                 .flags(DISABLE_REPLICATION)
@@ -8706,7 +8709,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("*Nq*F2",true);
 
-        IndiumTrifluoride = new Material.Builder(id++, gcylId("indium_trifluoride"))
+        IndiumTrifluoride = new Material.Builder(++id, gcylId("indium_trifluoride"))
                 .dust()
                 .color(0x2b0f48)
                 .flags(DISABLE_REPLICATION)
@@ -8714,7 +8717,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("InF3",true);
 
-        NaquadahConcentrate = new Material.Builder(id++, gcylId("naquadah_concentrate"))
+        NaquadahConcentrate = new Material.Builder(++id, gcylId("naquadah_concentrate"))
                 .dust()
                 .color(Naquadah.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -8722,7 +8725,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq?",true);
 
-        EnrichedNaquadahConcentrate = new Material.Builder(id++, gcylId("enriched_naquadah_concentrate"))
+        EnrichedNaquadahConcentrate = new Material.Builder(++id, gcylId("enriched_naquadah_concentrate"))
                 .dust()
                 .color(NaquadahEnriched.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -8730,7 +8733,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq+?",true);
 
-        NaquadriaConcentrate = new Material.Builder(id++, gcylId("naquadria_concentrate"))
+        NaquadriaConcentrate = new Material.Builder(++id, gcylId("naquadria_concentrate"))
                 .dust()
                 .color(Naquadria.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -8738,7 +8741,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("*Nq*?",true);
 
-        NaquadriaHexafluoride = new Material.Builder(id++, gcylId("naquadria_hexafluoride"))
+        NaquadriaHexafluoride = new Material.Builder(++id, gcylId("naquadria_hexafluoride"))
                 .liquid()
                 .color(0x111c27)
                 .flags(DISABLE_REPLICATION)
@@ -8746,7 +8749,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("*Nq*F6",true);
 
-        RadonDifluoride = new Material.Builder(id++, gcylId("radon_difluoride"))
+        RadonDifluoride = new Material.Builder(++id, gcylId("radon_difluoride"))
                 .liquid()
                 .color(0x9966ff)
                 .flags(DISABLE_REPLICATION)
@@ -8754,7 +8757,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("RnF2",true);
 
-        RadonNaquadriaoctafluoride = new Material.Builder(id++, gcylId("radon_naquadriaoctafluoride"))
+        RadonNaquadriaoctafluoride = new Material.Builder(++id, gcylId("radon_naquadriaoctafluoride"))
                 .liquid()
                 .color(0x111c27)
                 .flags(DISABLE_REPLICATION)
@@ -8762,7 +8765,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Rd*Nq*F8",true);
 
-        CesiumFluoride = new Material.Builder(id++, gcylId("cesium_fluoride"))
+        CesiumFluoride = new Material.Builder(++id, gcylId("cesium_fluoride"))
                 .liquid()
                 .color(0xabab69)
                 .flags(DISABLE_REPLICATION)
@@ -8770,7 +8773,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CsF",true);
 
-        CesiumXenontrioxideFluoride = new Material.Builder(id++, gcylId("cesium_xenontrioxide_fluoride"))
+        CesiumXenontrioxideFluoride = new Material.Builder(++id, gcylId("cesium_xenontrioxide_fluoride"))
                 .liquid()
                 .color(0x3333cc)
                 .flags(DISABLE_REPLICATION)
@@ -8778,7 +8781,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CsXeO3F",true);
 
-        NaquadriaCesiumXenonNonfluoride = new Material.Builder(id++, gcylId("naquadria_cesium_xenon_nonfluoride"))
+        NaquadriaCesiumXenonNonfluoride = new Material.Builder(++id, gcylId("naquadria_cesium_xenon_nonfluoride"))
                 .liquid()
                 .color(0x1c1c5e)
                 .flags(DISABLE_REPLICATION)
@@ -8786,7 +8789,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("*Nq*CsXeF9",true);
 
-        NitrylFluoride = new Material.Builder(id++, gcylId("nitryl_fluoride"))
+        NitrylFluoride = new Material.Builder(++id, gcylId("nitryl_fluoride"))
                 .liquid()
                 .color(NitricOxide.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -8794,7 +8797,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NO2F",true);
 
-        NitrosoniumOctafluoroxenate = new Material.Builder(id++, gcylId("nitrosonium_octafluoroxenate"))
+        NitrosoniumOctafluoroxenate = new Material.Builder(++id, gcylId("nitrosonium_octafluoroxenate"))
                 .liquid()
                 .color(0x3f3f83)
                 .flags(DISABLE_REPLICATION)
@@ -8802,7 +8805,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(NO2)2XeF8",true);
 
-        NaquadriaCesiumfluoride = new Material.Builder(id++, gcylId("naquadria_cesiumfluoride"))
+        NaquadriaCesiumfluoride = new Material.Builder(++id, gcylId("naquadria_cesiumfluoride"))
                 .liquid()
                 .color(0x636379)
                 .flags(DISABLE_REPLICATION)
@@ -8810,7 +8813,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("*Nq*F2CsF",true);
 
-        EnrichedNaquadahhexafluoride = new Material.Builder(id++, gcylId("enriched_naquadahhexafluoride"))
+        EnrichedNaquadahhexafluoride = new Material.Builder(++id, gcylId("enriched_naquadahhexafluoride"))
                 .liquid()
                 .color(0x030330)
                 .flags(DISABLE_REPLICATION)
@@ -8818,7 +8821,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq+F6",true);
 
-        EnrichedXenonHexafluoronaquadate = new Material.Builder(id++, gcylId("enriched_xenon_hexafluoronaquadate"))
+        EnrichedXenonHexafluoronaquadate = new Material.Builder(++id, gcylId("enriched_xenon_hexafluoronaquadate"))
                 .liquid()
                 .color(0x1e1ec2)
                 .flags(DISABLE_REPLICATION)
@@ -8826,7 +8829,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("XeNq+F6",true);
 
-        BromineTrifluoride = new Material.Builder(id++, gcylId("bromine_trifluoride"))
+        BromineTrifluoride = new Material.Builder(++id, gcylId("bromine_trifluoride"))
                 .liquid()
                 .color(0xfcde1d)
                 .flags(DISABLE_REPLICATION)
@@ -8834,7 +8837,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("BrF3",true);
 
-        AuricFluoride = new Material.Builder(id++, gcylId("auric_fluoride"))
+        AuricFluoride = new Material.Builder(++id, gcylId("auric_fluoride"))
                 .dust()
                 .color(0xdffb50)
                 .flags(DISABLE_REPLICATION)
@@ -8842,7 +8845,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("AuF3",true);
 
-        XenoauricFluoroantimonicAcid = new Material.Builder(id++, gcylId("xenoauric_fluoroantimonic_acid"))
+        XenoauricFluoroantimonicAcid = new Material.Builder(++id, gcylId("xenoauric_fluoroantimonic_acid"))
                 .liquid()
                 .color(0x685b08)
                 .flags(DISABLE_REPLICATION)
@@ -8850,7 +8853,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("XeAuSbF6",true);
 
-        NaquadahSulfate = new Material.Builder(id++, gcylId("naquadah_sulfate"))
+        NaquadahSulfate = new Material.Builder(++id, gcylId("naquadah_sulfate"))
                 .liquid()
                 .color(0x38330f)
                 .flags(DISABLE_REPLICATION)
@@ -8858,7 +8861,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NqSO4",true);
 
-        IndiumTrioxide = new Material.Builder(id++, gcylId("indium_trioxide"))
+        IndiumTrioxide = new Material.Builder(++id, gcylId("indium_trioxide"))
                 .dust()
                 .color(0x2b0f48)
                 .flags(DISABLE_REPLICATION)
@@ -8866,7 +8869,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("In2O3",true);
 
-        NaquadahSolution = new Material.Builder(id++, gcylId("naquadah_solution"))
+        NaquadahSolution = new Material.Builder(++id, gcylId("naquadah_solution"))
                 .liquid()
                 .color(0x523b3a)
                 .flags(DISABLE_REPLICATION)
@@ -8874,7 +8877,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NqNH4NO3",true);
 
-        ClearNaquadahLiquid = new Material.Builder(id++, gcylId("clear_naquadah_liquid"))
+        ClearNaquadahLiquid = new Material.Builder(++id, gcylId("clear_naquadah_liquid"))
                 .liquid()
                 .color(0xa89f9e)
                 .flags(DISABLE_REPLICATION)
@@ -8882,7 +8885,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq?",true);
 
-        ComplicatedNaquadahGas = new Material.Builder(id++, gcylId("complicated_naquadah_gas"))
+        ComplicatedNaquadahGas = new Material.Builder(++id, gcylId("complicated_naquadah_gas"))
                 .gas()
                 .color(0x403d3d)
                 .flags(DISABLE_REPLICATION)
@@ -8890,7 +8893,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq??",true);
 
-        ComplicatedLightNaquadah = new Material.Builder(id++, gcylId("complicated_light_naquadah"))
+        ComplicatedLightNaquadah = new Material.Builder(++id, gcylId("complicated_light_naquadah"))
                 .liquid()
                 .color(0x403d3d)
                 .flags(DISABLE_REPLICATION)
@@ -8898,7 +8901,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq??",true);
 
-        ComplicatedMediumNaquadah = new Material.Builder(id++, gcylId("complicated_medium_naquadah"))
+        ComplicatedMediumNaquadah = new Material.Builder(++id, gcylId("complicated_medium_naquadah"))
                 .liquid()
                 .color(0x403d3d)
                 .flags(DISABLE_REPLICATION)
@@ -8906,7 +8909,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq??",true);
 
-        ComplicatedHeavyNaquadah = new Material.Builder(id++, gcylId("complicated_heavy_naquadah"))
+        ComplicatedHeavyNaquadah = new Material.Builder(++id, gcylId("complicated_heavy_naquadah"))
                 .liquid()
                 .color(0x403d3d)
                 .flags(DISABLE_REPLICATION)
@@ -8914,7 +8917,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq??",true);
 
-        NaquadahGas = new Material.Builder(id++, gcylId("naquadah_gas"))
+        NaquadahGas = new Material.Builder(++id, gcylId("naquadah_gas"))
                 .gas()
                 .color(0x575757)
                 .flags(DISABLE_REPLICATION)
@@ -8922,7 +8925,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq",true);
 
-        HeavyNaquadah = new Material.Builder(id++, gcylId("heavy_naquadah"))
+        HeavyNaquadah = new Material.Builder(++id, gcylId("heavy_naquadah"))
                 .liquid()
                 .color(0x2e2e2e)
                 .flags(DISABLE_REPLICATION)
@@ -8930,7 +8933,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq",true);
 
-        LightNaquadah = new Material.Builder(id++, gcylId("light_naquadah"))
+        LightNaquadah = new Material.Builder(++id, gcylId("light_naquadah"))
                 .liquid()
                 .color(0x2e2e2e)
                 .flags(DISABLE_REPLICATION)
@@ -8938,7 +8941,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq",true);
 
-        MediumNaquadah = new Material.Builder(id++, gcylId("medium_naquadah"))
+        MediumNaquadah = new Material.Builder(++id, gcylId("medium_naquadah"))
                 .liquid()
                 .color(0x2e2e2e)
                 .flags(DISABLE_REPLICATION)
@@ -8946,7 +8949,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq",true);
 
-        FCrackedMediumNaquadah = new Material.Builder(id++, gcylId("fl_cracked_medium_naquadah"))
+        FCrackedMediumNaquadah = new Material.Builder(++id, gcylId("fl_cracked_medium_naquadah"))
                 .liquid()
                 .color(0x505e5b)
                 .flags(DISABLE_REPLICATION)
@@ -8954,7 +8957,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("FlNq",true);
 
-        FCrackedLightNaquadah = new Material.Builder(id++, gcylId("fl_cracked_light_naquadah"))
+        FCrackedLightNaquadah = new Material.Builder(++id, gcylId("fl_cracked_light_naquadah"))
                 .liquid()
                 .color(0x505e5b)
                 .flags(DISABLE_REPLICATION)
@@ -8962,7 +8965,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("FlNq",true);
 
-        FCrackedHeavyNaquadah = new Material.Builder(id++, gcylId("fl_cracked_heavy_naquadah"))
+        FCrackedHeavyNaquadah = new Material.Builder(++id, gcylId("fl_cracked_heavy_naquadah"))
                 .liquid()
                 .color(0x505e5b)
                 .flags(DISABLE_REPLICATION)
@@ -8970,7 +8973,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("FlNq",true);
 
-        LightNaquadahFuel = new Material.Builder(id++, gcylId("light_naquadah_fuel"))
+        LightNaquadahFuel = new Material.Builder(++id, gcylId("light_naquadah_fuel"))
                 .liquid()
                 .color(0x2e2e2e)
                 .flags(DISABLE_REPLICATION)
@@ -8978,7 +8981,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq",true);
 
-        MediumNaquadahFuel = new Material.Builder(id++, gcylId("medium_naquadah_fuel"))
+        MediumNaquadahFuel = new Material.Builder(++id, gcylId("medium_naquadah_fuel"))
                 .liquid()
                 .color(0x2e2e2e)
                 .flags(DISABLE_REPLICATION)
@@ -8986,7 +8989,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq",true);
 
-        HeavyNaquadahFuel = new Material.Builder(id++, gcylId("heavy_naquadah_fuel"))
+        HeavyNaquadahFuel = new Material.Builder(++id, gcylId("heavy_naquadah_fuel"))
                 .liquid()
                 .color(0x2e2e2e)
                 .flags(DISABLE_REPLICATION)
@@ -8994,7 +8997,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq",true);
 
-        ENaquadahSolution = new Material.Builder(id++, gcylId("e_naquadah_solution"))
+        ENaquadahSolution = new Material.Builder(++id, gcylId("e_naquadah_solution"))
                 .liquid()
                 .color(0x523b3a)
                 .flags(DISABLE_REPLICATION)
@@ -9002,7 +9005,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq+?",true);
 
-        ClearENaquadahLiquid = new Material.Builder(id++, gcylId("clear_e_naquadah_liquid"))
+        ClearENaquadahLiquid = new Material.Builder(++id, gcylId("clear_e_naquadah_liquid"))
                 .liquid()
                 .color(0xa89f9e)
                 .flags(DISABLE_REPLICATION)
@@ -9010,7 +9013,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq+?",true);
 
-        ComplicatedLightENaquadah = new Material.Builder(id++, gcylId("complicated_light_e_naquadah"))
+        ComplicatedLightENaquadah = new Material.Builder(++id, gcylId("complicated_light_e_naquadah"))
                 .liquid()
                 .color(0x403d3d)
                 .flags(DISABLE_REPLICATION)
@@ -9018,14 +9021,14 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq+??",true);
 
-        ComplicatedMediumENaquadah = new Material.Builder(id++, gcylId("complicated_medium_e_naquadah"))
+        ComplicatedMediumENaquadah = new Material.Builder(++id, gcylId("complicated_medium_e_naquadah"))
                 .liquid()
                 .color(0x403d3d)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("Nq+??",true);
-        ComplicatedHeavyENaquadah = new Material.Builder(id++, gcylId("complicated_heavy_e_naquadah"))
+        ComplicatedHeavyENaquadah = new Material.Builder(++id, gcylId("complicated_heavy_e_naquadah"))
                 .liquid()
                 .color(0x403d3d)
                 .flags(DISABLE_REPLICATION)
@@ -9033,7 +9036,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq+??",true);
 
-        HeavyENaquadah = new Material.Builder(id++, gcylId("heavy_e_naquadah"))
+        HeavyENaquadah = new Material.Builder(++id, gcylId("heavy_e_naquadah"))
                 .liquid()
                 .color(0x2e2e2e)
                 .flags(DISABLE_REPLICATION)
@@ -9041,7 +9044,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq+",true);
 
-        MediumENaquadah = new Material.Builder(id++, gcylId("medium_e_naquadah"))
+        MediumENaquadah = new Material.Builder(++id, gcylId("medium_e_naquadah"))
                 .liquid()
                 .color(0x2e2e2e)
                 .flags(DISABLE_REPLICATION)
@@ -9049,7 +9052,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq+",true);
 
-        LightENaquadah = new Material.Builder(id++, gcylId("light_e_naquadah"))
+        LightENaquadah = new Material.Builder(++id, gcylId("light_e_naquadah"))
                 .liquid()
                 .color(0x2e2e2e)
                 .flags(DISABLE_REPLICATION)
@@ -9057,7 +9060,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq+",true);
 
-        RnCrackedMediumENaquadah = new Material.Builder(id++, gcylId("rn_cracked_medium_e_naquadah"))
+        RnCrackedMediumENaquadah = new Material.Builder(++id, gcylId("rn_cracked_medium_e_naquadah"))
                 .liquid()
                 .color(0x505e5b)
                 .flags(DISABLE_REPLICATION)
@@ -9065,7 +9068,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("RnNq+",true);
 
-        RnCrackedLightNaquadah = new Material.Builder(id++, gcylId("rn_cracked_light_e_naquadah"))
+        RnCrackedLightNaquadah = new Material.Builder(++id, gcylId("rn_cracked_light_e_naquadah"))
                 .liquid()
                 .color(0x505e5b)
                 .flags(DISABLE_REPLICATION)
@@ -9073,7 +9076,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("RnNq+",true);
 
-        RnCrackedHeavyENaquadah = new Material.Builder(id++, gcylId("rn_cracked_heavy_e_naquadah"))
+        RnCrackedHeavyENaquadah = new Material.Builder(++id, gcylId("rn_cracked_heavy_e_naquadah"))
                 .liquid()
                 .color(0x505e5b)
                 .flags(DISABLE_REPLICATION)
@@ -9081,7 +9084,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("RnNq+",true);
 
-        LightENaquadahFuel = new Material.Builder(id++, gcylId("light_e_naquadah_fuel"))
+        LightENaquadahFuel = new Material.Builder(++id, gcylId("light_e_naquadah_fuel"))
                 .liquid()
                 .color(0x2e2e2e)
                 .flags(DISABLE_REPLICATION)
@@ -9089,7 +9092,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq+",true);
 
-        MediumENaquadahFuel = new Material.Builder(id++, gcylId("medium_e_naquadah_fuel"))
+        MediumENaquadahFuel = new Material.Builder(++id, gcylId("medium_e_naquadah_fuel"))
                 .liquid()
                 .color(0x2e2e2e)
                 .flags(DISABLE_REPLICATION)
@@ -9097,7 +9100,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq+",true);
 
-        HeavyENaquadahFuel = new Material.Builder(id++, gcylId("heavy_e_naquadah_fuel"))
+        HeavyENaquadahFuel = new Material.Builder(++id, gcylId("heavy_e_naquadah_fuel"))
                 .liquid()
                 .color(0x2e2e2e)
                 .flags(DISABLE_REPLICATION)
@@ -9105,7 +9108,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Nq+",true);
 
-        FluoronaquadricAcid = new Material.Builder(id++, gcylId("fluoronaquadric_acid"))
+        FluoronaquadricAcid = new Material.Builder(++id, gcylId("fluoronaquadric_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0x485d60)
                 .flags(DISABLE_REPLICATION)
@@ -9113,7 +9116,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("H2NqF4",true);
 
-        Fluorescein = new Material.Builder(id++, gcylId("fluorescein"))
+        Fluorescein = new Material.Builder(++id, gcylId("fluorescein"))
                 .dust()
                 .color(0x990000)
                 .flags(DISABLE_REPLICATION)
@@ -9121,7 +9124,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C20H12O5",true);
 
-        SodiumBorohydride = new Material.Builder(id++, gcylId("sodium_borohydride"))
+        SodiumBorohydride = new Material.Builder(++id, gcylId("sodium_borohydride"))
                 .dust()
                 .color(0xc2c2fa)
                 .flags(DISABLE_REPLICATION)
@@ -9129,7 +9132,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaBH4",true);
 
-        BoronTrifluorideEtherate = new Material.Builder(id++, gcylId("boron_trifluoride_etherate"))
+        BoronTrifluorideEtherate = new Material.Builder(++id, gcylId("boron_trifluoride_etherate"))
                 .liquid()
                 .color((BoronFluoride.getMaterialRGB()+Diethylether.getMaterialRGB())/2)
                 .flags(DISABLE_REPLICATION)
@@ -9137,7 +9140,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(BF3)(C2H5)2O",true);
 
-        Decaborane = new Material.Builder(id++, gcylId("decaborane"))
+        Decaborane = new Material.Builder(++id, gcylId("decaborane"))
                 .dust()
                 .color(Diborane.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9145,7 +9148,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("B10H14",true);
 
-        SodiumTetrafluoroborate = new Material.Builder(id++, gcylId("sodium_tetrafluoroborate"))
+        SodiumTetrafluoroborate = new Material.Builder(++id, gcylId("sodium_tetrafluoroborate"))
                 .dust()
                 .color((SodiumBorohydride.getMaterialRGB()+Fluorine.getMaterialRGB())/2)
                 .flags(DISABLE_REPLICATION)
@@ -9153,7 +9156,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaBF4",true);
 
-        CesiumCarboranePrecusor = new Material.Builder(id++, gcylId("cesium_carborane_precursor"))
+        CesiumCarboranePrecusor = new Material.Builder(++id, gcylId("cesium_carborane_precursor"))
                 .dust()
                 .color(0xb56487)
                 .flags(DISABLE_REPLICATION)
@@ -9161,7 +9164,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CsB10H12CN(CH3)3Cl",true);
 
-        BoraneDimethylsulfide = new Material.Builder(id++, gcylId("borane_dimethylsulfide"))
+        BoraneDimethylsulfide = new Material.Builder(++id, gcylId("borane_dimethylsulfide"))
                 .liquid()
                 .color((Diborane.getMaterialRGB()+Dimethylsulfide.getMaterialRGB())/2)
                 .flags(DISABLE_REPLICATION)
@@ -9169,7 +9172,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(BH3)(CH3)2S",true);
 
-        CesiumCarborane = new Material.Builder(id++, gcylId("cesium_carborane"))
+        CesiumCarborane = new Material.Builder(++id, gcylId("cesium_carborane"))
                 .dust()
                 .color(CesiumCarboranePrecusor.getMaterialRGB()*6/5)
                 .flags(DISABLE_REPLICATION)
@@ -9177,7 +9180,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CsCB11H12",true);
 
-        SilverNitrate = new Material.Builder(id++, gcylId("silver_nitrate"))
+        SilverNitrate = new Material.Builder(++id, gcylId("silver_nitrate"))
                 .dust()
                 .color(0xfdfdca)
                 .flags(DISABLE_REPLICATION)
@@ -9185,7 +9188,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("AgNO3",true);
 
-        Fluorocarborane = new Material.Builder(id++, gcylId("fluorocarborane"))
+        Fluorocarborane = new Material.Builder(++id, gcylId("fluorocarborane"))
                 .dust()
                 .color(0x20EB7A)
                 .flags(DISABLE_REPLICATION)
@@ -9193,7 +9196,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HCHB11F11",true);
 
-        CaesiumNitrate = new Material.Builder(id++, gcylId("caesium_nitrate"))
+        CaesiumNitrate = new Material.Builder(++id, gcylId("caesium_nitrate"))
                 .dust()
                 .color(0x7452DC)
                 .flags(DISABLE_REPLICATION)
@@ -9201,7 +9204,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CsNO3",true);
 
-        SilverIodide = new Material.Builder(id++, gcylId("silver_iodide"))
+        SilverIodide = new Material.Builder(++id, gcylId("silver_iodide"))
                 .dust()
                 .color((SilverChloride.getMaterialRGB()*2+Iodine.getMaterialRGB())/3)
                 .flags(DISABLE_REPLICATION)
@@ -9209,7 +9212,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("AgI",true);
 
-        FumingNitricAcid = new Material.Builder(id++, gcylId("fuming_nitric_acid"))
+        FumingNitricAcid = new Material.Builder(++id, gcylId("fuming_nitric_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color( NitricAcid.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9217,7 +9220,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HNO3",true);
 
-        PureCrystallineNitricAcid = new Material.Builder(id++, gcylId("crystalline_nitric_acid"))
+        PureCrystallineNitricAcid = new Material.Builder(++id, gcylId("crystalline_nitric_acid"))
                 .dust()
                 .color(NitricAcid.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9225,7 +9228,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HNO3",true);
 
-        ActiniumTriniumHydroxides = new Material.Builder(id++, gcylId("actinium_trinium_hydroxides"))
+        ActiniumTriniumHydroxides = new Material.Builder(++id, gcylId("actinium_trinium_hydroxides"))
                 .dust()
                 .color((ActiniumOxalate.getMaterialRGB()+Trinium.getMaterialRGB())/2)
                 .flags(DISABLE_REPLICATION)
@@ -9233,14 +9236,14 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ke3Ac2(OH)12",true);
 
-        ResidualTriniiteSolution = new Material.Builder(id++, gcylId("residual_triniite_solution"))
+        ResidualTriniiteSolution = new Material.Builder(++id, gcylId("residual_triniite_solution"))
                 .liquid()
                 .color(0x219daf)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        Perfluorobenzene = new Material.Builder(id++, gcylId("perfluorobenzene"))
+        Perfluorobenzene = new Material.Builder(++id, gcylId("perfluorobenzene"))
                 .liquid()
                 .color(0x226E22)
                 .flags(DISABLE_REPLICATION)
@@ -9248,7 +9251,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6F6",true);
 
-        Fluorocarborane = new Material.Builder(id++, gcylId("fluorocarborane"))
+        Fluorocarborane = new Material.Builder(++id, gcylId("fluorocarborane"))
                 .dust()
                 .color(0x20EB7A)
                 .flags(DISABLE_REPLICATION)
@@ -9256,28 +9259,28 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HCHB11F11",true);
 
-        ActiniumRadiumHydroxideSolution = new Material.Builder(id++, gcylId("actinium_radium_hydroxide_solution"))
+        ActiniumRadiumHydroxideSolution = new Material.Builder(++id, gcylId("actinium_radium_hydroxide_solution"))
                 .liquid()
                 .color(0xe2f5ef)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        HeavilyFluorinatedTriniumSolution = new Material.Builder(id++, gcylId("heavily_fluorinated_trinium_solution"))
+        HeavilyFluorinatedTriniumSolution = new Material.Builder(++id, gcylId("heavily_fluorinated_trinium_solution"))
                 .liquid()
                 .color(0x348d41)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        MoltenCalciumSalts = new Material.Builder(id++, gcylId("molten_calcium_salts"))
+        MoltenCalciumSalts = new Material.Builder(++id, gcylId("molten_calcium_salts"))
                 .liquid()
                 .color((Fluorite.getMaterialRGB()+Calcium.getMaterialRGB())/2)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        TriniumTetrafluoride = new Material.Builder(id++, gcylId("trinium_tetrafluoride"))
+        TriniumTetrafluoride = new Material.Builder(++id, gcylId("trinium_tetrafluoride"))
                 .dust()
                 .color(0x477347)
                 .flags(DISABLE_REPLICATION)
@@ -9285,7 +9288,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("KeF4",true);
 
-        AcetylChloride = new Material.Builder(id++, gcylId("acetyl_chloride"))
+        AcetylChloride = new Material.Builder(++id, gcylId("acetyl_chloride"))
                 .liquid()
                 .color(AceticAcid.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9293,7 +9296,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C2H3OCl",true);
 
-        EthylTrifluoroacetate = new Material.Builder(id++, gcylId("ethyl_trifluoroacetate"))
+        EthylTrifluoroacetate = new Material.Builder(++id, gcylId("ethyl_trifluoroacetate"))
                 .liquid()
                 .color(0x88a12d)
                 .flags(DISABLE_REPLICATION)
@@ -9301,7 +9304,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C4H5F3O2",true);
 
-        PhosphorousPentasulfide = new Material.Builder(id++, gcylId("phosphorous_pentasulfide"))
+        PhosphorousPentasulfide = new Material.Builder(++id, gcylId("phosphorous_pentasulfide"))
                 .dust()
                 .color(0xEBAD24)
                 .flags(DISABLE_REPLICATION)
@@ -9309,7 +9312,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("P4S10",true);
 
-        Acetothienone = new Material.Builder(id++, gcylId("acetothieone"))
+        Acetothienone = new Material.Builder(++id, gcylId("acetothieone"))
                 .liquid()
                 .color(0x79882a)
                 .flags(DISABLE_REPLICATION)
@@ -9317,7 +9320,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H6SO",true);
 
-        TheonylTrifluoroacetate = new Material.Builder(id++, gcylId("theonyl_trifluoroacetate"))
+        TheonylTrifluoroacetate = new Material.Builder(++id, gcylId("theonyl_trifluoroacetate"))
                 .liquid()
                 .color(0x88882b)
                 .flags(DISABLE_REPLICATION)
@@ -9325,14 +9328,14 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C8H5F3O2S",true);
 
-        ActiniumRadiumNitrateSolution = new Material.Builder(id++, gcylId("actinium_radium_nitrate_solution"))
+        ActiniumRadiumNitrateSolution = new Material.Builder(++id, gcylId("actinium_radium_nitrate_solution"))
                 .liquid()
                 .color(0xd2f0df)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build();
 
-        ActiniumNitrate = new Material.Builder(id++, gcylId("actinium_nitrate"))
+        ActiniumNitrate = new Material.Builder(++id, gcylId("actinium_nitrate"))
                 .dust()
                 .color(YttriumNitrate.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9340,7 +9343,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ac(NO3)3",true);
 
-        RadiumNitrate = new Material.Builder(id++, gcylId("radium_nitrate"))
+        RadiumNitrate = new Material.Builder(++id, gcylId("radium_nitrate"))
                 .dust()
                 .color(BariumNitrate.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9348,7 +9351,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ra(NO3)2",true);
 
-        LithiumPeroxideSolution = new Material.Builder(id++, gcylId("lithium_peroxide"))
+        LithiumPeroxideSolution = new Material.Builder(++id, gcylId("lithium_peroxide"))
                 .liquid()
                 .color((Lithium.getMaterialRGB()+Oxygen.getMaterialRGB())/2)
                 .flags(DISABLE_REPLICATION)
@@ -9356,7 +9359,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(H2O)Li2O2",true);
 
-        NitrogenPentoxide = new Material.Builder(id++, gcylId("nitrogen_pentoxide"))
+        NitrogenPentoxide = new Material.Builder(++id, gcylId("nitrogen_pentoxide"))
                 .liquid()
                 .color(0x0033C0)
                 .flags(DISABLE_REPLICATION)
@@ -9364,7 +9367,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("N2O5",true);
 
-        TitaniumNitrate = new Material.Builder(id++, gcylId("titanium_nitrate"))
+        TitaniumNitrate = new Material.Builder(++id, gcylId("titanium_nitrate"))
                 .dust()
                 .color(0xFF0066)
                 .flags(DISABLE_REPLICATION)
@@ -9372,7 +9375,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("TiNO3",true);
 
-        Carbon12 = new Material.Builder(id++, gcylId("carbon_12"))
+        Carbon12 = new Material.Builder(++id, gcylId("carbon_12"))
                 .gas()
                 .color(Carbon.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9380,7 +9383,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C_12",true);
 
-        Carbon13 = new Material.Builder(id++, gcylId("carbon_13"))
+        Carbon13 = new Material.Builder(++id, gcylId("carbon_13"))
                 .gas()
                 .color(Carbon.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9388,7 +9391,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C_13",true);
 
-        Nitrogen14 = new Material.Builder(id++, gcylId("nitrogen_14"))
+        Nitrogen14 = new Material.Builder(++id, gcylId("nitrogen_14"))
                 .gas()
                 .color(Nitrogen.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9396,7 +9399,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("N_14",true);
 
-        NItrogen15 = new Material.Builder(id++, gcylId("nitrogen_15"))
+        NItrogen15 = new Material.Builder(++id, gcylId("nitrogen_15"))
                 .liquid()
                 .color(Nitrogen.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9404,7 +9407,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("N_15",true);
 
-        CNOcatalyst = new Material.Builder(id++, gcylId("cno_catalyst"))
+        CNOcatalyst = new Material.Builder(++id, gcylId("cno_catalyst"))
                 .liquid()
                 .color((Nitrogen.getMaterialRGB() + Carbon.getMaterialRGB())/2)
                 .flags(DISABLE_REPLICATION)
@@ -9412,7 +9415,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(C_12)(C_13)(N_14)(N_15)",true);
 
-        Calcium44 = new Material.Builder(id++, gcylId("calcium_44"))
+        Calcium44 = new Material.Builder(++id, gcylId("calcium_44"))
                 .liquid()
                 .color(Calcium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9420,7 +9423,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ca_44",true);
 
-        QuassifissioningPlasma = new Material.Builder(id++, gcylId("quasifissioning_plasma"))
+        QuassifissioningPlasma = new Material.Builder(++id, gcylId("quasifissioning_plasma"))
                 .plasma()
                 .color(0xD5CB54)
                 .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
@@ -9428,7 +9431,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula(TextFormatting.OBFUSCATED + "???",true);
 
-        FlYbPlasma = new Material.Builder(id++, gcylId("flyb_plasma"))
+        FlYbPlasma = new Material.Builder(++id, gcylId("flyb_plasma"))
                 .plasma()
                 .color((Ytterbium.getMaterialRGB() + 0x521973) / 2)
                 .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
@@ -9436,7 +9439,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("FlYb",true);
 
-        Ytterbium178 = new Material.Builder(id++, gcylId("ytterbium_178"))
+        Ytterbium178 = new Material.Builder(++id, gcylId("ytterbium_178"))
                 .liquid()
                 .color(Ytterbium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9444,7 +9447,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Yb_178",true);
 
-        TitaniumTetrafluoride = new Material.Builder(id++, gcylId("titanium_tetrafluoride"))
+        TitaniumTetrafluoride = new Material.Builder(++id, gcylId("titanium_tetrafluoride"))
                 .liquid()
                 .color(Titanium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9452,7 +9455,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("TiF4",true);
 
-        Titanium50Tetrafluoride = new Material.Builder(id++, gcylId("titanium_50_tetrafluoride"))
+        Titanium50Tetrafluoride = new Material.Builder(++id, gcylId("titanium_50_tetrafluoride"))
                 .liquid()
                 .color( Titanium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9460,7 +9463,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ti_50F4",true);
 
-        OgannesonBreedingBase = new Material.Builder(id++, gcylId("og_breeding_base"))
+        OgannesonBreedingBase = new Material.Builder(++id, gcylId("og_breeding_base"))
                 .liquid()
                 .color(((Titanium.getMaterialRGB() + 0xA85A12) / 2))
                 .flags(DISABLE_REPLICATION)
@@ -9468,7 +9471,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("(Ti_50)Cf_252",true);
 
-        HotMetastableOganesson = new Material.Builder(id++, gcylId("hot_oganesson"))
+        HotMetastableOganesson = new Material.Builder(++id, gcylId("hot_oganesson"))
                 .liquid()
                 .color(0x521973)
                 .flags(DISABLE_REPLICATION)
@@ -9476,7 +9479,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Og",true);
 
-        HafniumCarbide = new Material.Builder(id++, gcylId("hafnium_carbide"))
+        HafniumCarbide = new Material.Builder(++id, gcylId("hafnium_carbide"))
                 .dust()
                 .color(0x2c2c2c)
                 .flags(DISABLE_REPLICATION)
@@ -9484,7 +9487,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HfC",true);
 
-        SeaborgiumCarbide = new Material.Builder(id++, gcylId("seaborgium_carbide"))
+        SeaborgiumCarbide = new Material.Builder(++id, gcylId("seaborgium_carbide"))
                 .dust()
                 .color(0x2c2c2c)
                 .flags(DISABLE_REPLICATION)
@@ -9492,7 +9495,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("SgC",true);
 
-        Calcium44 = new Material.Builder(id++, gcylId("calcium_44"))
+        Calcium44 = new Material.Builder(++id, gcylId("calcium_44"))
                 .liquid()
                 .color(Calcium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9500,7 +9503,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Ca_44",true);
 
-        Helium4 = new Material.Builder(id++, gcylId("helium_4"))
+        Helium4 = new Material.Builder(++id, gcylId("helium_4"))
                 .gas()
                 .color(Helium.getMaterialRGB()-10)
                 .flags(DISABLE_REPLICATION)
@@ -9509,7 +9512,7 @@ public class GCYLMaterials {
                 .setFormula("He_4",true);
 
         //TUNGSTEN & PLATINUM
-        PalladiumAmmonia = new Material.Builder(id++, gcylId("palladium_enriched_ammonia"))
+        PalladiumAmmonia = new Material.Builder(++id, gcylId("palladium_enriched_ammonia"))
                 .liquid()
                 .color(Palladium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9517,7 +9520,7 @@ public class GCYLMaterials {
                 .components(Palladium,1,Ammonia,1,RareEarth,1)
                 .build();
 
-        PlatinumConcentrate = new Material.Builder(id++, gcylId("platinum_concentrate"))
+        PlatinumConcentrate = new Material.Builder(++id, gcylId("platinum_concentrate"))
                 .liquid()
                 .color(Platinum.getMaterialRGB())
                 .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
@@ -9525,7 +9528,7 @@ public class GCYLMaterials {
                 .components(Platinum,1,RareEarth,1)
                 .build();
 
-        RhodiumSulfateSolution = new Material.Builder(id++, gcylId("rhodium_sulfate_solution"))
+        RhodiumSulfateSolution = new Material.Builder(++id, gcylId("rhodium_sulfate_solution"))
                 .liquid()
                 .color(0xFFBB66)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9533,7 +9536,7 @@ public class GCYLMaterials {
                 .components(RhodiumSulfate,1,Water,1)
                 .build();
 
-        RhodiumSaltSolution = new Material.Builder(id++, gcylId("rhodium_salt_solution"))
+        RhodiumSaltSolution = new Material.Builder(++id, gcylId("rhodium_salt_solution"))
                 .liquid()
                 .color(0x667788)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9541,7 +9544,7 @@ public class GCYLMaterials {
                 .components(Rhodium,1,Salt,2,Chlorine,1)
                 .build();
 
-        AcidicIridiumSolution = new Material.Builder(id++, gcylId("acidic_iridium_solution"))
+        AcidicIridiumSolution = new Material.Builder(++id, gcylId("acidic_iridium_solution"))
                 .liquid()
                 .color(IridiumDioxide.getMaterialRGB()-20)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9549,7 +9552,7 @@ public class GCYLMaterials {
                 .components(HydrochloricAcid,2,IridiumDioxide,2)
                 .build();
 
-        RhodiumFilterCakeSolution = new Material.Builder(id++, gcylId("rhodium_filter_cake_solution"))
+        RhodiumFilterCakeSolution = new Material.Builder(++id, gcylId("rhodium_filter_cake_solution"))
                 .liquid()
                 .color(0x667788)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9557,7 +9560,7 @@ public class GCYLMaterials {
                 .components(Rhodium,1,Water,2,RareEarth,1)
                 .build();
 
-        RutheniumTetroxideSolution = new Material.Builder(id++, gcylId("ruthenium_tetroxide_solution"))
+        RutheniumTetroxideSolution = new Material.Builder(++id, gcylId("ruthenium_tetroxide_solution"))
                 .liquid()
                 .color(0xC7C7C7)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9565,7 +9568,7 @@ public class GCYLMaterials {
                 .components(Salt,2,Ruthenium,1,Oxygen,4)
                 .build();
 
-        HotRutheniumTetroxideSolution = new Material.Builder(id++, gcylId("hot_ruthenium_tetroxide_solution"))
+        HotRutheniumTetroxideSolution = new Material.Builder(++id, gcylId("hot_ruthenium_tetroxide_solution"))
                 .liquid()
                 .color(0xC7C7C7)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9573,7 +9576,7 @@ public class GCYLMaterials {
                 .components(RutheniumTetroxideSolution,1,Water,1)
                 .build();
 
-        OsmiumSolution = new Material.Builder(id++, gcylId("osmium_solution"))
+        OsmiumSolution = new Material.Builder(++id, gcylId("osmium_solution"))
                 .liquid()
                 .color((Osmium.getMaterialRGB() + Water.getMaterialRGB())/2)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9581,7 +9584,7 @@ public class GCYLMaterials {
                 .components(Osmium,1, Oxygen,4, Water,1)
                 .build();
 
-        LithiumHydroxide = new Material.Builder(id++, gcylId("lithium_hydroxide"))
+        LithiumHydroxide = new Material.Builder(++id, gcylId("lithium_hydroxide"))
                 .dust()
                 .color((Lithium.getMaterialRGB()+Oxygen.getMaterialRGB()+Hydrogen.getMaterialRGB())/3)
                 .flags(DISABLE_REPLICATION)
@@ -9589,7 +9592,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("LiOH",true);
 
-        TungstenHexachloride = new Material.Builder(id++, gcylId("tungsten_hexachloride"))
+        TungstenHexachloride = new Material.Builder(++id, gcylId("tungsten_hexachloride"))
                 .dust()
                 .color(0x533f75)
                 .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
@@ -9597,7 +9600,7 @@ public class GCYLMaterials {
                 .components(Tungsten,1,Oxygen,3)
                 .build();
 
-        Bowieite = new Material.Builder(id++, gcylId("bowieite"))
+        Bowieite = new Material.Builder(++id, gcylId("bowieite"))
                 .dust()
                 .color(0x8b8995)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9605,7 +9608,7 @@ public class GCYLMaterials {
                 .components(Rhodium,1,Iridium,1,Platinum,1,Sulfur,3)
                 .build();
 
-        PlatinumMetallicPowder = new Material.Builder(id++, gcylId("platinum_metallic_powder"))
+        PlatinumMetallicPowder = new Material.Builder(++id, gcylId("platinum_metallic_powder"))
                 .dust()
                 .color(Platinum.getMaterialRGB())
                 .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
@@ -9613,7 +9616,7 @@ public class GCYLMaterials {
                 .components(Platinum,1,RareEarth,1)
                 .build();
 
-        CrudeRhodiumMetal = new Material.Builder(id++, gcylId("crude_rhodium_metal"))
+        CrudeRhodiumMetal = new Material.Builder(++id, gcylId("crude_rhodium_metal"))
                 .dust()
                 .color(0x666666)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9621,7 +9624,7 @@ public class GCYLMaterials {
                 .components(Rhodium,1,RareEarth,1)
                 .build();
 
-        PGSDResidue2 = new Material.Builder(id++, gcylId("metallic_sludge_dust_residue"))
+        PGSDResidue2 = new Material.Builder(++id, gcylId("metallic_sludge_dust_residue"))
                 .dust()
                 .color((Copper.getMaterialRGB()+Nickel.getMaterialRGB())/2)
                 .flags(DISABLE_REPLICATION, DECOMPOSITION_BY_CENTRIFUGING)
@@ -9629,7 +9632,7 @@ public class GCYLMaterials {
                 .components(Copper, 1, Nickel,1)
                 .build();
 
-        PlatinumResidue = new Material.Builder(id++, gcylId("platinum_residue"))
+        PlatinumResidue = new Material.Builder(++id, gcylId("platinum_residue"))
                 .dust()
                 .color(0x64632E)
                 .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
@@ -9637,7 +9640,7 @@ public class GCYLMaterials {
                 .components(Iridium,2,RareEarth,1)
                 .build();
 
-        PotassiumDisulfate = new Material.Builder(id++, gcylId("potassium_disulfate"))
+        PotassiumDisulfate = new Material.Builder(++id, gcylId("potassium_disulfate"))
                 .dust()
                 .color(0xFBBB66)
                 .flags(DISABLE_REPLICATION, EXCLUDE_BLOCK_CRAFTING_RECIPES)
@@ -9645,7 +9648,7 @@ public class GCYLMaterials {
                 .components(Potassium,2,Sulfur,2,Oxygen,7)
                 .build();
 
-        LeachResidue = new Material.Builder(id++, gcylId("leach_residue"))
+        LeachResidue = new Material.Builder(++id, gcylId("leach_residue"))
                 .dust()
                 .color(0x644629)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9653,7 +9656,7 @@ public class GCYLMaterials {
                 .components(Iridium,2,RareEarth,1)
                 .build();
 
-        PalladiumSalt = new Material.Builder(id++, gcylId("palladium_salt"))
+        PalladiumSalt = new Material.Builder(++id, gcylId("palladium_salt"))
                 .dust()
                 .color(Palladium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9661,7 +9664,7 @@ public class GCYLMaterials {
                 .components(Palladium,1,RareEarth,1)
                 .build();
 
-        PalladiumRawPowder = new Material.Builder(id++, gcylId("reprecipitated_palladium"))
+        PalladiumRawPowder = new Material.Builder(++id, gcylId("reprecipitated_palladium"))
                 .dust()
                 .color(Palladium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9669,7 +9672,7 @@ public class GCYLMaterials {
                 .components(Palladium,1,Ammonia,1)
                 .build();
 
-        RhodiumNitrate = new Material.Builder(id++, gcylId("rhodium_nitrate"))
+        RhodiumNitrate = new Material.Builder(++id, gcylId("rhodium_nitrate"))
                 .dust()
                 .color((SodiumNitrate.getMaterialRGB()+Rhodium.getMaterialRGB())/2)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9677,7 +9680,7 @@ public class GCYLMaterials {
                 .components(Rhodium,1,Ammonia,3)
                 .build();
 
-        RhodiumFilterCake = new Material.Builder(id++, gcylId("rhodium_filter_cake"))
+        RhodiumFilterCake = new Material.Builder(++id, gcylId("rhodium_filter_cake"))
                 .dust()
                 .color(RhodiumNitrate.getMaterialRGB()-10)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9685,7 +9688,7 @@ public class GCYLMaterials {
                 .components(Rhodium,1,RareEarth,1)
                 .build();
 
-        RhodiumSalt = new Material.Builder(id++, gcylId("rhodium_salt"))
+        RhodiumSalt = new Material.Builder(++id, gcylId("rhodium_salt"))
                 .gem()
                 .color(0x848484)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9693,7 +9696,7 @@ public class GCYLMaterials {
                 .components(Rhodium,1,Salt,2)
                 .build();
 
-        PalladiumMetallicPowder = new Material.Builder(id++, gcylId("palladium_metallic_powder"))
+        PalladiumMetallicPowder = new Material.Builder(++id, gcylId("palladium_metallic_powder"))
                 .dust()
                 .color(Palladium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -9701,7 +9704,7 @@ public class GCYLMaterials {
                 .components(Palladium,1,RareEarth,1)
                 .build();
 
-        MicaPulp = new Material.Builder(id++, gcylId("mica_based"))
+        MicaPulp = new Material.Builder(++id, gcylId("mica_based"))
                 .dust()
                 .color(0x917445)
                 .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
@@ -9709,7 +9712,7 @@ public class GCYLMaterials {
                 .components(Mica,1,RareEarth,1)
                 .build();
 
-        NickelOxideHydroxide = new Material.Builder(id++, gcylId("nickel_oxide_hydroxide"))
+        NickelOxideHydroxide = new Material.Builder(++id, gcylId("nickel_oxide_hydroxide"))
                 .dust()
                 .color(0xa2f2a2)
                 .flags(DISABLE_REPLICATION)
@@ -9717,7 +9720,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NiO(OH)",true);
 
-        LithiumCobaltOxide = new Material.Builder(id++, gcylId("lithium_cobalt_oxide"))
+        LithiumCobaltOxide = new Material.Builder(++id, gcylId("lithium_cobalt_oxide"))
                 .dust()
                 .color(0xd2a4f3)
                 .flags(DISABLE_REPLICATION)
@@ -9725,7 +9728,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("LiCoO",true);
 
-        LithiumTriflate = new Material.Builder(id++, gcylId("lithium_triflate"))
+        LithiumTriflate = new Material.Builder(++id, gcylId("lithium_triflate"))
                 .dust()
                 .color(0xe2dae3)
                 .flags(DISABLE_REPLICATION)
@@ -9733,7 +9736,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("LiCSO3F3",true);
 
-        Xylose = new Material.Builder(id++, gcylId("xylose"))
+        Xylose = new Material.Builder(++id, gcylId("xylose"))
                 .dust()
                 .color(Glucose.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9741,7 +9744,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C5H10O5",true);
 
-        SodiumAlginateSolution = new Material.Builder(id++, gcylId("sodium_alginate_solution"))
+        SodiumAlginateSolution = new Material.Builder(++id, gcylId("sodium_alginate_solution"))
                 .liquid()
                 .color(0xca8642)
                 .flags(DISABLE_REPLICATION)
@@ -9749,7 +9752,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("NaC6H7O6",true);
 
-        CalciumAlginate = new Material.Builder(id++, gcylId("calcium_alginate"))
+        CalciumAlginate = new Material.Builder(++id, gcylId("calcium_alginate"))
                 .dust()
                 .color(0x654321)
                 .flags(DISABLE_REPLICATION)
@@ -9757,7 +9760,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("CaC12H14O12",true);
 
-        SiliconNanoparticles = new Material.Builder(id++, gcylId("silicon_nanoparticles"))
+        SiliconNanoparticles = new Material.Builder(++id, gcylId("silicon_nanoparticles"))
                 .dust()
                 .color(Silicon.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9765,7 +9768,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Si?",true);
 
-        Sorbose = new Material.Builder(id++, gcylId("sorbose"))
+        Sorbose = new Material.Builder(++id, gcylId("sorbose"))
                 .dust()
                 .color(Glucose.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
@@ -9773,7 +9776,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H12O6",true);
 
-        AscorbicAcid = new Material.Builder(id++, gcylId("ascorbic_acid"))
+        AscorbicAcid = new Material.Builder(++id, gcylId("ascorbic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0xe6cd00)
                 .flags(DISABLE_REPLICATION)
@@ -9781,7 +9784,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H8O6",true);
 
-        DehydroascorbicAcid = new Material.Builder(id++, gcylId("dehydroascorbic_acid"))
+        DehydroascorbicAcid = new Material.Builder(++id, gcylId("dehydroascorbic_acid"))
                 .liquid(new FluidBuilder().attribute(ACID))
                 .color(0xe6cd00)
                 .flags(DISABLE_REPLICATION)
@@ -9789,7 +9792,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6H6O6",true);
 
-        GalliumChloride = new Material.Builder(id++, gcylId("gallium_chloride"))
+        GalliumChloride = new Material.Builder(++id, gcylId("gallium_chloride"))
                 .dust()
                 .color(0x92867a)
                 .flags(DISABLE_REPLICATION)
@@ -9797,7 +9800,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("GaCl3",true);
 
-        Halloysite = new Material.Builder(id++, gcylId("halloysite"))
+        Halloysite = new Material.Builder(++id, gcylId("halloysite"))
                 .dust()
                 .color(0x23423a)
                 .flags(DISABLE_REPLICATION)
@@ -9805,7 +9808,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Al9Si10O50Ga",true);
 
-        SulfurCoatedHalloysite = new Material.Builder(id++, gcylId("sulfur_coated_halloysite"))
+        SulfurCoatedHalloysite = new Material.Builder(++id, gcylId("sulfur_coated_halloysite"))
                 .dust()
                 .color(0x23973a)
                 .flags(DISABLE_REPLICATION)
@@ -9813,7 +9816,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("S2C2(Al9Si10O50Ga)",true);
 
-        FluorideBatteryElectrolyte = new Material.Builder(id++, gcylId("fluoride_battery_electrolyte"))
+        FluorideBatteryElectrolyte = new Material.Builder(++id, gcylId("fluoride_battery_electrolyte"))
                 .dust()
                 .color(0x9a628a)
                 .flags(DISABLE_REPLICATION)
@@ -9821,7 +9824,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("La9BaF29(C8H7F)",true);
 
-        LanthanumNickelOxide = new Material.Builder(id++, gcylId("lanthanum_nickel_oxide"))
+        LanthanumNickelOxide = new Material.Builder(++id, gcylId("lanthanum_nickel_oxide"))
                 .dust()
                 .color(Garnierite.getMaterialRGB()/2+Lanthanum.getMaterialRGB()/2)
                 .flags(DISABLE_REPLICATION)
@@ -9829,7 +9832,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("La2NiO4",true);
 
-        HG1223 = new Material.Builder(id++, gcylId("hg_alloy"))
+        HG1223 = new Material.Builder(++id, gcylId("hg_alloy"))
                 .ingot().liquid()
                 .color(0x245397)
                 .iconSet(METALLIC)
@@ -9838,8 +9841,31 @@ public class GCYLMaterials {
                 .blast(5325)
                 .build();
 
+        Indalloy140 = new Material.Builder(++id,gcylId("indalloy_140"))
+                .liquid(new FluidBuilder().temperature(5475))
+                .color(0x59536E)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .components(Bismuth, 47, Lead, 25, Tin, 13, Cadmium, 10, Indium, 5)
+                .build();
+
+        Seabohrgium = new Material.Builder(++id, gcylId("seabohrgium"))
+                .liquid()
+                .color((Seaborgium.getMaterialRGB()+Bohrium.getMaterialRGB())/2)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(Seaborgium, 1, Bohrium, 1)
+                .build();
+
+        Fordnium = new Material.Builder(++id, gcylId("fordnium"))
+                .liquid()
+                .color((Rutherfordium.getMaterialRGB()+Dubnium.getMaterialRGB())/2)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .components(Rutherfordium, 1, Dubnium, 1)
+                .build();
+
         /*
-        = new Material.Builder(id++, gcylId("material"))
+        = new Material.Builder(++id, gcylId("material"))
                 .ingot().liquid()
                 .color()
                 .iconSet()
@@ -9848,7 +9874,7 @@ public class GCYLMaterials {
                 .blast()
                 .build();
 
-        = new Material.Builder(id++, gcylId("material"))
+        = new Material.Builder(++id, gcylId("material"))
                 .liquid()
                 .color()
                 .flags(DISABLE_REPLICATION)
@@ -9856,7 +9882,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("",true);
 
-        = new Material.Builder(id++, gcylId("material"))
+        = new Material.Builder(++id, gcylId("material"))
                 .dust()
                 .color()
                 .flags(DISABLE_REPLICATION)
@@ -9871,7 +9897,7 @@ public class GCYLMaterials {
 
     public static void registerSuperconductors() {
 
-        LVSuperconductorBase = new Material.Builder(id++, gcylId("lv_superconductor_base"))
+        LVSuperconductorBase = new Material.Builder(++id, gcylId("lv_superconductor_base"))
                 .ingot().liquid()
                 .color(0xffffff)
                 .iconSet(DULL)
@@ -9881,7 +9907,7 @@ public class GCYLMaterials {
                 .blast(1000)
                 .build();
 
-        MVSuperconductorBase = new Material.Builder(id++, gcylId("mv_superconductor_base"))
+        MVSuperconductorBase = new Material.Builder(++id, gcylId("mv_superconductor_base"))
                 .ingot().liquid()
                 .color(0x535353)
                 .iconSet(SHINY)
@@ -9891,7 +9917,7 @@ public class GCYLMaterials {
                 .blast(1200)
                 .build();
 
-        HVSuperconductorBase = new Material.Builder(id++, gcylId("hv_superconductor_base"))
+        HVSuperconductorBase = new Material.Builder(++id, gcylId("hv_superconductor_base"))
                 .ingot().liquid()
                 .color(0x4a2400)
                 .iconSet(SHINY)
@@ -9901,7 +9927,7 @@ public class GCYLMaterials {
                 .blast(3300)
                 .build();
 
-        EVSuperconductorBase = new Material.Builder(id++, gcylId("ev_superconductor_base"))
+        EVSuperconductorBase = new Material.Builder(++id, gcylId("ev_superconductor_base"))
                 .ingot().liquid()
                 .color(0x005800)
                 .iconSet(SHINY)
@@ -9911,7 +9937,7 @@ public class GCYLMaterials {
                 .blast(4400)
                 .build();
 
-        IVSuperconductorBase = new Material.Builder(id++, gcylId("iv_superconductor_base"))
+        IVSuperconductorBase = new Material.Builder(++id, gcylId("iv_superconductor_base"))
                 .ingot().liquid()
                 .color(0x300030)
                 .iconSet(SHINY)
@@ -9921,7 +9947,7 @@ public class GCYLMaterials {
                 .cableProperties(GTValues.V[GTValues.IV],6,1024)
                 .build();
 
-        LuVSuperconductorBase = new Material.Builder(id++, gcylId("luv_superconductor_base"))
+        LuVSuperconductorBase = new Material.Builder(++id, gcylId("luv_superconductor_base"))
                 .ingot().liquid()
                 .color(0x7a3c00)
                 .iconSet(SHINY)
@@ -9931,7 +9957,7 @@ public class GCYLMaterials {
                 .blast(6000)
                 .build();
 
-        ZPMSuperconductorBase = new Material.Builder(id++, gcylId("zpm_superconductor_base"))
+        ZPMSuperconductorBase = new Material.Builder(++id, gcylId("zpm_superconductor_base"))
                 .ingot().liquid()
                 .color(0x111111)
                 .iconSet(SHINY)
@@ -9941,7 +9967,7 @@ public class GCYLMaterials {
                 .blast(8100)
                 .build();
 
-        UVSuperconductorBase = new Material.Builder(id++, gcylId("uv_superconductor_base"))
+        UVSuperconductorBase = new Material.Builder(++id, gcylId("uv_superconductor_base"))
                 .ingot().liquid()
                 .color(0xe0d207)
                 .iconSet(SHINY)
@@ -9951,7 +9977,7 @@ public class GCYLMaterials {
                 .blast(8900)
                 .build();
 
-        UHVSuperconductorBase = new Material.Builder(id++, gcylId("uhv_superconductor_base"))
+        UHVSuperconductorBase = new Material.Builder(++id, gcylId("uhv_superconductor_base"))
                 .ingot().liquid()
                 .color(0x359ffc)
                 .iconSet(SHINY)
@@ -9961,7 +9987,7 @@ public class GCYLMaterials {
                 .blast(10000)
                 .build();
 
-        UEVSuperconductorBase = new Material.Builder(id++, gcylId("uev_superconductor_base"))
+        UEVSuperconductorBase = new Material.Builder(++id, gcylId("uev_superconductor_base"))
                 .ingot().liquid()
                 .color(0x954fe0)
                 .iconSet(SHINY)
@@ -9971,7 +9997,7 @@ public class GCYLMaterials {
                 .blast(11150)
                 .build();
 
-        UIVSuperconductorBase = new Material.Builder(id++, gcylId("uiv_superconductor_base"))
+        UIVSuperconductorBase = new Material.Builder(++id, gcylId("uiv_superconductor_base"))
                 .ingot().liquid()
                 .color(0x8bf743)
                 .iconSet(SHINY)
@@ -9981,7 +10007,7 @@ public class GCYLMaterials {
                 .blast(11600)
                 .build();
 
-        UXVSuperconductorBase = new Material.Builder(id++, gcylId("uxv_superconductor_base"))
+        UXVSuperconductorBase = new Material.Builder(++id, gcylId("uxv_superconductor_base"))
                 .ingot().liquid()
                 .color(0x883afc)
                 .iconSet(SHINY)
@@ -9991,7 +10017,7 @@ public class GCYLMaterials {
                 .blast(12000)
                 .build();
 
-        OpVSuperconductorBase = new Material.Builder(id++, gcylId("opv_superconductor_base"))
+        OpVSuperconductorBase = new Material.Builder(++id, gcylId("opv_superconductor_base"))
                 .ingot().liquid()
                 .color(0xe34b5a)
                 .iconSet(SHINY)
@@ -10001,7 +10027,7 @@ public class GCYLMaterials {
                 .blast(14000)
                 .build();
 
-        LVSuperconductor = new Material.Builder(id++, gcylId("lv_superconductor"))
+        LVSuperconductor = new Material.Builder(++id, gcylId("lv_superconductor"))
                 .ingot().liquid()
                 .color(0xf8f8ff)
                 .iconSet(DULL)
@@ -10010,7 +10036,7 @@ public class GCYLMaterials {
                 .cableProperties(GTValues.V[GTValues.LV],4,0,true)
                 .build();
 
-        MVSuperconductor = new Material.Builder(id++, gcylId("mv_superconductor"))
+        MVSuperconductor = new Material.Builder(++id, gcylId("mv_superconductor"))
                 .ingot().liquid()
                 .color(MVSuperconductorBase.getMaterialRGB())
                 .iconSet(SHINY)
@@ -10019,7 +10045,7 @@ public class GCYLMaterials {
                 .components(MVSuperconductorBase,1)
                 .build();
 
-        HVSuperconductor = new Material.Builder(id++, gcylId("hv_superconductor"))
+        HVSuperconductor = new Material.Builder(++id, gcylId("hv_superconductor"))
                 .ingot().liquid()
                 .color(HVSuperconductorBase.getMaterialRGB())
                 .iconSet(SHINY)
@@ -10028,7 +10054,7 @@ public class GCYLMaterials {
                 .components(HVSuperconductorBase,1)
                 .build();
 
-        EVSuperconductor = new Material.Builder(id++, gcylId("ev_superconductor"))
+        EVSuperconductor = new Material.Builder(++id, gcylId("ev_superconductor"))
                 .ingot().liquid()
                 .color(EVSuperconductorBase.getMaterialRGB())
                 .iconSet(SHINY)
@@ -10037,7 +10063,7 @@ public class GCYLMaterials {
                 .components(EVSuperconductorBase,1)
                 .build();
 
-        IVSuperconductor = new Material.Builder(id++, gcylId("iv_superconductor"))
+        IVSuperconductor = new Material.Builder(++id, gcylId("iv_superconductor"))
                 .ingot().liquid()
                 .color(IVSuperconductorBase.getMaterialRGB())
                 .iconSet(SHINY)
@@ -10046,7 +10072,7 @@ public class GCYLMaterials {
                 .components(IVSuperconductorBase,1)
                 .build();
 
-        LuVSuperconductor = new Material.Builder(id++, gcylId("luv_superconductor"))
+        LuVSuperconductor = new Material.Builder(++id, gcylId("luv_superconductor"))
                 .ingot().liquid()
                 .color(LuVSuperconductorBase.getMaterialRGB())
                 .iconSet(SHINY)
@@ -10055,7 +10081,7 @@ public class GCYLMaterials {
                 .cableProperties(GTValues.V[GTValues.LuV], 6,0,true)
                 .build();
 
-        ZPMSuperconductor = new Material.Builder(id++, gcylId("zpm_superconductor"))
+        ZPMSuperconductor = new Material.Builder(++id, gcylId("zpm_superconductor"))
                 .ingot().liquid()
                 .color(ZPMSuperconductorBase.getMaterialRGB())
                 .iconSet(SHINY)
@@ -10064,7 +10090,7 @@ public class GCYLMaterials {
                 .components(ZPMSuperconductorBase,1)
                 .build();
 
-        UVSuperconductor = new Material.Builder(id++, gcylId("uv_superconductor"))
+        UVSuperconductor = new Material.Builder(++id, gcylId("uv_superconductor"))
                 .ingot().liquid()
                 .color(UVSuperconductorBase.getMaterialRGB())
                 .iconSet(SHINY)
@@ -10073,7 +10099,7 @@ public class GCYLMaterials {
                 .components(UVSuperconductorBase,1)
                 .build();
 
-        UHVSuperconductor = new Material.Builder(id++, gcylId("uhv_superconductor"))
+        UHVSuperconductor = new Material.Builder(++id, gcylId("uhv_superconductor"))
                 .ingot().liquid()
                 .color(UHVSuperconductorBase.getMaterialRGB())
                 .iconSet(SHINY)
@@ -10082,7 +10108,7 @@ public class GCYLMaterials {
                 .components(UHVSuperconductorBase,1)
                 .build();
 
-        UEVSuperconductor = new Material.Builder(id++, gcylId("uev_superconductor"))
+        UEVSuperconductor = new Material.Builder(++id, gcylId("uev_superconductor"))
                 .ingot().liquid()
                 .color(UEVSuperconductorBase.getMaterialRGB())
                 .iconSet(SHINY)
@@ -10091,7 +10117,7 @@ public class GCYLMaterials {
                 .components(UEVSuperconductorBase,1)
                 .build();
 
-        UIVSuperconductor = new Material.Builder(id++, gcylId("uiv_superconductor"))
+        UIVSuperconductor = new Material.Builder(++id, gcylId("uiv_superconductor"))
                 .ingot().liquid()
                 .color(UIVSuperconductorBase.getMaterialRGB())
                 .iconSet(SHINY)
@@ -10100,7 +10126,7 @@ public class GCYLMaterials {
                 .components(UIVSuperconductorBase,1)
                 .build();
 
-        UXVSuperconductor = new Material.Builder(id++, gcylId("uxv_superconductor"))
+        UXVSuperconductor = new Material.Builder(++id, gcylId("uxv_superconductor"))
                 .ingot().liquid()
                 .color(UXVSuperconductorBase.getMaterialRGB())
                 .iconSet(SHINY)
@@ -10109,7 +10135,7 @@ public class GCYLMaterials {
                 .components(UXVSuperconductorBase,1)
                 .build();
 
-        OpVSuperconductor = new Material.Builder(id++, gcylId("opv_superconductor"))
+        OpVSuperconductor = new Material.Builder(++id, gcylId("opv_superconductor"))
                 .ingot().liquid()
                 .color(OpVSuperconductorBase.getMaterialRGB())
                 .iconSet(SHINY)
@@ -10118,7 +10144,7 @@ public class GCYLMaterials {
                 .components(OpVSuperconductorBase,1)
                 .build();
 
-        MAXSuperconductor = new Material.Builder(id++, gcylId("max_superconductor"))
+        MAXSuperconductor = new Material.Builder(++id, gcylId("max_superconductor"))
                 .ingot().liquid()
                 .color(0XFFFFFF)
                 .iconSet(SHINY)
@@ -10126,307 +10152,6 @@ public class GCYLMaterials {
                 .cableProperties(GTValues.V[GTValues.MAX], 32,0,true)
                 .components(OpVSuperconductorBase,1)
                 .build();
-    }
-
-    public static void materialChanges() {
-
-        addDust(Germanium, 1, 0);
-
-        //NUCLEAR STUFF
-        List<Material> nuclearMats = new ArrayList<>();
-        Collections.addAll(nuclearMats, Einsteinium, Fermium, Mendelevium);
-
-        for (Material mat : nuclearMats) {
-            addDust(mat, 1, 0);
-            addLiquid(mat);
-            mat.addFlags(GENERATE_PLATE);
-        }
-
-        Germanium.addFlags(GENERATE_PLATE);
-
-        //EXT METAL ADDITIONS
-        List<Material> e1mmats = new ArrayList<>();
-        Collections.addAll(e1mmats, Tanzanite);
-        for (Material mat : e1mmats) {
-            for (MaterialFlag flag : EXT_METAL) {
-                mat.addFlags(flag);
-            }
-        }
-
-        //EXT2 METAL ADDITIONS
-        List<Material> e2mmats = new ArrayList<>();
-        Collections.addAll(e2mmats, MaragingSteel250, AbyssalAlloy, HG1223);
-        for (Material mat : e2mmats) {
-            for (MaterialFlag flag : EXT2_METAL) {
-                mat.addFlags(flag);
-            }
-        }
-
-        //CORE METAL ADDITIONS
-        List<Material> cmmats = new ArrayList<>();
-        Collections.addAll(cmmats, Bohrium, Dubnium, Duranium, Seaborgium, Rhenium, Rutherfordium, NaquadahEnriched, IncoloyMA956, CosmicNeutronium);
-
-        for (Material mat : cmmats) {
-            for (MaterialFlag flag : CORE_METAL) {
-                addIngot(mat);
-                //addLiquid(mat);
-                mat.addFlags(flag);
-            }
-        }
-
-        //STD GEM ADDITIONS
-        List<Material> stdgem = new ArrayList<>();
-        Collections.addAll(stdgem, Vinteum);
-        for (Material mat: stdgem) {
-            for (MaterialFlag flag : STD_GEM) {
-                mat.addFlags(flag);
-            }
-        }
-
-        //PLATE ADDITIONS
-
-        List<Material> platemats = new ArrayList<>();
-        Collections.addAll(platemats, Vanadium);
-        for (Material mat : platemats) {
-            mat.addFlags(GENERATE_PLATE);
-        }
-
-
-
-        //FOIL ADDITIONS
-        List<Material> foilmats = new ArrayList<>();
-        Collections.addAll(foilmats, Barium, Calcium, Thallium);
-        for (Material mat : foilmats) {
-            mat.addFlags(GENERATE_FOIL);
-        }
-
-        //FINE WIRE ADDITIONS
-        List<Material> wirefinemats = new ArrayList<>();
-        Collections.addAll(wirefinemats, AbyssalAlloy, Titanium, Iron);
-        for (Material mat : wirefinemats) {
-            mat.addFlags(GENERATE_FINE_WIRE);
-        }
-
-        //LONG STICK ADDITIONS
-        List<Material> longstickmats = new ArrayList<>();
-        Collections.addAll(longstickmats, NeodymiumMagnetic);
-        for (Material mat : longstickmats) {
-            mat.addFlags(GENERATE_LONG_ROD);
-        }
-
-        //STICK ADDITIONS
-        List<Material> stickmats = new ArrayList<>();
-        Collections.addAll(stickmats, ReinforcedEpoxyResin, Californium);
-        for (Material mat : stickmats) {
-            mat.addFlags(GENERATE_ROD);
-        }
-
-        //DUST ADDITIONS
-        List<Material> dmats = new ArrayList<>();
-        Collections.addAll(dmats, Dysprosium, Iodine, Gadolinium, Strontium, Holmium, Californium, Zirconium, Thallium, Rubidium, Technetium,
-                Terbium, Promethium, Radium, Tellurium, Francium, Berkelium, Curium, Actinium, Protactinium, Scandium, Thulium, Hafnium, Astatine,
-                Selenium, Praseodymium, Copernicium, Erbium, Polonium);
-        for (Material mat : dmats) {
-            addDust(mat, 1, 0);
-        }
-
-        //FLUID Additions
-        List<Material> fmats = new ArrayList<>();
-        Collections.addAll(fmats, Sodium, Bromine, AmmoniumChloride, Rubidium, Caesium, Francium, Polonium, Praseodymium, Ytterbium, Neptunium,
-                ProtoAdamantium, Scandium, Radium, MetastableHassium, MetastableFlerovium, MetastableOganesson, HeavyQuarkDegenerateMatter, Dubnium,
-                Sulfur, Calcium, Curium, Bohrium, Seaborgium, Copernicium, Rutherfordium,Meitnerium, Tennessine, Livermorium, Moscovium, Nihonium,
-                Roentgenium, Astatine, Hafnium, RutheniumTetroxide);
-
-        for (Material mat : fmats) {
-            addLiquid(mat);
-        }
-
-        //SPECIFIC FLUID ADDITIONS
-
-        //LIQUIDS
-        //TODO: get proper temperatures
-        List<Material> lmats = new ArrayList<>();
-        Collections.addAll(lmats, Fluorine, Xenon, Helium3, Hydrogen, Nitrogen);
-        for (Material mat : lmats) {
-            addLiquid(mat, new FluidBuilder()
-                    .temperature(40)
-                    .color(mat.getMaterialRGB())
-                    .name("liquid_" + mat.getName())
-                    .translation("gregtech.fluid.liquid_generic"));
-            mat.getProperty(PropertyKey.FLUID).setPrimaryKey(FluidStorageKeys.GAS);
-        }
-
-        //PLASMAS
-        List<Material> pmats = new ArrayList<>();
-        Collections.addAll(pmats, Carbon, Hydrogen, Helium3, Radon, Krypton, Neon, Magnesium, Silicon, Sulfur, Argon,Calcium, Titanium, Potassium);
-        for (Material mat : pmats) {
-
-            /*addPlasma(mat, new FluidBuilder()
-                    .temperature(15000)
-                    .color(mat.getMaterialRGB())
-                    .name("plasma." + mat.getName())
-                    .translation("gregtech.fluid.plasma"));
-            mat.getProperty(PropertyKey.FLUID).setPrimaryKey(FluidStorageKeys.GAS);
-
-             */
-            addFluid(mat, "plasma", false);
-        }
-
-        //ORE ADDITIONS
-        List<Material> omats = new ArrayList<>();
-        Collections.addAll(omats, Lignite, Witherite, Barytocalcite, PlatinumMetallicPowder, IridiumMetalResidue, PreciousMetal,
-                RarestMetalMixture, PalladiumMetallicPowder, Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon, Bowieite);
-        for (Material mat : omats) {
-            addOre(mat, 1, 1,false);
-        }
-
-        //EMISSIVE ORES
-        List<Material> eomats = new ArrayList<>();
-        Collections.addAll(eomats,Triniite, NaquadricCompound, EnrichedNaquadricCompound, NaquadriaticCompound);
-        for (Material mat : eomats) {
-            addOre(mat, 1,1,true);
-        }
-
-        //ORE BYPRODUCTS & Multipliers & OTHER STUFF TODO: Finish this
-        OreProperty oreProp;
-
-        oreProp = NaquadricCompound.getProperty(PropertyKey.ORE);
-        oreProp.addOreByProducts(EnrichedNaquadricCompound);
-
-        oreProp = EnrichedNaquadricCompound.getProperty(PropertyKey.ORE);
-        oreProp.addOreByProducts(NaquadricCompound, NaquadriaticCompound);
-
-        oreProp = Triniite.getProperty(PropertyKey.ORE);
-        oreProp.addOreByProducts(NaquadricCompound, Bismuth, Thallium);
-
-        oreProp = PlatinumMetallicPowder.getProperty(PropertyKey.ORE);
-        oreProp.setOreMultiplier(2);
-        oreProp.setWashedIn(SodiumPersulfate);
-        oreProp.addOreByProducts(Nickel,IridiumMetalResidue,RarestMetalMixture,PlatinumMetallicPowder);
-
-        oreProp = PalladiumMetallicPowder.getProperty(PropertyKey.ORE);
-        oreProp.setOreMultiplier(2);
-        oreProp.setWashedIn(SodiumPersulfate);
-
-        oreProp = Bowieite.getProperty(PropertyKey.ORE);
-        oreProp.addOreByProducts(Nickel,PlatinumMetallicPowder,RarestMetalMixture,CrudeRhodiumMetal);
-        //SPECIFIC CASES
-
-        Bohrium.addFlags(GENERATE_FRAME, GENERATE_ROUND);
-        NaquadahAlloy.addFlags(GENERATE_FINE_WIRE);
-
-        Copper.addFlags(GENERATE_DENSE);
-        StainlessSteel.addFlags(GENERATE_DENSE);
-        Titanium.addFlags(GENERATE_DENSE);
-
-        Naquadria.addFlags(GENERATE_FRAME);
-        Osmiridium.addFlags(GENERATE_FRAME);
-
-        //FLUID PIPES
-        addFluidPipes(Zeron100, 15000, 1750, true);
-        addFluidPipes(Enderium, 1500,650,true);
-
-        //ORE PREFIX IGNORE FIXES
-        plate.removeIgnored(BorosilicateGlass);
-
-        //TODO: invalid recipe issues
-        /*
-        List<Material> cablemats = new ArrayList<>();
-        Collections.addAll(cablemats, MVSuperconductorBase,HVSuperconductorBase,EVSuperconductorBase,IVSuperconductorBase,LuVSuperconductorBase,
-                ZPMSuperconductorBase,UVSuperconductorBase,UHVSuperconductorBase,UEVSuperconductorBase,UIVSuperconductorBase,UXVSuperconductorBase,
-                OpVSuperconductorBase);
-        for (Material mat : cablemats) {
-            cableGtSingle.setIgnored(mat);
-            cableGtDouble.setIgnored(mat);
-            cableGtQuadruple.setIgnored(mat);
-            cableGtOctal.setIgnored(mat);
-            cableGtHex.setIgnored(mat);
-        }
-         */
-
-
-        //DISABLE ALLOY BLAST for old superconductors
-        List<Material> wireMats = new ArrayList<>();
-        Collections.addAll(wireMats, ManganesePhosphide, MagnesiumDiboride, MercuryBariumCalciumCuprate, UraniumTriplatinum, SamariumIronArsenicOxide,
-                IndiumTinBariumTitaniumCuprate, UraniumRhodiumDinaquadide, EnrichedNaquadahTriniumEuropiumDuranide, RutheniumTriniumAmericiumNeutronate);
-
-        for(Material mat : wireMats) {
-            mat.addFlags(NO_ALLOY_BLAST_RECIPES);
-        }
-
-        //LENSES
-        List<Material> lensmats = new ArrayList<>();
-        Collections.addAll(lensmats, Amethyst);
-        for (Material mat : lensmats) {
-            mat.addFlags(GENERATE_LENS);
-        }
-
-        //WIRE PROPERTIES
-        Neutronium.setProperty(PropertyKey.WIRE, new WireProperties((int) GTValues.V[OpV], 4, 64));
-
-
-
-        //REPLACE MATERIALS
-        IridiumMetalResidue.setFormula("Ir2O4(SiO2)2Au3", true);
-        IridiumMetalResidue.setMaterialRGB(0x846649);
-        IridiumMetalResidue.setMaterialIconSet(ROUGH);
-
-        RarestMetalMixture.setFormula("Ir2O2(SiO2)2Au3?",true);
-        RarestMetalMixture.setMaterialRGB(0x644629);
-        RarestMetalMixture.setMaterialIconSet(ROUGH);
-
-        NaquadahAlloy.setFormula("Nq(Ir3Os)",true);
-    }
-
-    public static void tempMaterialModifications() {
-
-        /*
-        List<Material> #mats = new ArrayList<>();
-        Collections.addAll(#mats, );
-        for (Material mat : #mats) {
-            mat.addFlags();
-        }
-         */
-
-        //Add rounds
-        List<Material> rmats = new ArrayList<>();
-        Collections.addAll(rmats, HDCS, HastelloyX78, HSSG, HSSE);
-        for (Material mat : rmats) {
-            mat.addFlags(GENERATE_ROUND);
-        }
-
-        //add fine wire
-        List<Material> wirefinemats = new ArrayList<>();
-        Collections.addAll(wirefinemats, Trinium, TinAlloy, ReinforcedEpoxyResin, HSSS, Ruthenium, Plutonium, Cerium,
-                LuVSuperconductor, ZPMSuperconductor, UVSuperconductor, UHVSuperconductor, UEVSuperconductor, UIVSuperconductor, UXVSuperconductor, MAXSuperconductor);
-        for (Material mat : wirefinemats) {
-            mat.addFlags(GENERATE_FINE_WIRE);
-        }
-
-        //Small Specific cases
-        HSSG.addFlags(GENERATE_RING);
-        Osmium.addFlags(GENERATE_RING);
-        HSSE.addFlags(GENERATE_SMALL_GEAR);
-        Zeron100.addFlags(GENERATE_BOLT_SCREW);
-        Trinium.addFlags(GENERATE_FRAME);
-        Naquadria.addFlags(GENERATE_DENSE);
-        RhodiumPlatedPalladium.addFlags(GENERATE_GEAR);
-        NaquadahAlloy.addFlags(DISABLE_DECOMPOSITION);
-
-
-
-        //ADD ROTORS
-        List<Material> rotmats = new ArrayList<>();
-        Collections.addAll(rotmats, HSSG, Tritanium, HSSE);
-        for (Material mat : rotmats) {
-            mat.addFlags(GENERATE_ROTOR);
-        }
-
-        //Cable
-        Duranium.setProperty(PropertyKey.WIRE, new WireProperties((int) GTValues.V[UV], 1, 16));
-
-
-
     }
 
     private static String makeFancy(String input) {

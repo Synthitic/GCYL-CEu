@@ -9,8 +9,7 @@ import gregtech.common.items.MetaItems;
 
 import static com.fulltrix.gcyl.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.PLASMA_CONDENSER_RECIPES;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.STELLAR_FORGE_RECIPES;
+import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.*;
 import static gregicality.multiblocks.api.recipes.GCYMRecipeMaps.ALLOY_BLAST_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -101,16 +100,31 @@ public class UHVMaterials {
                 .duration(20)
                 .buildAndRegister();
 
-        ALLOY_BLAST_RECIPES.recipeBuilder()
-                .input(dust, Seaborgium)
-                .input(dust, Bohrium)
+        ALLOY_BLAST_RECIPES.recipeBuilder().EUt(1000000).duration(160)
                 .input(dust, Rutherfordium)
                 .input(dust, Dubnium)
-                .notConsumable(new IntCircuitIngredient(1))
-                .fluidOutputs(SuperheavyMix.getFluid(4000))
-                .EUt(25_000_000)
+                .circuitMeta(8)
+                .fluidOutputs(Fordnium.getFluid(1152))
+                .blastFurnaceTemp(11200)
+                .buildAndRegister();
+
+        ALLOY_BLAST_RECIPES.recipeBuilder().EUt(1000000).duration(160)
+                .input(dust, Seaborgium)
+                .input(dust, Bohrium)
+                .circuitMeta(8)
+                .fluidOutputs(Seabohrgium.getFluid(1152))
+                .blastFurnaceTemp(11200)
+                .buildAndRegister();
+
+        ADV_FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Seabohrgium.getFluid(288))
+                .fluidInputs(Fordnium.getFluid(288))
+                .fluidOutputs(SuperheavyMix.getFluid(1000))
+                .EUt(4000000)
+                .AdvCoilTier(4)
+                .EUToStart(10000000000L)
+                .EUReturn(75)
                 .duration(40)
-                .blastFurnaceTemp(11000)
                 .buildAndRegister();
 
         FLUID_SOLIDFICATION_RECIPES.recipeBuilder()

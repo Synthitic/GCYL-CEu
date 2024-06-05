@@ -392,15 +392,6 @@ public class GCYLCoreItems {
     public static MetaItem<?>.MetaValueItem ROD_FIELD_SHAPE;
 
 
-    // monitor
-    public static MetaItem<?>.MetaValueItem COVER_DIGITAL_INTERFACE;
-    public static MetaItem<?>.MetaValueItem PLUGIN_TEXT;
-    public static MetaItem<?>.MetaValueItem PLUGIN_ONLINE_PIC;
-    public static MetaItem<?>.MetaValueItem PLUGIN_FAKE_GUI;
-    public static MetaItem<?>.MetaValueItem PLUGIN_ADVANCED_MONITOR;
-
-
-
     public static MetaItem<?>.MetaValueItem COLOURED_LEDS;
     public static MetaItem<?>.MetaValueItem DISPLAY;
 
@@ -434,6 +425,8 @@ public class GCYLCoreItems {
     public static MetaItem<?>.MetaValueItem PROTONATED_FULLERENE_SIEVING_MATRIX;
     public static MetaItem<?>.MetaValueItem SATURATED_FULLERENE_SIEVING_MATRIX;
 
+    public static MetaItem<?>.MetaValueItem TOOL_DATA_MODULE_CLUSTER;
+    public static MetaItem<?>.MetaValueItem TOOL_DATA_ULTIMATE;
     public static MetaItem<?>.MetaValueItem TOOL_DATA_SUPRACAUSAL;
 
     public static void init() {

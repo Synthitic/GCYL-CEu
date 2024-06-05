@@ -9,11 +9,7 @@ import gregtech.api.unification.stack.UnificationEntry;
 import static com.fulltrix.gcyl.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.Zeron100;
-import static gregtech.api.GTValues.IV;
-import static gregtech.api.GTValues.L;
-import static gregtech.api.GTValues.LV;
-import static gregtech.api.GTValues.VA;
-import static gregtech.api.GTValues.ZPM;
+import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -44,6 +40,8 @@ public class ComponentRecipes {
     }
 
     //TODO: add research to recipes and change to be more in line with CEu
+    //TODO: add higher tiers of soldering alloy
+    //TODO: add higher tier data storage and require it
 
     private static void emitterInit() {
 
@@ -66,7 +64,7 @@ public class ComponentRecipes {
                 .input(frameGt, HSSS)
                 .inputs(ELECTRIC_MOTOR_LuV.getStackForm())
                 .input(gemExquisite, Ruby, 2)
-                .input(circuit, LuV, 2)
+                .input(circuit, MarkerMaterials.Tier.LuV, 2)
                 .input(stickLong, Ruridit,4)
                 .inputs(QUANTUM_STAR.getStackForm())
                 .input(dust,ZincSelenide,16)
@@ -155,7 +153,7 @@ public class ComponentRecipes {
                 .input(foil, Osmiridium, 64)
                 .input(cableGtSingle, TungstenTitaniumCarbide, 8)
                 .input(gemExquisite, Diamond, 2)
-                .input(circuit, UHV, 2)
+                .input(circuit, MarkerMaterials.Tier.UHV, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L * 2))
                 .outputs(EMITTER_UHV.getStackForm())
                 .buildAndRegister();
@@ -167,7 +165,7 @@ public class ComponentRecipes {
                 .input(foil, Osmiridium, 64)
                 .input(cableGtSingle, Pikyonium, 8)
                 .input(gemExquisite, Diamond, 2)
-                .input(circuit, UEV, 2)
+                .input(circuit, MarkerMaterials.Tier.UEV, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .outputs(EMITTER_UEV.getStackForm())
                 .buildAndRegister();
@@ -178,7 +176,7 @@ public class ComponentRecipes {
                 .input(foil, TriniumTitanium, 64)
                 .input(cableGtSingle, BlackTitanium, 8)
                 .input(gemExquisite, Diamond, 2)
-                .input(circuit, UIV, 2)
+                .input(circuit, MarkerMaterials.Tier.UIV, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L * 6))
                 .outputs(EMITTER_UIV.getStackForm())
                 .buildAndRegister();
@@ -189,7 +187,7 @@ public class ComponentRecipes {
                 .input(foil, ProtoAdamantium, 64)
                 .input(cableGtSingle, NaquadriaticTaranium, 8)
                 .input(gemExquisite, Diamond, 2)
-                .input(circuit, UXV, 2)
+                .input(circuit, MarkerMaterials.Tier.UXV, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L * 8))
                 .outputs(EMITTER_UXV.getStackForm())
                 .buildAndRegister();
@@ -303,7 +301,7 @@ public class ComponentRecipes {
                 .input(cableGtSingle, TungstenTitaniumCarbide, 8)
                 .input(gemExquisite, Diamond, 2)
                 .inputs(BOSE_EINSTEIN_COOLING_CONTAINER.getStackForm())
-                .input(circuit, UHV, 2)
+                .input(circuit, MarkerMaterials.Tier.UHV, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L * 2))
                 .outputs(SENSOR_UHV.getStackForm())
                 .buildAndRegister();
@@ -316,7 +314,7 @@ public class ComponentRecipes {
                 .input(cableGtSingle, Pikyonium, 8)
                 .input(gemExquisite, Diamond, 2)
                 .inputs(BOSE_EINSTEIN_COOLING_CONTAINER.getStackForm(2))
-                .input(circuit, UEV, 2)
+                .input(circuit, MarkerMaterials.Tier.UEV, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .outputs(SENSOR_UEV.getStackForm())
                 .buildAndRegister();
@@ -327,7 +325,7 @@ public class ComponentRecipes {
                 .input(cableGtSingle, BlackTitanium, 8)
                 .input(gemExquisite, Diamond, 2)
                 .inputs(BOSE_EINSTEIN_COOLING_CONTAINER.getStackForm(8))
-                .input(circuit, UIV, 2)
+                .input(circuit, MarkerMaterials.Tier.UIV, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L * 6))
                 .fluidInputs(LiquidCrystalDetector.getFluid(2500))
                 .outputs(SENSOR_UIV.getStackForm())
@@ -339,7 +337,7 @@ public class ComponentRecipes {
                 .input(cableGtSingle, NaquadriaticTaranium, 8)
                 .input(gemExquisite, Diamond, 2)
                 .inputs(BOSE_EINSTEIN_COOLING_CONTAINER.getStackForm(8))
-                .input(circuit, UXV, 2)
+                .input(circuit, MarkerMaterials.Tier.UXV, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L * 6))
                 .fluidInputs(FreeElectronGas.getFluid(2500))
                 .outputs(SENSOR_UXV.getStackForm())
@@ -373,7 +371,7 @@ public class ComponentRecipes {
                 .input(circuit, MarkerMaterials.Tier.MV, 2)
                 .input(wireGtQuadruple, LVSuperconductor, 4)
                 .outputs(FIELD_GENERATOR_LV.getStackForm())
-                .duration(100).EUt(VA[LV]).buildAndRegister();
+                .duration(100).EUt(VA[GTValues.LV]).buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder()
                 .input(gem, EnderEye)
@@ -381,7 +379,7 @@ public class ComponentRecipes {
                 .input(circuit, MarkerMaterials.Tier.HV, 2)
                 .input(wireGtQuadruple, MVSuperconductor, 4)
                 .outputs(FIELD_GENERATOR_MV.getStackForm())
-                .duration(100).EUt(VA[LV]).buildAndRegister();
+                .duration(100).EUt(VA[GTValues.LV]).buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder()
                 .input(QUANTUM_EYE)
@@ -389,7 +387,7 @@ public class ComponentRecipes {
                 .input(circuit, MarkerMaterials.Tier.EV, 2)
                 .input(wireGtQuadruple, HVSuperconductor, 4)
                 .outputs(FIELD_GENERATOR_HV.getStackForm())
-                .duration(100).EUt(VA[LV]).buildAndRegister();
+                .duration(100).EUt(VA[GTValues.LV]).buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder()
                 .input(gem, NetherStar)
@@ -397,7 +395,7 @@ public class ComponentRecipes {
                 .input(circuit, MarkerMaterials.Tier.IV, 2)
                 .input(wireGtQuadruple, EVSuperconductor, 4)
                 .outputs(FIELD_GENERATOR_EV.getStackForm())
-                .duration(100).EUt(VA[LV]).buildAndRegister();
+                .duration(100).EUt(VA[GTValues.LV]).buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder()
                 .input(QUANTUM_STAR)
@@ -405,7 +403,7 @@ public class ComponentRecipes {
                 .input(circuit, MarkerMaterials.Tier.LuV, 2)
                 .input(wireGtQuadruple, IVSuperconductor, 4)
                 .outputs(FIELD_GENERATOR_IV.getStackForm())
-                .duration(100).EUt(VA[LV]).buildAndRegister();
+                .duration(100).EUt(VA[GTValues.LV]).buildAndRegister();
 
 
         /* Original luv field gen
@@ -501,7 +499,7 @@ public class ComponentRecipes {
                 .inputs(GRAVI_STAR.getStackForm())
                 .input(wireGtQuadruple, UHVSuperconductor, 8)
                 .input(cableGtSingle, TungstenTitaniumCarbide, 4)
-                .input(circuit, UHV, 2)
+                .input(circuit, MarkerMaterials.Tier.UHV, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L * 2))
                 .outputs(FIELD_GENERATOR_UHV.getStackForm())
                 .buildAndRegister();
@@ -512,7 +510,7 @@ public class ComponentRecipes {
                 .input(wireGtQuadruple, UEVSuperconductor, 8)
                 .input(wireFine, Seaborgium, 64)
                 .input(cableGtSingle, Pikyonium, 4)
-                .input(circuit, UEV, 2)
+                .input(circuit, MarkerMaterials.Tier.UEV, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .outputs(FIELD_GENERATOR_UEV.getStackForm())
                 .buildAndRegister();
@@ -523,7 +521,7 @@ public class ComponentRecipes {
                 .input(wireFine, Trinium, 64)
                 .input(wireGtQuadruple, UIVSuperconductor, 8)
                 .input(cableGtSingle, BlackTitanium, 4)
-                .input(circuit, UIV, 2)
+                .input(circuit, MarkerMaterials.Tier.UIV, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L * 6))
                 .outputs(FIELD_GENERATOR_UIV.getStackForm())
                 .buildAndRegister();
@@ -534,7 +532,7 @@ public class ComponentRecipes {
                 .input(wireFine, Adamantium, 64)
                 .input(wireGtQuadruple, UXVSuperconductor, 8)
                 .input(cableGtSingle, NaquadriaticTaranium, 4)
-                .input(circuit, UXV, 2)
+                .input(circuit, MarkerMaterials.Tier.UXV, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L * 6))
                 .outputs(FIELD_GENERATOR_UXV.getStackForm())
                 .buildAndRegister();
@@ -607,7 +605,7 @@ public class ComponentRecipes {
                 .scannerResearch(b -> b
                         .researchStack(ROBOT_ARM_LuV.getStackForm())
                         .duration(1200)
-                        .EUt(VA[IV]))
+                        .EUt(VA[GTValues.IV]))
                 .duration(600).EUt(81920).buildAndRegister();
 
         /*
@@ -656,7 +654,7 @@ public class ComponentRecipes {
                 .input(ingot, HDCS)
                 .inputs(ELECTRIC_MOTOR_UHV.getStackForm(2))
                 .inputs(ELECTRIC_PISTON_UHV.getStackForm())
-                .input(circuit, MarkerMaterials.Tier.ZPM, 8)
+                .input(circuit, MarkerMaterials.Tier.UHV, 8)
                 .fluidInputs(SolderingAlloy.getFluid(L * 2))
                 .fluidInputs(Lubricant.getFluid(2000))
                 .outputs(ROBOT_ARM_UHV.getStackForm())
@@ -669,7 +667,7 @@ public class ComponentRecipes {
                 .input(ingot, EnrichedNaquadahAlloy)
                 .inputs(ELECTRIC_MOTOR_UEV.getStackForm(2))
                 .inputs(ELECTRIC_PISTON_UEV.getStackForm())
-                .input(circuit, UV, 8)
+                .input(circuit, MarkerMaterials.Tier.UEV, 8)
                 .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .fluidInputs(Lubricant.getFluid(2000))
                 .outputs(ROBOT_ARM_UEV.getStackForm())
@@ -682,7 +680,7 @@ public class ComponentRecipes {
                 .input(ingot, HastelloyX78)
                 .inputs(ELECTRIC_MOTOR_UIV.getStackForm(2))
                 .inputs(ELECTRIC_PISTON_UIV.getStackForm())
-                .input(circuit, UHV, 8)
+                .input(circuit, MarkerMaterials.Tier.UIV, 8)
                 .fluidInputs(SolderingAlloy.getFluid(L * 6))
                 .fluidInputs(Lubricant.getFluid(2000))
                 .outputs(ROBOT_ARM_UIV.getStackForm())
@@ -695,7 +693,7 @@ public class ComponentRecipes {
                 .input(ingot, HastelloyK243)
                 .inputs(ELECTRIC_MOTOR_UXV.getStackForm(2))
                 .inputs(ELECTRIC_PISTON_UXV.getStackForm())
-                .input(circuit, UEV, 8)
+                .input(circuit, MarkerMaterials.Tier.UXV, 8)
                 .fluidInputs(SolderingAlloy.getFluid(L * 6))
                 .fluidInputs(Lubricant.getFluid(2000))
                 .outputs(ROBOT_ARM_UXV.getStackForm())
@@ -758,7 +756,7 @@ public class ComponentRecipes {
                 .scannerResearch(b -> b
                         .researchStack(CONVEYOR_MODULE_LuV.getStackForm())
                         .duration(1200)
-                        .EUt(VA[IV]))
+                        .EUt(VA[GTValues.IV]))
                 .duration(600).EUt(61440).buildAndRegister();
 
 /* original uv conveyor
@@ -908,7 +906,7 @@ public class ComponentRecipes {
                 .scannerResearch(b -> b
                         .researchStack(ELECTRIC_PISTON_LUV.getStackForm())
                         .duration(1200)
-                        .EUt(VA[IV]))
+                        .EUt(VA[GTValues.IV]))
                 .duration(600).EUt(61440).buildAndRegister();
 
 /* original piston uv
@@ -1079,7 +1077,7 @@ public class ComponentRecipes {
                 .scannerResearch(b -> b
                         .researchStack(ELECTRIC_MOTOR_LuV.getStackForm())
                         .duration(1200)
-                        .EUt(VA[IV]))
+                        .EUt(VA[GTValues.IV]))
                 .duration(600).EUt(40960).buildAndRegister();
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -1109,64 +1107,134 @@ public class ComponentRecipes {
                 .outputs(ELECTRIC_MOTOR_UHV.getStackForm())
                 .input(stickLong, NeodymiumMagnetic, 64)
                 .input(stickLong, NeodymiumMagnetic, 64)
-                .input(stickLong, HDCS, 2)
+                .input(stickLong, HDCS, 4)
                 .input(ring, HDCS, 4)
-                .input(round, HDCS, 16)
+                .input(round, HDCS, 8)
                 .input(wireFine, TungstenTitaniumCarbide, 64)
                 .input(wireFine, TungstenTitaniumCarbide, 64)
                 .input(wireFine, TungstenTitaniumCarbide, 64)
                 .input(wireFine, TungstenTitaniumCarbide, 64)
                 .input(cableGtQuadruple, TungstenTitaniumCarbide, 2)
-                .fluidInputs(SolderingAlloy.getFluid(L * 2))
-                .fluidInputs(Lubricant.getFluid(3000))
+                .fluidInputs(Indalloy140.getFluid(L * 8))
+                .fluidInputs(Lubricant.getFluid(2000))
+                .fluidInputs(Naquadria.getFluid(L * 8))
+                .stationResearch(b -> b
+                        .researchStack(ELECTRIC_MOTOR_UV.getStackForm())
+                        .CWUt(128)
+                        .EUt(VA[GTValues.UHV]))
                 .buildAndRegister();
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(2621440)
                 .outputs(ELECTRIC_MOTOR_UEV.getStackForm())
                 .input(stickLong, SamariumMagnetic, 64)
                 .input(stickLong, SamariumMagnetic, 64)
-                .input(stickLong, EnrichedNaquadahAlloy, 2)
+                .input(stickLong, EnrichedNaquadahAlloy, 4)
                 .input(ring, EnrichedNaquadahAlloy, 4)
-                .input(round, EnrichedNaquadahAlloy, 16)
+                .input(round, EnrichedNaquadahAlloy, 8)
                 .input(wireFine, Pikyonium, 64)
                 .input(wireFine, Pikyonium, 64)
                 .input(wireFine, Pikyonium, 64)
                 .input(wireFine, Pikyonium, 64)
                 .input(cableGtQuadruple, Pikyonium, 2)
-                .fluidInputs(SolderingAlloy.getFluid(L * 4))
-                .fluidInputs(Lubricant.getFluid(3000))
+                .fluidInputs(Indalloy140.getFluid(L * 16))
+                .fluidInputs(Lubricant.getFluid(4000))
+                .fluidInputs(Bohrium.getFluid(L * 16))
+                .stationResearch(b -> b
+                        .researchStack(ELECTRIC_MOTOR_UHV.getStackForm())
+                        .CWUt(256)
+                        .dataStack(TOOL_DATA_MODULE_CLUSTER.getStackForm())
+                        .EUt(VA[GTValues.UEV]))
                 .buildAndRegister();
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(7864320)
                 .outputs(ELECTRIC_MOTOR_UIV.getStackForm())
                 .input(stickLong, SamariumMagnetic, 64)
                 .input(stickLong, SamariumMagnetic, 64)
-                .input(stickLong, HastelloyX78, 2)
+                .input(stickLong, HastelloyX78, 4)
                 .input(ring, HastelloyX78, 4)
-                .input(round, HastelloyX78, 16)
+                .input(round, HastelloyX78, 8)
                 .input(wireFine, CarbonNanotubes, 64)
                 .input(wireFine, CarbonNanotubes, 64)
                 .input(wireFine, CarbonNanotubes, 64)
                 .input(wireFine, CarbonNanotubes, 64)
                 .input(cableGtQuadruple, BlackTitanium, 2)
-                .fluidInputs(SolderingAlloy.getFluid(L * 6))
-                .fluidInputs(Lubricant.getFluid(3000))
+                .fluidInputs(Indalloy140.getFluid(L * 32))
+                .fluidInputs(Lubricant.getFluid(8000))
+                .fluidInputs(MetastableHassium.getFluid(L * 32))
+                .stationResearch(b -> b
+                        .researchStack(ELECTRIC_MOTOR_UEV.getStackForm())
+                        .CWUt(512)
+                        .dataStack(TOOL_DATA_MODULE_CLUSTER.getStackForm())
+                        .EUt(VA[GTValues.UIV]))
                 .buildAndRegister();
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(15728640)
                 .outputs(ELECTRIC_MOTOR_UXV.getStackForm())
                 .input(stickLong, SamariumMagnetic, 64)
                 .input(stickLong, SamariumMagnetic, 64)
-                .input(stickLong, HastelloyK243, 2)
+                .input(stickLong, HastelloyK243, 4)
                 .input(ring, HastelloyK243, 4)
-                .input(round, HastelloyK243, 16)
+                .input(round, HastelloyK243, 8)
                 .input(wireFine, CarbonNanotubes, 64)
                 .input(wireFine, CarbonNanotubes, 64)
                 .input(wireFine, CarbonNanotubes, 64)
                 .input(wireFine, CarbonNanotubes, 64)
                 .input(cableGtQuadruple, NaquadriaticTaranium, 2)
-                .fluidInputs(SolderingAlloy.getFluid(L * 6))
-                .fluidInputs(Lubricant.getFluid(3000))
+                .fluidInputs(Indalloy140.getFluid(L * 64))
+                .fluidInputs(Lubricant.getFluid(16000))
+                .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 64))
+                .stationResearch(b -> b
+                        .researchStack(ELECTRIC_MOTOR_UIV.getStackForm())
+                        .CWUt(1024)
+                        .dataStack(TOOL_DATA_ULTIMATE.getStackForm())
+                        .EUt(VA[GTValues.UXV]))
+                .buildAndRegister();
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(536870900)
+                .outputs(ELECTRIC_MOTOR_OpV.getStackForm())
+                .input(stickLong, NaquadriaticTaranium, 64)
+                .input(stickLong, NaquadriaticTaranium, 32)
+                .input(stickLong, Neutronium, 4)
+                .input(ring, Neutronium, 4)
+                .input(round, Neutronium, 8)
+                .input(wireFine, MetastableOganesson, 64)
+                .input(wireFine, MetastableOganesson, 64)
+                .input(wireFine, MetastableOganesson, 64)
+                .input(wireFine, MetastableOganesson, 64)
+                .input(cableGtQuadruple, Neutronium, 2)
+                .fluidInputs(Indalloy140.getFluid(L * 128))
+                .fluidInputs(Lubricant.getFluid(32000))
+                .fluidInputs(SuperheavyMix.getFluid(L * 128))
+                .stationResearch(b -> b
+                        .researchStack(ELECTRIC_MOTOR_UXV.getStackForm())
+                        .CWUt(2048)
+                        .dataStack(TOOL_DATA_ULTIMATE.getStackForm())
+                        .EUt(VA[GTValues.OpV]))
+                .buildAndRegister();
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt((int) GTValues.V[GTValues.MAX])
+                .outputs(ELECTRIC_MOTOR_MAX.getStackForm())
+                .input(stickLong, NaquadriaticTaranium, 64)
+                .input(stickLong, NaquadriaticTaranium, 64)
+                .input(stickLong, NaquadriaticTaranium, 64)
+                .input(wireFine, HeavyQuarkDegenerateMatter, 64)
+                .input(wireFine, HeavyQuarkDegenerateMatter, 64)
+                .input(wireFine, HeavyQuarkDegenerateMatter, 64)
+                .input(wireFine, HeavyQuarkDegenerateMatter, 64)
+                .input(stickLong, CosmicNeutronium, 4)
+                .input(ring, CosmicNeutronium, 4)
+                .input(round, CosmicNeutronium, 8)
+                .input(COSMIC_FABRIC, 64)
+                .input(cableGtOctal, CosmicNeutronium, 2)
+                .inputs(MACROWORMHOLE_GENERATOR.getStackForm())
+                .fluidInputs(Indalloy140.getFluid(L * 256))
+                .fluidInputs(Lubricant.getFluid(64000))
+                .fluidInputs(Neutronium.getFluid(L * 256))
+                .stationResearch(b -> b
+                        .researchStack(ELECTRIC_MOTOR_OpV.getStackForm())
+                        .CWUt(4096)
+                        .dataStack(TOOL_DATA_SUPRACAUSAL.getStackForm())
+                        .EUt((int) V[GTValues.MAX]))
                 .buildAndRegister();
     }
 
@@ -1241,7 +1309,7 @@ public class ComponentRecipes {
                 .scannerResearch(b -> b
                         .researchStack(ELECTRIC_PUMP_LuV.getStackForm())
                         .duration(1200)
-                        .EUt(VA[IV]))
+                        .EUt(VA[GTValues.IV]))
                 .duration(600).EUt(61440).buildAndRegister();
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder()

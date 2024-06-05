@@ -69,8 +69,8 @@ public class CommonProxy {
         GCYLMaterials.register();
         GCYLMaterials.register2();
         GCYLMaterials.registerSuperconductors();
-        GCYLMaterials.materialChanges();
-        GCYLMaterials.tempMaterialModifications();
+        GCYLMaterialOverride.materialChanges();
+        GCYLMaterialOverride.tempMaterialModifications();
     }
 
     @SubscribeEvent
