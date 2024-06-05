@@ -1,13 +1,13 @@
 [
 {
-  "modid": "tjfcore",
+  "modid": "gcyl",
   "name": "GCYL: CEu",
-  "description": "Example placeholder mod.",
+  "description": "Port of Gregicality to CEu with reference to the Technological Journey fork",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["Original Gregicality team + Fulltrix for the port"],
+  "authorList": ["Original Gregicality team + Technological Journey team + Fulltrix for the port"],
   "credits": "Authors of this project",
   "logoFile": "",
   "screenshots": [],

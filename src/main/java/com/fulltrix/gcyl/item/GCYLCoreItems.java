@@ -62,6 +62,7 @@ public class GCYLCoreItems {
     public static MetaItem<?>.MetaValueItem SMD_TRANSISTOR_SUPRACAUSAL;
 
     //circuits
+    public static MetaItem<?>.MetaValueItem BASIC_CIRCUIT_LV;
     public static MetaItem<?>.MetaValueItem PRIMITIVE_ASSEMBLY;
     public static MetaItem<?>.MetaValueItem ELECTRONIC_ASSEMBLY;
     public static MetaItem<?>.MetaValueItem ELECTRONIC_COMPUTER;
@@ -71,15 +72,7 @@ public class GCYLCoreItems {
     public static MetaItem<?>.MetaValueItem REFINED_MAINFRAME;
     public static MetaItem<?>.MetaValueItem MICRO_PROCESSOR;
     public static MetaItem<?>.MetaValueItem MICRO_COMPUTER;
-    public static MetaItem<?>.MetaValueItem MICRO_MAINFRAME;
-    public static MetaItem<?>.MetaValueItem NANO_COMPUTER;
-    public static MetaItem<?>.MetaValueItem NANO_MAINFRAME;
-    public static MetaItem<?>.MetaValueItem CRYSTAL_PROCESSOR;
-    public static MetaItem<?>.MetaValueItem CRYSTAL_COMPUTER;
-    public static MetaItem<?>.MetaValueItem CRYSTAL_MAINFRAME;
-    public static MetaItem<?>.MetaValueItem QUANTUM_ASSEMBLY;
-    public static MetaItem<?>.MetaValueItem QUANTUM_COMPUTER;
-    public static MetaItem<?>.MetaValueItem QUANTUM_MAINFRAME;
+
 
     //magneto circuit
     public static MetaItem<?>.MetaValueItem RAW_IMPRINT_SUPPORTED_BOARD;
@@ -441,7 +434,6 @@ public class GCYLCoreItems {
     public static MetaItem<?>.MetaValueItem PROTONATED_FULLERENE_SIEVING_MATRIX;
     public static MetaItem<?>.MetaValueItem SATURATED_FULLERENE_SIEVING_MATRIX;
 
-    public static MetaItem<?>.MetaValueItem SMALL_COIL;
     public static MetaItem<?>.MetaValueItem TOOL_DATA_SUPRACAUSAL;
 
     public static void init() {

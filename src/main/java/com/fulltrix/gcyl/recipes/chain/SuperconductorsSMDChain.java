@@ -6,6 +6,7 @@ import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.Material;
+import gregtech.common.items.MetaItems;
 import net.minecraft.item.ItemStack;
 
 import static com.fulltrix.gcyl.GCYLMaterials.*;
@@ -348,7 +349,7 @@ public class SuperconductorsSMDChain {
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(290).EUt(1920)
-                .inputs(SMALL_COIL.getStackForm(4))
+                .inputs(MetaItems.INDUCTOR.getStackForm(4))
                 .input(dust, CarbonylPurifiedIron, 1)
                 .input(wireFine, AnnealedCopper, 2)
                 .fluidInputs(SolderingAlloy.getFluid(144))
@@ -1119,7 +1120,7 @@ public class SuperconductorsSMDChain {
                 .input(dust, Cobalt, 2)
                 .input(dust, Indium, 10)
                 .fluidInputs(CosmicComputingMix.getFluid(1000))
-                .output(dust, ChargedCesiumCeriumCobaltIndium, 14)
+                .output(dust, ChargedCaesiumCeriumCobaltIndium, 14)
                 .buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder().duration(290).EUt(320000)

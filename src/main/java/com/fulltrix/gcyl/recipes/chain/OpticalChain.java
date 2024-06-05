@@ -244,7 +244,7 @@ public class OpticalChain {
         BLAST_RECIPES.recipeBuilder().duration(270).EUt(120).blastFurnaceTemp(4600)
                 .input(dust, Phosphorus)
                 .input(dust, Indium)
-                .output(dust, IndiumPhospide, 2)
+                .output(dust, IndiumPhosphide, 2)
                 .buildAndRegister();
 
         // Zn + S -> ZnS

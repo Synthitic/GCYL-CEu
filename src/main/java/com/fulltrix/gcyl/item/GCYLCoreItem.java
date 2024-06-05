@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.item;
 
 import gregtech.api.items.metaitem.StandardMetaItem;
+import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.MarkerMaterials.Tier;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.behaviors.DataItemBehavior;
@@ -12,6 +13,17 @@ public class GCYLCoreItem extends StandardMetaItem {
 
     @Override
     public void registerSubItems() {
+
+        //BASIC_CIRCUIT_LV = addItem(199, "circuit.basic").setUnificationData(OrePrefix.circuit, Tier.LV);
+       // PRIMITIVE_ASSEMBLY = addItem(200, "circuit.assembly.primitive").setUnificationData(OrePrefix.circuit, MarkerMaterials.Tier.MV);
+        //ELECTRONIC_ASSEMBLY = addItem(201, "circuit.assembly.electronic").setUnificationData(OrePrefix.circuit, MarkerMaterials.Tier.MV);
+        //ELECTRONIC_COMPUTER = addItem(202, "circuit.computer.electronic").setUnificationData(OrePrefix.circuit, MarkerMaterials.Tier.HV);
+        REFINED_PROCESSOR = addItem(203, "circuit.processor.refined").setUnificationData(OrePrefix.circuit, MarkerMaterials.Tier.LV);
+        REFINED_ASSEMBLY = addItem(204, "circuit.assembly.refined").setUnificationData(OrePrefix.circuit, MarkerMaterials.Tier.MV);
+        REFINED_COMPUTER = addItem(205, "circuit.computer.refined").setUnificationData(OrePrefix.circuit, MarkerMaterials.Tier.HV);
+        REFINED_MAINFRAME = addItem(206, "circuit.mainframe.refined").setUnificationData(OrePrefix.circuit, MarkerMaterials.Tier.EV);
+        MICRO_PROCESSOR = addItem(207, "circuit.processor.micro").setUnificationData(OrePrefix.circuit, MarkerMaterials.Tier.MV);
+        MICRO_COMPUTER = addItem(209, "circuit.computer.micro").setUnificationData(OrePrefix.circuit, MarkerMaterials.Tier.EV);
 
         CIRCUIT_MAGNETIC_ULV = addItem(220, "circuit.resonatic.ulv").setUnificationData(OrePrefix.circuit, ULV);
         CIRCUIT_MAGNETIC_LV = addItem(221, "circuit.resonatic.lv").setUnificationData(OrePrefix.circuit, LV);
@@ -352,8 +364,6 @@ public class GCYLCoreItem extends StandardMetaItem {
 
         PROTONATED_FULLERENE_SIEVING_MATRIX = addItem(609, "protonated.fullerene.sieving.matrix");
         SATURATED_FULLERENE_SIEVING_MATRIX =addItem(610, "saturated.fullerene.sieving.matrix");
-
-        SMALL_COIL = addItem(611, "small_coil");
 
         TOOL_DATA_SUPRACAUSAL = addItem(615, "tool.datasupracausal").addComponents(new DataItemBehavior(true));
 

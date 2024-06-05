@@ -1,9 +1,15 @@
 package com.fulltrix.gcyl.recipes.categories;
 
 import com.fulltrix.gcyl.recipes.categories.circuits.MagnetoRecipes;
+import gregtech.api.GTValues;
+import gregtech.api.items.armor.ArmorMetaItem;
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
+import gregtech.api.recipes.ingredients.nbtmatch.NBTCondition;
+import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
+import gregtech.common.blocks.BlockComputerCasing;
 import net.minecraft.block.BlockCauldron;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -21,9 +27,15 @@ import static gregtech.api.recipes.ingredients.IntCircuitIngredient.getIntegrate
 import static gregtech.api.unification.material.MarkerMaterials.Color.Pink;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.common.blocks.BlockFusionCasing.CasingType.FUSION_COIL;
+import static gregtech.common.blocks.BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL;
+import static gregtech.common.blocks.MetaBlocks.*;
 import static gregtech.common.items.MetaItems.*;
-import static gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH;
-import static gregtech.common.metatileentities.MetaTileEntities.RESERVOIR_HATCH;
+import static gregtech.common.items.MetaItems.ENERGY_CLUSTER;
+import static gregtech.common.items.MetaItems.ENERGY_MODULE;
+import static gregtech.common.items.MetaItems.GRAVITATION_ENGINE;
+import static gregtech.common.metatileentities.MetaTileEntities.*;
+import static gregtech.integration.crafttweaker.recipe.CTRecipeUtils.removeAll;
 
 public class RecipeOverride {
     public static void init() {
@@ -43,6 +55,12 @@ public class RecipeOverride {
     private static void recipeRemoval() {
 
         //removeRecipesByInputs(FLUID_SOLIDFICATION_RECIPES, new ItemStack[]{MetaItems.SHAPE_MOLD_CYLINDER.getStackForm()},  new FluidStack[]{Polytetrafluoroethylene.getFluid(36)});
+
+        //remove all circuit assembler recipes
+        removeAll(CIRCUIT_ASSEMBLER_RECIPES);
+        removeAll(ASSEMBLY_LINE_RECIPES);
+        removeAll(SCANNER_RECIPES);
+        removeAll(RESEARCH_STATION_RECIPES);
 
         //conflict removal
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(1)}, new FluidStack[]{CoalTar.getFluid(100)});
@@ -132,7 +150,7 @@ public class RecipeOverride {
 
         //naquadah alloy
         removeRecipesByInputs(MIXER_RECIPES, getIntegratedCircuit(2), OreDictUnifier.get(dust, Naquadah, 2), OreDictUnifier.get(dust, Osmiridium), OreDictUnifier.get(dust, Trinium));
-        removeRecipesByInputs(CENTRIFUGE_RECIPES, OreDictUnifier.get(dust, NaquadahAlloy, 4));
+        removeRecipesByInputs(CENTRIFUGE_RECIPES, OreDictUnifier.get(dust, NaquadahAlloy, 4)); //DOESNT WORK
 
         //Severely steam cracked naphtha
         removeRecipesByInputs(DISTILLATION_RECIPES, SeverelySteamCrackedNaphtha.getFluid(1000));
@@ -153,6 +171,49 @@ public class RecipeOverride {
 
         //useless gcym electric implosion compressor
         removeRecipeByName("gcym:electric_implosion_compressor");
+
+        /*NOT NEEDED ANYMORE BUT KEEPING
+        //Fusion reactor computers
+        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL), OreDictUnifier.get(circuit, MarkerMaterials.Tier.ZPM,4),
+                OreDictUnifier.get(plateDouble, Plutonium241), OreDictUnifier.get(plateDouble, Osmiridium), FIELD_GENERATOR_IV.getStackForm(2), ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64),
+                OreDictUnifier.get(wireGtSingle, IndiumTinBariumTitaniumCuprate, 32)}, new FluidStack[]{SolderingAlloy.getFluid(L*8), NiobiumTitanium.getFluid(L*8)});
+        removeRecipesByInputs(SCANNER_RECIPES, TOOL_DATA_STICK.getStackForm(), OreDictUnifier.get(wireGtSingle, IndiumTinBariumTitaniumCuprate));
+
+        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{FUSION_CASING.getItemVariant(FUSION_COIL), OreDictUnifier.get(circuit, MarkerMaterials.Tier.UV,4),
+                OreDictUnifier.get(plateDouble, Naquadria), OreDictUnifier.get(plateDouble, Europium), FIELD_GENERATOR_LuV.getStackForm(2), ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64),
+                ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(32), OreDictUnifier.get(wireGtSingle, UraniumRhodiumDinaquadide, 32)},
+                new FluidStack[]{SolderingAlloy.getFluid(L*8), VanadiumGallium.getFluid(L*8)});
+        removeRecipesByInputs(RESEARCH_STATION_RECIPES, TOOL_DATA_ORB.getStackForm(),FUSION_REACTOR[0].getStackForm());
+
+        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{FUSION_CASING.getItemVariant(FUSION_COIL), OreDictUnifier.get(circuit, MarkerMaterials.Tier.UHV,4),
+                        QUANTUM_STAR.getStackForm(), OreDictUnifier.get(plateDouble, Americium), FIELD_GENERATOR_ZPM.getStackForm(2), ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64),
+                        ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64), OreDictUnifier.get(wireGtSingle, EnrichedNaquadahTriniumEuropiumDuranide, 32)},
+                new FluidStack[]{SolderingAlloy.getFluid(L*8), YttriumBariumCuprate.getFluid(L*8)});
+        removeRecipesByInputs(RESEARCH_STATION_RECIPES, TOOL_DATA_MODULE.getStackForm(),FUSION_REACTOR[1].getStackForm());
+
+        //luv-uv emitter
+        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{OreDictUnifier.get(frameGt, HSSS), ELECTRIC_MOTOR_LuV.getStackForm(), OreDictUnifier.get(stickLong, Ruridit,4), QUANTUM_STAR.getStackForm(),
+                OreDictUnifier.get( circuit, MarkerMaterials.Tier.LuV, 2), OreDictUnifier.get(foil, Palladium, 64), OreDictUnifier.get(foil, Palladium, 32), OreDictUnifier.get(cableGtSingle, NiobiumTitanium, 4)},
+                new FluidStack[]{SolderingAlloy.getFluid(L*2)});
+        removeRecipesByInputs(SCANNER_RECIPES, TOOL_DATA_STICK.getStackForm(), EMITTER_IV.getStackForm());
+        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{OreDictUnifier.get(frameGt, NaquadahAlloy), ELECTRIC_MOTOR_ZPM.getStackForm(), OreDictUnifier.get(stickLong, Osmiridium,4), QUANTUM_STAR.getStackForm(2),
+                        OreDictUnifier.get( circuit, MarkerMaterials.Tier.ZPM, 2), OreDictUnifier.get(foil, Trinium, 64), OreDictUnifier.get(foil, Trinium, 32), OreDictUnifier.get(cableGtSingle, VanadiumGallium, 4)},
+                new FluidStack[]{SolderingAlloy.getFluid(L*4)});
+        removeRecipesByInputs(RESEARCH_STATION_RECIPES, TOOL_DATA_ORB.getStackForm(), EMITTER_LuV.getStackForm());
+        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{OreDictUnifier.get(frameGt, Tritanium), ELECTRIC_MOTOR_UV.getStackForm(), OreDictUnifier.get(stickLong, Tritanium,4), GRAVI_STAR.getStackForm(),
+                        OreDictUnifier.get( circuit, MarkerMaterials.Tier.UV, 2), OreDictUnifier.get(foil, Naquadria, 64), OreDictUnifier.get(foil, Naquadria, 32), OreDictUnifier.get(cableGtSingle, YttriumBariumCuprate, 4)},
+                new FluidStack[]{SolderingAlloy.getFluid(L*8), Naquadria.getFluid(L*4)});
+        removeRecipesByInputs(RESEARCH_STATION_RECIPES, TOOL_DATA_MODULE.getStackForm(), EMITTER_ZPM.getStackForm());
+
+         */
+
+
+
+
+        //gravi star
+        removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{QUANTUM_STAR.getStackForm()}, new FluidStack[]{Neutronium.getFluid(288)});
+
+
     }
 
     public static void chemistryOverride() {
@@ -367,5 +428,429 @@ public class RecipeOverride {
                 .EUt(480)
                 .duration(150)
                 .buildAndRegister();
+
+        //fusion reactor computers
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL))
+                .input(circuit, MarkerMaterials.Tier.ZPM, 4)
+                .input(plateDouble, Plutonium241)
+                .input(plateDouble, Osmiridium)
+                .input(FIELD_GENERATOR_IV, 2)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
+                .input(wireGtSingle, LuVSuperconductor, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(NiobiumTitanium.getFluid(L * 8))
+                .outputs(FUSION_REACTOR[0].getStackForm())
+                .scannerResearch(b -> b
+                        .researchStack(OreDictUnifier.get(wireGtSingle, LuVSuperconductor))
+                        .duration(1200)
+                        .EUt(VA[IV]))
+                .duration(800).EUt(VA[LuV]).buildAndRegister();
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(FUSION_CASING.getItemVariant(FUSION_COIL))
+                .input(circuit, MarkerMaterials.Tier.UV, 4)
+                .input(plateDouble, Naquadria)
+                .input(plateDouble, Europium)
+                .input(FIELD_GENERATOR_LuV, 2)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 32)
+                .input(wireGtSingle, ZPMSuperconductor, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(VanadiumGallium.getFluid(L * 8))
+                .outputs(FUSION_REACTOR[1].getStackForm())
+                .stationResearch(b -> b
+                        .researchStack(FUSION_REACTOR[0].getStackForm())
+                        .CWUt(16)
+                        .EUt(VA[ZPM]))
+                .duration(1000).EUt(61440).buildAndRegister();
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(FUSION_CASING.getItemVariant(FUSION_COIL))
+                .input(circuit, MarkerMaterials.Tier.UHV, 4)
+                .input(QUANTUM_STAR)
+                .input(plateDouble, Americium)
+                .input(FIELD_GENERATOR_ZPM, 2)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
+                .input(wireGtSingle, UVSuperconductor, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(YttriumBariumCuprate.getFluid(L * 8))
+                .outputs(FUSION_REACTOR[2].getStackForm())
+                .stationResearch(b -> b
+                        .researchStack(FUSION_REACTOR[1].getStackForm())
+                        .CWUt(96)
+                        .EUt(VA[UV]))
+                .duration(1000).EUt(VA[ZPM]).buildAndRegister();
+
+        //Lapotronic energy orb
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(512).EUt(1024)
+                .input(EXTREME_CIRCUIT_BOARD)
+                .input(POWER_INTEGRATED_CIRCUIT, 4)
+                .input(ENGRAVED_LAPOTRON_CHIP, 24)
+                .input(NANO_CENTRAL_PROCESSING_UNIT, 2)
+                .input(wireFine, Platinum, 16)
+                .input(plate, Platinum, 8)
+                .output(ENERGY_LAPOTRONIC_ORB)
+                .solderMultiplier(2)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister();
+
+        //Nand chip
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().EUt(VA[MV]).duration(300)
+                .input(GOOD_CIRCUIT_BOARD)
+                .input(SIMPLE_SYSTEM_ON_CHIP)
+                .input(bolt, RedAlloy, 2)
+                .input(wireFine, Tin, 2)
+                .output(NAND_CHIP_ULV, 8)
+                .buildAndRegister();
+
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().EUt(VA[MV]).duration(300)
+                .input(PLASTIC_CIRCUIT_BOARD)
+                .input(SIMPLE_SYSTEM_ON_CHIP)
+                .input(bolt, RedAlloy, 2)
+                .input(wireFine, Tin, 2)
+                .output(NAND_CHIP_ULV, 12)
+                .buildAndRegister();
+
+        //Wetware life support
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(1200).EUt(VA[LuV])
+                .input(MULTILAYER_FIBER_BOARD, 16)
+                .input(PETRI_DISH)
+                .input(ELECTRIC_PUMP_LuV)
+                .input(SENSOR_IV)
+                .input(circuit, MarkerMaterials.Tier.IV)
+                .input(foil, NiobiumTitanium, 16)
+                .fluidInputs(SterileGrowthMedium.getFluid(4000))
+                .output(WETWARE_BOARD, 16)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister();
+
+        //advanced quarktech
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(1000).EUt(GTValues.VA[GTValues.LuV])
+                .inputNBT(((ArmorMetaItem<?>) QUANTUM_CHESTPLATE.getStackForm().getItem())
+                        .getItem(QUANTUM_CHESTPLATE.getStackForm()), NBTMatcher.ANY, NBTCondition.ANY)
+                .inputs(HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(2))
+                .input(wireFine, NiobiumTitanium, 64)
+                .input(wireGtQuadruple, Osmium, 6)
+                .input(plateDouble, Iridium, 4)
+                .inputs(GRAVITATION_ENGINE.getStackForm(2))
+                .input(circuit, MarkerMaterials.Tier.ZPM)
+                .input(plateDense, RhodiumPlatedPalladium, 2)
+                .inputNBT(ENERGY_LAPOTRONIC_ORB_CLUSTER, NBTMatcher.ANY, NBTCondition.ANY)
+                .inputs(FIELD_GENERATOR_LuV.getStackForm(2))
+                .inputs(ELECTRIC_MOTOR_LuV.getStackForm(2))
+                .input(screw, HSSS, 8)
+                .outputs(QUANTUM_CHESTPLATE_ADVANCED.getStackForm())
+                .scannerResearch(GRAVITATION_ENGINE.getStackForm())
+                .buildAndRegister();
+
+        // Lapotronic Energy Cluster
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(80000).duration(1000)
+                .input(EXTREME_CIRCUIT_BOARD)
+                .input(plate, Europium, 8)
+                .input(circuit, MarkerMaterials.Tier.LuV, 8)
+                .inputNBT(ENERGY_LAPOTRONIC_ORB, NBTMatcher.ANY, NBTCondition.ANY)
+                .input(FIELD_GENERATOR_IV)
+                .input(HIGH_POWER_INTEGRATED_CIRCUIT, 16)
+                .input(SMD_DIODE_CRYSTAL, 8)
+                .input(SMD_CAPACITOR_CRYSTAL, 8)
+                .input(SMD_RESISTOR_CRYSTAL, 8)
+                .input(SMD_TRANSISTOR_CRYSTAL, 8)
+                .input(wireFine, Platinum, 64)
+                .input(bolt, Naquadah, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 5))
+                .output(ENERGY_LAPOTRONIC_ORB_CLUSTER)
+                .scannerResearch(ENERGY_LAPOTRONIC_ORB.getStackForm())
+                .buildAndRegister();
+
+        // Energy Module
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(100000).duration(1200)
+                .input(ELITE_CIRCUIT_BOARD)
+                .input(plateDouble, Europium, 8)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 4)
+                .inputNBT(ENERGY_LAPOTRONIC_ORB_CLUSTER, NBTMatcher.ANY, NBTCondition.ANY)
+                .input(FIELD_GENERATOR_LuV)
+                .input(HIGH_POWER_INTEGRATED_CIRCUIT, 32)
+                .input(SMD_DIODE_WETWARE, 12)
+                .input(SMD_CAPACITOR_WETWARE, 12)
+                .input(SMD_RESISTOR_WETWARE, 12)
+                .input(SMD_TRANSISTOR_WETWARE, 12)
+                .input(wireFine, Ruridit, 64)
+                .input(bolt, Naquadria, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 10))
+                .output(ENERGY_MODULE)
+                .stationResearch(b -> b
+                        .researchStack(ENERGY_LAPOTRONIC_ORB_CLUSTER.getStackForm())
+                        .CWUt(16))
+                .buildAndRegister();
+
+        // Energy Cluster
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(200000).duration(1400)
+                .input(WETWARE_CIRCUIT_BOARD)
+                .input(plate, Americium, 16)
+                .input(WETWARE_SUPER_COMPUTER_UV, 4)
+                .input(ENERGY_MODULE)
+                .input(FIELD_GENERATOR_ZPM)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 32)
+                .input(SMD_DIODE_BIOWARE, 16)
+                .input(SMD_CAPACITOR_BIOWARE, 16)
+                .input(SMD_RESISTOR_BIOWARE, 16)
+                .input(SMD_TRANSISTOR_BIOWARE, 16)
+                .input(wireFine, Osmiridium, 64)
+                .input(bolt, Naquadria, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 20))
+                .fluidInputs(Polybenzimidazole.getFluid(L * 4))
+                .output(ENERGY_CLUSTER)
+                .stationResearch(b -> b
+                        .researchStack(ENERGY_MODULE.getStackForm())
+                        .CWUt(96)
+                        .EUt(VA[ZPM]))
+                .buildAndRegister();
+
+        // Ultimate Battery
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(600000).duration(2000)
+                .input(plateDouble, Darmstadtium, 16)
+                .input(circuit, MarkerMaterials.Tier.UHV, 4)
+                .input(ENERGY_CLUSTER, 16)
+                .input(FIELD_GENERATOR_UV, 4)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER, 64)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER, 64)
+                .input(SMD_DIODE_OPTICAL, 64)
+                .input(SMD_CAPACITOR_OPTICAL, 64)
+                .input(SMD_RESISTOR_OPTICAL, 64)
+                .input(SMD_TRANSISTOR_OPTICAL, 64)
+                .input(wireGtSingle, UHVSuperconductor, 64)
+                .input(bolt, Neutronium, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(Polybenzimidazole.getFluid(2304))
+                .fluidInputs(Naquadria.getFluid(L * 18))
+                .output(ULTIMATE_BATTERY)
+                .stationResearch(b -> b
+                        .researchStack(ENERGY_CLUSTER.getStackForm())
+                        .CWUt(144)
+                        .EUt(VA[UHV]))
+                .buildAndRegister();
+
+        //Advanced data access hatch
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ITEM_IMPORT_BUS[LuV])
+                .inputNBT(TOOL_DATA_ORB, 4, NBTMatcher.ANY, NBTCondition.ANY)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 4)
+                .output(ADVANCED_DATA_ACCESS_HATCH)
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
+                .fluidInputs(Polybenzimidazole.getFluid(L * 4))
+                .stationResearch(b -> b.researchStack(DATA_BANK.getStackForm()).CWUt(4))
+                .duration(400).EUt(6000).buildAndRegister();
+
+        //DATA BANK
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(COMPUTER_CASING.getItemVariant(BlockComputerCasing.CasingType.COMPUTER_CASING))
+                .input(circuit, MarkerMaterials.Tier.LuV, 8)
+                .inputNBT(TOOL_DATA_ORB, NBTMatcher.ANY, NBTCondition.ANY)
+                .input(wireFine, Cobalt, 64)
+                .input(wireFine, Copper, 64)
+                .input(OPTICAL_PIPES[0], 4)
+                .input(wireGtDouble, LuVSuperconductor, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
+                .fluidInputs(Lubricant.getFluid(500))
+                .output(DATA_BANK)
+                .scannerResearch(b -> b
+                        .researchStack(DATA_ACCESS_HATCH.getStackForm())
+                        .duration(2400)
+                        .EUt(VA[EV]))
+                .duration(1200).EUt(6000).buildAndRegister();
+
+        //Research station
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(DATA_BANK)
+                .input(SENSOR_LuV, 8)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 8)
+                .input(FIELD_GENERATOR_LuV, 2)
+                .input(ELECTRIC_MOTOR_ZPM, 2)
+                .input(wireGtDouble, ZPMSuperconductor, 32)
+                .input(foil, Trinium, 32)
+                .input(OPTICAL_PIPES[0], 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(VanadiumGallium.getFluid(L * 8))
+                .output(RESEARCH_STATION)
+                .scannerResearch(b -> b
+                        .researchStack(SCANNER[LuV].getStackForm())
+                        .duration(2400)
+                        .EUt(VA[IV]))
+                .duration(1200).EUt(100000).buildAndRegister();
+
+        //object holder
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ITEM_IMPORT_BUS[ZPM])
+                .input(EMITTER_LuV, 8)
+                .input(circuit, MarkerMaterials.Tier.ZPM)
+                .input(ROBOT_ARM_ZPM, 2)
+                .input(ELECTRIC_MOTOR_ZPM, 2)
+                .input(wireGtDouble, ZPMSuperconductor, 16)
+                .input(OPTICAL_PIPES[0], 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
+                .fluidInputs(Polybenzimidazole.getFluid(L * 2))
+                .output(OBJECT_HOLDER)
+                .scannerResearch(b -> b
+                        .researchStack(ITEM_IMPORT_BUS[ZPM].getStackForm())
+                        .duration(2400)
+                        .EUt(VA[IV]))
+                .duration(1200).EUt(100000).buildAndRegister();
+
+        //network switch
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(COMPUTER_CASING.getItemVariant(BlockComputerCasing.CasingType.COMPUTER_CASING))
+                .input(EMITTER_ZPM, 4)
+                .input(SENSOR_ZPM, 4)
+                .input(circuit, MarkerMaterials.Tier.UV, 4)
+                .input(wireGtDouble, UVSuperconductor, 32)
+                .input(foil, Tritanium, 64)
+                .input(foil, Tritanium, 64)
+                .input(OPTICAL_PIPES[0], 8)
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
+                .fluidInputs(Polybenzimidazole.getFluid(L * 4))
+                .output(NETWORK_SWITCH)
+                .stationResearch(b -> b
+                        .researchStack(new ItemStack(OPTICAL_PIPES[0]))
+                        .CWUt(32)
+                        .EUt(VA[ZPM]))
+                .duration(1200).EUt(100000).buildAndRegister();
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(DATA_BANK)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 4)
+                .input(FIELD_GENERATOR_LuV, 8)
+                .inputNBT(TOOL_DATA_ORB, NBTMatcher.ANY, NBTCondition.ANY)
+                .input(COVER_SCREEN)
+                .input(wireGtDouble, ZPMSuperconductor, 64)
+                .input(OPTICAL_PIPES[0], 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(VanadiumGallium.getFluid(L * 8))
+                .fluidInputs(PCBCoolant.getFluid(4000))
+                .output(HIGH_PERFORMANCE_COMPUTING_ARRAY)
+                .scannerResearch(b -> b
+                        .researchStack(COVER_SCREEN.getStackForm())
+                        .duration(2400)
+                        .EUt(VA[IV]))
+                .duration(1200).EUt(100000).buildAndRegister();
+
+        //energy output hatches luv-uhv
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[LuV])
+                .input(spring, NiobiumTitanium, 4)
+                .input(HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(circuit, MarkerMaterials.Tier.LuV)
+                .input(VOLTAGE_COIL_LuV, 2)
+                .fluidInputs(SodiumPotassium.getFluid(6000))
+                .fluidInputs(SolderingAlloy.getFluid(720))
+                .output(ENERGY_OUTPUT_HATCH[LuV])
+                .scannerResearch(b -> b
+                        .researchStack(ENERGY_OUTPUT_HATCH[IV].getStackForm())
+                        .EUt(VA[EV]))
+                .duration(400).EUt(VA[LuV]).buildAndRegister();
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[ZPM])
+                .input(spring, VanadiumGallium, 4)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(circuit, MarkerMaterials.Tier.ZPM)
+                .input(VOLTAGE_COIL_ZPM, 2)
+                .fluidInputs(SodiumPotassium.getFluid(8000))
+                .fluidInputs(SolderingAlloy.getFluid(1440))
+                .output(ENERGY_OUTPUT_HATCH[ZPM])
+                .stationResearch(b -> b
+                        .researchStack(ENERGY_OUTPUT_HATCH[LuV].getStackForm())
+                        .CWUt(8))
+                .duration(600).EUt(VA[ZPM]).buildAndRegister();
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[UV])
+                .input(spring, YttriumBariumCuprate, 4)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(circuit, MarkerMaterials.Tier.UV)
+                .input(VOLTAGE_COIL_UV, 2)
+                .fluidInputs(SodiumPotassium.getFluid(10000))
+                .fluidInputs(SolderingAlloy.getFluid(2880))
+                .output(ENERGY_OUTPUT_HATCH[UV])
+                .stationResearch(b -> b
+                        .researchStack(ENERGY_OUTPUT_HATCH[ZPM].getStackForm())
+                        .CWUt(64)
+                        .EUt(VA[ZPM]))
+                .duration(800).EUt(VA[UV]).buildAndRegister();
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[UHV])
+                .input(spring, Europium, 4)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(wireGtDouble, UHVSuperconductor, 2)
+                .fluidInputs(SodiumPotassium.getFluid(12000))
+                .fluidInputs(SolderingAlloy.getFluid(5760))
+                .output(ENERGY_OUTPUT_HATCH[UHV])
+                .stationResearch(b -> b
+                        .researchStack(ENERGY_OUTPUT_HATCH[UV].getStackForm())
+                        .CWUt(128)
+                        .EUt(VA[UV]))
+                .duration(1000).EUt(VA[UHV]).buildAndRegister();
+
+        //energy input hatches luv-uhv
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[LuV])
+                .input(cableGtSingle, NiobiumTitanium, 4)
+                .input(HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(circuit, MarkerMaterials.Tier.LuV)
+                .input(VOLTAGE_COIL_LuV, 2)
+                .fluidInputs(SodiumPotassium.getFluid(6000))
+                .fluidInputs(SolderingAlloy.getFluid(720))
+                .output(ENERGY_INPUT_HATCH[LuV])
+                .scannerResearch(b -> b
+                        .researchStack(ENERGY_INPUT_HATCH[IV].getStackForm())
+                        .EUt(VA[EV]))
+                .duration(400).EUt(VA[LuV]).buildAndRegister();
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[ZPM])
+                .input(cableGtSingle, VanadiumGallium, 4)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(circuit, MarkerMaterials.Tier.ZPM)
+                .input(VOLTAGE_COIL_ZPM, 2)
+                .fluidInputs(SodiumPotassium.getFluid(8000))
+                .fluidInputs(SolderingAlloy.getFluid(1440))
+                .output(ENERGY_INPUT_HATCH[ZPM])
+                .stationResearch(b -> b
+                        .researchStack(ENERGY_INPUT_HATCH[LuV].getStackForm())
+                        .CWUt(8))
+                .duration(600).EUt(VA[ZPM]).buildAndRegister();
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[UV])
+                .input(cableGtSingle, YttriumBariumCuprate, 4)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(circuit, MarkerMaterials.Tier.UV)
+                .input(VOLTAGE_COIL_UV, 2)
+                .fluidInputs(SodiumPotassium.getFluid(10000))
+                .fluidInputs(SolderingAlloy.getFluid(2880))
+                .output(ENERGY_INPUT_HATCH[UV])
+                .stationResearch(b -> b
+                        .researchStack(ENERGY_INPUT_HATCH[ZPM].getStackForm())
+                        .CWUt(64)
+                        .EUt(VA[ZPM]))
+                .duration(800).EUt(VA[UV]).buildAndRegister();
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[UHV])
+                .input(cableGtSingle, Europium, 4)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(wireGtDouble, UHVSuperconductor, 2)
+                .fluidInputs(SodiumPotassium.getFluid(12000))
+                .fluidInputs(SolderingAlloy.getFluid(5760))
+                .output(ENERGY_INPUT_HATCH[UHV])
+                .stationResearch(b -> b
+                        .researchStack(ENERGY_INPUT_HATCH[UV].getStackForm())
+                        .CWUt(128)
+                        .EUt(VA[UV]))
+                .duration(1000).EUt(VA[UHV]).buildAndRegister();
     }
 }

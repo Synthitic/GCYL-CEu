@@ -309,6 +309,7 @@ public class CasingRecipes {
 
     private static void coilCasings() {
 
+        /*
         // Fusion Coil Recipes
         ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(30720).duration(400)
                 .inputs(NEUTRON_REFLECTOR.getStackForm(2))
@@ -339,6 +340,8 @@ public class CasingRecipes {
                 .fluidInputs(Helium.getFluid(4000))
                 .outputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(FUSION_COIL_3))
                 .buildAndRegister();
+
+         */
 
         // Standard Coils
         /*

@@ -14,6 +14,8 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
+import gregtech.common.blocks.BlockFusionCasing;
+import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -54,7 +56,7 @@ public class MetaTileEntityStellarForge extends RecipeMapMultiblockController { 
                 .where('M', air())
                 .where('C', states(getCasingState()).setMinGlobalLimited(130).or(autoAbilities(true, true, true, true, true, true, false)))
                 .where('X', states(MULTIBLOCK_CASING2.getState(GCYLMultiblockCasing2.CasingType.STELLAR_CONTAINMENT)))
-                .where('F', states(GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.FUSION_COIL_2)))
+                .where('F', states(MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.FUSION_COIL)))
                 .where('S', selfPredicate())
                 .where('#', any())
                 .build();

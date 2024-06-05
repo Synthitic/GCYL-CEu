@@ -8,6 +8,7 @@ import com.fulltrix.gcyl.item.fusion.GCYLFusionCasing;
 import com.fulltrix.gcyl.item.fusion.GCYLVacuumCasing;
 import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
 import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionCoilProperty;
+import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionEUReturnProperty;
 import com.google.common.util.concurrent.AtomicDouble;
 import gregtech.api.GTValues;
 import gregtech.api.capability.GregtechDataCodes;
@@ -43,6 +44,7 @@ import gregtech.client.shader.postprocessing.BloomType;
 import gregtech.client.utils.*;
 import gregtech.common.ConfigHolder;
 import gregtech.common.metatileentities.MetaTileEntities;
+import gregtech.common.metatileentities.multi.electric.MetaTileEntityFusionReactor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -75,7 +77,7 @@ import static com.fulltrix.gcyl.GCYLMaterials.*;
 
 public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockController implements ITieredMetaTileEntity, IFastRenderMetaTileEntity, IBloomEffect {
 
-    //TODO make this better. make coils independent of tier
+    //TODO make this better. make coils independent of tier. fix bloom. make it be able to run regular fusion recipes. make recipe cancel if energy runs out
 
     private static final List<Fluid> HOT = Arrays.asList(SupercriticalSteam.getFluid(),
             SupercriticalSodiumPotassiumAlloy.getFluid(),
@@ -171,11 +173,6 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
         return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_CASING);
     }
 
-    private static BloomType getBloomType() {
-        ConfigHolder.FusionBloom fusionBloom = ConfigHolder.client.shader.fusionBloom;
-        return BloomType.fromValue(fusionBloom.useShader ? fusionBloom.bloomStyle : -1);
-    }
-
     @Override
     protected void updateFormedValid() {
         if (this.inputEnergyContainers.getEnergyStored() > 0) {
@@ -212,7 +209,10 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(
                 I18n.format("gregtech.machine.fusion_reactor.capacity", calculateEnergyStorageFactor(16) / 1000000L));
-        tooltip.add(I18n.format("gregtech.machine.fusion_reactor.overclocking"));
+        tooltip.add(I18n.format("gcyl.machine.adv_fusion_reactor.tooltip.1"));
+        tooltip.add(I18n.format("gcyl.machine.adv_fusion_reactor.tooltip.2"));
+        tooltip.add(I18n.format("gcyl.machine.adv_fusion_reactor.tooltip.3"));
+        tooltip.add(I18n.format("gcyl.machine.adv_fusion_reactor.tooltip.4"));
     }
 
     private IBlockState getCoilState() {
@@ -337,12 +337,15 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
     @Override
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
+        /*
         GCYLFusionCasing.CasingType coil = context.getOrDefault("Coil", GCYLFusionCasing.CasingType.ADV_FUSION_COIL_1);
         coilTier = Integer.parseInt(coil.getName().substring(coil.getName().length() - 1));
         vacuumTier = context.getOrDefault("Vacuum", GCYLVacuumCasing.CasingType.VACUUM_1).getTier();
         divertorTier = context.getOrDefault("Divertor", GCYLDivertorCasing.CasingType.DIVERTOR_1).getTier();
         int cryostatTier = context.getOrDefault("Cryostat", GCYLCryostatCasing.CasingType.CRYOSTAT_1).getTier();
         canWork = Math.min(Math.min(vacuumTier, divertorTier), cryostatTier) >= coilTier;
+         */
+        this.coilTier = this.tier - 8;
         long energyStored = this.energyContainer.getEnergyStored();
         this.initializeAbilities();
         ((EnergyContainerHandler) this.energyContainer).setEnergyStored(energyStored);
@@ -498,12 +501,12 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
         }
     }
 
-    protected boolean hasFusionRingColor() {
-        return this.fusionRingColor != NO_COLOR;
-    }
-
     protected int getFusionRingColor() {
         return this.fusionRingColor;
+    }
+
+    protected boolean hasFusionRingColor() {
+        return this.fusionRingColor != NO_COLOR;
     }
 
     protected void setFusionRingColor(int fusionRingColor) {
@@ -537,28 +540,20 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
         EnumFacing.Axis axis = RelativeDirection.UP.getRelativeFacing(getFrontFacing(), getUpwardsFacing(), isFlipped())
                 .getAxis();
 
+        buffer.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION_COLOR);
         RenderBufferHelper.renderRing(buffer,
                 getPos().getX() - context.cameraX() + relativeBack.getXOffset() * 7 + 0.5,
-                getPos().getY() - context.cameraY() + relativeBack.getYOffset() * 7 + 0.5,
-                getPos().getZ() - context.cameraZ() + relativeBack.getZOffset() * 7 + 0.5,
-                6, 0.2, 10, 20,
+                getPos().getY() - context.cameraY() + relativeBack.getYOffset() * 7 + 2.0,
+                getPos().getZ() - context.cameraZ() + relativeBack.getZOffset() * 7 + 1.5,
+                4.5, 0.6, 10, 20,
                 r, g, b, a, axis);
+        Tessellator.getInstance().draw();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldRenderBloomEffect(@NotNull EffectRenderContext context) {
-        return this.hasFusionRingColor();
-    }
-
-    @Override
-    public boolean shouldRenderInPass(int pass) {
-        return pass == 0;
-    }
-
-    @Override
-    public boolean isGlobalRenderer() {
-        return true;
+        return this.hasFusionRingColor() && context.camera().isBoundingBoxInFrustum(getRenderBoundingBox());
     }
 
     @Override
@@ -573,10 +568,25 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
                 this.getPos().offset(relativeBack, 13).offset(relativeRight.getOpposite(), 6));
     }
 
+    @Override
+    public boolean shouldRenderInPass(int pass) {
+        return pass == 0;
+    }
+
+    @Override
+    public boolean isGlobalRenderer() {
+        return true;
+    }
+
+    private static BloomType getBloomType() {
+        ConfigHolder.FusionBloom fusionBloom = ConfigHolder.client.shader.fusionBloom;
+        return BloomType.fromValue(fusionBloom.useShader ? fusionBloom.bloomStyle : -1);
+    }
+
     @SideOnly(Side.CLIENT)
     private static final class FusionBloomSetup implements IRenderSetup {
 
-        private static final FusionBloomSetup INSTANCE = new FusionBloomSetup();
+        private static final MetaTileEntityAdvFusionReactor.FusionBloomSetup INSTANCE = new MetaTileEntityAdvFusionReactor.FusionBloomSetup();
 
         float lastBrightnessX;
         float lastBrightnessY;
@@ -594,14 +604,10 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
             GlStateManager.color(1, 1, 1, 1);
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
             GlStateManager.disableTexture2D();
-
-            buffer.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION_COLOR);
         }
 
         @Override
         public void postDraw(@NotNull BufferBuilder buffer) {
-            Tessellator.getInstance().draw();
-
             GlStateManager.enableTexture2D();
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lastBrightnessX, lastBrightnessY);
         }
@@ -732,7 +738,7 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
     public class AdvFusionRecipeLogic extends MultiblockRecipeLogic {
 
 
-        public AdvFusionRecipeLogic(RecipeMapMultiblockController tileEntity) {
+        public AdvFusionRecipeLogic(MetaTileEntityAdvFusionReactor tileEntity) {
             super(tileEntity);
         }
 
@@ -758,7 +764,6 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
         public long getMaxVoltage() {
             return Math.min(GTValues.V[tier], super.getMaxVoltage());
         }
-
 
         @Override
         public boolean checkRecipe(@NotNull Recipe recipe) {
@@ -800,10 +805,12 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
             long euToStart = storage.getRecipePropertyValue(FusionEUToStartProperty.getInstance(), 0L);
             int fusionTier = FusionEUToStartProperty.getFusionTier(euToStart);
             int coilTier = storage.getRecipePropertyValue(AdvFusionCoilProperty.getInstance(), 0);
+            double euReturn = storage.getRecipePropertyValue(AdvFusionEUReturnProperty.getInstance(), 0);
 
             if (fusionTier != 0) fusionTier = MetaTileEntityAdvFusionReactor.this.tier - fusionTier;
             if (coilTier != 0) coilTier = MetaTileEntityAdvFusionReactor.this.coilTier - coilTier;
 
+            values[0] = (int) (values[0] - (values[0] * (euReturn / 100.0)));
             values[2] = Math.min(fusionTier + coilTier, values[2]);
         }
 

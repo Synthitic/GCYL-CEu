@@ -16,7 +16,7 @@ import java.util.List;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.common.blocks.BlockWireCoil.CoilType.*;
-import static gregtech.common.items.MetaItems.COVER_INFINITE_WATER;
+import static gregtech.common.items.MetaItems.*;
 
 
 @JEIPlugin
@@ -47,9 +47,20 @@ public class JEIGCYLPlugin implements IModPlugin {
 
         itemBlacklist.addIngredientToBlacklist(COVER_INFINITE_WATER.getStackForm());
 
-        //The list has to be backwards for some godforsaken reason TODO: make it work on manganese phosphide all the way. hide fluids
+        itemBlacklist.addIngredientToBlacklist(MICROPROCESSOR_LV.getStackForm());
+        itemBlacklist.addIngredientToBlacklist(WORKSTATION_EV.getStackForm());
+        itemBlacklist.addIngredientToBlacklist(PROCESSOR_MV.getStackForm());
+        itemBlacklist.addIngredientToBlacklist(ADVANCED_SMD_CAPACITOR.getStackForm());
+        itemBlacklist.addIngredientToBlacklist(ADVANCED_SMD_INDUCTOR.getStackForm());
+        itemBlacklist.addIngredientToBlacklist(ADVANCED_SMD_DIODE.getStackForm());
+        itemBlacklist.addIngredientToBlacklist(ADVANCED_SMD_RESISTOR.getStackForm());
+        itemBlacklist.addIngredientToBlacklist(ADVANCED_SMD_TRANSISTOR.getStackForm());
+        itemBlacklist.addIngredientToBlacklist(SMD_INDUCTOR.getStackForm());
+
+
+        //The list has to be in this order for some godforsaken reason TODO: make it work on manganese phosphide all the way. hide fluids
         //hide old superconductors
-        List<Material> oldSuperConductors = Arrays.asList(RutheniumTriniumAmericiumNeutronate, EnrichedNaquadahTriniumEuropiumDuranide, UraniumRhodiumDinaquadide,
+        List<Material> oldSuperConductors = Arrays.asList(UraniumTriplatinum, RutheniumTriniumAmericiumNeutronate, EnrichedNaquadahTriniumEuropiumDuranide, UraniumRhodiumDinaquadide,
                 IndiumTinBariumTitaniumCuprate, SamariumIronArsenicOxide, SamariumIronArsenicOxide, MercuryBariumCalciumCuprate, MagnesiumDiboride, ManganesePhosphide);
 
         for(Material mat : oldSuperConductors) {

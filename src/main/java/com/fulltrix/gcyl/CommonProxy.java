@@ -15,6 +15,7 @@ import gregtech.api.event.HighTierEvent;
 import gregtech.api.recipes.GTRecipeInputCache;
 import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
 import gregtech.api.unification.material.event.MaterialEvent;
+import gregtech.api.unification.material.event.MaterialRegistryEvent;
 import gregtech.common.ConfigHolder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -27,6 +28,7 @@ import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -119,8 +121,13 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.post(new GregTechAPI.RegisterEvent<>(null, GCYLComponents.class));
     }
 
+    @SubscribeEvent
+    public static void createMaterialRegistry(MaterialRegistryEvent event) {
+        GregTechAPI.materialManager.createRegistry(Tags.MODID);
+    }
 
-    @SubscribeEvent(priority = EventPriority.NORMAL)
+
+    @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
 
         AdvFusionCoilProperty.registerAdvFusionTier(1, "1");
@@ -144,10 +151,15 @@ public class CommonProxy {
         //RecipeHandler.registerLargeMachineRecipes();
     }
 
+
+
     @SubscribeEvent
     public static void registerOrePrefix(RegistryEvent.Register<IRecipe> event) {
         //NuclearHandler.register();
         VoidMinerHandler.register();
+
+        //TODO: remove ore prefixes from hidden & removed circuits
+
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block, Function<T, ItemBlock> producer) {

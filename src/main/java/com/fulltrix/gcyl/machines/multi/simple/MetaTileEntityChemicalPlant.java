@@ -44,7 +44,7 @@ public class MetaTileEntityChemicalPlant extends GCYLRecipeMapMultiblockControll
                 .aisle("XXXXX", "XCCCX", "XPPPX", "XCCCX", "XXXXX")
                 .aisle("X###X", "SXXXX", "X###X", "XXXXX", "X###X")
                 .where('S', selfPredicate())
-                .where('X', states(getCasingState()).setMinGlobalLimited(22).or(autoAbilities(true,true,true,true,true,true,false)))
+                .where('X', states(getCasingState()).setMinGlobalLimited(60).or(autoAbilities(true,true,true,true,true,true,false)))
                 .where('C', heatingCoils())
                 .where('P', states(MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.POLYTETRAFLUOROETHYLENE_PIPE)))
                 .where('#', air())

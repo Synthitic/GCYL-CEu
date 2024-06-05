@@ -3,7 +3,6 @@ package com.fulltrix.gcyl;
 //import com.fulltrix.tjfcore.materials.IsotopeMaterial;
 //import com.fulltrix.tjfcore.materials.RadioactiveMaterial;
 
-import gregicality.multiblocks.api.unification.GCYMMaterialFlags;
 import gregtech.api.GTValues;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.fluids.store.FluidStorageKeys;
@@ -49,7 +48,7 @@ public class GCYLMaterials {
 
     private static final TextFormatting[] fanciness = new TextFormatting[]{RED, GOLD, YELLOW, GREEN, AQUA, BLUE, LIGHT_PURPLE};
 
-    public static int id = 24000;
+    public static int id = 0;
     //NUCLEAR_MARK
     public static Material Uranium;
     public static Material Americium241;
@@ -170,7 +169,6 @@ public class GCYLMaterials {
     public static Material NiobiumHydroxide;
     public static Material OxalicAcid;
     public static Material AmmoniumNiobiumOxalateSolution;
-    public static Material IndiumPhospide;
     public static Material AmmoniumNitrate;
     public static Material AmmoniumSulfate;
     public static Material Ethanolamine;
@@ -253,7 +251,6 @@ public class GCYLMaterials {
     public static Material MetastableOganesson;
     public static Material ProtoAdamantium;
     public static Material SuperheavyHAlloy;
-    public static Material ChargedCaesiumCeriumCobaltIndium;
     public static Material RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate;
     public static Material Legendarium;
     public static Material LanthanumFullereneMix;
@@ -875,7 +872,7 @@ public class GCYLMaterials {
     public static Material AntimonyPentafluoride;
     public static Material AntimonyTrichloride;
     public static Material FluorophosphoricAcid;
-    public static Material ChargedCesiumCeriumCobaltIndium;
+    public static Material ChargedCaesiumCeriumCobaltIndium;
     public static Material VanadiumSlag;
     public static Material VanadiumSlagDust;
     public static Material VanadiumWasteSolution;
@@ -1181,7 +1178,7 @@ public class GCYLMaterials {
         //NUCLEAR_MARK
         Uranium = new Material.Builder(id++, gcylId("uranium_generic"))
                 .ingot(3).liquid()
-                .color(0xF03232)
+                .color((Uranium238.getMaterialRGB()+Uranium235.getMaterialRGB())/2)
                 .iconSet(METALLIC)
                 .flags(EXT_METAL)
                 .element(Elements.U)
@@ -2077,14 +2074,6 @@ public class GCYLMaterials {
                         .build()
                         .setFormula("(NH4)C10Nb2O20",true);
 
-        IndiumPhospide= new Material.Builder(id++, gcylId("indium_phosphide"))
-                .dust()
-                .color(0x5c9c9c)
-                .iconSet(SHINY)
-                .flags(DISABLE_DECOMPOSITION)
-                .components(Indium, 1, Phosphorus, 1)
-                .flags(DISABLE_REPLICATION).build();
-
                 AmmoniumNitrate= new Material.Builder(id++, gcylId("ammonium_nitrate"))
                         .liquid()
                         .color(Ammonia.getMaterialRGB())
@@ -2749,14 +2738,6 @@ public class GCYLMaterials {
                 .blast(10600)
                 .build();
 
-        ChargedCaesiumCeriumCobaltIndium = new Material.Builder(id++, gcylId("charged_caesium_cerium_cobalt_indium"))
-                .dust()
-                .color(0x52ad25)
-                .iconSet(SHINY)
-                .flags(DISABLE_REPLICATION)
-                .build()
-                .setFormula("CsCeCo2In10", true);
-
         RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate = new Material.Builder(id++, gcylId("rhenium_hassium_thallium_isophtaloylbisdiethylthiourea"))
                 .dust()
                 .color(0xa26a8b)
@@ -3336,7 +3317,7 @@ public class GCYLMaterials {
                 .build();
 
         Incoloy813 = new Material.Builder(id++, gcylId("incoloy_813"))
-                .ingot()
+                .ingot().fluid()
                 .color(0x37bf7e)
                 .iconSet(SHINY)
                 .flags(CORE_METAL,DISABLE_REPLICATION)
@@ -3467,7 +3448,7 @@ public class GCYLMaterials {
                 .build();
 
         Enderium = new Material.Builder(id++, gcylId("enderium"))
-                .ingot(3)
+                .ingot(3).fluid()
                 .toolStats(ToolProperty.Builder.of(8.0F, 3.0F, 1280, 3).build())
                 .color(0x23524a)
                 .iconSet(METALLIC)
@@ -7844,7 +7825,7 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("HPF6", true);
 
-        ChargedCesiumCeriumCobaltIndium = new Material.Builder(id++, gcylId("charged_cesium_cerium_cobalt_indium"))
+        ChargedCaesiumCeriumCobaltIndium = new Material.Builder(id++, gcylId("charged_caesium_cerium_cobalt_indium"))
                 .dust()
                 .color(0x52ad25)
                 .flags(DISABLE_REPLICATION)
@@ -10006,7 +9987,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
                 .cableProperties(GTValues.V[GTValues.UXV], 16, 16777216)
-                .components(BlackTitanium,3,SuperheavyHAlloy,2,ChargedCesiumCeriumCobaltIndium,3,RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate,6)
+                .components(BlackTitanium,3,SuperheavyHAlloy,2, ChargedCaesiumCeriumCobaltIndium,3,RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate,6)
                 .blast(12000)
                 .build();
 
@@ -10414,14 +10395,24 @@ public class GCYLMaterials {
             mat.addFlags(GENERATE_ROUND);
         }
 
+        //add fine wire
+        List<Material> wirefinemats = new ArrayList<>();
+        Collections.addAll(wirefinemats, Trinium, TinAlloy, ReinforcedEpoxyResin, HSSS, Ruthenium, Plutonium, Cerium,
+                LuVSuperconductor, ZPMSuperconductor, UVSuperconductor, UHVSuperconductor, UEVSuperconductor, UIVSuperconductor, UXVSuperconductor, MAXSuperconductor);
+        for (Material mat : wirefinemats) {
+            mat.addFlags(GENERATE_FINE_WIRE);
+        }
+
         //Small Specific cases
         HSSG.addFlags(GENERATE_RING);
         Osmium.addFlags(GENERATE_RING);
         HSSE.addFlags(GENERATE_SMALL_GEAR);
         Zeron100.addFlags(GENERATE_BOLT_SCREW);
-        Trinium.addFlags(GENERATE_FINE_WIRE);
         Trinium.addFlags(GENERATE_FRAME);
         Naquadria.addFlags(GENERATE_DENSE);
+        RhodiumPlatedPalladium.addFlags(GENERATE_GEAR);
+        NaquadahAlloy.addFlags(DISABLE_DECOMPOSITION);
+
 
 
         //ADD ROTORS

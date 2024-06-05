@@ -2,26 +2,34 @@ package com.fulltrix.gcyl.recipes.categories.circuits;
 
 
 import gregtech.api.GTValues;
+import gregtech.api.recipes.ModHandler;
+import gregtech.api.unification.material.MarkerMaterials;
+import gregtech.api.unification.stack.UnificationEntry;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.List;
 
 import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.GCYLUtility.gcylId;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.GTValues.VA;
+import static gregtech.api.recipes.ModHandler.removeRecipeByName;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
+import static gregtech.integration.crafttweaker.recipe.CTRecipeUtils.removeAll;
 
 
 public class CircuitRecipes {
 
     //TODO: higher tier soldering alloys
+    //TODO: cleanroom requirements
 
     public static void init() {
-
-        /*
-        removeGTCECircuitRecipes();
 
         primitiveCircuits();
         electronicCircuits();
@@ -30,7 +38,7 @@ public class CircuitRecipes {
         nanoCircuits();
         quantumCircuits();
         crystalCircuits();
-        */
+
         MagnetoRecipes.init();
         wetwareCircuits();
         biowareCircuits();
@@ -41,6 +49,414 @@ public class CircuitRecipes {
 
         CircuitComponentRecipes.init();
         WaferRecipes.init();
+    }
+
+    private static void primitiveCircuits() {
+
+        // Primitive Circuit (Integrated Logic Circuit in game)
+        removeRecipeByName("gregtech:electronic_circuit_lv");
+        ModHandler.addShapedRecipe("primitive_processor", ELECTRONIC_CIRCUIT_LV.getStackForm(),
+                "RPR", "TBT", "CCC",
+                'R', RESISTOR,
+                'P', new UnificationEntry(plate, WroughtIron),
+                'T', VACUUM_TUBE,
+                'B', BASIC_CIRCUIT_BOARD,
+                'C', new UnificationEntry(cableGtSingle, RedAlloy));
+
+        // Primitive Assembly
+        removeRecipeByName("gregtech:electronic_circuit_mv");
+        ModHandler.addShapedRecipe("primitive_assembly", ELECTRONIC_CIRCUIT_MV.getStackForm(),
+                "PCT", "CDC", "TCP",
+                'C', ELECTRONIC_CIRCUIT_LV,
+                'P', new UnificationEntry(plate, WroughtIron),
+                'D', DIODE,
+                'T', new UnificationEntry(cableGtSingle, RedAlloy));
+    }
+
+    private static void electronicCircuits() {
+
+        // Basic Electronic Circuit
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(16)
+                .inputs(RESISTOR.getStackForm(8))
+                .inputs(CAPACITOR.getStackForm(8))
+                .inputs(GOOD_CIRCUIT_BOARD.getStackForm())
+                .input(wireFine, Copper, 4)
+                .outputs(INTEGRATED_CIRCUIT_LV.getStackForm())
+                .buildAndRegister();
+
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(16)
+                .inputs(SMD_RESISTOR_REFINED.getStackForm(4))
+                .inputs(SMD_CAPACITOR_REFINED.getStackForm(4))
+                .inputs(GOOD_CIRCUIT_BOARD.getStackForm())
+                .inputs(CENTRAL_PROCESSING_UNIT.getStackForm())
+                .input(wireFine, Copper, 4)
+                .outputs(INTEGRATED_CIRCUIT_LV.getStackForm())
+                .buildAndRegister();
+
+        // Electronic Assembly
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(16)
+                .inputs(INTEGRATED_CIRCUIT_LV.getStackForm(3))
+                .inputs(TRANSISTOR.getStackForm(2))
+                .inputs(RESISTOR.getStackForm(8))
+                .input(plate, Electrum)
+                .outputs(INTEGRATED_CIRCUIT_MV.getStackForm())
+                .buildAndRegister();
+
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(16)
+                .inputs(INTEGRATED_CIRCUIT_LV.getStackForm(3))
+                .inputs(SMD_TRANSISTOR_REFINED.getStackForm())
+                .inputs(SMD_RESISTOR_REFINED.getStackForm(4))
+                .input(plate, Electrum)
+                .outputs(INTEGRATED_CIRCUIT_MV.getStackForm())
+                .buildAndRegister();
+
+        // Electronic Computer
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(16)
+                .inputs(INTEGRATED_CIRCUIT_MV.getStackForm(4))
+                .inputs(CAPACITOR.getStackForm(4))
+                .inputs(RESISTOR.getStackForm(4))
+                .inputs(INTEGRATED_LOGIC_CIRCUIT.getStackForm(2))
+                .input(plate, Aluminium, 2)
+                .input(wireGtSingle, AnnealedCopper, 4)
+                .outputs(INTEGRATED_CIRCUIT_HV.getStackForm())
+                .buildAndRegister();
+
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(16)
+                .inputs(INTEGRATED_CIRCUIT_MV.getStackForm(4))
+                .inputs(SMD_CAPACITOR_REFINED.getStackForm(2))
+                .inputs(SMD_RESISTOR_REFINED.getStackForm(2))
+                .inputs(INTEGRATED_LOGIC_CIRCUIT.getStackForm(2))
+                .input(plate, Aluminium, 2)
+                .input(wireGtSingle, AnnealedCopper, 4)
+                .outputs(INTEGRATED_CIRCUIT_HV.getStackForm())
+                .buildAndRegister();
+    }
+
+    private static void refinedCircuits() {
+
+        // Refined Processor
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(60)
+                .inputs(RESISTOR.getStackForm(8))
+                .inputs(TRANSISTOR.getStackForm(8))
+                .inputs(CAPACITOR.getStackForm(8))
+                .inputs(PLASTIC_CIRCUIT_BOARD.getStackForm())
+                .inputs(CENTRAL_PROCESSING_UNIT.getStackForm())
+                .input(wireFine, TinAlloy, 2)
+                .outputs(REFINED_PROCESSOR.getStackForm(4))
+                .buildAndRegister();
+
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(60)
+                .inputs(SMD_RESISTOR_REFINED.getStackForm(4))
+                .inputs(SMD_TRANSISTOR_REFINED.getStackForm(4))
+                .inputs(SMD_CAPACITOR_REFINED.getStackForm(4))
+                .inputs(PLASTIC_CIRCUIT_BOARD.getStackForm())
+                .inputs(CENTRAL_PROCESSING_UNIT.getStackForm())
+                .input(wireFine, TinAlloy, 2)
+                .outputs(REFINED_PROCESSOR.getStackForm(4))
+                .buildAndRegister();
+
+        // SoC Recipe
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(600)
+                .inputs(PLASTIC_CIRCUIT_BOARD.getStackForm())
+                .inputs(SYSTEM_ON_CHIP.getStackForm())
+                .input(wireFine, TinAlloy, 8)
+                .outputs(REFINED_PROCESSOR.getStackForm(4))
+                .buildAndRegister();
+
+        // Refined Assembly
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(60)
+                .inputs(REFINED_PROCESSOR.getStackForm(3))
+                .inputs(RESISTOR.getStackForm(8))
+                .inputs(TRANSISTOR.getStackForm(8))
+                .inputs(CAPACITOR.getStackForm(8))
+                .inputs(PLASTIC_CIRCUIT_BOARD.getStackForm())
+                .input(plate, StainlessSteel)
+                .outputs(REFINED_ASSEMBLY.getStackForm())
+                .buildAndRegister();
+
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(60)
+                .inputs(REFINED_PROCESSOR.getStackForm(3))
+                .inputs(SMD_RESISTOR_REFINED.getStackForm(2))
+                .inputs(SMD_TRANSISTOR_REFINED.getStackForm(2))
+                .inputs(SMD_CAPACITOR_REFINED.getStackForm(2))
+                .inputs(PLASTIC_CIRCUIT_BOARD.getStackForm())
+                .input(plate, StainlessSteel)
+                .outputs(REFINED_ASSEMBLY.getStackForm())
+                .buildAndRegister();
+
+        // Refined Computer
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(90)
+                .inputs(REFINED_ASSEMBLY.getStackForm(4))
+                .inputs(RESISTOR.getStackForm(8))
+                .inputs(TRANSISTOR.getStackForm(8))
+                .inputs(RANDOM_ACCESS_MEMORY.getStackForm(2))
+                .inputs(PLASTIC_CIRCUIT_BOARD.getStackForm())
+                .input(wireGtSingle, MVSuperconductor)
+                .outputs(REFINED_COMPUTER.getStackForm())
+                .buildAndRegister();
+
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(90)
+                .inputs(REFINED_ASSEMBLY.getStackForm(4))
+                .inputs(SMD_RESISTOR_REFINED.getStackForm(2))
+                .inputs(SMD_TRANSISTOR_REFINED.getStackForm(2))
+                .inputs(RANDOM_ACCESS_MEMORY.getStackForm(2))
+                .inputs(PLASTIC_CIRCUIT_BOARD.getStackForm())
+                .input(wireGtSingle, MVSuperconductor)
+                .outputs(REFINED_COMPUTER.getStackForm())
+                .buildAndRegister();
+
+        // Refined Mainframe
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(500).EUt(110)
+                .inputs(REFINED_COMPUTER.getStackForm(2))
+                .inputs(RESISTOR.getStackForm(32))
+                .inputs(TRANSISTOR.getStackForm(16))
+                .inputs(DIODE.getStackForm(8))
+                .inputs(RANDOM_ACCESS_MEMORY.getStackForm(4))
+                .input(frameGt, StainlessSteel, 4)
+                .outputs(REFINED_MAINFRAME.getStackForm())
+                .buildAndRegister();
+
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(500).EUt(110)
+                .inputs(REFINED_COMPUTER.getStackForm(2))
+                .inputs(SMD_RESISTOR_REFINED.getStackForm(16))
+                .inputs(SMD_TRANSISTOR_REFINED.getStackForm(8))
+                .inputs(SMD_DIODE_REFINED.getStackForm(4))
+                .inputs(RANDOM_ACCESS_MEMORY.getStackForm(4))
+                .input(frameGt, StainlessSteel, 4)
+                .outputs(REFINED_MAINFRAME.getStackForm())
+                .buildAndRegister();
+    }
+
+    private static void microCircuits() {
+
+        // Micro Processor
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(400)
+                .inputs(SMD_RESISTOR.getStackForm(4))
+                .inputs(SMD_TRANSISTOR.getStackForm(4))
+                .inputs(SMD_CAPACITOR.getStackForm(4))
+                .inputs(ADVANCED_CIRCUIT_BOARD.getStackForm())
+                .inputs(CENTRAL_PROCESSING_UNIT.getStackForm(2))
+                .input(wireFine, RedAlloy, 2)
+                .outputs(MICRO_PROCESSOR.getStackForm(4))
+                .buildAndRegister();
+
+        // SoC Recipe
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(2400)
+                .inputs(ADVANCED_CIRCUIT_BOARD.getStackForm())
+                .inputs(SYSTEM_ON_CHIP.getStackForm())
+                .input(wireFine, RedAlloy, 8)
+                .outputs(MICRO_PROCESSOR.getStackForm(4))
+                .buildAndRegister();
+
+        // Micro Assembly
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(350)
+                .inputs(MICRO_PROCESSOR.getStackForm(3))
+                .inputs(SMD_CAPACITOR.getStackForm(2))
+                .inputs(SMD_RESISTOR.getStackForm(4))
+                .inputs(RANDOM_ACCESS_MEMORY.getStackForm(2))
+                .inputs(ADVANCED_CIRCUIT_BOARD.getStackForm())
+                .input(plate, Titanium)
+                .outputs(PROCESSOR_ASSEMBLY_HV.getStackForm())
+                .buildAndRegister();
+
+        // Micro Computer
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(425)
+                .inputs(PROCESSOR_ASSEMBLY_HV.getStackForm(4))
+                .inputs(SMD_RESISTOR.getStackForm(4))
+                .inputs(SMD_TRANSISTOR.getStackForm(4))
+                .inputs(RANDOM_ACCESS_MEMORY.getStackForm(8))
+                .inputs(ADVANCED_CIRCUIT_BOARD.getStackForm())
+                .input(wireGtSingle, HVSuperconductor)
+                .outputs(MICRO_COMPUTER.getStackForm())
+                .buildAndRegister();
+
+        // Micro Mainframe
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(500).EUt(500)
+                .inputs(MICRO_COMPUTER.getStackForm(2))
+                .inputs(SMD_RESISTOR.getStackForm(20))
+                .inputs(SMD_TRANSISTOR.getStackForm(10))
+                .inputs(SMD_DIODE.getStackForm(5))
+                .inputs(RANDOM_ACCESS_MEMORY.getStackForm(8))
+                .input(frameGt, Titanium, 4)
+                .outputs(MAINFRAME_IV.getStackForm())
+                .buildAndRegister();
+    }
+
+    private static void nanoCircuits() {
+
+        // Nano Processor
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(2000)
+                .outputs(NANO_PROCESSOR_HV.getStackForm(4))
+                .inputs(SMD_RESISTOR_NANO.getStackForm(4))
+                .inputs(SMD_TRANSISTOR_NANO.getStackForm(4))
+                .inputs(SMD_CAPACITOR_NANO.getStackForm(4))
+                .inputs(EXTREME_CIRCUIT_BOARD.getStackForm())
+                .inputs(NANO_CENTRAL_PROCESSING_UNIT.getStackForm(12))
+                .input(wireFine, Aluminium, 2)
+                .buildAndRegister();
+
+        // SoC Recipe
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(9600)
+                .inputs(EXTREME_CIRCUIT_BOARD.getStackForm())
+                .inputs(SYSTEM_ON_CHIP.getStackForm())
+                .input(wireFine, Aluminium, 8)
+                .outputs(NANO_PROCESSOR_HV.getStackForm(4))
+                .buildAndRegister();
+
+        // Nano Processor Assembly
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(2000)
+                .inputs(NANO_PROCESSOR_HV.getStackForm(3))
+                .inputs(SMD_CAPACITOR_NANO.getStackForm(4))
+                .inputs(SMD_RESISTOR_NANO.getStackForm(4))
+                .inputs(NANO_CENTRAL_PROCESSING_UNIT.getStackForm(2))
+                .inputs(EXTREME_CIRCUIT_BOARD.getStackForm())
+                .input(plate, TungstenSteel)
+                .outputs(NANO_PROCESSOR_ASSEMBLY_EV.getStackForm())
+                .buildAndRegister();
+
+        // Nano Computer
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(2000)
+                .outputs(NANO_COMPUTER_IV.getStackForm())
+                .inputs(NANO_PROCESSOR_ASSEMBLY_EV.getStackForm(4))
+                .inputs(SMD_RESISTOR_NANO.getStackForm(4))
+                .inputs(SMD_TRANSISTOR_NANO.getStackForm(4))
+                .inputs(RANDOM_ACCESS_MEMORY.getStackForm(8))
+                .inputs(EXTREME_CIRCUIT_BOARD.getStackForm())
+                .input(wireGtSingle, EVSuperconductor)
+                .buildAndRegister();
+
+        // Nano Mainframe
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(500).EUt(2000)
+                .inputs(NANO_COMPUTER_IV.getStackForm(2))
+                .inputs(SMD_RESISTOR_NANO.getStackForm(24))
+                .inputs(SMD_TRANSISTOR_NANO.getStackForm(12))
+                .inputs(SMD_DIODE_NANO.getStackForm(6))
+                .inputs(RANDOM_ACCESS_MEMORY.getStackForm(12))
+                .input(frameGt, TungstenSteel, 4)
+                .outputs(NANO_MAINFRAME_LUV.getStackForm())
+                .buildAndRegister();
+    }
+
+    private static void quantumCircuits() {
+
+        // Quantum Processor
+
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(3000)
+                .inputs(QUBIT_CENTRAL_PROCESSING_UNIT.getStackForm())
+                .inputs(SMD_TRANSISTOR_QUANTUM.getStackForm(4))
+                .inputs(SMD_CAPACITOR_QUANTUM.getStackForm(4))
+                .inputs(ELITE_CIRCUIT_BOARD.getStackForm())
+                .inputs(NANO_CENTRAL_PROCESSING_UNIT.getStackForm())
+                .input(wireFine, Platinum, 2)
+                .outputs(QUANTUM_PROCESSOR_EV.getStackForm(4))
+                .buildAndRegister();
+
+        // ASoC Recipe
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(36000)
+                .inputs(ELITE_CIRCUIT_BOARD.getStackForm())
+                .inputs(ADVANCED_SYSTEM_ON_CHIP.getStackForm())
+                .input(wireFine, Platinum, 8)
+                .outputs(QUANTUM_PROCESSOR_EV.getStackForm(4))
+                .buildAndRegister();
+
+
+        // Quantum Assembly
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(4000)
+                .inputs(QUANTUM_PROCESSOR_EV.getStackForm(3))
+                .inputs(SMD_CAPACITOR_QUANTUM.getStackForm(4))
+                .inputs(SMD_RESISTOR_QUANTUM.getStackForm(4))
+                .inputs(QUBIT_CENTRAL_PROCESSING_UNIT.getStackForm(2))
+                .inputs(ELITE_CIRCUIT_BOARD.getStackForm())
+                .input(plate, Osmium)
+                .outputs(QUANTUM_ASSEMBLY_IV.getStackForm())
+                .buildAndRegister();
+
+        // Quantum Computer
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(6000)
+                .inputs(QUANTUM_ASSEMBLY_IV.getStackForm(4))
+                .inputs(SMD_DIODE_QUANTUM.getStackForm(8))
+                .inputs(QUANTUM_EYE.getStackForm())
+                .inputs(POWER_INTEGRATED_CIRCUIT.getStackForm(4))
+                .inputs(ELITE_CIRCUIT_BOARD.getStackForm())
+                .input(wireGtSingle, IVSuperconductor, 2)
+                .outputs(QUANTUM_COMPUTER_LUV.getStackForm())
+                .buildAndRegister();
+
+        // Quantum Mainframe
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(500).EUt(8000)
+                .inputs(QUANTUM_COMPUTER_LUV.getStackForm(2))
+                .inputs(SMD_RESISTOR_QUANTUM.getStackForm(32))
+                .inputs(SMD_TRANSISTOR_QUANTUM.getStackForm(28))
+                .inputs(SMD_CAPACITOR_QUANTUM.getStackForm(28))
+                .inputs(SMD_DIODE_QUANTUM.getStackForm(16))
+                .inputs(POWER_INTEGRATED_CIRCUIT.getStackForm(8))
+                .inputs(QUANTUM_STAR.getStackForm())
+                .input(frameGt, Ruridit, 4)
+                .input(wireGtSingle, IVSuperconductor, 16)
+                .outputs(QUANTUM_MAINFRAME_ZPM.getStackForm())
+                .buildAndRegister();
+    }
+
+    private static void crystalCircuits() {
+
+        // Crystal Processor
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(10000)
+                .inputs(CRYSTAL_CENTRAL_PROCESSING_UNIT.getStackForm())
+                .inputs(SMD_TRANSISTOR_CRYSTAL.getStackForm(8))
+                .inputs(SMD_CAPACITOR_CRYSTAL.getStackForm(4))
+                .inputs(KAPTON_CIRCUIT_BOARD.getStackForm())
+                .inputs(NANO_CENTRAL_PROCESSING_UNIT.getStackForm())
+                .input(wireFine, NiobiumTitanium, 2)
+                .outputs(CRYSTAL_PROCESSOR_IV.getStackForm(4))
+                .buildAndRegister();
+
+        // Crystal SoC Recipe
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(86000)
+                .inputs(KAPTON_CIRCUIT_BOARD.getStackForm())
+                .inputs(CRYSTAL_SYSTEM_ON_CHIP.getStackForm())
+                .input(wireFine, NiobiumTitanium, 8)
+                .outputs(CRYSTAL_PROCESSOR_IV.getStackForm(4))
+                .buildAndRegister();
+
+        // Crystal Processor Assembly
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(20000)
+                .inputs(CRYSTAL_PROCESSOR_IV.getStackForm(3))
+                .inputs(CENTRAL_PROCESSING_UNIT.getStackForm(64))
+                .inputs(SMD_RESISTOR_CRYSTAL.getStackForm(4))
+                .inputs(QUBIT_CENTRAL_PROCESSING_UNIT.getStackForm())
+                .inputs(KAPTON_CIRCUIT_BOARD.getStackForm())
+                .input(wireGtSingle, LuVSuperconductor, 4)
+                .outputs(CRYSTAL_ASSEMBLY_LUV.getStackForm())
+                .buildAndRegister();
+
+        // Crystal Computer
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(300).EUt(30000)
+                .inputs(CRYSTAL_ASSEMBLY_LUV.getStackForm(4))
+                .inputs(SMD_DIODE_CRYSTAL.getStackForm(20))
+                .inputs(SMD_RESISTOR_CRYSTAL.getStackForm(20))
+                .inputs(SMD_TRANSISTOR_CRYSTAL.getStackForm(20))
+                .inputs(SMD_CAPACITOR_CRYSTAL.getStackForm(20))
+                .inputs(QUANTUM_EYE.getStackForm())
+                .inputs(HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm())
+                .inputs(KAPTON_CIRCUIT_BOARD.getStackForm())
+                .input(plate, RhodiumPlatedPalladium, 2)
+                .input(wireGtSingle, LuVSuperconductor, 16)
+                .outputs(CRYSTAL_COMPUTER_ZPM.getStackForm())
+                .buildAndRegister();
+
+        // Crystal Mainframe
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(500).EUt(30000)
+                .inputs(CRYSTAL_COMPUTER_ZPM.getStackForm(2))
+                .inputs(SMD_RESISTOR_CRYSTAL.getStackForm(48))
+                .inputs(SMD_TRANSISTOR_CRYSTAL.getStackForm(48))
+                .inputs(SMD_CAPACITOR_CRYSTAL.getStackForm(48))
+                .inputs(SMD_DIODE_CRYSTAL.getStackForm(48))
+                .inputs(HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(4))
+                .inputs(QUANTUM_STAR.getStackForm(4))
+                .input(frameGt, HSSE, 4)
+                .input(wireGtSingle, LuVSuperconductor, 32)
+                .outputs(CRYSTAL_MAINFRAME_UV.getStackForm())
+                .buildAndRegister();
     }
 
     private static void wetwareCircuits() {
