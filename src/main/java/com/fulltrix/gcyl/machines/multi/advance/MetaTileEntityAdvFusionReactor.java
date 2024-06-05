@@ -76,7 +76,7 @@ import static com.fulltrix.gcyl.GCYLMaterials.*;
 
 public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockController implements ITieredMetaTileEntity, IFastRenderMetaTileEntity, IBloomEffect {
 
-    //TODO make this better. make coils independent of tier
+    //TODO make this better. make coils independent of tier. fix bloom. make it be able to run regular fusion recipes
 
     private static final List<Fluid> HOT = Arrays.asList(SupercriticalSteam.getFluid(),
             SupercriticalSodiumPotassiumAlloy.getFluid(),
