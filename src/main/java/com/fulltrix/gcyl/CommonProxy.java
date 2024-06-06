@@ -8,6 +8,7 @@ import com.fulltrix.gcyl.recipes.categories.handlers.FuelHandler;
 import com.fulltrix.gcyl.recipes.categories.handlers.VoidMinerHandler;
 import com.fulltrix.gcyl.recipes.helper.GCYLComponents;
 import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionCoilProperty;
+import com.fulltrix.gcyl.worldgen.WorldGenRegister;
 import gregicality.multiblocks.common.GCYMConfigHolder;
 import gregtech.api.GregTechAPI;
 import gregtech.api.block.VariantItemBlock;
@@ -50,6 +51,7 @@ public class CommonProxy {
 
     public void onLoad() throws IOException {
         registerRecipesAfterCT();
+        WorldGenRegister.init();
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
