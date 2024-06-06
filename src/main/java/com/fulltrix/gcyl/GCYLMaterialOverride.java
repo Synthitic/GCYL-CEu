@@ -230,6 +230,31 @@ public class GCYLMaterialOverride {
         oreProp = Cuprite.getProperty(PropertyKey.ORE);
         oreProp.setDirectSmeltResult(Copper);
         oreProp.addOreByProducts(Iron, Antimony, Malachite);
+
+            //BYPRODUCT OVERRIDES
+        oreProp = Nickel.getProperty(PropertyKey.ORE);
+        oreProp.setOreByProducts(Cobalt, PlatinumMetallicPowder, Iron);
+
+        oreProp = Bornite.getProperty(PropertyKey.ORE);
+        oreProp.setOreByProducts(Pyrite, Cobalt, Cadmium, PreciousMetal);
+
+        oreProp = Chalcopyrite.getProperty(PropertyKey.ORE);
+        oreProp.setOreByProducts(Pyrite, Cobalt, Cadmium, PreciousMetal);
+
+        oreProp = Copper.getProperty(PropertyKey.ORE);
+        oreProp.setOreByProducts(Cobalt, PreciousMetal, Nickel);
+
+        oreProp = Magnetite.getProperty(PropertyKey.ORE);
+        oreProp.setOreByProducts(Iron, PreciousMetal);
+
+        oreProp = Pitchblende.getProperty(PropertyKey.ORE);
+        oreProp.addOreByProducts(Thorium, Uranium, Lead);
+
+        oreProp = Iridium.getProperty(PropertyKey.ORE);
+        oreProp.setOreByProducts(PlatinumMetallicPowder, RarestMetalMixture);
+
+        oreProp = Osmium.getProperty(PropertyKey.ORE);
+        oreProp.setOreByProducts(IridiumMetalResidue);
         //SPECIFIC CASES
 
         NaquadahAlloy.addFlags(GENERATE_FINE_WIRE);
@@ -337,6 +362,7 @@ public class GCYLMaterialOverride {
         Naquadria.addFlags(GENERATE_DENSE);
         RhodiumPlatedPalladium.addFlags(GENERATE_GEAR);
         NaquadahAlloy.addFlags(DISABLE_DECOMPOSITION);
+        Glowstone.addFlags(DISABLE_DECOMPOSITION);
 
 
 

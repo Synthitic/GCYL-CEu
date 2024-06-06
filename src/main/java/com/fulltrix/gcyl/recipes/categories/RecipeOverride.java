@@ -283,7 +283,12 @@ public class RecipeOverride {
                 .fluidOutputs(Cyclopentadiene.getFluid(75))
                 .buildAndRegister();
 
-
+        //Glowstone
+        CENTRIFUGE_RECIPES.recipeBuilder().duration(1000).EUt(80)
+                .input(dust, Glowstone)
+                .output(dust, Redstone)
+                .output(dust, PreciousMetal)
+                .buildAndRegister();
     }
 
     public static void gregtechOverride() {
