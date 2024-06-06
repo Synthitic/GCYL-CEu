@@ -1,0 +1,41 @@
+{
+  "name": "gcyl.veins.ore.aluminium",
+  "weight": 30,
+  "density": 0.15,
+  "min_height": 10,
+  "max_height": 90,
+  "vein_populator": {
+    "type": "surface_rock",
+    "material": "aluminium"
+  },
+  "dimension_filter": [
+    "name:overworld"
+  ],
+  "generator": {
+    "type": "layered",
+    "radius": [
+      20,
+      32
+    ]
+  },
+  "filler": {
+    "type": "simple",
+    "value" : {
+      "type": "weight_random",
+      "values": [
+        {
+          "weight": 50,
+          "value": "ore:aluminium"
+        },
+        {
+          "weight": 25,
+          "value": "ore:sphalerite"
+        },
+        {
+          "weight": 25,
+          "value": "ore:zinc"
+        }
+      ]
+    }
+  }
+}

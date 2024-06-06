@@ -1,0 +1,44 @@
+{
+  "name": "gcyl.veins.ore.bornite",
+  "weight": 80,
+  "density": 0.4,
+  "min_height": 10,
+  "max_height": 50,
+  "vein_populator": {
+    "type": "surface_rock",
+    "material": "bornite"
+  },
+  "dimension_filter": [
+    "name:overworld"
+  ],
+  "generator": {
+    "type": "ellipsoid",
+    "radius": [
+      17,
+      19
+    ]
+  },
+  "filler": {
+    "type": "simple",
+    "value" : {
+      "type": "weight_random",
+      "values": [{
+        "weight": 30,
+        "value": "ore:bornite"
+        },
+        {
+          "weight": 30,
+          "value": "ore:chalcocite"
+        },
+        {
+          "weight": 30,
+          "value": {"block": "gregtech:ore_enargite_0"}
+        },
+        {
+          "weight": 10,
+          "value": "ore:copper"
+        }
+      ]
+    }
+  }
+}

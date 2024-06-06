@@ -1124,6 +1124,13 @@ public class GCYLMaterials {
     public static Material Indalloy140;
     public static Material Seabohrgium;
     public static Material Fordnium;
+    public static Material Enargite;
+    public static Material Dolomite;
+    public static Material Wollastonite;
+    public static Material Kaolinite;
+    public static Material Tenorite;
+    public static Material Tennantite;
+    public static Material Cuprite;
 
     //COILS
     public static Material Pikyonium;
@@ -9862,6 +9869,62 @@ public class GCYLMaterials {
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
                 .iconSet(FLUID)
                 .components(Rutherfordium, 1, Dubnium, 1)
+                .build();
+
+        Enargite = new Material.Builder(++id, gcylId("enargite"))
+                .dust(2)
+                .color(12303291)
+                .flags(DISABLE_REPLICATION)
+                .components(Copper,3,Arsenic,1,Sulfur,4)
+                .iconSet(METALLIC)
+                .build();
+
+        Dolomite = new Material.Builder(++id, gcylId("dolomite"))
+                .dust(1)
+                .color(14798285)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLINT)
+                .components(Calcium,1,Magnesium,1,Carbon,2,Oxygen,6)
+                .build();
+
+        Wollastonite = new Material.Builder(++id, gcylId("wollastonite"))
+                .dust(2)
+                .color(15790320)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .components(Calcium,1,Silicon,1,Oxygen,3)
+                .build();
+
+        Kaolinite = new Material.Builder(++id, gcylId("kaolinite"))
+                .dust(2)
+                .color(16116715)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .components(Aluminium,2,Silicon,2,Hydrogen,4,Oxygen,9)
+                .build();
+
+        Tenorite = new Material.Builder(++id, gcylId("tenorite"))
+                .dust(1)
+                .color(6316128)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FINE)
+                .components(Copper,1,Oxygen,1)
+                .build();
+
+        Tennantite = new Material.Builder(++id, gcylId("tennantite"))
+                .dust()
+                .color(9474192)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(METALLIC)
+                .components(Copper,12,Arsenic,4,Sulfur,13)
+                .build();
+
+        Cuprite = new Material.Builder(++id, gcylId("cuprite"))
+                .dust(2)
+                .color(7798784)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(RUBY)
+                .components(Copper,2,Oxygen,1)
                 .build();
 
         /*

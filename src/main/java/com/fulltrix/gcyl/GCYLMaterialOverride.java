@@ -176,7 +176,8 @@ public class GCYLMaterialOverride {
         //ORE ADDITIONS
         List<Material> omats = new ArrayList<>();
         Collections.addAll(omats, Lignite, Witherite, Barytocalcite, PlatinumMetallicPowder, IridiumMetalResidue, PreciousMetal,
-                RarestMetalMixture, PalladiumMetallicPowder, Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon, Bowieite);
+                RarestMetalMixture, PalladiumMetallicPowder, Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon, Bowieite,
+                Zinc, Enargite, Andradite, Dolomite, Wollastonite, Kaolinite, Uranium, Tenorite, Tennantite, Cuprite);
         for (Material mat : omats) {
             addOre(mat, 1, 1,false);
         }
@@ -211,6 +212,12 @@ public class GCYLMaterialOverride {
 
         oreProp = Bowieite.getProperty(PropertyKey.ORE);
         oreProp.addOreByProducts(Nickel,PlatinumMetallicPowder,RarestMetalMixture,CrudeRhodiumMetal);
+
+        oreProp = Tenorite.getProperty(PropertyKey.ORE);
+        oreProp.setDirectSmeltResult(Copper);
+
+        oreProp = Cuprite.getProperty(PropertyKey.ORE);
+        oreProp.setDirectSmeltResult(Copper);
         //SPECIFIC CASES
 
         NaquadahAlloy.addFlags(GENERATE_FINE_WIRE);

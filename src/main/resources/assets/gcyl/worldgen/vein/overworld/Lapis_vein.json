@@ -1,0 +1,52 @@
+{
+  "name": "gregtech.veins.ore.lapis",
+  "weight": 50,
+  "density": 0.5,
+  "min_height": 20,
+  "max_height": 50,
+  "vein_populator": {
+    "type": "surface_rock",
+    "material": "lapis"
+  },
+  "dimension_filter": [
+    "name:overworld"
+  ],
+  "generator": {
+    "type": "ellipsoid",
+    "radius": [
+      13,
+      15
+    ]
+  },
+  "filler": {
+    "type": "simple",
+    "value" : {
+      "type": "weight_random",
+      "values": [{
+        "weight": 22,
+        "value": "ore:lazurite"
+      },
+        {
+          "weight": 10,
+          "value": {"block": "gregtech:ore_barytocalcite_0"}
+        },
+        {
+          "weight": 5,
+          "value": "ore:sodalite"
+        },
+        {
+          "weight": 5,
+          "value": {"block": "gregtech:ore_witherite_0"}
+        },
+        {
+          "weight": 35,
+          "value": "ore:lapis"
+        },
+        {
+          "weight": 15,
+          "value": "ore:calcite"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "gcyl.veins.ore.dolomite",
+  "weight": 40,
+  "density": 0.6,
+  "min_height": 150,
+  "vein_populator": {
+    "type": "surface_rock",
+    "material": "gcyl:dolomite"
+  },
+  "dimension_filter": [
+    "name:overworld"
+  ],
+  "generator": {
+    "type": "ellipsoid",
+    "radius": [
+      13,
+      13
+    ]
+  },
+  "filler": {
+    "type": "simple",
+    "value" : {
+      "type": "weight_random",
+      "values": [{
+        "weight": 30,
+        "value": {"block": "gregtech:ore_dolomite_0"}
+      },
+        {
+          "weight": 30,
+          "value": {"block": "gregtech:ore_wollastonite_0"}
+        },
+        {
+          "weight": 30,
+          "value": "ore:trona"
+        },
+        {
+          "weight": 10,
+          "value": "ore:andradite"
+        }
+      ]
+    }
+  }
+}
+
+

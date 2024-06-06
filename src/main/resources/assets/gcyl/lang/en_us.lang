@@ -4696,6 +4696,17 @@ gcyl.material.tanzanite=Tanzanite
 gcyl.material.vinteum=Vinteum
 gcyl.material.snow=Snow
 gcyl.material.indalloy_140=Indalloy 140
+gcyl.material.seabohrgium=Seabohrgium
+gcyl.material.fordnium=Fordnium
+gcyl.material.enargite=Enargite
+gcyl.material.dolomite=Dolomite
+gcyl.material.wollastonite=Wollastonite
+gcyl.material.kaolinite=Kaolinite
+gcyl.material.tenorite=Tenorite
+gcyl.material.tennantite=Tennantite
+gcyl.material.cuprite=Cuprite
+
+#TODO: lang for ore veins
 
 gcyl.material.max_superconductor=MAX Superconductor
 

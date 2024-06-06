@@ -1,0 +1,33 @@
+{
+  "name": "gregtech.veins.ore.salts",
+  "weight": 60,
+  "density": 0.7,
+  "min_height": 40,
+  "vein_populator": {
+    "type": "surface_rock",
+    "material": "salt"
+  },
+  "generator": {
+    "type": "ellipsoid",
+    "radius": [14, 17]
+  },
+  "filler": {
+    "type": "simple",
+    "value": {
+      "type": "weight_random",
+      "values": [{
+        "weight": 30,
+        "value": "ore:salt"
+      },
+        {
+          "weight": 35,
+          "value": "ore:rock_salt"
+        },
+        {
+          "weight": 10,
+          "value": "ore:lepidolite"
+        }
+      ]
+    }
+  }
+}
