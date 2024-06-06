@@ -4706,6 +4706,11 @@ gcyl.material.tenorite=Tenorite
 gcyl.material.tennantite=Tennantite
 gcyl.material.cuprite=Cuprite
 
+gcyl.material.draconium=Draconium
+gcyl.material.awaken_draconium=Awakened Draconium
+gcyl.material.chaos=Chaos
+gcyl.material.chaosalloy=Chaos Infinity Alloy
+
 #TODO: lang for ore veins
 
 gcyl.material.max_superconductor=MAX Superconductor

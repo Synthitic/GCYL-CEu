@@ -35,6 +35,8 @@ import static kono.ceu.materialreplication.api.unification.materials.flags.MRMat
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_REPLICATION;
 import static net.minecraft.util.text.TextFormatting.*;
 
+//TODO: add custom material icon sets for special materials
+
 public class GCYLMaterials {
 
     public static final MaterialFlag GENERATE_NUCLEAR_COMPOUND = new MaterialFlag.Builder("generate_nuclear_compound").build();
@@ -1131,6 +1133,12 @@ public class GCYLMaterials {
     public static Material Tenorite;
     public static Material Tennantite;
     public static Material Cuprite;
+    public static Material Zirkelite;
+    public static Material Arsenopyrite;
+    public static Material Draconium;
+    public static Material AwakenDraconium;
+    public static Material Chaos;
+    public static Material ChaosAlloy;
 
     //COILS
     public static Material Pikyonium;
@@ -9912,7 +9920,7 @@ public class GCYLMaterials {
                 .build();
 
         Tennantite = new Material.Builder(++id, gcylId("tennantite"))
-                .dust()
+                .dust(2)
                 .color(9474192)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(METALLIC)
@@ -9925,6 +9933,22 @@ public class GCYLMaterials {
                 .flags(DISABLE_REPLICATION)
                 .iconSet(RUBY)
                 .components(Copper,2,Oxygen,1)
+                .build();
+
+        Zirkelite = new Material.Builder(++id, gcylId("zirkelite"))
+                .dust(2)
+                .color(0x6B5E6A)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .components(Calcium,2,Thorium,2,Cerium,1,Zirconium,7,Rutile,6,Niobium,4,Oxygen,10)
+                .build();
+
+        Arsenopyrite = new Material.Builder(++id, gcylId("arsenopyrite"))
+                .dust(2)
+                .color(0xaa9663)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(METALLIC)
+                .components(Iron,1,Arsenic,1,Sulfur,1)
                 .build();
 
         /*
@@ -10215,6 +10239,49 @@ public class GCYLMaterials {
                 .cableProperties(GTValues.V[GTValues.MAX], 32,0,true)
                 .components(OpVSuperconductorBase,1)
                 .build();
+    }
+
+    public static void initDEMaterials() {
+
+        Draconium = new Material.Builder(++id, gcylId("draconium"))
+                .ingot().liquid()
+                .toolStats(new ToolProperty(10f, 30f,12800,6))
+                .color(0x573d85)
+                .iconSet(DULL)
+                .flags(DISABLE_REPLICATION, GENERATE_PLATE, GENERATE_DENSE, GENERATE_ROD, GENERATE_FRAME, GENERATE_BOLT_SCREW)
+                .blast(9200)
+                .build()
+                .setFormula("*D*");
+
+        AwakenDraconium = new Material.Builder(++id, gcylId("awaken_draconium"))
+                .ingot().liquid().plasma()
+                .toolStats(new ToolProperty(10f,40f,6,128000))
+                .color(0xff571a)
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION, GENERATE_PLATE, GENERATE_DENSE, GENERATE_ROD, GENERATE_FRAME, GENERATE_BOLT_SCREW)
+                .blast(14000)
+                .build()
+                .setFormula(makeFancy("*D*"),true);
+
+        Chaos = new Material.Builder(++id, gcylId("chaos"))
+                .ingot().liquid().plasma()
+                .color(0x696969)
+                .toolStats(new ToolProperty(10f,50f,6,1280000))
+                .iconSet(DULL)
+                .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION, GENERATE_PLATE,  GENERATE_DENSE, GENERATE_ROD, GENERATE_FRAME, GENERATE_FINE_WIRE, GENERATE_BOLT_SCREW)
+                .blast(25000)
+                .build()
+                .setFormula(TextFormatting.OBFUSCATED+"?????????");
+
+        ChaosAlloy = new Material.Builder(++id, gcylId("chaosalloy"))
+                .ingot().liquid().plasma()
+                .color(0x696969)
+                .toolStats(new ToolProperty(10f,60f,6,2560000))
+                .iconSet(SHINY)
+                .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION, GENERATE_PLATE,  GENERATE_DENSE, GENERATE_FINE_WIRE, GENERATE_BOLT_SCREW)
+                .blast(50000)
+                .build()
+                .setFormula(makeFancy(TextFormatting.OBFUSCATED+"?????????"));
     }
 
     private static String makeFancy(String input) {

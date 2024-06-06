@@ -1,0 +1,27 @@
+{
+    "name": "gcyl.veins.ore.zircon.nether",
+    "weight": 30,
+    "density": 0.3,
+    "max_height": 90,
+    "min_height": 40,
+    "dimension_filter": ["is_nether"],
+    "generator": {
+        "type": "ellipsoid",
+        "radius": [10, 10]
+    },
+    "filler": {
+        "type": "simple",
+        "value": {
+            "type": "weight_random",
+            "values": [{
+                    "weight": 80,
+                    "value": {"block": "gregtech:ore_zircon_0"}
+                },
+                {
+                    "weight": 20,
+                    "value": {"block": "gregtech:ore_zirkelite_0"}
+                }
+            ]
+        }
+    }
+}

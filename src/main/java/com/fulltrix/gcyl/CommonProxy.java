@@ -71,6 +71,7 @@ public class CommonProxy {
         GCYLMaterials.register();
         GCYLMaterials.register2();
         GCYLMaterials.registerSuperconductors();
+        GCYLMaterials.initDEMaterials();
         GCYLMaterialOverride.materialChanges();
         GCYLMaterialOverride.tempMaterialModifications();
     }

@@ -177,7 +177,7 @@ public class GCYLMaterialOverride {
         List<Material> omats = new ArrayList<>();
         Collections.addAll(omats, Lignite, Witherite, Barytocalcite, PlatinumMetallicPowder, IridiumMetalResidue, PreciousMetal,
                 RarestMetalMixture, PalladiumMetallicPowder, Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon, Bowieite,
-                Zinc, Enargite, Andradite, Dolomite, Wollastonite, Kaolinite, Uranium, Tenorite, Tennantite, Cuprite);
+                Zinc, Enargite, Andradite, Dolomite, Wollastonite, Kaolinite, Uranium, Tenorite, Tennantite, Cuprite, Tellurium, Zirkelite, Arsenopyrite, Draconium);
         for (Material mat : omats) {
             addOre(mat, 1, 1,false);
         }
@@ -201,6 +201,12 @@ public class GCYLMaterialOverride {
         oreProp = Triniite.getProperty(PropertyKey.ORE);
         oreProp.addOreByProducts(NaquadricCompound, Bismuth, Thallium);
 
+        oreProp = Zirkelite.getProperty(PropertyKey.ORE);
+        oreProp.addOreByProducts(Thorium, Zirconium, Cerium);
+
+        oreProp = Arsenopyrite.getProperty(PropertyKey.ORE);
+        oreProp.addOreByProducts(Iron, Cobaltite, Cobalt);
+
         oreProp = PlatinumMetallicPowder.getProperty(PropertyKey.ORE);
         oreProp.setOreMultiplier(2);
         oreProp.setWashedIn(SodiumPersulfate);
@@ -213,11 +219,17 @@ public class GCYLMaterialOverride {
         oreProp = Bowieite.getProperty(PropertyKey.ORE);
         oreProp.addOreByProducts(Nickel,PlatinumMetallicPowder,RarestMetalMixture,CrudeRhodiumMetal);
 
+        oreProp = Tennantite.getProperty(PropertyKey.ORE);
+        oreProp.setOreMultiplier(2);
+        oreProp.addOreByProducts(Iron, Antimony, Zinc);
+
         oreProp = Tenorite.getProperty(PropertyKey.ORE);
+        oreProp.addOreByProducts(Iron, Manganese, Malachite);
         oreProp.setDirectSmeltResult(Copper);
 
         oreProp = Cuprite.getProperty(PropertyKey.ORE);
         oreProp.setDirectSmeltResult(Copper);
+        oreProp.addOreByProducts(Iron, Antimony, Malachite);
         //SPECIFIC CASES
 
         NaquadahAlloy.addFlags(GENERATE_FINE_WIRE);
