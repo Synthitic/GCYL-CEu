@@ -27,8 +27,8 @@
           "value": "ore:iron"
         },
         {
-          "weight": 15,
-          "value": "ore:poor:vanadium_magnetite"
+          "weight": 7,
+          "value": "ore:vanadium_magnetite"
         },
         {
           "weight": 10,
