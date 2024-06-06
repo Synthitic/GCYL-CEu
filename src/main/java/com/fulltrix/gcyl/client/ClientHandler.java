@@ -28,6 +28,7 @@ public class ClientHandler {
     public static SimpleOverlayRenderer ADVANCED_FUSION;
     public static SimpleOverlayRenderer ADVANCED_FUSION_ACTIVE;
     public static SimpleOverlayRenderer NITINOL_60_CASING;
+    public static SimpleOverlayRenderer MAINTENANCE_OVERLAY_STERILE_CLEANING;
 
     public static OrientedOverlayRenderer NAQADAH_OVERLAY;
     public static OrientedOverlayRenderer ROCKET_OVERLAY;
@@ -50,6 +51,8 @@ public class ClientHandler {
         QUBIT_COMPUTER_OVERLAY = new OrientedOverlayRenderer("machines/qubit_computer");
 
         FREEZER_OVERLAY = new OrientedOverlayRenderer("machines/freezer");
+
+        MAINTENANCE_OVERLAY_STERILE_CLEANING = new SimpleOverlayRenderer("overlay/machine/overlay_maintenance_sterile_cleaning");
 
         //MetaCasing1
         STABALLOY_CASING = new SimpleOverlayRenderer("casings/metal_casings/staballoy");

@@ -14,14 +14,22 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.item.GCYLCoreItems.TOOL_DATA_MODULE_CLUSTER;
+import static com.fulltrix.gcyl.item.GCYLCoreItems.UVA_HALIDE_LAMP;
+import static com.fulltrix.gcyl.machines.GCYLTileEntities.STERILE_CLEANING_MAINTENANCE_HATCH;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
 import static gregtech.api.GTValues.L;
+import static gregtech.api.GTValues.VA;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
 import static gregtech.api.recipes.ModHandler.removeTieredRecipeByName;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
+import static gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
 import static gregtech.api.recipes.ingredients.IntCircuitIngredient.getIntegratedCircuit;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.common.items.MetaItems.*;
+import static gregtech.common.metatileentities.MetaTileEntities.CLEANING_MAINTENANCE_HATCH;
+import static gregtech.common.metatileentities.MetaTileEntities.HULL;
 
 public class MachineCraftingRecipes {
 
@@ -39,15 +47,15 @@ public class MachineCraftingRecipes {
         removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(plate, Neutronium, 8), getIntegratedCircuit(8));
         // UHV+ Hulls
 
-        ModHandler.addShapedRecipe("gcyl_hull_uhv", MetaTileEntities.HULL[9].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV), 'C', new UnificationEntry(cableGtSingle, TungstenTitaniumCarbide), 'H', new UnificationEntry(plate, Seaborgium), 'P', new UnificationEntry(plate, Polyetheretherketone));
-        ModHandler.addShapedRecipe("gcyl_hull_uev", MetaTileEntities.HULL[10].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV), 'C', new UnificationEntry(cableGtQuadruple, Pikyonium), 'H', new UnificationEntry(plate, Bohrium), 'P', new UnificationEntry(plate, Polyetheretherketone));
-        ModHandler.addShapedRecipe("gcyl_hull_uiv", MetaTileEntities.HULL[11].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UIV), 'C', new UnificationEntry(cableGtQuadruple, Cinobite), 'H', new UnificationEntry(plate, Quantum), 'P', new UnificationEntry(plate, Zylon));
-        ModHandler.addShapedRecipe("gcyl_hull_uxv", MetaTileEntities.HULL[12].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV), 'C', new UnificationEntry(cableGtQuadruple, NaquadriaticTaranium), 'H', new UnificationEntry(plate, BlackTitanium), 'P', new UnificationEntry(plate, FullerenePolymerMatrix));
+        ModHandler.addShapedRecipe("gcyl_hull_uhv", HULL[9].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV), 'C', new UnificationEntry(cableGtSingle, TungstenTitaniumCarbide), 'H', new UnificationEntry(plate, Seaborgium), 'P', new UnificationEntry(plate, Polyetheretherketone));
+        ModHandler.addShapedRecipe("gcyl_hull_uev", HULL[10].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV), 'C', new UnificationEntry(cableGtQuadruple, Pikyonium), 'H', new UnificationEntry(plate, Bohrium), 'P', new UnificationEntry(plate, Polyetheretherketone));
+        ModHandler.addShapedRecipe("gcyl_hull_uiv", HULL[11].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UIV), 'C', new UnificationEntry(cableGtQuadruple, Cinobite), 'H', new UnificationEntry(plate, Quantum), 'P', new UnificationEntry(plate, Zylon));
+        ModHandler.addShapedRecipe("gcyl_hull_uxv", HULL[12].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV), 'C', new UnificationEntry(cableGtQuadruple, NaquadriaticTaranium), 'H', new UnificationEntry(plate, BlackTitanium), 'P', new UnificationEntry(plate, FullerenePolymerMatrix));
 
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV)).input(cableGtSingle, TungstenTitaniumCarbide, 2).fluidInputs(Polyetheretherketone.getFluid(L * 2)).outputs(MetaTileEntities.HULL[9].getStackForm()).buildAndRegister();
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV)).input(cableGtQuadruple, Pikyonium, 2).fluidInputs(Polyetheretherketone.getFluid(L * 2)).outputs(MetaTileEntities.HULL[10].getStackForm()).buildAndRegister();
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UIV)).input(cableGtQuadruple, Cinobite, 2).fluidInputs(Zylon.getFluid(L * 2)).outputs(MetaTileEntities.HULL[11].getStackForm()).buildAndRegister();
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV)).input(cableGtQuadruple, NaquadriaticTaranium, 2).fluidInputs(FullerenePolymerMatrix.getFluid(L * 2)).outputs(MetaTileEntities.HULL[12].getStackForm()).buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV)).input(cableGtSingle, TungstenTitaniumCarbide, 2).fluidInputs(Polyetheretherketone.getFluid(L * 2)).outputs(HULL[9].getStackForm()).buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV)).input(cableGtQuadruple, Pikyonium, 2).fluidInputs(Polyetheretherketone.getFluid(L * 2)).outputs(HULL[10].getStackForm()).buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UIV)).input(cableGtQuadruple, Cinobite, 2).fluidInputs(Zylon.getFluid(L * 2)).outputs(HULL[11].getStackForm()).buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV)).input(cableGtQuadruple, NaquadriaticTaranium, 2).fluidInputs(FullerenePolymerMatrix.getFluid(L * 2)).outputs(HULL[12].getStackForm()).buildAndRegister();
 
         removeTieredRecipeByName("gregtech:casing_", GTValues.UHV, GTValues.MAX);
         // UHV+ Casings
@@ -182,13 +190,6 @@ public class MachineCraftingRecipes {
         ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(200).input(plateOrCurved, Titanium, 4).input(stickLong, Titanium, 4).outputs(GATileEntities.TITANIUM_CRATE.getStackForm()).circuitMeta(2).buildAndRegister();
         ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(200).input(plateOrCurved, TungstenSteel, 4).input(stickLong, TungstenSteel, 4).outputs(GATileEntities.TUNGSTENSTEEL_CRATE.getStackForm()).circuitMeta(2).buildAndRegister();
 
-        // Energy Converters
-        for (final EnergyConverterType type : EnergyConverterType.values()) {
-            if (GATileEntities.ENERGY_CONVERTER.containsKey(type)) {
-                GATileEntities.ENERGY_CONVERTER.get(type).forEach(EnergyConverterCraftingHelper.HELPER.logic(type));
-            }
-        }
-
         // Hot Coolant Rotor Holders
         ModHandler.addShapedRecipe("ga_rotor_holder_hv", GATileEntities.ROTOR_HOLDER[0].getStackForm(), "WHW", "WRW", "WWW", 'H', MetaTileEntities.HULL[HV].getStackForm(), 'W', new UnificationEntry(wireGtHex, Gold), 'R', new UnificationEntry(gear, BlackSteel));
         ModHandler.addShapedRecipe("ga_rotor_holder_luv", GATileEntities.ROTOR_HOLDER[1].getStackForm(), "WHW", "WRW", "WWW", 'H', MetaTileEntities.HULL[LuV].getStackForm(), 'W', new UnificationEntry(wireGtHex, YttriumBariumCuprate), 'R', new UnificationEntry(gear, RhodiumPlatedPalladium));
@@ -196,6 +197,26 @@ public class MachineCraftingRecipes {
 
 
        */
+
+        //STERILE FILTRATION MAINTENANCE HATCH
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .outputs(STERILE_CLEANING_MAINTENANCE_HATCH.getStackForm())
+                .inputs(CLEANING_MAINTENANCE_HATCH.getStackForm())
+                .inputs(ROBOT_ARM_UIV.getStackForm(4))
+                .input(circuit, MarkerMaterials.Tier.UIV, 6)
+                .inputs(HULL[GTValues.UIV].getStackForm())
+                .inputs(EMITTER_UIV.getStackForm(2))
+                .inputs(UVA_HALIDE_LAMP.getStackForm(4))
+                .fluidInputs(Indalloy140.getFluid(L * 8))
+                .fluidInputs(Lubricant.getFluid(L * 4))
+                .stationResearch(b -> b
+                        .researchStack(CLEANING_MAINTENANCE_HATCH.getStackForm())
+                        .CWUt(512)
+                        .dataStack(TOOL_DATA_MODULE_CLUSTER.getStackForm())
+                        .EUt(VA[GTValues.UIV]))
+                .duration(300).EUt(GTValues.VA[GTValues.UIV])
+                .buildAndRegister();
+
     }
 
 

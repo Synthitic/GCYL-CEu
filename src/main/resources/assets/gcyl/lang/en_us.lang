@@ -4695,6 +4695,7 @@ gcyl.material.niter=Niter
 gcyl.material.tanzanite=Tanzanite
 gcyl.material.vinteum=Vinteum
 gcyl.material.snow=Snow
+gcyl.material.indalloy_140=Indalloy 140
 
 gcyl.material.max_superconductor=MAX Superconductor
 
@@ -4721,3 +4722,4 @@ gcyl.machine.ore_factory.config.2=Macerate>Ore Wash>Sifter
 gcyl.machine.ore_factory.config.3=Macerate>Macerate>Centrifuge
 gcyl.machine.ore_factory.config.4=Macerate>Thermal Centrifuge>Macerate
 
+gcyl.machine.maintenance_hatch_sterile_cleanroom_auto.name=Automatic Sterile Filtration Maintenance Hatch

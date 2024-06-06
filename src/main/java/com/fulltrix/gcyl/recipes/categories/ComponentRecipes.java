@@ -1146,7 +1146,7 @@ public class ComponentRecipes {
                         .EUt(VA[GTValues.UEV]))
                 .buildAndRegister();
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(7864320)
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(10485760)
                 .outputs(ELECTRIC_MOTOR_UIV.getStackForm())
                 .input(stickLong, SamariumMagnetic, 64)
                 .input(stickLong, SamariumMagnetic, 64)
@@ -1168,7 +1168,7 @@ public class ComponentRecipes {
                         .EUt(VA[GTValues.UIV]))
                 .buildAndRegister();
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(15728640)
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(41943040)
                 .outputs(ELECTRIC_MOTOR_UXV.getStackForm())
                 .input(stickLong, SamariumMagnetic, 64)
                 .input(stickLong, SamariumMagnetic, 64)
