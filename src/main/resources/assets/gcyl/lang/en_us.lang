@@ -4740,9 +4740,12 @@ gcyl.machine.ore_factory.config.4=Macerate>Thermal Centrifuge>Macerate
 
 gcyl.machine.maintenance_hatch_sterile_cleanroom_auto.name=Automatic Sterile Filtration Maintenance Hatch
 
-gcyl.research.deep_platinum=§6Deep Platinum Data
+metaitem.tool.data.deep_miner=Deep Miner Data Storage
+metaitem.tool.data.deep_miner.tooltip=Data for Scanned Material
 gcyl.recipe.scan_for_deep_miner=Scan for Deep Miner
 gcyl.recipe.temperature=Temperature: %,dK
+gcyl.research.deep_platinum=§6Deep Platinum Data
+gcyl.research.deep_platinum.tooltip=§aScan a Platinum Block for this Data
 
 gcyl.machine.deep_miner.name=Deep Miner (DM)
 gcyl.machine.deep_miner.config.0=Fluid type set to Lava

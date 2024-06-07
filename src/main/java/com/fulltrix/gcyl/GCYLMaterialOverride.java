@@ -177,15 +177,15 @@ public class GCYLMaterialOverride {
         List<Material> omats = new ArrayList<>();
         Collections.addAll(omats, Lignite, Witherite, Barytocalcite, PlatinumMetallicPowder, IridiumMetalResidue, PreciousMetal,
                 RarestMetalMixture, PalladiumMetallicPowder, Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon, Bowieite,
-                Zinc, Enargite, Andradite, Dolomite, Wollastonite, Kaolinite, Uranium, Tenorite, Tennantite, Cuprite, Tellurium, Zirkelite,
-                Arsenopyrite, Draconium, Iridium, Osmium);
+                Zinc, Enargite, Andradite, Dolomite, Wollastonite, Kaolinite, Tenorite, Tennantite, Cuprite, Tellurium, Zirkelite,
+                Arsenopyrite, Draconium, Iridium, Osmium, Rutile, Gallite);
         for (Material mat : omats) {
             addOre(mat, 1, 1,false);
         }
 
         //EMISSIVE ORES
         List<Material> eomats = new ArrayList<>();
-        Collections.addAll(eomats,Triniite, NaquadricCompound, EnrichedNaquadricCompound, NaquadriaticCompound);
+        Collections.addAll(eomats,Triniite, NaquadricCompound, EnrichedNaquadricCompound, NaquadriaticCompound, Uranium);
         for (Material mat : eomats) {
             addOre(mat, 1,1,true);
         }
@@ -232,6 +232,20 @@ public class GCYLMaterialOverride {
         oreProp.setDirectSmeltResult(Copper);
         oreProp.addOreByProducts(Iron, Antimony, Malachite);
 
+        oreProp = IridiumMetalResidue.getProperty(PropertyKey.ORE);
+        oreProp.setWashedIn(SodiumPersulfate);
+
+        oreProp = RarestMetalMixture.getProperty(PropertyKey.ORE);
+        oreProp.setWashedIn(SodiumPersulfate);
+
+        oreProp = Witherite.getProperty(PropertyKey.ORE);
+        oreProp.setWashedIn(SodiumPersulfate);
+
+        oreProp = PreciousMetal.getProperty(PropertyKey.ORE);
+        oreProp.setOreMultiplier(2);
+
+        oreProp = Columbite.getProperty(PropertyKey.ORE);
+        oreProp.addOreByProducts(Iron, Manganese, Niobium);
             //BYPRODUCT OVERRIDES
         oreProp = Nickel.getProperty(PropertyKey.ORE);
         oreProp.setOreByProducts(Cobalt, PlatinumMetallicPowder, Iron);
@@ -256,6 +270,9 @@ public class GCYLMaterialOverride {
 
         oreProp = Osmium.getProperty(PropertyKey.ORE);
         oreProp.setOreByProducts(IridiumMetalResidue);
+
+        oreProp = Gallite.getProperty(PropertyKey.ORE);
+        oreProp.setOreByProducts(Sulfur,Copper,Copper,Gallium);
         //SPECIFIC CASES
 
         NaquadahAlloy.addFlags(GENERATE_FINE_WIRE);
@@ -363,7 +380,9 @@ public class GCYLMaterialOverride {
         Naquadria.addFlags(GENERATE_DENSE);
         RhodiumPlatedPalladium.addFlags(GENERATE_GEAR);
         NaquadahAlloy.addFlags(DISABLE_DECOMPOSITION);
+        NaquadahAlloy.addFlags(NO_ALLOY_BLAST_RECIPES);
         Glowstone.addFlags(DISABLE_DECOMPOSITION);
+        Pyrochlore.addFlags(DISABLE_DECOMPOSITION);
 
 
 

@@ -428,6 +428,10 @@ public class GCYLCoreItems {
     public static MetaItem<?>.MetaValueItem TOOL_DATA_MODULE_CLUSTER;
     public static MetaItem<?>.MetaValueItem TOOL_DATA_ULTIMATE;
     public static MetaItem<?>.MetaValueItem TOOL_DATA_SUPRACAUSAL;
+    public static MetaItem<?>.MetaValueItem TOOL_DATA_DEEP_MINER;
+    public static MetaItem<?>.MetaValueItem TOOL_DATA_DEEP_MINER_MODULE;
+    public static MetaItem<?>.MetaValueItem TOOL_DATA_DEEP_MINER_COMPLEX;
+
 
     public static void init() {
         GCYLCoreItem item = new GCYLCoreItem();

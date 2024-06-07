@@ -24,7 +24,7 @@ public class RecipeHandler {
         MetalCasingRecipes.init();
         SuperconductorRecipes.init();
         CasingRecipes.init();
-
+        DeepMinerRecipes.init();
     }
 
     public static void initChains() {

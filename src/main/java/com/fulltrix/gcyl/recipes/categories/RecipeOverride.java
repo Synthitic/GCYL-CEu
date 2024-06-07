@@ -29,7 +29,7 @@ import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
 import static gregtech.api.recipes.ModHandler.removeRecipeByName;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.recipes.ingredients.IntCircuitIngredient.getIntegratedCircuit;
-import static gregtech.api.unification.material.MarkerMaterials.Color.Pink;
+import static gregtech.api.unification.material.MarkerMaterials.Color.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.blocks.BlockFusionCasing.CasingType.FUSION_COIL;
@@ -64,12 +64,10 @@ public class RecipeOverride {
 
         //remove all circuit assembler recipes
         removeAll(CIRCUIT_ASSEMBLER_RECIPES);
+
+        //remove all assembly line recipes
         removeAll(ASSEMBLY_LINE_RECIPES);
         removeAll(SCANNER_RECIPES);
-
-        //WE WANT THESE RECIPES TO SHOW FIRST. TODO: MOVE THIS AFTER PROPER IMPLEMENTATION
-        DeepMinerRecipes.init();
-
         removeAll(RESEARCH_STATION_RECIPES);
 
         //conflict removal
@@ -106,7 +104,22 @@ public class RecipeOverride {
 
         removeRecipesByInputs(BLAST_RECIPES, OreDictUnifier.get(dust,SiliconDioxide,3), OreDictUnifier.get(dust,Carbon,2));
 
-        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Pink), NEUTRONIUM_WAFER.getStackForm());
+        //Neutronium wafers,boule,cutting stuff //TODO Replace recipes: soc, pic, nand, nor, simple soc, lpic, ulpic, integrated logic circuit
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Pink), NEUTRONIUM_WAFER.getStackForm()); //nor
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Red), NEUTRONIUM_WAFER.getStackForm()); //integrated logic circuit
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Green), NEUTRONIUM_WAFER.getStackForm()); //ram
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Blue), NEUTRONIUM_WAFER.getStackForm()); //cpu
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,LightBlue), NEUTRONIUM_WAFER.getStackForm()); //ulpic
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Orange), NEUTRONIUM_WAFER.getStackForm()); //lpic
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Cyan), NEUTRONIUM_WAFER.getStackForm()); //simple soc
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Gray), NEUTRONIUM_WAFER.getStackForm()); //nand
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Brown), NEUTRONIUM_WAFER.getStackForm()); //pic
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Yellow), NEUTRONIUM_WAFER.getStackForm()); //soc
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Purple), NEUTRONIUM_WAFER.getStackForm()); //asoc
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Black), NEUTRONIUM_WAFER.getStackForm()); //hasoc
+        removeRecipesByInputs(CUTTER_RECIPES, new ItemStack[]{NEUTRONIUM_BOULE.getStackForm()}, new FluidStack[]{Water.getFluid(1000)});
+        removeRecipesByInputs(CUTTER_RECIPES, new ItemStack[]{NEUTRONIUM_BOULE.getStackForm()}, new FluidStack[]{DistilledWater.getFluid(750)});
+        removeRecipesByInputs(CUTTER_RECIPES, new ItemStack[]{NEUTRONIUM_BOULE.getStackForm()}, new FluidStack[]{Lubricant.getFluid(250)});
 
         //Coil removals
         removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, Trinium,8), OreDictUnifier.get(foil,NaquadahEnriched,8)}, new FluidStack[]{Naquadah.getFluid(144)});

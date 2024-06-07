@@ -1138,6 +1138,7 @@ public class GCYLMaterials {
     public static Material Chaos;
     public static Material ChaosAlloy;
     public static Material BrightSteel;
+    public static Material Gallite;
 
     //COILS
     public static Material Pikyonium;
@@ -9958,6 +9959,14 @@ public class GCYLMaterials {
                 .components(Steel, 4, Bismuth, 2, Caesium, 2, Europium, 1)
                 .cableProperties(8192, 3,2)
                 .blast(2900)
+                .build();
+
+        Gallite = new Material.Builder(++id, gcylId("gallite"))
+                .dust(2)
+                .color(0x7f7b9e)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .components(Copper,1,Gallium,1,Sulfur,2)
                 .build();
 
 
