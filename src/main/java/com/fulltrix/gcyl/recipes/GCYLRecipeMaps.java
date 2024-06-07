@@ -3,18 +3,21 @@ package com.fulltrix.gcyl.recipes;
 //import com.fulltrix.tjfcore.recipes.impl.NuclearReactorBuilder;
 
 import com.fulltrix.gcyl.recipes.impl.AdvFusionRecipeBuilder;
+import com.fulltrix.gcyl.recipes.impl.DeepMinerBuilder;
 import gregtech.api.GTValues;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.gui.widgets.ProgressWidget.MoveType;
 import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.builders.BlastRecipeBuilder;
 import gregtech.api.recipes.builders.FuelRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.core.sound.GTSoundEvents;
 import net.minecraft.init.SoundEvents;
+
 import static gregtech.api.recipes.RecipeMaps.*;
 
-public class GCYLRecipeMaps {
+public final class GCYLRecipeMaps {
 
     private GCYLRecipeMaps() {
     }
@@ -104,6 +107,12 @@ public class GCYLRecipeMaps {
             0,0,1,0, new FuelRecipeBuilder(),false)
             .allowEmptyOutput()
             .setSound(GTSoundEvents.COMBUSTION);
+
+    public static final RecipeMap<DeepMinerBuilder> DEEP_MINER_RECIPES = new RecipeMap<>("deep_miner",
+            4,9,2,3,new DeepMinerBuilder(),false)
+            .setSound(GTSoundEvents.MINER);
+
+
 
 
 

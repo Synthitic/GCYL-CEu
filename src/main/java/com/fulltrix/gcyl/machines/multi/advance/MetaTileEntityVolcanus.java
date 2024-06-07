@@ -167,7 +167,7 @@ public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController im
 
         private final MetaTileEntityVolcanus volcanus;
 
-        public VolcanusRecipeLogic(RecipeMapMultiblockController metaTileEntity) {
+        public VolcanusRecipeLogic(GCYMRecipeMapMultiblockController metaTileEntity) {
             super(metaTileEntity);
             this.volcanus = (MetaTileEntityVolcanus) metaTileEntity;
         }

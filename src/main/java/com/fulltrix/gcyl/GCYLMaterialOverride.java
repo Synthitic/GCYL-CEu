@@ -177,7 +177,8 @@ public class GCYLMaterialOverride {
         List<Material> omats = new ArrayList<>();
         Collections.addAll(omats, Lignite, Witherite, Barytocalcite, PlatinumMetallicPowder, IridiumMetalResidue, PreciousMetal,
                 RarestMetalMixture, PalladiumMetallicPowder, Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon, Bowieite,
-                Zinc, Enargite, Andradite, Dolomite, Wollastonite, Kaolinite, Uranium, Tenorite, Tennantite, Cuprite, Tellurium, Zirkelite, Arsenopyrite, Draconium);
+                Zinc, Enargite, Andradite, Dolomite, Wollastonite, Kaolinite, Uranium, Tenorite, Tennantite, Cuprite, Tellurium, Zirkelite,
+                Arsenopyrite, Draconium, Iridium, Osmium);
         for (Material mat : omats) {
             addOre(mat, 1, 1,false);
         }

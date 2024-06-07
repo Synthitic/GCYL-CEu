@@ -60,6 +60,10 @@ public class RecipeOverride {
         removeAll(CIRCUIT_ASSEMBLER_RECIPES);
         removeAll(ASSEMBLY_LINE_RECIPES);
         removeAll(SCANNER_RECIPES);
+
+        //WE WANT THESE RECIPES TO SHOW FIRST. TODO: MOVE THIS AFTER PROPER IMPLEMENTATION
+        DeepMinerRecipes.init();
+
         removeAll(RESEARCH_STATION_RECIPES);
 
         //conflict removal
@@ -213,7 +217,8 @@ public class RecipeOverride {
         //gravi star
         removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{QUANTUM_STAR.getStackForm()}, new FluidStack[]{Neutronium.getFluid(288)});
 
-
+        //rare earth
+        removeRecipesByInputs(CENTRIFUGE_RECIPES, OreDictUnifier.get(dust,RareEarth));
     }
 
     public static void chemistryOverride() {

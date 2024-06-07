@@ -8,6 +8,7 @@ import com.fulltrix.gcyl.machines.multi.MetaTileEntityCosmicRayDetector;
 import com.fulltrix.gcyl.machines.multi.MetaTileEntityElectricImplosion;
 import com.fulltrix.gcyl.machines.multi.MetaTileEntityStellarForge;
 import com.fulltrix.gcyl.machines.multi.advance.*;
+import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityDeepMiner;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityVoidMiner;
 import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntitySterileCleaningMaintenanceHatch;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityChemicalPlant;
@@ -23,6 +24,7 @@ import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityEnerg
 import net.minecraft.util.ResourceLocation;
 
 import static com.fulltrix.gcyl.GCYLUtility.gcylId;
+import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.DEEP_MINER_RECIPES;
 import static gregtech.api.util.GTUtility.gregtechId;
 import static gregtech.common.metatileentities.MetaTileEntities.registerMetaTileEntity;
 
@@ -44,6 +46,7 @@ public class GCYLTileEntities {
     public static MetaTileEntityLargeRocketEngine LARGE_ROCKET_ENGINE;
     public static MetaTileEntityCryogenicFreezer CRYOGENIC_FREEZER;
     public static MetaTileEntityOreFactory ORE_FACTORY;
+    public static MetaTileEntityDeepMiner DEEP_MINER;
 
     public static MetaTileEntitySterileCleaningMaintenanceHatch STERILE_CLEANING_MAINTENANCE_HATCH;
 
@@ -99,6 +102,8 @@ public class GCYLTileEntities {
         CRYOGENIC_FREEZER = registerMetaTileEntity(++id, new MetaTileEntityCryogenicFreezer(gcylId("cryogenic_freezer")));
 
         ORE_FACTORY = registerMetaTileEntity(++id, new MetaTileEntityOreFactory(gcylId("ore_factory")));
+
+        DEEP_MINER = registerMetaTileEntity(++id, new MetaTileEntityDeepMiner(gcylId("deep_miner"), DEEP_MINER_RECIPES, false));
 
         STERILE_CLEANING_MAINTENANCE_HATCH = registerMetaTileEntity(++id, new MetaTileEntitySterileCleaningMaintenanceHatch(gcylId("maintenance_hatch_sterile_cleanroom_auto")));
 

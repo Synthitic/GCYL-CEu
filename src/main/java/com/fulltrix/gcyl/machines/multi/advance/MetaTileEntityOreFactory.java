@@ -462,7 +462,7 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
     @SideOnly(Side.CLIENT)
     @Override
     protected @NotNull ICubeRenderer getFrontOverlay() {
-        return Textures.LARGE_MINER_OVERLAY_ADVANCED_2;
+        return Textures.LARGE_MINER_OVERLAY_BASIC;
     }
 
     @Override
@@ -484,6 +484,7 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
         super.writeToNBT(data);
         data.setBoolean("isActive", this.isActive);
         data.setBoolean("isWorkingEnabled", this.isWorkingEnabled);
+        data.setInteger("configuration", this.configuration);
         return data;
     }
 
@@ -492,6 +493,7 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
         super.readFromNBT(data);
         this.isActive = data.getBoolean("isActive");
         this.isWorkingEnabled = data.getBoolean("isWorkingEnabled");
+        this.configuration = data.getInteger("configuration");
     }
 
     @Override

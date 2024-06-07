@@ -3285,7 +3285,7 @@ public class GCYLMaterials {
                 .setFormula("Nd:YAG", true);
 
         Pyrotheum = new Material.Builder(++id, gcylId("pyrotheum"))
-                .dust().liquid()
+                .dust().liquid(new FluidBuilder().temperature(5000))
                 .color(0xFF9A3C)
                 .iconSet(SAND)
                 .flags(DISABLE_DECOMPOSITION, EXCLUDE_BLOCK_CRAFTING_RECIPES,DISABLE_REPLICATION)
@@ -9627,7 +9627,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(Platinum.getMaterialRGB())
                 .flags(DISABLE_REPLICATION,DISABLE_DECOMPOSITION)
-                .iconSet(METALLIC)
+                .iconSet(SAND)
                 .components(Platinum,1,RareEarth,1)
                 .build();
 
@@ -9715,7 +9715,7 @@ public class GCYLMaterials {
                 .dust()
                 .color(Palladium.getMaterialRGB())
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
-                .iconSet(METALLIC)
+                .iconSet(SAND)
                 .components(Palladium,1,RareEarth,1)
                 .build();
 
