@@ -104,6 +104,8 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
             textList.add(new TextComponentTranslation("gregtech.multiblock.universal.vom.temperature", getCurrentTemperature()));
             textList.add(new TextComponentTranslation("gregtech.multiblock.deep_miner.max.temperature", getMaxTemperature()));
         }
+        if(this.getPos().getY() > 8 && !this.getWorld().isRemote)
+            textList.add(new TextComponentTranslation("gregtech.multiblock.deep_miner_error"));
     }
 
     @Override
@@ -143,12 +145,12 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
     protected FluidStack getHeatingFluid(int fluidType) {
         return switch (fluidType) {
             case 0 ->
-                    Materials.Lava.getFluid(4 * (int) (Math.pow(2, 2 * GTUtility.getTierByVoltage(this.energyContainer.getInputVoltage()))));
+                    Materials.Lava.getFluid(4 * (int) (Math.pow(2, 1.5 * GTUtility.getTierByVoltage(this.energyContainer.getInputVoltage()))));
             case 1 ->
-                    GCYLMaterials.Pyrotheum.getFluid((int) (Math.pow(2, 2 * GTUtility.getTierByVoltage(this.energyContainer.getInputVoltage()))));
+                    GCYLMaterials.Pyrotheum.getFluid((int) (Math.pow(2, 1.5 * GTUtility.getTierByVoltage(this.energyContainer.getInputVoltage()))));
             case 2 ->
                     Materials.Helium.getFluid(FluidStorageKeys.PLASMA, (int) (4 * Math.pow(2, GTUtility.getTierByVoltage(this.energyContainer.getInputVoltage()))));
-            default -> GCYLMaterials.NeutronPlasma.getFluid(FluidStorageKeys.PLASMA,(int) (16 * Math.pow(2, GTUtility.getTierByVoltage(this.energyContainer.getInputVoltage()))));
+            default -> GCYLMaterials.NeutronPlasma.getFluid(FluidStorageKeys.PLASMA,(int) (2 * Math.pow(2, GTUtility.getTierByVoltage(this.energyContainer.getInputVoltage()))));
         };
     }
 
@@ -163,11 +165,6 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
 
     protected void increaseTemperature() {
         if (getCurrentTemperature() < getMaxTemperature()) {
-            if(getFluidType() == 3) {
-                this.currentTemperature = getMaxTemperature();
-                return;
-            }
-
             int tTemperature = this.currentTemperature;
             tTemperature += (int) (Math.max(((getMaxTemperature() - getCurrentTemperature()) / 20.0), 5) * getModifierFromFluidType(getFluidType()));
             this.currentTemperature = Math.min(tTemperature, getMaxTemperature());
@@ -186,7 +183,8 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
         return switch (type) {
             case 0 -> 0.5;
             case 1 -> 1.0;
-            default -> 4.0;
+            case 2 -> 4.0;
+            default -> 16.0;
         };
     }
 
@@ -229,6 +227,12 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
             }
         }
         return true;
+    }
+
+    @Override
+    public void invalidateStructure() {
+        super.invalidateStructure();
+        this.currentTemperature = 0;
     }
 
     @Override
@@ -307,9 +311,6 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
 
             return recipe.getProperty(GCYLTemperatureProperty.getInstance(), 0) <= deepMiner.getCurrentTemperature();
         }
-
-
-
 
         @Override
         protected void modifyOverclockPre(int @NotNull [] values, @NotNull IRecipePropertyStorage storage) {

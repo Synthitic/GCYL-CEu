@@ -41,8 +41,8 @@ public class DeepMinerRecipes {
 
         //EXAMPLE
 
-        //createResearchRecipe("deep_platinum", OreDictUnifier.get(block, Platinum), TOOL_DATA_STICK.getStackForm(), true, 300, 512, 0);
-        /*
+        createResearchRecipe("deep_platinum", OreDictUnifier.get(block, Platinum), TOOL_DATA_STICK.getStackForm(), true, 300, 512, 0);
+
         DEEP_MINER_RECIPES.recipeBuilder()
                 .notConsumable(minerScanMap.get("deep_platinum"))
                 .input(SENSOR_EV)
@@ -55,8 +55,6 @@ public class DeepMinerRecipes {
                 .EUt(1920)
                 .temperature(3500)
                 .buildAndRegister();
-
-         */
 
     }
 

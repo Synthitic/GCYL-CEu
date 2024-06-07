@@ -4,12 +4,17 @@ import com.fulltrix.gcyl.recipes.categories.circuits.MagnetoRecipes;
 import gregtech.api.GTValues;
 import gregtech.api.items.armor.ArmorMetaItem;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
+import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTCondition;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
+import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.blocks.BlockComputerCasing;
+import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.items.MetaItems;
+import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.block.BlockCauldron;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -29,6 +34,7 @@ import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.blocks.BlockFusionCasing.CasingType.FUSION_COIL;
 import static gregtech.common.blocks.BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL;
+import static gregtech.common.blocks.BlockMetalCasing.MetalCasingType.ALUMINIUM_FROSTPROOF;
 import static gregtech.common.blocks.MetaBlocks.*;
 import static gregtech.common.items.MetaItems.*;
 import static gregtech.common.items.MetaItems.ENERGY_CLUSTER;
@@ -126,6 +132,10 @@ public class RecipeOverride {
         removeRecipesByInputs(DISTILLATION_RECIPES, AcidicOsmiumSolution.getFluid(2000));
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(1)}, new FluidStack[]{AcidicOsmiumSolution.getFluid(400)});
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(2)}, new FluidStack[]{AcidicOsmiumSolution.getFluid(400)});
+        removeRecipesByInputs(CHEMICAL_RECIPES, OreDictUnifier.get(dust, RutheniumTetroxide,5), OreDictUnifier.get(dust,Carbon,2));
+        removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, OreDictUnifier.get(dust, RutheniumTetroxide,5), OreDictUnifier.get(dust,Carbon,2));
+        removeRecipesByInputs(CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, InertMetalMixture, 6)}, new FluidStack[]{SulfuricAcid.getFluid(1500)});
+        removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, InertMetalMixture, 6)}, new FluidStack[]{SulfuricAcid.getFluid(1500)});
 
         //Field generators
         removeRecipeByName("gregtech:field_generator_lv");
@@ -219,6 +229,15 @@ public class RecipeOverride {
 
         //rare earth
         removeRecipesByInputs(CENTRIFUGE_RECIPES, OreDictUnifier.get(dust,RareEarth));
+
+        //graphene dust
+        removeRecipesByInputs(MIXER_RECIPES,getIntegratedCircuit(1), OreDictUnifier.get(dust, Graphite), OreDictUnifier.get(dust, Silicon), OreDictUnifier.get(dust, Carbon,4));
+
+        //vaccuum freezer
+        removeRecipeByName("gregtech:vacuum_freezer");
+
+        //iv motor
+        removeRecipeByName("gregtech:electric_motor_iv");
     }
 
     public static void chemistryOverride() {
@@ -955,7 +974,17 @@ public class RecipeOverride {
                 .outputs(TOOL_DATA_SUPRACAUSAL.getStackForm())
                 .duration(400).EUt(157286400).buildAndRegister();
 
+        //Vacuum freezer
+        ModHandler.addShapedRecipe("gcyl_vacuum_freezer", MetaTileEntities.VACUUM_FREEZER.getStackForm(),
+                "PPP", "CMC", "WCW",
+                'M', MetaBlocks.METAL_CASING.getItemVariant(ALUMINIUM_FROSTPROOF),
+                'P', MetaItems.ELECTRIC_PUMP_HV,
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.HV),
+                'W', new UnificationEntry(cableGtSingle, Gold));
 
-
+        //iv motor
+        ModHandler.addShapedRecipe(true, "electric_motor_iv", ELECTRIC_MOTOR_IV.getStackForm(), "CWR", "WMW", "RWC",
+                'C', new UnificationEntry(cableGtDouble, Tungsten), 'W', new UnificationEntry(wireGtQuadruple, BrightSteel),
+                'R', new UnificationEntry(stick, TungstenSteel), 'M', new UnificationEntry(stick, NeodymiumMagnetic));
     }
 }

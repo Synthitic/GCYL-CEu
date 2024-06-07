@@ -4710,7 +4710,7 @@ gcyl.material.draconium=Draconium
 gcyl.material.awaken_draconium=Awakened Draconium
 gcyl.material.chaos=Chaos
 gcyl.material.chaosalloy=Chaos Infinity Alloy
-
+gcyl.material.bright_steel=Bright Steel
 #TODO: lang for ore veins
 
 gcyl.material.max_superconductor=MAX Superconductor
@@ -4755,10 +4755,10 @@ gcyl.multiblock.deep_miner.tooltip.3=Use a §bScrewdriver§r§7 to change betwee
 gcyl.multiblock.deep_miner.tooltip.4=Accepts §cLava§r§7 (.75), §6Pyrotheum§r§7 (1), §eHelium Plasma§r§7 (4), or §8Neutron Plasma§r§7 (16) with §bBonuses§r§7 increasing from left to right.
 gcyl.multiblock.deep_miner.tooltip.5=Maximum §bTemperature§r§7 depends on §bFluid§r§7 input and §bCoil§r§7 tier.
 gcyl.multiblock.deep_miner.tooltip.6=Gains §cHeat§r§7 from §bFluid§r§7 input. Hotter §bFluids§r§7 increases the §bTemperature§r§7 faster.
-gcyl.multiblock.deep_miner.tooltip.7=Loses §cHeat§r§7 when not running and when there is no heating §bFluids§r§7.
+gcyl.multiblock.deep_miner.tooltip.7=Loses §cHeat§r§7 when not running §lOR§r§7 when there is no heating §bFluids§r§7. (§bFluids§r§7 is not consumed when at maximum §bTemperature§r§7)
 gcyl.multiblock.deep_miner.tooltip.8=For every §b1000K§r§7 above recipe temperature, the recipe duration is multiplied by §e0.80§r§7.
 gregtech.multiblock.deep_miner.max.temperature=Max Temperature: %s K
+gregtech.multiblock.deep_miner_error=§cY LEVEL TOO HIGH! RECIPES WILL NOT RUN!
 recipemap.deep_miner.name=Deep Miner
 
-gcyl.machine.deep_miner.description=The Deep Miner provides resources. Use the scanner to scan certain materials to gain access to recipes. The multiblock gains
 

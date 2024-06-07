@@ -5,7 +5,6 @@ package com.fulltrix.gcyl;
 
 import gregtech.api.GTValues;
 import gregtech.api.fluids.FluidBuilder;
-import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.unification.Elements;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
@@ -15,7 +14,6 @@ import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static com.fulltrix.gcyl.GCYLElements.*;
@@ -28,14 +26,14 @@ import static gregtech.api.unification.Elements.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 import static gregtech.api.unification.material.info.MaterialIconSet.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.integration.crafttweaker.material.MaterialPropertyExpansion.*;
 import static gregtech.integration.groovy.MaterialPropertyExpansion.addLiquid;
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_DECONSTRUCTION;
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_REPLICATION;
 import static net.minecraft.util.text.TextFormatting.*;
 
 //TODO: add custom material icon sets for special materials
+//TODO: add additional blast properties like gas tiers, eu/t, and duration
+//TODO: add/mixin gas tiers
 
 public class GCYLMaterials {
 
@@ -1139,6 +1137,7 @@ public class GCYLMaterials {
     public static Material AwakenDraconium;
     public static Material Chaos;
     public static Material ChaosAlloy;
+    public static Material BrightSteel;
 
     //COILS
     public static Material Pikyonium;
@@ -1547,7 +1546,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(CORE_METAL, DISABLE_DECOMPOSITION)
                 .components(Stellite100, 15, Jasper, 5, Gallium, 5, Americium241, 5, Palladium, 5, Bismuth, 5, Germanium, 5, SiliconCarbide, 5)
-                .blast(11400)
+                .blast(b->b.temp(11400, BlastProperty.GasTier.HIGHEST).blastStats(VA[UHV], 1200))
                 .flags(DISABLE_REPLICATION).build();
 
         Adamantium = new Material.Builder(++id, gcylId("adamantium"))
@@ -9950,6 +9949,17 @@ public class GCYLMaterials {
                 .iconSet(METALLIC)
                 .components(Iron,1,Arsenic,1,Sulfur,1)
                 .build();
+
+        BrightSteel = new Material.Builder(++id, gcylId("bright_steel"))
+                .ingot().liquid()
+                .color(0XD3D3D3)
+                .iconSet(DULL)
+                .flags(DISABLE_REPLICATION)
+                .components(Steel, 4, Bismuth, 2, Caesium, 2, Europium, 1)
+                .cableProperties(8192, 3,2)
+                .blast(2900)
+                .build();
+
 
         /*
         = new Material.Builder(++id, gcylId("material"))

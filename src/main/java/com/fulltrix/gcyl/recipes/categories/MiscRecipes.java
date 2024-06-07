@@ -1,8 +1,12 @@
 package com.fulltrix.gcyl.recipes.categories;
 
+import gregtech.api.unification.material.properties.BlastProperty;
+import net.minecraftforge.common.util.EnumHelper;
+
 import static com.fulltrix.gcyl.GCYLMaterials.*;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.ADVANCED_MIXER_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.Stellite100;
+import static gregtech.api.recipes.RecipeMaps.MIXER_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.Materials.Bismuth;
 import static gregtech.api.unification.ore.OrePrefix.dust;
@@ -21,5 +25,17 @@ public class MiscRecipes {
                 .input(dust,SiliconCarbide,5)
                 .output(dust, Quantum, 50)
                 .buildAndRegister();
+
+        //Bright steel
+        MIXER_RECIPES.recipeBuilder().duration(400).EUt(1920)
+                .input(dust, Steel, 4)
+                .input(dust, Bismuth, 2)
+                .input(dust, Caesium, 2)
+                .input(dust, Europium,1)
+                .output(dust, BrightSteel, 9)
+                .circuitMeta(9)
+                .buildAndRegister();
+
     }
+
 }
