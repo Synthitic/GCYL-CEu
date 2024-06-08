@@ -2074,7 +2074,7 @@ tile.gcyl_multiblock_casing2.laser_engraver_casing.name=Laser-Safe Casing
 
 tile.gcyl_metal_casing_1.casing_hastelloy_x78.name=Matrix-Stiffened Hastelloy X78 Casing
 tile.gcyl_metal_casing_1.casing_hastelloy_n.name=Oxidation Resistant Hastelloy N Casing
-tile.gcyl_metal_casing_1.casing_hastelloyk_243.name=High Stability Hastelloy K243 Casing
+tile.gcyl_metal_casing_1.casing_hastelloy_k243.name=High Stability Hastelloy K243 Casing
 tile.gcyl_metal_casing_1.casing_incoloy_813.name=Corrosion Proof Incoloy 813 Casing
 tile.gcyl_metal_casing_1.casing_incoloy_ma956.name=Spacecraft Grade Incoloy MA-956 Casing
 tile.gcyl_metal_casing_1.casing_maraging_steel_250.name=Long-Lasting Maraging Steel 250 Casing
@@ -4770,12 +4770,15 @@ gcyl.multiblock.deep_miner.tooltip.5=Maximum §bTemperature§r§7 depends on §b
 gcyl.multiblock.deep_miner.tooltip.6=Gains §cHeat§r§7 from §bFluid§r§7 input. Hotter §bFluids§r§7 increases the §bTemperature§r§7 faster.
 gcyl.multiblock.deep_miner.tooltip.7=Loses §cHeat§r§7 when not running §lOR§r§7 when there is no heating §bFluids§r§7. (§bFluids§r§7 is not consumed when at maximum §bTemperature§r§7)
 gcyl.multiblock.deep_miner.tooltip.8=For every §b1000K§r§7 above recipe temperature, the recipe duration is multiplied by §e0.80§r§7.
+gcyl.multiblock.deep_miner.tooltip.9=To use §eHelium Plasma§r§7, the casings and frames need to be §2Incoloy 813§r§7.
+gcyl.multiblock.deep_miner.tooltip.10=To use §8Neutron Plasma§r§7, the casings and frames need to be §aHastelloy K243§r§7.
 gregtech.multiblock.deep_miner.max.temperature=Max Temperature: %s K
 gregtech.multiblock.deep_miner_error=§cY LEVEL TOO HIGH! RECIPES WILL NOT RUN!
 recipemap.deep_miner.name=Deep Miner
 
 gcyl.machine.decay_chamber.name=Decay Chamber (DC)
 tile.gcyl_reactor_casing.cladded_reactor_casing.name=Radiation Safe Casing
+
 
 gcyl.machine.greenhouse_mv.name=Greenhouse (GH)
 gcyl.machine.greenhouse_uv.name=Industrial Greenhouse (IGH)

@@ -3337,7 +3337,7 @@ public class GCYLMaterials {
                 .setFormula(makeFancy("qd"), true);
 
         HastelloyK243 = new Material.Builder(++id, gcylId("hastelloyk_243"))
-                .ingot(2)
+                .ingot(2).fluid()
                 .color(0xa5f564)
                 .iconSet(SHINY)
                 .flags(EXT2_METAL, GENERATE_FRAME, DISABLE_DECOMPOSITION, GENERATE_SMALL_GEAR, GENERATE_GEAR, GENERATE_ROUND, GENERATE_RING, GENERATE_ROTOR)

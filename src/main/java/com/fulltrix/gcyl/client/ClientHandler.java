@@ -28,6 +28,7 @@ public class ClientHandler {
     public static SimpleOverlayRenderer ADVANCED_FUSION;
     public static SimpleOverlayRenderer ADVANCED_FUSION_ACTIVE;
     public static SimpleOverlayRenderer NITINOL_60_CASING;
+    public static SimpleOverlayRenderer HASTELLOY_K243_CASING;
     public static SimpleOverlayRenderer MAINTENANCE_OVERLAY_STERILE_CLEANING;
     public static SimpleOverlayRenderer CLADDED_REACTOR_CASING;
 
@@ -65,6 +66,7 @@ public class ClientHandler {
         HASTELLOY_N_CASING = new SimpleOverlayRenderer("casings/metal_casings/hastelloy_n");
         INCOLOY_813_CASING = new SimpleOverlayRenderer("casings/metal_casings/incoloy_813");
         NITINOL_60_CASING = new SimpleOverlayRenderer("casings/metal_casings/nitinol_60");
+        HASTELLOY_K243_CASING = new SimpleOverlayRenderer("casings/metal_casings/hastelloy_k243");
 
         ENRICHED_NAQUADAH_ALLOY_CASING = new SimpleOverlayRenderer("casings/metal_casings/enriched_naquadah_alloy");
         NAQUADRIA_CASING = new SimpleOverlayRenderer("casings/metal_casings/naquadria");

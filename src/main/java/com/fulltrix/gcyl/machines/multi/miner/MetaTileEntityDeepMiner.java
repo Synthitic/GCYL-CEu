@@ -1,6 +1,9 @@
 package com.fulltrix.gcyl.machines.multi.miner;
 
 import codechicken.lib.raytracer.CuboidRayTraceResult;
+import com.fulltrix.gcyl.client.ClientHandler;
+import com.fulltrix.gcyl.item.GCYLMetaBlocks;
+import com.fulltrix.gcyl.item.metal.MetalCasing1;
 import com.fulltrix.gcyl.materials.GCYLMaterials;
 import com.fulltrix.gcyl.machines.multi.simple.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.recipes.recipeproperties.GCYLTemperatureProperty;
@@ -47,6 +50,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.List;
 
+//TODO add fram and casing requirements to use helium and neutron plasma (traceability predicate stuff)
 //TODO implement breaking a blocks to bedrock
 public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController implements IHeatingCoil {
 
@@ -95,6 +99,8 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
         tooltip.add(I18n.format("gcyl.multiblock.deep_miner.tooltip.6"));
         tooltip.add(I18n.format("gcyl.multiblock.deep_miner.tooltip.7"));
         tooltip.add(I18n.format("gcyl.multiblock.deep_miner.tooltip.8"));
+        //tooltip.add(I18n.format("gcyl.multiblock.deep_miner.tooltip.9"));
+        //tooltip.add(I18n.format("gcyl.multiblock.deep_miner.tooltip.10"));
     }
 
     @Override
@@ -212,17 +218,20 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
                 playerIn.sendStatusMessage(
                         new TextComponentTranslation("gcyl.machine.deep_miner.config.2"), false);
                 invalidateStructure();
+                this.createStructurePattern();
             }
             else if(fluidType == 2) {
                 fluidType = 3;
                 playerIn.sendStatusMessage(
                         new TextComponentTranslation("gcyl.machine.deep_miner.config.3"), false);
+                this.createStructurePattern();
                 invalidateStructure();
             }
             else {
                 fluidType = 0;
                 playerIn.sendStatusMessage(
                         new TextComponentTranslation("gcyl.machine.deep_miner.config.0"), false);
+                this.createStructurePattern();
                 invalidateStructure();
             }
         }
@@ -237,7 +246,11 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
 
     @Override
     public ICubeRenderer getBaseTexture(IMultiblockPart iMultiblockPart) {
-        return Textures.SOLID_STEEL_CASING;
+        return switch (fluidType) {
+            case 2-> ClientHandler.INCOLOY_813_CASING;
+            case 3-> ClientHandler.HASTELLOY_K243_CASING;
+            default-> Textures.SOLID_STEEL_CASING;
+        };
     }
 
     @Override
@@ -249,10 +262,27 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
     public boolean hasMufflerMechanics() {return true;}
 
     private IBlockState getCasingState() {
+
+
         return MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID);
     }
 
+    /*
+
+    frames(GCYLMaterials.Incoloy813);
+    frames(GCYLMaterials.HastelloyK243);
+    frames(Materials.Steel);
+
+     GCYLMetaBlocks.METAL_CASING_1.getState(MetalCasing1.CasingType.INCOLOY_813);
+    GCYLMetaBlocks.METAL_CASING_1.getState(MetalCasing1.CasingType.HASTELLOY_K243);
+   MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID);
+
+
+     */
+
     private TraceabilityPredicate getFramePredicate() {
+
+
         return frames(Materials.Steel);
     }
 
