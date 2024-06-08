@@ -4,4 +4,4 @@
 
 Gregicality Legacy Port to CEu (specifically with reference to the Technological Journey fork)
 
-Requires latest versions of Gregtech: CEu, Gregicality Multiblocks, Material Replication, and GroovyScript and their dependencies to run.
+Requires [this](https://github.com/GregTechCEu/GregTech/releases/tag/nuclear-testing) version of Gregtech: CEu, [this](https://github.com/MrKono/MaterialReplication/releases/tag/1.3.0pre) version of Material Replication, and the latest versions of Gregicality Multiblocks, GroovyScript, ModularUI and their dependencies to run.
