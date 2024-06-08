@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.chain;
 
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -150,6 +151,7 @@ public class WetwareChain {
                 .fluidOutputs(LinoleicAcid.getFluid(1000))
                 .EUt(1920)
                 .duration(200)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // C2H4 + O -> C2H4O
@@ -179,6 +181,7 @@ public class WetwareChain {
                 .fluidOutputs(Biotin.getFluid(2000))
                 .EUt(7680)
                 .duration(40)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         LARGE_CHEMICAL_RECIPES.recipeBuilder()
@@ -207,6 +210,7 @@ public class WetwareChain {
                 .output(dust, Glutamine, 40)
                 .EUt(30720)
                 .duration(500)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         CENTRIFUGE_RECIPES.recipeBuilder()
@@ -242,6 +246,7 @@ public class WetwareChain {
                 .fluidOutputs(RawGrowthMedium.getFluid(4000))
                 .EUt(480)
                 .duration(500)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         MIXER_RECIPES.recipeBuilder()
@@ -250,7 +255,8 @@ public class WetwareChain {
                 .fluidInputs(DistilledWater.getFluid(1000))
                 .fluidOutputs(BacterialGrowthMedium.getFluid(2000))
                 .EUt(120)
-                .duration(100)
+                .duration(100).cleanroom(CleanroomType.STERILE_CLEANROOM)
+
                 .buildAndRegister();
 
         // STERILIZED GROWTH MEDIUM ====================================================================================
@@ -303,12 +309,14 @@ public class WetwareChain {
                 .output(dust, WetZeoliteSievingPellets, 1)
                 .EUt(120)
                 .duration(100)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         AUTOCLAVE_RECIPES.recipeBuilder()
                 .inputs(PETRI_DISH.getStackForm())
                 .fluidInputs(Ethanol100.getFluid(100))
                 .outputs(STERILIZED_PETRI_DISH.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .EUt(7680)
                 .duration(25)
                 .buildAndRegister();
@@ -327,6 +335,7 @@ public class WetwareChain {
                 .outputs(PETRI_DISH.getStackForm())
                 .EUt(30)
                 .duration(25)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // 6H + C6H5NO2 -> C6H5NH2 + 2H2O
@@ -398,6 +407,7 @@ public class WetwareChain {
                 .fluidOutputs(SterileGrowthMedium.getFluid(1250))
                 .EUt(7680)
                 .duration(100)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // STEM CELLS ==================================================================================================
@@ -416,6 +426,7 @@ public class WetwareChain {
                 .fluidOutputs(RapidlyReplicatingAnimalCells.getFluid(1000))
                 .EUt(7680)
                 .duration(500)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder()
@@ -424,6 +435,7 @@ public class WetwareChain {
                 .EUt(480)
                 .duration(100)
                 .fluidOutputs(MycGene.getFluid(1000))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder()
@@ -432,6 +444,7 @@ public class WetwareChain {
                 .EUt(480)
                 .duration(100)
                 .fluidOutputs(Oct4Gene.getFluid(1000))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder()
@@ -440,6 +453,7 @@ public class WetwareChain {
                 .EUt(480)
                 .duration(100)
                 .fluidOutputs(SOX2Gene.getFluid(1000))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder()
@@ -448,6 +462,7 @@ public class WetwareChain {
                 .EUt(480)
                 .duration(100)
                 .fluidOutputs(KFL4Gene.getFluid(1000))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder()
@@ -457,6 +472,7 @@ public class WetwareChain {
                 .EUt(30720)
                 .duration(1000)
                 .outputs(STEM_CELLS.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder()
@@ -466,6 +482,7 @@ public class WetwareChain {
                 .fluidOutputs(DepletedGrowthMedium.getFluid(500))
                 .EUt(480)
                 .duration(100)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         FERMENTING_RECIPES.recipeBuilder()
@@ -482,6 +499,7 @@ public class WetwareChain {
                 .fluidOutputs(Cas9.getFluid(1000))
                 .EUt(480)
                 .duration(100)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder()
@@ -494,6 +512,7 @@ public class WetwareChain {
                 .fluidOutputs(GenePlasmids.getFluid(5000))
                 .EUt(1920)
                 .duration(50)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         MIXER_RECIPES.recipeBuilder()
@@ -534,6 +553,7 @@ public class WetwareChain {
                 .fluidOutputs(Chitosan.getFluid(1000))
                 .EUt(120)
                 .duration(100)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         MIXER_RECIPES.recipeBuilder()

@@ -3,6 +3,7 @@ package com.fulltrix.gcyl.recipes.categories.circuits.components;
 import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.GCYLUtility;
 import gregtech.api.fluids.store.FluidStorageKeys;
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -52,24 +53,28 @@ public class ExoticComponents {
                 .input(foil, Cinobite)
                 .input(foil, Quantum)
                 .outputs(SMD_CAPACITOR_EXOTIC.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(160).EUt((int)1E+6).fluidInputs(Polyetheretherketone.getFluid(144 * 4))
                 .input(wireFine, Cinobite)
                 .input(foil, TriniumTitanium)
                 .outputs(SMD_RESISTOR_EXOTIC.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(160).EUt((int)1E+6).fluidInputs(Polyetheretherketone.getFluid(144 * 4))
                 .input(plate, Vibranium)
                 .input(plate, Quantum)
                 .outputs(SMD_DIODE_EXOTIC.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(160).EUt((int)1E+6).fluidInputs(Polyetheretherketone.getFluid(144 * 4))
                 .inputs(DEGENERATE_RHENIUM_PLATE.getStackForm())
                 .input(foil, TriniumTitanium)
                 .outputs(SMD_TRANSISTOR_EXOTIC.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         ARC_FURNACE_RECIPES.recipeBuilder().duration(160).EUt(800000)
@@ -82,11 +87,13 @@ public class ExoticComponents {
                 .inputs(UNTREATED_EXOTIC_WAFER.getStackForm())
                 .fluidInputs(MicrocrystallizingHydrogen.getFluid(100))
                 .outputs(EXOTIC_WAFER.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         CUTTER_RECIPES.recipeBuilder().duration(160).EUt(200000)
                 .inputs(EXOTIC_WAFER.getStackForm())
                 .outputs(EXOTIC_CHIP.getStackForm(16))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(160).EUt(2000)
@@ -134,6 +141,7 @@ public class ExoticComponents {
                 .fluidInputs(SolderingAlloy.getFluid(L * 9))
                 .fluidInputs(Polybenzimidazole.getFluid(L * 6))
                 .outputs(EXOTIC_PROCESSING_CORE.getStackForm(6))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(160).EUt(5000)

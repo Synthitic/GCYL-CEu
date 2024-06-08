@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories.circuits.components;
 
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.stack.MaterialStack;
@@ -27,6 +28,7 @@ public class CrystalComponents {
                 .input(plate, NetherStar)
                 .fluidInputs(Polyethylene.getFluid(L))
                 .outputs(SMD_TRANSISTOR_CRYSTAL.getStackForm(32))
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         // SMD Resistor
@@ -36,6 +38,7 @@ public class CrystalComponents {
                 .input(dust,SiliconCarbide)
                 .fluidInputs(Polyethylene.getFluid(L))
                 .outputs(SMD_RESISTOR_CRYSTAL.getStackForm(24))
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         // SMD Capacitor
@@ -44,6 +47,7 @@ public class CrystalComponents {
                 .input(foil, NaquadahAlloy)
                 .fluidInputs(Polyethylene.getFluid(L))
                 .outputs(SMD_CAPACITOR_CRYSTAL.getStackForm(16))
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         // SMD Diode
@@ -52,6 +56,7 @@ public class CrystalComponents {
                 .input(dust,GermaniumSulfide)
                 .fluidInputs(Polyethylene.getFluid(L))
                 .outputs(SMD_DIODE_CRYSTAL.getStackForm(32))
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         // Raw Crystal CPU (MEANT TO BE DONE ONCE)
@@ -68,11 +73,14 @@ public class CrystalComponents {
         BLAST_RECIPES.recipeBuilder().duration(450).EUt(480).blastFurnaceTemp(5000).inputs(RAW_CRYSTAL_CHIP.getStackForm()).input(plate, Olivine).fluidInputs(Rutherfordium.getFluid(L / 2)).outputs(ENGRAVED_CRYSTAL_CHIP.getStackForm()).buildAndRegister();
 
         // Carbon Fibers
+        /*
         AUTOCLAVE_RECIPES.recipeBuilder().duration(150).EUt(6)
                 .input(dust, Carbon)
                 .fluidInputs(Cerium.getFluid(1))
                 .chancedOutput(CARBON_FIBERS.getStackForm(2), 1250, 250)
                 .buildAndRegister();
+
+         */
 
         // Crystal CPU Duplication Recipe
         removeRecipesByInputs(LASER_ENGRAVER_RECIPES, ENGRAVED_CRYSTAL_CHIP.getStackForm(), OreDictUnifier.get(craftingLens, Lime));
@@ -81,6 +89,7 @@ public class CrystalComponents {
                 .inputs(ENGRAVED_CRYSTAL_CHIP.getStackForm())
                 .notConsumable(craftingLens, Lime)
                 .outputs(CRYSTAL_CENTRAL_PROCESSING_UNIT.getStackForm())
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         final MaterialStack[] lubricants = {
@@ -98,6 +107,7 @@ public class CrystalComponents {
                     .inputs(CRYSTAL_CENTRAL_PROCESSING_UNIT.getStackForm())
                     .fluidInputs(material.getFluid(2 * multiplier))
                     .outputs(RAW_CRYSTAL_CHIP.getStackForm(2))
+                    .cleanroom(CleanroomType.CLEANROOM)
                     .buildAndRegister();
         }
     }

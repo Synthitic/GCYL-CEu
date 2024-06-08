@@ -1,5 +1,7 @@
 package com.fulltrix.gcyl.recipes.categories.circuits.components;
 
+import gregtech.api.metatileentity.multiblock.CleanroomType;
+
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregtech.api.GTValues.L;
@@ -21,6 +23,7 @@ public class CosmicComponents {
                 .input(plate, AbyssalAlloy, 4)
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L))
                 .outputs(SMD_DIODE_COSMIC.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // SMD Transistor
@@ -30,6 +33,7 @@ public class CosmicComponents {
                 .inputs(DEGENERATE_RHENIUM_PLATE.getStackForm(4))
                 .fluidInputs(Zylon.getFluid(L))
                 .outputs(SMD_TRANSISTOR_COSMIC.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // SMD Capacitor
@@ -39,6 +43,7 @@ public class CosmicComponents {
                 .inputs(AEROGRAPHENE.getStackForm())
                 .fluidInputs(Zylon.getFluid(L))
                 .outputs(SMD_CAPACITOR_COSMIC.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // SMD Resistor
@@ -48,6 +53,7 @@ public class CosmicComponents {
                 .input(plate, TriniumTitanium, 4)
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L))
                 .outputs(SMD_RESISTOR_COSMIC.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // Cosmic Processing Core
@@ -68,6 +74,7 @@ public class CosmicComponents {
                 .fluidInputs(SolderingAlloy.getFluid(L * 9))
                 .fluidInputs(ProtoAdamantium.getFluid(L * 3))
                 .outputs(COSMIC_PROCESSING_CORE.getStackForm(8))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         CHEMICAL_BATH_RECIPES.recipeBuilder().duration(240).EUt(695000)
@@ -138,6 +145,7 @@ public class CosmicComponents {
                 .input(gemFlawless, Tanzanite, 2)
                 .fluidInputs(CosmicComputingMix.getFluid(1000))
                 .outputs(COSMIC_COMPUTE_UNIT.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
     }
 }
