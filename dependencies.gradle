@@ -28,6 +28,7 @@ dependencies {
     implementation rfg.deobf("curse.maven:gregicality-multiblocks-564858:5121714") //GCYM 1.2.8
     implementation rfg.deobf("curse.maven:groovyscript-687577:5219945") //Groovyscript 1.0.1
     implementation rfg.deobf("curse.maven:material-replication-874493:5054159") //Material replication 1.2.2
+    implementation rfg.deobf("curse.maven:modularui-624243:5153413")
 
     // Soft Dependencies
     implementation "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.684"
