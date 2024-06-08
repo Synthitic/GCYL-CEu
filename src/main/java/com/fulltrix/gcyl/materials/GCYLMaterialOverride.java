@@ -180,7 +180,7 @@ public class GCYLMaterialOverride {
         Collections.addAll(omats, Lignite, Witherite, Barytocalcite, PlatinumMetallicPowder, IridiumMetalResidue, PreciousMetal,
                 RarestMetalMixture, PalladiumMetallicPowder, Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon, Bowieite,
                 Zinc, Enargite, Andradite, Dolomite, Wollastonite, Kaolinite, Tenorite, Tennantite, Cuprite, Tellurium, Zirkelite,
-                Arsenopyrite, Draconium, Iridium, Osmium, Rutile, Gallite);
+                Arsenopyrite, Draconium, Iridium, Osmium, Rutile, Gallite, NetherStar);
         for (Material mat : omats) {
             addOre(mat, 1, 1,false);
         }

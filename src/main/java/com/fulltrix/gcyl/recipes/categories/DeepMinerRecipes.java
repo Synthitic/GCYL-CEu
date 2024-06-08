@@ -63,6 +63,7 @@ public class DeepMinerRecipes {
 
         DEEP_MINER_RECIPES.recipeBuilder()
                 .notConsumable(minerScanMap.get("deep_diamond"))
+                .circuitMeta(0)
                 .input(SENSOR_HV)
                 .input(ELECTRIC_PISTON_HV)
 
@@ -76,10 +77,13 @@ public class DeepMinerRecipes {
                 .duration(20000)
                 .EUt(480)
                 .temperature(2500)
+                .dimension(0)
                 .buildAndRegister();
+
 
         DEEP_MINER_RECIPES.recipeBuilder()
                 .notConsumable(minerScanMap.get("deep_pyrochlore"))
+                .circuitMeta(0)
                 .input(SENSOR_HV)
                 .input(ELECTRIC_PISTON_HV)
 
@@ -93,10 +97,12 @@ public class DeepMinerRecipes {
                 .duration(20000)
                 .EUt(480)
                 .temperature(2500)
+                .dimension(0)
                 .buildAndRegister();
 
         DEEP_MINER_RECIPES.recipeBuilder()
                 .notConsumable(minerScanMap.get("deep_aluminium"))
+                .circuitMeta(0)
                 .input(SENSOR_HV)
                 .input(ELECTRIC_PISTON_HV)
 
@@ -113,10 +119,12 @@ public class DeepMinerRecipes {
                 .duration(20000)
                 .EUt(480)
                 .temperature(2500)
+                .dimension(0)
                 .buildAndRegister();
 
         DEEP_MINER_RECIPES.recipeBuilder()
                 .notConsumable(minerScanMap.get("deep_rutile"))
+                .circuitMeta(0)
                 .input(SENSOR_HV)
                 .input(ELECTRIC_PISTON_HV)
 
@@ -130,10 +138,12 @@ public class DeepMinerRecipes {
                 .duration(20000)
                 .EUt(480)
                 .temperature(2500)
+                .dimension(0)
                 .buildAndRegister();
 
         DEEP_MINER_RECIPES.recipeBuilder()
                 .notConsumable(minerScanMap.get("deep_platinum"))
+                .circuitMeta(0)
                 .input(SENSOR_EV)
                 .input(ELECTRIC_PISTON_EV)
 
@@ -147,9 +157,26 @@ public class DeepMinerRecipes {
                 .duration(20000)
                 .EUt(1920)
                 .temperature(3500)
+                .dimension(0)
                 .buildAndRegister();
 
 
+        DEEP_MINER_RECIPES.recipeBuilder()
+                .notConsumable(minerScanMap.get("deep_platinum"))
+                .circuitMeta(1)
+                .input(SENSOR_EV)
+                .input(ELECTRIC_PISTON_EV)
+
+                .fluidInputs(DrillingFluid.getFluid(64000))
+                .fluidInputs(LiquidAir.getFluid(16000))
+                .output(ore, NetherStar, 16)
+                .chancedOutput(ore, NetherStar, 16,100,2000)
+                .chancedOutput(ore, NetherStar, 16,100,500)
+                .duration(20000)
+                .EUt(1920)
+                .temperature(3500)
+                .dimension(-1)
+                .buildAndRegister();
         }
 
 
