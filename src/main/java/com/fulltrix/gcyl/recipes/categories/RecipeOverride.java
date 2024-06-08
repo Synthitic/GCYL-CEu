@@ -251,6 +251,23 @@ public class RecipeOverride {
 
         //neutronium
         removeRecipesByInputs(FUSION_RECIPES,Americium.getFluid(128),Naquadria.getFluid(128));
+
+        //sterilized growth medium
+        removeRecipesByInputs(FLUID_HEATER_RECIPES, RawGrowthMedium.getFluid(100));
+        //raw growth medium
+        removeRecipesByInputs(MIXER_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Meat, 4),OreDictUnifier.get(dust, Salt,4),OreDictUnifier.get(dust,Calcium,4),OreDictUnifier.get(dust,Agar,4)}, new FluidStack[]{Mutagen.getFluid(4000)});
+        //engraved crystal chip
+        removeRecipesByInputs(BLAST_RECIPES, new ItemStack[]{OreDictUnifier.get(plate, Emerald), RAW_CRYSTAL_CHIP.getStackForm()}, new FluidStack[]{Helium.getFluid(1000)});
+        removeRecipesByInputs(BLAST_RECIPES, new ItemStack[]{OreDictUnifier.get(plate, Olivine), RAW_CRYSTAL_CHIP.getStackForm()}, new FluidStack[]{Helium.getFluid(1000)});
+        //raw crystal chip
+        removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{OreDictUnifier.get(gemExquisite, Emerald)},new FluidStack[]{Europium.getFluid(16)});
+        removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{OreDictUnifier.get(gemExquisite, Olivine)},new FluidStack[]{Europium.getFluid(16)});
+        removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{RAW_CRYSTAL_CHIP_PART.getStackForm()},new FluidStack[]{Mutagen.getFluid(250)});
+        removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{RAW_CRYSTAL_CHIP_PART.getStackForm()},new FluidStack[]{BacterialSludge.getFluid(250)});
+        removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{RAW_CRYSTAL_CHIP_PART.getStackForm()},new FluidStack[]{Europium.getFluid(16)});
+        //raw crystal chip parts
+        removeRecipesByInputs(FORGE_HAMMER_RECIPES, RAW_CRYSTAL_CHIP.getStackForm());
+
     }
 
     public static void chemistryOverride() {

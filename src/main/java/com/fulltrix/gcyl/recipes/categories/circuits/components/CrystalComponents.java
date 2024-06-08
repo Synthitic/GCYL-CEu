@@ -66,8 +66,6 @@ public class CrystalComponents {
 
         BLAST_RECIPES.recipeBuilder().duration(450).EUt(480).blastFurnaceTemp(5000).inputs(RAW_CRYSTAL_CHIP.getStackForm()).input(plate, Emerald).fluidInputs(Rutherfordium.getFluid(L / 2)).outputs(ENGRAVED_CRYSTAL_CHIP.getStackForm()).buildAndRegister();
         BLAST_RECIPES.recipeBuilder().duration(450).EUt(480).blastFurnaceTemp(5000).inputs(RAW_CRYSTAL_CHIP.getStackForm()).input(plate, Olivine).fluidInputs(Rutherfordium.getFluid(L / 2)).outputs(ENGRAVED_CRYSTAL_CHIP.getStackForm()).buildAndRegister();
-        BLAST_RECIPES.recipeBuilder().duration(900).EUt(480).blastFurnaceTemp(5000).inputs(RAW_CRYSTAL_CHIP.getStackForm()).input(block, Emerald).fluidInputs(Helium.getFluid(1000))        .outputs(ENGRAVED_CRYSTAL_CHIP.getStackForm()).buildAndRegister();
-        BLAST_RECIPES.recipeBuilder().duration(900).EUt(480).blastFurnaceTemp(5000).inputs(RAW_CRYSTAL_CHIP.getStackForm()).input(block, Olivine).fluidInputs(Helium.getFluid(1000))        .outputs(ENGRAVED_CRYSTAL_CHIP.getStackForm()).buildAndRegister();
 
         // Carbon Fibers
         AUTOCLAVE_RECIPES.recipeBuilder().duration(150).EUt(6)
