@@ -149,7 +149,6 @@ public class FusionElementsChain {
                 .buildAndRegister();
 
         GAS_CENTRIFUGE_RECIPES.recipeBuilder().duration(210).EUt(30720)
-                .circuitMeta(0)
                 .fluidInputs(TitaniumTetrafluoride.getFluid(10000))
                 .fluidOutputs(Titanium50Tetrafluoride.getFluid(518))
                 .fluidOutputs(Fluorine.getFluid(9482))

@@ -50,13 +50,11 @@ public class GCYLMaterials {
 
     public static int id = 0;
     //NUCLEAR_MARK
-    public static Material Uranium;
     public static Material Americium241;
     public static Material Plutonium;
     public static Material Fermium258;
     public static Material Californium252;
     public static Material Mendelevium261;
-    public static Material Plutonium244;
     public static Material Fermium259;
     public static Material Americium243;
     public static Material Curium247;
@@ -548,7 +546,6 @@ public class GCYLMaterials {
     public static Material SodiumFormate;
     public static Material FormicAcid;
     public static Material OrganicFertilizer;
-    public static Material ZirconiumTetrachloride;
     public static Material CarbonFluoride;
     public static Material CalciumCarbonateSolution;
     public static Material BentoniteClaySlurry;
@@ -854,7 +851,6 @@ public class GCYLMaterials {
     public static Material Propadiene;
     public static Material BETS;
     public static Material FranciumCarbide;
-    public static Material BoronCarbide;
     public static Material BoronFranciumCarbide;
     public static Material AstatideSolution;
     public static Material MixedAstatideSalts;
@@ -945,7 +941,6 @@ public class GCYLMaterials {
     public static Material BariumHydroxide;
     public static Material ThiocyanicAcid;
     public static Material ZrHfSeparationMix;
-    public static Material Zircon;
     public static Material ZrHfChloride;
     public static Material ZirconChlorinatingResidue;
     public static Material SiliconChloride;
@@ -1194,14 +1189,6 @@ public class GCYLMaterials {
     public static void register() {
 
         //NUCLEAR_MARK
-        Uranium = new Material.Builder(++id, gcylId("uranium_generic"))
-                .ingot(3).liquid()
-                .color((Uranium238.getMaterialRGB()+Uranium235.getMaterialRGB())/2)
-                .iconSet(METALLIC)
-                .flags(EXT_METAL)
-                .element(Elements.U)
-                .build();
-
         Plutonium = new Material.Builder(++id, gcylId("plutonium_generic"))
                 .ingot(3).liquid()
                 .color(0xF03232)
@@ -1273,14 +1260,6 @@ public class GCYLMaterials {
                 .flags(STD_METAL)
                 .build()
                 .setFormula("Fm_259", true);
-
-        Plutonium244 = new Material.Builder(++id, gcylId("plutonium_244"))
-                .ingot().liquid()
-                .color(Plutonium.getMaterialRGB())
-                .iconSet(METALLIC)
-                .flags(STD_METAL)
-                .build()
-                .setFormula("Pu_244", true);
 
         Curium250 = new Material.Builder(++id, gcylId("curium_250"))
                 .ingot().liquid()
@@ -5252,14 +5231,6 @@ public class GCYLMaterials {
                 .components(Calcium, 5, Phosphate, 3, Hydrogen, 1, Oxygen, 1)
                 .build();
 
-        ZirconiumTetrachloride = new Material.Builder(++id, gcylId("zirconium_tetrachloride"))
-                .dust()
-                .color(0xF0F0F0)
-                .flags(DISABLE_REPLICATION)
-                .iconSet(SHINY)
-                .build()
-                .setFormula("ZrCl4", true);
-
         CarbonFluoride = new Material.Builder(++id, gcylId("carbone_fluoride"))
                 .liquid()
                 .color(0xE6E6E6)
@@ -7699,14 +7670,6 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("Fr2C2", true);
 
-        BoronCarbide = new Material.Builder(++id, gcylId("boron_carbide"))
-                .dust()
-                .color(0x303030)
-                .flags(DISABLE_REPLICATION)
-                .iconSet(FINE)
-                .build()
-                .setFormula("B4C3", true);
-
         BoronFranciumCarbide = new Material.Builder(++id, gcylId("boron_francium_carbide"))
                 .dust()
                 .color(0x808080)
@@ -8423,14 +8386,6 @@ public class GCYLMaterials {
                 .iconSet(FLUID)
                 .build()
                 .setFormula("?", true);
-
-        Zircon = new Material.Builder(++id, gcylId("zircon"))
-                .gem(3)
-                .color(0xeb9e3f)
-                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
-                .iconSet(GEM_VERTICAL)
-                .components(Zirconium, 1, Silicon, 1, Oxygen, 4)
-                .build();
 
         ZrHfChloride = new Material.Builder(++id, gcylId("zrhf_chloride"))
                 .liquid()

@@ -19,7 +19,7 @@
             "type": "weight_random",
             "values": [{
                     "weight": 50,
-                    "value": {"block": "gregtech:ore_uranium_generic_0"}
+                    "value": "ore:uranium"
                 },
                 {
                     "weight": 50,

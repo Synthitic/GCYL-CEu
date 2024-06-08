@@ -23,15 +23,16 @@
  */
 dependencies {
     // Hard Dependencies
-    implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:5322654") // GTCEu 2.8.8
+    devOnlyNonPublishable(rfg.deobf(project.files("libs/gregtech-1.12.2-2.9.0-beta-dev.jar"))) // GTCEu 2.8.8
     implementation rfg.deobf("curse.maven:codechicken-lib-1-8-242818:2779848") // CCL 3.2.3.358
     implementation rfg.deobf("curse.maven:gregicality-multiblocks-564858:5121714") //GCYM 1.2.8
     implementation rfg.deobf("curse.maven:groovyscript-687577:5219945") //Groovyscript 1.0.1
-    implementation rfg.deobf("curse.maven:material-replication-874493:5054159") //Material replication 1.2.2
-    implementation rfg.deobf("curse.maven:modularui-624243:5153413")
+    devOnlyNonPublishable(rfg.deobf(project.files("libs/MaterialReplication-1.3.0-pre1-dev.jar"))) //Material replication 1.2.2
 
     // Soft Dependencies
     implementation "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.684"
     compileOnlyApi rfg.deobf("curse.maven:ctm-267602:2915363") // CTM 1.0.2.31
     compileOnlyApi rfg.deobf("curse.maven:ae2-extended-life-570458:5147702") // AE2UEL 0.56.4
+    compileOnlyApi rfg.deobf("curse.maven:modularui-624243:5153413")
+    api("com.cleanroommc:modularui:2.4.3")
 }

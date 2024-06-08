@@ -5,6 +5,7 @@ import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
+import gregtech.api.unification.material.properties.BlastProperty;
 import gregtech.api.unification.material.properties.OreProperty;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.material.properties.WireProperties;
@@ -280,6 +281,11 @@ public class GCYLMaterialOverride {
         Copper.addFlags(GENERATE_DENSE);
         StainlessSteel.addFlags(GENERATE_DENSE);
         Titanium.addFlags(GENERATE_DENSE);
+
+        BlastProperty blastProperty;
+
+        blastProperty = Hafnium.getProperty(PropertyKey.BLAST);
+        blastProperty.setGasTier(BlastProperty.GasTier.HIGH);
 
         //ADD FRAMES
         List<Material> framemats = new ArrayList<>();
