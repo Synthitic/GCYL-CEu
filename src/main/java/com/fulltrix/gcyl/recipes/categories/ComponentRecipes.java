@@ -1168,6 +1168,7 @@ public class ComponentRecipes {
                         .EUt(VA[GTValues.UIV]))
                 .buildAndRegister();
 
+        //Change this from carbon nanotubes
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(41943040)
                 .outputs(ELECTRIC_MOTOR_UXV.getStackForm())
                 .input(stickLong, SamariumMagnetic, 64)
