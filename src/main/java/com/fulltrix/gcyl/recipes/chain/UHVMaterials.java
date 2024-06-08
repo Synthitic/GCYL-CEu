@@ -4,10 +4,9 @@ import com.fulltrix.gcyl.item.GCYLExplosive;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.item.GCYLSimpleBlock;
 import gregtech.api.fluids.store.FluidStorageKeys;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.common.items.MetaItems;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.*;
 import static gregicality.multiblocks.api.recipes.GCYMRecipeMaps.ALLOY_BLAST_RECIPES;

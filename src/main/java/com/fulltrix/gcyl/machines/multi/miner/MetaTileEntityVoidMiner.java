@@ -3,7 +3,7 @@ package com.fulltrix.gcyl.machines.multi.miner;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-import com.fulltrix.gcyl.GCYLMaterials;
+import com.fulltrix.gcyl.materials.GCYLMaterials;
 import com.fulltrix.gcyl.item.metal.MetalCasing1;
 import com.fulltrix.gcyl.item.metal.MetalCasing2;
 import com.google.common.collect.Lists;

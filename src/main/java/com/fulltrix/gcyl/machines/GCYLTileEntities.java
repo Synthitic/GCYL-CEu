@@ -12,6 +12,7 @@ import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityDeepMiner;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityVoidMiner;
 import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntitySterileCleaningMaintenanceHatch;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityChemicalPlant;
+import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityDecayChamber;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityPlasmaCondenser;
 import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
 import gregtech.api.GTValues;
@@ -47,6 +48,7 @@ public class GCYLTileEntities {
     public static MetaTileEntityCryogenicFreezer CRYOGENIC_FREEZER;
     public static MetaTileEntityOreFactory ORE_FACTORY;
     public static MetaTileEntityDeepMiner DEEP_MINER;
+    public static MetaTileEntityDecayChamber DECAY_CHAMBER;
 
     public static MetaTileEntitySterileCleaningMaintenanceHatch STERILE_CLEANING_MAINTENANCE_HATCH;
 
@@ -107,6 +109,7 @@ public class GCYLTileEntities {
 
         STERILE_CLEANING_MAINTENANCE_HATCH = registerMetaTileEntity(++id, new MetaTileEntitySterileCleaningMaintenanceHatch(gcylId("maintenance_hatch_sterile_cleanroom_auto")));
 
+        DECAY_CHAMBER = registerMetaTileEntity(++id, new MetaTileEntityDecayChamber(gcylId("decay_chamber"), true));
         //TODO: configurable efficiency for naq reactors, efficiency implementation in general
 
         /*

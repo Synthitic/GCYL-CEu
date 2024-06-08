@@ -4764,4 +4764,6 @@ gregtech.multiblock.deep_miner.max.temperature=Max Temperature: %s K
 gregtech.multiblock.deep_miner_error=§cY LEVEL TOO HIGH! RECIPES WILL NOT RUN!
 recipemap.deep_miner.name=Deep Miner
 
+gcyl.machine.decay_chamber.name=Decay Chamber (DC)
+tile.gcyl_reactor_casing.cladded_reactor_casing.name=Radiation Safe Casing
 

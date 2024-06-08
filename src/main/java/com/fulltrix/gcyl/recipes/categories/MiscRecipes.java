@@ -1,9 +1,7 @@
 package com.fulltrix.gcyl.recipes.categories;
 
-import gregtech.api.unification.material.properties.BlastProperty;
-import net.minecraftforge.common.util.EnumHelper;
-
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.Americium241;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.ADVANCED_MIXER_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.Stellite100;
 import static gregtech.api.recipes.RecipeMaps.MIXER_RECIPES;

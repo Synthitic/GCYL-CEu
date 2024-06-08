@@ -1,4 +1,4 @@
-package com.fulltrix.gcyl;
+package com.fulltrix.gcyl.materials;
 
 //import com.fulltrix.tjfcore.materials.IsotopeMaterial;
 //import com.fulltrix.tjfcore.materials.RadioactiveMaterial;
@@ -18,6 +18,7 @@ import java.util.List;
 
 import static com.fulltrix.gcyl.GCYLElements.*;
 import static com.fulltrix.gcyl.GCYLUtility.gcylId;
+import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
 import static gregtech.api.GTValues.*;
@@ -26,6 +27,7 @@ import static gregtech.api.unification.Elements.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 import static gregtech.api.unification.material.info.MaterialIconSet.*;
+import static gregtech.api.util.GTUtility.gregtechId;
 import static gregtech.integration.groovy.MaterialPropertyExpansion.addLiquid;
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_DECONSTRUCTION;
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_REPLICATION;
@@ -49,18 +51,6 @@ public class GCYLMaterials {
     private static final TextFormatting[] fanciness = new TextFormatting[]{RED, GOLD, YELLOW, GREEN, AQUA, BLUE, LIGHT_PURPLE};
 
     public static int id = 0;
-    //NUCLEAR_MARK
-    public static Material Americium241;
-    public static Material Plutonium;
-    public static Material Fermium258;
-    public static Material Californium252;
-    public static Material Mendelevium261;
-    public static Material Fermium259;
-    public static Material Americium243;
-    public static Material Curium247;
-    public static Material Californium253;
-    public static Material Curium250;
-    public static Material Einsteinium253;
 
     /////////////////////////////////////////
     public static Material Inconel792;
@@ -1187,95 +1177,6 @@ public class GCYLMaterials {
 
 
     public static void register() {
-
-        //NUCLEAR_MARK
-        Plutonium = new Material.Builder(++id, gcylId("plutonium_generic"))
-                .ingot(3).liquid()
-                .color(0xF03232)
-                .iconSet(METALLIC)
-                .flags(EXT_METAL)
-                .element(Elements.Pu)
-                .build();
-
-        Americium241 = new Material.Builder(++id, gcylId("americium_241"))
-                .ingot().liquid()
-                .color(13158600)
-                .iconSet(METALLIC)
-                .flags(STD_METAL)
-                .build()
-                .setFormula("Am_241", true);
-
-        Fermium258 = new Material.Builder(++id, gcylId("fermium_258"))
-                .ingot().liquid()
-                .color(0x984ACF)
-                .iconSet(METALLIC)
-                .flags(STD_METAL)
-                .build()
-                .setFormula("Fm_241", true);
-
-        Californium252 = new Material.Builder(++id, gcylId("californium_252"))
-                .ingot().liquid()
-                .color(0xA85A12)
-                .iconSet(METALLIC)
-                .flags(STD_METAL)
-                .build()
-                .setFormula("Cf_252", true);
-
-        Mendelevium261 = new Material.Builder(++id, gcylId("mendelevium_261"))
-                .ingot().liquid()
-                .color(Mendelevium.getMaterialRGB())
-                .iconSet(METALLIC)
-                .flags(STD_METAL)
-                .build()
-                .setFormula("Md_261", true);
-
-        Americium243 = new Material.Builder(++id, gcylId("americium_243"))
-                .ingot().liquid()
-                .color(Americium.getMaterialRGB())
-                .iconSet(METALLIC)
-                .flags(STD_METAL)
-                .build()
-                .setFormula("Am_243", true);
-
-        Curium247 = new Material.Builder(++id, gcylId("curium_247"))
-                .ingot().liquid()
-                .color(Curium.getMaterialRGB())
-                .iconSet(METALLIC)
-                .flags(STD_METAL)
-                .build()
-                .setFormula("Cm_252", true);
-
-        Californium253 = new Material.Builder(++id, gcylId("californium_253"))
-                .ingot().liquid()
-                .color(Californium.getMaterialRGB())
-                .iconSet(METALLIC)
-                .flags(STD_METAL)
-                .build()
-                .setFormula("Cf_253", true);
-
-        Fermium259 = new Material.Builder(++id, gcylId("fermium_259"))
-                .ingot().liquid()
-                .color(Fermium.getMaterialRGB())
-                .iconSet(METALLIC)
-                .flags(STD_METAL)
-                .build()
-                .setFormula("Fm_259", true);
-
-        Curium250 = new Material.Builder(++id, gcylId("curium_250"))
-                .ingot().liquid()
-                .color(Curium.getMaterialRGB())
-                .iconSet(METALLIC)
-                .flags(STD_METAL)
-                .build()
-                .setFormula("Cm_250", true);
-
-        Einsteinium253 = new Material.Builder(++id, gcylId("einsteinium_253"))
-                .ingot().liquid()
-                .color(Einsteinium.getMaterialRGB())
-                .iconSet(METALLIC)
-                .flags(STD_METAL)
-                .build()
-                .setFormula("Es_253", true);
 
         //////////////////////
 

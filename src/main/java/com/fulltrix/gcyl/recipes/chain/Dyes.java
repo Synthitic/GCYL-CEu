@@ -1,19 +1,9 @@
 package com.fulltrix.gcyl.recipes.chain;
 
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.MarkerMaterials;
-import gregtech.api.unification.ore.OrePrefix;
-import net.minecraft.item.ItemStack;
-
-import static com.fulltrix.gcyl.GCYLMaterials.*;
-import static gregtech.api.recipes.RecipeMaps.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.material.Materials.Malachite;
-import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
-import static gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE;
 
 public class Dyes {
     public static void init() {

@@ -1,6 +1,9 @@
 package com.fulltrix.gcyl;
 
 import com.fulltrix.gcyl.item.GCYLCoreItems;
+import com.fulltrix.gcyl.materials.GCYLMaterialOverride;
+import com.fulltrix.gcyl.materials.GCYLMaterials;
+import com.fulltrix.gcyl.materials.GCYLNuclearMaterials;
 import com.fulltrix.gcyl.recipes.RecipeHandler;
 import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
 import com.fulltrix.gcyl.recipes.categories.handlers.ElectricImplosionHandler;
@@ -17,7 +20,6 @@ import gregtech.api.recipes.GTRecipeInputCache;
 import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
 import gregtech.api.unification.material.event.MaterialEvent;
 import gregtech.api.unification.material.event.MaterialRegistryEvent;
-import gregtech.common.ConfigHolder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -29,7 +31,6 @@ import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -68,10 +69,12 @@ public class CommonProxy {
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void registerMaterials(MaterialEvent event) {
         //TJFMaterials.registerNuclearMaterials();
+        GCYLNuclearMaterials.registerNuclear();
         GCYLMaterials.register();
         GCYLMaterials.register2();
         GCYLMaterials.registerSuperconductors();
         GCYLMaterials.initDEMaterials();
+
         GCYLMaterialOverride.materialChanges();
         GCYLMaterialOverride.tempMaterialModifications();
     }

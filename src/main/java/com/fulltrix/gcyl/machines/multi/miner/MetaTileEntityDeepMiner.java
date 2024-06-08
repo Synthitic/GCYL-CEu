@@ -1,7 +1,7 @@
 package com.fulltrix.gcyl.machines.multi.miner;
 
 import codechicken.lib.raytracer.CuboidRayTraceResult;
-import com.fulltrix.gcyl.GCYLMaterials;
+import com.fulltrix.gcyl.materials.GCYLMaterials;
 import com.fulltrix.gcyl.machines.multi.simple.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.recipes.recipeproperties.GCYLTemperatureProperty;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
@@ -39,7 +39,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -48,6 +47,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.List;
 
+//TODO implement breaking a blocks to bedrock
 public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController implements IHeatingCoil {
 
     protected final MetaTileEntity metaTileEntity;

@@ -1,9 +1,8 @@
 package com.fulltrix.gcyl.recipes.categories.circuits;
 
 import com.fulltrix.gcyl.GCYLConfig;
-import gregtech.api.unification.material.MarkerMaterials;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.recipes.RecipeMaps.*;

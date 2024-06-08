@@ -2,7 +2,7 @@ package com.fulltrix.gcyl.recipes.categories.circuits.components;
 
 import gregtech.api.fluids.store.FluidStorageKeys;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.item.GCYLExplosive.ExplosiveType.*;
 import static com.fulltrix.gcyl.item.GCYLMetaBlocks.*;

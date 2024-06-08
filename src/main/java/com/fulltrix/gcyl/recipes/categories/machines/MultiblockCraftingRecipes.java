@@ -12,12 +12,12 @@ import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.item.fusion.GCYLFusionCasing.CasingType.ADV_FUSION_COIL_3;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.*;
+import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.Einsteinium253;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
-import static gregtech.api.GTValues.EV;
 import static gregtech.api.GTValues.IV;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.GTValues.VA;
@@ -340,41 +340,16 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                         .EUt(VA[GTValues.UHV]))
                 .buildAndRegister();
 
+        //Decay chamber
+        ModHandler.addShapedRecipe("gcyl_decay_chamber", DECAY_CHAMBER.getStackForm(),
+                "RCR", "FAF","WCW",
+                'R', new UnificationEntry(stick, Plutonium241),
+                'F', FIELD_GENERATOR_IV,
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'A', HULL[IV].getStackForm(),
+                'W', new UnificationEntry(cableGtDouble, NaquadahAlloy));
+
         /*
-
-
-            // Nuclear Reactor
-            ModHandler.addShapedRecipe("ga_boiling_water_thorium_reactor", NUCLEAR_REACTOR.getStackForm(),
-                    "GCG", "IHI", "PCP",
-                    'H', HULL[EV].getStackForm(),
-                    'C', new UnificationEntry(plateDense, Thorium),
-                    'P', new UnificationEntry(plate, HastelloyN),
-                    'G', new UnificationEntry(gear, HastelloyN),
-                    'I', MetaItems.ROBOT_ARM_EV);
-
-            // Nuclear Breeder Reactor
-            ModHandler.addShapedRecipe("ga_boiling_water_uranium_reactor", NUCLEAR_BREEDER.getStackForm(),
-                    "GCG", "IHI", "PCP",
-                    'H', HULL[IV].getStackForm(),
-                    'C', new UnificationEntry(plateDense, Uranium235),
-                    'P', new UnificationEntry(plate, HastelloyN),
-                    'G', new UnificationEntry(gear, HastelloyN),
-                    'I', ROBOT_ARM_IV);
-
-            // Industrial Primitive Blast Furnace (IPBF)
-            ModHandler.addShapedRecipe("ga_industrial_primitive_blast_furnace", INDUSTRIAL_PRIMITIVE_BLAST_FURNACE.getStackForm(),
-                    "PFP", "FOF", "PFP",
-                    'P', MetaBlocks.METAL_CASING.getItemVariant(PRIMITIVE_BRICKS),
-                    'F', Blocks.FURNACE,
-                    'O', MetaTileEntities.PRIMITIVE_BLAST_FURNACE.getStackForm());
-
-
-            // Gas Centrifuge
-            ModHandler.addShapedRecipe("ga_gas_centrifuge", GAS_CENTRIFUGE.getStackForm(),
-                    "PCP", "CHC", "PCP",
-                    'H', HULL[EV].getStackForm(),
-                    'C', ELECTRIC_MOTOR_EV.getStackForm(),
-                    'P', ELECTRIC_PUMP_EV);
 
             // Hot Coolant Turbine
             ModHandler.addShapedRecipe("ga_large_hot_coolant_turbine", GATileEntities.HOT_COOLANT_TURBINE.getStackForm(),

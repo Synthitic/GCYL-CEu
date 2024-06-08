@@ -27,7 +27,6 @@ public class GCYLMetaBlocks {
     public static GCYLExplosive EXPLOSIVE;
     public static GCYLSimpleBlock SIMPLE_BLOCK;
     public static GCYLReactorCasing REACTOR_CASING;
-
     public static MetalCasing1 METAL_CASING_1;
     public static MetalCasing2 METAL_CASING_2;
 

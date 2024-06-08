@@ -1,13 +1,8 @@
 package com.fulltrix.gcyl.recipes.chain;
 
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.unification.OreDictUnifier;
-
-import static com.fulltrix.gcyl.GCYLMaterials.*;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.material.Materials.Radon;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.ingot;
 

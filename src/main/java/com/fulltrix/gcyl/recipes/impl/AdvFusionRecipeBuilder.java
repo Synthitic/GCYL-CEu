@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static gregtech.api.unification.material.Materials.Steam;
 
 public class AdvFusionRecipeBuilder extends RecipeBuilder<AdvFusionRecipeBuilder> {

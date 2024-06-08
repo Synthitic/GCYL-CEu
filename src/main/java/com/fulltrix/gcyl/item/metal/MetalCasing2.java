@@ -7,7 +7,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.util.IStringSerializable;
 import org.jetbrains.annotations.NotNull;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.client.ClientHandler.*;
 import static gregtech.api.unification.material.Materials.*;
 

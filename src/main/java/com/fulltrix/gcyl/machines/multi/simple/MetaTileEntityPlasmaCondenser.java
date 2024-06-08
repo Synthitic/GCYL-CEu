@@ -2,6 +2,7 @@ package com.fulltrix.gcyl.machines.multi.simple;
 
 import com.fulltrix.gcyl.item.metal.MetalCasing1;
 import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
+import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
@@ -27,7 +28,7 @@ public class MetaTileEntityPlasmaCondenser extends GCYLRecipeMapMultiblockContro
 
     public MetaTileEntityPlasmaCondenser(ResourceLocation metaTileEntityId, boolean isParallel) {
         super(metaTileEntityId, GCYLRecipeMaps.PLASMA_CONDENSER_RECIPES, isParallel);
-        this.recipeMapWorkable = new MultiblockRecipeLogic(this);
+        this.recipeMapWorkable = new GCYMMultiblockRecipeLogic(this);
     }
 
     @Override

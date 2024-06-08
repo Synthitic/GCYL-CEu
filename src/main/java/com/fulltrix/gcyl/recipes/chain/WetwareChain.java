@@ -4,7 +4,7 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.*;
 import static gregtech.api.recipes.RecipeMaps.*;

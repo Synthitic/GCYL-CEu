@@ -1,4 +1,4 @@
-package com.fulltrix.gcyl;
+package com.fulltrix.gcyl.materials;
 
 import gregtech.api.GTValues;
 import gregtech.api.fluids.FluidBuilder;
@@ -14,7 +14,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.IncoloyMA956;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.Zeron100;
@@ -384,6 +385,7 @@ public class GCYLMaterialOverride {
         Zeron100.addFlags(GENERATE_BOLT_SCREW);
         Trinium.addFlags(GENERATE_FRAME);
         Naquadria.addFlags(GENERATE_DENSE);
+        Lead.addFlags(GENERATE_DENSE);
         RhodiumPlatedPalladium.addFlags(GENERATE_GEAR);
         NaquadahAlloy.addFlags(DISABLE_DECOMPOSITION);
         NaquadahAlloy.addFlags(NO_ALLOY_BLAST_RECIPES);

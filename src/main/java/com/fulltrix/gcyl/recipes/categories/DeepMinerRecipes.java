@@ -1,38 +1,30 @@
 package com.fulltrix.gcyl.recipes.categories;
 
 import com.fulltrix.gcyl.recipes.recipeproperties.GCYLScanProperty;
-import crafttweaker.api.item.IItemStack;
-import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTCondition;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
-import gregtech.api.recipes.recipeproperties.ScanProperty;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.util.GTUtility;
-import gregtech.common.ConfigHolder;
-import gregtech.common.items.MetaItems;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
 import java.util.Map;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.TOOL_DATA_DEEP_MINER;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.DEEP_MINER_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.api.util.AssemblyLineManager.*;
 import static gregtech.common.items.MetaItems.*;
 
 public class DeepMinerRecipes {

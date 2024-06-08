@@ -2,7 +2,7 @@ package com.fulltrix.gcyl.recipes.helper;
 
 import gregtech.api.unification.stack.UnificationEntry;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.loaders.recipe.CraftingComponent.Component;

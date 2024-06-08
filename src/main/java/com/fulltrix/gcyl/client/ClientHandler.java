@@ -29,6 +29,7 @@ public class ClientHandler {
     public static SimpleOverlayRenderer ADVANCED_FUSION_ACTIVE;
     public static SimpleOverlayRenderer NITINOL_60_CASING;
     public static SimpleOverlayRenderer MAINTENANCE_OVERLAY_STERILE_CLEANING;
+    public static SimpleOverlayRenderer CLADDED_REACTOR_CASING;
 
     public static OrientedOverlayRenderer NAQADAH_OVERLAY;
     public static OrientedOverlayRenderer ROCKET_OVERLAY;
@@ -69,5 +70,6 @@ public class ClientHandler {
         NAQUADRIA_CASING = new SimpleOverlayRenderer("casings/metal_casings/naquadria");
         HYPER_CASING = new SimpleOverlayRenderer("casings/solid/hyper_casing");
         HYPER_CASING_2 = new SimpleOverlayRenderer("casings/solid/hyper_casing_2");
+        CLADDED_REACTOR_CASING = new SimpleOverlayRenderer("casings/solid/cladded_reactor_casing");
     }
 }

@@ -6,7 +6,7 @@ import gregtech.api.unification.stack.MaterialStack;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;

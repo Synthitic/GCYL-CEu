@@ -1,6 +1,6 @@
 package com.fulltrix.gcyl.recipes.chain;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.UVA_HALIDE_LAMP;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.*;
 import static gregtech.api.recipes.RecipeMaps.*;

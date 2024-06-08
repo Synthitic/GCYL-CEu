@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.client.ClientHandler.*;
 
 public class MetalCasing1 extends VariantBlock<MetalCasing1.CasingType> {

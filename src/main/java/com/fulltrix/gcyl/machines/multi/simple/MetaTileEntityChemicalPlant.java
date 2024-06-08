@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.machines.multi.simple;
 
 import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
+import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregtech.api.capability.IHeatingCoil;
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -27,7 +28,7 @@ public class MetaTileEntityChemicalPlant extends GCYLRecipeMapMultiblockControll
 
     public MetaTileEntityChemicalPlant(ResourceLocation metaTileEntityId, boolean isParallel) {
         super(metaTileEntityId, GCYLRecipeMaps.CHEMICAL_PLANT_RECIPES, isParallel);
-        this.recipeMapWorkable = new MultiblockRecipeLogic(this);
+        this.recipeMapWorkable = new GCYMMultiblockRecipeLogic(this);
     }
 
     @Override

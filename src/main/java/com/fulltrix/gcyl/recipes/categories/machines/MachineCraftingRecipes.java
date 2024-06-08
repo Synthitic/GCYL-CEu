@@ -13,7 +13,7 @@ import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.TOOL_DATA_MODULE_CLUSTER;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.UVA_HALIDE_LAMP;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.STERILE_CLEANING_MAINTENANCE_HATCH;
