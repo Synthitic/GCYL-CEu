@@ -9,7 +9,7 @@
     ],
     "vein_populator": {
         "type": "surface_rock",
-        "material": "gcyl:uranium_generic"
+        "material": "uranium"
     },
     "generator": {
         "type": "ellipsoid",
@@ -24,7 +24,7 @@
             "type": "weight_random",
             "values": [{
                     "weight": 100,
-                    "value": {"block": "gregtech:ore_uranium_generic_0"}
+                    "value": "ore:uranium"
                 }
             ]
         }

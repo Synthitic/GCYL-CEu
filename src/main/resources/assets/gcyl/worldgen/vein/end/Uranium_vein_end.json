@@ -5,7 +5,7 @@
     "max_height": 40,
     "min_height": 10,
     "dimension_filter": ["name:the_end"],
-    "surface_stone_material": "uranium_radioactive",
+    "surface_stone_material": "uranium",
     "generator": {
         "type": "ellipsoid",
         "radius": [
