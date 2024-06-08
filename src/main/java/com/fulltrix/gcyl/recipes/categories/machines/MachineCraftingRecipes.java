@@ -42,31 +42,53 @@ public class MachineCraftingRecipes {
 
     private static void hullOverride() { //TODO add OpV machine hull recipes
 
-        removeTieredRecipeByName("gregtech:gregtech.machine.hull.", GTValues.UHV, GTValues.MAX);
+        removeTieredRecipeByName("gregtech:gregtech.machine.hull.", GTValues.ZPM, GTValues.MAX);
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.ZPM), OreDictUnifier.get(cableGtSingle, VanadiumGallium, 2)}, new FluidStack[]{Polybenzimidazole.getFluid(L * 2)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(plate, NaquadahAlloy, 8), getIntegratedCircuit(8));
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UV), OreDictUnifier.get(cableGtSingle, YttriumBariumCuprate, 2)}, new FluidStack[]{Polybenzimidazole.getFluid(L * 2)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(plate, Darmstadtium, 8), getIntegratedCircuit(8));
         removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV), OreDictUnifier.get(cableGtSingle, Europium, 2)}, new FluidStack[]{Polybenzimidazole.getFluid(L * 2)});
         removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(plate, Neutronium, 8), getIntegratedCircuit(8));
+        //ZPM - UV HULLS
+        //ModHandler.addShapedRecipe("gcyl_hull_zpm", HULL[7].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.ZPM), 'C', new UnificationEntry(cableGtSingle, Naquadah), 'H', new UnificationEntry(plate, Duranium), 'P', new UnificationEntry(plate, Polybenzimidazole));
+        //ModHandler.addShapedRecipe("gcyl_hull_zpm", HULL[8].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UV), 'C', new UnificationEntry(cableGtSingle, NaquadahAlloy), 'H', new UnificationEntry(plate, Tritanium), 'P', new UnificationEntry(plate, Polybenzimidazole));
+
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.ZPM)).input(cableGtSingle, Naquadah, 2).fluidInputs(Polybenzimidazole.getFluid(L * 2)).outputs(HULL[7].getStackForm()).buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UV)).input(cableGtSingle, NaquadahAlloy, 2).fluidInputs(Polybenzimidazole.getFluid(L * 2)).outputs(HULL[8].getStackForm()).buildAndRegister();
+
+        //ZPM - UV MACHINE CASING
+       // ModHandler.addShapedRecipe("gcyl_casing_uhv", MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.ZPM), "PPP", "PwP", "PPP", 'P', new UnificationEntry(plate, Duranium));
+        //ModHandler.addShapedRecipe("gcyl_casing_uhv", MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UV), "PPP", "PwP", "PPP", 'P', new UnificationEntry(plate, Tritanium));
+
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).circuitMeta(8).input(plate, Duranium, 8).outputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.ZPM)).buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).circuitMeta(8).input(plate, Tritanium, 8).outputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UV)).buildAndRegister();
+
         // UHV+ Hulls
 
-        ModHandler.addShapedRecipe("gcyl_hull_uhv", HULL[9].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV), 'C', new UnificationEntry(cableGtSingle, TungstenTitaniumCarbide), 'H', new UnificationEntry(plate, Seaborgium), 'P', new UnificationEntry(plate, Polyetheretherketone));
-        ModHandler.addShapedRecipe("gcyl_hull_uev", HULL[10].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV), 'C', new UnificationEntry(cableGtQuadruple, Pikyonium), 'H', new UnificationEntry(plate, Bohrium), 'P', new UnificationEntry(plate, Polyetheretherketone));
-        ModHandler.addShapedRecipe("gcyl_hull_uiv", HULL[11].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UIV), 'C', new UnificationEntry(cableGtQuadruple, Cinobite), 'H', new UnificationEntry(plate, Quantum), 'P', new UnificationEntry(plate, Zylon));
-        ModHandler.addShapedRecipe("gcyl_hull_uxv", HULL[12].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV), 'C', new UnificationEntry(cableGtQuadruple, NaquadriaticTaranium), 'H', new UnificationEntry(plate, BlackTitanium), 'P', new UnificationEntry(plate, FullerenePolymerMatrix));
+       // ModHandler.addShapedRecipe("gcyl_hull_uhv", HULL[9].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV), 'C', new UnificationEntry(cableGtSingle, TungstenTitaniumCarbide), 'H', new UnificationEntry(plate, Seaborgium), 'P', new UnificationEntry(plate, Polyetheretherketone));
+       // ModHandler.addShapedRecipe("gcyl_hull_uev", HULL[10].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV), 'C', new UnificationEntry(cableGtQuadruple, Pikyonium), 'H', new UnificationEntry(plate, Bohrium), 'P', new UnificationEntry(plate, Polyetheretherketone));
+      //  ModHandler.addShapedRecipe("gcyl_hull_uiv", HULL[11].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UIV), 'C', new UnificationEntry(cableGtQuadruple, Cinobite), 'H', new UnificationEntry(plate, Quantum), 'P', new UnificationEntry(plate, Zylon));
+       // ModHandler.addShapedRecipe("gcyl_hull_uxv", HULL[12].getStackForm(), "PHP", "CMC", 'M', MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV), 'C', new UnificationEntry(cableGtQuadruple, NaquadriaticTaranium), 'H', new UnificationEntry(plate, BlackTitanium), 'P', new UnificationEntry(plate, FullerenePolymerMatrix));
 
         ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV)).input(cableGtSingle, TungstenTitaniumCarbide, 2).fluidInputs(Polyetheretherketone.getFluid(L * 2)).outputs(HULL[9].getStackForm()).buildAndRegister();
         ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV)).input(cableGtQuadruple, Pikyonium, 2).fluidInputs(Polyetheretherketone.getFluid(L * 2)).outputs(HULL[10].getStackForm()).buildAndRegister();
         ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UIV)).input(cableGtQuadruple, Cinobite, 2).fluidInputs(Zylon.getFluid(L * 2)).outputs(HULL[11].getStackForm()).buildAndRegister();
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV)).input(cableGtQuadruple, NaquadriaticTaranium, 2).fluidInputs(FullerenePolymerMatrix.getFluid(L * 2)).outputs(HULL[12].getStackForm()).buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV)).input(cableGtQuadruple, NaquadriaticTaranium, 2).fluidInputs(Zylon.getFluid(L * 2)).outputs(HULL[12].getStackForm()).buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV)).input(cableGtQuadruple, Neutronium, 2).fluidInputs(FullerenePolymerMatrix.getFluid(L * 2)).outputs(HULL[13].getStackForm()).buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV)).input(cableGtQuadruple, CosmicNeutronium, 2).fluidInputs(FullerenePolymerMatrix.getFluid(L * 2)).outputs(HULL[14].getStackForm()).buildAndRegister();
 
-        removeTieredRecipeByName("gregtech:casing_", GTValues.UHV, GTValues.MAX);
+        removeTieredRecipeByName("gregtech:casing_", GTValues.ZPM, GTValues.MAX);
         // UHV+ Casings
-        ModHandler.addShapedRecipe("gcyl_casing_uhv", MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV), "PPP", "PwP", "PPP", 'P', new UnificationEntry(plate, Seaborgium));
-        ModHandler.addShapedRecipe("gcyl_casing_uev", MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV), "PPP", "PwP", "PPP", 'P', new UnificationEntry(plate, Bohrium));
-        ModHandler.addShapedRecipe("gcyl_casing_uiv", MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UIV), "PPP", "PwP", "PPP", 'P', new UnificationEntry(plate, Quantum));
-        ModHandler.addShapedRecipe("gcyl_casing_uxv", MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV), "PPP", "PwP", "PPP", 'P', new UnificationEntry(plate, BlackTitanium));
+     //   ModHandler.addShapedRecipe("gcyl_casing_uhv", MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV), "PPP", "PwP", "PPP", 'P', new UnificationEntry(plate, Seaborgium));
+      //  ModHandler.addShapedRecipe("gcyl_casing_uev", MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV), "PPP", "PwP", "PPP", 'P', new UnificationEntry(plate, Bohrium));
+      //  ModHandler.addShapedRecipe("gcyl_casing_uiv", MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UIV), "PPP", "PwP", "PPP", 'P', new UnificationEntry(plate, Quantum));
+     //   ModHandler.addShapedRecipe("gcyl_casing_uxv", MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV), "PPP", "PwP", "PPP", 'P', new UnificationEntry(plate, BlackTitanium));
         ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).circuitMeta(8).input(plate, Seaborgium, 8).outputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV)).buildAndRegister();
         ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).circuitMeta(8).input(plate, Bohrium, 8).outputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV)).buildAndRegister();
         ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).circuitMeta(8).input(plate, Quantum, 8).outputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UIV)).buildAndRegister();
         ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).circuitMeta(8).input(plate, BlackTitanium, 8).outputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV)).buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).circuitMeta(8).input(plate, HeavyQuarkDegenerateMatter, 8).outputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.OpV)).buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).circuitMeta(8).input(plate, Neutronium, 8).outputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.MAX)).buildAndRegister();
 
     }
 

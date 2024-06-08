@@ -248,6 +248,9 @@ public class RecipeOverride {
 
         //iv motor
         removeRecipeByName("gregtech:electric_motor_iv");
+
+        //neutronium
+        removeRecipesByInputs(FUSION_RECIPES,Americium.getFluid(128),Naquadria.getFluid(128));
     }
 
     public static void chemistryOverride() {
