@@ -1,6 +1,11 @@
 package com.fulltrix.gcyl.recipes.chain;
 
+import gregtech.api.GTValues;
+import gregtech.api.unification.material.Material;
+
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
+import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.DECAY_CHAMBERS_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
@@ -8,6 +13,10 @@ import static gregtech.api.unification.ore.OrePrefix.ingot;
 
 public class NuclearChain {
     public static void init() {
+        //TODO: nuclear
+        gasCentrifugeInit();
+        decayChamberInit();
+
         //NUCLEAR PROCESSING
 
         /*
@@ -293,5 +302,49 @@ public class NuclearChain {
                 .buildAndRegister();
 
          */
+    }
+
+    private static void gasCentrifugeInit() {
+
+        /* TODO: ???
+        for (Material mats : radioactiveMats) {
+            CHEMICAL_RECIPES.recipeBuilder().duration(200).EUt(30)
+                    .input(dust, mats)
+                    .fluidInputs(NitricAcid.getFluid(1000))
+                    .fluidOutputs(Hydrogen.getFluid(2000))
+                    .output(dust, GenericRadioactives.get(mats.getName() + "_" + "nitrite"), 3)
+                    .buildAndRegister();
+
+            BLAST_RECIPES.recipeBuilder().duration(200).EUt(120)
+                    .input(dust, GenericRadioactives.get(mats.getName() + "_" + "nitrite"), 3)
+                    .output(dust, GenericRadioactives.get(mats.getName() + "_" + "dioxide"))
+                    .fluidOutputs(NitricOxide.getFluid(2000))
+                    .blastFurnaceTemp(600)
+                    .buildAndRegister();
+
+            CHEMICAL_RECIPES.recipeBuilder().duration(1200).EUt(30)
+                    .input(dust, GenericRadioactives.get(mats.getName() + "_" + "dioxide"))
+                    .fluidInputs(Chlorine.getFluid(6000))
+                    .fluidOutputs(GenericRadioactives.get(mats.getName() + "_" + "hexachloride").getFluid(1000))
+                    .fluidOutputs(Oxygen.getFluid(2000))
+                    .buildAndRegister();
+
+            CHEMICAL_RECIPES.recipeBuilder().duration(1200).EUt(30)
+                    .fluidInputs(GenericRadioactives.get(mats.getName() + "_" + "hexachloride").getFluid(1000))
+                    .fluidInputs(HydrofluoricAcid.getFluid(6000))
+                    .fluidOutputs(GenericRadioactives.get(mats.getName() + "_" + "hexafluoride").getFluid(1000))
+                    .fluidOutputs(HydrochloricAcid.getFluid(6000))
+                    .buildAndRegister();
+        }
+
+         */
+    }
+
+    private static void decayChamberInit() {
+
+        //alpha decay
+
+
+
     }
 }

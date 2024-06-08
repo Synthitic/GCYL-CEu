@@ -47,7 +47,7 @@ public class WorldGenRegister {
         Path worldgenVeinRootPath = configPath.resolve("worldgen/vein");
         Path worldgenFluidRootPath = configPath.resolve("worldgen/fluid");
         Path gtUnpacked = configPath.resolve("worldgen_extracted.json");
-        Path extractedLock = configPath.resolve("gt_replaced");
+        Path extractedLock = configPath.resolve("worldgen_extracted_gcyl");
         String[] dims = new String[]{"end", "nether", "overworld"};
         if (Files.exists(gtUnpacked) && !Files.exists(extractedLock)) {
             for (String dim : dims) {

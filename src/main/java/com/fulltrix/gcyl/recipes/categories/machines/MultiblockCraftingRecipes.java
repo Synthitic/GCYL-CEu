@@ -349,7 +349,33 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 'A', HULL[IV].getStackForm(),
                 'W', new UnificationEntry(cableGtDouble, NaquadahAlloy));
 
+        //Greenhouses
+        ModHandler.addShapedRecipe("gcyl_greenhouse_mv", GREEN_HOUSE[0].getStackForm(),
+                "RCR", "FAF", "WCW",
+                'R', ROBOT_ARM_MV,
+                'F', ELECTRIC_PUMP_MV,
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.MV),
+                'A', HULL[GTValues.MV].getStackForm(),
+                'W', new UnificationEntry(cableGtSingle, Copper));
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(1000).EUt(GTValues.VA[GTValues.UV])
+                .outputs(GREEN_HOUSE[1].getStackForm())
+                .inputs(GREEN_HOUSE[0].getStackForm(4))
+                .inputs(ROBOT_ARM_UV.getStackForm(4))
+                .inputs(ELECTRIC_PUMP_UV.getStackForm(4))
+                .input(circuit, UV, 4)
+                .input(HULL[GTValues.UV])
+                .input(cableGtDouble, Duranium, 4)
+                .fluidInputs(Indalloy140.getFluid(L * 8))
+                .stationResearch(b-> b
+                        .researchStack(GREEN_HOUSE[0].getStackForm())
+                        .CWUt(32)
+                        .EUt(VA[GTValues.UV]))
+                .buildAndRegister();
+
         /*
+
+
 
             // Hot Coolant Turbine
             ModHandler.addShapedRecipe("ga_large_hot_coolant_turbine", GATileEntities.HOT_COOLANT_TURBINE.getStackForm(),

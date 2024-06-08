@@ -2,6 +2,12 @@ package com.fulltrix.gcyl.materials;
 
 import gregtech.api.unification.Elements;
 import gregtech.api.unification.material.Material;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static com.fulltrix.gcyl.GCYLUtility.gcylId;
 import static gregtech.api.unification.material.Materials.*;
@@ -15,22 +21,37 @@ import static kono.ceu.materialreplication.api.unification.materials.flags.MRMat
 
 public class GCYLNuclearMaterials {
 
+    //NEEDED FOR RECIPES
     public static Material ReactorSteel;
-    public static Material Americium241;
     public static Material Plutonium;
-    public static Material Fermium258;
-    public static Material Californium252;
-    public static Material Mendelevium261;
-    public static Material Fermium259;
+    public static Material Americium241;
     public static Material Americium243;
     public static Material Curium247;
-    public static Material Californium253;
     public static Material Curium250;
+    public static Material Californium252;
+    public static Material Californium253;
     public static Material Einsteinium253;
-    public static Material LEN236;
+    public static Material Fermium258;
+    public static Material Fermium259;
+    public static Material Mendelevium261;
 
+    //HEXAFLUORIDES, OXIDES, NITRITES, HEXACHLORIDES
+    public static Map<String, Material> GenericRadioactives = new Object2ObjectOpenHashMap<>();
+
+    public final static Material[] radioactiveMats = {Americium, Curium};
+    private final static String[] types = {"nitrite", "dioxide", "hexachloride", "hexafluoride"};
+
+    public static List<String> GenericRadioactivesString = new ArrayList<>();
+
+    //DECAY CHAMBER NUCLEAR MATERIALS
+    public static Material Plutonium243;
+
+    /*
+    public static Material LEN236;
     public static Material HighEnrichedNeptuniumDioxide;
     public static Material DepletedNeptuniumDioxide;
+
+     */
     public static void registerNuclear() {
 
         ReactorSteel = new Material.Builder(++id, gcylId("reactor_steel"))
@@ -51,7 +72,7 @@ public class GCYLNuclearMaterials {
 
         Americium241 = new Material.Builder(++id, gcylId("americium_241"))
                 .ingot().liquid()
-                .color(13158600)
+                .color(Americium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
                 .build()
@@ -129,6 +150,10 @@ public class GCYLNuclearMaterials {
                 .build()
                 .setFormula("Es-253", true);
 
+        registerRadioactiveStuff();
+
+        registerDecayMats();
+
         /*
         HighEnrichedNeptuniumDioxide = new Material.Builder(++id, gcylId("high_enriched_neptunium_dioxide"))
                 .dust(3)
@@ -156,5 +181,61 @@ public class GCYLNuclearMaterials {
                 .setFormula("NpO2", true);
 
          */
+    }
+
+    private static void registerRadioactiveStuff() {
+
+        /* //TODO: ???
+        for(Material mats : radioactiveMats) {
+            for (String s : types) {
+                if (s.equals("hexafluoride")) {
+                    GenericRadioactives.put(mats.getName() + "_" + s, new Material.Builder(++id, gcylId(mats.getName() + "_" + s))
+                            .liquid()
+                            .color(mats.getMaterialRGB())
+                            .iconSet(FLUID)
+                            .flags(DISABLE_DECOMPOSITION, DISABLE_REPLICATION)
+                            .components(mats, 1, Fluorine, 6)
+                            .build());
+
+                    GenericRadioactivesString.add(mats.getName()+"_"+s);
+
+                } else if(s.equals("hexachloride")) {
+                    GenericRadioactives.put(mats.getName() + "_" + s, new Material.Builder(++id, gcylId(mats.getName() + "_" + s))
+                            .liquid()
+                            .color(mats.getMaterialRGB())
+                            .iconSet(FLUID)
+                            .flags(DISABLE_DECOMPOSITION, DISABLE_REPLICATION)
+                            .components(mats, 1, Chlorine, 6)
+                            .build());
+                    GenericRadioactivesString.add(mats.getName()+"_"+s);
+                }
+                else if (s.equals("nitrite")) {
+                    GenericRadioactives.put(mats.getName() + "_" + s, new Material.Builder(++id, gcylId(mats.getName() + "_" + s))
+                            .dust()
+                            .color(mats.getMaterialRGB())
+                            .iconSet(METALLIC)
+                            .flags(DISABLE_DECOMPOSITION, DISABLE_REPLICATION)
+                            .components(mats,1)
+                            .build());
+                    GenericRadioactivesString.add(mats.getName()+"_"+s);
+                } else {
+                    GenericRadioactives.put(mats.getName() + "_" + s, new Material.Builder(++id, gcylId(mats.getName() + "_" + s))
+                            .dust()
+                            .color(mats.getMaterialRGB())
+                            .iconSet(METALLIC)
+                            .flags(DISABLE_DECOMPOSITION, DISABLE_REPLICATION)
+                            .components(mats,1)
+                            .build());
+                    GenericRadioactivesString.add(mats.getName()+"_"+s);
+                }
+            }
+        }
+
+         */
+
+    }
+
+    private static void registerDecayMats() {
+
     }
 }

@@ -13,6 +13,7 @@ import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityVoidMiner;
 import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntitySterileCleaningMaintenanceHatch;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityChemicalPlant;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityDecayChamber;
+import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityGreenhouse;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityPlasmaCondenser;
 import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
 import gregtech.api.GTValues;
@@ -49,6 +50,7 @@ public class GCYLTileEntities {
     public static MetaTileEntityOreFactory ORE_FACTORY;
     public static MetaTileEntityDeepMiner DEEP_MINER;
     public static MetaTileEntityDecayChamber DECAY_CHAMBER;
+    public static MetaTileEntityGreenhouse[] GREEN_HOUSE = new MetaTileEntityGreenhouse[2];
 
     public static MetaTileEntitySterileCleaningMaintenanceHatch STERILE_CLEANING_MAINTENANCE_HATCH;
 
@@ -110,6 +112,9 @@ public class GCYLTileEntities {
         STERILE_CLEANING_MAINTENANCE_HATCH = registerMetaTileEntity(++id, new MetaTileEntitySterileCleaningMaintenanceHatch(gcylId("maintenance_hatch_sterile_cleanroom_auto")));
 
         DECAY_CHAMBER = registerMetaTileEntity(++id, new MetaTileEntityDecayChamber(gcylId("decay_chamber"), true));
+
+        GREEN_HOUSE[0] = registerMetaTileEntity(++id, new MetaTileEntityGreenhouse(gcylId("greenhouse_mv"), 2));
+        GREEN_HOUSE[1] = registerMetaTileEntity(++id, new MetaTileEntityGreenhouse(gcylId("greenhouse_uv"), 8));
         //TODO: configurable efficiency for naq reactors, efficiency implementation in general
 
         /*

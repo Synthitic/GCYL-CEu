@@ -1075,7 +1075,7 @@ public class ComponentRecipes {
                 .scannerResearch(b -> b
                         .researchStack(ELECTRIC_MOTOR_LuV.getStackForm())
                         .duration(1200)
-                        .EUt(VA[GTValues.IV]))
+                        .EUt(VA[GTValues.ZPM]))
                 .duration(600).EUt(40960).buildAndRegister();
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder()

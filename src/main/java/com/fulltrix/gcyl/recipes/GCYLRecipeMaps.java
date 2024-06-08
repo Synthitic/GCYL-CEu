@@ -39,7 +39,7 @@ public final class GCYLRecipeMaps {
 
     //public static final RecipeMap<NuclearReactorBuilder> NUCLEAR_BREEDER_RECIPES = new RecipeMap<>("nuclear_breeder", 4, 4, 0, 0, new NuclearReactorBuilder().EUt(1920),false); //NUCLEAR_MARK
 
-    public static final RecipeMap<SimpleRecipeBuilder> DECAY_CHAMBERS_RECIPES = new RecipeMap<>("decay_chamber", 1, 1, 1, 1, new SimpleRecipeBuilder().EUt(30), false)
+    public static final RecipeMap<SimpleRecipeBuilder> DECAY_CHAMBERS_RECIPES = new RecipeMap<>("decay_chamber", 2, 1, 1, 1, new SimpleRecipeBuilder().EUt(30), false)
             .setProgressBar(GuiTextures.PROGRESS_BAR_HAMMER, ProgressWidget.MoveType.VERTICAL); //NUCLEAR_MARK
 
     public static final RecipeMap<AdvFusionRecipeBuilder> ADV_FUSION_RECIPES = new RecipeMap<>("adv_fusion", 0, 0, 3, 3, new AdvFusionRecipeBuilder(), false)
@@ -107,7 +107,8 @@ public final class GCYLRecipeMaps {
             4,9,2,3,new DeepMinerBuilder(),false)
             .setSound(GTSoundEvents.MINER);
 
-
+    public static final RecipeMap<SimpleRecipeBuilder> GREENHOUSE_RECIPES = new RecipeMap<>("greenhouse",
+            2,2,1,0,new SimpleRecipeBuilder(), false);
 
 
 
@@ -119,6 +120,8 @@ public final class GCYLRecipeMaps {
         BLAST_RECIPES.setMaxInputs(4);
 
         EXTRACTOR_RECIPES.setMaxInputs(2);
+
+        GAS_CENTRIFUGE_RECIPES.setMaxFluidOutputs(3);
     }
 
 }
