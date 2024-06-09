@@ -458,6 +458,9 @@ public class CircuitRecipes {
                 .input(wireGtSingle, LuVSuperconductor, 16)
                 .outputs(CRYSTAL_COMPUTER_ZPM.getStackForm())
                 .cleanroom(CleanroomType.CLEANROOM)
+                .scannerResearch(b -> b
+                        .researchStack(CRYSTAL_ASSEMBLY_LUV.getStackForm())
+                        .EUt(GTValues.VA[GTValues.LuV]))
                 .buildAndRegister();
 
         // Crystal Mainframe
