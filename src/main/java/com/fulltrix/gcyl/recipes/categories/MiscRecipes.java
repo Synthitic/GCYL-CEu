@@ -1,13 +1,18 @@
 package com.fulltrix.gcyl.recipes.categories;
 
+import static com.fulltrix.gcyl.item.GCYLCoreItems.COVER_ENDER_ITEM_LINK;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.Americium241;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.ADVANCED_MIXER_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.Stellite100;
+import static gregtech.api.GTValues.*;
+import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.MIXER_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.Materials.Bismuth;
-import static gregtech.api.unification.ore.OrePrefix.dust;
+import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.common.items.MetaItems.*;
+import static gregtech.common.items.MetaItems.COVER_ENDER_FLUID_LINK;
 
 public class MiscRecipes {
     public static void init() {
@@ -34,6 +39,17 @@ public class MiscRecipes {
                 .circuitMeta(9)
                 .buildAndRegister();
 
+        //Ender Item Link
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(plate, EnderPearl, 9)
+                .input(plateDouble, StainlessSteel)
+                .input(SENSOR_HV)
+                .input(EMITTER_HV)
+                .input(ELECTRIC_PISTON_HV)
+                .fluidInputs(Polyethylene.getFluid(L * 2))
+                .output(COVER_ENDER_ITEM_LINK)
+                .EUt(VA[HV]).duration(320)
+                .buildAndRegister();
     }
 
 }
