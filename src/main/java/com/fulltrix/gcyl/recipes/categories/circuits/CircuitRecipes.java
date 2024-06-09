@@ -21,6 +21,7 @@ public class CircuitRecipes {
     //TODO: higher tier soldering alloys
     //TODO: research and/or move circuits to circuit assembly line
     //TODO: remove tin as a soldering alloy
+    //TODO: make smd ore prefixes to condense recipes
 
     public static void init() {
 
@@ -109,7 +110,7 @@ public class CircuitRecipes {
                 .inputs(RESISTOR.getStackForm(4))
                 .inputs(INTEGRATED_LOGIC_CIRCUIT.getStackForm(2))
                 .input(plate, Aluminium, 2)
-                .input(wireGtSingle, AnnealedCopper, 4)
+                .input(wireGtSingle, LVSuperconductor, 4)
                 .outputs(INTEGRATED_CIRCUIT_HV.getStackForm())
                 .buildAndRegister();
 
@@ -119,7 +120,7 @@ public class CircuitRecipes {
                 .inputs(SMD_RESISTOR_REFINED.getStackForm(2))
                 .inputs(INTEGRATED_LOGIC_CIRCUIT.getStackForm(2))
                 .input(plate, Aluminium, 2)
-                .input(wireGtSingle, AnnealedCopper, 4)
+                .input(wireGtSingle, LVSuperconductor, 4)
                 .outputs(INTEGRATED_CIRCUIT_HV.getStackForm())
                 .buildAndRegister();
     }
