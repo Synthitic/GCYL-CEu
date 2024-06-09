@@ -20,6 +20,7 @@ public class CircuitRecipes {
 
     //TODO: higher tier soldering alloys
     //TODO: research and/or move circuits to circuit assembly line
+    //TODO: remove tin as a soldering alloy
 
     public static void init() {
 
@@ -80,7 +81,6 @@ public class CircuitRecipes {
                 .inputs(SMD_RESISTOR_REFINED.getStackForm(4))
                 .inputs(SMD_CAPACITOR_REFINED.getStackForm(4))
                 .inputs(GOOD_CIRCUIT_BOARD.getStackForm())
-                .inputs(CENTRAL_PROCESSING_UNIT.getStackForm())
                 .input(wireFine, Copper, 4)
                 .outputs(INTEGRATED_CIRCUIT_LV.getStackForm())
                 .buildAndRegister();
