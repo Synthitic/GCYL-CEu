@@ -1,0 +1,33 @@
+{
+    "name": "gcyl.veins.ore.lignite",
+    "weight": 70,
+    "density": 0.6,
+    "min_height": 65,
+    "dimension_filter": [
+        "dimension_id:0", "dimension_id:111"
+    ],
+    "vein_populator": {
+        "type": "surface_rock",
+        "material": "gcyl:lignite"
+    },
+
+    "generator": {
+        "type": "ellipsoid",
+        "radius": [19, 20]
+    },
+    "filler": {
+        "type": "simple",
+        "value": {
+            "type": "weight_random",
+            "values": [{
+                    "weight": 75,
+                    "value": {"block": "gregtech:ore_lignite_0"}
+                },
+                {
+                    "weight": 25,
+                    "value": "ore:coal"
+                }
+            ]
+        }
+    }
+}

@@ -8,8 +8,12 @@ import com.fulltrix.gcyl.machines.multi.MetaTileEntityCosmicRayDetector;
 import com.fulltrix.gcyl.machines.multi.MetaTileEntityElectricImplosion;
 import com.fulltrix.gcyl.machines.multi.MetaTileEntityStellarForge;
 import com.fulltrix.gcyl.machines.multi.advance.*;
+import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityDeepMiner;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityVoidMiner;
+import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntitySterileCleaningMaintenanceHatch;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityChemicalPlant;
+import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityDecayChamber;
+import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityGreenhouse;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityPlasmaCondenser;
 import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
 import gregtech.api.GTValues;
@@ -22,6 +26,8 @@ import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityEnerg
 import net.minecraft.util.ResourceLocation;
 
 import static com.fulltrix.gcyl.GCYLUtility.gcylId;
+import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.DEEP_MINER_RECIPES;
+import static gregtech.api.util.GTUtility.gregtechId;
 import static gregtech.common.metatileentities.MetaTileEntities.registerMetaTileEntity;
 
 public class GCYLTileEntities {
@@ -41,6 +47,12 @@ public class GCYLTileEntities {
     public static MetaTileEntityChemicalPlant CHEMICAL_PLANT;
     public static MetaTileEntityLargeRocketEngine LARGE_ROCKET_ENGINE;
     public static MetaTileEntityCryogenicFreezer CRYOGENIC_FREEZER;
+    public static MetaTileEntityOreFactory ORE_FACTORY;
+    public static MetaTileEntityDeepMiner DEEP_MINER;
+    public static MetaTileEntityDecayChamber DECAY_CHAMBER;
+    public static MetaTileEntityGreenhouse[] GREEN_HOUSE = new MetaTileEntityGreenhouse[2];
+
+    public static MetaTileEntitySterileCleaningMaintenanceHatch STERILE_CLEANING_MAINTENANCE_HATCH;
 
     public static SimpleGeneratorMetaTileEntity[] NAQUADAH_REACTOR = new SimpleGeneratorMetaTileEntity[8];
     public static SimpleGeneratorMetaTileEntity[] ROCKET_GENERATOR = new SimpleGeneratorMetaTileEntity[8];
@@ -93,6 +105,16 @@ public class GCYLTileEntities {
 
         CRYOGENIC_FREEZER = registerMetaTileEntity(++id, new MetaTileEntityCryogenicFreezer(gcylId("cryogenic_freezer")));
 
+        ORE_FACTORY = registerMetaTileEntity(++id, new MetaTileEntityOreFactory(gcylId("ore_factory")));
+
+        DEEP_MINER = registerMetaTileEntity(++id, new MetaTileEntityDeepMiner(gcylId("deep_miner"), DEEP_MINER_RECIPES, false));
+
+        STERILE_CLEANING_MAINTENANCE_HATCH = registerMetaTileEntity(++id, new MetaTileEntitySterileCleaningMaintenanceHatch(gcylId("maintenance_hatch_sterile_cleanroom_auto")));
+
+        DECAY_CHAMBER = registerMetaTileEntity(++id, new MetaTileEntityDecayChamber(gcylId("decay_chamber"), true));
+
+        GREEN_HOUSE[0] = registerMetaTileEntity(++id, new MetaTileEntityGreenhouse(gcylId("greenhouse_mv"), 2));
+        GREEN_HOUSE[1] = registerMetaTileEntity(++id, new MetaTileEntityGreenhouse(gcylId("greenhouse_uv"), 8));
         //TODO: configurable efficiency for naq reactors, efficiency implementation in general
 
         /*

@@ -1,6 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories.handlers;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.recipes.helper.HelperMethods.*;
 import static gregtech.api.GTValues.EV;
 import static gregtech.api.GTValues.LuV;

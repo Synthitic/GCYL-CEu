@@ -3,18 +3,27 @@ package com.fulltrix.gcyl.recipes;
 //import com.fulltrix.tjfcore.recipes.impl.NuclearReactorBuilder;
 
 import com.fulltrix.gcyl.recipes.impl.AdvFusionRecipeBuilder;
+import com.fulltrix.gcyl.recipes.impl.DeepMinerBuilder;
 import gregtech.api.GTValues;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.gui.widgets.ProgressWidget.MoveType;
 import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.builders.AssemblyLineRecipeBuilder;
+import gregtech.api.recipes.builders.BlastRecipeBuilder;
 import gregtech.api.recipes.builders.FuelRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
+import gregtech.api.recipes.machines.RecipeMapAssemblyLine;
+import gregtech.api.recipes.ui.impl.AssemblyLineUI;
+import gregtech.api.util.AssemblyLineManager;
 import gregtech.core.sound.GTSoundEvents;
 import net.minecraft.init.SoundEvents;
-import static gregtech.api.recipes.RecipeMaps.*;
 
-public class GCYLRecipeMaps {
+import static com.fulltrix.gcyl.GCYLUtility.gcylId;
+import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtech.api.util.GTUtility.gregtechId;
+
+public final class GCYLRecipeMaps {
 
     private GCYLRecipeMaps() {
     }
@@ -36,7 +45,7 @@ public class GCYLRecipeMaps {
 
     //public static final RecipeMap<NuclearReactorBuilder> NUCLEAR_BREEDER_RECIPES = new RecipeMap<>("nuclear_breeder", 4, 4, 0, 0, new NuclearReactorBuilder().EUt(1920),false); //NUCLEAR_MARK
 
-    public static final RecipeMap<SimpleRecipeBuilder> DECAY_CHAMBERS_RECIPES = new RecipeMap<>("decay_chamber", 1, 1, 1, 1, new SimpleRecipeBuilder().EUt(30), false)
+    public static final RecipeMap<SimpleRecipeBuilder> DECAY_CHAMBERS_RECIPES = new RecipeMap<>("decay_chamber", 2, 1, 1, 1, new SimpleRecipeBuilder().EUt(30), false)
             .setProgressBar(GuiTextures.PROGRESS_BAR_HAMMER, ProgressWidget.MoveType.VERTICAL); //NUCLEAR_MARK
 
     public static final RecipeMap<AdvFusionRecipeBuilder> ADV_FUSION_RECIPES = new RecipeMap<>("adv_fusion", 0, 0, 3, 3, new AdvFusionRecipeBuilder(), false)
@@ -46,11 +55,6 @@ public class GCYLRecipeMaps {
             3, 2, 3, 2, (new SimpleRecipeBuilder()), false)
             .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressWidget.MoveType.HORIZONTAL)
             .setSound(GTSoundEvents.COMBUSTION);
-
-    public static final RecipeMap<SimpleRecipeBuilder> GAS_CENTRIFUGE_RECIPES = new RecipeMap<>("gas_centrifuge",
-            1,0,1,3,new SimpleRecipeBuilder(), false)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, MoveType.CIRCULAR)
-            .setSound(GTSoundEvents.CENTRIFUGE);
 
     public static final RecipeMap<SimpleRecipeBuilder> PLASMA_CONDENSER_RECIPES = new RecipeMap<>("plasma_condenser",
             2, 2, 2, 2, (new SimpleRecipeBuilder()), false)
@@ -106,6 +110,14 @@ public class GCYLRecipeMaps {
             .setSound(GTSoundEvents.COMBUSTION);
 
 
+    public static final RecipeMap<DeepMinerBuilder> DEEP_MINER_RECIPES = new RecipeMap<>("deep_miner",
+            6,12,3,3,new DeepMinerBuilder(),false)
+            .setSound(GTSoundEvents.MINER);
+
+    public static final RecipeMap<SimpleRecipeBuilder> GREENHOUSE_RECIPES = new RecipeMap<>("greenhouse",
+            2,2,1,0,new SimpleRecipeBuilder(), false);
+
+
 
 
     public static void modifyMaps() {
@@ -115,6 +127,8 @@ public class GCYLRecipeMaps {
         BLAST_RECIPES.setMaxInputs(4);
 
         EXTRACTOR_RECIPES.setMaxInputs(2);
+
+        GAS_CENTRIFUGE_RECIPES.setMaxFluidOutputs(3);
     }
 
 }

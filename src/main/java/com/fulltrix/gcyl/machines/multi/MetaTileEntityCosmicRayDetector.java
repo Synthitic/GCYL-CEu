@@ -3,7 +3,7 @@ package com.fulltrix.gcyl.machines.multi;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-import com.fulltrix.gcyl.GCYLMaterials;
+import com.fulltrix.gcyl.materials.GCYLMaterials;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.item.metal.MetalCasing2;
 import com.google.common.collect.Lists;
@@ -48,7 +48,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import static com.fulltrix.gcyl.GCYLMaterials.BlackTitanium;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.BlackTitanium;
 import static com.fulltrix.gcyl.client.ClientHandler.QUANTUM_CASING;
 import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_2;
 

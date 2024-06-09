@@ -1,0 +1,32 @@
+{
+    "name": "gcyl.veins.ore.uranium_generic",
+    "weight": 45,
+    "density": 0.5,
+    "max_height": 60,
+    "min_height": 10,
+    "dimension_filter": [
+        "dimension_id:0"
+    ],
+    "vein_populator": {
+        "type": "surface_rock",
+        "material": "uranium"
+    },
+    "generator": {
+        "type": "ellipsoid",
+        "radius": [
+            13,
+            13
+        ]
+    },
+    "filler": {
+        "type": "simple",
+        "value": {
+            "type": "weight_random",
+            "values": [{
+                    "weight": 100,
+                    "value": "ore:uranium"
+                }
+            ]
+        }
+    }
+}

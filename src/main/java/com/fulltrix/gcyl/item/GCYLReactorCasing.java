@@ -32,7 +32,8 @@ public class GCYLReactorCasing extends VariantBlock<GCYLReactorCasing.CasingType
         HYPER_CORE_2("hyper_core_2"),
         HYPER_CORE_3("hyper_core_3"),
         HYPER_CASING("hyper_casing"),
-        HYPER_CASING_2("hyper_casing_2");
+        HYPER_CASING_2("hyper_casing_2"),
+        CLADDED_REACTOR_CASING("cladded_reactor_casing");
 
 
         private final String name;

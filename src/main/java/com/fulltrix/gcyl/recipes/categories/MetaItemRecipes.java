@@ -1,13 +1,11 @@
 package com.fulltrix.gcyl.recipes.categories;
 
-import com.fulltrix.gcyl.item.GCYLExplosive;
-import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.recipes.RecipeMaps.*;

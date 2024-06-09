@@ -9,7 +9,7 @@ import gregtech.api.unification.material.Material;
 import gregtech.common.items.MetaItems;
 import net.minecraft.item.ItemStack;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.INDUCTOR;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.*;

@@ -1,9 +1,8 @@
 package com.fulltrix.gcyl.recipes.chain;
 
-import gregtech.api.GTValues;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.ADVANCED_CENTRIFUGE_RECIPES;

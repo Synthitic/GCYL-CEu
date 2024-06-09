@@ -1,10 +1,11 @@
 package com.fulltrix.gcyl.recipes.categories.circuits.components;
 
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.BIO_REACTOR_RECIPES;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
@@ -32,6 +33,7 @@ public class WetwareComponents {
                 .input(foil, NaquadahEnriched, 4)
                 .input(foil, Polybenzimidazole, 4)
                 .outputs(SMD_CAPACITOR_WETWARE.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // SMD Resistor
@@ -41,6 +43,7 @@ public class WetwareComponents {
                 .input(plate, Naquadria)
                 .input(plate, RutheniumDioxide)
                 .outputs(SMD_RESISTOR_WETWARE.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // SMD Transistor
@@ -49,6 +52,7 @@ public class WetwareComponents {
                 .fluidInputs(Polytetrafluoroethylene.getFluid(L))
                 .input(plate, NaquadahEnriched)
                 .outputs(SMD_TRANSISTOR_WETWARE.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // SMD Diode
@@ -58,6 +62,7 @@ public class WetwareComponents {
                 .input(dust, Naquadria)
                 .input(dust, LanthanumCalciumManganate)
                 .outputs(SMD_DIODE_WETWARE.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // Neuro Support Unit
@@ -71,6 +76,7 @@ public class WetwareComponents {
                 .outputs(NEURO_SUPPORT_UNIT.getStackForm())
                 .EUt(30720)
                 .duration(250)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // Cyber Processing Unit
@@ -89,6 +95,7 @@ public class WetwareComponents {
                 .fluidInputs(SterileGrowthMedium.getFluid(1000))
                 .fluidInputs(Titanium.getFluid(L * 9))
                 .outputs(CYBER_PROCESSING_UNIT.getStackForm(8))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .EUt(30720 * 4)
                 .duration(250)
                 .buildAndRegister();
@@ -107,6 +114,7 @@ public class WetwareComponents {
                 .fluidInputs(Polyethylene.getFluid(1008))
                 .inputs(STERILIZED_PETRI_DISH.getStackForm())
                 .outputs(ELECTRICALLY_WIRED_PETRI_DISH.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(120).duration(200)
@@ -154,6 +162,7 @@ public class WetwareComponents {
                 .input(dust, Agar)
                 .fluidInputs(BacterialGrowthMedium.getFluid(1000))
                 .outputs(CLEAN_CULTURE.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().EUt(30720).duration(500)
@@ -167,6 +176,7 @@ public class WetwareComponents {
                 .inputs(CLEAN_CULTURE.getStackForm())
                 .fluidInputs(BacterialGrowthMedium.getFluid(1000))
                 .outputs(SHEWANELLA_CULTURE.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(2400)
@@ -174,6 +184,7 @@ public class WetwareComponents {
                 .inputs(CLEAN_CULTURE.getStackForm())
                 .fluidInputs(BacterialGrowthMedium.getFluid(1000))
                 .outputs(BREVIBACTERIUM_CULTURE.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(2400)
@@ -181,6 +192,7 @@ public class WetwareComponents {
                 .inputs(CLEAN_CULTURE.getStackForm())
                 .fluidInputs(BacterialGrowthMedium.getFluid(1000))
                 .outputs(CUPRIVADUS_CULTURE.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(2400)
@@ -188,6 +200,7 @@ public class WetwareComponents {
                 .inputs(CLEAN_CULTURE.getStackForm())
                 .fluidInputs(BacterialGrowthMedium.getFluid(1000))
                 .outputs(ESCHERICHIA_CULTURE.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(2400)
@@ -195,6 +208,7 @@ public class WetwareComponents {
                 .inputs(CLEAN_CULTURE.getStackForm())
                 .fluidInputs(BacterialGrowthMedium.getFluid(1000))
                 .outputs(BIFIDOBACTERIUM_CULTURE.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(2400)
@@ -202,6 +216,7 @@ public class WetwareComponents {
                 .inputs(CLEAN_CULTURE.getStackForm())
                 .fluidInputs(BacterialGrowthMedium.getFluid(1000))
                 .outputs(STREPTOCOCCUS_CULTURE.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(200)
@@ -210,6 +225,7 @@ public class WetwareComponents {
                 .output(dust, Shewanella)
                 .fluidOutputs(DepletedGrowthMedium.getFluid(1000))
                 .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
 
@@ -219,6 +235,7 @@ public class WetwareComponents {
                 .output(dust, StreptococcusPyogenes)
                 .fluidOutputs(DepletedGrowthMedium.getFluid(1000))
                 .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(200)
@@ -227,6 +244,7 @@ public class WetwareComponents {
                 .output(dust, BifidobacteriumBreve)
                 .fluidOutputs(DepletedGrowthMedium.getFluid(1000))
                 .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(200)
@@ -235,6 +253,7 @@ public class WetwareComponents {
                 .output(dust, EschericiaColi)
                 .fluidOutputs(DepletedGrowthMedium.getFluid(1000))
                 .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(200)
@@ -243,6 +262,7 @@ public class WetwareComponents {
                 .output(dust, BrevibacteriumFlavium)
                 .fluidOutputs(DepletedGrowthMedium.getFluid(1000))
                 .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(200)
@@ -251,6 +271,7 @@ public class WetwareComponents {
                 .output(dust, CupriavidusNecator)
                 .fluidOutputs(DepletedGrowthMedium.getFluid(1000))
                 .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(120).duration(100)
@@ -258,6 +279,7 @@ public class WetwareComponents {
                 .output(dust, Shewanella)
                 .fluidInputs(BacterialGrowthMedium.getFluid(250))
                 .fluidOutputs(DepletedGrowthMedium.getFluid(250))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(120).duration(100)
@@ -265,6 +287,7 @@ public class WetwareComponents {
                 .output(dust, BrevibacteriumFlavium)
                 .fluidInputs(BacterialGrowthMedium.getFluid(250))
                 .fluidOutputs(DepletedGrowthMedium.getFluid(250))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(120).duration(100)
@@ -272,6 +295,7 @@ public class WetwareComponents {
                 .output(dust, EschericiaColi)
                 .fluidInputs(BacterialGrowthMedium.getFluid(250))
                 .fluidOutputs(DepletedGrowthMedium.getFluid(250))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(120).duration(100)
@@ -279,6 +303,7 @@ public class WetwareComponents {
                 .output(dust, StreptococcusPyogenes)
                 .fluidInputs(BacterialGrowthMedium.getFluid(250))
                 .fluidOutputs(DepletedGrowthMedium.getFluid(250))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(120).duration(100)
@@ -286,6 +311,7 @@ public class WetwareComponents {
                 .output(dust, BifidobacteriumBreve)
                 .fluidInputs(BacterialGrowthMedium.getFluid(250))
                 .fluidOutputs(DepletedGrowthMedium.getFluid(250))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(120).duration(100)
@@ -293,6 +319,7 @@ public class WetwareComponents {
                 .output(dust, CupriavidusNecator)
                 .fluidInputs(BacterialGrowthMedium.getFluid(250))
                 .fluidOutputs(DepletedGrowthMedium.getFluid(250))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
 

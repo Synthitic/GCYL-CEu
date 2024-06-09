@@ -1,6 +1,6 @@
 package com.fulltrix.gcyl.item;
 
-import com.fulltrix.gcyl.GCYLMaterials;
+import com.fulltrix.gcyl.materials.GCYLMaterials;
 import gregtech.api.block.IHeatingCoilBlockStats;
 import gregtech.api.block.VariantActiveBlock;
 import gregtech.api.block.VariantItemBlock;

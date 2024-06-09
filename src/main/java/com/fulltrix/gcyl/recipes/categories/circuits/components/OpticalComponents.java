@@ -1,8 +1,9 @@
 package com.fulltrix.gcyl.recipes.categories.circuits.components;
 
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 import net.minecraft.item.ItemStack;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.recipes.RecipeMaps.*;
@@ -22,6 +23,7 @@ public class OpticalComponents {
                 .input(plate, Polyetheretherketone, 4)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 4))
                 .outputs(SMD_DIODE_OPTICAL.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
 
@@ -32,6 +34,7 @@ public class OpticalComponents {
                 .input(plate, LithiumTitanate, 4)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 4))
                 .outputs(SMD_TRANSISTOR_OPTICAL.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // SMD Capacitor
@@ -41,6 +44,7 @@ public class OpticalComponents {
                 .input(foil, Polyetheretherketone, 4)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 4))
                 .outputs(SMD_CAPACITOR_OPTICAL.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // SMD Resistor
@@ -50,6 +54,7 @@ public class OpticalComponents {
                 .input(dust, TBCCODust, 4)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 4))
                 .outputs(SMD_RESISTOR_OPTICAL.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // SMD Inductor
@@ -75,6 +80,7 @@ public class OpticalComponents {
                 .fluidInputs(SolderingAlloy.getFluid(L * 9))
                 .fluidInputs(FullereneDopedNanotubes.getFluid(L))
                 .outputs(OPTICAL_PROCESSING_CORE.getStackForm(6))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(750000)

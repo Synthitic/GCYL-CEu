@@ -1,12 +1,11 @@
 package com.fulltrix.gcyl.recipes.categories.circuits;
 
 import com.fulltrix.gcyl.recipes.categories.circuits.components.*;
-import gregtech.api.unification.OreDictUnifier;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
+import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.Plutonium;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
 import static gregtech.api.recipes.RecipeMaps.*;
@@ -75,6 +74,7 @@ public class CircuitComponentRecipes {
                 .input(plate, Magnalium)
                 .fluidInputs(Polyethylene.getFluid(L))
                 .outputs(SMD_TRANSISTOR_NANO.getStackForm(32))
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         // Resistor
@@ -83,6 +83,7 @@ public class CircuitComponentRecipes {
                 .input(dust, Graphite)
                 .fluidInputs(Polyethylene.getFluid(L))
                 .outputs(SMD_RESISTOR_NANO.getStackForm(24))
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         // Capacitor
@@ -91,6 +92,7 @@ public class CircuitComponentRecipes {
                 .input(foil, Titanium)
                 .fluidInputs(Polyethylene.getFluid(L))
                 .outputs(SMD_CAPACITOR_NANO.getStackForm(16))
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         // Diode
@@ -99,6 +101,7 @@ public class CircuitComponentRecipes {
                 .input(dust, Caesium)
                 .fluidInputs(Polyethylene.getFluid(L))
                 .outputs(SMD_DIODE_NANO.getStackForm(32))
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
     }
 
@@ -110,6 +113,7 @@ public class CircuitComponentRecipes {
                 .input(plate, Americium)
                 .fluidInputs(Polyethylene.getFluid(L))
                 .outputs(SMD_TRANSISTOR_QUANTUM.getStackForm(32))
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         // Resistor
@@ -117,6 +121,7 @@ public class CircuitComponentRecipes {
                 .input(wireFine, Ruthenium, 8).input(plate, Graphene)
                 .fluidInputs(Polyethylene.getFluid(L))
                 .outputs(SMD_RESISTOR_QUANTUM.getStackForm(24))
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         // Capacitor
@@ -125,6 +130,7 @@ public class CircuitComponentRecipes {
                 .input(foil, Tungsten)
                 .fluidInputs(Polyethylene.getFluid(L))
                 .outputs(SMD_CAPACITOR_QUANTUM.getStackForm(16))
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         // Diode
@@ -133,6 +139,7 @@ public class CircuitComponentRecipes {
                 .input(dust, Polonium)
                 .fluidInputs(Polyethylene.getFluid(L))
                 .outputs(SMD_DIODE_QUANTUM.getStackForm(32))
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
     }
 
@@ -143,6 +150,7 @@ public class CircuitComponentRecipes {
                 .input(plate, GermaniumTungstenNitride, 4)
                 .fluidInputs(Polyimide.getFluid(L * 2))
                 .outputs(SMD_TRANSISTOR_BIOWARE.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720 * 4)
@@ -151,6 +159,7 @@ public class CircuitComponentRecipes {
                 .input(foil, BariumTitanate, 4)
                 .fluidInputs(Polyimide.getFluid(L * 2))
                 .outputs(SMD_CAPACITOR_BIOWARE.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720 * 4)
@@ -159,6 +168,7 @@ public class CircuitComponentRecipes {
                 .input(dust, CopperGalliumIndiumSelenide)
                 .fluidInputs(Polyimide.getFluid(L * 2))
                 .outputs(SMD_DIODE_BIOWARE.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720 * 4)
@@ -167,6 +177,7 @@ public class CircuitComponentRecipes {
                 .input(plate, BismuthIridiate)
                 .fluidInputs(Polyimide.getFluid(L * 2))
                 .outputs(SMD_RESISTOR_BIOWARE.getStackForm(24))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -180,6 +191,7 @@ public class CircuitComponentRecipes {
                 .inputs(STEM_CELLS.getStackForm(4))
                 .fluidInputs(Tritanium.getFluid(144))
                 .outputs(NEURO_PROCESSOR.getStackForm(4))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .EUt(30720 * 16)
                 .duration(150)
                 .buildAndRegister();
@@ -200,6 +212,7 @@ public class CircuitComponentRecipes {
                 .input(foil, VanadiumGallium, 24)
                 .fluidInputs(SodiumPersulfate.getFluid(6000))
                 .outputs(KAPTON_CIRCUIT_BOARD.getStackForm())
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder().duration(500).EUt(240)
@@ -207,6 +220,7 @@ public class CircuitComponentRecipes {
                 .input(foil, VanadiumGallium, 24)
                 .fluidInputs(Iron3Chloride.getFluid(3000))
                 .outputs(KAPTON_CIRCUIT_BOARD.getStackForm())
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         //TODO Red circuit board from GTNH

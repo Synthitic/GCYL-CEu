@@ -32,6 +32,11 @@
         "textures": {
           "all": "gregtech:blocks/casings/solid/hyper_core_3"
         }
+      },
+      "cladded_reactor_casing": {
+        "textures": {
+          "all": "gregtech:blocks/casings/solid/cladded_reactor_casing"
+        }
       }
     }
   }

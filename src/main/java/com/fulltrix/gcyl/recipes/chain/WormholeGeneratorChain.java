@@ -4,7 +4,7 @@ import com.fulltrix.gcyl.item.GCYLExplosive;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import gregtech.api.fluids.store.FluidStorageKeys;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.PLASMA_CONDENSER_RECIPES;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.STELLAR_FORGE_RECIPES;

@@ -3,20 +3,19 @@ package com.fulltrix.gcyl.recipes.categories;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.item.GCYLMultiblockCasing2;
 import gregtech.api.unification.stack.MaterialStack;
-import gregtech.common.blocks.BlockFusionCasing;
 import gregtech.common.blocks.MetaBlocks;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.item.GCYLHeatingCoil.CoilType.*;
 import static com.fulltrix.gcyl.item.GCYLMultiblockCasing2.CasingType.*;
 import static com.fulltrix.gcyl.item.GCYLReactorCasing.CasingType.*;
-import static com.fulltrix.gcyl.item.fusion.GCYLFusionCasing.CasingType.*;
+import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.ReactorSteel;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
 import static gregtech.api.recipes.ModHandler.removeRecipeByName;
-import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
+import static gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES;
 import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
@@ -493,18 +492,16 @@ public class CasingRecipes {
 
     private static void multiblockCasings() {
 
-        //TODO: nuclear
 
-        /*
         // Reactor Casing
         FORMING_PRESS_RECIPES.recipeBuilder().duration(1500).EUt(500)
                 .input(plateDense, Lead, 9)
                 .input(plateDense, Lead, 9)
                 .input(plateDense, ReactorSteel, 4)
                 .input(plateDense, StainlessSteel, 2)
-                .outputs(TJFMetaBlocks.MUTLIBLOCK_CASING.getItemVariant(CLADDED_REACTOR_CASING, 4))
+                .outputs(GCYLMetaBlocks.REACTOR_CASING.getItemVariant(CLADDED_REACTOR_CASING, 4))
                 .buildAndRegister();
-        */
+
 
         //TODO: Precise assembler?
 

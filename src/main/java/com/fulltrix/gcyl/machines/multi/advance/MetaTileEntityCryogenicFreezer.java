@@ -1,8 +1,7 @@
 package com.fulltrix.gcyl.machines.multi.advance;
 
-import com.fulltrix.gcyl.GCYLMaterials;
+import com.fulltrix.gcyl.materials.GCYLMaterials;
 import com.fulltrix.gcyl.client.ClientHandler;
-import com.fulltrix.gcyl.item.metal.MetalCasing1;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
 import gregicality.multiblocks.api.render.GCYMTextures;
@@ -11,7 +10,6 @@ import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
 import gregtech.api.GTValues;
 import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
@@ -35,7 +33,6 @@ import javax.annotation.Nullable;
 
 import java.util.List;
 
-import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_1;
 import static gregtech.api.GTValues.ZPM;
 
 //TODO: limit reflect in ui. update tooltip. improve performance

@@ -1,0 +1,17 @@
+{
+  "name": "gcyl.veins.fluid.blood",
+  "weight": 35,
+  "yield": {
+    "min": 125,
+    "max": 250
+  },
+  "depletion": {
+    "amount": 1,
+    "chance": 100,
+    "depleted_yield": 30
+  },
+  "fluid": "blood",
+  "dimension_filter": [
+    "name:the_nether"
+  ]
+}

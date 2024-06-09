@@ -452,8 +452,13 @@ metaitem.data_stick.tooltip.capacity=Capacity: %,dmB
 metaitem.data_stick.tooltip.current=Current: %,dmB
 metaitem.data_stick.tooltip.fluid=Fluid: %d
 
-metaitem.tool.datasupracausal.name=Supra-Causal Data Module
-metaitem.tool.datasupracausal.tooltip=Storage for Causality Violating Data/n§cCan only be read by a Data Bank
+
+metaitem.tool.data.module_cluster.name=Data Module Cluster
+metaitem.tool.data.module_cluster.tooltip=Cluster Storage for Complex Data/n§cCan only be read by a Data Bank
+metaitem.tool.data.ultimate.name=Ultimate Data Module
+metaitem.tool.data.ultimate.tooltip=Unfathomably Large Storage for Complex Data/n§cCan only be read by a Data Bank
+metaitem.tool.data.supracausal.name=Supra-Causal Data Module
+metaitem.tool.data.supracausal.tooltip=Storage for Causality Violating Data/n§cCan only be read by a Data Bank
 
 gcyl.material.acrylic_fibers=Acrylic Fibers
 gcyl.material.uranyl_nitrate=Uranyl Nitrate
@@ -2069,7 +2074,7 @@ tile.gcyl_multiblock_casing2.laser_engraver_casing.name=Laser-Safe Casing
 
 tile.gcyl_metal_casing_1.casing_hastelloy_x78.name=Matrix-Stiffened Hastelloy X78 Casing
 tile.gcyl_metal_casing_1.casing_hastelloy_n.name=Oxidation Resistant Hastelloy N Casing
-tile.gcyl_metal_casing_1.casing_hastelloyk_243.name=High Stability Hastelloy K243 Casing
+tile.gcyl_metal_casing_1.casing_hastelloy_k243.name=High Stability Hastelloy K243 Casing
 tile.gcyl_metal_casing_1.casing_incoloy_813.name=Corrosion Proof Incoloy 813 Casing
 tile.gcyl_metal_casing_1.casing_incoloy_ma956.name=Spacecraft Grade Incoloy MA-956 Casing
 tile.gcyl_metal_casing_1.casing_maraging_steel_250.name=Long-Lasting Maraging Steel 250 Casing
@@ -4690,6 +4695,23 @@ gcyl.material.niter=Niter
 gcyl.material.tanzanite=Tanzanite
 gcyl.material.vinteum=Vinteum
 gcyl.material.snow=Snow
+gcyl.material.indalloy_140=Indalloy 140
+gcyl.material.seabohrgium=Seabohrgium
+gcyl.material.fordnium=Fordnium
+gcyl.material.enargite=Enargite
+gcyl.material.dolomite=Dolomite
+gcyl.material.wollastonite=Wollastonite
+gcyl.material.kaolinite=Kaolinite
+gcyl.material.tenorite=Tenorite
+gcyl.material.tennantite=Tennantite
+gcyl.material.cuprite=Cuprite
+
+gcyl.material.draconium=Draconium
+gcyl.material.awaken_draconium=Awakened Draconium
+gcyl.material.chaos=Chaos
+gcyl.material.chaosalloy=Chaos Infinity Alloy
+gcyl.material.bright_steel=Bright Steel
+#TODO: lang for ore veins
 
 gcyl.material.max_superconductor=MAX Superconductor
 
@@ -4708,4 +4730,58 @@ gcyl.machine.adv_fusion_reactor.tooltip.1=The Advanced Fusion Reactor performs h
 gcyl.machine.adv_fusion_reactor.tooltip.2=It also turns a coolant into a hot version.
 gcyl.machine.adv_fusion_reactor.tooltip.3=Gives a perfect overclock per tier above recipe.
 gcyl.machine.adv_fusion_reactor.tooltip.4=Returned EU is never outputted, only discounted from recipe EU/t.
+
+gcyl.machine.ore_factory.name=Ore Processing Factory (OPF)
+gcyl.machine.ore_factory.config.0=Macerate>Ore Wash>Thermal Centrifuge>Macerate
+gcyl.machine.ore_factory.config.1=Macerate>Ore Wash>Macerate>Centrifuge
+gcyl.machine.ore_factory.config.2=Macerate>Ore Wash>Sifter
+gcyl.machine.ore_factory.config.3=Macerate>Macerate>Centrifuge
+gcyl.machine.ore_factory.config.4=Macerate>Thermal Centrifuge>Macerate
+
+gcyl.machine.maintenance_hatch_sterile_cleanroom_auto.name=Automatic Sterile Filtration Maintenance Hatch
+
+metaitem.tool.data.deep_miner.name=Deep Miner Data Storage
+metaitem.tool.data.deep_miner.tooltip=Data Storage Material Scans
+gcyl.recipe.scan_for_deep_miner=Scan for Deep Miner
+gcyl.recipe.temperature=Temperature: %,dK
+gcyl.research.deep_platinum=§6Deep Platinum Data
+gcyl.research.deep_platinum.tooltip=§aScan a Platinum Block for this Data
+gcyl.research.deep_rutile=§6Deep Rutile Data
+gcyl.research.deep_rutile.tooltip=§aScan a Titanium Block for this Data
+gcyl.research.deep_pyrochlore=§6Deep Pyrochlore Data
+gcyl.research.deep_pyrochlore.tooltip=§aScan a Niobium Block for this Data
+gcyl.research.deep_diamond=§6Deep Diamond Data
+gcyl.research.deep_diamond.tooltip=§aScan a Diamond Block for this Data
+gcyl.research.deep_aluminium=§6Deep Aluminium Data
+gcyl.research.deep_aluminium.tooltip=§aScan an Aluminium Block for this Data
+gcyl.research.deep_exotics=§6Deep Exotics Data
+gcyl.research.deep_exotics.tooltip=§aScan an Enderium Block for this Data
+gcyl.research.deep_salts=§6Deep Salts Data
+gcyl.research.deep_salts.tooltip=§aScan a Salt Block with Hydrofluoric Acid for this Data
+
+gcyl.machine.deep_miner.name=Deep Miner (DM)
+gcyl.machine.deep_miner.config.0=Fluid type set to Lava
+gcyl.machine.deep_miner.config.1=Fluid type set to Pyrotheum
+gcyl.machine.deep_miner.config.2=Fluid type set to Helium Plasma
+gcyl.machine.deep_miner.config.3=Fluid type set to Neutron Plasma
+gcyl.multiblock.deep_miner.tooltip.1=For obtaining resources deep in §6Bedrock§r§7. §aRecipes require scanned Data§r§7.
+gcyl.multiblock.deep_miner.tooltip.2=Controller must be placed at §eY=8§r§7 or lower.
+gcyl.multiblock.deep_miner.tooltip.3=Use a §bScrewdriver§r§7 to change between §bFluid§r§7 inputs.
+gcyl.multiblock.deep_miner.tooltip.4=Accepts §cLava§r§7 (.75), §6Pyrotheum§r§7 (1), §eHelium Plasma§r§7 (4), or §8Neutron Plasma§r§7 (16) with §bBonuses§r§7 increasing from left to right.
+gcyl.multiblock.deep_miner.tooltip.5=Maximum §bTemperature§r§7 depends on §bFluid§r§7 input and §bCoil§r§7 tier.
+gcyl.multiblock.deep_miner.tooltip.6=Gains §cHeat§r§7 from §bFluid§r§7 input. Hotter §bFluids§r§7 increases the §bTemperature§r§7 faster.
+gcyl.multiblock.deep_miner.tooltip.7=Loses §cHeat§r§7 when not running §lOR§r§7 when there is no heating §bFluids§r§7. (§bFluids§r§7 is not consumed when at maximum §bTemperature§r§7)
+gcyl.multiblock.deep_miner.tooltip.8=For every §b1000K§r§7 above recipe temperature, the recipe duration is multiplied by §e0.80§r§7.
+gcyl.multiblock.deep_miner.tooltip.9=To use §eHelium Plasma§r§7, the casings and frames need to be §2Incoloy 813§r§7.
+gcyl.multiblock.deep_miner.tooltip.10=To use §8Neutron Plasma§r§7, the casings and frames need to be §aHastelloy K243§r§7.
+gregtech.multiblock.deep_miner.max.temperature=Max Temperature: %s K
+gregtech.multiblock.deep_miner_error=§cY LEVEL TOO HIGH! RECIPES WILL NOT RUN!
+recipemap.deep_miner.name=Deep Miner
+
+gcyl.machine.decay_chamber.name=Decay Chamber (DC)
+tile.gcyl_reactor_casing.cladded_reactor_casing.name=Radiation Safe Casing
+
+
+gcyl.machine.greenhouse_mv.name=Greenhouse (GH)
+gcyl.machine.greenhouse_uv.name=Industrial Greenhouse (IGH)
 

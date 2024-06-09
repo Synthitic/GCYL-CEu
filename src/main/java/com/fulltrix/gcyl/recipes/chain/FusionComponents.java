@@ -12,7 +12,7 @@ import gregtech.common.blocks.BlockFusionCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.Zeron100;
 import static gregtech.api.GTValues.VA;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;

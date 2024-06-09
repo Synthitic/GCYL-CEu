@@ -3,7 +3,7 @@ package com.fulltrix.gcyl.machines.multi.miner;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-import com.fulltrix.gcyl.GCYLMaterials;
+import com.fulltrix.gcyl.materials.GCYLMaterials;
 import com.fulltrix.gcyl.item.metal.MetalCasing1;
 import com.fulltrix.gcyl.item.metal.MetalCasing2;
 import com.google.common.collect.Lists;
@@ -62,7 +62,7 @@ import static gregtech.api.util.GTTransferUtils.addItemsToItemHandler;
 public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implements IControllable { //TODO: OpenComputers implementation
     private static final int CONSUME_START = 100;
 
-    public boolean isWorkingEnabled = false;
+    private boolean isWorkingEnabled = false;
     private final int maxTemperature;
     private final int tier;
     private final long energyDrain;

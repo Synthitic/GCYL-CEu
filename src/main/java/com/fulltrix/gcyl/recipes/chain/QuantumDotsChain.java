@@ -2,7 +2,7 @@ package com.fulltrix.gcyl.recipes.chain;
 
 import net.minecraftforge.fluids.FluidStack;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES;
 import static gregtech.api.unification.material.Materials.*;

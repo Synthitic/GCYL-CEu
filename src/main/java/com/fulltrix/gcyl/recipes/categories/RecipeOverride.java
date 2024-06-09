@@ -1,22 +1,23 @@
 package com.fulltrix.gcyl.recipes.categories;
 
-import com.fulltrix.gcyl.recipes.categories.circuits.MagnetoRecipes;
 import gregtech.api.GTValues;
 import gregtech.api.items.armor.ArmorMetaItem;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
+import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTCondition;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
+import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.blocks.BlockComputerCasing;
-import net.minecraft.block.BlockCauldron;
+import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.items.MetaItems;
+import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregicality.multiblocks.api.recipes.GCYMRecipeMaps.ALLOY_BLAST_RECIPES;
 import static gregtech.api.GTValues.*;
@@ -24,11 +25,12 @@ import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
 import static gregtech.api.recipes.ModHandler.removeRecipeByName;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.recipes.ingredients.IntCircuitIngredient.getIntegratedCircuit;
-import static gregtech.api.unification.material.MarkerMaterials.Color.Pink;
+import static gregtech.api.unification.material.MarkerMaterials.Color.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.blocks.BlockFusionCasing.CasingType.FUSION_COIL;
 import static gregtech.common.blocks.BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL;
+import static gregtech.common.blocks.BlockMetalCasing.MetalCasingType.ALUMINIUM_FROSTPROOF;
 import static gregtech.common.blocks.MetaBlocks.*;
 import static gregtech.common.items.MetaItems.*;
 import static gregtech.common.items.MetaItems.ENERGY_CLUSTER;
@@ -58,6 +60,8 @@ public class RecipeOverride {
 
         //remove all circuit assembler recipes
         removeAll(CIRCUIT_ASSEMBLER_RECIPES);
+
+        //remove all assembly line recipes
         removeAll(ASSEMBLY_LINE_RECIPES);
         removeAll(SCANNER_RECIPES);
         removeAll(RESEARCH_STATION_RECIPES);
@@ -96,7 +100,22 @@ public class RecipeOverride {
 
         removeRecipesByInputs(BLAST_RECIPES, OreDictUnifier.get(dust,SiliconDioxide,3), OreDictUnifier.get(dust,Carbon,2));
 
-        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Pink), NEUTRONIUM_WAFER.getStackForm());
+        //Neutronium wafers,boule,cutting stuff //TODO Replace recipes: soc, pic, nand, nor, simple soc, lpic, ulpic, integrated logic circuit
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Pink), NEUTRONIUM_WAFER.getStackForm()); //nor
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Red), NEUTRONIUM_WAFER.getStackForm()); //integrated logic circuit
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Green), NEUTRONIUM_WAFER.getStackForm()); //ram
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Blue), NEUTRONIUM_WAFER.getStackForm()); //cpu
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,LightBlue), NEUTRONIUM_WAFER.getStackForm()); //ulpic
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Orange), NEUTRONIUM_WAFER.getStackForm()); //lpic
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Cyan), NEUTRONIUM_WAFER.getStackForm()); //simple soc
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Gray), NEUTRONIUM_WAFER.getStackForm()); //nand
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Brown), NEUTRONIUM_WAFER.getStackForm()); //pic
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Yellow), NEUTRONIUM_WAFER.getStackForm()); //soc
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Purple), NEUTRONIUM_WAFER.getStackForm()); //asoc
+        removeRecipesByInputs(LASER_ENGRAVER_RECIPES, OreDictUnifier.get(craftingLens,Black), NEUTRONIUM_WAFER.getStackForm()); //hasoc
+        removeRecipesByInputs(CUTTER_RECIPES, new ItemStack[]{NEUTRONIUM_BOULE.getStackForm()}, new FluidStack[]{Water.getFluid(1000)});
+        removeRecipesByInputs(CUTTER_RECIPES, new ItemStack[]{NEUTRONIUM_BOULE.getStackForm()}, new FluidStack[]{DistilledWater.getFluid(750)});
+        removeRecipesByInputs(CUTTER_RECIPES, new ItemStack[]{NEUTRONIUM_BOULE.getStackForm()}, new FluidStack[]{Lubricant.getFluid(250)});
 
         //Coil removals
         removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, Trinium,8), OreDictUnifier.get(foil,NaquadahEnriched,8)}, new FluidStack[]{Naquadah.getFluid(144)});
@@ -122,6 +141,10 @@ public class RecipeOverride {
         removeRecipesByInputs(DISTILLATION_RECIPES, AcidicOsmiumSolution.getFluid(2000));
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(1)}, new FluidStack[]{AcidicOsmiumSolution.getFluid(400)});
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(2)}, new FluidStack[]{AcidicOsmiumSolution.getFluid(400)});
+        removeRecipesByInputs(CHEMICAL_RECIPES, OreDictUnifier.get(dust, RutheniumTetroxide,5), OreDictUnifier.get(dust,Carbon,2));
+        removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, OreDictUnifier.get(dust, RutheniumTetroxide,5), OreDictUnifier.get(dust,Carbon,2));
+        removeRecipesByInputs(CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, InertMetalMixture, 6)}, new FluidStack[]{SulfuricAcid.getFluid(1500)});
+        removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, InertMetalMixture, 6)}, new FluidStack[]{SulfuricAcid.getFluid(1500)});
 
         //Field generators
         removeRecipeByName("gregtech:field_generator_lv");
@@ -142,6 +165,7 @@ public class RecipeOverride {
         removeRecipesByInputs(MIXER_RECIPES, getIntegratedCircuit(4), OreDictUnifier.get(dust,Magnesium), OreDictUnifier.get(dust,Boron,2));
         removeRecipesByInputs(MIXER_RECIPES, new ItemStack[]{getIntegratedCircuit(4), OreDictUnifier.get(dust, Barium,2), OreDictUnifier.get(dust,Calcium,2), OreDictUnifier.get(dust,Copper,3)},new FluidStack[]{Oxygen.getFluid(8000),Mercury.getFluid(1000)});
         removeRecipesByInputs(MIXER_RECIPES, getIntegratedCircuit(4), OreDictUnifier.get(dust,Uranium238), OreDictUnifier.get(dust,Platinum,3));
+        removeRecipesByInputs(MIXER_RECIPES, getIntegratedCircuit(4), OreDictUnifier.get(dust,Uranium), OreDictUnifier.get(dust,Platinum,3));
         removeRecipesByInputs(MIXER_RECIPES, new ItemStack[]{getIntegratedCircuit(4), OreDictUnifier.get(dust, Samarium), OreDictUnifier.get(dust,Iron,1), OreDictUnifier.get(dust,Arsenic,1)},new FluidStack[]{Oxygen.getFluid(1000)});
         removeRecipesByInputs(MIXER_RECIPES, new ItemStack[]{getIntegratedCircuit(4), OreDictUnifier.get(dust, Indium,4), OreDictUnifier.get(dust,Tin,2), OreDictUnifier.get(dust,Barium,2), OreDictUnifier.get(dust,Titanium,1), OreDictUnifier.get(dust,Copper,7)},new FluidStack[]{Oxygen.getFluid(14000)});
         removeRecipesByInputs(MIXER_RECIPES, getIntegratedCircuit(4), OreDictUnifier.get(dust,Uranium238), OreDictUnifier.get(dust,Rhodium,1), OreDictUnifier.get(dust, Naquadah,2));
@@ -213,6 +237,36 @@ public class RecipeOverride {
         //gravi star
         removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{QUANTUM_STAR.getStackForm()}, new FluidStack[]{Neutronium.getFluid(288)});
 
+        //rare earth
+        removeRecipesByInputs(CENTRIFUGE_RECIPES, OreDictUnifier.get(dust,RareEarth));
+
+        //graphene dust
+        removeRecipesByInputs(MIXER_RECIPES,getIntegratedCircuit(1), OreDictUnifier.get(dust, Graphite), OreDictUnifier.get(dust, Silicon), OreDictUnifier.get(dust, Carbon,4));
+
+        //vaccuum freezer
+        removeRecipeByName("gregtech:vacuum_freezer");
+
+        //iv motor
+        removeRecipeByName("gregtech:electric_motor_iv");
+
+        //neutronium
+        removeRecipesByInputs(FUSION_RECIPES,Americium.getFluid(128),Naquadria.getFluid(128));
+
+        //sterilized growth medium
+        removeRecipesByInputs(FLUID_HEATER_RECIPES, RawGrowthMedium.getFluid(100));
+        //raw growth medium
+        removeRecipesByInputs(MIXER_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Meat, 4),OreDictUnifier.get(dust, Salt,4),OreDictUnifier.get(dust,Calcium,4),OreDictUnifier.get(dust,Agar,4)}, new FluidStack[]{Mutagen.getFluid(4000)});
+        //engraved crystal chip
+        removeRecipesByInputs(BLAST_RECIPES, new ItemStack[]{OreDictUnifier.get(plate, Emerald), RAW_CRYSTAL_CHIP.getStackForm()}, new FluidStack[]{Helium.getFluid(1000)});
+        removeRecipesByInputs(BLAST_RECIPES, new ItemStack[]{OreDictUnifier.get(plate, Olivine), RAW_CRYSTAL_CHIP.getStackForm()}, new FluidStack[]{Helium.getFluid(1000)});
+        //raw crystal chip
+        removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{OreDictUnifier.get(gemExquisite, Emerald)},new FluidStack[]{Europium.getFluid(16)});
+        removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{OreDictUnifier.get(gemExquisite, Olivine)},new FluidStack[]{Europium.getFluid(16)});
+        removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{RAW_CRYSTAL_CHIP_PART.getStackForm()},new FluidStack[]{Mutagen.getFluid(250)});
+        removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{RAW_CRYSTAL_CHIP_PART.getStackForm()},new FluidStack[]{BacterialSludge.getFluid(250)});
+        removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{RAW_CRYSTAL_CHIP_PART.getStackForm()},new FluidStack[]{Europium.getFluid(16)});
+        //raw crystal chip parts
+        removeRecipesByInputs(FORGE_HAMMER_RECIPES, RAW_CRYSTAL_CHIP.getStackForm());
 
     }
 
@@ -283,7 +337,12 @@ public class RecipeOverride {
                 .fluidOutputs(Cyclopentadiene.getFluid(75))
                 .buildAndRegister();
 
-
+        //Glowstone
+        CENTRIFUGE_RECIPES.recipeBuilder().duration(1000).EUt(80)
+                .input(dust, Glowstone)
+                .output(dust, Redstone)
+                .output(dust, PreciousMetal)
+                .buildAndRegister();
     }
 
     public static void gregtechOverride() {
@@ -852,5 +911,110 @@ public class RecipeOverride {
                         .CWUt(128)
                         .EUt(VA[UV]))
                 .duration(1000).EUt(VA[UHV]).buildAndRegister();
+
+        //indalloy_140
+        ALLOY_BLAST_RECIPES.recipeBuilder().duration(12000).EUt(7680).blastFurnaceTemp(9000)
+                .input(dust, Bismuth,47)
+                .input(dust, Lead, 25)
+                .input(dust, Tin, 13)
+                .input(dust, Cadmium, 10)
+                .input(dust, Indium, 5)
+                .circuitMeta(20)
+                .fluidOutputs(Indalloy140.getFluid(14400))
+                .buildAndRegister();
+
+        // Data Stick
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ADVANCED_CIRCUIT_BOARD)
+                .input(circuit, MarkerMaterials.Tier.HV, 2)
+                .input(RANDOM_ACCESS_MEMORY, 4)
+                .input(NOR_MEMORY_CHIP, 16)
+                .input(NAND_MEMORY_CHIP, 32)
+                .input(wireFine, HVSuperconductor, 32)
+                .output(TOOL_DATA_STICK)
+                .solderMultiplier(2)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .duration(400).EUt(1200).buildAndRegister();
+
+        // Data Orb
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(EXTREME_CIRCUIT_BOARD)
+                .input(circuit, MarkerMaterials.Tier.IV, 2)
+                .input(RANDOM_ACCESS_MEMORY, 8)
+                .input(NOR_MEMORY_CHIP, 32)
+                .input(NAND_MEMORY_CHIP, 48)
+                .input(wireFine, IVSuperconductor, 32)
+                .output(TOOL_DATA_ORB)
+                .solderMultiplier(2)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .duration(400).EUt(9600).buildAndRegister();
+
+        // Data Module
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(WETWARE_CIRCUIT_BOARD)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 2)
+                .input(RANDOM_ACCESS_MEMORY, 32)
+                .input(NOR_MEMORY_CHIP, 64)
+                .input(NAND_MEMORY_CHIP, 64)
+                .input(wireFine, ZPMSuperconductor, 32)
+                .output(TOOL_DATA_MODULE)
+                .solderMultiplier(2)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .duration(400).EUt(38400).buildAndRegister();
+
+
+        //TODO: make these require research, but a bugfix needs to happen, since assigning these to one another will cause other research recipes to fail.
+
+        // Data Module Cluster
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(NEURO_PROCESSOR.getStackForm(4))
+                .input(circuit, MarkerMaterials.Tier.UHV, 2)
+                .input(RANDOM_ACCESS_MEMORY, 64)
+                .input(RANDOM_ACCESS_MEMORY, 64)
+                .input(NOR_MEMORY_CHIP, 64)
+                .input(NAND_MEMORY_CHIP, 64)
+                .input(wireFine, UHVSuperconductor, 32)
+                .fluidInputs(Indalloy140.getFluid(L*8))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .outputs(TOOL_DATA_MODULE_CLUSTER.getStackForm())
+                .duration(400).EUt(614400).buildAndRegister();
+
+        //Ultimate Data Module
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(EXOTIC_PROCESSING_CORE.getStackForm(16))
+                .input(circuit, MarkerMaterials.Tier.UIV, 4)
+                .input(ARAM, 64)
+                .input(NOR_MEMORY_CHIP, 64)
+                .input(NAND_MEMORY_CHIP, 64)
+                .input(wireFine, UIVSuperconductor, 32)
+                .fluidInputs(Indalloy140.getFluid(L*16))
+                .outputs(TOOL_DATA_ULTIMATE.getStackForm())
+                .duration(400).EUt(9830400).buildAndRegister();
+
+        //Supracausal Data Module
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(COSMIC_PROCESSING_CORE.getStackForm(64))
+                .input(circuit, MarkerMaterials.Tier.OpV, 8)
+                .input(ARAM, 64)
+                .input(ARAM, 64)
+                .input(NOR_MEMORY_CHIP, 64)
+                .input(NAND_MEMORY_CHIP, 64)
+                .input(wireFine, OpVSuperconductor, 32)
+                .fluidInputs(Indalloy140.getFluid(L*32))
+                .outputs(TOOL_DATA_SUPRACAUSAL.getStackForm())
+                .duration(400).EUt(157286400).buildAndRegister();
+
+        //Vacuum freezer
+        ModHandler.addShapedRecipe("gcyl_vacuum_freezer", MetaTileEntities.VACUUM_FREEZER.getStackForm(),
+                "PPP", "CMC", "WCW",
+                'M', MetaBlocks.METAL_CASING.getItemVariant(ALUMINIUM_FROSTPROOF),
+                'P', MetaItems.ELECTRIC_PUMP_HV,
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.HV),
+                'W', new UnificationEntry(cableGtSingle, Gold));
+
+        //iv motor
+        ModHandler.addShapedRecipe(true, "electric_motor_iv", ELECTRIC_MOTOR_IV.getStackForm(), "CWR", "WMW", "RWC",
+                'C', new UnificationEntry(cableGtDouble, Tungsten), 'W', new UnificationEntry(wireGtQuadruple, BrightSteel),
+                'R', new UnificationEntry(stick, TungstenSteel), 'M', new UnificationEntry(stick, NeodymiumMagnetic));
     }
 }

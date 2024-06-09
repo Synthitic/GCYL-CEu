@@ -1,8 +1,9 @@
 package com.fulltrix.gcyl.recipes.categories.circuits.components;
 
 import gregtech.api.fluids.store.FluidStorageKeys;
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.item.GCYLExplosive.ExplosiveType.*;
 import static com.fulltrix.gcyl.item.GCYLMetaBlocks.*;
@@ -26,6 +27,7 @@ public class SupraCausalComponents {
                 .inputs(HIGHLY_INSULATING_FOIL.getStackForm(64))
                 .notConsumable(MICROWORMHOLE_GENERATOR.getStackForm())
                 .outputs(SMD_CAPACITOR_SUPRACAUSAL.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // SMD Diode
@@ -35,6 +37,7 @@ public class SupraCausalComponents {
                 .input(dust,Tetracene,8)
                 .notConsumable(MICROWORMHOLE_GENERATOR.getStackForm())
                 .outputs(SMD_DIODE_SUPRACAUSAL.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // SMD Transistor
@@ -44,6 +47,7 @@ public class SupraCausalComponents {
                 .input(dust,Tetracene,64)
                 .notConsumable(MICROWORMHOLE_GENERATOR.getStackForm())
                 .outputs(SMD_TRANSISTOR_SUPRACAUSAL.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // SMD Resistor
@@ -53,6 +57,7 @@ public class SupraCausalComponents {
                 .input(dust, ChargedCaesiumCeriumCobaltIndium,16)
                 .notConsumable(MICROWORMHOLE_GENERATOR.getStackForm())
                 .outputs(SMD_RESISTOR_SUPRACAUSAL.getStackForm(32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // Supracausal Processing Core
@@ -70,6 +75,7 @@ public class SupraCausalComponents {
                 .inputs(SMD_RESISTOR_SUPRACAUSAL.getStackForm(64))
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L * 9))
                 .outputs(SUPRACAUSAL_PROCESSING_CORE.getStackForm(8))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
         // Topological Manipulator Unit

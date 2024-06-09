@@ -44,7 +44,6 @@ import gregtech.client.shader.postprocessing.BloomType;
 import gregtech.client.utils.*;
 import gregtech.common.ConfigHolder;
 import gregtech.common.metatileentities.MetaTileEntities;
-import gregtech.common.metatileentities.multi.electric.MetaTileEntityFusionReactor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -73,7 +72,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.DoubleSupplier;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 
 public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockController implements ITieredMetaTileEntity, IFastRenderMetaTileEntity, IBloomEffect {
 
@@ -553,7 +552,7 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldRenderBloomEffect(@NotNull EffectRenderContext context) {
-        return this.hasFusionRingColor() && context.camera().isBoundingBoxInFrustum(getRenderBoundingBox());
+        return this.hasFusionRingColor();
     }
 
     @Override

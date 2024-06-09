@@ -1,0 +1,17 @@
+{
+  "name": "gcyl.veins.fluid.hydrogen_sulfide",
+  "weight": 35,
+  "yield": {
+    "min": 125,
+    "max": 250
+  },
+  "depletion": {
+    "amount": 1,
+    "chance": 100,
+    "depleted_yield": 30
+  },
+  "fluid": "hydrogen_sulfide",
+  "dimension_filter": [
+    "name:the_nether"
+  ]
+}

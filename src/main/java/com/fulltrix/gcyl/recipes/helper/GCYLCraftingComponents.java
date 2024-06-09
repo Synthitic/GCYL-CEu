@@ -1,25 +1,5 @@
 package com.fulltrix.gcyl.recipes.helper;
 
-import com.fulltrix.gcyl.item.GCYLCoreItems;
-import com.fulltrix.gcyl.item.GCYLMetaBlocks;
-import com.fulltrix.gcyl.item.GCYLTransparentCasing;
-import gregtech.api.GTValues;
-import gregtech.api.unification.stack.UnificationEntry;
-import gregtech.common.blocks.BlockGlassCasing;
-import gregtech.common.blocks.MetaBlocks;
-import gregtech.common.items.MetaItems;
-import gregtech.common.metatileentities.MetaTileEntities;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-
-import static com.fulltrix.gcyl.GCYLMaterials.*;
-import static gregicality.multiblocks.api.unification.GCYMMaterials.Zeron100;
-import static gregtech.api.GTValues.W;
-import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.api.unification.ore.OrePrefix.plate;
-
 
 public enum GCYLCraftingComponents {
     /*

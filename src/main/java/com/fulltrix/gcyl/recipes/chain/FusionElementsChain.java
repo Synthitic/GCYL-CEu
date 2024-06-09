@@ -2,7 +2,8 @@ package com.fulltrix.gcyl.recipes.chain;
 
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 
-import static com.fulltrix.gcyl.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
 import static gregtech.api.recipes.RecipeMaps.*;
@@ -149,10 +150,9 @@ public class FusionElementsChain {
                 .buildAndRegister();
 
         GAS_CENTRIFUGE_RECIPES.recipeBuilder().duration(210).EUt(30720)
-                .circuitMeta(0)
                 .fluidInputs(TitaniumTetrafluoride.getFluid(10000))
                 .fluidOutputs(Titanium50Tetrafluoride.getFluid(518))
-                .fluidOutputs(Fluorine.getFluid(9482))
+                .fluidOutputs(TitaniumTetrafluoride.getFluid(9482))
                 .buildAndRegister();
 
         BLAST_RECIPES.recipeBuilder().duration(340).EUt(120)

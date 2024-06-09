@@ -1,0 +1,35 @@
+{
+  "name": "gregtech.veins.ore.coal",
+  "weight": 70,
+  "density": 0.6,
+  "min_height": 50,
+  "vein_populator": {
+    "type": "surface_rock",
+    "material": "coal"
+  },
+  "dimension_filter": [
+    "name:overworld"
+  ],
+  "generator": {
+    "type": "ellipsoid",
+    "radius": [
+      16,
+      16
+    ]
+  },
+  "filler": {
+    "type": "simple",
+    "value" : {
+      "type": "weight_random",
+      "values": [{
+        "weight": 12,
+        "value": {"block": "gregtech:ore_lignite_0"}
+      },
+        {
+          "weight": 75,
+          "value": "ore:coal"
+        }
+      ]
+    }
+  }
+}

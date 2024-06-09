@@ -34,7 +34,7 @@ public class MetaTileEntityBioReactor extends RecipeMapMultiblockController {
     public long maxVoltage = 0;
 
     @Override
-    protected BlockPattern createStructurePattern() { //TODO: overhaul bioreactor mechanics in an overhaul pr
+    protected BlockPattern createStructurePattern() { //TODO: add tiered casings
         return FactoryBlockPattern.start()
                 .aisle("XXXXX", "XGGGX", "XGGGX", "XGGGX", "XXXXX")
                 .aisle("XXXXX", "G###G", "G###G", "G###G", "XXXXX")
