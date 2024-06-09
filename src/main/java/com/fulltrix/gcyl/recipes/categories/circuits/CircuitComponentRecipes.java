@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.recipes.categories.circuits;
 
 import com.fulltrix.gcyl.recipes.categories.circuits.components.*;
+import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;

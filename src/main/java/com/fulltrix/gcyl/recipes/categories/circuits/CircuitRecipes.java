@@ -523,7 +523,7 @@ public class CircuitRecipes {
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .stationResearch(b -> b
                         .researchStack(WETWARE_PROCESSOR_LUV.getStackForm())
-                        .CWUt(16)
+                        .CWUt(32)
                         .EUt(GTValues.VA[GTValues.ZPM]))
                 .buildAndRegister();
 
@@ -544,7 +544,7 @@ public class CircuitRecipes {
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .stationResearch(b -> b
                         .researchStack(WETWARE_PROCESSOR_ASSEMBLY_ZPM.getStackForm())
-                        .CWUt(32)
+                        .CWUt(48)
                         .EUt(GTValues.VA[GTValues.ZPM]))
                 .buildAndRegister();
 
@@ -606,6 +606,10 @@ public class CircuitRecipes {
                 .fluidInputs(NaquadahEnriched.getFluid(L * 9))
                 .outputs(BIOWARE_ASSEMBLY.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .stationResearch(b -> b
+                        .researchStack(BIOWARE_PROCESSOR.getStackForm())
+                        .CWUt(64)
+                        .EUt(GTValues.VA[GTValues.UV]))
                 .buildAndRegister();
 
         // Bioware Computer
@@ -627,6 +631,10 @@ public class CircuitRecipes {
                 .fluidInputs(NaquadahEnriched.getFluid(L * 9))
                 .outputs(BIOWARE_COMPUTER.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .stationResearch(b -> b
+                        .researchStack(BIOWARE_ASSEMBLY.getStackForm())
+                        .CWUt(96)
+                        .EUt(GTValues.VA[GTValues.UV]))
                 .buildAndRegister();
 
         // Bioware Mainframe
@@ -650,6 +658,10 @@ public class CircuitRecipes {
                 .fluidInputs(Naquadria.getFluid(L * 9))
                 .outputs(BIOWARE_MAINFRAME.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .stationResearch(b -> b
+                        .researchStack(BIOWARE_COMPUTER.getStackForm())
+                        .CWUt(128)
+                        .EUt(GTValues.VA[GTValues.UV]))
                 .buildAndRegister();
     }
 
