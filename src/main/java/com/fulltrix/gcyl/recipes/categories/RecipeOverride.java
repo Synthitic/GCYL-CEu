@@ -291,7 +291,9 @@ public class RecipeOverride {
         removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(foil,VanadiumGallium), OreDictUnifier.get(wireFine, HSSG, 8)}, new FluidStack[]{Polybenzimidazole.getFluid(L)});
         removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(foil,Polybenzimidazole), OreDictUnifier.get(foil, HSSS)}, new FluidStack[]{Polybenzimidazole.getFluid(L * 2)});
 
-
+        //Tungstic Acid
+        removeRecipesByInputs(CHEMICAL_BATH_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Scheelite,6)}, new FluidStack[]{HydrochloricAcid.getFluid(2000)});
+        removeRecipesByInputs(CHEMICAL_BATH_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Tungstate,7)}, new FluidStack[]{HydrochloricAcid.getFluid(2000)});
 
     }
 
