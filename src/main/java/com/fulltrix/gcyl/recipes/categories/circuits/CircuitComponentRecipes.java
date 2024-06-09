@@ -6,7 +6,7 @@ import gregtech.api.metatileentity.multiblock.CleanroomType;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.Plutonium;
-import static gregtech.api.GTValues.L;
+import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -19,6 +19,7 @@ public class CircuitComponentRecipes {
 
         //primitiveSMD();
         refinedSMD();
+        microSMD();
         nanoSMD();
         quantumSMD();
         CrystalComponents.init();
@@ -64,6 +65,84 @@ public class CircuitComponentRecipes {
                 .fluidInputs(Polyethylene.getFluid(L))
                 .outputs(SMD_DIODE_REFINED.getStackForm(32))
                 .buildAndRegister();
+    }
+
+    private static void microSMD() {
+        // SMD Resistor
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(dust, Carbon)
+                .input(wireFine, Electrum, 4)
+                .fluidInputs(Polyethylene.getFluid(L * 2))
+                .output(SMD_RESISTOR, 16)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .duration(160).EUt(VA[MV]).buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(dust, Carbon)
+                .input(wireFine, Tantalum, 4)
+                .fluidInputs(Polyethylene.getFluid(L * 2))
+                .output(SMD_RESISTOR, 32)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .duration(160).EUt(VA[MV]).buildAndRegister();
+
+        // SMD Diode
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(dust, GalliumArsenide)
+                .input(wireFine, Platinum, 8)
+                .fluidInputs(Polyethylene.getFluid(L * 2))
+                .output(SMD_DIODE, 32)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .duration(200).EUt(VA[MV]).buildAndRegister();
+
+        // SMD Transistor
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(plate, Gallium)
+                .input(wireFine, AnnealedCopper, 8)
+                .fluidInputs(Polyethylene.getFluid(L))
+                .output(SMD_TRANSISTOR, 16)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .duration(160).EUt(VA[MV]).buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(plate, Gallium)
+                .input(wireFine, Tantalum, 8)
+                .fluidInputs(Polyethylene.getFluid(L))
+                .output(SMD_TRANSISTOR, 32)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .duration(160).EUt(VA[MV]).buildAndRegister();
+
+        // SMD Capacitor
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(foil, SiliconeRubber)
+                .input(foil, Aluminium)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(SMD_CAPACITOR, 8)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .duration(80).EUt(VA[MV]).buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(foil, PolyvinylChloride, 2)
+                .input(foil, Aluminium)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(SMD_CAPACITOR, 12)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .duration(80).EUt(VA[MV]).buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(foil, SiliconeRubber)
+                .input(foil, Tantalum)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(SMD_CAPACITOR, 16)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .duration(120).EUt(VA[MV]).buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(foil, PolyvinylChloride, 2)
+                .input(foil, Tantalum)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(SMD_CAPACITOR, 24)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .duration(120).EUt(VA[MV]).buildAndRegister();
     }
 
     private static void nanoSMD() {

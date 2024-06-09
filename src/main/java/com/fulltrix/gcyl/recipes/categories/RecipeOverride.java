@@ -268,6 +268,31 @@ public class RecipeOverride {
         //raw crystal chip parts
         removeRecipesByInputs(FORGE_HAMMER_RECIPES, RAW_CRYSTAL_CHIP.getStackForm());
 
+        //MICRO SMDS
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(dust,Carbon), OreDictUnifier.get(wireFine, Electrum, 4)}, new FluidStack[]{Polyethylene.getFluid(L * 2)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(dust,Carbon), OreDictUnifier.get(wireFine, Tantalum, 4)}, new FluidStack[]{Polyethylene.getFluid(L * 2)});
+
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(dust,GalliumArsenide), OreDictUnifier.get(wireFine, Platinum, 8)}, new FluidStack[]{Polyethylene.getFluid(L * 2)});
+
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(foil,Gallium), OreDictUnifier.get(wireFine, AnnealedCopper, 8)}, new FluidStack[]{Polyethylene.getFluid(L)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(foil,Gallium), OreDictUnifier.get(wireFine, Tantalum, 8)}, new FluidStack[]{Polyethylene.getFluid(L)});
+
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(foil,SiliconeRubber), OreDictUnifier.get(foil, Aluminium)}, new FluidStack[]{Polyethylene.getFluid(L / 2)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(foil,PolyvinylChloride,2), OreDictUnifier.get(foil, Aluminium)}, new FluidStack[]{Polyethylene.getFluid(L / 2)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(foil,SiliconeRubber), OreDictUnifier.get(foil, Tantalum)}, new FluidStack[]{Polyethylene.getFluid(L / 2)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(foil,PolyvinylChloride,2), OreDictUnifier.get(foil, Tantalum)}, new FluidStack[]{Polyethylene.getFluid(L / 2)});
+
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(ring,NickelZincFerrite), OreDictUnifier.get(wireFine, Cupronickel, 4)}, new FluidStack[]{Polyethylene.getFluid(L)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(foil,NickelZincFerrite), OreDictUnifier.get(wireFine, Tantalum, 4)}, new FluidStack[]{Polyethylene.getFluid(L)});
+
+        //ADVANCED SMDS
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(dust,Graphene), OreDictUnifier.get(wireFine, Platinum, 4)}, new FluidStack[]{Polybenzimidazole.getFluid(L * 2)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(dust,IndiumGalliumPhosphide), OreDictUnifier.get(wireFine, NiobiumTitanium, 16)}, new FluidStack[]{Polybenzimidazole.getFluid(L * 2)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(foil,VanadiumGallium), OreDictUnifier.get(wireFine, HSSG, 8)}, new FluidStack[]{Polybenzimidazole.getFluid(L)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(foil,Polybenzimidazole), OreDictUnifier.get(foil, HSSS)}, new FluidStack[]{Polybenzimidazole.getFluid(L * 2)});
+
+
+
     }
 
     public static void chemistryOverride() {
