@@ -4,6 +4,7 @@ import com.fulltrix.gcyl.recipes.recipeproperties.GCYLScanProperty;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.recipes.chance.output.ChancedOutputLogic;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTCondition;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
 import gregtech.api.unification.OreDictUnifier;
@@ -14,8 +15,10 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import stanhebben.zenscript.annotations.Optional;
 
 import java.util.Map;
 
@@ -50,16 +53,19 @@ public class DeepMinerRecipes {
                 .output(TOOL_DATA_DEEP_MINER)
                 .solderMultiplier(2)
                 .cleanroom(CleanroomType.CLEANROOM)
-                .duration(400).EUt(1200).buildAndRegister();
+                .duration(400).EUt(400).buildAndRegister();
 
 
-        createResearchRecipe("deep_rutile", OreDictUnifier.get(block, Titanium),TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 512, 0);
-        createResearchRecipe("deep_pyrochlore", OreDictUnifier.get(block, Niobium), TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 512, 0);
-        createResearchRecipe("deep_diamond", OreDictUnifier.get(block, Diamond), TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 512, 0);
+        createResearchRecipe("deep_rutile", OreDictUnifier.get(block, Titanium), null,TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 512, 0);
+        createResearchRecipe("deep_pyrochlore", OreDictUnifier.get(block, Niobium),null, TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 512, 0);
+        createResearchRecipe("deep_diamond", OreDictUnifier.get(block, Diamond), null,TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 512, 0);
+        createResearchRecipe("deep_aluminium", OreDictUnifier.get(block, Aluminium),null,TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 512, 0);
+        createResearchRecipe("deep_platinum", OreDictUnifier.get(block, Platinum),null, TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
 
+        createResearchRecipe("deep_salts", OreDictUnifier.get(block, Salt),HydrofluoricAcid.getFluid(16000), TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
 
-        createResearchRecipe("deep_aluminium", OreDictUnifier.get(block, Aluminium),TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 512, 0);
-        createResearchRecipe("deep_platinum", OreDictUnifier.get(block, Platinum), TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
+        createResearchRecipe( "deep_exotics", OreDictUnifier.get(block, Enderium), null, TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
+
 
         DEEP_MINER_RECIPES.recipeBuilder()
                 .notConsumable(minerScanMap.get("deep_diamond"))
@@ -74,7 +80,7 @@ public class DeepMinerRecipes {
                 .chancedOutput(ore, Diamond, 16,100,2000)
                 .chancedOutput(ore, Coal, 64,100,500)
                 .chancedOutput(ore, Diamond, 16,100,500)
-                .duration(20000)
+                .duration(4000)
                 .EUt(480)
                 .temperature(2500)
                 .dimension(0)
@@ -94,7 +100,7 @@ public class DeepMinerRecipes {
                 .chancedOutput(ore, Columbite, 64,100,2000)
                 .chancedOutput(ore, Pyrochlore, 64,100,500)
                 .chancedOutput(ore, Columbite, 64,100,500)
-                .duration(20000)
+                .duration(4000)
                 .EUt(480)
                 .temperature(2500)
                 .dimension(0)
@@ -116,7 +122,7 @@ public class DeepMinerRecipes {
                 .chancedOutput(ore, Bauxite, 64,100,500)
                 .chancedOutput(ore, Rutile, 32,100,500)
                 .chancedOutput(ore, Gallite, 32,100,500)
-                .duration(20000)
+                .duration(4000)
                 .EUt(480)
                 .temperature(2500)
                 .dimension(0)
@@ -135,7 +141,7 @@ public class DeepMinerRecipes {
                 .chancedOutput(ore, Rutile, 32,100,2000)
                 .chancedOutput(ore, Bauxite, 64,100,500)
                 .chancedOutput(ore, Rutile, 32,100,500)
-                .duration(20000)
+                .duration(4000)
                 .EUt(480)
                 .temperature(2500)
                 .dimension(0)
@@ -154,33 +160,142 @@ public class DeepMinerRecipes {
                 .chancedOutput(ore, PalladiumMetallicPowder, 64,100,2000)
                 .chancedOutput(ore, PlatinumMetallicPowder, 64,100,500)
                 .chancedOutput(ore, PalladiumMetallicPowder, 64,100,500)
-                .duration(20000)
+                .duration(4000)
                 .EUt(1920)
-                .temperature(3500)
+                .temperature(4500)
                 .dimension(0)
                 .buildAndRegister();
 
-
         DEEP_MINER_RECIPES.recipeBuilder()
-                .notConsumable(minerScanMap.get("deep_platinum"))
+                .notConsumable(minerScanMap.get("deep_exotics"))
                 .circuitMeta(1)
                 .input(SENSOR_EV)
                 .input(ELECTRIC_PISTON_EV)
 
                 .fluidInputs(DrillingFluid.getFluid(64000))
-                .fluidInputs(LiquidAir.getFluid(16000))
                 .output(ore, NetherStar, 16)
                 .chancedOutput(ore, NetherStar, 16,100,2000)
                 .chancedOutput(ore, NetherStar, 16,100,500)
-                .duration(20000)
+                .duration(4000)
                 .EUt(1920)
-                .temperature(3500)
+                .temperature(4500)
                 .dimension(-1)
                 .buildAndRegister();
+
+
+        DEEP_MINER_RECIPES.recipeBuilder()
+                .notConsumable(minerScanMap.get("deep_salts"))
+                .circuitMeta(1)
+                .input(SENSOR_IV)
+                .input(ELECTRIC_PUMP_IV)
+
+                .fluidInputs(DrillingFluid.getFluid(128000))
+                .fluidInputs(NitricAcid.getFluid(16000))
+                .fluidOutputs(Chlorine.getFluid(64000))
+                .chancedFluidOutput(Chlorine.getFluid(64000), 100, 2000)
+                .chancedFluidOutput(Chlorine.getFluid(64000), 100, 500)
+                .duration(4000)
+                .EUt(7860)
+                .temperature(4500)
+                .dimension(-1)
+                .buildAndRegister();
+
+        DEEP_MINER_RECIPES.recipeBuilder()
+                .notConsumable(minerScanMap.get("deep_salts"))
+                .circuitMeta(2)
+                .input(SENSOR_IV)
+                .input(ELECTRIC_PUMP_IV)
+
+                .fluidInputs(DrillingFluid.getFluid(128000))
+                .fluidInputs(NitricAcid.getFluid(16000))
+                .fluidOutputs(Fluorine.getFluid(64000))
+                .chancedFluidOutput(Fluorine.getFluid(64000), 100, 2000)
+                .chancedFluidOutput(Fluorine.getFluid(64000), 100, 500)
+                .duration(4000)
+                .EUt(7860)
+                .temperature(4500)
+                .dimension(-1)
+                .buildAndRegister();
+
+        DEEP_MINER_RECIPES.recipeBuilder()
+                .notConsumable(minerScanMap.get("deep_salts"))
+                .circuitMeta(1)
+                .input(SENSOR_IV)
+                .input(ELECTRIC_PISTON_IV)
+
+                .fluidInputs(DrillingFluid.getFluid(128000))
+                .fluidInputs(NitricAcid.getFluid(16000))
+                .output(ore, Salt, 32)
+                .chancedOutput(ore, Salt, 32, 100, 2000)
+                .chancedOutput(ore, Salt, 32, 100, 500)
+                .output(ore, Fluorite,32)
+                .chancedOutput(ore, Fluorite, 32, 100, 2000)
+                .chancedOutput(ore, Fluorite, 32, 100, 500)
+                .output(ore, Lepidolite, 8)
+                .chancedOutput(ore, Lepidolite, 8, 100, 2000)
+                .chancedOutput(ore, Lepidolite, 8, 100, 500)
+                .output(ore, Spodumene, 8)
+                .chancedOutput(ore, Spodumene, 8, 100, 2000)
+                .chancedOutput(ore, Spodumene, 8, 100, 500)
+                .duration(4000)
+                .EUt(7860)
+                .temperature(4500)
+                .dimension(-1)
+                .buildAndRegister();
+
+        DEEP_MINER_RECIPES.recipeBuilder()
+                .notConsumable(minerScanMap.get("deep_salts"))
+                .circuitMeta(1)
+                .input(SENSOR_IV)
+                .input(ELECTRIC_PISTON_IV)
+
+                .fluidInputs(DrillingFluid.getFluid(128000))
+                .fluidInputs(NitricAcid.getFluid(16000))
+                .output(ore, Salt, 32)
+                .chancedOutput(ore, Salt, 32, 100, 2000)
+                .chancedOutput(ore, Salt, 32, 100, 500)
+                .output(ore, Fluorite,32)
+                .chancedOutput(ore, Fluorite, 32, 100, 2000)
+                .chancedOutput(ore, Fluorite, 32, 100, 500)
+                .output(ore, Lepidolite, 8)
+                .chancedOutput(ore, Lepidolite, 8, 100, 2000)
+                .chancedOutput(ore, Lepidolite, 8, 100, 500)
+                .output(ore, Spodumene, 8)
+                .chancedOutput(ore, Spodumene, 8, 100, 2000)
+                .chancedOutput(ore, Spodumene, 8, 100, 500)
+                .duration(4000)
+                .EUt(7860)
+                .temperature(4500)
+                .dimension(0)
+                .buildAndRegister();
+
+        DEEP_MINER_RECIPES.recipeBuilder()
+                .notConsumable(minerScanMap.get("deep_exotics"))
+                .circuitMeta(1)
+                .input(SENSOR_IV)
+                .input(ELECTRIC_PISTON_IV)
+
+                .fluidInputs(DrillingFluid.getFluid(128000))
+                .fluidInputs(NitricAcid.getFluid(32000))
+                .output(ore, NaquadricCompound, 64)
+                .chancedOutput(ore, NaquadricCompound, 64, 100, 2000)
+                .chancedOutput(ore, NaquadricCompound, 64, 100, 500)
+                .output(ore, EnrichedNaquadricCompound,64)
+                .chancedOutput(ore, EnrichedNaquadricCompound, 64, 100, 2000)
+                .chancedOutput(ore, EnrichedNaquadricCompound, 64, 100, 500)
+                .output(ore, NaquadriaticCompound, 32)
+                .chancedOutput(ore, NaquadriaticCompound, 32, 100, 2000)
+                .chancedOutput(ore, NaquadriaticCompound, 32, 100, 500)
+                .duration(4000)
+                .EUt(7860)
+                .temperature(5400)
+                .dimension(0)
+                .buildAndRegister();
+
         }
 
 
-    public static void createResearchRecipe(@NotNull String researchId, @NotNull ItemStack researchItem,
+    public static void createResearchRecipe(@NotNull String researchId, @NotNull ItemStack researchItem, FluidStack fluid,
                                                    @NotNull ItemStack dataItem, boolean ignoreNBT, int duration,
                                                    int EUt, int CWUt) {
 
@@ -217,8 +332,14 @@ public class DeepMinerRecipes {
             if (ignoreNBT) {
                 builder.inputNBT(researchItem.getItem(), 1, researchItem.getMetadata(), NBTMatcher.ANY,
                         NBTCondition.ANY);
+                if (fluid != null) {
+                    builder.fluidInputs(fluid);
+                }
             } else {
                 builder.inputs(researchItem);
+                if (fluid != null) {
+                    builder.fluidInputs(fluid);
+                }
             }
 
             builder.applyProperty(GCYLScanProperty.getInstance(), true);

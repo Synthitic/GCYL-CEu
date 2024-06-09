@@ -4753,9 +4753,11 @@ gcyl.research.deep_pyrochlore.tooltip=§aScan a Niobium Block for this Data
 gcyl.research.deep_diamond=§6Deep Diamond Data
 gcyl.research.deep_diamond.tooltip=§aScan a Diamond Block for this Data
 gcyl.research.deep_aluminium=§6Deep Aluminium Data
-gcyl.research.deep_aluminium.tooltip=§aScan a Aluminium Block for this Data
-
-
+gcyl.research.deep_aluminium.tooltip=§aScan an Aluminium Block for this Data
+gcyl.research.deep_exotics=§6Deep Exotics Data
+gcyl.research.deep_exotics.tooltip=§aScan an Enderium Block for this Data
+gcyl.research.deep_salts=§6Deep Salts Data
+gcyl.research.deep_salts.tooltip=§aScan a Salt Block with Hydrofluoric Acid for this Data
 
 gcyl.machine.deep_miner.name=Deep Miner (DM)
 gcyl.machine.deep_miner.config.0=Fluid type set to Lava
