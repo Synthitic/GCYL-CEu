@@ -297,6 +297,16 @@ public class RecipeOverride {
 
         //indium concentrate
         removeRecipesByInputs(MIXER_RECIPES, new ItemStack[]{OreDictUnifier.get(crushedPurified, Sphalerite), OreDictUnifier.get(crushedPurified, Galena)}, new FluidStack[]{SulfuricAcid.getFluid(4000)});
+
+        //indium from concentrate
+        removeRecipesByInputs(CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Aluminium, 4), getIntegratedCircuit(1)}, new FluidStack[]{IndiumConcentrate.getFluid(1000)});
+        removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Aluminium, 4), getIntegratedCircuit(1)}, new FluidStack[]{IndiumConcentrate.getFluid(1000)});
+        removeRecipesByInputs(CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Aluminium, 16), getIntegratedCircuit(4)}, new FluidStack[]{IndiumConcentrate.getFluid(4000)});
+        removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Aluminium, 16), getIntegratedCircuit(4)}, new FluidStack[]{IndiumConcentrate.getFluid(4000)});
+
+        //fusion casings
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{HULL[GTValues.LuV].getStackForm(), FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL), NEUTRON_REFLECTOR.getStackForm(), ELECTRIC_PUMP_LuV.getStackForm(), OreDictUnifier.get(plate, TungstenSteel)}, new FluidStack[]{Polybenzimidazole.getFluid(144)});
+
     }
 
     public static void chemistryOverride() {
