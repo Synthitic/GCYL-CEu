@@ -295,6 +295,8 @@ public class RecipeOverride {
         removeRecipesByInputs(CHEMICAL_BATH_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Scheelite,6)}, new FluidStack[]{HydrochloricAcid.getFluid(2000)});
         removeRecipesByInputs(CHEMICAL_BATH_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Tungstate,7)}, new FluidStack[]{HydrochloricAcid.getFluid(2000)});
 
+        //indium concentrate
+        removeRecipesByInputs(MIXER_RECIPES, new ItemStack[]{OreDictUnifier.get(crushedPurified, Sphalerite), OreDictUnifier.get(crushedPurified, Galena)}, new FluidStack[]{SulfuricAcid.getFluid(4000)});
     }
 
     public static void chemistryOverride() {
