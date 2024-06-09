@@ -521,6 +521,10 @@ public class CircuitRecipes {
                 .fluidInputs(SterileGrowthMedium.getFluid(2000))
                 .outputs(WETWARE_PROCESSOR_ASSEMBLY_ZPM.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .stationResearch(b -> b
+                        .researchStack(WETWARE_PROCESSOR_LUV.getStackForm())
+                        .CWUt(16)
+                        .EUt(GTValues.VA[GTValues.ZPM]))
                 .buildAndRegister();
 
         // Wetware Supercomputer
@@ -538,6 +542,10 @@ public class CircuitRecipes {
                 .fluidInputs(SterileGrowthMedium.getFluid(2000))
                 .outputs(WETWARE_SUPER_COMPUTER_UV.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .stationResearch(b -> b
+                        .researchStack(WETWARE_PROCESSOR_ASSEMBLY_ZPM.getStackForm())
+                        .CWUt(32)
+                        .EUt(GTValues.VA[GTValues.ZPM]))
                 .buildAndRegister();
 
         // Wetware Mainframe
@@ -558,6 +566,10 @@ public class CircuitRecipes {
                 .fluidInputs(UUMatter.getFluid(100))
                 .outputs(WETWARE_MAINFRAME_UHV.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .stationResearch(b -> b
+                        .researchStack(WETWARE_SUPER_COMPUTER_UV.getStackForm())
+                        .CWUt(64)
+                        .EUt(GTValues.VA[GTValues.ZPM]))
                 .buildAndRegister();
     }
 
