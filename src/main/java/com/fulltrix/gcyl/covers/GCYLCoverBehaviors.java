@@ -23,5 +23,6 @@ public final class GCYLCoverBehaviors {
         registerBehavior(gcylId("infinite_water_zpm"), GCYLCoreItems.ZPM_INFINITE_WATER_SOURCE, (def,view, side) -> new GCYLCoverInfiniteWater(def, view, side, ZPM));
         registerBehavior(gcylId("infinite_water_uv"), GCYLCoreItems.UV_INFINITE_WATER_SOURCE, (def,view, side) -> new GCYLCoverInfiniteWater(def, view, side, UV));
 
+        registerBehavior(gcylId("ender_item_link"), GCYLCoreItems.COVER_ENDER_ITEM_LINK, CoverEnderItemLink::new);
     }
 }

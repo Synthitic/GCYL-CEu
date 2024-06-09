@@ -31,9 +31,11 @@ public class ClientHandler {
     public static SimpleOverlayRenderer HASTELLOY_K243_CASING;
     public static SimpleOverlayRenderer MAINTENANCE_OVERLAY_STERILE_CLEANING;
     public static SimpleOverlayRenderer CLADDED_REACTOR_CASING;
+    public static SimpleOverlayRenderer ENDER_ITEM_LINK;
 
     public static OrientedOverlayRenderer NAQADAH_OVERLAY;
     public static OrientedOverlayRenderer ROCKET_OVERLAY;
+
 
     private ClientHandler() {
     }
@@ -56,6 +58,7 @@ public class ClientHandler {
 
         MAINTENANCE_OVERLAY_STERILE_CLEANING = new SimpleOverlayRenderer("overlay/machine/overlay_maintenance_sterile_cleaning");
 
+        ENDER_ITEM_LINK = new SimpleOverlayRenderer("cover/overlay_ender_item_link");
         //MetaCasing1
         STABALLOY_CASING = new SimpleOverlayRenderer("casings/metal_casings/staballoy");
         QUANTUM_CASING = new SimpleOverlayRenderer("casings/metal_casings/quantum");

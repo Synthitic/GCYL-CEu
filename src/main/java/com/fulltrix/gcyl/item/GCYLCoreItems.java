@@ -431,7 +431,7 @@ public class GCYLCoreItems {
     public static MetaItem<?>.MetaValueItem TOOL_DATA_DEEP_MINER;
     public static MetaItem<?>.MetaValueItem TOOL_DATA_DEEP_MINER_MODULE;
     public static MetaItem<?>.MetaValueItem TOOL_DATA_DEEP_MINER_COMPLEX;
-
+    public static MetaItem<?>.MetaValueItem COVER_ENDER_ITEM_LINK;
 
     public static void init() {
         GCYLCoreItem item = new GCYLCoreItem();

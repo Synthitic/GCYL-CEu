@@ -4785,3 +4785,6 @@ tile.gcyl_reactor_casing.cladded_reactor_casing.name=Radiation Safe Casing
 gcyl.machine.greenhouse_mv.name=Greenhouse (GH)
 gcyl.machine.greenhouse_uv.name=Industrial Greenhouse (IGH)
 
+metaitem.cover.ender.item_link.name=Ender Item Link Cover
+metaitem.cover.ender.item_link.tooltip=Transports §rItems§7 with a §rWireless §dEnder§r Connection§7 as §rCover§7.
+cover.conveyor.mode=Conveyor Mode

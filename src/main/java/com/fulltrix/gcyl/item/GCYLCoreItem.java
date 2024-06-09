@@ -372,6 +372,8 @@ public class GCYLCoreItem extends StandardMetaItem {
 
         TOOL_DATA_DEEP_MINER = addItem(616, "tool.data.deep_miner").addComponents(new MinerDataItemBehavior(false));
 
+        COVER_ENDER_ITEM_LINK = addItem(620, "cover.ender.item_link");
+
         PYROLYTIC_CARBON = addItem(16, "pyrolytic_carbon");
         MICA_SHEET = addItem(26, "mica_sheet");
         MICA_INSULATOR_SHEET = addItem(27, "mica_insulator_sheet");

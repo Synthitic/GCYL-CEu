@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl;
 
+import com.fulltrix.gcyl.api.util.VirtualContainerRegistry;
 import com.fulltrix.gcyl.item.GCYLCoreItems;
 import com.fulltrix.gcyl.materials.GCYLMaterialOverride;
 import com.fulltrix.gcyl.materials.GCYLMaterials;
@@ -29,6 +30,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -155,6 +157,11 @@ public class CommonProxy {
         FuelHandler.init();
 
         //RecipeHandler.registerLargeMachineRecipes();
+    }
+
+    @SubscribeEvent
+    public static void onWorldLoadEvent(WorldEvent.Load event) {
+        VirtualContainerRegistry.initializeStorage(event.getWorld());
     }
 
 
