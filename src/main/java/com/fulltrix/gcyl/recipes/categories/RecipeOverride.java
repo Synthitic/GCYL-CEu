@@ -755,7 +755,7 @@ public class RecipeOverride {
                 .input(FIELD_GENERATOR_LuV, 2)
                 .input(ELECTRIC_MOTOR_ZPM, 2)
                 .input(wireGtDouble, ZPMSuperconductor, 32)
-                .input(foil, Trinium, 32)
+                .input(foil, Rutherfordium, 32)
                 .input(OPTICAL_PIPES[0], 16)
                 .fluidInputs(SolderingAlloy.getFluid(L * 8))
                 .fluidInputs(VanadiumGallium.getFluid(L * 8))
