@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.recipes.categories.circuits;
 
 
+import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.stack.UnificationEntry;
@@ -402,6 +403,9 @@ public class CircuitRecipes {
                 .input(wireGtSingle, IVSuperconductor, 16)
                 .outputs(QUANTUM_MAINFRAME_ZPM.getStackForm())
                 .cleanroom(CleanroomType.CLEANROOM)
+                .scannerResearch(b -> b
+                        .researchStack(QUANTUM_COMPUTER_LUV.getStackForm())
+                        .EUt(GTValues.VA[GTValues.IV]))
                 .buildAndRegister();
     }
 
