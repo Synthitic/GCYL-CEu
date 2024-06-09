@@ -475,6 +475,10 @@ public class CircuitRecipes {
                 .input(frameGt, HSSE, 4)
                 .input(wireGtSingle, LuVSuperconductor, 32)
                 .outputs(CRYSTAL_MAINFRAME_UV.getStackForm())
+                .stationResearch(b -> b
+                        .researchStack(CRYSTAL_COMPUTER_ZPM.getStackForm())
+                        .CWUt(16)
+                        .EUt(GTValues.VA[GTValues.LuV]))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
     }
