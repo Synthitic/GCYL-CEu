@@ -330,6 +330,26 @@ public class RecipeOverride {
         removeRecipesByInputs(ARC_FURNACE_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Cobalt)}, new FluidStack[]{Oxygen.getFluid(59)});
         //antimony in arc furnace
         removeRecipesByInputs(ARC_FURNACE_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Antimony)}, new FluidStack[]{Oxygen.getFluid(121)});
+
+        //naquadah
+        removeRecipesByInputs(BLAST_RECIPES, new ItemStack[]{OreDictUnifier.get(dust,NaquadriaSulfate, 6)}, new FluidStack[]{Hydrogen.getFluid(2000)});
+        removeRecipesByInputs(BLAST_RECIPES, new ItemStack[]{OreDictUnifier.get(dust,EnrichedNaquadahSulfate, 6)}, new FluidStack[]{Hydrogen.getFluid(2000)});
+        removeRecipesByInputs(BLAST_RECIPES, OreDictUnifier.get(dust, TriniumSulfide, 2), OreDictUnifier.get(dust, Zinc));
+        removeRecipesByInputs(CENTRIFUGE_RECIPES, AcidicNaquadriaSolution.getFluid(3000));
+        removeRecipesByInputs(MIXER_RECIPES, SulfuricAcid.getFluid(2000), NaquadriaSolution.getFluid(1000));
+        removeRecipesByInputs(MIXER_RECIPES, SulfuricAcid.getFluid(2000), EnrichedNaquadahSolution.getFluid(1000));
+        removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Naquadah,6)}, new FluidStack[]{FluoroantimonicAcid.getFluid(1000)});
+        removeRecipesByInputs(CENTRIFUGE_RECIPES, ImpureNaquadriaSolution.getFluid(2000));
+        removeRecipesByInputs(CENTRIFUGE_RECIPES, ImpureEnrichedNaquadahSolution.getFluid(2000));
+        removeRecipesByInputs(DISTILLATION_RECIPES, NaquadriaWaste.getFluid(2000));
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(1)}, new FluidStack[]{NaquadriaWaste.getFluid(200)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(2)}, new FluidStack[]{NaquadriaWaste.getFluid(200)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(3)}, new FluidStack[]{NaquadriaWaste.getFluid(400)});
+        removeRecipesByInputs(DISTILLATION_RECIPES, EnrichedNaquadahWaste.getFluid(2000));
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(1)}, new FluidStack[]{EnrichedNaquadahWaste.getFluid(200)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(2)}, new FluidStack[]{EnrichedNaquadahWaste.getFluid(200)});
+        removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(3)}, new FluidStack[]{EnrichedNaquadahWaste.getFluid(400)});
+
     }
 
     public static void chemistryOverride() {

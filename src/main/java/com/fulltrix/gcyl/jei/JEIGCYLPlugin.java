@@ -57,6 +57,19 @@ public class JEIGCYLPlugin implements IModPlugin {
         itemBlacklist.addIngredientToBlacklist(ADVANCED_SMD_TRANSISTOR.getStackForm());
         itemBlacklist.addIngredientToBlacklist(SMD_INDUCTOR.getStackForm());
 
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dust, NaquadriaSulfate));
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustSmall, NaquadriaSulfate));
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustTiny, NaquadriaSulfate));
+
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dust, EnrichedNaquadahSulfate));
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustSmall, EnrichedNaquadahSulfate));
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustTiny, EnrichedNaquadahSulfate));
+
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dust, TriniumSulfide));
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustSmall, TriniumSulfide));
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustTiny, TriniumSulfide));
+
+
 
         //The list has to be in this order for some godforsaken reason TODO: make it work on manganese phosphide all the way. hide fluids
         //hide old superconductors
