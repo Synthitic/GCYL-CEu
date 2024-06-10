@@ -7,6 +7,8 @@ import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import gregtech.GTInternalTags;
 import gregtech.api.GregTechAPI;
 import gregtech.api.cover.CoverDefinition;
+import gregtech.common.blocks.BlockWireCoil;
+import gregtech.common.blocks.MetaBlocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -42,6 +44,11 @@ public class GCYLCore {
         for (GCYLHeatingCoil.CoilType type : GCYLHeatingCoil.CoilType.values()) {
             HEATING_COILS.put(HEATING_COIL.getState(type), type);
         }
+
+        HEATING_COILS.remove(MetaBlocks.WIRE_COIL.getState(BlockWireCoil.CoilType.TRINIUM),BlockWireCoil.CoilType.TRINIUM);
+        HEATING_COILS.remove(MetaBlocks.WIRE_COIL.getState(BlockWireCoil.CoilType.TRITANIUM),BlockWireCoil.CoilType.TRITANIUM);
+
+
     }
 
     @EventHandler
