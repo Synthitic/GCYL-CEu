@@ -2,7 +2,8 @@ package com.fulltrix.gcyl.recipes;
 
 import com.fulltrix.gcyl.recipes.categories.*;
 import com.fulltrix.gcyl.recipes.categories.circuits.CircuitRecipes;
-import com.fulltrix.gcyl.recipes.categories.machines.GreenhouseRecipes;
+import com.fulltrix.gcyl.recipes.categories.DeepMinerRecipes;
+import com.fulltrix.gcyl.recipes.categories.GreenhouseRecipes;
 import com.fulltrix.gcyl.recipes.categories.machines.MachineCraftingRecipes;
 import com.fulltrix.gcyl.recipes.chain.*;
 
@@ -75,11 +76,11 @@ public class RecipeHandler {
         NaquadahChain.init();
         TriniumChain.init();
         Dyes.init();
+        ArcFurnaceOxidation.init();
 
         /*
         UraniumChain.init();
         DigitalInterfaces.init();
-        ArcFurnaceOxidation.init();
          */
     }
 

@@ -1,4 +1,4 @@
-package com.fulltrix.gcyl.recipes.categories.machines;
+package com.fulltrix.gcyl.recipes.categories;
 
 import com.cleanroommc.groovyscript.api.IIngredient;
 import gregtech.common.blocks.MetaBlocks;

@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.recipes.categories;
 
 import com.fulltrix.gcyl.recipes.recipeproperties.GCYLScanProperty;
+import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMaps;
@@ -24,6 +25,7 @@ import java.util.Map;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.TOOL_DATA_DEEP_MINER;
+import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.Plutonium;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.DEEP_MINER_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -66,6 +68,8 @@ public class DeepMinerRecipes {
 
         createResearchRecipe( "deep_exotics", OreDictUnifier.get(block, Enderium), null, TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
 
+        createResearchRecipe("deep_radioactive", OreDictUnifier.get(block, Plutonium244), null, TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 7860, 0);
+
 
         DEEP_MINER_RECIPES.recipeBuilder()
                 .notConsumable(minerScanMap.get("deep_diamond"))
@@ -73,7 +77,7 @@ public class DeepMinerRecipes {
                 .input(SENSOR_HV)
                 .input(ELECTRIC_PISTON_HV)
 
-                .fluidInputs(DrillingFluid.getFluid(32000))
+                .fluidInputs(DrillingFluid.getFluid(64000))
                 .output(ore, Coal, 64)
                 .output(ore, Diamond, 16)
                 .chancedOutput(ore, Coal, 64,100,2000)
@@ -93,7 +97,7 @@ public class DeepMinerRecipes {
                 .input(SENSOR_HV)
                 .input(ELECTRIC_PISTON_HV)
 
-                .fluidInputs(DrillingFluid.getFluid(32000))
+                .fluidInputs(DrillingFluid.getFluid(64000))
                 .output(ore, Pyrochlore, 64)
                 .output(ore, Columbite, 64)
                 .chancedOutput(ore, Pyrochlore, 64,100,2000)
@@ -112,7 +116,7 @@ public class DeepMinerRecipes {
                 .input(SENSOR_HV)
                 .input(ELECTRIC_PISTON_HV)
 
-                .fluidInputs(DrillingFluid.getFluid(32000))
+                .fluidInputs(DrillingFluid.getFluid(64000))
                 .output(ore, Bauxite, 64)
                 .output(ore, Aluminium, 32)
                 .output(ore, Gallite, 32)
@@ -134,7 +138,7 @@ public class DeepMinerRecipes {
                 .input(SENSOR_HV)
                 .input(ELECTRIC_PISTON_HV)
 
-                .fluidInputs(DrillingFluid.getFluid(32000))
+                .fluidInputs(DrillingFluid.getFluid(64000))
                 .output(ore, Bauxite, 64)
                 .output(ore, Rutile, 32)
                 .chancedOutput(ore, Bauxite, 64,100,2000)
@@ -153,7 +157,7 @@ public class DeepMinerRecipes {
                 .input(SENSOR_EV)
                 .input(ELECTRIC_PISTON_EV)
 
-                .fluidInputs(DrillingFluid.getFluid(64000))
+                .fluidInputs(DrillingFluid.getFluid(128000))
                 .output(ore, PlatinumMetallicPowder, 64)
                 .output(ore, PalladiumMetallicPowder, 64)
                 .chancedOutput(ore, PlatinumMetallicPowder, 64,100,2000)
@@ -172,7 +176,7 @@ public class DeepMinerRecipes {
                 .input(SENSOR_EV)
                 .input(ELECTRIC_PISTON_EV)
 
-                .fluidInputs(DrillingFluid.getFluid(64000))
+                .fluidInputs(DrillingFluid.getFluid(128000))
                 .output(ore, NetherStar, 16)
                 .chancedOutput(ore, NetherStar, 16,100,2000)
                 .chancedOutput(ore, NetherStar, 16,100,500)
@@ -189,7 +193,7 @@ public class DeepMinerRecipes {
                 .input(SENSOR_IV)
                 .input(ELECTRIC_PUMP_IV)
 
-                .fluidInputs(DrillingFluid.getFluid(128000))
+                .fluidInputs(DrillingFluid.getFluid(256000))
                 .fluidInputs(NitricAcid.getFluid(16000))
                 .fluidOutputs(Chlorine.getFluid(64000))
                 .chancedFluidOutput(Chlorine.getFluid(64000), 100, 2000)
@@ -206,7 +210,7 @@ public class DeepMinerRecipes {
                 .input(SENSOR_IV)
                 .input(ELECTRIC_PUMP_IV)
 
-                .fluidInputs(DrillingFluid.getFluid(128000))
+                .fluidInputs(DrillingFluid.getFluid(256000))
                 .fluidInputs(NitricAcid.getFluid(16000))
                 .fluidOutputs(Fluorine.getFluid(64000))
                 .chancedFluidOutput(Fluorine.getFluid(64000), 100, 2000)
@@ -223,7 +227,7 @@ public class DeepMinerRecipes {
                 .input(SENSOR_IV)
                 .input(ELECTRIC_PISTON_IV)
 
-                .fluidInputs(DrillingFluid.getFluid(128000))
+                .fluidInputs(DrillingFluid.getFluid(256000))
                 .fluidInputs(NitricAcid.getFluid(16000))
                 .output(ore, Salt, 32)
                 .chancedOutput(ore, Salt, 32, 100, 2000)
@@ -249,7 +253,7 @@ public class DeepMinerRecipes {
                 .input(SENSOR_IV)
                 .input(ELECTRIC_PISTON_IV)
 
-                .fluidInputs(DrillingFluid.getFluid(128000))
+                .fluidInputs(DrillingFluid.getFluid(256000))
                 .fluidInputs(NitricAcid.getFluid(16000))
                 .output(ore, Salt, 32)
                 .chancedOutput(ore, Salt, 32, 100, 2000)
@@ -271,11 +275,11 @@ public class DeepMinerRecipes {
 
         DEEP_MINER_RECIPES.recipeBuilder()
                 .notConsumable(minerScanMap.get("deep_exotics"))
-                .circuitMeta(1)
+                .circuitMeta(0)
                 .input(SENSOR_IV)
                 .input(ELECTRIC_PISTON_IV)
 
-                .fluidInputs(DrillingFluid.getFluid(128000))
+                .fluidInputs(DrillingFluid.getFluid(256000))
                 .fluidInputs(NitricAcid.getFluid(32000))
                 .output(ore, NaquadricCompound, 64)
                 .chancedOutput(ore, NaquadricCompound, 64, 100, 2000)
@@ -289,6 +293,26 @@ public class DeepMinerRecipes {
                 .duration(4000)
                 .EUt(7860)
                 .temperature(5400)
+                .dimension(0)
+                .buildAndRegister();
+
+        DEEP_MINER_RECIPES.recipeBuilder()
+                .notConsumable(minerScanMap.get("deep_radioactive"))
+                .circuitMeta(0)
+                .input(SENSOR_LuV)
+                .input(ELECTRIC_PISTON_LUV)
+
+                .fluidInputs(DrillingFluid.getFluid(512000))
+                .fluidInputs(NitricAcid.getFluid(64000))
+                .output(ore, Uranium238, 64)
+                .chancedOutput(ore, Uranium238, 64, 100, 2000)
+                .chancedOutput(ore, Uranium238, 64, 100, 500)
+                .output(ore, Plutonium, 32)
+                .chancedOutput(ore, Plutonium, 32, 100, 2000)
+                .chancedOutput(ore, Plutonium, 32, 100, 500)
+                .duration(4000)
+                .EUt(GTValues.VA[GTValues.LuV])
+                .temperature(7200)
                 .dimension(0)
                 .buildAndRegister();
 

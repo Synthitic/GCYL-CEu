@@ -45,8 +45,9 @@ public final class GCYLRecipeMaps {
 
     //public static final RecipeMap<NuclearReactorBuilder> NUCLEAR_BREEDER_RECIPES = new RecipeMap<>("nuclear_breeder", 4, 4, 0, 0, new NuclearReactorBuilder().EUt(1920),false); //NUCLEAR_MARK
 
-    public static final RecipeMap<SimpleRecipeBuilder> DECAY_CHAMBERS_RECIPES = new RecipeMap<>("decay_chamber", 2, 1, 1, 1, new SimpleRecipeBuilder().EUt(30), false)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_HAMMER, ProgressWidget.MoveType.VERTICAL); //NUCLEAR_MARK
+    public static final RecipeMap<SimpleRecipeBuilder> DECAY_CHAMBERS_RECIPES = new RecipeMap<>("decay_chamber", 2, 4, 1, 1, new SimpleRecipeBuilder(), false)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_HAMMER, ProgressWidget.MoveType.VERTICAL)
+            .setSound(GTSoundEvents.ARC); //NUCLEAR_MARK
 
     public static final RecipeMap<AdvFusionRecipeBuilder> ADV_FUSION_RECIPES = new RecipeMap<>("adv_fusion", 0, 0, 3, 3, new AdvFusionRecipeBuilder(), false)
             .setSound(GTSoundEvents.ARC);

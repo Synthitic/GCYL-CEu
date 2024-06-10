@@ -1124,6 +1124,60 @@ public class GCYLMaterials {
     public static Material ChaosAlloy;
     public static Material BrightSteel;
     public static Material Gallite;
+    public static Material BabbittAlloy;
+    public static Material Inconel625;
+    public static Material ApatiteAcidicLeach;
+    public static Material PhosphorousArsenicSolution;
+    public static Material ApatiteSolidResidue;
+    public static Material FluoroApatite;
+    public static Material FluoroapatiteAcidicLeach;
+    public static Material FluoroapatiteSolidResidue;
+    public static Material SodiumArsenate;
+    public static Material FinelyPowderedRutile;
+    public static Material RawSienna;
+    public static Material BurnedSienna;
+    public static Material MercuryNitrate;
+    public static Material MercuryChloride;
+    public static Material MercuryIodide;
+    public static Material BismuthVanadateSolution;
+    public static Material BismuthVanadate;
+    public static Material CopperArsenite;
+    public static Material ScheelesGreen;
+    public static Material CobaltZincOxide;
+    public static Material CobaltAluminate;
+    public static Material PotassiumFerrocyanide;
+    public static Material PrussianBlue;
+    public static Material TitaniumYellow;
+    public static Material ManganeseIIIOxide;
+    public static Material AmmoniumManganesePhosphate;
+    public static Material HanPurple;
+    public static Material ChromeYellow;
+    public static Material ChromeOrange;
+    public static Material Nitrotoluene;
+    public static Material DiaminostilbenedisulfonicAcid;
+    public static Material Nigrosin;
+    public static Material SodiumSulfanilate;
+    public static Material Naphthylamine;
+    public static Material DirectBrown;
+    public static Material DianilineterephthalicAcid;
+    public static Material Quinacridone;
+    public static Material Acetoacetanilide;
+    public static Material DiarylideYellow;
+    public static Material Quinizarin;
+    public static Material Toluidine;
+    public static Material AlizarineCyanineGreen;
+    public static Material Anthraquinone;
+    public static Material Aminoanthraquinone;
+    public static Material IndanthroneBlue;
+    public static Material Mauveine;
+    public static Material Isopropylsuccinate;
+    public static Material Benzonitrile;
+    public static Material Diketopyrrolopyrrole;
+    public static Material Indigo;
+    public static Material Tetrabromoindigo;
+    public static Material CyanIndigoDye;
+    public static Material Erythrosine;
+
 
     //COILS
     public static Material Pikyonium;
@@ -1208,7 +1262,7 @@ public class GCYLMaterials {
                 .flags(DISABLE_REPLICATION).build();
 
         EglinSteel = new Material.Builder(++id, gcylId("eglin_steel"))
-                .ingot(6)
+                .ingot(6).liquid()
                 .color(0x8B4513)
                 .iconSet(METALLIC)
                 .flags(EXT2_METAL, GENERATE_FRAME)
@@ -9825,6 +9879,431 @@ public class GCYLMaterials {
                 .components(Copper,1,Gallium,1,Sulfur,2)
                 .build();
 
+        BabbittAlloy = new Material.Builder(++id, gcylId("babbitt_alloy"))
+                .ingot(4).liquid()
+                .color(0xA19CA4)
+                .iconSet(METALLIC)
+                .flags(DISABLE_REPLICATION)
+                .components(Tin, 5, Lead,36, Antimony,8,Arsenic,1)
+                .blast(737)
+                .build();
+
+        Inconel625 = new Material.Builder(++id, gcylId("inconel_a"))
+                .ingot(6).liquid()
+                .color(0x80C880)
+                .iconSet(METALLIC)
+                .flags(DISABLE_REPLICATION)
+                .components(Nickel,3,Chrome,7,Molybdenum,10,Invar,10,Nichrome,13)
+                .blast(2425)
+                .build();
+
+        ApatiteAcidicLeach = new Material.Builder(++id, gcylId("apatite_acidic_leach"))
+                .liquid()
+                .color(PhosphoricAcid.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H10P3O12Cl??",true);
+
+        PhosphorousArsenicSolution = new Material.Builder(++id, gcylId("phosphorous_arsenic_solution"))
+                .liquid()
+                .color(PhosphoricAcid.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("AsCd(HPO4)10",true);
+
+        ApatiteSolidResidue = new Material.Builder(++id, gcylId("apatite_solid_residue"))
+                .dust()
+                .color(0x3cb290)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FINE)
+                .build()
+                .setFormula("Ca6PO4SiO3",true);
+
+        FluoroApatite = new Material.Builder(++id, gcylId("fluoroapatite"))
+                .dust(2)
+                .color(Apatite.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .components(Calcium,5,Phosphate,3,Fluorine,1)
+                .build();
+
+        FluoroapatiteAcidicLeach = new Material.Builder(++id, gcylId("fluoroapatite_acidic_leach"))
+                .liquid(new FluidBuilder().attribute(ACID))
+                .color(PhosphoricAcid.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("H10P3O12F??",true);
+
+        FluoroapatiteSolidResidue = new Material.Builder(++id, gcylId("fluoroapatite_solid_residue"))
+                .dust()
+                .color(0x3cb290)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("Ca6PO4SiO3F",true);
+
+        SodiumArsenate = new Material.Builder(++id, gcylId("sodium_arsenate"))
+                .dust()
+                .color(0xbffabf)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(METALLIC)
+                .build()
+                .setFormula("Na3AsO4",true);
+
+        FinelyPowderedRutile = new Material.Builder(++id, gcylId("finely_powdered_rutile"))
+                .dust()
+                .color(0xffffff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FINE)
+                .build()
+                .setFormula("TiO2",true);
+
+        RawSienna = new Material.Builder(++id, gcylId("raw_siena"))
+                .dust()
+                .color(0x663300)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("SiO2(MnO2)(FeO2)",true);
+
+        BurnedSienna = new Material.Builder(++id, gcylId("burned_siena"))
+                .dust()
+                .color(0xff0000)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("SiO2(MnO2)(FeO2)",true);
+
+        MercuryNitrate = new Material.Builder(++id, gcylId("mercury_nitrate"))
+                .liquid()
+                .color(0xd6b8ad)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("Hg(NO3)2",true);
+
+        MercuryChloride = new Material.Builder(++id, gcylId("mercury_chloride"))
+                .dust()
+                .color(0xd6b8ad)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("HgCl2",true);
+
+        MercuryIodide = new Material.Builder(++id, gcylId("mercury_iodide"))
+                .liquid()
+                .color(0xff0000)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("HgI2",true);
+
+        BismuthVanadateSolution  = new Material.Builder(++id, gcylId("bismuth_vanadate_solution"))
+                .liquid()
+                .color(0xffff00)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("(H2O)BiVO4",true);
+
+        BismuthVanadate = new Material.Builder(++id, gcylId("bismuth_vanadate"))
+                .dust()
+                .color(0xffff00)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("BiVO4",true);
+
+        CopperArsenite = new Material.Builder(++id, gcylId("copper_arsenite"))
+                .dust()
+                .color(0x66ff66)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("Cu3(AsO4)2",true);
+
+        ScheelesGreen = new Material.Builder(++id, gcylId("scheeles_green"))
+                .dust()
+                .color(0x00ff00)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("AsCuHO3",true);
+
+        CobaltZincOxide = new Material.Builder(++id, gcylId("cobalt_zinc_oxide"))
+                .dust()
+                .color(0x00ffff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("CoZn4O5",true);
+
+        CobaltAluminate = new Material.Builder(++id, gcylId("cobalt_aluminate"))
+                .dust()
+                .color(0x0000ff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FINE)
+                .build()
+                .setFormula("Al2Co2O5",true);
+
+        PotassiumFerrocyanide = new Material.Builder(++id, gcylId("potassium_ferrocyanide"))
+                .dust()
+                .color(0x0000ff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("K4Fe(CN)6(H2O)3",true);
+
+        PrussianBlue = new Material.Builder(++id, gcylId("prussian_blue"))
+                .dust()
+                .color(0x0000ff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("Fe4(Fe(CN)6)3",true);
+
+        TitaniumYellow = new Material.Builder(++id, gcylId("titanium_yellow"))
+                .dust()
+                .color(0xffff00)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("NiO(Sb2O3)(TiO2)20",true);
+
+        ManganeseIIIOxide = new Material.Builder(++id, gcylId("manganese_iii_oxide"))
+                .dust()
+                .color(Pyrolusite.getMaterialRGB())
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("Mn2O3",true);
+
+        AmmoniumManganesePhosphate = new Material.Builder(++id, gcylId("ammonium_manganese_phosphate"))
+                .dust()
+                .color(0x660066)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("NH4MnPO4",true);
+
+        HanPurple = new Material.Builder(++id, gcylId("hans_purple"))
+                .dust()
+                .color(0x660066)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("BaCuSi2O6",true);
+
+        ChromeYellow = new Material.Builder(++id, gcylId("chrome_yellow"))
+                .dust()
+                .color(0xffff00)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("PbCrO4",true);
+
+        ChromeOrange = new Material.Builder(++id, gcylId("chrome_orange"))
+                .dust()
+                .color(0xff6600)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("Pb2CrO5",true);
+
+        Nitrotoluene = new Material.Builder(++id, gcylId("nitrotoluene"))
+                .liquid()
+                .color(0xfcca00)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C7H7NO2",true);
+
+        DiaminostilbenedisulfonicAcid = new Material.Builder(++id, gcylId("diaminostilbenedisulfonic_acid"))
+                .dust()
+                .color(0xffffff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C14H14N2O6S2",true);
+
+        Nigrosin = new Material.Builder(++id, gcylId("nigrosin"))
+                .dust()
+                .color(0x000000)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C36H26N5ClNa2S2O6",true);
+
+        SodiumSulfanilate = new Material.Builder(++id, gcylId("sodium_sulfanilate"))
+                .dust()
+                .color(0xe49879)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(SHINY)
+                .build()
+                .setFormula("C6H6NNaO3S",true);
+
+        Naphthylamine = new Material.Builder(++id, gcylId("naphthylamine"))
+                .liquid()
+                .color(0xe3e81c)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C10H9N",true);
+
+        DirectBrown = new Material.Builder(++id, gcylId("direct_brown"))
+                .dust()
+                .color(0x663300)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C26H19N6NaO3S",true);
+
+        DianilineterephthalicAcid = new Material.Builder(++id, gcylId("dianilineterephthalic_acid"))
+                .dust()
+                .color(0xff0000)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C20H16N2O4",true);
+
+        Quinacridone = new Material.Builder(++id, gcylId("quinacridone"))
+                .dust()
+                .color(0xff0000)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C20H12N2O2",true);
+
+        Acetoacetanilide = new Material.Builder(++id, gcylId("acetoacetanilide"))
+                .liquid()
+                .color(0xffffc2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C10H11NO2",true);
+
+        DiarylideYellow = new Material.Builder(++id, gcylId("diarylide_yellow"))
+                .liquid()
+                .color(0xffff00)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C32H26Cl2N6O4",true);
+
+        Quinizarin = new Material.Builder(++id, gcylId("quinizarin"))
+                .liquid()
+                .color(0x3c5a2c0)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C14H8O4",true);
+
+        Toluidine = new Material.Builder(++id, gcylId("toluidine"))
+                .liquid()
+                .color((Toluene.getMaterialRGB()+ Aniline.getMaterialRGB())/2)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C7H9N",true);
+
+        AlizarineCyanineGreen = new Material.Builder(++id, gcylId("alizarine_cyanine_green"))
+                .dust()
+                .color(0x00ff00)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C28H20N2Na2O8S2",true);
+
+        Anthraquinone = new Material.Builder(++id, gcylId("anthraquinone"))
+                .dust()
+                .color(0xfff782)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(ROUGH)
+                .build()
+                .setFormula("C14H8O2",true);
+
+        Aminoanthraquinone = new Material.Builder(++id, gcylId("aminoanthraquinone"))
+                .dust()
+                .color(0x0000ff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C14H9NO2",true);
+
+        IndanthroneBlue = new Material.Builder(++id, gcylId("indanthrone_blue"))
+                .dust()
+                .color(0x0000ff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C28H14N2O2",true);
+
+        Mauveine = new Material.Builder(++id, gcylId("mauveine"))
+                .dust()
+                .color(0x660066)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C26H23N4",true);
+
+        Isopropylsuccinate = new Material.Builder(++id, gcylId("isopropylsuccinate"))
+                .liquid()
+                .color(0xb26680)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C7H12O4",true);
+
+        Benzonitrile = new Material.Builder(++id, gcylId("benzonitrile"))
+                .liquid()
+                .color(0x2c2c9c)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("C7H5N",true);
+
+        Diketopyrrolopyrrole = new Material.Builder(++id, gcylId("diketopyrrolopyrrole"))
+                .dust()
+                .color(0xff6600)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C18H12N2O2",true);
+
+        Indigo = new Material.Builder(++id, gcylId("indigo"))
+                .dust()
+                .color(0x0000ff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C16H10N2O2",true);
+
+        Tetrabromoindigo = new Material.Builder(++id, gcylId("tetrabromoindigo"))
+                .dust()
+                .color(0x00ff00)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C16H6Br2N2O2",true);
+
+        CyanIndigoDye = new Material.Builder(++id, gcylId("cyan_indigo_dye"))
+                .dust()
+                .color(0x009999)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("(C16H10N2O2)2Br2",true);
+
+        Erythrosine = new Material.Builder(++id, gcylId("erythrosine"))
+                .dust()
+                .color(0xff00ff)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(DULL)
+                .build()
+                .setFormula("C20H6I4Na2O5",true);
 
         /*
         = new Material.Builder(++id, gcylId("material"))

@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl;
 
+import com.fulltrix.gcyl.api.util.VirtualContainerRegistry;
 import com.fulltrix.gcyl.item.GCYLCoreItems;
 import com.fulltrix.gcyl.materials.GCYLMaterialOverride;
 import com.fulltrix.gcyl.materials.GCYLMaterials;
@@ -20,6 +21,7 @@ import gregtech.api.recipes.GTRecipeInputCache;
 import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
 import gregtech.api.unification.material.event.MaterialEvent;
 import gregtech.api.unification.material.event.MaterialRegistryEvent;
+import gregtech.common.ConfigHolder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -29,6 +31,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -59,6 +62,8 @@ public class CommonProxy {
     public static void forceHighTierConfig(HighTierEvent event) {
         //Force enable high tier content, regardless of config option
         event.enableHighTier();
+
+        ConfigHolder.machines.enableHighTierSolars = true;
 
         //Force enable tiered casings from GCYM
         GCYMConfigHolder.globalMultiblocks.enableTieredCasings = true;
@@ -155,6 +160,11 @@ public class CommonProxy {
         FuelHandler.init();
 
         //RecipeHandler.registerLargeMachineRecipes();
+    }
+
+    @SubscribeEvent
+    public static void onWorldLoadEvent(WorldEvent.Load event) {
+        VirtualContainerRegistry.initializeStorage(event.getWorld());
     }
 
 

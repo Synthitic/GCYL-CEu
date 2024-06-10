@@ -2,8 +2,12 @@ package com.fulltrix.gcyl.recipes.categories;
 
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.item.GCYLMultiblockCasing2;
+import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
+import gregtech.api.GTValues;
+import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.stack.MaterialStack;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.MetaTileEntities;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
@@ -11,9 +15,11 @@ import static com.fulltrix.gcyl.item.GCYLHeatingCoil.CoilType.*;
 import static com.fulltrix.gcyl.item.GCYLMultiblockCasing2.CasingType.*;
 import static com.fulltrix.gcyl.item.GCYLReactorCasing.CasingType.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.ReactorSteel;
+import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
 import static gregtech.api.recipes.ModHandler.removeRecipeByName;
+import static gregtech.api.recipes.ModHandler.removeTieredRecipeByName;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES;
 import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
@@ -22,6 +28,7 @@ import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.blocks.BlockWireCoil.CoilType.*;
 import static gregtech.common.items.MetaItems.*;
 import static gregtech.common.items.MetaItems.EMITTER_UV;
+import static gregtech.common.metatileentities.MetaTileEntities.HULL;
 
 public class CasingRecipes {
 
@@ -35,141 +42,165 @@ public class CasingRecipes {
 
     private static void tieredCasings() {
 
-        //TODO: voltage controls from GCYM
+        removeTieredRecipeByName("gcym:gcym.machine.tiered_hatch.", GTValues.ULV, GTValues.UV);
 
-        /*
 
         // Integral Frameworks
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(7)
-                .input(circuit, Primitive, 2)
+                .input(circuit, ULV, 2)
                 .input(gear, Potin, 2)
                 .input(plate, Potin, 2)
                 .input(cableGtOctal, Tin)
-                .inputs(MetaTileEntities.HULL[ULV].getStackForm())
+                .inputs(MetaTileEntities.HULL[GTValues.ULV].getStackForm())
                 .fluidInputs(Steel.getFluid(L * 2))
-                .outputs(TJFMetaBlocks.MUTLIBLOCK_CASING.getItemVariant(TIERED_HULL_ULV))
+                .outputs(GCYMMetaTileEntities.TIERED_HATCH[0].getStackForm())
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30)
-                .input(circuit, Basic, 2)
+                .input(circuit, LV, 2)
                 .input(gear, Magnalium, 2)
                 .input(plate, Magnalium, 2)
                 .input(cableGtOctal, Cobalt)
-                .inputs(MetaTileEntities.HULL[LV].getStackForm())
+                .inputs(MetaTileEntities.HULL[GTValues.LV].getStackForm())
                 .fluidInputs(Silicon.getFluid(L * 2))
-                .outputs(TJFMetaBlocks.MUTLIBLOCK_CASING.getItemVariant(TIERED_HULL_LV))
+                .outputs(GCYMMetaTileEntities.TIERED_HATCH[1].getStackForm())
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(120)
-                .input(circuit, Good, 2)
+                .input(circuit, MV, 2)
                 .input(gear, EglinSteel, 2)
                 .input(plate, EglinSteel, 2)
                 .input(cableGtOctal, AnnealedCopper)
-                .inputs(MetaTileEntities.HULL[MV].getStackForm())
+                .inputs(MetaTileEntities.HULL[GTValues.MV].getStackForm())
                 .fluidInputs(BabbittAlloy.getFluid(L * 2))
-                .outputs(TJFMetaBlocks.MUTLIBLOCK_CASING.getItemVariant(TIERED_HULL_MV))
+                .outputs(GCYMMetaTileEntities.TIERED_HATCH[2].getStackForm())
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(480)
-                .input(circuit, Advanced, 2)
+                .input(circuit, HV, 2)
                 .input(gear, Inconel625, 2)
                 .input(plate, Inconel625, 2)
                 .input(cableGtOctal, Gold)
-                .inputs(MetaTileEntities.HULL[HV].getStackForm())
+                .inputs(MetaTileEntities.HULL[GTValues.HV].getStackForm())
                 .fluidInputs(Inconel625.getFluid(L * 2))
-                .outputs(TJFMetaBlocks.MUTLIBLOCK_CASING.getItemVariant(TIERED_HULL_HV))
+                .outputs(GCYMMetaTileEntities.TIERED_HATCH[3].getStackForm())
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(1920)
-                .input(circuit, Extreme, 2)
+                .input(circuit, EV, 2)
                 .input(gear, TungstenCarbide, 4)
                 .input(plate, TungstenCarbide, 4)
                 .input(cableGtOctal, Titanium)
-                .inputs(MetaTileEntities.HULL[EV].getStackForm())
-                .fluidInputs(Stellite.getFluid(L * 2))
-                .outputs(TJFMetaBlocks.MUTLIBLOCK_CASING.getItemVariant(TIERED_HULL_EV))
+                .inputs(MetaTileEntities.HULL[GTValues.EV].getStackForm())
+                .fluidInputs(Stellite100.getFluid(L * 2))
+                .outputs(GCYMMetaTileEntities.TIERED_HATCH[4].getStackForm())
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(7680)
-                .input(circuit, Elite, 2)
+                .input(circuit, IV, 2)
                 .input(gear, Nitinol60, 4)
                 .input(plate, Nitinol60, 4)
                 .input(cableGtOctal, Nichrome)
-                .inputs(MetaTileEntities.HULL[IV].getStackForm())
+                .inputs(MetaTileEntities.HULL[GTValues.IV].getStackForm())
                 .fluidInputs(Thorium.getFluid(L * 2))
-                .outputs(TJFMetaBlocks.MUTLIBLOCK_CASING.getItemVariant(TIERED_HULL_IV))
+                .outputs(GCYMMetaTileEntities.TIERED_HATCH[5].getStackForm())
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720)
-                .input(circuit, Master, 2)
+                .input(circuit, LuV, 2)
                 .input(gear, IncoloyMA956, 4)
                 .input(plate, IncoloyMA956, 4)
                 .input(cableGtOctal, Platinum)
-                .inputs(MetaTileEntities.HULL[LuV].getStackForm())
-                .fluidInputs(Uranium238Isotope.getMaterial().getFluid(L * 2))
-                .outputs(TJFMetaBlocks.MUTLIBLOCK_CASING.getItemVariant(TIERED_HULL_LUV))
+                .inputs(MetaTileEntities.HULL[GTValues.LuV].getStackForm())
+                .fluidInputs(Uranium238.getFluid(L * 2))
+                .outputs(GCYMMetaTileEntities.TIERED_HATCH[6].getStackForm())
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720 * 4)
-                .input(circuit, Ultimate, 2)
+                .input(circuit, ZPM, 2)
                 .input(gear, BabbittAlloy, 4)
                 .input(plate, BabbittAlloy, 4)
                 .input(cableGtOctal, NiobiumTitanium)
-                .inputs(MetaTileEntities.HULL[GAValues.ZPM].getStackForm())
-                .fluidInputs(Plutonium244Isotope.getMaterial().getFluid(L * 2))
-                .outputs(TJFMetaBlocks.MUTLIBLOCK_CASING.getItemVariant(TIERED_HULL_ZPM))
+                .inputs(MetaTileEntities.HULL[GTValues.ZPM].getStackForm())
+                .fluidInputs(Plutonium244.getFluid(L * 2))
+                .outputs(GCYMMetaTileEntities.TIERED_HATCH[7].getStackForm())
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720 * 16)
-                .input(circuit, Superconductor, 2)
+                .input(circuit, UV, 2)
                 .input(gear, HG1223, 4)
                 .input(plate, HG1223, 4)
                 .input(cableGtOctal, YttriumBariumCuprate)
-                .inputs(MetaTileEntities.HULL[UV].getStackForm())
+                .inputs(MetaTileEntities.HULL[GTValues.UV].getStackForm())
                 .fluidInputs(NaquadahEnriched.getFluid(L * 2))
-                .outputs(TJFMetaBlocks.MUTLIBLOCK_CASING.getItemVariant(TIERED_HULL_UV))
+                .outputs(GCYMMetaTileEntities.TIERED_HATCH[8].getStackForm())
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720 * 64)
-                .input(circuit, Infinite, 2)
+                .input(circuit, UHV, 2)
                 .input(gear, AbyssalAlloy, 8)
                 .input(plate, AbyssalAlloy, 8)
                 .input(cableGtOctal, TungstenTitaniumCarbide)
-                .inputs(GATileEntities.GA_HULLS[0].getStackForm())
+                .inputs(MetaTileEntities.HULL[GTValues.UHV].getStackForm())
                 .fluidInputs(Naquadria.getFluid(L * 2))
-                .outputs(TJFMetaBlocks.MUTLIBLOCK_CASING2.getItemVariant(TIERED_HULL_UHV))
+                .outputs(GCYMMetaTileEntities.TIERED_HATCH[9].getStackForm())
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720 * 256)
-                .input(circuit, GAMaterials.UEV, 2)
+                .input(circuit, UEV, 2)
                 .input(gear, TitanSteel, 8)
                 .input(plate, TitanSteel, 8)
                 .input(cableGtOctal, Pikyonium)
-                .inputs(GATileEntities.GA_HULLS[1].getStackForm())
+                .inputs(MetaTileEntities.HULL[GTValues.UEV].getStackForm())
                 .fluidInputs(Naquadria.getFluid(L * 2))
-                .outputs(TJFMetaBlocks.MUTLIBLOCK_CASING2.getItemVariant(TIERED_HULL_UEV))
+                .outputs(GCYMMetaTileEntities.TIERED_HATCH[10].getStackForm())
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720 * 1024)
-                .input(circuit, GAMaterials.UIV, 2)
+                .input(circuit, UIV, 2)
                 .input(gear, BlackTitanium, 8)
                 .input(plate, BlackTitanium, 8)
                 .input(cableGtOctal, Cinobite)
-                .inputs(GATileEntities.GA_HULLS[2].getStackForm())
+                .inputs(MetaTileEntities.HULL[GTValues.UIV].getStackForm())
                 .fluidInputs(Naquadria.getFluid(L * 2))
-                .outputs(TJFMetaBlocks.MUTLIBLOCK_CASING2.getItemVariant(TIERED_HULL_UIV))
+                .outputs(GCYMMetaTileEntities.TIERED_HATCH[11].getStackForm())
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720 * 4096)
-                .input(circuit, GAMaterials.UMV, 2)
+                .input(circuit, UXV, 2)
                 .input(gear, Vibranium, 8)
                 .input(plate, Vibranium, 8)
                 .input(cableGtOctal, NaquadriaticTaranium)
-                .inputs(GATileEntities.GA_HULLS[3].getStackForm())
+                .inputs(MetaTileEntities.HULL[GTValues.UXV].getStackForm())
                 .fluidInputs(Naquadria.getFluid(L * 2))
-                .outputs(TJFMetaBlocks.MUTLIBLOCK_CASING2.getItemVariant(TIERED_HULL_UMV))
+                .outputs(GCYMMetaTileEntities.TIERED_HATCH[12].getStackForm())
                 .buildAndRegister();
 
+        ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720 * 8192)
+                .input(circuit, OpV, 2)
+                .input(gear, QCDMatter, 8)
+                .input(plate, QCDMatter, 8)
+                .input(cableGtOctal, NaquadriaticTaranium)
+                .inputs(MetaTileEntities.HULL[GTValues.OpV].getStackForm())
+                .fluidInputs(EnrichedNaquadahAlloy.getFluid(L * 2))
+                .outputs(GCYMMetaTileEntities.TIERED_HATCH[13].getStackForm())
+                .buildAndRegister();
+
+        //TODO: finish MAX tiered hatch
+        /*
+        ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720 * 16384)
+                .input(circuit, MAX, 4)
+                .input(gear, Neutronium, 8)
+                .input(plate, Neutronium, 8)
+                .input(cableGtOctal, ChaosAlloy)
+                .inputs(MetaTileEntities.HULL[GTValues.MAX].getStackForm())
+                .fluidInputs(RefinedChaos.getFluid(L * 2))
+                .outputs(GCYMMetaTileEntities.TIERED_HATCH[13].getStackForm())
+                .buildAndRegister();
+
+         */
+
+        /*
         // Battery Tower Cells
         ASSEMBLER_RECIPES.recipeBuilder().EUt(240).duration(1200)
                 .input(plateDouble, Lead, 4)

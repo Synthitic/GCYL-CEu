@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.recipes.categories.circuits;
 
 
+import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.stack.UnificationEntry;
@@ -20,6 +21,8 @@ public class CircuitRecipes {
 
     //TODO: higher tier soldering alloys
     //TODO: research and/or move circuits to circuit assembly line
+    //TODO: remove tin as a soldering alloy
+    //TODO: make smd ore prefixes to condense recipes
 
     public static void init() {
 
@@ -80,7 +83,6 @@ public class CircuitRecipes {
                 .inputs(SMD_RESISTOR_REFINED.getStackForm(4))
                 .inputs(SMD_CAPACITOR_REFINED.getStackForm(4))
                 .inputs(GOOD_CIRCUIT_BOARD.getStackForm())
-                .inputs(CENTRAL_PROCESSING_UNIT.getStackForm())
                 .input(wireFine, Copper, 4)
                 .outputs(INTEGRATED_CIRCUIT_LV.getStackForm())
                 .buildAndRegister();
@@ -109,7 +111,7 @@ public class CircuitRecipes {
                 .inputs(RESISTOR.getStackForm(4))
                 .inputs(INTEGRATED_LOGIC_CIRCUIT.getStackForm(2))
                 .input(plate, Aluminium, 2)
-                .input(wireGtSingle, AnnealedCopper, 4)
+                .input(wireGtSingle, LVSuperconductor, 4)
                 .outputs(INTEGRATED_CIRCUIT_HV.getStackForm())
                 .buildAndRegister();
 
@@ -119,7 +121,7 @@ public class CircuitRecipes {
                 .inputs(SMD_RESISTOR_REFINED.getStackForm(2))
                 .inputs(INTEGRATED_LOGIC_CIRCUIT.getStackForm(2))
                 .input(plate, Aluminium, 2)
-                .input(wireGtSingle, AnnealedCopper, 4)
+                .input(wireGtSingle, LVSuperconductor, 4)
                 .outputs(INTEGRATED_CIRCUIT_HV.getStackForm())
                 .buildAndRegister();
     }
@@ -401,6 +403,9 @@ public class CircuitRecipes {
                 .input(wireGtSingle, IVSuperconductor, 16)
                 .outputs(QUANTUM_MAINFRAME_ZPM.getStackForm())
                 .cleanroom(CleanroomType.CLEANROOM)
+                .scannerResearch(b -> b
+                        .researchStack(QUANTUM_COMPUTER_LUV.getStackForm())
+                        .EUt(GTValues.VA[GTValues.IV]))
                 .buildAndRegister();
     }
 
@@ -453,6 +458,9 @@ public class CircuitRecipes {
                 .input(wireGtSingle, LuVSuperconductor, 16)
                 .outputs(CRYSTAL_COMPUTER_ZPM.getStackForm())
                 .cleanroom(CleanroomType.CLEANROOM)
+                .scannerResearch(b -> b
+                        .researchStack(CRYSTAL_ASSEMBLY_LUV.getStackForm())
+                        .EUt(GTValues.VA[GTValues.LuV]))
                 .buildAndRegister();
 
         // Crystal Mainframe
@@ -467,6 +475,10 @@ public class CircuitRecipes {
                 .input(frameGt, HSSE, 4)
                 .input(wireGtSingle, LuVSuperconductor, 32)
                 .outputs(CRYSTAL_MAINFRAME_UV.getStackForm())
+                .stationResearch(b -> b
+                        .researchStack(CRYSTAL_COMPUTER_ZPM.getStackForm())
+                        .CWUt(16)
+                        .EUt(GTValues.VA[GTValues.LuV]))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
     }
@@ -509,6 +521,10 @@ public class CircuitRecipes {
                 .fluidInputs(SterileGrowthMedium.getFluid(2000))
                 .outputs(WETWARE_PROCESSOR_ASSEMBLY_ZPM.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .stationResearch(b -> b
+                        .researchStack(WETWARE_PROCESSOR_LUV.getStackForm())
+                        .CWUt(32)
+                        .EUt(GTValues.VA[GTValues.ZPM]))
                 .buildAndRegister();
 
         // Wetware Supercomputer
@@ -526,6 +542,10 @@ public class CircuitRecipes {
                 .fluidInputs(SterileGrowthMedium.getFluid(2000))
                 .outputs(WETWARE_SUPER_COMPUTER_UV.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .stationResearch(b -> b
+                        .researchStack(WETWARE_PROCESSOR_ASSEMBLY_ZPM.getStackForm())
+                        .CWUt(48)
+                        .EUt(GTValues.VA[GTValues.ZPM]))
                 .buildAndRegister();
 
         // Wetware Mainframe
@@ -546,6 +566,10 @@ public class CircuitRecipes {
                 .fluidInputs(UUMatter.getFluid(100))
                 .outputs(WETWARE_MAINFRAME_UHV.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .stationResearch(b -> b
+                        .researchStack(WETWARE_SUPER_COMPUTER_UV.getStackForm())
+                        .CWUt(64)
+                        .EUt(GTValues.VA[GTValues.ZPM]))
                 .buildAndRegister();
     }
 
@@ -582,6 +606,10 @@ public class CircuitRecipes {
                 .fluidInputs(NaquadahEnriched.getFluid(L * 9))
                 .outputs(BIOWARE_ASSEMBLY.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .stationResearch(b -> b
+                        .researchStack(BIOWARE_PROCESSOR.getStackForm())
+                        .CWUt(64)
+                        .EUt(GTValues.VA[GTValues.UV]))
                 .buildAndRegister();
 
         // Bioware Computer
@@ -603,6 +631,10 @@ public class CircuitRecipes {
                 .fluidInputs(NaquadahEnriched.getFluid(L * 9))
                 .outputs(BIOWARE_COMPUTER.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .stationResearch(b -> b
+                        .researchStack(BIOWARE_ASSEMBLY.getStackForm())
+                        .CWUt(96)
+                        .EUt(GTValues.VA[GTValues.UV]))
                 .buildAndRegister();
 
         // Bioware Mainframe
@@ -626,6 +658,10 @@ public class CircuitRecipes {
                 .fluidInputs(Naquadria.getFluid(L * 9))
                 .outputs(BIOWARE_MAINFRAME.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .stationResearch(b -> b
+                        .researchStack(BIOWARE_COMPUTER.getStackForm())
+                        .CWUt(128)
+                        .EUt(GTValues.VA[GTValues.UV]))
                 .buildAndRegister();
     }
 

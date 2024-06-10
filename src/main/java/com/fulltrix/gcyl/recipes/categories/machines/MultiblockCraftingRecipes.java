@@ -4,6 +4,7 @@ import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import gregtech.api.GTValues;
 import gregtech.api.recipes.ModHandler;
+import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.blocks.BlockBoilerCasing;
@@ -372,6 +373,31 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                         .CWUt(32)
                         .EUt(VA[GTValues.UV]))
                 .buildAndRegister();
+
+        //DEEP MINER
+        ModHandler.addShapedRecipe("gcyl_deep_miner", DEEP_MINER.getStackForm(),
+                "SCS", "AHB", "SGS",
+                'S', SENSOR_HV,
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'A', ELECTRIC_PISTON_HV,
+                'B', ELECTRIC_PUMP_HV,
+                'G', new UnificationEntry(gear, StainlessSteel),
+                'H', HULL[GTValues.HV].getStackForm());
+
+        //MEGA CLEANROOM
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.ZPM]).duration(400)
+                .inputs(CLEANROOM.getStackForm(4))
+                .input(HULL[GTValues.ZPM])
+                .input(rotor, HSSE, 8)
+                .inputs(ELECTRIC_MOTOR_ZPM.getStackForm(8))
+                .input(circuit, MarkerMaterials.Tier.ZPM, 4)
+                .fluidInputs(Indalloy140.getFluid(L * 8))
+                .outputs(MEGA_CLEANROOM.getStackForm())
+                .scannerResearch(b->b
+                        .researchStack(CLEANROOM.getStackForm())
+                        .EUt(GTValues.VA[GTValues.ZPM]))
+                .buildAndRegister();
+
 
         /*
 

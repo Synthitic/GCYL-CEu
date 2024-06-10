@@ -17,6 +17,7 @@ import java.util.List;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.common.blocks.BlockWireCoil.CoilType.*;
 import static gregtech.common.items.MetaItems.*;
+import static gregtech.common.metatileentities.MetaTileEntities.CIRCUIT_ASSEMBLER;
 
 
 @JEIPlugin
@@ -56,6 +57,24 @@ public class JEIGCYLPlugin implements IModPlugin {
         itemBlacklist.addIngredientToBlacklist(ADVANCED_SMD_RESISTOR.getStackForm());
         itemBlacklist.addIngredientToBlacklist(ADVANCED_SMD_TRANSISTOR.getStackForm());
         itemBlacklist.addIngredientToBlacklist(SMD_INDUCTOR.getStackForm());
+
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dust, NaquadriaSulfate));
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustSmall, NaquadriaSulfate));
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustTiny, NaquadriaSulfate));
+
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dust, EnrichedNaquadahSulfate));
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustSmall, EnrichedNaquadahSulfate));
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustTiny, EnrichedNaquadahSulfate));
+
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dust, TriniumSulfide));
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustSmall, TriniumSulfide));
+        itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustTiny, TriniumSulfide));
+
+        for (int i = 5; i < 14; i++) {
+            itemBlacklist.addIngredientToBlacklist(CIRCUIT_ASSEMBLER[i].getStackForm());
+        }
+
+
 
 
         //The list has to be in this order for some godforsaken reason TODO: make it work on manganese phosphide all the way. hide fluids

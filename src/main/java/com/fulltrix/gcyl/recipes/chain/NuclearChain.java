@@ -10,6 +10,7 @@ import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.ingot;
+import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.NeutralMatter;
 
 public class NuclearChain {
     public static void init() {
@@ -341,9 +342,6 @@ public class NuclearChain {
     }
 
     private static void decayChamberInit() {
-
-        //alpha decay
-
 
 
     }

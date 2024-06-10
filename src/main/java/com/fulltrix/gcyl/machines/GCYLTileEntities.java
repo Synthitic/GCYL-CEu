@@ -10,6 +10,8 @@ import com.fulltrix.gcyl.machines.multi.MetaTileEntityStellarForge;
 import com.fulltrix.gcyl.machines.multi.advance.*;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityDeepMiner;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityVoidMiner;
+import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityHPCAComputationPlus;
+import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityHPCACoolingPlus;
 import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntitySterileCleaningMaintenanceHatch;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityChemicalPlant;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityDecayChamber;
@@ -23,11 +25,15 @@ import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityEnergyHatch;
+import gregtech.common.metatileentities.multi.multiblockpart.hpca.MetaTileEntityHPCAComputation;
 import net.minecraft.util.ResourceLocation;
 
 import static com.fulltrix.gcyl.GCYLUtility.gcylId;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.DEEP_MINER_RECIPES;
+import static com.google.common.base.Ascii.toLowerCase;
+import static com.ibm.icu.impl.locale.AsciiUtil.toLower;
 import static gregtech.api.util.GTUtility.gregtechId;
+import static gregtech.api.util.GTUtility.toLowerCaseUnderscore;
 import static gregtech.common.metatileentities.MetaTileEntities.registerMetaTileEntity;
 
 public class GCYLTileEntities {
@@ -51,9 +57,12 @@ public class GCYLTileEntities {
     public static MetaTileEntityDeepMiner DEEP_MINER;
     public static MetaTileEntityDecayChamber DECAY_CHAMBER;
     public static MetaTileEntityGreenhouse[] GREEN_HOUSE = new MetaTileEntityGreenhouse[2];
+    public static MetaTileEntityMegaCleanroom MEGA_CLEANROOM;
 
     public static MetaTileEntitySterileCleaningMaintenanceHatch STERILE_CLEANING_MAINTENANCE_HATCH;
 
+    public static MetaTileEntityHPCACoolingPlus[] HPCA_COOLING_PLUS = new MetaTileEntityHPCACoolingPlus[7];
+    public static MetaTileEntityHPCAComputationPlus[] HPCA_COMPUTATION_PLUS = new MetaTileEntityHPCAComputationPlus[7];
     public static SimpleGeneratorMetaTileEntity[] NAQUADAH_REACTOR = new SimpleGeneratorMetaTileEntity[8];
     public static SimpleGeneratorMetaTileEntity[] ROCKET_GENERATOR = new SimpleGeneratorMetaTileEntity[8];
 
@@ -115,6 +124,14 @@ public class GCYLTileEntities {
 
         GREEN_HOUSE[0] = registerMetaTileEntity(++id, new MetaTileEntityGreenhouse(gcylId("greenhouse_mv"), 2));
         GREEN_HOUSE[1] = registerMetaTileEntity(++id, new MetaTileEntityGreenhouse(gcylId("greenhouse_uv"), 8));
+
+        MEGA_CLEANROOM = registerMetaTileEntity(++id, new MetaTileEntityMegaCleanroom(gcylId("mega_cleanroom")));
+
+        for(int i = 0; i < 7; i++) {
+            HPCA_COOLING_PLUS[i] = registerMetaTileEntity(++id, new MetaTileEntityHPCACoolingPlus(gcylId("hpca.cooling_component." + toLowerCase(GTValues.VN[i+8])), i+8));
+            HPCA_COMPUTATION_PLUS[i] = registerMetaTileEntity(++id, new MetaTileEntityHPCAComputationPlus(gcylId("hpca.computation_component." + toLowerCase(GTValues.VN[i+8])), i+8));
+
+        }
         //TODO: configurable efficiency for naq reactors, efficiency implementation in general
 
         /*
@@ -142,21 +159,6 @@ public class GCYLTileEntities {
             ROCKET_GENERATOR[5] = registerMetaTileEntity(++id, new SimpleGeneratorMetaTileEntity(gcylId("rocket_generator.mk3"), GCYLRecipeMaps.ROCKET_FUEL_RECIPES, ClientHandler.ROCKET_OVERLAY, 6, GTUtility.genericGeneratorTankSizeFunction));
         //}
 
-        //TODO: figure this out
-        /*
-        for(int i = 10; i<13 ; i++) {
-            String voltageName = GTValues.VN[i].toLowerCase();
-            ENERGY_INPUT_HATCH_4A[i-10] = registerMetaTileEntity(++id,
-                    new MetaTileEntityEnergyHatch(tjfId("energy_hatch.input_4a"+voltageName),i,4,false));
-            ENERGY_OUTPUT_HATCH_4A[i-10] = registerMetaTileEntity(++id,
-                    new MetaTileEntityEnergyHatch(tjfId("energy_hatch.input_4a"+voltageName),i,4,true));
-            ENERGY_INPUT_HATCH_16A[i-10] = registerMetaTileEntity(++id,
-                    new MetaTileEntityEnergyHatch(tjfId("energy_hatch.input_16a"+voltageName),i,16,false));
-            ENERGY_OUTPUT_HATCH_16A[i-10] = registerMetaTileEntity(++id,
-                    new MetaTileEntityEnergyHatch(tjfId("energy_hatch.input_16a"+voltageName),i,16,true));
-        }
-
-         */
 
         MetaTileEntities.registerSimpleMetaTileEntity(DEHYDRATOR, ++id, "dehydrator", GCYLRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES, Textures.SIFTER_OVERLAY, true, GCYLUtility::gcylId, GTUtility.hvCappedTankSizeFunction);
     }
