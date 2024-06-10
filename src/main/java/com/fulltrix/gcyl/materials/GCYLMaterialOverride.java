@@ -89,7 +89,7 @@ public class GCYLMaterialOverride {
         //PLATE ADDITIONS
 
         List<Material> platemats = new ArrayList<>();
-        Collections.addAll(platemats, Vanadium, Tennessine);
+        Collections.addAll(platemats, Vanadium, Tennessine, Rutile);
         for (Material mat : platemats) {
             mat.addFlags(GENERATE_PLATE);
         }
@@ -180,7 +180,7 @@ public class GCYLMaterialOverride {
         Collections.addAll(omats, Lignite, Witherite, Barytocalcite, PlatinumMetallicPowder, IridiumMetalResidue, PreciousMetal,
                 RarestMetalMixture, PalladiumMetallicPowder, Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon, Bowieite,
                 Zinc, Enargite, Andradite, Dolomite, Wollastonite, Kaolinite, Tenorite, Tennantite, Cuprite, Tellurium, Zirkelite,
-                Arsenopyrite, Draconium, Iridium, Osmium, Rutile, Gallite, NetherStar, Plutonium, Uranium238);
+                Arsenopyrite, Draconium, Iridium, Osmium, Rutile, Gallite, NetherStar, Plutonium, Uranium238, FluoroApatite);
         for (Material mat : omats) {
             addOre(mat, 1, 1,false);
         }
