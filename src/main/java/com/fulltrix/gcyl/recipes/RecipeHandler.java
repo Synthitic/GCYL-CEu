@@ -75,11 +75,11 @@ public class RecipeHandler {
         NaquadahChain.init();
         TriniumChain.init();
         Dyes.init();
+        ArcFurnaceOxidation.init();
 
         /*
         UraniumChain.init();
         DigitalInterfaces.init();
-        ArcFurnaceOxidation.init();
          */
     }
 

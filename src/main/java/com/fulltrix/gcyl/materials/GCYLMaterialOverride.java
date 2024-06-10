@@ -411,6 +411,12 @@ public class GCYLMaterialOverride {
         Duranium.setProperty(PropertyKey.WIRE, new WireProperties((int) GTValues.V[UV], 1, 16));
         Titanium.setProperty(PropertyKey.WIRE, new WireProperties((int) GTValues.V[GTValues.EV], 4,2));
 
+        WireProperties wireProp;
+
+        wireProp = YttriumBariumCuprate.getProperty(PropertyKey.WIRE);
+        wireProp.setVoltage((int) GTValues.V[GTValues.LuV]);
+        wireProp.setAmperage(4);
+        wireProp.setLossPerBlock(4);
 
 
     }

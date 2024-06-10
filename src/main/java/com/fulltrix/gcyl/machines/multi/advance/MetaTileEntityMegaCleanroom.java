@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//TODO: Decrease tps lag when they try to cheat it
 public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom {
     public static final int MIN_RADIUS = 10;
     public static final int MIN_DEPTH = 9;

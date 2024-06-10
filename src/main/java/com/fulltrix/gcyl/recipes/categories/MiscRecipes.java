@@ -1,10 +1,14 @@
 package com.fulltrix.gcyl.recipes.categories;
 
 import gregtech.api.GTValues;
+import gregtech.api.recipes.ModHandler;
+import gregtech.api.unification.material.MarkerMaterials;
+import gregtech.api.unification.stack.UnificationEntry;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
-import static com.fulltrix.gcyl.item.GCYLCoreItems.COVER_ENDER_ITEM_LINK;
+import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
+import static com.fulltrix.gcyl.machines.GCYLTileEntities.DEEP_MINER;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.Americium241;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.ADVANCED_MIXER_RECIPES;
@@ -16,9 +20,13 @@ import static gregtech.api.unification.material.Materials.Bismuth;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 import static gregtech.common.items.MetaItems.COVER_ENDER_FLUID_LINK;
+import static gregtech.common.metatileentities.MetaTileEntities.HULL;
+import static gregtech.loaders.recipe.MetaTileEntityLoader.registerMachineRecipe;
 
 public class MiscRecipes {
     public static void init() {
+        initSolars();
+
         // Quantum Dust
         ADVANCED_MIXER_RECIPES.recipeBuilder().duration(10500).EUt(30)
                 .input(dust, Stellite100, 15)
@@ -109,6 +117,86 @@ public class MiscRecipes {
                 .dimension(1)
                 .outputs(new ItemStack(Blocks.END_STONE))
                 .buildAndRegister();
+    }
+
+    public static void initSolars() {
+
+        //TODO: add additional recipes to these
+        //TODO: add max solar panel
+
+        ModHandler.addShapedRecipe("gcyl_solar_panel_lv", COVER_SOLAR_PANEL_LV.getStackForm(),
+                "SGS", "CHC", "WBW",
+                'S', SENSOR_EV,
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.EV),
+                'W', new UnificationEntry(cableGtSingle, Aluminium),
+                'B', BATTERY_LV_CADMIUM,
+                'G', new UnificationEntry(gemExquisite, Diamond),
+                'H', HULL[GTValues.EV].getStackForm());
+
+        ModHandler.addShapedRecipe("gcyl_solar_panel_mv", COVER_SOLAR_PANEL_MV.getStackForm(),
+                "SGS", "CHC", "WBW",
+                'S', SENSOR_IV,
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'W', new UnificationEntry(cableGtSingle, Tungsten),
+                'B', BATTERY_MV_CADMIUM,
+                'G', new UnificationEntry(gemExquisite, Ruby),
+                'H', HULL[GTValues.IV].getStackForm());
+
+        ModHandler.addShapedRecipe("gcyl_solar_panel_hv", COVER_SOLAR_PANEL_HV.getStackForm(),
+                "SGS", "CHC", "WBW",
+                'S', SENSOR_LuV,
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.LuV),
+                'W', new UnificationEntry(cableGtSingle, YttriumBariumCuprate),
+                'B', BATTERY_HV_CADMIUM,
+                'G', new UnificationEntry(gemExquisite, Ruby),
+                'H', HULL[GTValues.LuV].getStackForm());
+
+        ModHandler.addShapedRecipe("gcyl_solar_panel_ev", COVER_SOLAR_PANEL_EV.getStackForm(),
+                "SGS", "CHC", "WBW",
+                'S', SENSOR_ZPM,
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.ZPM),
+                'W', new UnificationEntry(cableGtSingle, Naquadah),
+                'B', BATTERY_NIMH,
+                'G', new UnificationEntry(gemExquisite, Emerald),
+                'H', HULL[GTValues.ZPM].getStackForm());
+
+        ModHandler.addShapedRecipe("gcyl_solar_panel_iv", COVER_SOLAR_PANEL_IV.getStackForm(),
+                "SGS", "CHC", "WBW",
+                'S', SENSOR_UV,
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.UV),
+                'W', new UnificationEntry(cableGtSingle, Duranium),
+                'B', BATTERY_SMALL_LITHIUM_ION,
+                'G', new UnificationEntry(gemExquisite, BlueTopaz),
+                'H', HULL[GTValues.UV].getStackForm());
+
+        ModHandler.addShapedRecipe("gcyl_solar_panel_luv", COVER_SOLAR_PANEL_LUV.getStackForm(),
+                "SGS", "CHC", "WBW",
+                'S', SENSOR_UHV,
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.UHV),
+                'W', new UnificationEntry(cableGtSingle, AbyssalAlloy),
+                'B', BATTERY_MEDIUM_LITHIUM_ION,
+                'G', new UnificationEntry(gemExquisite, RhodiumSalt),
+                'H', HULL[GTValues.UHV].getStackForm());
+
+        ModHandler.addShapedRecipe("gcyl_solar_panel_zpm", COVER_SOLAR_PANEL_ZPM.getStackForm(),
+                "SGS", "CHC", "WBW",
+                'S', SENSOR_UEV,
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.UEV),
+                'W', new UnificationEntry(cableGtSingle, TitanSteel),
+                'B', BATTERY_LARGE_LITHIUM_ION,
+                'G', new UnificationEntry(gemExquisite, CubicZirconia),
+                'H', HULL[GTValues.UEV].getStackForm());
+
+        ModHandler.addShapedRecipe("gcyl_solar_panel_uv", COVER_SOLAR_PANEL_UV.getStackForm(),
+                "SGS", "CHC", "WBW",
+                'S', SENSOR_UIV,
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.UIV),
+                'W', new UnificationEntry(cableGtSingle, BlackTitanium),
+                'B', BATTERY_SMALL_LIS,
+                'G', new UnificationEntry(gemExquisite, LeadZirconateTitanate),
+                'H', HULL[GTValues.UIV].getStackForm());
+
+
     }
 
 }

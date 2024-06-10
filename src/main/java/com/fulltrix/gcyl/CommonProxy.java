@@ -21,6 +21,7 @@ import gregtech.api.recipes.GTRecipeInputCache;
 import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
 import gregtech.api.unification.material.event.MaterialEvent;
 import gregtech.api.unification.material.event.MaterialRegistryEvent;
+import gregtech.common.ConfigHolder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -61,6 +62,8 @@ public class CommonProxy {
     public static void forceHighTierConfig(HighTierEvent event) {
         //Force enable high tier content, regardless of config option
         event.enableHighTier();
+
+        ConfigHolder.machines.enableHighTierSolars = true;
 
         //Force enable tiered casings from GCYM
         GCYMConfigHolder.globalMultiblocks.enableTieredCasings = true;
