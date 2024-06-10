@@ -58,7 +58,7 @@ public class GCYLMaterialOverride {
 
         //EXT2 METAL ADDITIONS
         List<Material> e2mmats = new ArrayList<>();
-        Collections.addAll(e2mmats, MaragingSteel250, AbyssalAlloy, HG1223);
+        Collections.addAll(e2mmats, MaragingSteel250, AbyssalAlloy, HG1223, BabbittAlloy, Inconel625);
         for (Material mat : e2mmats) {
             for (MaterialFlag flag : EXT2_METAL) {
                 mat.addFlags(flag);
@@ -377,6 +377,13 @@ public class GCYLMaterialOverride {
             mat.addFlags(GENERATE_FINE_WIRE);
         }
 
+        //add gears
+        List<Material> gearmats = new ArrayList<>();
+        Collections.addAll(gearmats, RhodiumPlatedPalladium, EglinSteel, Magnalium, Inconel625, QCDMatter, AbyssalAlloy, BabbittAlloy, Nitinol60, HG1223);
+        for (Material mat : gearmats) {
+            mat.addFlags(GENERATE_GEAR);
+        }
+
         //Small Specific cases
         HSSG.addFlags(GENERATE_RING);
         Osmium.addFlags(GENERATE_RING);
@@ -386,7 +393,6 @@ public class GCYLMaterialOverride {
         Trinium.addFlags(GENERATE_FRAME);
         Naquadria.addFlags(GENERATE_DENSE);
         Lead.addFlags(GENERATE_DENSE);
-        RhodiumPlatedPalladium.addFlags(GENERATE_GEAR);
         NaquadahAlloy.addFlags(DISABLE_DECOMPOSITION);
         NaquadahAlloy.addFlags(NO_ALLOY_BLAST_RECIPES);
         Glowstone.addFlags(DISABLE_DECOMPOSITION);
@@ -403,6 +409,7 @@ public class GCYLMaterialOverride {
 
         //Cable
         Duranium.setProperty(PropertyKey.WIRE, new WireProperties((int) GTValues.V[UV], 1, 16));
+        Titanium.setProperty(PropertyKey.WIRE, new WireProperties((int) GTValues.V[GTValues.EV], 4,2));
 
 
 

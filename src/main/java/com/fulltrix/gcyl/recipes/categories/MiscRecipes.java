@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories;
 
+import gregtech.api.GTValues;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
@@ -39,6 +40,45 @@ public class MiscRecipes {
                 .input(dust, Europium,1)
                 .output(dust, BrightSteel, 9)
                 .circuitMeta(9)
+                .buildAndRegister();
+
+        //Inconel 625 dust
+        MIXER_RECIPES.recipeBuilder().duration(860).EUt(480)
+                .input(dust, Nickel, 3)
+                .input(dust, Chrome, 7)
+                .input(dust, Molybdenum, 10)
+                .input(dust, Invar, 10)
+                .input(dust, Nichrome, 13)
+                .circuitMeta(5)
+                .output(dust, Inconel625, 43)
+                .buildAndRegister();
+
+        //eglin steel dust and base dust
+        MIXER_RECIPES.recipeBuilder().duration(20 * 10).EUt(120)
+                .input(dust, Iron, 4)
+                .input(dust, Kanthal)
+                .input(dust, Invar, 5)
+                .circuitMeta(3)
+                .output(dust, EglinSteelBase, 10)
+                .buildAndRegister();
+
+        MIXER_RECIPES.recipeBuilder().duration(13 * 20).EUt(120)
+                .input(dust, EglinSteelBase, 10)
+                .input(dust, Sulfur)
+                .input(dust, Silicon)
+                .input(dust, Carbon)
+                .output(dust, EglinSteel, 13)
+                .circuitMeta(5)
+                .buildAndRegister();
+
+        //Babbitt alloy
+        MIXER_RECIPES.recipeBuilder().duration(50 * 20).EUt(GTValues.VA[ZPM])
+                .input(dust, Tin, 5)
+                .input(dust, Lead, 36)
+                .input(dust, Antimony)
+                .input(dust, Arsenic)
+                .circuitMeta(4)
+                .output(dust, BabbittAlloy, 50)
                 .buildAndRegister();
 
         //Ender Item Link

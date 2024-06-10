@@ -1124,6 +1124,8 @@ public class GCYLMaterials {
     public static Material ChaosAlloy;
     public static Material BrightSteel;
     public static Material Gallite;
+    public static Material BabbittAlloy;
+    public static Material Inconel625;
 
     //COILS
     public static Material Pikyonium;
@@ -1208,7 +1210,7 @@ public class GCYLMaterials {
                 .flags(DISABLE_REPLICATION).build();
 
         EglinSteel = new Material.Builder(++id, gcylId("eglin_steel"))
-                .ingot(6)
+                .ingot(6).liquid()
                 .color(0x8B4513)
                 .iconSet(METALLIC)
                 .flags(EXT2_METAL, GENERATE_FRAME)
@@ -9824,6 +9826,25 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .components(Copper,1,Gallium,1,Sulfur,2)
                 .build();
+
+        BabbittAlloy = new Material.Builder(++id, gcylId("babbitt_alloy"))
+                .ingot(4).liquid()
+                .color(0xA19CA4)
+                .iconSet(METALLIC)
+                .flags(DISABLE_REPLICATION)
+                .components(Tin, 5, Lead,36, Antimony,8,Arsenic,1)
+                .blast(737)
+                .build();
+
+        Inconel625 = new Material.Builder(++id, gcylId("inconel_a"))
+                .ingot(6).liquid()
+                .color(0x80C880)
+                .iconSet(METALLIC)
+                .flags(DISABLE_REPLICATION)
+                .components(Nickel,3,Chrome,7,Molybdenum,10,Invar,10,Nichrome,13)
+                .blast(2425)
+                .build();
+
 
 
         /*
