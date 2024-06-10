@@ -395,6 +395,7 @@ public class GCYLMaterialOverride {
         Lead.addFlags(GENERATE_DENSE);
         NaquadahAlloy.addFlags(DISABLE_DECOMPOSITION);
         NaquadahAlloy.addFlags(NO_ALLOY_BLAST_RECIPES);
+        YttriumBariumCuprate.addFlags(NO_ALLOY_BLAST_RECIPES);
         Glowstone.addFlags(DISABLE_DECOMPOSITION);
         Pyrochlore.addFlags(DISABLE_DECOMPOSITION);
 

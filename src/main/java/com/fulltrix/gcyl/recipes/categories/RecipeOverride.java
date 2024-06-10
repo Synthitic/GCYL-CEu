@@ -322,6 +322,9 @@ public class RecipeOverride {
 
         //lv solar
         removeRecipeByName("gregtech:solar_panel_lv");
+
+        //yttrium barium cuprate dust
+        removeRecipesByInputs(MIXER_RECIPES, new ItemStack[]{getIntegratedCircuit(2), OreDictUnifier.get(dust, Yttrium), OreDictUnifier.get(dust, Barium, 2), OreDictUnifier.get(dust, Copper,3)}, new FluidStack[]{Oxygen.getFluid(7000)});
     }
 
     public static void chemistryOverride() {
