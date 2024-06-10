@@ -1,5 +1,8 @@
 package com.fulltrix.gcyl.recipes.categories;
 
+import gregicality.multiblocks.common.block.GCYMMetaBlocks;
+import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
+import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import gregtech.api.GTValues;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.items.armor.ArmorMetaItem;
@@ -11,10 +14,7 @@ import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.ConfigHolder;
-import gregtech.common.blocks.BlockComputerCasing;
-import gregtech.common.blocks.BlockFusionCasing;
-import gregtech.common.blocks.BlockMachineCasing;
-import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.blocks.*;
 import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.init.Items;
@@ -24,9 +24,11 @@ import net.minecraftforge.fluids.FluidStack;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregicality.multiblocks.api.recipes.GCYMRecipeMaps.ALLOY_BLAST_RECIPES;
+import static gregicality.multiblocks.api.unification.GCYMMaterials.Stellite100;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
 import static gregtech.api.recipes.ModHandler.removeRecipeByName;
+import static gregtech.api.recipes.ModHandler.removeTieredRecipeByName;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.recipes.ingredients.IntCircuitIngredient.getIntegratedCircuit;
 import static gregtech.api.unification.material.MarkerMaterials.Color.*;
@@ -350,6 +352,15 @@ public class RecipeOverride {
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(2)}, new FluidStack[]{EnrichedNaquadahWaste.getFluid(200)});
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(3)}, new FluidStack[]{EnrichedNaquadahWaste.getFluid(400)});
 
+        //circuit assemblers
+        removeTieredRecipeByName("gregtech:gregtech.machine.circuit_assembler.",IV,OpV);
+
+        //gcym circuit assembler
+        removeRecipeByName("gcym:large_circuit_assembler");
+
+        //large scale assembler casing
+        removeRecipeByName("gcym:casing_large_assembler");
+        removeRecipesByInputs(ASSEMBLER_RECIPES,getIntegratedCircuit(6) ,OreDictUnifier.get(plate, Stellite100,6), OreDictUnifier.get(frameGt, Tungsten));
     }
 
     public static void chemistryOverride() {
@@ -1182,6 +1193,23 @@ public class RecipeOverride {
                         .CWUt(32))
                 .buildAndRegister();
 
+        //large circuit assembler
+        ModHandler.addShapedRecipe("gcyl_circuit_assembler", GCYMMetaTileEntities.LARGE_CIRCUIT_ASSEMBLER.getStackForm(),
+                "ARA", "CHC", "ARA",
+                'A', MULTIBLOCK_CASING.getItemVariant(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_CONTROL),
+                'R', ROBOT_ARM_LuV,
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.LuV),
+                'H', HULL[6].getStackForm());
+
+        //large scale assembler casing
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[IV]).duration(200)
+                .circuitMeta(6)
+                .input(plate, Stellite100, 24)
+                .input(frameGt, Tungsten, 4)
+                .inputs(MULTIBLOCK_CASING.getItemVariant(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_CONTROL))
+                .fluidInputs(HastelloyN.getFluid(L * 16))
+                .outputs(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING, 4 * ConfigHolder.recipes.casingsPerCraft))
+                .buildAndRegister();
 
 
     }

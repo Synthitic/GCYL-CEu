@@ -17,6 +17,7 @@ import java.util.List;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.common.blocks.BlockWireCoil.CoilType.*;
 import static gregtech.common.items.MetaItems.*;
+import static gregtech.common.metatileentities.MetaTileEntities.CIRCUIT_ASSEMBLER;
 
 
 @JEIPlugin
@@ -68,6 +69,11 @@ public class JEIGCYLPlugin implements IModPlugin {
         itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dust, TriniumSulfide));
         itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustSmall, TriniumSulfide));
         itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustTiny, TriniumSulfide));
+
+        for (int i = 5; i < 14; i++) {
+            itemBlacklist.addIngredientToBlacklist(CIRCUIT_ASSEMBLER[i].getStackForm());
+        }
+
 
 
 
