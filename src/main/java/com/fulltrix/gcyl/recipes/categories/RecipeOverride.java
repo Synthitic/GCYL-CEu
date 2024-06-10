@@ -13,6 +13,7 @@ import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockComputerCasing;
 import gregtech.common.blocks.BlockFusionCasing;
+import gregtech.common.blocks.BlockMachineCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
@@ -41,6 +42,7 @@ import static gregtech.common.items.MetaItems.ENERGY_MODULE;
 import static gregtech.common.items.MetaItems.GRAVITATION_ENGINE;
 import static gregtech.common.metatileentities.MetaTileEntities.*;
 import static gregtech.integration.crafttweaker.recipe.CTRecipeUtils.removeAll;
+import static gregtech.loaders.recipe.CraftingComponent.CASING;
 
 public class RecipeOverride {
     public static void init() {
@@ -313,9 +315,10 @@ public class RecipeOverride {
         removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, EnrichedNaquadahTriniumEuropiumDuranide, 8), OreDictUnifier.get(foil, NiobiumTitanium, 8)}, new FluidStack[]{Trinium.getFluid(1152)});
         removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, RutheniumTriniumAmericiumNeutronate, 4), OreDictUnifier.get(foil, NiobiumTitanium, 4)}, new FluidStack[]{Trinium.getFluid(576)});
 
-
         //fusion casings
-        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{HULL[GTValues.LuV].getStackForm(), FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL), NEUTRON_REFLECTOR.getStackForm(), ELECTRIC_PUMP_LuV.getStackForm(), OreDictUnifier.get(plate, TungstenSteel)}, new FluidStack[]{Polybenzimidazole.getFluid(144)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.LuV), FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL), NEUTRON_REFLECTOR.getStackForm(), ELECTRIC_PUMP_LuV.getStackForm(), OreDictUnifier.get(plate, TungstenSteel, 6)}, new FluidStack[]{Polybenzimidazole.getFluid(144)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.ZPM), FUSION_CASING.getItemVariant(FUSION_COIL), VOLTAGE_COIL_ZPM.getStackForm(2), FIELD_GENERATOR_LuV.getStackForm(), OreDictUnifier.get(plate, Europium, 6)}, new FluidStack[]{Polybenzimidazole.getFluid(288)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UV), FUSION_CASING.getItemVariant(FUSION_COIL), VOLTAGE_COIL_UV.getStackForm(2), FIELD_GENERATOR_ZPM.getStackForm(), OreDictUnifier.get(plate, Americium, 6)}, new FluidStack[]{Polybenzimidazole.getFluid(576)});
 
     }
 
@@ -1066,11 +1069,11 @@ public class RecipeOverride {
                 'C', new UnificationEntry(cableGtDouble, Tungsten), 'W', new UnificationEntry(wireGtQuadruple, BrightSteel),
                 'R', new UnificationEntry(stick, TungstenSteel), 'M', new UnificationEntry(stick, NeodymiumMagnetic));
 
-        //Superconductor Coil Block
+        //Superconductor Coil Block //TODO change these to use liquid version of gas instead
         ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.LuV]).duration(100)
                 .input(wireGtSingle, LuVSuperconductor, 16)
                 .input(plate, Osmiridium, 16)
-                .fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 8000))
+                .fluidInputs(Helium.getFluid( 8000))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .outputs(FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL))
                 .buildAndRegister();
@@ -1078,7 +1081,7 @@ public class RecipeOverride {
         ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.ZPM]).duration(100)
                 .input(wireGtSingle, ZPMSuperconductor, 8)
                 .input(plate, Rutherfordium, 8)
-                .fluidInputs(Argon.getFluid(FluidStorageKeys.LIQUID, 4000))
+                .fluidInputs(Argon.getFluid(4000))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .outputs(FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL))
                 .buildAndRegister();
@@ -1086,7 +1089,7 @@ public class RecipeOverride {
         ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UV]).duration(100)
                 .input(wireGtSingle, UVSuperconductor, 4)
                 .input(plate, Dubnium, 4)
-                .fluidInputs(Krypton.getFluid(FluidStorageKeys.LIQUID, 2000))
+                .fluidInputs(Krypton.getFluid(2000))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .outputs(FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL))
                 .buildAndRegister();
@@ -1094,7 +1097,7 @@ public class RecipeOverride {
         ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UHV]).duration(100)
                 .input(wireGtSingle, UHVSuperconductor, 2)
                 .input(plate, Tennessine, 2)
-                .fluidInputs(Radon.getFluid(FluidStorageKeys.LIQUID, 1000))
+                .fluidInputs(Radon.getFluid(1000))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .outputs(FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL))
                 .buildAndRegister();
@@ -1102,25 +1105,52 @@ public class RecipeOverride {
         ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UEV]).duration(100)
                 .input(wireGtSingle, UEVSuperconductor, 1)
                 .input(plate, Bohrium, 1)
-                .fluidInputs(Xenon.getFluid(FluidStorageKeys.LIQUID, 500))
+                .fluidInputs(Xenon.getFluid( 500))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .outputs(FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL))
                 .buildAndRegister();
 
-        //Fusion casings
+        //Fusion casings //TODO: MIGHT BE TOO EXPENSIVE, change output count to ConfigHolder.recipes.casingsPerCraft
         ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.LuV]).duration(100)
                 .inputs(HULL[GTValues.LuV].getStackForm())
                 .inputs(FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL))
                 .inputs(NEUTRON_REFLECTOR.getStackForm())
                 .inputs(FIELD_GENERATOR_LuV.getStackForm())
                 .inputs(VOLTAGE_COIL_LuV.getStackForm(2))
-                .input(plate, Osmiridium, 6)
+                .input(plate, Osmiridium, 2)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 4))
-                .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING, ConfigHolder.recipes.casingsPerCraft))
+                .fluidInputs(Indalloy140.getFluid(L * 2))
+                .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING, 1))
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.ZPM]).duration(100)
+                .inputs(HULL[GTValues.ZPM].getStackForm())
+                .inputs(FUSION_CASING.getItemVariant(FUSION_COIL))
+                .inputs(FIELD_GENERATOR_ZPM.getStackForm())
+                .inputs(VOLTAGE_COIL_ZPM.getStackForm(2))
+                .input(plate, Rutherfordium, 2)
+                .fluidInputs(Polybenzimidazole.getFluid(L * 8))
+                .fluidInputs(Indalloy140.getFluid(L * 4))
+                .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING_MK2, 1))
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister();
 
-
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UV]).duration(100)
+                .inputs(HULL[GTValues.UV].getStackForm())
+                .inputs(FUSION_CASING.getItemVariant(FUSION_COIL))
+                .inputs(FIELD_GENERATOR_UV.getStackForm(2))
+                .inputs(VOLTAGE_COIL_UV.getStackForm(2))
+                .input(plate, Tritanium, 2)
+                .fluidInputs(Polybenzimidazole.getFluid(L * 16))
+                .fluidInputs(Indalloy140.getFluid(L * 8))
+                .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING_MK3, 1))
+                .cleanroom(CleanroomType.CLEANROOM)
+                .stationResearch(b->b
+                        .researchStack(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING_MK2))
+                        .EUt(GTValues.VA[GTValues.UV])
+                        .CWUt(32))
+                .buildAndRegister();
 
 
 
