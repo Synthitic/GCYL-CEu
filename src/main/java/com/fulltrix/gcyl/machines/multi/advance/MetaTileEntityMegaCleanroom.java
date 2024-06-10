@@ -345,6 +345,7 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom {
             tooltip.add("");
             tooltip.add(I18n.format("gcyl.machine.cleanroom.tooltip.3"));
             tooltip.add(I18n.format("gcyl.machine.cleanroom.tooltip.4"));
+            tooltip.add(I18n.format("gcyl.machine.cleanroom.tooltip.5"));
             tooltip.add(I18n.format("gregtech.machine.cleanroom.tooltip.5"));
             tooltip.add(I18n.format("gregtech.machine.cleanroom.tooltip.6"));
             tooltip.add(I18n.format("gregtech.machine.cleanroom.tooltip.7"));
