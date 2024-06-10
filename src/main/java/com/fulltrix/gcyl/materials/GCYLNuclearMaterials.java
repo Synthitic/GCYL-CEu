@@ -35,6 +35,9 @@ public class GCYLNuclearMaterials {
     public static Material Fermium259;
     public static Material Mendelevium261;
 
+    //TODO: REMOVE AFTER IMPLEMENTING NUCLEAR
+    public static Material Bismuth210;
+
     //HEXAFLUORIDES, OXIDES, NITRITES, HEXACHLORIDES
     public static Map<String, Material> GenericRadioactives = new Object2ObjectOpenHashMap<>();
 
@@ -154,6 +157,9 @@ public class GCYLNuclearMaterials {
 
         registerDecayMats();
 
+        //TODO: FINISH NUCLEAR AND REMOVE
+        temporaryNuclearMaterials();
+
         /*
         HighEnrichedNeptuniumDioxide = new Material.Builder(++id, gcylId("high_enriched_neptunium_dioxide"))
                 .dust(3)
@@ -236,6 +242,18 @@ public class GCYLNuclearMaterials {
     }
 
     private static void registerDecayMats() {
+
+    }
+
+    private static void temporaryNuclearMaterials() {
+
+        Bismuth210 = new Material.Builder(++id, gcylId("bismuth_210"))
+                .dust()
+                .color(Bismuth.getMaterialRGB())
+                .iconSet(Bismuth.getMaterialIconSet())
+                .build()
+                .setFormula("Bi-210", true);
+
 
     }
 }

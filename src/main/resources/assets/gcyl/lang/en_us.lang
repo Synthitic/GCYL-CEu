@@ -4758,6 +4758,8 @@ gcyl.research.deep_exotics=§6Deep Exotics Data
 gcyl.research.deep_exotics.tooltip=§aScan an Enderium Block for this Data
 gcyl.research.deep_salts=§6Deep Salts Data
 gcyl.research.deep_salts.tooltip=§aScan a Salt Block with Hydrofluoric Acid for this Data
+gcyl.research.deep_radioactive=§6Deep Radioactive Data
+gcyl.research.deep_radioactive.tooltip=§aScan a Plutonium 244 Block for this Data
 
 gcyl.machine.deep_miner.name=Deep Miner (DM)
 gcyl.machine.deep_miner.config.0=Fluid type set to Lava
@@ -4795,3 +4797,5 @@ gcyl.machine.cleanroom.tooltip.2=§cMay cause performance issues! Read additiona
 gcyl.machine.cleanroom.tooltip.3=§cTo increase performance, the multiblock only checks its structure pattern on forming and when saving the world.
 gcyl.machine.cleanroom.tooltip.4=§c§lDO NOT TRY TO CHEAT THIS! §r§cDoing so will cause the multiblock to constantly check its structure upon loading into the world, causing major TPS lag until fixed.
 gcyl.machine.cleanroom.tooltip.5=§c§lMake sure the structure is valid if you make changes to the multiblock!
+
+gcyl.material.bismuth_210=Bismuth 210

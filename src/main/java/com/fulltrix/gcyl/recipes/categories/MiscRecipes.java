@@ -2,6 +2,7 @@ package com.fulltrix.gcyl.recipes.categories;
 
 import gregtech.api.GTValues;
 import gregtech.api.recipes.ModHandler;
+import gregtech.api.recipes.chance.output.ChancedOutputLogic;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.stack.UnificationEntry;
 import net.minecraft.init.Blocks;
@@ -10,8 +11,9 @@ import net.minecraft.item.ItemStack;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.DEEP_MINER;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
-import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.Americium241;
+import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.ADVANCED_MIXER_RECIPES;
+import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.DECAY_CHAMBERS_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.Stellite100;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
@@ -22,10 +24,15 @@ import static gregtech.common.items.MetaItems.*;
 import static gregtech.common.items.MetaItems.COVER_ENDER_FLUID_LINK;
 import static gregtech.common.metatileentities.MetaTileEntities.HULL;
 import static gregtech.loaders.recipe.MetaTileEntityLoader.registerMachineRecipe;
+import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.NeutralMatter;
 
 public class MiscRecipes {
     public static void init() {
         initSolars();
+
+
+        //TODO: FINISH NUCLEAR AND REMOVE
+        temporaryNuclearRecipes();
 
         // Quantum Dust
         ADVANCED_MIXER_RECIPES.recipeBuilder().duration(10500).EUt(30)
@@ -197,6 +204,66 @@ public class MiscRecipes {
                 'H', HULL[GTValues.UIV].getStackForm());
 
 
+    }
+
+    public static void temporaryNuclearRecipes() {
+
+
+        //alpha decay
+
+        //beta decay
+        DECAY_CHAMBERS_RECIPES.recipeBuilder().EUt(7680).duration(300)
+                .input(dust, Bismuth210, 1)
+                .chancedOutputLogic(ChancedOutputLogic.XOR)
+                .chancedOutput(dust, Polonium, 5000, 0)
+                .chancedOutput(dust, Bismuth, 10000, 0)
+                .buildAndRegister();
+
+        DECAY_CHAMBERS_RECIPES.recipeBuilder().EUt(7680).duration(300)
+                .input(dust, Uranium238, 1)
+                .fluidInputs(NeutralMatter.getFluid(200))
+                .chancedOutputLogic(ChancedOutputLogic.XOR)
+                .chancedOutput(dust, Plutonium, 2000, 0)
+                .chancedOutput(dust, Uranium, 10000, 0)
+                .buildAndRegister();
+
+
+        DECAY_CHAMBERS_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.IV]).duration(600)
+                .input(dust, Plutonium241)
+                .chancedOutputLogic(ChancedOutputLogic.XOR)
+                .chancedOutput(dust, Americium, 2000, 0)
+                .chancedOutput(dust, Plutonium, 10000, 0)
+                .buildAndRegister();
+
+        //isotopes
+        DECAY_CHAMBERS_RECIPES.recipeBuilder().EUt(7680).duration(300)
+                .input(dust, Bismuth, 1)
+                .fluidInputs(NeutralMatter.getFluid(100))
+                .chancedOutputLogic(ChancedOutputLogic.XOR)
+                .chancedOutput(dust, Bismuth210, 2500, 0)
+                .chancedOutput(dust, Bismuth, 10000, 0)
+                .buildAndRegister();
+
+        CENTRIFUGE_RECIPES.recipeBuilder().EUt(320).duration(1600)
+                .input(dust, Uranium)
+                .chancedOutputLogic(ChancedOutputLogic.XOR)
+                .chancedOutput(dust, Uranium235, 100,0)
+                .chancedOutput(dust,Uranium238, 10000,0)
+                .buildAndRegister();
+
+        CENTRIFUGE_RECIPES.recipeBuilder().EUt(320).duration(1600)
+                .input(dust, Plutonium)
+                .chancedOutputLogic(ChancedOutputLogic.XOR)
+                .chancedOutput(dust, Plutonium244, 2500,0)
+                .chancedOutput(dust,Plutonium241, 5000,0)
+                .chancedOutput(dust,Plutonium239, 10000,0)
+                .buildAndRegister();
+
+        CENTRIFUGE_RECIPES.recipeBuilder().EUt(320).duration(1600)
+                .input(dust, Plutonium241)
+                .chancedOutput(dust, Plutonium244, 2000, 300)
+                .chancedOutput(dustTiny, Uranium238, 3000, 450)
+                .buildAndRegister();
     }
 
 }
