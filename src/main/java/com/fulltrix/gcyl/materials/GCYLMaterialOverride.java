@@ -89,7 +89,7 @@ public class GCYLMaterialOverride {
         //PLATE ADDITIONS
 
         List<Material> platemats = new ArrayList<>();
-        Collections.addAll(platemats, Vanadium);
+        Collections.addAll(platemats, Vanadium, Tennessine);
         for (Material mat : platemats) {
             mat.addFlags(GENERATE_PLATE);
         }
