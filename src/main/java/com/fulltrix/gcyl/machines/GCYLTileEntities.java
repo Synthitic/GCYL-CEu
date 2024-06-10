@@ -51,6 +51,7 @@ public class GCYLTileEntities {
     public static MetaTileEntityDeepMiner DEEP_MINER;
     public static MetaTileEntityDecayChamber DECAY_CHAMBER;
     public static MetaTileEntityGreenhouse[] GREEN_HOUSE = new MetaTileEntityGreenhouse[2];
+    public static MetaTileEntityMegaCleanroom MEGA_CLEANROOM;
 
     public static MetaTileEntitySterileCleaningMaintenanceHatch STERILE_CLEANING_MAINTENANCE_HATCH;
 
@@ -115,6 +116,8 @@ public class GCYLTileEntities {
 
         GREEN_HOUSE[0] = registerMetaTileEntity(++id, new MetaTileEntityGreenhouse(gcylId("greenhouse_mv"), 2));
         GREEN_HOUSE[1] = registerMetaTileEntity(++id, new MetaTileEntityGreenhouse(gcylId("greenhouse_uv"), 8));
+
+        MEGA_CLEANROOM = registerMetaTileEntity(++id, new MetaTileEntityMegaCleanroom(gcylId("mega_cleanroom")));
         //TODO: configurable efficiency for naq reactors, efficiency implementation in general
 
         /*

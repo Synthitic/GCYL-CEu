@@ -384,6 +384,21 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 'G', new UnificationEntry(gear, StainlessSteel),
                 'H', HULL[GTValues.HV].getStackForm());
 
+        //MEGA CLEANROOM
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.ZPM]).duration(400)
+                .inputs(CLEANROOM.getStackForm(4))
+                .input(HULL[GTValues.ZPM])
+                .input(rotor, HSSE, 8)
+                .inputs(ELECTRIC_MOTOR_ZPM.getStackForm(8))
+                .input(circuit, MarkerMaterials.Tier.ZPM, 4)
+                .fluidInputs(Indalloy140.getFluid(L * 8))
+                .outputs(MEGA_CLEANROOM.getStackForm())
+                .scannerResearch(b->b
+                        .researchStack(CLEANROOM.getStackForm())
+                        .EUt(GTValues.VA[GTValues.ZPM]))
+                .buildAndRegister();
+
+
         /*
 
 
