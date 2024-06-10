@@ -325,6 +325,11 @@ public class RecipeOverride {
 
         //yttrium barium cuprate dust
         removeRecipesByInputs(MIXER_RECIPES, new ItemStack[]{getIntegratedCircuit(2), OreDictUnifier.get(dust, Yttrium), OreDictUnifier.get(dust, Barium, 2), OreDictUnifier.get(dust, Copper,3)}, new FluidStack[]{Oxygen.getFluid(7000)});
+
+        //cobalt in arc furnace
+        removeRecipesByInputs(ARC_FURNACE_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Cobalt)}, new FluidStack[]{Oxygen.getFluid(59)});
+        //antimony in arc furnace
+        removeRecipesByInputs(ARC_FURNACE_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Antimony)}, new FluidStack[]{Oxygen.getFluid(121)});
     }
 
     public static void chemistryOverride() {
