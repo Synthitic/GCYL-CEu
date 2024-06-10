@@ -430,7 +430,7 @@ public class ComponentRecipes {
                 .scannerResearch(b -> b
                         .researchStack(FIELD_GENERATOR_IV.getStackForm())
                         .duration(2400))
-                .duration(600).EUt(VA[GTValues.ZPM]).buildAndRegister();
+                .duration(600).EUt(VA[GTValues.LuV]).buildAndRegister();
 
 
         /* original zpm field gen
@@ -457,8 +457,9 @@ public class ComponentRecipes {
                 .output(FIELD_GENERATOR_ZPM)
                 .stationResearch(b -> b
                         .researchStack(FIELD_GENERATOR_LuV.getStackForm())
-                        .CWUt(4))
-                .duration(600).EUt(VA[GTValues.UV]).buildAndRegister();
+                        .CWUt(4)
+                        .EUt(VA[GTValues.ZPM]))
+                .duration(600).EUt(VA[GTValues.ZPM]).buildAndRegister();
 
         /* original uv field gen
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(491520)
@@ -487,7 +488,7 @@ public class ComponentRecipes {
                 .stationResearch(b -> b
                         .researchStack(FIELD_GENERATOR_ZPM.getStackForm())
                         .CWUt(48)
-                        .EUt(VA[GTValues.UHV]))
+                        .EUt(VA[GTValues.UV]))
                 .duration(600).EUt(491520).buildAndRegister();
 
 
