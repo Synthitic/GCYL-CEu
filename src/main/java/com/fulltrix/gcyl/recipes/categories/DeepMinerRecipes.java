@@ -63,12 +63,14 @@ public class DeepMinerRecipes {
         createResearchRecipe("deep_diamond", OreDictUnifier.get(block, Diamond), null,TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 512, 0);
         createResearchRecipe("deep_aluminium", OreDictUnifier.get(block, Aluminium),null,TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 512, 0);
         createResearchRecipe("deep_platinum", OreDictUnifier.get(block, Platinum),null, TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
+        createResearchRecipe("deep_rare_earth", OreDictUnifier.get(block, Neodymium), null, TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
 
         createResearchRecipe("deep_salts", OreDictUnifier.get(block, Salt),HydrofluoricAcid.getFluid(16000), TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
 
         createResearchRecipe( "deep_exotics", OreDictUnifier.get(block, Enderium), null, TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
 
         createResearchRecipe("deep_radioactive", OreDictUnifier.get(block, Plutonium244), null, TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 7860, 0);
+
 
 
         DEEP_MINER_RECIPES.recipeBuilder()
@@ -167,6 +169,28 @@ public class DeepMinerRecipes {
                 .duration(4000)
                 .EUt(1920)
                 .temperature(4500)
+                .dimension(0)
+                .buildAndRegister();
+
+        DEEP_MINER_RECIPES.recipeBuilder()
+                .notConsumable(minerScanMap.get("deep_rare_earth"))
+                .circuitMeta(0)
+                .input(SENSOR_EV)
+                .input(ELECTRIC_PISTON_EV)
+
+                .fluidInputs(DrillingFluid.getFluid(128000))
+                .output(ore, Bastnasite, 64)
+                .output(ore, Monazite, 16)
+                .output(ore, Neodymium, 16)
+                .chancedOutput(ore, Bastnasite, 64,100,2000)
+                .chancedOutput(ore, Monazite, 16,100,2000)
+                .chancedOutput(ore, Neodymium, 16,100,2000)
+                .chancedOutput(ore, Bastnasite, 64,100,500)
+                .chancedOutput(ore, Monazite, 16,100,500)
+                .chancedOutput(ore, Neodymium, 16,100,500)
+                .duration(4000)
+                .EUt(1920)
+                .temperature(3500)
                 .dimension(0)
                 .buildAndRegister();
 

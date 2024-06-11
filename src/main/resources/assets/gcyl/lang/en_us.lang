@@ -4760,6 +4760,8 @@ gcyl.research.deep_salts=§6Deep Salts Data
 gcyl.research.deep_salts.tooltip=§aScan a Salt Block with Hydrofluoric Acid for this Data
 gcyl.research.deep_radioactive=§6Deep Radioactive Data
 gcyl.research.deep_radioactive.tooltip=§aScan a Plutonium 244 Block for this Data
+gcyl.research.deep_rare_earth=§6Deep Rare Earth Data
+gcyl.research.deep_rare_earth.tooltip=§aScan a Neodymium Block for this Data
 
 gcyl.machine.deep_miner.name=Deep Miner (DM)
 gcyl.machine.deep_miner.config.0=Fluid type set to Lava
