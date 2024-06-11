@@ -348,7 +348,7 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 'F', FIELD_GENERATOR_IV,
                 'C', new UnificationEntry(circuit, MarkerMaterials.Tier.IV),
                 'A', HULL[IV].getStackForm(),
-                'W', new UnificationEntry(cableGtDouble, NaquadahAlloy));
+                'W', new UnificationEntry(cableGtDouble, Tungsten));
 
         //Greenhouses
         ModHandler.addShapedRecipe("gcyl_greenhouse_mv", GREEN_HOUSE[0].getStackForm(),
