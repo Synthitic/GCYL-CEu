@@ -344,10 +344,10 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
         //Decay chamber
         ModHandler.addShapedRecipe("gcyl_decay_chamber", DECAY_CHAMBER.getStackForm(),
                 "RCR", "FAF","WCW",
-                'R', new UnificationEntry(stick, Plutonium241),
-                'F', FIELD_GENERATOR_IV,
+                'R', new UnificationEntry(stick, Plutonium239),
+                'F', FIELD_GENERATOR_EV,
                 'C', new UnificationEntry(circuit, MarkerMaterials.Tier.IV),
-                'A', HULL[IV].getStackForm(),
+                'A', HULL[GTValues.EV].getStackForm(),
                 'W', new UnificationEntry(cableGtDouble, Tungsten));
 
         //Greenhouses

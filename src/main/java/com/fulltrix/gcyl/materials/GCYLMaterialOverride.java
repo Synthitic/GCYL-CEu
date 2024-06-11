@@ -398,6 +398,7 @@ public class GCYLMaterialOverride {
         YttriumBariumCuprate.addFlags(NO_ALLOY_BLAST_RECIPES);
         Glowstone.addFlags(DISABLE_DECOMPOSITION);
         Pyrochlore.addFlags(DISABLE_DECOMPOSITION);
+        Plutonium239.addFlags(GENERATE_ROD);
 
 
 
