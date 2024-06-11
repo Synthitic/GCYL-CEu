@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.recipes.categories;
 
 import gregtech.api.GTValues;
+import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.chance.output.ChancedOutputLogic;
 import gregtech.api.unification.material.MarkerMaterials;
@@ -23,6 +24,7 @@ import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 import static gregtech.common.items.MetaItems.COVER_ENDER_FLUID_LINK;
 import static gregtech.common.metatileentities.MetaTileEntities.HULL;
+import static gregtech.common.metatileentities.MetaTileEntities.VACUUM_FREEZER;
 import static gregtech.loaders.recipe.MetaTileEntityLoader.registerMachineRecipe;
 import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.NeutralMatter;
 
@@ -123,6 +125,11 @@ public class MiscRecipes {
                 .EUt(960)
                 .dimension(1)
                 .outputs(new ItemStack(Blocks.END_STONE))
+                .buildAndRegister();
+
+        VACUUM_RECIPES.recipeBuilder().EUt(1920).duration(200)
+                .fluidInputs(Nitrogen.getFluid(1000))
+                .fluidOutputs(Nitrogen.getFluid(FluidStorageKeys.LIQUID, 1000))
                 .buildAndRegister();
     }
 
