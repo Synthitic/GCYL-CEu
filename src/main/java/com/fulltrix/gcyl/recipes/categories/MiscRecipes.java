@@ -127,9 +127,16 @@ public class MiscRecipes {
                 .outputs(new ItemStack(Blocks.END_STONE))
                 .buildAndRegister();
 
+        //liquid nitrogen
         VACUUM_RECIPES.recipeBuilder().EUt(1920).duration(200)
                 .fluidInputs(Nitrogen.getFluid(1000))
                 .fluidOutputs(Nitrogen.getFluid(FluidStorageKeys.LIQUID, 1000))
+                .buildAndRegister();
+
+        //liquid helium-3
+        VACUUM_RECIPES.recipeBuilder().EUt(30720).duration(200)
+                .fluidInputs(Helium3.getFluid(1000))
+                .fluidOutputs(Helium3.getFluid(FluidStorageKeys.LIQUID, 1000))
                 .buildAndRegister();
     }
 
