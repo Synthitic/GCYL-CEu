@@ -1,14 +1,17 @@
 package com.fulltrix.gcyl.machines.multi.simple;
 
+import com.fulltrix.gcyl.api.multi.GCYLMultiblockRecipeLogic;
+import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregtech.api.capability.IHeatingCoil;
-import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.RecipeMaps;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockBoilerCasing;
@@ -27,8 +30,8 @@ public class MetaTileEntityChemicalPlant extends GCYLRecipeMapMultiblockControll
     private int temperature;
 
     public MetaTileEntityChemicalPlant(ResourceLocation metaTileEntityId, boolean isParallel) {
-        super(metaTileEntityId, GCYLRecipeMaps.CHEMICAL_PLANT_RECIPES, isParallel);
-        this.recipeMapWorkable = new GCYMMultiblockRecipeLogic(this);
+        super(metaTileEntityId, new RecipeMap[] { GCYLRecipeMaps.CHEMICAL_PLANT_RECIPES, RecipeMaps.LARGE_CHEMICAL_RECIPES }, isParallel);
+        this.recipeMapWorkable = new GCYLMultiblockRecipeLogic(this, true);
     }
 
     @Override

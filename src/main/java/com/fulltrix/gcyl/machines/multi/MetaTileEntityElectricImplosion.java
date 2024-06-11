@@ -1,6 +1,6 @@
 package com.fulltrix.gcyl.machines.multi;
 
-import com.fulltrix.gcyl.machines.multi.simple.GCYLRecipeMapMultiblockController;
+import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
 import gregicality.multiblocks.api.render.GCYMTextures;
 import gregicality.multiblocks.common.block.GCYMMetaBlocks;

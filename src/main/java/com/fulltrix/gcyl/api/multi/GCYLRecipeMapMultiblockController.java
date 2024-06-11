@@ -1,4 +1,4 @@
-package com.fulltrix.gcyl.machines.multi.simple;
+package com.fulltrix.gcyl.api.multi;
 
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregicality.multiblocks.api.metatileentity.GCYMMultiblockAbility;
