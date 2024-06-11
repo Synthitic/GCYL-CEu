@@ -361,6 +361,11 @@ public class RecipeOverride {
         //large scale assembler casing
         removeRecipeByName("gcym:casing_large_assembler");
         removeRecipesByInputs(ASSEMBLER_RECIPES,getIntegratedCircuit(6) ,OreDictUnifier.get(plate, Stellite100,6), OreDictUnifier.get(frameGt, Tungsten));
+
+        //osmium dust
+        removeRecipesByInputs(CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, OsmiumTetroxide, 5)}, new FluidStack[]{Hydrogen.getFluid(8000)});
+        removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, OsmiumTetroxide, 5)}, new FluidStack[]{Hydrogen.getFluid(8000)});
+
     }
 
     public static void chemistryOverride() {
