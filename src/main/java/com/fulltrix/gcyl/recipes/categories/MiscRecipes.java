@@ -219,14 +219,14 @@ public class MiscRecipes {
         //alpha decay
 
         //beta decay
-        DECAY_CHAMBERS_RECIPES.recipeBuilder().EUt(7680).duration(300)
+        DECAY_CHAMBERS_RECIPES.recipeBuilder().EUt(1920).duration(300)
                 .input(dust, Bismuth210, 1)
                 .chancedOutputLogic(ChancedOutputLogic.XOR)
                 .chancedOutput(dust, Polonium, 5000, 0)
                 .chancedOutput(dust, Bismuth, 10000, 0)
                 .buildAndRegister();
 
-        DECAY_CHAMBERS_RECIPES.recipeBuilder().EUt(7680).duration(300)
+        DECAY_CHAMBERS_RECIPES.recipeBuilder().EUt(1920).duration(300)
                 .input(dust, Uranium238, 1)
                 .fluidInputs(NeutralMatter.getFluid(200))
                 .chancedOutputLogic(ChancedOutputLogic.XOR)
@@ -243,7 +243,7 @@ public class MiscRecipes {
                 .buildAndRegister();
 
         //isotopes
-        DECAY_CHAMBERS_RECIPES.recipeBuilder().EUt(7680).duration(300)
+        DECAY_CHAMBERS_RECIPES.recipeBuilder().EUt(1920).duration(300)
                 .input(dust, Bismuth, 1)
                 .fluidInputs(NeutralMatter.getFluid(100))
                 .chancedOutputLogic(ChancedOutputLogic.XOR)
