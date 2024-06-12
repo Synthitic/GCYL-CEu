@@ -4,6 +4,7 @@ import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.item.GCYLMultiblockCasing2;
 import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import gregtech.api.GTValues;
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
@@ -412,7 +413,11 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .input(circuit, UEV)
                 .input(circuit, UEV)
                 .input(wireGtSingle, UVSuperconductor, 64)
+                .input(wireGtSingle, UVSuperconductor, 64)
+                .input(wireGtSingle, UVSuperconductor, 64)
+                .input(wireGtSingle, UVSuperconductor, 64)
                 .fluidInputs(Indalloy140.getFluid(L * 16))
+                .cleanroom(CleanroomType.CLEANROOM)
                 .stationResearch(b-> b
                         .researchStack(POWER_SUBSTATION.getStackForm())
                         .CWUt(128)

@@ -6,6 +6,7 @@ import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import gregtech.api.GTValues;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.stack.MaterialStack;
+import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
 
@@ -642,7 +643,7 @@ public class CasingRecipes {
                 .inputs(FIELD_GENERATOR_UV.getStackForm())
                 .circuitMeta(6)
                 .fluidInputs(Indalloy140.getFluid(L * 2))
-                .outputs(GCYLMetaBlocks.MULTIBLOCK_CASING2.getItemVariant(GCYLMultiblockCasing2.CasingType.SEABORGIUM_SUBSTATION, 2))
+                .outputs(GCYLMetaBlocks.MULTIBLOCK_CASING2.getItemVariant(GCYLMultiblockCasing2.CasingType.SEABORGIUM_SUBSTATION, ConfigHolder.recipes.casingsPerCraft))
                 .buildAndRegister();
 
     }
