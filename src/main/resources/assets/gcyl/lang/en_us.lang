@@ -4794,7 +4794,7 @@ metaitem.cover.ender.item_link.name=Ender Item Link Cover
 metaitem.cover.ender.item_link.tooltip=Transports §rItems§7 with a §rWireless §dEnder§r Connection§7 as §rCover§7.
 cover.conveyor.mode=Conveyor Mode
 
-gcyl.machine.mega_cleanroom.name=Mega Cleanroom (MC)
+gcyl.machine.mega_cleanroom.name=Large Cleaning Facility (LCF)
 gcyl.machine.cleanroom.tooltip.1=§bSize: §f21x21x10 to 101x101x101
 gcyl.machine.cleanroom.tooltip.2=§cMay cause performance issues! Read additional structure info.
 gcyl.machine.cleanroom.tooltip.3=§cTo increase performance, the multiblock only checks its structure pattern on forming and when saving the world.
