@@ -12,6 +12,8 @@ import gregtech.api.recipes.ingredients.nbtmatch.NBTCondition;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
+import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.*;
@@ -365,6 +367,9 @@ public class RecipeOverride {
         //osmium dust
         removeRecipesByInputs(CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, OsmiumTetroxide, 5)}, new FluidStack[]{Hydrogen.getFluid(8000)});
         removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, OsmiumTetroxide, 5)}, new FluidStack[]{Hydrogen.getFluid(8000)});
+
+        //distillation tower
+        removeRecipeByName("gregtech:distillation_tower");
 
     }
 
@@ -1215,6 +1220,12 @@ public class RecipeOverride {
                 .fluidInputs(HastelloyN.getFluid(L * 16))
                 .outputs(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING, 4 * ConfigHolder.recipes.casingsPerCraft))
                 .buildAndRegister();
+
+        //distillation tower
+        ModHandler.addShapedRecipe(true, "gcyl_distillation_tower", MetaTileEntities.DISTILLATION_TOWER.getStackForm(),
+                "CBC", "FMF", "CBC", 'M', MetaTileEntities.HULL[GTValues.EV].getStackForm(), 'B',
+                new UnificationEntry(OrePrefix.pipeLargeFluid, Materials.StainlessSteel), 'C',
+                new UnificationEntry(OrePrefix.circuit, MarkerMaterials.Tier.EV), 'F', MetaItems.ELECTRIC_PUMP_EV);
 
 
     }
