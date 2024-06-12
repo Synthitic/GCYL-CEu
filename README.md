@@ -1,6 +1,6 @@
 # GCYL: CEu
 
-## Currently in beta. LV-UV should be playable. Breaking changes may come without support for your world. Find breaks in progression, overlapping recipes, missing recipes, useless recipes, etc. and submit problems and suggestions with GitHub issues.
+## Currently in alpha. LV-UV should be playable. Breaking changes may come without support for your world. Find breaks in progression, overlapping recipes, missing recipes, useless recipes, etc. and submit problems and suggestions with GitHub issues.
 ### Accelerated playtesting is reasonable now.
 
 Gregicality Legacy Port to CEu (specifically with reference to the Technological Journey fork)
