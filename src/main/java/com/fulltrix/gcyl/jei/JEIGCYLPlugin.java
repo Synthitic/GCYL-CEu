@@ -14,6 +14,7 @@ import mezz.jei.api.ingredients.IIngredientRegistry;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.fulltrix.gcyl.machines.GCYLTileEntities.WIRELESS_ENERGY_HATCH_OUTPUT;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.common.blocks.BlockWireCoil.CoilType.*;
 import static gregtech.common.items.MetaItems.*;
@@ -72,6 +73,10 @@ public class JEIGCYLPlugin implements IModPlugin {
 
         for (int i = 5; i < 14; i++) {
             itemBlacklist.addIngredientToBlacklist(CIRCUIT_ASSEMBLER[i].getStackForm());
+        }
+
+        for (int i = 0; i < WIRELESS_ENERGY_HATCH_OUTPUT.length - 1; i++) {
+            itemBlacklist.addIngredientToBlacklist(WIRELESS_ENERGY_HATCH_OUTPUT[i].getStackForm());
         }
 
 

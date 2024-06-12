@@ -165,12 +165,11 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
                         .aisle("CCCCC", "G###G", "G#H#G", "G###G", "CCCCC")
                         .aisle("CCSCC", "CGGGC", "CGGGC", "CGGGC", "CCCCC")
                         .where('S', selfPredicate())
-                        .where('C', states(getCasingState(c)).or(autoAbilities(false,true,true,true,true,true,false)
+                        .where('C', states(getCasingState(c)).setMinGlobalLimited(55).or(autoAbilities(false,true,true,true,true,true,false)
                                 .or(abilities(MultiblockAbility.OUTPUT_ENERGY).setExactLimit(1))))
                         .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.LAMINATED_GLASS)))
                         .where('H', states(GCYLMetaBlocks.REACTOR_CASING.getState(GCYLReactorCasing.CasingType.HYPER_CORE)))
                         .where('#', air())
-                        .where('c', states(getCasingState(c)).setMinGlobalLimited(25))
                         .build();
             }
     }

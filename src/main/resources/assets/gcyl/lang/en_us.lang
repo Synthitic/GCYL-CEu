@@ -4802,3 +4802,84 @@ gcyl.machine.cleanroom.tooltip.4=§c§lDO NOT TRY TO CHEAT THIS! §r§cDoing so 
 gcyl.machine.cleanroom.tooltip.5=§c§lMake sure the structure is valid if you make changes to the multiblock!
 
 gcyl.material.bismuth_210=Bismuth 210
+
+gcyl.machine.wireless_pss.name=§dWireless Power Substation
+gcyl.machine.wireless_power_substation.tooltip1=§dUse a Screwdriver to activate Wireless.
+gcyl.machine.wireless_power_substation.tooltip2=§dEvery 60 seconds, it will balance the power between itself and the Wireless Network.
+gcyl.multiblock.wireless_pss.wireless_eu=§dWireless EU: %s (%s)
+gcyl.multiblock.wireless_pss.not_initialized=§dWireless EU: §cNot Initialized
+tile.gcyl_multiblock_casing2.seaborgium_substation_casing.name=§dField Generating Substation Casing
+
+gcyl.wireless_hatch.tooltip=§dUse a Screwdriver to activate Wireless.
+gcyl.machine.wireless_energy_hatch.input.ulv.name=§dULV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.ulv.4.name=§dULV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.ulv.16.name=§dULV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.ulv.64.name=§dULV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.lv.name=§dLV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.lv.4.name=§dLV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.lv.16.name=§dLV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.lv.64.name=§dLV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.mv.name=§dMV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.mv.4.name=§dMV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.mv.16.name=§dMV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.mv.64.name=§dMV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.hv.name=§dHV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.hv.4.name=§dHV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.hv.16.name=§dHV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.hv.64.name=§dHV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.ev.name=§dEV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.ev.4.name=§dEV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.ev.16.name=§dEV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.ev.64.name=§dEV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.iv.name=§dIV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.iv.4.name=§dIV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.iv.16.name=§dIV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.iv.64.name=§dIV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.luv.name=§dLuV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.luv.4.name=§dLuV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.luv.16.name=§dLuV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.luv.64.name=§dLuV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.zpm.name=§dZPM Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.zpm.4.name=§dZPM 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.zpm.16.name=§dZPM 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.zpm.64.name=§dZPM 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.uv.name=§dUV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uv.4.name=§dUV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uv.16.name=§dUV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uv.64.name=§dUV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.uhv.name=§dUHV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uhv.4.name=§dUHV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uhv.16.name=§dUHV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uhv.64.name=§dUHV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.uev.name=§dUEV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uev.4.name=§dUEV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uev.16.name=§dUEV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uev.64.name=§dUEV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.uiv.name=§dUIV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uiv.4.name=§dUIV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uiv.16.name=§dUIV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uiv.64.name=§dUIV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.uxv.name=§dUXV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uxv.4.name=§dUXV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uxv.16.name=§dUXV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uxv.64.name=§dUXV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.opv.name=§dOpV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.opv.4.name=§dOpV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.opv.16.name=§dOpV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.opv.64.name=§dOpV 64A Wireless Energy Hatch
+
+
+

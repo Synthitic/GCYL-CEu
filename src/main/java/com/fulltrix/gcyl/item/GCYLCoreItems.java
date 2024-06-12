@@ -13,9 +13,6 @@ public class GCYLCoreItems {
     private static final List<MetaItem<?>> ITEMS = MetaItem.getMetaItems();
 
     public static MetaItem<?>.MetaValueItem COMPRESSED_COKE_CLAY;
-    public static MetaItem<?>.MetaValueItem ENERGY_MODULE;
-    public static MetaItem<?>.MetaValueItem ENERGY_CLUSTER;
-    public static MetaItem<?>.MetaValueItem MAX_BATTERY;
 
     public static MetaItem<?>.MetaValueItem SMD_CAPACITOR_REFINED;
     public static MetaItem<?>.MetaValueItem SMD_CAPACITOR_NANO;

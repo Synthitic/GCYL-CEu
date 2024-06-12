@@ -51,7 +51,7 @@ public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController
                 .aisle("CCCCC", "CPAPC", "CgAgC", "#PAP#", "#PAP#", "CgAgC", "CPAPC", "#CCC#")
                 .aisle("#CCC#", "#CSC#", "#CCC#", "##C##", "##C##", "#CCC#", "#CGC#", "#CCC#")
                 .where('S', selfPredicate())
-                .where('C', states(getCasingState()).setMinGlobalLimited(80).or(autoAbilities(false,false,false,false,true,false,false).setMaxGlobalLimited(2))
+                .where('C', states(getCasingState()).setMinGlobalLimited(78).or(autoAbilities(false,false,false,false,true,false,false).setMaxGlobalLimited(3))
                                 .or(abilities(MultiblockAbility.OUTPUT_ENERGY).setExactLimit(1)))
                 .where('G', states(MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.GRATE_CASING)))
                 .where('g', states(MetaBlocks.TURBINE_CASING.getState(BlockTurbineCasing.TurbineCasingType.TUNGSTENSTEEL_GEARBOX)))

@@ -13,6 +13,7 @@ import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityVoidMiner;
 import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityHPCAComputationPlus;
 import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityHPCACoolingPlus;
 import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntitySterileCleaningMaintenanceHatch;
+import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityWirelessEnergyHatch;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityChemicalPlant;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityDecayChamber;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityGreenhouse;
@@ -59,6 +60,8 @@ public class GCYLTileEntities {
     public static MetaTileEntityGreenhouse[] GREEN_HOUSE = new MetaTileEntityGreenhouse[2];
     public static MetaTileEntityMegaCleanroom MEGA_CLEANROOM;
 
+    public static MetaTileEntityWirelessPowerSubstation WIRELESS_PSS;
+
     public static MetaTileEntitySterileCleaningMaintenanceHatch STERILE_CLEANING_MAINTENANCE_HATCH;
 
     public static MetaTileEntityHPCACoolingPlus[] HPCA_COOLING_PLUS = new MetaTileEntityHPCACoolingPlus[7];
@@ -67,10 +70,12 @@ public class GCYLTileEntities {
     public static SimpleGeneratorMetaTileEntity[] ROCKET_GENERATOR = new SimpleGeneratorMetaTileEntity[8];
 
     ///////////////////////////////////////////
-    public static final MetaTileEntityEnergyHatch[] ENERGY_INPUT_HATCH_4A = new MetaTileEntityEnergyHatch[4]; // UEV, UIV, UXV, OPV
-    public static final MetaTileEntityEnergyHatch[] ENERGY_INPUT_HATCH_16A = new MetaTileEntityEnergyHatch[4];
-    public static final MetaTileEntityEnergyHatch[] ENERGY_OUTPUT_HATCH_4A = new MetaTileEntityEnergyHatch[4];
-    public static final MetaTileEntityEnergyHatch[] ENERGY_OUTPUT_HATCH_16A = new MetaTileEntityEnergyHatch[4];
+    public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length];
+    public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT_4A = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length];
+    public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT_16A = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length];
+    public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT_64A = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length];
+    public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_OUTPUT = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length];
+
 
     public static int id = 32000;
 
@@ -127,6 +132,18 @@ public class GCYLTileEntities {
 
         MEGA_CLEANROOM = registerMetaTileEntity(++id, new MetaTileEntityMegaCleanroom(gcylId("mega_cleanroom")));
 
+        WIRELESS_PSS = registerMetaTileEntity(++id, new MetaTileEntityWirelessPowerSubstation(gcylId("wireless_pss")));
+
+        for (int i = 0; i < WIRELESS_ENERGY_HATCH_OUTPUT.length - 1; i++) {
+            String voltageName = GTValues.VN[i].toLowerCase();
+            WIRELESS_ENERGY_HATCH_INPUT[i] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName), i, 2, false));
+            WIRELESS_ENERGY_HATCH_INPUT_4A[i] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName + ".4"), i, 4, false));
+            WIRELESS_ENERGY_HATCH_INPUT_16A[i] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName + ".16"), i, 16, false));
+            WIRELESS_ENERGY_HATCH_INPUT_64A[i] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName + ".64"), i, 64, false));
+
+            WIRELESS_ENERGY_HATCH_OUTPUT[i] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.output." + voltageName), i, 2, true));
+
+        }
         for(int i = 0; i < 7; i++) {
             HPCA_COOLING_PLUS[i] = registerMetaTileEntity(++id, new MetaTileEntityHPCACoolingPlus(gcylId("hpca.cooling_component." + toLowerCase(GTValues.VN[i+8])), i+8));
             HPCA_COMPUTATION_PLUS[i] = registerMetaTileEntity(++id, new MetaTileEntityHPCAComputationPlus(gcylId("hpca.computation_component." + toLowerCase(GTValues.VN[i+8])), i+8));

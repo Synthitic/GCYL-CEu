@@ -29,7 +29,8 @@ public class GCYLMultiblockCasing2 extends VariantBlock<GCYLMultiblockCasing2.Ca
 
     public enum CasingType implements IStringSerializable {
         BIO_REACTOR("bio_reactor_casing", -1),
-        STELLAR_CONTAINMENT("stellar_containment", -1);
+        STELLAR_CONTAINMENT("stellar_containment", -1),
+        SEABORGIUM_SUBSTATION("seaborgium_substation_casing", -1);
 
         private final String name;
         private final int tier;

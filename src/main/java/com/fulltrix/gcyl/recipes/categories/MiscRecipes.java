@@ -10,7 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
-import static com.fulltrix.gcyl.machines.GCYLTileEntities.DEEP_MINER;
+import static com.fulltrix.gcyl.machines.GCYLTileEntities.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.ADVANCED_MIXER_RECIPES;
@@ -138,6 +138,8 @@ public class MiscRecipes {
                 .fluidInputs(Helium3.getFluid(1000))
                 .fluidOutputs(Helium3.getFluid(FluidStorageKeys.LIQUID, 1000))
                 .buildAndRegister();
+
+
     }
 
     public static void initSolars() {

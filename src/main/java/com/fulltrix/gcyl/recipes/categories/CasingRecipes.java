@@ -635,6 +635,16 @@ public class CasingRecipes {
                 .outputs(GCYLMetaBlocks.MULTIBLOCK_CASING2.getItemVariant(GCYLMultiblockCasing2.CasingType.BIO_REACTOR, 2))
                 .buildAndRegister();
 
+        //WIRELESS PSS CASING
+        ASSEMBLER_RECIPES.recipeBuilder().duration(150).EUt(GTValues.VA[GTValues.UV])
+                .input(plate, Enderium, 6)
+                .input(frameGt, Seaborgium)
+                .inputs(FIELD_GENERATOR_UV.getStackForm())
+                .circuitMeta(6)
+                .fluidInputs(Indalloy140.getFluid(L * 2))
+                .outputs(GCYLMetaBlocks.MULTIBLOCK_CASING2.getItemVariant(GCYLMultiblockCasing2.CasingType.SEABORGIUM_SUBSTATION, 2))
+                .buildAndRegister();
+
     }
 
     //TODO: component casings?

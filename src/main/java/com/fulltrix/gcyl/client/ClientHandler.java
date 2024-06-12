@@ -32,6 +32,11 @@ public class ClientHandler {
     public static SimpleOverlayRenderer MAINTENANCE_OVERLAY_STERILE_CLEANING;
     public static SimpleOverlayRenderer CLADDED_REACTOR_CASING;
     public static SimpleOverlayRenderer ENDER_ITEM_LINK;
+    public static SimpleOverlayRenderer WIRELESS_ENERGY_HATCH;
+    public static SimpleOverlayRenderer WIRELESS_ENERGY_HATCH_4A;
+    public static SimpleOverlayRenderer WIRELESS_ENERGY_HATCH_16A;
+    public static SimpleOverlayRenderer WIRELESS_ENERGY_HATCH_OFF;
+    public static SimpleOverlayRenderer SEABORGIUM_SUBSTATION_CASING;
 
     public static OrientedOverlayRenderer NAQADAH_OVERLAY;
     public static OrientedOverlayRenderer ROCKET_OVERLAY;
@@ -49,6 +54,7 @@ public class ClientHandler {
 
         BIO_REACTOR = new SimpleOverlayRenderer("casings/solid/bio_reactor_casing");
         FUSION_TEXTURE = new SimpleOverlayRenderer("casings/fusion/machine_casing_fusion_glass");
+        SEABORGIUM_SUBSTATION_CASING = new SimpleOverlayRenderer("casings/solid/seaborgium_substation_casing");
 
         ORGANIC_REPLICATOR_OVERLAY = new OrientedOverlayRenderer("machines/organic_replicator");
         FUSION_REACTOR_OVERLAY = new OrientedOverlayRenderer("machines/fusion_reactor");
@@ -59,6 +65,12 @@ public class ClientHandler {
         MAINTENANCE_OVERLAY_STERILE_CLEANING = new SimpleOverlayRenderer("overlay/machine/overlay_maintenance_sterile_cleaning");
 
         ENDER_ITEM_LINK = new SimpleOverlayRenderer("cover/overlay_ender_item_link");
+
+        WIRELESS_ENERGY_HATCH = new SimpleOverlayRenderer("overlay/machine/overlay_wireless_energy");
+        WIRELESS_ENERGY_HATCH_4A = new SimpleOverlayRenderer("overlay/machine/overlay_wireless_energy_4a");
+        WIRELESS_ENERGY_HATCH_16A = new SimpleOverlayRenderer("overlay/machine/overlay_wireless_energy_16a");
+        WIRELESS_ENERGY_HATCH_OFF = new SimpleOverlayRenderer("overlay/machine/overlay_wireless_energy_off");
+
         //MetaCasing1
         STABALLOY_CASING = new SimpleOverlayRenderer("casings/metal_casings/staballoy");
         QUANTUM_CASING = new SimpleOverlayRenderer("casings/metal_casings/quantum");

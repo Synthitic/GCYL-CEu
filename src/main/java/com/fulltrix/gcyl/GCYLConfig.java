@@ -111,6 +111,11 @@ public class GCYLConfig {
         @Config.RequiresMcRestart
         public boolean enableMagnetoCircuits = true;
 
+        @Config.Comment({"Whether to enable wireless dynamo hatches or not. When false, they will be hidden in JEI. They do not have recipes.", "default=false"})
+        @Config.Name("Enable Wireless Dynamos")
+        @Config.RequiresMcRestart
+        public boolean enableWirelessDynamos = false;
+
         @Config.Comment("Whether or not to add diminishing returns for Gregicality Naquadah Reactors. Does not affect the Large Nauqadah Reactor")
         @Config.Name("Naquadah Reactor efficiency loss")
         @Config.RequiresMcRestart

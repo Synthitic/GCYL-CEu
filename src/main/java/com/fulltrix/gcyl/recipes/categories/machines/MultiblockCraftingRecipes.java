@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.recipes.categories.machines;
 
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
+import com.fulltrix.gcyl.item.GCYLMultiblockCasing2;
 import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import gregtech.api.GTValues;
 import gregtech.api.recipes.ModHandler;
@@ -396,6 +397,26 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .scannerResearch(b->b
                         .researchStack(CLEANROOM.getStackForm())
                         .EUt(GTValues.VA[GTValues.ZPM]))
+                .buildAndRegister();
+
+        //WIRELESS PSS
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UV]).duration(1200)
+                .outputs(WIRELESS_PSS.getStackForm())
+                .inputs(POWER_SUBSTATION.getStackForm())
+                .inputs(GCYLMetaBlocks.MULTIBLOCK_CASING2.getItemVariant(GCYLMultiblockCasing2.CasingType.SEABORGIUM_SUBSTATION, 4))
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
+                .input(MetaItems.ENERGY_CLUSTER, 16)
+                .input(circuit, UEV)
+                .input(circuit, UEV)
+                .input(circuit, UEV)
+                .input(circuit, UEV)
+                .input(wireGtSingle, UVSuperconductor, 64)
+                .fluidInputs(Indalloy140.getFluid(L * 16))
+                .stationResearch(b-> b
+                        .researchStack(POWER_SUBSTATION.getStackForm())
+                        .CWUt(128)
+                        .EUt(GTValues.VA[GTValues.UV]))
                 .buildAndRegister();
 
 
