@@ -55,7 +55,7 @@ public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController
                                 .or(abilities(MultiblockAbility.OUTPUT_ENERGY).setExactLimit(1)))
                 .where('G', states(MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.GRATE_CASING)))
                 .where('g', states(MetaBlocks.TURBINE_CASING.getState(BlockTurbineCasing.TurbineCasingType.TUNGSTENSTEEL_GEARBOX)))
-                .where('F', states(MetaBlocks.FRAMES.get(Naquadria).getDefaultState()))
+                .where('F', frames(Naquadria))
                 .where('P', states(MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.TUNGSTENSTEEL_PIPE)))
                 .where('m', abilities(MultiblockAbility.MAINTENANCE_HATCH).setExactLimit(1))
                 .where('A', air())
