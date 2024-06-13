@@ -30,6 +30,9 @@ public class ClientHandler {
     public static SimpleOverlayRenderer NITINOL_60_CASING;
     public static SimpleOverlayRenderer HASTELLOY_K243_CASING;
     public static SimpleOverlayRenderer MAINTENANCE_OVERLAY_STERILE_CLEANING;
+    public static SimpleOverlayRenderer MAINTENANCE_OVERLAY_ISO3_CLEANING;
+    public static SimpleOverlayRenderer MAINTENANCE_OVERLAY_ISO2_CLEANING;
+    public static SimpleOverlayRenderer MAINTENANCE_OVERLAY_ISO1_CLEANING;
     public static SimpleOverlayRenderer CLADDED_REACTOR_CASING;
     public static SimpleOverlayRenderer ENDER_ITEM_LINK;
     public static SimpleOverlayRenderer WIRELESS_ENERGY_HATCH;
@@ -63,6 +66,10 @@ public class ClientHandler {
         FREEZER_OVERLAY = new OrientedOverlayRenderer("machines/freezer");
 
         MAINTENANCE_OVERLAY_STERILE_CLEANING = new SimpleOverlayRenderer("overlay/machine/overlay_maintenance_sterile_cleaning");
+        MAINTENANCE_OVERLAY_ISO3_CLEANING = new SimpleOverlayRenderer("overlay/machine/overlay_maintenance_iso_3_cleaning");
+        MAINTENANCE_OVERLAY_ISO2_CLEANING = new SimpleOverlayRenderer("overlay/machine/overlay_maintenance_iso_2_cleaning");
+        MAINTENANCE_OVERLAY_ISO1_CLEANING = new SimpleOverlayRenderer("overlay/machine/overlay_maintenance_iso_1_cleaning");
+
 
         ENDER_ITEM_LINK = new SimpleOverlayRenderer("cover/overlay_ender_item_link");
 

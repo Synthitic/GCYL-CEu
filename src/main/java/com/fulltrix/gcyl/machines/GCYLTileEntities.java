@@ -10,10 +10,7 @@ import com.fulltrix.gcyl.machines.multi.MetaTileEntityStellarForge;
 import com.fulltrix.gcyl.machines.multi.advance.*;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityDeepMiner;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityVoidMiner;
-import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityHPCAComputationPlus;
-import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityHPCACoolingPlus;
-import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntitySterileCleaningMaintenanceHatch;
-import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityWirelessEnergyHatch;
+import com.fulltrix.gcyl.machines.multi.multiblockpart.*;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityChemicalPlant;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityDecayChamber;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityGreenhouse;
@@ -57,6 +54,9 @@ public class GCYLTileEntities {
     public static MetaTileEntityWirelessPowerSubstation WIRELESS_PSS;
 
     public static MetaTileEntitySterileCleaningMaintenanceHatch STERILE_CLEANING_MAINTENANCE_HATCH;
+    public static MetaTileEntityISO3CleaningMaintenanceHatch ISO3_CLEANING_MAINTENANCE_HATCH;
+    public static MetaTileEntityISO2CleaningMaintenanceHatch ISO2_CLEANING_MAINTENANCE_HATCH;
+    public static MetaTileEntityISO1CleaningMaintenanceHatch ISO1_CLEANING_MAINTENANCE_HATCH;
 
     public static MetaTileEntityHPCACoolingPlus[] HPCA_COOLING_PLUS = new MetaTileEntityHPCACoolingPlus[7];
     public static MetaTileEntityHPCAComputationPlus[] HPCA_COMPUTATION_PLUS = new MetaTileEntityHPCAComputationPlus[7];
@@ -118,6 +118,9 @@ public class GCYLTileEntities {
         DEEP_MINER = registerMetaTileEntity(++id, new MetaTileEntityDeepMiner(gcylId("deep_miner"), DEEP_MINER_RECIPES, false));
 
         STERILE_CLEANING_MAINTENANCE_HATCH = registerMetaTileEntity(++id, new MetaTileEntitySterileCleaningMaintenanceHatch(gcylId("maintenance_hatch_sterile_cleanroom_auto")));
+        ISO3_CLEANING_MAINTENANCE_HATCH = registerMetaTileEntity(++id, new MetaTileEntityISO3CleaningMaintenanceHatch(gcylId("maintenance_hatch_iso_3_cleanroom_auto")));
+        ISO2_CLEANING_MAINTENANCE_HATCH = registerMetaTileEntity(++id, new MetaTileEntityISO2CleaningMaintenanceHatch(gcylId("maintenance_hatch_iso_2_cleanroom_auto")));
+        ISO1_CLEANING_MAINTENANCE_HATCH = registerMetaTileEntity(++id, new MetaTileEntityISO1CleaningMaintenanceHatch(gcylId("maintenance_hatch_iso_1_cleanroom_auto")));
 
         DECAY_CHAMBER = registerMetaTileEntity(++id, new MetaTileEntityDecayChamber(gcylId("decay_chamber"), true));
 

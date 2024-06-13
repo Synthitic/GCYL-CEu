@@ -4,6 +4,7 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.ColourMultiplier;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import com.google.common.collect.ImmutableSet;
@@ -32,19 +33,22 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Set;
 
-public class MetaTileEntitySterileCleaningMaintenanceHatch extends MetaTileEntityAutoMaintenanceHatch {
+public class MetaTileEntityISO1CleaningMaintenanceHatch extends MetaTileEntityAutoMaintenanceHatch {
 
     protected static final Set<CleanroomType> CLEANED_TYPES = new ObjectOpenHashSet<>();
 
     static {
         CLEANED_TYPES.add(CleanroomType.CLEANROOM);
         CLEANED_TYPES.add(CleanroomType.STERILE_CLEANROOM);
+        CLEANED_TYPES.add(GCYLCleanroomType.ISO3);
+        CLEANED_TYPES.add(GCYLCleanroomType.ISO2);
+        CLEANED_TYPES.add(GCYLCleanroomType.ISO1);
     }
 
     // must come after the static block
     private static final ICleanroomProvider DUMMY_CLEANROOM = DummyCleanroom.createForTypes(CLEANED_TYPES);
 
-    public MetaTileEntitySterileCleaningMaintenanceHatch(ResourceLocation metaTileEntityId) {
+    public MetaTileEntityISO1CleaningMaintenanceHatch(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId);
     }
 
@@ -64,7 +68,7 @@ public class MetaTileEntitySterileCleaningMaintenanceHatch extends MetaTileEntit
 
     @Override
     public int getTier() {
-        return GTValues.UHV;
+        return GTValues.UXV;
     }
 
     @Override
@@ -87,7 +91,7 @@ public class MetaTileEntitySterileCleaningMaintenanceHatch extends MetaTileEntit
         getBaseTexture().render(renderState, translation, ArrayUtils.add(pipeline,
                 new ColourMultiplier(GTUtility.convertRGBtoOpaqueRGBA_CL(getPaintingColorForRendering()))));
         if (shouldRenderOverlay())
-            ClientHandler.MAINTENANCE_OVERLAY_STERILE_CLEANING.renderSided(getFrontFacing(), renderState, translation, pipeline);
+            ClientHandler.MAINTENANCE_OVERLAY_ISO1_CLEANING.renderSided(getFrontFacing(), renderState, translation, pipeline);
     }
 
     @Override
@@ -95,7 +99,7 @@ public class MetaTileEntitySterileCleaningMaintenanceHatch extends MetaTileEntit
         if (ConfigHolder.machines.enableMaintenance) {
             super.getSubItems(creativeTab, subItems);
             // keeps things in order despite IDs being out of order, due to the Cleaning Hatch being added later
-            subItems.add(GCYLTileEntities.STERILE_CLEANING_MAINTENANCE_HATCH.getStackForm());
+            subItems.add(GCYLTileEntities.ISO1_CLEANING_MAINTENANCE_HATCH.getStackForm());
         }
     }
 

@@ -19,6 +19,11 @@
         "textures": {
           "all": "gregtech:blocks/casings/cleanroom/filter_casing_iso_1"
         }
+      },
+      "filter_casing_iso_0": {
+        "textures": {
+          "all": "gregtech:blocks/casings/cleanroom/filter_casing_iso_0"
+        }
       }
     }
   }

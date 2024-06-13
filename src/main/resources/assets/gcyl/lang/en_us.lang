@@ -4738,8 +4738,6 @@ gcyl.machine.ore_factory.config.2=Macerate>Ore Wash>Sifter
 gcyl.machine.ore_factory.config.3=Macerate>Macerate>Centrifuge
 gcyl.machine.ore_factory.config.4=Macerate>Thermal Centrifuge>Macerate
 
-gcyl.machine.maintenance_hatch_sterile_cleanroom_auto.name=Automatic Sterile Filtration Maintenance Hatch
-
 metaitem.tool.data.deep_miner.name=Deep Miner Data Storage
 metaitem.tool.data.deep_miner.tooltip=Data Storage Material Scans
 gcyl.recipe.scan_for_deep_miner=Scan for Deep Miner
@@ -4803,12 +4801,21 @@ gcyl.machine.cleanroom.tooltip.5=§c§lMake sure the structure is valid if you m
 gcyl.recipe.cleanroom_iso_3.display_name=ISO 3 Cleanroom
 gcyl.recipe.cleanroom_iso_2.display_name=ISO 2 Cleanroom
 gcyl.recipe.cleanroom_iso_1.display_name=ISO 1 Cleanroom
+gcyl.recipe.cleanroom_iso_0.display_name=ISO 0 Cleanroom
 tile.cleanroom_casing.filter_casing_iso_3.name=ISO 3 Filter Casing
 tile.cleanroom_casing.filter_iso_3.tooltip=Creates an §aISO 3 Specification§7 Environment
 tile.cleanroom_casing.filter_casing_iso_2.name=ISO 2 Filter Casing
 tile.cleanroom_casing.filter_iso_2.tooltip=Creates an §aISO 2 Specification§7 Environment
 tile.cleanroom_casing.filter_casing_iso_1.name=ISO 1 Filter Casing
 tile.cleanroom_casing.filter_iso_1.tooltip=Creates an §aISO 1 Specification§7 Environment
+tile.cleanroom_casing.filter_casing_iso_0.name=ISO 0 Filter Casing
+tile.cleanroom_casing.filter_iso_0.tooltip=Creates an §aISO 0 Specification§7 Environment
+tile.cleanroom_casing.warning=Can only be used in the Large Cleaning Facility!
+
+gcyl.machine.maintenance_hatch_sterile_cleanroom_auto.name=Automatic Sterile Filtration Maintenance Hatch
+gcyl.machine.maintenance_hatch_iso_3_cleanroom_auto.name=Automatic ISO 3 Filtration Maintenance Hatch
+gcyl.machine.maintenance_hatch_iso_2_cleanroom_auto.name=Automatic ISO 2 Filtration Maintenance Hatch
+gcyl.machine.maintenance_hatch_iso_1_cleanroom_auto.name=Automatic ISO 1 Filtration Maintenance Hatch
 
 
 gcyl.material.bismuth_210=Bismuth 210

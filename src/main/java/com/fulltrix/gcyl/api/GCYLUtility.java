@@ -163,6 +163,7 @@ public class GCYLUtility {
             case(3)-> GCYLCleanroomType.ISO3;
             case(4)-> GCYLCleanroomType.ISO2;
             case(5)-> GCYLCleanroomType.ISO1;
+            case(6)-> GCYLCleanroomType.ISO0;
             default -> CleanroomType.CLEANROOM;
         };
     }
@@ -170,7 +171,7 @@ public class GCYLUtility {
     public static List<RecipeBuilder<?>> buildHigherYieldCleanroomRecipes(RecipeMap<?> recipeMap, MetaItem<?>.MetaValueItem output, int baseOutputAmount, int startCleanRoomTier, int startEUt) {
         List<RecipeBuilder<?>> recipeBuilderList = new ArrayList<>();
 
-        for (int i = startCleanRoomTier; i < 6; i++) {
+        for (int i = startCleanRoomTier; i < 7; i++) {
             recipeBuilderList.add(recipeMap.recipeBuilder()
                     .circuitMeta(i)
                     .cleanroom(getCleanroomTypeByTierNotV(i))

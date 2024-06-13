@@ -174,7 +174,10 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom {
                 this.cleanroomType = GCYLCleanroomType.ISO2;
             } else if (casingType.equals(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO1)) {
                 this.cleanroomType = GCYLCleanroomType.ISO1;
+            } else if (casingType.equals(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO0)) {
+                this.cleanroomType = GCYLCleanroomType.ISO1;
             }
+
         }
         // max progress is based on the dimensions of the structure: (x^3)-(x^2)
         // taller cleanrooms take longer than wider ones
