@@ -712,7 +712,7 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
         tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("gcyl.machine.wireless_power_substation.tooltip1"));
         tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("gcyl.machine.wireless_power_substation.tooltip2"));
         tooltip.add(TooltipHelper.BLINKING_RED + I18n.format("gcyl.machine.wireless_power_substation.tooltip4"));
-        tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("gcyl.machine.wireless_power_substation.tooltip3"));
+        tooltip.add(TextFormatting.RED + I18n.format("gcyl.machine.wireless_power_substation.tooltip3"));
         tooltip.add(I18n.format("gregtech.machine.power_substation.tooltip1"));
         tooltip.add(I18n.format("gregtech.machine.power_substation.tooltip2"));
         tooltip.add(I18n.format("gregtech.machine.power_substation.tooltip3", MAX_BATTERY_LAYERS));
