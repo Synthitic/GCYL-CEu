@@ -4804,14 +4804,21 @@ gcyl.machine.cleanroom.tooltip.5=§c§lMake sure the structure is valid if you m
 gcyl.material.bismuth_210=Bismuth 210
 
 gcyl.machine.wireless_pss.name=§dWireless Power Substation
-gcyl.machine.wireless_power_substation.tooltip1=§dUse a Screwdriver to activate Wireless.
-gcyl.machine.wireless_power_substation.tooltip2=§dEvery 60 seconds, it will balance the power between itself and the Wireless Network.
-gcyl.machine.wireless_power_substation.tooltip3=§cMinimum of 40 Casings.
-gcyl.multiblock.wireless_pss.wireless_eu=§dWireless EU: %s (%s)
+gcyl.machine.wireless_power_substation.tooltip1=Use a Screwdriver to activate Wireless. Use while Sneaking to make it Private.
+gcyl.machine.wireless_power_substation.tooltip4=Can only be changed by replacing the controller.
+gcyl.machine.wireless_power_substation.tooltip2=Every 60 seconds, it will balance the power between itself and the Wireless Network.
+gcyl.machine.wireless_power_substation.tooltip3=Minimum of 40 Casings.
+gcyl.multiblock.wireless_pss.wireless_eu=§dWireless EU: %s
+gcyl.multiblock.wireless_pss.public=(Public)
+gcyl.multiblock.wireless_pss.private=(%s)
 gcyl.multiblock.wireless_pss.not_initialized=§dWireless EU: §cNot Initialized
 tile.gcyl_multiblock_casing2.seaborgium_substation_casing.name=§dField Generating Substation Casing
+gcyl.wireless_initialized_private=Initialized (Private)
+gcyl.wireless_initialized_public=Initialized (Public)
 
-gcyl.wireless_hatch.tooltip=§dUse a Screwdriver to activate Wireless.
+
+gcyl.wireless_hatch.tooltip1=Use a Screwdriver to activate Wireless. Use while Sneaking to make it Private.
+gcyl.wireless_hatch.tooltip2=Can only be changed by replacing.
 gcyl.machine.wireless_energy_hatch.input.ulv.name=§dULV Wireless Energy Hatch
 gcyl.machine.wireless_energy_hatch.input.ulv.4.name=§dULV 4A Wireless Energy Hatch
 gcyl.machine.wireless_energy_hatch.input.ulv.16.name=§dULV 16A Wireless Energy Hatch

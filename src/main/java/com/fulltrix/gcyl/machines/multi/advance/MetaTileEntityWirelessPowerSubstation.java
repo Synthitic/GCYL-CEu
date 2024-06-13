@@ -71,7 +71,7 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
 
     // Structure Constants
     public static final int MAX_BATTERY_LAYERS = 18;
-    private static final int MIN_CASINGS = 40;
+    private static final int MIN_CASINGS = 35;
 
     // Passive Drain Constants
     // 1% capacity per 24 hours
@@ -551,7 +551,15 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
                     }
 
                     if(!initialize && !this.getWorld().isRemote && isStructureFormed()) {
-                        tl.add( TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE,"gcyl.multiblock.wireless_pss.wireless_eu", this.energyContainerWireless.getEnergyStored(), this.getWorld().getPlayerEntityByUUID(this.playerUUID).getName()));
+                        ITextComponent wirelessFormatted = TextComponentUtil.stringWithColor(TextFormatting.LIGHT_PURPLE, TextFormattingUtil.formatNumbers(this.energyContainerWireless.getEnergyStored()) + " EU");
+                        try {
+                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.private", Objects.requireNonNull(this.getWorld().getPlayerEntityByUUID(this.playerUUID)).getName()));
+                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.wireless_eu", wirelessFormatted));
+                        }
+                        catch (NullPointerException e) {
+                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.public"));
+                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.wireless_eu", wirelessFormatted));
+                        }
                     }
                     else
                         tl.add(new TextComponentTranslation("gcyl.multiblock.wireless_pss.not_initialized"));
@@ -614,10 +622,18 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
                                       CuboidRayTraceResult hitResult) {
         if(!getWorld().isRemote) {
             if (this.initialize) {
-                this.playerUUID = playerIn.getUniqueID();
-                this.energyContainerWireless = VirtualEnergyRegistry.getContainerCreate(makeEnergyContainerName(), this.playerUUID);
-                this.initialize = false;
-                playerIn.sendStatusMessage(new TextComponentTranslation("Initialized"), false);
+                if(playerIn.isSneaking()) {
+                    this.playerUUID = playerIn.getUniqueID();
+                    this.energyContainerWireless = VirtualEnergyRegistry.getContainerCreate(makeEnergyContainerName(), this.playerUUID);
+                    this.initialize = false;
+                    playerIn.sendStatusMessage(new TextComponentTranslation("gcyl.wireless_initialized_private"), false);
+                }
+                else {
+                    this.playerUUID = new UUID(0,0);
+                    this.energyContainerWireless = VirtualEnergyRegistry.getContainerCreate(makeEnergyContainerName(), this.playerUUID);
+                    this.initialize = false;
+                    playerIn.sendStatusMessage(new TextComponentTranslation("gcyl.wireless_initialized_public"), false);
+                }
             }
         }
         return true;
@@ -693,9 +709,10 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, @NotNull List<String> tooltip,
                                boolean advanced) {
-        tooltip.add(I18n.format("gcyl.machine.wireless_power_substation.tooltip1"));
-        tooltip.add(I18n.format("gcyl.machine.wireless_power_substation.tooltip2"));
-        tooltip.add(I18n.format("gcyl.machine.wireless_power_substation.tooltip3"));
+        tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("gcyl.machine.wireless_power_substation.tooltip1"));
+        tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("gcyl.machine.wireless_power_substation.tooltip2"));
+        tooltip.add(TooltipHelper.BLINKING_RED + I18n.format("gcyl.machine.wireless_power_substation.tooltip4"));
+        tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("gcyl.machine.wireless_power_substation.tooltip3"));
         tooltip.add(I18n.format("gregtech.machine.power_substation.tooltip1"));
         tooltip.add(I18n.format("gregtech.machine.power_substation.tooltip2"));
         tooltip.add(I18n.format("gregtech.machine.power_substation.tooltip3", MAX_BATTERY_LAYERS));

@@ -10,8 +10,10 @@ import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.util.TextFormattingUtil;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
 import gregtech.client.utils.PipelineUtil;
+import gregtech.client.utils.TooltipHelper;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityEnergyHatch;
 import net.minecraft.client.resources.I18n;
@@ -25,6 +27,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -53,7 +56,8 @@ public class MetaTileEntityWirelessEnergyHatch extends MetaTileEntityEnergyHatch
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, boolean advanced) {
-        tooltip.add(I18n.format("gcyl.wireless_hatch.tooltip"));
+        tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("gcyl.wireless_hatch.tooltip1"));
+        tooltip.add(TooltipHelper.BLINKING_RED + I18n.format("gcyl.wireless_hatch.tooltip2"));
         super.addInformation(stack, world, tooltip, advanced);
     }
 
@@ -81,10 +85,18 @@ public class MetaTileEntityWirelessEnergyHatch extends MetaTileEntityEnergyHatch
                                       CuboidRayTraceResult hitResult) {
         if(!getWorld().isRemote) {
             if (this.initialize) {
-                this.playerUUID = playerIn.getUniqueID();
-                this.energyContainerWireless = VirtualEnergyRegistry.getContainerCreate(makeEnergyContainerName(), this.playerUUID);
-                this.initialize = false;
-                playerIn.sendStatusMessage(new TextComponentTranslation("Initialized"), false);
+                if(playerIn.isSneaking()) {
+                    this.playerUUID = playerIn.getUniqueID();
+                    this.energyContainerWireless = VirtualEnergyRegistry.getContainerCreate(makeEnergyContainerName(), this.playerUUID);
+                    this.initialize = false;
+                    playerIn.sendStatusMessage(new TextComponentTranslation("gcyl.wireless_initialized_private"), false);
+                }
+                else {
+                    this.playerUUID = new UUID(0,0);
+                    this.energyContainerWireless = VirtualEnergyRegistry.getContainerCreate(makeEnergyContainerName(), this.playerUUID);
+                    this.initialize = false;
+                    playerIn.sendStatusMessage(new TextComponentTranslation("gcyl.wireless_initialized_public"), false);
+                }
             }
         }
         return true;
