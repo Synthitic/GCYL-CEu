@@ -1448,7 +1448,7 @@ public class GCYLMaterials {
                 .flags(DISABLE_REPLICATION).build();
 
         HDCS = new Material.Builder(++id, gcylId("hdcs"))
-                .ingot(5)
+                .ingot(5).fluid()
                 .color(0x334433)
                 .iconSet(SHINY)
                 .flags(CORE_METAL, DISABLE_DECOMPOSITION)
