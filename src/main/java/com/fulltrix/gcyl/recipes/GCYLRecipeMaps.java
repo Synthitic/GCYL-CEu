@@ -69,7 +69,7 @@ public final class GCYLRecipeMaps {
 
     public static final RecipeMap<SimpleRecipeBuilder> ELECTRIC_IMPLOSION_RECIPES = new RecipeMap<>("electric_implosion",
             2, 2, 0, 0, new SimpleRecipeBuilder().duration(1).EUt(GTValues.VA[10]), false)
-            .setSound(GTSoundEvents.); // UEV-tier, 1tick processing time
+            .setSound(SoundEvents.ENTITY_GENERIC_EXPLODE); // UEV-tier, 1tick processing time
 
     //TODO: implement recipe overlap with mixer map
     public static final RecipeMap<SimpleRecipeBuilder> ADVANCED_MIXER_RECIPES = new RecipeMap<>("large_mixer",
@@ -84,7 +84,8 @@ public final class GCYLRecipeMaps {
             .setSlotOverlay(false, false, true, GuiTextures.CANISTER_OVERLAY)
             .setSlotOverlay(false, true, true, GuiTextures.CENTRIFUGE_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, MoveType.HORIZONTAL)
-            .setSound(SoundEvents.ENTITY_GENERIC_EXPLODE);
+            .setSound(GTSoundEvents.CENTRIFUGE);
+
 
     //TODO: ?
     /*
