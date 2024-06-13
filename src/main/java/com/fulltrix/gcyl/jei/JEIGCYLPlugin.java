@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.jei;
 
 
+import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityWirelessEnergyHatch;
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
@@ -75,8 +76,8 @@ public class JEIGCYLPlugin implements IModPlugin {
             itemBlacklist.addIngredientToBlacklist(CIRCUIT_ASSEMBLER[i].getStackForm());
         }
 
-        for (int i = 0; i < WIRELESS_ENERGY_HATCH_OUTPUT.length - 1; i++) {
-            itemBlacklist.addIngredientToBlacklist(WIRELESS_ENERGY_HATCH_OUTPUT[i].getStackForm());
+        for (MetaTileEntityWirelessEnergyHatch metaTileEntityWirelessEnergyHatch : WIRELESS_ENERGY_HATCH_OUTPUT) {
+            itemBlacklist.addIngredientToBlacklist(metaTileEntityWirelessEnergyHatch.getStackForm());
         }
 
 
