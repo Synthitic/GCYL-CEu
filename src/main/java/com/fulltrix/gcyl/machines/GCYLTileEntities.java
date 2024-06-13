@@ -1,7 +1,7 @@
 package com.fulltrix.gcyl.machines;
 
 import com.fulltrix.gcyl.GCYLConfig;
-import com.fulltrix.gcyl.GCYLUtility;
+import com.fulltrix.gcyl.api.GCYLUtility;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.machines.multi.MetaTileEntityBioReactor;
 import com.fulltrix.gcyl.machines.multi.MetaTileEntityCosmicRayDetector;
@@ -25,16 +25,10 @@ import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.metatileentities.MetaTileEntities;
-import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityEnergyHatch;
-import gregtech.common.metatileentities.multi.multiblockpart.hpca.MetaTileEntityHPCAComputation;
-import net.minecraft.util.ResourceLocation;
 
-import static com.fulltrix.gcyl.GCYLUtility.gcylId;
+import static com.fulltrix.gcyl.api.GCYLUtility.gcylId;
 import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.DEEP_MINER_RECIPES;
 import static com.google.common.base.Ascii.toLowerCase;
-import static com.ibm.icu.impl.locale.AsciiUtil.toLower;
-import static gregtech.api.util.GTUtility.gregtechId;
-import static gregtech.api.util.GTUtility.toLowerCaseUnderscore;
 import static gregtech.common.metatileentities.MetaTileEntities.registerMetaTileEntity;
 
 public class GCYLTileEntities {

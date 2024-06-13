@@ -1,7 +1,7 @@
 package com.fulltrix.gcyl.recipes.categories.circuits.components;
 
 import com.fulltrix.gcyl.GCYLConfig;
-import com.fulltrix.gcyl.GCYLUtility;
+import com.fulltrix.gcyl.api.GCYLUtility;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import net.minecraftforge.fluids.FluidRegistry;

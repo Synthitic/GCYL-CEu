@@ -9,19 +9,12 @@ import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.gui.widgets.ProgressWidget.MoveType;
 import gregtech.api.recipes.RecipeMap;
-import gregtech.api.recipes.builders.AssemblyLineRecipeBuilder;
-import gregtech.api.recipes.builders.BlastRecipeBuilder;
 import gregtech.api.recipes.builders.FuelRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
-import gregtech.api.recipes.machines.RecipeMapAssemblyLine;
-import gregtech.api.recipes.ui.impl.AssemblyLineUI;
-import gregtech.api.util.AssemblyLineManager;
 import gregtech.core.sound.GTSoundEvents;
 import net.minecraft.init.SoundEvents;
 
-import static com.fulltrix.gcyl.GCYLUtility.gcylId;
 import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.util.GTUtility.gregtechId;
 
 public final class GCYLRecipeMaps {
 

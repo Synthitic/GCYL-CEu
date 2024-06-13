@@ -1,4 +1,4 @@
-package com.fulltrix.gcyl;
+package com.fulltrix.gcyl.api;
 
 import gregtech.api.GTValues;
 import gregtech.api.items.metaitem.MetaItem;

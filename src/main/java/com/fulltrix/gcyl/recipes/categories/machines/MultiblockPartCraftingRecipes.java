@@ -1,24 +1,12 @@
 package com.fulltrix.gcyl.recipes.categories.machines;
 
-import gregtech.api.GTValues;
-import gregtech.api.recipes.ingredients.GTRecipeInput;
-import gregtech.api.unification.material.MarkerMaterials;
-import gregtech.api.unification.stack.UnificationEntry;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import static com.fulltrix.gcyl.GCYLUtility.*;
+import static com.fulltrix.gcyl.api.GCYLUtility.*;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
-import static com.fulltrix.gcyl.recipes.helper.GCYLComponents.SUPERCONDUCTOR_WIRE;
-import static gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.api.GTValues.L;
-import static gregtech.common.items.MetaItems.*;
 import static gregtech.common.metatileentities.MetaTileEntities.*;
-import static gregtech.loaders.recipe.CraftingComponent.FIELD_GENERATOR;
 
 public class MultiblockPartCraftingRecipes {
     public static void init() {

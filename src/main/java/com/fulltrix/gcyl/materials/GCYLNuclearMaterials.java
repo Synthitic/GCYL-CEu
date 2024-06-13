@@ -5,18 +5,16 @@ import gregtech.api.unification.material.Material;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.fulltrix.gcyl.GCYLUtility.gcylId;
+import static com.fulltrix.gcyl.api.GCYLUtility.gcylId;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.Materials.STD_METAL;
 import static gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.id;
 import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE;
 import static gregtech.api.unification.material.info.MaterialIconSet.*;
-import static gregtech.api.util.GTUtility.gregtechId;
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_REPLICATION;
 
 public class GCYLNuclearMaterials {

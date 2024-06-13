@@ -5,7 +5,6 @@ package com.fulltrix.gcyl.materials;
 
 import gregtech.api.GTValues;
 import gregtech.api.fluids.FluidBuilder;
-import gregtech.api.unification.Elements;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
 import gregtech.api.unification.material.properties.*;
@@ -17,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.fulltrix.gcyl.GCYLElements.*;
-import static com.fulltrix.gcyl.GCYLUtility.gcylId;
+import static com.fulltrix.gcyl.api.GCYLUtility.gcylId;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
@@ -27,7 +26,6 @@ import static gregtech.api.unification.Elements.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 import static gregtech.api.unification.material.info.MaterialIconSet.*;
-import static gregtech.api.util.GTUtility.gregtechId;
 import static gregtech.integration.groovy.MaterialPropertyExpansion.addLiquid;
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_DECONSTRUCTION;
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_REPLICATION;
