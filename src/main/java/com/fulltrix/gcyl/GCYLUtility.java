@@ -156,7 +156,7 @@ public class GCYLUtility {
                             .dataStack(getDataStack(getCWUt(upTierCWUt ? tier + 1 : tier)))
                             .CWUt(getCWUt(upTierCWUt ? tier + 1 : tier))
                             .researchStack(researchStack)
-                            .EUt(upTierEUt ? tier + 1 : tier));
+                            .EUt(GTValues.VA[upTierEUt ? tier + 1 : tier]));
     }
 
     public static RecipeBuilder<AssemblyLineRecipeBuilder> getAssLineResearchBuilder(int tier, int duration, ItemStack researchStack, boolean upTierEUt, boolean upTierCWUt, double researchCWUTotalMulti) {
@@ -165,7 +165,7 @@ public class GCYLUtility {
                             .CWUt(getCWUt(upTierCWUt ? tier + 1 : tier), (int) (4000 * (GTValues.VA[upTierEUt ? tier + 1 : tier] * researchCWUTotalMulti)))
                             .dataStack(getDataStack(getCWUt(upTierCWUt ? tier + 1 : tier)))
                             .researchStack(researchStack)
-                            .EUt(upTierEUt ? tier + 1 : tier));
+                            .EUt(GTValues.VA[upTierEUt ? tier + 1 : tier]));
     }
 
     public static RecipeBuilder<AssemblyLineRecipeBuilder> getAssLineResearchBuilder(int tier, int duration, ItemStack researchStack, boolean upTierEUt, boolean upTierCWUt, CleanroomType cleanroomType) {
@@ -174,7 +174,7 @@ public class GCYLUtility {
                         .dataStack(getDataStack(getCWUt(upTierCWUt ? tier + 1 : tier)))
                         .CWUt(getCWUt(upTierCWUt ? tier + 1 : tier))
                         .researchStack(researchStack)
-                        .EUt(upTierEUt ? tier + 1 : tier));
+                        .EUt(GTValues.VA[upTierEUt ? tier + 1 : tier]));
     }
 
     public static RecipeBuilder<AssemblyLineRecipeBuilder> getAssLineResearchBuilder(int tier, int duration, ItemStack researchStack, boolean upTierEUt, boolean upTierCWUt, double researchCWUTotalMulti, CleanroomType cleanroomType) {
@@ -183,6 +183,6 @@ public class GCYLUtility {
                         .CWUt(getCWUt(upTierCWUt ? tier + 1 : tier), (int) (4000 * (GTValues.VA[upTierEUt ? tier + 1 : tier] * researchCWUTotalMulti)))
                         .dataStack(getDataStack(getCWUt(upTierCWUt ? tier + 1 : tier)))
                         .researchStack(researchStack)
-                        .EUt(upTierEUt ? tier + 1 : tier));
+                        .EUt(GTValues.VA[upTierEUt ? tier + 1 : tier]));
     }
 }
