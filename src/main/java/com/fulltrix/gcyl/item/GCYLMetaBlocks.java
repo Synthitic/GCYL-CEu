@@ -4,6 +4,7 @@ import com.fulltrix.gcyl.item.fusion.GCYLCryostatCasing;
 import com.fulltrix.gcyl.item.fusion.GCYLDivertorCasing;
 import com.fulltrix.gcyl.item.fusion.GCYLFusionCasing;
 import com.fulltrix.gcyl.item.fusion.GCYLVacuumCasing;
+import com.fulltrix.gcyl.item.metal.GCYLCleanroomCasing;
 import com.fulltrix.gcyl.item.metal.MetalCasing1;
 import com.fulltrix.gcyl.item.metal.MetalCasing2;
 import net.minecraft.block.Block;
@@ -29,7 +30,7 @@ public class GCYLMetaBlocks {
     public static GCYLReactorCasing REACTOR_CASING;
     public static MetalCasing1 METAL_CASING_1;
     public static MetalCasing2 METAL_CASING_2;
-
+    public static GCYLCleanroomCasing GCYL_CLEANROOM_CASING;
 
     public static void init() {
         HEATING_COIL = new GCYLHeatingCoil();
@@ -68,6 +69,9 @@ public class GCYLMetaBlocks {
         REACTOR_CASING = new GCYLReactorCasing();
         REACTOR_CASING.setRegistryName("gcyl_reactor_casing");
 
+        GCYL_CLEANROOM_CASING = new GCYLCleanroomCasing();
+        GCYL_CLEANROOM_CASING.setRegistryName("gcyl_cleanroom_casing");
+
     }
 
     @SideOnly(Side.CLIENT)
@@ -84,6 +88,7 @@ public class GCYLMetaBlocks {
         registerItemModel(METAL_CASING_1);
         registerItemModel(METAL_CASING_2);
         registerItemModel(REACTOR_CASING);
+        registerItemModel(GCYL_CLEANROOM_CASING);
 
         HEATING_COIL.onModelRegister();
 

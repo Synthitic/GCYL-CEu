@@ -1,16 +1,23 @@
 package com.fulltrix.gcyl.api;
 
+import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import gregtech.api.GTValues;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
+import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
+import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.builders.AssemblyLineRecipeBuilder;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Material;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import stanhebben.zenscript.annotations.Optional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
@@ -150,6 +157,29 @@ public class GCYLUtility {
         };
     }
 
+    public static CleanroomType getCleanroomTypeByTierNotV(int tier) {
+        return switch (tier) {
+            case(2)-> CleanroomType.STERILE_CLEANROOM;
+            case(3)-> GCYLCleanroomType.ISO3;
+            case(4)-> GCYLCleanroomType.ISO2;
+            case(5)-> GCYLCleanroomType.ISO1;
+            default -> CleanroomType.CLEANROOM;
+        };
+    }
+
+    public static List<RecipeBuilder<?>> buildHigherYieldCleanroomRecipes(RecipeMap<?> recipeMap, MetaItem<?>.MetaValueItem output, int baseOutputAmount, int startCleanRoomTier, int startEUt) {
+        List<RecipeBuilder<?>> recipeBuilderList = new ArrayList<>();
+
+        for (int i = startCleanRoomTier; i < 6; i++) {
+            recipeBuilderList.add(recipeMap.recipeBuilder()
+                    .circuitMeta(i)
+                    .cleanroom(getCleanroomTypeByTierNotV(i))
+                    .EUt(i == startCleanRoomTier ? startEUt : (int) (startEUt * Math.pow(4, i - startCleanRoomTier + 1)))
+                    .outputs(output.getStackForm((int) (baseOutputAmount * Math.pow(2, i - startCleanRoomTier)))));
+        }
+        return recipeBuilderList;
+    }
+
     public static RecipeBuilder<AssemblyLineRecipeBuilder> getAssLineResearchBuilder(int tier, int duration, ItemStack researchStack, boolean upTierEUt, boolean upTierCWUt) {
             return ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[upTierEUt ? tier + 1 : tier]).duration(duration)
                     .stationResearch(b -> b
@@ -182,6 +212,15 @@ public class GCYLUtility {
                 .stationResearch(b -> b
                         .CWUt(getCWUt(upTierCWUt ? tier + 1 : tier), (int) (4000 * (GTValues.VA[upTierEUt ? tier + 1 : tier] * researchCWUTotalMulti)))
                         .dataStack(getDataStack(getCWUt(upTierCWUt ? tier + 1 : tier)))
+                        .researchStack(researchStack)
+                        .EUt(GTValues.VA[upTierEUt ? tier + 1 : tier]));
+    }
+
+    public static RecipeBuilder<AssemblyLineRecipeBuilder> getAssLineResearchBuilder(int tier, int duration, ItemStack researchStack, boolean upTierEUt, boolean upTierCWUt, CleanroomType cleanroomType, int recipeEUt) {
+        return ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(recipeEUt).duration(duration).cleanroom(cleanroomType)
+                .stationResearch(b -> b
+                        .dataStack(getDataStack(getCWUt(upTierCWUt ? tier + 1 : tier)))
+                        .CWUt(getCWUt(upTierCWUt ? tier + 1 : tier))
                         .researchStack(researchStack)
                         .EUt(GTValues.VA[upTierEUt ? tier + 1 : tier]));
     }

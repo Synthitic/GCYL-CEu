@@ -124,6 +124,8 @@ public final class GCYLRecipeMaps {
         EXTRACTOR_RECIPES.setMaxInputs(2);
 
         GAS_CENTRIFUGE_RECIPES.setMaxFluidOutputs(3);
+
+        CIRCUIT_ASSEMBLER_RECIPES.setMaxInputs(7);
     }
 
 }
