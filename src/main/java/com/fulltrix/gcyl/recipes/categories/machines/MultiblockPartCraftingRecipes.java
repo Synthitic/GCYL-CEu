@@ -49,7 +49,7 @@ public class MultiblockPartCraftingRecipes {
                 .outputs(GCYLMetaBlocks.GCYL_CLEANROOM_CASING.getItemVariant(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO2, 2))
                 .buildAndRegister();
 
-        getAssLineResearchBuilder(GTValues.UIV, 100, GCYLMetaBlocks.GCYL_CLEANROOM_CASING.getItemVariant(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO2), true, true, GCYLCleanroomType.ISO2)
+        getAssLineResearchBuilder(GTValues.UIV, 100, GCYLMetaBlocks.GCYL_CLEANROOM_CASING.getItemVariant(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO2), false, true, GCYLCleanroomType.ISO2)
                 .input(frameGt, HastelloyX78)
                 .inputs(ELECTRIC_MOTOR_UIV.getStackForm(2))
                 .inputs(EMITTER_UIV.getStackForm(2))
