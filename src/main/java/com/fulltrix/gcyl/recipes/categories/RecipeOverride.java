@@ -371,6 +371,9 @@ public class RecipeOverride {
         //distillation tower
         removeRecipeByName("gregtech:distillation_tower");
 
+        //QCD matter plate
+        removeRecipesByInputs(FLUID_SOLIDFICATION_RECIPES, new ItemStack[]{SHAPE_MOLD_PLATE.getStackForm()}, new FluidStack[]{QCDMatter.getFluid(144)});
+
     }
 
     public static void chemistryOverride() {

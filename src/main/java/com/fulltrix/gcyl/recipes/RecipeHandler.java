@@ -5,6 +5,7 @@ import com.fulltrix.gcyl.recipes.categories.circuits.CircuitRecipes;
 import com.fulltrix.gcyl.recipes.categories.DeepMinerRecipes;
 import com.fulltrix.gcyl.recipes.categories.GreenhouseRecipes;
 import com.fulltrix.gcyl.recipes.categories.machines.MachineCraftingRecipes;
+import com.fulltrix.gcyl.recipes.categories.machines.MultiblockPartCraftingRecipes;
 import com.fulltrix.gcyl.recipes.chain.*;
 
 public class RecipeHandler {
@@ -20,6 +21,7 @@ public class RecipeHandler {
         MetaItemRecipes.init();
         ComponentRecipes.init();
         MachineCraftingRecipes.init();
+        MultiblockPartCraftingRecipes.init();
         CircuitRecipes.init();
         PlasmaCondenserPlasmaRecipes.init();
         MiscRecipes.init();

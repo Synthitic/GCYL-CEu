@@ -4881,5 +4881,10 @@ gcyl.machine.wireless_energy_hatch.input.opv.4.name=§dOpV 4A Wireless Energy Ha
 gcyl.machine.wireless_energy_hatch.input.opv.16.name=§dOpV 16A Wireless Energy Hatch
 gcyl.machine.wireless_energy_hatch.input.opv.64.name=§dOpV 64A Wireless Energy Hatch
 
+gcyl.machine.wireless_energy_hatch.input.max.name=§dMAX Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.max.4.name=§dMAX 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.max.16.name=§dMAX 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.max.64.name=§dMAX 64A Wireless Energy Hatch
+
 
 

@@ -71,9 +71,9 @@ public class GCYLTileEntities {
 
     ///////////////////////////////////////////
     public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length];
-    public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT_4A = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length];
-    public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT_16A = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length];
-    public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT_64A = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length];
+    public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT_4A = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length - 4];
+    public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT_16A = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length - 5];
+    public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT_64A = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length - 5];
     public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_OUTPUT = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length];
 
 
@@ -134,12 +134,18 @@ public class GCYLTileEntities {
 
         WIRELESS_PSS = registerMetaTileEntity(++id, new MetaTileEntityWirelessPowerSubstation(gcylId("wireless_pss")));
 
-        for (int i = 0; i < WIRELESS_ENERGY_HATCH_OUTPUT.length - 1; i++) {
+        for (int i = 0; i < WIRELESS_ENERGY_HATCH_OUTPUT.length; i++) {
             String voltageName = GTValues.VN[i].toLowerCase();
             WIRELESS_ENERGY_HATCH_INPUT[i] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName), i, 2, false));
-            WIRELESS_ENERGY_HATCH_INPUT_4A[i] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName + ".4"), i, 4, false));
-            WIRELESS_ENERGY_HATCH_INPUT_16A[i] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName + ".16"), i, 16, false));
-            WIRELESS_ENERGY_HATCH_INPUT_64A[i] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName + ".64"), i, 64, false));
+
+            if(i > 3) {
+                WIRELESS_ENERGY_HATCH_INPUT_4A[i - 4] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName + ".4"), i, 4, false));
+            }
+
+            if(i > 4) {
+                WIRELESS_ENERGY_HATCH_INPUT_16A[i - 5] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName + ".16"), i, 16, false));
+                WIRELESS_ENERGY_HATCH_INPUT_64A[i - 5] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName + ".64"), i, 64, false));
+            }
 
             WIRELESS_ENERGY_HATCH_OUTPUT[i] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.output." + voltageName), i, 2, true));
 

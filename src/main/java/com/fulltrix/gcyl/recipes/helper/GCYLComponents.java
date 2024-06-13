@@ -19,6 +19,8 @@ public class GCYLComponents {
     public static Component CABLE_DOUBLE;
     public static Component GEAR;
 
+    public static Component SUPERCONDUCTOR_WIRE;
+
     public static void initializeComponents() {
         PLATE_DENSE = new Component(Stream.of(new Object[][]{
 
@@ -71,6 +73,25 @@ public class GCYLComponents {
                 {10, new UnificationEntry(gear, Bohrium)},
                 {11, new UnificationEntry(gear, Quantum)},
                 {12, new UnificationEntry(gear, Neutronium)}
+
+        }).collect(Collectors.toMap(data -> (Integer) data[0], data -> data[1])));
+
+        SUPERCONDUCTOR_WIRE = new Component(Stream.of(new Object[][]{
+
+                {1, new UnificationEntry(wireGtSingle, LVSuperconductor)},
+                {2, new UnificationEntry(wireGtSingle, MVSuperconductor)},
+                {3, new UnificationEntry(wireGtSingle, HVSuperconductor)},
+                {4, new UnificationEntry(wireGtSingle, EVSuperconductor)},
+                {5, new UnificationEntry(wireGtSingle, IVSuperconductor)},
+                {6, new UnificationEntry(wireGtSingle, LuVSuperconductor)},
+                {7, new UnificationEntry(wireGtSingle, ZPMSuperconductor)},
+                {8, new UnificationEntry(wireGtSingle, UVSuperconductor)},
+                {9, new UnificationEntry(wireGtSingle, UHVSuperconductor)},
+                {10, new UnificationEntry(wireGtSingle, UEVSuperconductor)},
+                {11, new UnificationEntry(wireGtSingle, UIVSuperconductor)},
+                {12, new UnificationEntry(wireGtSingle, UXVSuperconductor)},
+                {13, new UnificationEntry(wireGtSingle, OpVSuperconductor)},
+                {14, new UnificationEntry(wireGtSingle, MAXSuperconductor)}
 
         }).collect(Collectors.toMap(data -> (Integer) data[0], data -> data[1])));
 
@@ -163,6 +184,7 @@ public class GCYLComponents {
                 { GTValues.FALLBACK, new UnificationEntry(OrePrefix.cableGtQuadruple, Materials.Europium) },
 
         }).collect(Collectors.toMap(data -> (Integer) data[0], data -> data[1])));
+
 
     }
 
