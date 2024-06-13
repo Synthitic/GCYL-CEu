@@ -27,26 +27,6 @@ public class MultiblockPartCraftingRecipes {
 
     private static void wirelessEnergyHatches() {
 
-        /*
-        for(int i = 0; i < WIRELESS_ENERGY_HATCH_INPUT.length - 1; i++) {
-            int finalI = i;
-            ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[i + 1]).duration(400)
-                    .outputs(WIRELESS_ENERGY_HATCH_INPUT[i].getStackForm())
-                    .inputs(ENERGY_INPUT_HATCH[i].getStackForm())
-                    .inputs(getPowerIC(i))
-                    .inputs(getPowerIC(i))
-                    .inputs()
-                    .stationResearch(b -> b
-                            .researchStack(finalI == 0 ? ENERGY_INPUT_HATCH[0].getStackForm() : WIRELESS_ENERGY_HATCH_INPUT[finalI - 1].getStackForm())
-                            .CWUt(Math.min(32, Math.pow(2, finalI-1))
-                            .EUt(GTValues.VA[finalI +1]))
-
-
-
-
-        }
-
-         */
         for(int i = 0; i < WIRELESS_ENERGY_HATCH_INPUT.length - 1; i++) {
             getAssLineResearchBuilder(i, 400, i == 0 ? ENERGY_INPUT_HATCH[0].getStackForm() : WIRELESS_ENERGY_HATCH_INPUT[i - 1].getStackForm(), true, true)
                     .outputs(WIRELESS_ENERGY_HATCH_INPUT[i].getStackForm())
