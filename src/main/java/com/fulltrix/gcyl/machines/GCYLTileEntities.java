@@ -77,7 +77,7 @@ public class GCYLTileEntities {
     public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_OUTPUT = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length];
 
 
-    public static int id = 32000;
+    public static int id = 24000;
 
     public static void init() {
 

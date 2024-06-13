@@ -4806,6 +4806,7 @@ gcyl.material.bismuth_210=Bismuth 210
 gcyl.machine.wireless_pss.name=§dWireless Power Substation
 gcyl.machine.wireless_power_substation.tooltip1=§dUse a Screwdriver to activate Wireless.
 gcyl.machine.wireless_power_substation.tooltip2=§dEvery 60 seconds, it will balance the power between itself and the Wireless Network.
+gcyl.machine.wireless_power_substation.tooltip3=§cMinimum of 40 Casings.
 gcyl.multiblock.wireless_pss.wireless_eu=§dWireless EU: %s (%s)
 gcyl.multiblock.wireless_pss.not_initialized=§dWireless EU: §cNot Initialized
 tile.gcyl_multiblock_casing2.seaborgium_substation_casing.name=§dField Generating Substation Casing

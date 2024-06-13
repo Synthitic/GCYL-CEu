@@ -71,7 +71,7 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
 
     // Structure Constants
     public static final int MAX_BATTERY_LAYERS = 18;
-    private static final int MIN_CASINGS = 14;
+    private static final int MIN_CASINGS = 40;
 
     // Passive Drain Constants
     // 1% capacity per 24 hours
@@ -550,7 +550,7 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
                         }
                     }
 
-                    if(!initialize && !this.getWorld().isRemote) {
+                    if(!initialize && !this.getWorld().isRemote && isStructureFormed()) {
                         tl.add( TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE,"gcyl.multiblock.wireless_pss.wireless_eu", this.energyContainerWireless.getEnergyStored(), this.getWorld().getPlayerEntityByUUID(this.playerUUID).getName()));
                     }
                     else
@@ -695,6 +695,7 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
                                boolean advanced) {
         tooltip.add(I18n.format("gcyl.machine.wireless_power_substation.tooltip1"));
         tooltip.add(I18n.format("gcyl.machine.wireless_power_substation.tooltip2"));
+        tooltip.add(I18n.format("gcyl.machine.wireless_power_substation.tooltip3"));
         tooltip.add(I18n.format("gregtech.machine.power_substation.tooltip1"));
         tooltip.add(I18n.format("gregtech.machine.power_substation.tooltip2"));
         tooltip.add(I18n.format("gregtech.machine.power_substation.tooltip3", MAX_BATTERY_LAYERS));
