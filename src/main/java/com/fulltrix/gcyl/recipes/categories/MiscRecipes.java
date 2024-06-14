@@ -23,8 +23,7 @@ import static gregtech.api.unification.material.Materials.Bismuth;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 import static gregtech.common.items.MetaItems.COVER_ENDER_FLUID_LINK;
-import static gregtech.common.metatileentities.MetaTileEntities.HULL;
-import static gregtech.common.metatileentities.MetaTileEntities.VACUUM_FREEZER;
+import static gregtech.common.metatileentities.MetaTileEntities.*;
 import static gregtech.loaders.recipe.MetaTileEntityLoader.registerMachineRecipe;
 import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.NeutralMatter;
 
@@ -137,6 +136,25 @@ public class MiscRecipes {
         VACUUM_RECIPES.recipeBuilder().EUt(30720).duration(200)
                 .fluidInputs(Helium3.getFluid(1000))
                 .fluidOutputs(Helium3.getFluid(FluidStorageKeys.LIQUID, 1000))
+                .buildAndRegister();
+
+        //carbon fibers from gcyl polymers
+        AUTOCLAVE_RECIPES.recipeBuilder().EUt(GTValues.VA[IV]).duration(37)
+                .fluidInputs(Polyetheretherketone.getFluid(9))
+                .input(dust, Carbon, 8)
+                .outputs(CARBON_FIBERS.getStackForm(32))
+                .buildAndRegister();
+
+        AUTOCLAVE_RECIPES.recipeBuilder().EUt(GTValues.VA[LuV]).duration(37)
+                .fluidInputs(Zylon.getFluid(9))
+                .input(dust, Carbon, 8)
+                .outputs(CARBON_FIBERS.getStackForm(64))
+                .buildAndRegister();
+
+        AUTOCLAVE_RECIPES.recipeBuilder().EUt(GTValues.VA[ZPM]).duration(37)
+                .fluidInputs(FullerenePolymerMatrix.getFluid(9))
+                .input(dust, Carbon, 4)
+                .outputs(CARBON_FIBERS.getStackForm(64))
                 .buildAndRegister();
 
 
