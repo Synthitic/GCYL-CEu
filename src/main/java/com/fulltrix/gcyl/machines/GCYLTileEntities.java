@@ -134,7 +134,7 @@ public class GCYLTileEntities {
 
         for (int i = 0; i < WIRELESS_ENERGY_HATCH_OUTPUT.length; i++) {
             String voltageName = GTValues.VN[i].toLowerCase();
-            WIRELESS_ENERGY_HATCH_INPUT[i] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName), i, 2, false));
+            WIRELESS_ENERGY_HATCH_INPUT[i] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName), i, 1, false));
 
             if(i > 3) {
                 WIRELESS_ENERGY_HATCH_INPUT_4A[i - 4] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName + ".4"), i, 4, false));
@@ -145,7 +145,7 @@ public class GCYLTileEntities {
                 WIRELESS_ENERGY_HATCH_INPUT_64A[i - 5] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName + ".64"), i, 64, false));
             }
 
-            WIRELESS_ENERGY_HATCH_OUTPUT[i] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.output." + voltageName), i, 2, true));
+            WIRELESS_ENERGY_HATCH_OUTPUT[i] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.output." + voltageName), i, 1, true));
 
         }
         for(int i = 0; i < 7; i++) {
