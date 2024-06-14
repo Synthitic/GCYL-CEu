@@ -24,6 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 
 //TODO implement coil bonus
+//TODO make a separate mega chemical reactor so this one isnt so broken
 
 public class MetaTileEntityChemicalPlant extends GCYLRecipeMapMultiblockController implements IHeatingCoil {
 

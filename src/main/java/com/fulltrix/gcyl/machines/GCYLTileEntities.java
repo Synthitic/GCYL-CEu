@@ -108,7 +108,7 @@ public class GCYLTileEntities {
 
         LARGE_NAQUADAH_REACTOR = registerMetaTileEntity(++id, new MetaTileEntityLargeNaquadahReactor(gcylId("large_naquadah_reactor")));
 
-        CHEMICAL_PLANT = registerMetaTileEntity(++id, new MetaTileEntityChemicalPlant(gcylId("chemical_plant"),false));
+        CHEMICAL_PLANT = registerMetaTileEntity(++id, new MetaTileEntityChemicalPlant(gcylId("chemical_plant"),true));
 
         LARGE_ROCKET_ENGINE = registerMetaTileEntity(++id, new MetaTileEntityLargeRocketEngine(gcylId("large_rocket_engine")));
 

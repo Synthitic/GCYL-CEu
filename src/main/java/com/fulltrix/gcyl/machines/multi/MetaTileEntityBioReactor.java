@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.machines.multi;
 
+import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.item.GCYLMultiblockCasing2;
@@ -20,10 +21,10 @@ import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
 
-public class MetaTileEntityBioReactor extends RecipeMapMultiblockController {
+public class MetaTileEntityBioReactor extends GCYLRecipeMapMultiblockController {
 
     public MetaTileEntityBioReactor(ResourceLocation metaTileEntityId) {
-        super(metaTileEntityId, GCYLRecipeMaps.BIO_REACTOR_RECIPES);
+        super(metaTileEntityId, GCYLRecipeMaps.BIO_REACTOR_RECIPES, false);
     }
 
     @Override
@@ -37,15 +38,16 @@ public class MetaTileEntityBioReactor extends RecipeMapMultiblockController {
     protected BlockPattern createStructurePattern() { //TODO: add tiered casings
         return FactoryBlockPattern.start()
                 .aisle("XXXXX", "XGGGX", "XGGGX", "XGGGX", "XXXXX")
-                .aisle("XXXXX", "G###G", "G###G", "G###G", "XXXXX")
-                .aisle("XXXXX", "G###G", "G###G", "G###G", "XXXXX")
-                .aisle("XXXXX", "G###G", "G###G", "G###G", "XXXXX")
+                .aisle("XXXXX", "G###G", "G#T#G", "G###G", "XXXXX")
+                .aisle("XXXXX", "G#T#G", "GTTTG", "G#T#G", "XXXXX")
+                .aisle("XXXXX", "G###G", "G#T#G", "G###G", "XXXXX")
                 .aisle("XXSXX", "XGGGX", "XGGGX", "XGGGX", "XXXXX")
                 .where('S', selfPredicate())
                 .where('X', states(getCasingState()).setMinGlobalLimited(50).or(autoAbilities(true, true, true, true, true, true, false)))
                 .where('L', states(getCasingState()))
                 .where('#', air())
                 .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.LAMINATED_GLASS)))
+                .where('T', tieredCasing())
                 .build();
     }
 
