@@ -827,6 +827,20 @@ public class CircuitRecipes {
     private static void exoticCircuits() {
 
         //Exotic Processor
+        for(RecipeBuilder<?> recipeBuilder : buildHigherYieldCleanroomRecipes(CIRCUIT_ASSEMBLER_RECIPES, EXOTIC_PROCESSOR, 4, 4, (int) 4E+6)) {
+            recipeBuilder
+                    .duration(100)
+                    .inputs(SMD_CAPACITOR_EXOTIC.getStackForm(8))
+                    .inputs(SMD_TRANSISTOR_EXOTIC.getStackForm(8))
+                    .inputs(EXOTIC_PROCESSING_CORE.getStackForm())
+                    .input(wireFine, Cinobite, 4)
+                    .inputs(QUBIT_CENTRAL_PROCESSING_UNIT.getStackForm(4))
+                    .inputs(EXOTIC_CHIP.getStackForm(4))
+                    .fluidInputs(Indalloy140.getFluid(L * 2))
+                    .buildAndRegister();
+        }
+
+        /*
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt((int)4E+6)
                 .inputs(SMD_CAPACITOR_EXOTIC.getStackForm(8))
                 .inputs(SMD_TRANSISTOR_EXOTIC.getStackForm(8))
@@ -839,7 +853,29 @@ public class CircuitRecipes {
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
+         */
+
         //Exotic Assembly
+        getAssLineResearchBuilder(GTValues.UEV, 200, EXOTIC_PROCESSOR.getStackForm(), false, false, GCYLCleanroomType.ISO2, (int) 4E+6)
+                .inputs(SMD_RESISTOR_EXOTIC.getStackForm(16))
+                .inputs(SMD_DIODE_EXOTIC.getStackForm(16))
+                .inputs(SMD_TRANSISTOR_EXOTIC.getStackForm(16))
+                .inputs(SMD_CAPACITOR_EXOTIC.getStackForm(16))
+                .inputs(EXOTIC_PROCESSOR.getStackForm(3))
+                .input(wireFine, Cinobite, 64)
+                .input(foil, Zylon, 4)
+                .inputs(QUBIT_CENTRAL_PROCESSING_UNIT.getStackForm(64))
+                .input(plate, EnrichedNaquadahAlloy, 2)
+                .inputs(ARAM.getStackForm(32))
+                .input(wireGtSingle, UEVSuperconductor, 4)
+                .fluidInputs(EnrichedNaquadahAlloy.getFluid(L * 6))
+                .fluidInputs(TriniumTitanium.getFluid(L * 4))
+                .fluidInputs(Quantum.getFluid(L * 6))
+                .fluidInputs(QuantumDots.getFluid(250))
+                .outputs(EXOTIC_ASSEMBLY.getStackForm())
+                .buildAndRegister();
+
+        /*
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(200).EUt((int)4E+6)
                 .inputs(SMD_RESISTOR_EXOTIC.getStackForm(16))
                 .inputs(SMD_DIODE_EXOTIC.getStackForm(16))
@@ -859,8 +895,28 @@ public class CircuitRecipes {
                 .outputs(EXOTIC_ASSEMBLY.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
+         */
 
         //Exotic Computer
+        getAssLineResearchBuilder(GTValues.UEV, 300, EXOTIC_ASSEMBLY.getStackForm(), false, false, GCYLCleanroomType.ISO2, (int) 4E+6)
+                .inputs(SMD_DIODE_EXOTIC.getStackForm(32))
+                .inputs(SMD_RESISTOR_EXOTIC.getStackForm(32))
+                .inputs(SMD_TRANSISTOR_EXOTIC.getStackForm(32))
+                .inputs(SMD_CAPACITOR_EXOTIC.getStackForm(32))
+                .inputs(EXOTIC_ASSEMBLY.getStackForm(4))
+                .input(foil, Zylon, 32)
+                .inputs(EXOTIC_CHIP.getStackForm(8))
+                .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(32))
+                .inputs(ARAM.getStackForm(64))
+                .input(plate, EnrichedNaquadahAlloy, 4)
+                .input(wireGtSingle, UEVSuperconductor, 16)
+                .fluidInputs(Polyetheretherketone.getFluid(L * 18))
+                .fluidInputs(Vibranium.getFluid(L * 2))
+                .fluidInputs(EnrichedNaquadahAlloy.getFluid(L * 9))
+                .fluidInputs(TriniumTitanium.getFluid(L * 4))
+                .outputs(EXOTIC_COMPUTER.getStackForm())
+                .buildAndRegister();
+        /*
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(300).EUt((int)4E+6)
                 .inputs(SMD_DIODE_EXOTIC.getStackForm(32))
                 .inputs(SMD_RESISTOR_EXOTIC.getStackForm(32))
@@ -881,7 +937,32 @@ public class CircuitRecipes {
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
+         */
+
         //Exotic Mainframe
+        getAssLineResearchBuilder(GTValues.UEV, 400, EXOTIC_COMPUTER.getStackForm(), true, true, GCYLCleanroomType.ISO2, (int) 1E+7)
+                .inputs(SMD_RESISTOR_EXOTIC.getStackForm(64))
+                .inputs(SMD_DIODE_EXOTIC.getStackForm(64))
+                .inputs(SMD_TRANSISTOR_EXOTIC.getStackForm(64))
+                .inputs(SMD_CAPACITOR_EXOTIC.getStackForm(64))
+                .inputs(EXOTIC_COMPUTER.getStackForm(2))
+                .input(foil, FullerenePolymerMatrix, 16)
+                .inputs(QUBIT_CENTRAL_PROCESSING_UNIT.getStackForm(4))
+                .inputs(UHASOC.getStackForm(32))
+                .input(frameGt, Vibranium, 4)
+                .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64))
+                .inputs(ARAM.getStackForm(64))
+                .inputs(ARAM.getStackForm(64))
+                .input(plate, MetastableFlerovium, 4)
+                .input(wireGtSingle, UEVSuperconductor, 32)
+                .fluidInputs(LiquidEnrichedHelium.getFluid(1000))
+                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
+                .fluidInputs(Quantum.getFluid(L * 9))
+                .fluidInputs(Naquadria.getFluid(L * 9))
+                .outputs(EXOTIC_MAINFRAME.getStackForm())
+                .buildAndRegister();
+
+        /*
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(400).EUt((int)1E+7)
                 .inputs(SMD_RESISTOR_EXOTIC.getStackForm(64))
                 .inputs(SMD_DIODE_EXOTIC.getStackForm(64))
@@ -904,6 +985,8 @@ public class CircuitRecipes {
                 .outputs(EXOTIC_MAINFRAME.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
+
+         */
     }
 
     private static void cosmicCircuits() {
