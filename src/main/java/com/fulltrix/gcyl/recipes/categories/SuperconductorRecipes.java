@@ -165,6 +165,7 @@ public class SuperconductorRecipes {
                 .buildAndRegister();
 
 
+
         //LV superconductor Base dust
         MIXER_RECIPES.recipeBuilder().duration(240).EUt(30)
                 .input(dust, SolderingAlloy, 10)
@@ -316,5 +317,7 @@ public class SuperconductorRecipes {
                 .output(dust,LanthanumFullereneNanotubes,4)
                 .output(dust,RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate,12)
                 .buildAndRegister();
+
+
     }
 }

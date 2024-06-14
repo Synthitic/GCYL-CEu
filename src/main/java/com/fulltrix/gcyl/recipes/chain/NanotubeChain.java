@@ -94,6 +94,7 @@ public class NanotubeChain {
         MIXER_RECIPES.recipeBuilder().duration(150).EUt(120)
                 .input(dust, Nickel)
                 .input(dust, Aluminium)
+                .circuitMeta(2)
                 .output(dust, NiAlCatalyst, 2)
                 .buildAndRegister();
 

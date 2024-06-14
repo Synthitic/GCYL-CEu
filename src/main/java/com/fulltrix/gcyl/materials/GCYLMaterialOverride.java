@@ -14,11 +14,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.fulltrix.gcyl.api.recipes.GCYLMaterialFlags.NO_MIXER_RECIPE;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
-import static gregicality.multiblocks.api.unification.GCYMMaterials.IncoloyMA956;
-import static gregicality.multiblocks.api.unification.GCYMMaterials.Zeron100;
+import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
 import static gregtech.api.GTValues.OpV;
 import static gregtech.api.GTValues.UV;
 import static gregtech.api.unification.material.Materials.*;
@@ -326,6 +326,8 @@ public class GCYLMaterialOverride {
 
         for(Material mat : wireMats) {
             mat.addFlags(NO_ALLOY_BLAST_RECIPES);
+            mat.addFlags(NO_MIXER_RECIPE);
+            mat.addFlags(DISABLE_DECOMPOSITION);
         }
 
         //LENSES
@@ -382,6 +384,15 @@ public class GCYLMaterialOverride {
         Collections.addAll(gearmats, RhodiumPlatedPalladium, EglinSteel, Magnalium, Inconel625, QCDMatter, AbyssalAlloy, BabbittAlloy, Nitinol60, HG1223);
         for (Material mat : gearmats) {
             mat.addFlags(GENERATE_GEAR);
+        }
+
+        //no mixer recipe
+        List<Material> mixermats = new ArrayList<>();
+        Collections.addAll(mixermats, HSSS, Osmiridium, WatertightSteel, MaragingSteel300, Stellite100, HastelloyC276, HastelloyX, Trinaquadalloy, Zeron100, TitaniumCarbide, TantalumCarbide, HSLASteel, BlackSteel, Zircaloy, BlackBronze,
+                Inconel, SterlingSilver, NaquadahAlloy, LVSuperconductorBase, MVSuperconductorBase, HVSuperconductorBase,EVSuperconductorBase,IVSuperconductorBase,LuVSuperconductorBase,ZPMSuperconductorBase,UVSuperconductorBase,UHVSuperconductorBase,
+                UEVSuperconductorBase,UIVSuperconductorBase,UXVSuperconductorBase,OpVSuperconductorBase);
+        for(Material mat: mixermats) {
+            mat.addFlags(NO_MIXER_RECIPE);
         }
 
         //Small Specific cases

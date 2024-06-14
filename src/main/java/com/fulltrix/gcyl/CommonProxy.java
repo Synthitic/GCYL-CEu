@@ -1,5 +1,7 @@
 package com.fulltrix.gcyl;
 
+import com.fulltrix.gcyl.api.recipes.GCYLMaterialRecipeHandler;
+import com.fulltrix.gcyl.api.recipes.MixerPropertyAddition;
 import com.fulltrix.gcyl.api.util.VirtualContainerRegistry;
 import com.fulltrix.gcyl.api.util.VirtualEnergyRegistry;
 import com.fulltrix.gcyl.item.GCYLCoreItems;
@@ -8,12 +10,14 @@ import com.fulltrix.gcyl.materials.GCYLMaterials;
 import com.fulltrix.gcyl.materials.GCYLNuclearMaterials;
 import com.fulltrix.gcyl.recipes.RecipeHandler;
 import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
+import com.fulltrix.gcyl.recipes.categories.RecipeOverrideLate;
 import com.fulltrix.gcyl.recipes.categories.handlers.ElectricImplosionHandler;
 import com.fulltrix.gcyl.recipes.categories.handlers.FuelHandler;
 import com.fulltrix.gcyl.recipes.categories.handlers.VoidMinerHandler;
 import com.fulltrix.gcyl.recipes.helper.GCYLComponents;
 import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionCoilProperty;
 import com.fulltrix.gcyl.worldgen.WorldGenRegister;
+import gregicality.multiblocks.api.unification.GCYMMaterialFlagAddition;
 import gregicality.multiblocks.common.GCYMConfigHolder;
 import gregtech.api.GregTechAPI;
 import gregtech.api.block.VariantItemBlock;
@@ -22,6 +26,7 @@ import gregtech.api.recipes.GTRecipeInputCache;
 import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
 import gregtech.api.unification.material.event.MaterialEvent;
 import gregtech.api.unification.material.event.MaterialRegistryEvent;
+import gregtech.api.unification.material.event.PostMaterialEvent;
 import gregtech.common.ConfigHolder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -85,6 +90,11 @@ public class CommonProxy {
         GCYLMaterialOverride.tempMaterialModifications();
     }
 
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void registerMaterialsPost(PostMaterialEvent event) {
+        MixerPropertyAddition.init();
+    }
+
     @SubscribeEvent
     public static void syncConfigValues(ConfigChangedEvent.OnConfigChangedEvent event) {
         if (event.getModID().equals(GCYLCore.MODID)) {
@@ -141,7 +151,7 @@ public class CommonProxy {
     }
 
 
-    @SubscribeEvent(priority = EventPriority.LOW)
+    @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
 
         AdvFusionCoilProperty.registerAdvFusionTier(1, "1");
@@ -157,12 +167,19 @@ public class CommonProxy {
 
         GCYLRecipeMaps.modifyMaps();
 
+        GCYLMaterialRecipeHandler.register();
+
         RecipeHandler.initRecipes();
         RecipeHandler.initChains();
 
         FuelHandler.init();
 
         //RecipeHandler.registerLargeMachineRecipes();
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void lateRecipeOverride(RegistryEvent.Register<IRecipe> event) {
+        RecipeOverrideLate.init();
     }
 
     @SubscribeEvent

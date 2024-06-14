@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes;
 
+import com.fulltrix.gcyl.api.recipes.GCYLMaterialRecipeHandler;
 import com.fulltrix.gcyl.recipes.categories.*;
 import com.fulltrix.gcyl.recipes.categories.circuits.CircuitRecipes;
 import com.fulltrix.gcyl.recipes.categories.DeepMinerRecipes;

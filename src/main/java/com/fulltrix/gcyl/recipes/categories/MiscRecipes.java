@@ -35,40 +35,6 @@ public class MiscRecipes {
         //TODO: FINISH NUCLEAR AND REMOVE
         temporaryNuclearRecipes();
 
-        // Quantum Dust
-        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(10500).EUt(30)
-                .input(dust, Stellite100, 15)
-                .input(dust, Jasper, 5)
-                .input(dust, Gallium, 5)
-                .input(dust, Americium241, 5)
-                .input(dust, Palladium, 5)
-                .input(dust, Bismuth, 5)
-                .input(dust, Germanium, 5)
-                .input(dust,SiliconCarbide,5)
-                .output(dust, Quantum, 50)
-                .buildAndRegister();
-
-        //Bright steel
-        MIXER_RECIPES.recipeBuilder().duration(400).EUt(1920)
-                .input(dust, Steel, 4)
-                .input(dust, Bismuth, 2)
-                .input(dust, Caesium, 2)
-                .input(dust, Europium,1)
-                .output(dust, BrightSteel, 9)
-                .circuitMeta(9)
-                .buildAndRegister();
-
-        //Inconel 625 dust
-        MIXER_RECIPES.recipeBuilder().duration(860).EUt(480)
-                .input(dust, Nickel, 3)
-                .input(dust, Chrome, 7)
-                .input(dust, Molybdenum, 10)
-                .input(dust, Invar, 10)
-                .input(dust, Nichrome, 13)
-                .circuitMeta(5)
-                .output(dust, Inconel625, 43)
-                .buildAndRegister();
-
         //eglin steel dust and base dust
         MIXER_RECIPES.recipeBuilder().duration(20 * 10).EUt(120)
                 .input(dust, Iron, 4)
@@ -78,14 +44,6 @@ public class MiscRecipes {
                 .output(dust, EglinSteelBase, 10)
                 .buildAndRegister();
 
-        MIXER_RECIPES.recipeBuilder().duration(13 * 20).EUt(120)
-                .input(dust, EglinSteelBase, 10)
-                .input(dust, Sulfur)
-                .input(dust, Silicon)
-                .input(dust, Carbon)
-                .output(dust, EglinSteel, 13)
-                .circuitMeta(5)
-                .buildAndRegister();
 
         //Babbitt alloy
         MIXER_RECIPES.recipeBuilder().duration(50 * 20).EUt(GTValues.VA[ZPM])
