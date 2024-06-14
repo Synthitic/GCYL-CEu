@@ -557,7 +557,12 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
                             tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.wireless_eu", wirelessFormatted));
                         }
                         catch (NullPointerException e) {
-                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.public"));
+                            if (Objects.equals(this.playerUUID, new UUID(0, 0))) {
+                                tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.public"));
+                            }
+                            else {
+                                tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.player_offline"));
+                            }
                             tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.wireless_eu", wirelessFormatted));
                         }
                     }
