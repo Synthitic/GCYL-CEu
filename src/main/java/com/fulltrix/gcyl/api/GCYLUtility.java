@@ -175,7 +175,7 @@ public class GCYLUtility {
             recipeBuilderList.add(recipeMap.recipeBuilder()
                     .circuitMeta(i)
                     .cleanroom(getCleanroomTypeByTierNotV(i))
-                    .EUt(i == startCleanRoomTier ? startEUt : (int) (startEUt * Math.pow(4, i - startCleanRoomTier + 1)))
+                    .EUt(i == startCleanRoomTier ? startEUt : (int) (startEUt * Math.pow(4, i - startCleanRoomTier)))
                     .outputs(output.getStackForm((int) (baseOutputAmount * Math.pow(2, i - startCleanRoomTier)))));
         }
         return recipeBuilderList;
