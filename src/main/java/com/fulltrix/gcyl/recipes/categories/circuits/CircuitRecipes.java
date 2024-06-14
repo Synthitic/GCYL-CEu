@@ -991,6 +991,8 @@ public class CircuitRecipes {
 
     private static void cosmicCircuits() {
 
+
+
         // Cosmic Processor
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(30_720_000)
                 .inputs(QUBIT_CENTRAL_PROCESSING_UNIT.getStackForm(4))

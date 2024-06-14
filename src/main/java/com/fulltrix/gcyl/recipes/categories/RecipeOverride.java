@@ -1173,7 +1173,7 @@ public class RecipeOverride {
                 .inputs(VOLTAGE_COIL_LuV.getStackForm(2))
                 .input(plate, Osmiridium, 2)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 4))
-                .fluidInputs(Indalloy140.getFluid(L * 2))
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
                 .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING, 1))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
@@ -1185,7 +1185,7 @@ public class RecipeOverride {
                 .inputs(VOLTAGE_COIL_ZPM.getStackForm(2))
                 .input(plate, Rutherfordium, 2)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 8))
-                .fluidInputs(Indalloy140.getFluid(L * 4))
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING_MK2, 1))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();

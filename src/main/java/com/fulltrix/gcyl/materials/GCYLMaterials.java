@@ -1405,7 +1405,7 @@ public class GCYLMaterials {
                 .flags(DISABLE_REPLICATION).build();
 
         TungstenTitaniumCarbide = new Material.Builder(++id, gcylId("tungsten_titanium_carbide"))
-                .ingot(7)
+                .ingot(7).fluid().dust()
                 .color(0x800d0d)
                 .iconSet(SHINY)
                 .flags(CORE_METAL, DISABLE_DECOMPOSITION)

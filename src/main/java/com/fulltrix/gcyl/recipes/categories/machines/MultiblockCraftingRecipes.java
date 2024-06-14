@@ -393,7 +393,8 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .input(rotor, HSSE, 8)
                 .inputs(ELECTRIC_MOTOR_ZPM.getStackForm(8))
                 .input(circuit, MarkerMaterials.Tier.ZPM, 4)
-                .fluidInputs(Indalloy140.getFluid(L * 8))
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(Lubricant.getFluid(L * 16))
                 .outputs(MEGA_CLEANROOM.getStackForm())
                 .scannerResearch(b->b
                         .researchStack(CLEANROOM.getStackForm())
