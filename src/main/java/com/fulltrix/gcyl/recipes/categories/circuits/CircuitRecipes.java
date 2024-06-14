@@ -25,8 +25,7 @@ import static gregtech.common.items.MetaItems.*;
 public class CircuitRecipes {
 
     //TODO: higher tier soldering alloys
-    //TODO: research and/or move circuits to circuit assembly line
-    //TODO: remove tin as a soldering alloy
+    //TODO: move cosmic+ circuits to circuit assembly line
     //TODO: make smd ore prefixes to condense recipes
 
     public static int circuitsPerCraft = GCYLConfig.recipes.circuitsPerCraft;
@@ -142,6 +141,7 @@ public class CircuitRecipes {
                 .inputs(PLASTIC_CIRCUIT_BOARD.getStackForm())
                 .inputs(CENTRAL_PROCESSING_UNIT.getStackForm())
                 .input(wireFine, TinAlloy, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
                 .outputs(REFINED_PROCESSOR.getStackForm(circuitsPerCraft))
                 .buildAndRegister();
 
@@ -152,16 +152,29 @@ public class CircuitRecipes {
                 .inputs(PLASTIC_CIRCUIT_BOARD.getStackForm())
                 .inputs(CENTRAL_PROCESSING_UNIT.getStackForm())
                 .input(wireFine, TinAlloy, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
                 .outputs(REFINED_PROCESSOR.getStackForm(circuitsPerCraft))
                 .buildAndRegister();
 
         // SoC Recipe
+        for(RecipeBuilder<?> recipeBuilder : buildHigherYieldCleanroomRecipes(CIRCUIT_ASSEMBLER_RECIPES, REFINED_PROCESSOR, circuitsPerCraft, 1, 600)) {
+            recipeBuilder
+                    .duration(50)
+                    .inputs(PLASTIC_CIRCUIT_BOARD.getStackForm())
+                    .inputs(SYSTEM_ON_CHIP.getStackForm())
+                    .input(wireFine, TinAlloy, 8)
+                    .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                    .buildAndRegister();
+        }
+
+        /*
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(600)
                 .inputs(PLASTIC_CIRCUIT_BOARD.getStackForm())
                 .inputs(SYSTEM_ON_CHIP.getStackForm())
                 .input(wireFine, TinAlloy, 8)
                 .outputs(REFINED_PROCESSOR.getStackForm(circuitsPerCraft))
                 .buildAndRegister();
+         */
 
         // Refined Assembly
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(60)
@@ -171,6 +184,7 @@ public class CircuitRecipes {
                 .inputs(CAPACITOR.getStackForm(8))
                 .inputs(PLASTIC_CIRCUIT_BOARD.getStackForm())
                 .input(plate, StainlessSteel)
+                .fluidInputs(SolderingAlloy.getFluid(L))
                 .outputs(REFINED_ASSEMBLY.getStackForm())
                 .buildAndRegister();
 
@@ -181,6 +195,7 @@ public class CircuitRecipes {
                 .inputs(SMD_CAPACITOR_REFINED.getStackForm(2))
                 .inputs(PLASTIC_CIRCUIT_BOARD.getStackForm())
                 .input(plate, StainlessSteel)
+                .fluidInputs(SolderingAlloy.getFluid(L))
                 .outputs(REFINED_ASSEMBLY.getStackForm())
                 .buildAndRegister();
 
@@ -192,6 +207,7 @@ public class CircuitRecipes {
                 .inputs(RANDOM_ACCESS_MEMORY.getStackForm(2))
                 .inputs(PLASTIC_CIRCUIT_BOARD.getStackForm())
                 .input(wireGtSingle, MVSuperconductor)
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
                 .outputs(REFINED_COMPUTER.getStackForm())
                 .buildAndRegister();
 
@@ -202,6 +218,7 @@ public class CircuitRecipes {
                 .inputs(RANDOM_ACCESS_MEMORY.getStackForm(2))
                 .inputs(PLASTIC_CIRCUIT_BOARD.getStackForm())
                 .input(wireGtSingle, MVSuperconductor)
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
                 .outputs(REFINED_COMPUTER.getStackForm())
                 .buildAndRegister();
 
@@ -214,6 +231,7 @@ public class CircuitRecipes {
                 .inputs(RANDOM_ACCESS_MEMORY.getStackForm(4))
                 .input(frameGt, StainlessSteel, 4)
                 .outputs(REFINED_MAINFRAME.getStackForm())
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .buildAndRegister();
 
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(500).EUt(110)
@@ -224,6 +242,7 @@ public class CircuitRecipes {
                 .inputs(RANDOM_ACCESS_MEMORY.getStackForm(4))
                 .input(frameGt, StainlessSteel, 4)
                 .outputs(REFINED_MAINFRAME.getStackForm())
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .buildAndRegister();
     }
 
@@ -239,9 +258,21 @@ public class CircuitRecipes {
                 .input(wireFine, RedAlloy, 2)
                 .outputs(MICRO_PROCESSOR.getStackForm(circuitsPerCraft))
                 .cleanroom(CleanroomType.CLEANROOM)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
                 .buildAndRegister();
 
         // SoC Recipe
+        for(RecipeBuilder<?> recipeBuilder : buildHigherYieldCleanroomRecipes(CIRCUIT_ASSEMBLER_RECIPES, MICRO_PROCESSOR, circuitsPerCraft, 1, 2400)) {
+            recipeBuilder
+                    .duration(50)
+                    .inputs(ADVANCED_CIRCUIT_BOARD.getStackForm())
+                    .inputs(SYSTEM_ON_CHIP.getStackForm())
+                    .input(wireFine, RedAlloy, 8)
+                    .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                    .buildAndRegister();
+        }
+
+        /*
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(2400)
                 .inputs(ADVANCED_CIRCUIT_BOARD.getStackForm())
                 .inputs(SYSTEM_ON_CHIP.getStackForm())
@@ -249,6 +280,8 @@ public class CircuitRecipes {
                 .outputs(MICRO_PROCESSOR.getStackForm(circuitsPerCraft))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
+
+         */
 
         // Micro Assembly
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(350)
@@ -259,6 +292,7 @@ public class CircuitRecipes {
                 .inputs(ADVANCED_CIRCUIT_BOARD.getStackForm())
                 .input(plate, Titanium)
                 .outputs(PROCESSOR_ASSEMBLY_HV.getStackForm())
+                .fluidInputs(SolderingAlloy.getFluid(L))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
@@ -271,6 +305,7 @@ public class CircuitRecipes {
                 .inputs(ADVANCED_CIRCUIT_BOARD.getStackForm())
                 .input(wireGtSingle, HVSuperconductor)
                 .outputs(MICRO_COMPUTER.getStackForm())
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
@@ -283,6 +318,7 @@ public class CircuitRecipes {
                 .inputs(RANDOM_ACCESS_MEMORY.getStackForm(8))
                 .input(frameGt, Titanium, 4)
                 .outputs(MAINFRAME_IV.getStackForm())
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
     }
@@ -298,17 +334,32 @@ public class CircuitRecipes {
                 .inputs(EXTREME_CIRCUIT_BOARD.getStackForm())
                 .inputs(NANO_CENTRAL_PROCESSING_UNIT.getStackForm(12))
                 .input(wireFine, Aluminium, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         // SoC Recipe
+        for(RecipeBuilder<?> recipeBuilder : buildHigherYieldCleanroomRecipes(CIRCUIT_ASSEMBLER_RECIPES, NANO_PROCESSOR_HV, circuitsPerCraft, 1, 9600)) {
+            recipeBuilder
+                    .duration(50)
+                    .inputs(EXTREME_CIRCUIT_BOARD.getStackForm())
+                    .inputs(SYSTEM_ON_CHIP.getStackForm())
+                    .input(wireFine, Aluminium, 8)
+                    .fluidInputs(SolderingAlloy.getFluid(L))
+                    .buildAndRegister();
+        }
+
+        /*
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(9600)
                 .inputs(EXTREME_CIRCUIT_BOARD.getStackForm())
                 .inputs(SYSTEM_ON_CHIP.getStackForm())
                 .input(wireFine, Aluminium, 8)
                 .outputs(NANO_PROCESSOR_HV.getStackForm(circuitsPerCraft))
+                .fluidInputs(SolderingAlloy.getFluid(L))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
+
+         */
 
         // Nano Processor Assembly
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(2000)
@@ -319,6 +370,7 @@ public class CircuitRecipes {
                 .inputs(EXTREME_CIRCUIT_BOARD.getStackForm())
                 .input(plate, TungstenSteel)
                 .outputs(NANO_PROCESSOR_ASSEMBLY_EV.getStackForm())
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
@@ -331,6 +383,7 @@ public class CircuitRecipes {
                 .inputs(RANDOM_ACCESS_MEMORY.getStackForm(8))
                 .inputs(EXTREME_CIRCUIT_BOARD.getStackForm())
                 .input(wireGtSingle, EVSuperconductor)
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
@@ -343,6 +396,7 @@ public class CircuitRecipes {
                 .inputs(RANDOM_ACCESS_MEMORY.getStackForm(12))
                 .input(frameGt, TungstenSteel, 4)
                 .outputs(NANO_MAINFRAME_LUV.getStackForm())
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
     }
@@ -359,17 +413,32 @@ public class CircuitRecipes {
                 .inputs(NANO_CENTRAL_PROCESSING_UNIT.getStackForm())
                 .input(wireFine, Platinum, 2)
                 .outputs(QUANTUM_PROCESSOR_EV.getStackForm(circuitsPerCraft))
+                .fluidInputs(SolderingAlloy.getFluid(L))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         // ASoC Recipe
+        for(RecipeBuilder<?> recipeBuilder : buildHigherYieldCleanroomRecipes(CIRCUIT_ASSEMBLER_RECIPES, QUANTUM_PROCESSOR_EV, circuitsPerCraft, 1, 36000)) {
+            recipeBuilder
+                    .duration(50)
+                    .inputs(ELITE_CIRCUIT_BOARD.getStackForm())
+                    .inputs(ADVANCED_SYSTEM_ON_CHIP.getStackForm())
+                    .input(wireFine, Platinum, 8)
+                    .fluidInputs(SolderingAlloy.getFluid(L))
+                    .buildAndRegister();
+        }
+
+        /*
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(36000)
                 .inputs(ELITE_CIRCUIT_BOARD.getStackForm())
                 .inputs(ADVANCED_SYSTEM_ON_CHIP.getStackForm())
                 .input(wireFine, Platinum, 8)
                 .outputs(QUANTUM_PROCESSOR_EV.getStackForm(circuitsPerCraft))
+                .fluidInputs(SolderingAlloy.getFluid(L))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
+
+         */
 
 
         // Quantum Assembly
@@ -381,6 +450,7 @@ public class CircuitRecipes {
                 .inputs(ELITE_CIRCUIT_BOARD.getStackForm())
                 .input(plate, Osmium)
                 .outputs(QUANTUM_ASSEMBLY_IV.getStackForm())
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
@@ -393,6 +463,7 @@ public class CircuitRecipes {
                 .inputs(ELITE_CIRCUIT_BOARD.getStackForm())
                 .input(wireGtSingle, IVSuperconductor, 2)
                 .outputs(QUANTUM_COMPUTER_LUV.getStackForm())
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
@@ -408,6 +479,7 @@ public class CircuitRecipes {
                 .input(frameGt, Ruridit, 4)
                 .input(wireGtSingle, IVSuperconductor, 16)
                 .outputs(QUANTUM_MAINFRAME_ZPM.getStackForm())
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .scannerResearch(b -> b
                         .researchStack(QUANTUM_COMPUTER_LUV.getStackForm())
@@ -426,17 +498,32 @@ public class CircuitRecipes {
                 .inputs(NANO_CENTRAL_PROCESSING_UNIT.getStackForm())
                 .input(wireFine, NiobiumTitanium, 2)
                 .outputs(CRYSTAL_PROCESSOR_IV.getStackForm(circuitsPerCraft))
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         // Crystal SoC Recipe
+        for(RecipeBuilder<?> recipeBuilder : buildHigherYieldCleanroomRecipes(CIRCUIT_ASSEMBLER_RECIPES, CRYSTAL_PROCESSOR_IV, circuitsPerCraft, 1, 86000)) {
+            recipeBuilder
+                    .duration(50)
+                    .inputs(KAPTON_CIRCUIT_BOARD.getStackForm())
+                    .inputs(CRYSTAL_SYSTEM_ON_CHIP.getStackForm())
+                    .input(wireFine, NiobiumTitanium, 8)
+                    .fluidInputs(SolderingAlloy.getFluid(L * 2))
+                    .buildAndRegister();
+        }
+
+        /*
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(86000)
                 .inputs(KAPTON_CIRCUIT_BOARD.getStackForm())
                 .inputs(CRYSTAL_SYSTEM_ON_CHIP.getStackForm())
                 .input(wireFine, NiobiumTitanium, 8)
                 .outputs(CRYSTAL_PROCESSOR_IV.getStackForm(4))
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
+
+         */
 
         // Crystal Processor Assembly
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(20000)
@@ -447,6 +534,7 @@ public class CircuitRecipes {
                 .inputs(KAPTON_CIRCUIT_BOARD.getStackForm())
                 .input(wireGtSingle, LuVSuperconductor, 4)
                 .outputs(CRYSTAL_ASSEMBLY_LUV.getStackForm())
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
@@ -463,6 +551,7 @@ public class CircuitRecipes {
                 .input(plate, RhodiumPlatedPalladium, 2)
                 .input(wireGtSingle, LuVSuperconductor, 16)
                 .outputs(CRYSTAL_COMPUTER_ZPM.getStackForm())
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .scannerResearch(b -> b
                         .researchStack(CRYSTAL_ASSEMBLY_LUV.getStackForm())
@@ -470,7 +559,7 @@ public class CircuitRecipes {
                 .buildAndRegister();
 
         // Crystal Mainframe
-        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(500).EUt(30000)
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(1200).EUt(30000)
                 .inputs(CRYSTAL_COMPUTER_ZPM.getStackForm(2))
                 .inputs(SMD_RESISTOR_CRYSTAL.getStackForm(48))
                 .inputs(SMD_TRANSISTOR_CRYSTAL.getStackForm(48))
@@ -481,6 +570,7 @@ public class CircuitRecipes {
                 .input(frameGt, HSSE, 4)
                 .input(wireGtSingle, LuVSuperconductor, 32)
                 .outputs(CRYSTAL_MAINFRAME_UV.getStackForm())
+                .fluidInputs(SolderingAlloy.getFluid(L * 16))
                 .stationResearch(b -> b
                         .researchStack(CRYSTAL_COMPUTER_ZPM.getStackForm())
                         .CWUt(16)
@@ -500,6 +590,7 @@ public class CircuitRecipes {
                 .inputs(QUBIT_CENTRAL_PROCESSING_UNIT.getStackForm())
                 .input(wireFine, YttriumBariumCuprate, 2)
                 .outputs(WETWARE_PROCESSOR_LUV.getStackForm(circuitsPerCraft))
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
@@ -540,6 +631,7 @@ public class CircuitRecipes {
                 .fluidInputs(SterileGrowthMedium.getFluid(2000))
                 .outputs(WETWARE_PROCESSOR_ASSEMBLY_ZPM.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .stationResearch(b -> b
                         .researchStack(WETWARE_PROCESSOR_LUV.getStackForm())
                         .CWUt(32)
@@ -561,6 +653,7 @@ public class CircuitRecipes {
                 .fluidInputs(SterileGrowthMedium.getFluid(2000))
                 .outputs(WETWARE_SUPER_COMPUTER_UV.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
                 .stationResearch(b -> b
                         .researchStack(WETWARE_PROCESSOR_ASSEMBLY_ZPM.getStackForm())
                         .CWUt(48)
@@ -568,7 +661,7 @@ public class CircuitRecipes {
                 .buildAndRegister();
 
         // Wetware Mainframe
-        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(2000).EUt(300000)
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(1200).EUt(300000)
                 .inputs(WETWARE_SUPER_COMPUTER_UV.getStackForm(2))
                 .inputs(SMD_RESISTOR_WETWARE.getStackForm(64))
                 .inputs(SMD_TRANSISTOR_WETWARE.getStackForm(64))
@@ -584,6 +677,7 @@ public class CircuitRecipes {
                 .fluidInputs(SterileGrowthMedium.getFluid(2000))
                 .fluidInputs(UUMatter.getFluid(100))
                 .outputs(WETWARE_MAINFRAME_UHV.getStackForm())
+                .fluidInputs(SolderingAlloy.getFluid(L * 16))
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .stationResearch(b -> b
                         .researchStack(WETWARE_SUPER_COMPUTER_UV.getStackForm())
@@ -674,7 +768,7 @@ public class CircuitRecipes {
                 .buildAndRegister();
 
         // Bioware Mainframe
-        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(800).EUt(1920000)
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(1200).EUt(1920000)
                 .inputs(BIOWARE_COMPUTER.getStackForm(2))
                 .inputs(SMD_CAPACITOR_BIOWARE.getStackForm(64))
                 .inputs(SMD_TRANSISTOR_BIOWARE.getStackForm(64))
@@ -807,7 +901,7 @@ public class CircuitRecipes {
          */
 
         // Optical Mainframe
-        getAssLineResearchBuilder(GTValues.UEV, 800, OPTICAL_COMPUTER.getStackForm(), false, true, GCYLCleanroomType.ISO3, 6000000)
+        getAssLineResearchBuilder(GTValues.UEV, 1200, OPTICAL_COMPUTER.getStackForm(), false, true, GCYLCleanroomType.ISO3, 6000000)
                 .inputs(OPTICAL_COMPUTER.getStackForm(2))
                 .inputs(SMD_CAPACITOR_OPTICAL.getStackForm(64))
                 .inputs(SMD_TRANSISTOR_OPTICAL.getStackForm(64))
@@ -972,7 +1066,7 @@ public class CircuitRecipes {
          */
 
         //Exotic Mainframe
-        getAssLineResearchBuilder(GTValues.UIV, 800, EXOTIC_COMPUTER.getStackForm(), false, true, GCYLCleanroomType.ISO2, (int) 1E+7)
+        getAssLineResearchBuilder(GTValues.UIV, 1200, EXOTIC_COMPUTER.getStackForm(), false, true, GCYLCleanroomType.ISO2, (int) 1E+7)
                 .inputs(SMD_RESISTOR_EXOTIC.getStackForm(64))
                 .inputs(SMD_DIODE_EXOTIC.getStackForm(64))
                 .inputs(SMD_TRANSISTOR_EXOTIC.getStackForm(64))
@@ -1143,7 +1237,7 @@ public class CircuitRecipes {
          */
 
         // Cosmic Mainframe
-        getAssLineResearchBuilder(GTValues.UXV, 800, COSMIC_COMPUTER.getStackForm(), false, true, GCYLCleanroomType.ISO1, 30_720_000 * 2)
+        getAssLineResearchBuilder(GTValues.UXV, 1200, COSMIC_COMPUTER.getStackForm(), false, true, GCYLCleanroomType.ISO1, 30_720_000 * 2)
                 .inputs(COSMIC_COMPUTER.getStackForm(2))
                 .inputs(SMD_CAPACITOR_COSMIC.getStackForm(64))
                 .inputs(SMD_TRANSISTOR_COSMIC.getStackForm(64))
@@ -1301,7 +1395,7 @@ public class CircuitRecipes {
          */
 
         // Supracausal Mainframe
-        getAssLineResearchBuilder(GTValues.MAX, 600, SUPRACAUSAL_COMPUTER.getStackForm(), false, true, GCYLCleanroomType.ISO0, Integer.MAX_VALUE)
+        getAssLineResearchBuilder(GTValues.MAX, 1200, SUPRACAUSAL_COMPUTER.getStackForm(), false, true, GCYLCleanroomType.ISO0, Integer.MAX_VALUE)
                 .inputs(SMD_CAPACITOR_SUPRACAUSAL.getStackForm(64))
                 .inputs(SMD_DIODE_SUPRACAUSAL.getStackForm(64))
                 .inputs(SMD_TRANSISTOR_SUPRACAUSAL.getStackForm(64))
