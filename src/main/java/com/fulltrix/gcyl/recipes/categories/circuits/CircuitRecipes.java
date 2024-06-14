@@ -1161,7 +1161,7 @@ public class CircuitRecipes {
     private static void supracausalCircuits() {
 
         // Supracausal Processor
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(122_880_000)
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(122_880_000)
                 .inputs(COSMIC_COMPUTE_UNIT.getStackForm(16))
                 .inputs(MANIFOLD_OSCILLATORY_POWER_CELL.getStackForm())
                 .inputs(MICROWORMHOLE_GENERATOR.getStackForm())
@@ -1169,11 +1169,34 @@ public class CircuitRecipes {
                 .input(plate, SuperheavyHAlloy)
                 .input(wireGtSingle, UXVSuperconductor, 2)
                 .outputs(SUPRACAUSAL_PROCESSOR.getStackForm(4))
-                .solderMultiplier(4)
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .fluidInputs(Indalloy140.getFluid(L * 16))
+                .cleanroom(GCYLCleanroomType.ISO0)
                 .buildAndRegister();
 
         // Supracausal Assembly
+        getAssLineResearchBuilder(GTValues.OpV, 400, SUPRACAUSAL_PROCESSOR.getStackForm(), false, true, GCYLCleanroomType.ISO0, 122_880_000)
+                .inputs(SMD_CAPACITOR_SUPRACAUSAL.getStackForm(16))
+                .inputs(SMD_DIODE_SUPRACAUSAL.getStackForm(16))
+                .inputs(SMD_TRANSISTOR_SUPRACAUSAL.getStackForm(16))
+                .inputs(SMD_RESISTOR_SUPRACAUSAL.getStackForm(16))
+                .inputs(SUPRACAUSAL_PROCESSOR.getStackForm(3))
+                .inputs(ARAM.getStackForm(64))
+                .inputs(ARAM.getStackForm(64))
+                .inputs(RECURSIVELY_FOLDED_NEGATIVE_SPACE.getStackForm())
+                .inputs(CONTAINED_EXOTIC_MATTER.getStackForm())
+                .input(plate, TriniumTitanium, 16)
+                .input(foil, FullerenePolymerMatrix, 24)
+                .input(wireGtSingle, UXVSuperconductor, 8)
+                .input(wireFine, HeavyQuarkDegenerateMatter, 64)
+                .fluidInputs(Taranium.getFluid(L * 3))
+                .fluidInputs(TriniumTitanium.getFluid(L * 9))
+                .fluidInputs(ProtoAdamantium.getFluid(L * 4))
+                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 16))
+                .outputs(SUPRACAUSAL_ASSEMBLY.getStackForm())
+                .buildAndRegister();
+
+        /*
+
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(50).EUt(122_880_000)
                 .inputs(SMD_CAPACITOR_SUPRACAUSAL.getStackForm(16))
                 .inputs(SMD_DIODE_SUPRACAUSAL.getStackForm(16))
@@ -1193,10 +1216,34 @@ public class CircuitRecipes {
                 .fluidInputs(ProtoAdamantium.getFluid(L * 4))
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L * 16))
                 .outputs(SUPRACAUSAL_ASSEMBLY.getStackForm())
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
+         */
+
         // Supracausal Computer
+        getAssLineResearchBuilder(GTValues.OpV, 600, SUPRACAUSAL_ASSEMBLY.getStackForm(), false, true, GCYLCleanroomType.ISO0, 491_520_000)
+                .inputs(SMD_CAPACITOR_SUPRACAUSAL.getStackForm(32))
+                .inputs(SMD_DIODE_SUPRACAUSAL.getStackForm(32))
+                .inputs(SMD_TRANSISTOR_SUPRACAUSAL.getStackForm(32))
+                .inputs(SMD_RESISTOR_SUPRACAUSAL.getStackForm(32))
+                .inputs(SUPRACAUSAL_ASSEMBLY.getStackForm(4))
+                .inputs(EXOTIC_CHIP.getStackForm(32))
+                .inputs(COSMIC_COMPUTE_UNIT.getStackForm(16))
+                .inputs(EIGENFOLDED_KERR_MANIFOLD.getStackForm())
+                .input(plate, TriniumTitanium, 32)
+                .input(plate, MetastableFlerovium, 16)
+                .input(plate, Neutronium, 4)
+                .input(plate, CosmicNeutronium, 3)
+                .input(wireGtSingle, UXVSuperconductor, 64)
+                .inputs(PHOTOCOATED_HASSIUM_WAFER.getStackForm(16))
+                .fluidInputs(Taranium.getFluid(L * 2))
+                .fluidInputs(TriniumTitanium.getFluid(L * 9))
+                .fluidInputs(ProtoAdamantium.getFluid(L * 3))
+                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 6))
+                .outputs(SUPRACAUSAL_COMPUTER.getStackForm())
+                .buildAndRegister();
+
+        /*
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(100).EUt(491_520_000)
                 .inputs(SMD_CAPACITOR_SUPRACAUSAL.getStackForm(32))
                 .inputs(SMD_DIODE_SUPRACAUSAL.getStackForm(32))
@@ -1217,10 +1264,33 @@ public class CircuitRecipes {
                 .fluidInputs(ProtoAdamantium.getFluid(L * 3))
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L * 6))
                 .outputs(SUPRACAUSAL_COMPUTER.getStackForm())
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
+         */
+
         // Supracausal Mainframe
+        getAssLineResearchBuilder(GTValues.MAX, 600, SUPRACAUSAL_COMPUTER.getStackForm(), false, true, GCYLCleanroomType.ISO0, Integer.MAX_VALUE)
+                .inputs(SMD_CAPACITOR_SUPRACAUSAL.getStackForm(64))
+                .inputs(SMD_DIODE_SUPRACAUSAL.getStackForm(64))
+                .inputs(SMD_TRANSISTOR_SUPRACAUSAL.getStackForm(64))
+                .inputs(SMD_RESISTOR_SUPRACAUSAL.getStackForm(64))
+                .inputs(SUPRACAUSAL_COMPUTER.getStackForm(2))
+                .inputs(ULTRASHORT_PULSE_LASER.getStackForm(8))
+                .inputs(COSMIC_COMPUTE_UNIT.getStackForm(32))
+                .inputs(CTC_COMPUTATIONAL_UNIT.getStackForm())
+                .inputs(COSMIC_MESH.getStackForm(64))
+                .input(frameGt, QCDMatter, 4)
+                .input(wireGtSingle, OpVSuperconductor, 64)
+                .inputs(COSMIC_FABRIC.getStackForm(64))
+                .input(plate, QCDMatter, 64)
+                .fluidInputs(Taranium.getFluid(L * 64))
+                .fluidInputs(TriniumTitanium.getFluid(L * 64))
+                .fluidInputs(ProtoAdamantium.getFluid(L * 64))
+                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 64))
+                .outputs(SUPRACAUSAL_MAINFRAME.getStackForm())
+                .buildAndRegister();
+
+        /*
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(100).EUt(Integer.MAX_VALUE)
                 .inputs(SMD_CAPACITOR_SUPRACAUSAL.getStackForm(64))
                 .inputs(SMD_DIODE_SUPRACAUSAL.getStackForm(64))
@@ -1240,7 +1310,8 @@ public class CircuitRecipes {
                 .fluidInputs(ProtoAdamantium.getFluid(L * 64))
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L * 64))
                 .outputs(SUPRACAUSAL_MAINFRAME.getStackForm())
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
+
+         */
     }
 }

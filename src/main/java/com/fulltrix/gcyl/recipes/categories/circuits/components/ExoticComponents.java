@@ -2,6 +2,7 @@ package com.fulltrix.gcyl.recipes.categories.circuits.components;
 
 import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.api.GCYLUtility;
+import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -141,7 +142,7 @@ public class ExoticComponents {
                 .fluidInputs(SolderingAlloy.getFluid(L * 9))
                 .fluidInputs(Polybenzimidazole.getFluid(L * 6))
                 .outputs(EXOTIC_PROCESSING_CORE.getStackForm(6))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO2)
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(160).EUt(5000)

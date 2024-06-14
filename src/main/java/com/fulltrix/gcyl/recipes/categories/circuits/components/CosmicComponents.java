@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories.circuits.components;
 
+import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
@@ -74,7 +75,7 @@ public class CosmicComponents {
                 .fluidInputs(SolderingAlloy.getFluid(L * 9))
                 .fluidInputs(ProtoAdamantium.getFluid(L * 3))
                 .outputs(COSMIC_PROCESSING_CORE.getStackForm(8))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO1)
                 .buildAndRegister();
 
         CHEMICAL_BATH_RECIPES.recipeBuilder().duration(240).EUt(695000)

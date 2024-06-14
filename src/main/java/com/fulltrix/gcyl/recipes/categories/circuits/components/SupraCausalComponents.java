@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories.circuits.components;
 
+import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 
@@ -75,7 +76,7 @@ public class SupraCausalComponents {
                 .inputs(SMD_RESISTOR_SUPRACAUSAL.getStackForm(64))
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L * 9))
                 .outputs(SUPRACAUSAL_PROCESSING_CORE.getStackForm(8))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO0)
                 .buildAndRegister();
 
         // Topological Manipulator Unit
