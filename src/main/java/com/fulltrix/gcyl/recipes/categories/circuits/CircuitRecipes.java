@@ -689,7 +689,7 @@ public class CircuitRecipes {
         //.solderMultiplier(4);
 
         // Optical Assembly
-        getAssLineResearchBuilder(GTValues.UHV, 400, OPTICAL_PROCESSOR.getStackForm(), false, false, GCYLCleanroomType.ISO3, 960000)
+        getAssLineResearchBuilder(GTValues.UHV, 400, OPTICAL_PROCESSOR.getStackForm(), false, true, GCYLCleanroomType.ISO3, 960000)
                 .inputs(OPTICAL_PROCESSOR.getStackForm(3))
                 .inputs(SMD_CAPACITOR_OPTICAL.getStackForm(16))
                 .inputs(SMD_TRANSISTOR_OPTICAL.getStackForm(16))
@@ -730,7 +730,7 @@ public class CircuitRecipes {
          */
 
         // Optical Computer
-        getAssLineResearchBuilder(GTValues.UHV, 600, OPTICAL_ASSEMBLY.getStackForm(), false, false, GCYLCleanroomType.ISO3, 1920000)
+        getAssLineResearchBuilder(GTValues.UHV, 600, OPTICAL_ASSEMBLY.getStackForm(), false, true, GCYLCleanroomType.ISO3, 1920000)
                 .inputs(OPTICAL_ASSEMBLY.getStackForm(4))
                 .inputs(SMD_CAPACITOR_OPTICAL.getStackForm(32))
                 .inputs(SMD_TRANSISTOR_OPTICAL.getStackForm(32))
@@ -775,7 +775,7 @@ public class CircuitRecipes {
          */
 
         // Optical Mainframe
-        getAssLineResearchBuilder(GTValues.UHV, 800, OPTICAL_COMPUTER.getStackForm(), true, true, GCYLCleanroomType.ISO3, 6000000)
+        getAssLineResearchBuilder(GTValues.UEV, 800, OPTICAL_COMPUTER.getStackForm(), false, true, GCYLCleanroomType.ISO3, 6000000)
                 .inputs(OPTICAL_COMPUTER.getStackForm(2))
                 .inputs(SMD_CAPACITOR_OPTICAL.getStackForm(64))
                 .inputs(SMD_TRANSISTOR_OPTICAL.getStackForm(64))
@@ -829,14 +829,14 @@ public class CircuitRecipes {
         //Exotic Processor
         for(RecipeBuilder<?> recipeBuilder : buildHigherYieldCleanroomRecipes(CIRCUIT_ASSEMBLER_RECIPES, EXOTIC_PROCESSOR, 4, 4, (int) 4E+6)) {
             recipeBuilder
-                    .duration(100)
+                    .duration(200)
                     .inputs(SMD_CAPACITOR_EXOTIC.getStackForm(8))
                     .inputs(SMD_TRANSISTOR_EXOTIC.getStackForm(8))
                     .inputs(EXOTIC_PROCESSING_CORE.getStackForm())
                     .input(wireFine, Cinobite, 4)
                     .inputs(QUBIT_CENTRAL_PROCESSING_UNIT.getStackForm(4))
                     .inputs(EXOTIC_CHIP.getStackForm(4))
-                    .fluidInputs(Indalloy140.getFluid(L * 2))
+                    .fluidInputs(Indalloy140.getFluid(L * 4))
                     .buildAndRegister();
         }
 
@@ -856,7 +856,7 @@ public class CircuitRecipes {
          */
 
         //Exotic Assembly
-        getAssLineResearchBuilder(GTValues.UEV, 200, EXOTIC_PROCESSOR.getStackForm(), false, false, GCYLCleanroomType.ISO2, (int) 4E+6)
+        getAssLineResearchBuilder(GTValues.UEV, 400, EXOTIC_PROCESSOR.getStackForm(), false, true, GCYLCleanroomType.ISO2, (int) 4E+6)
                 .inputs(SMD_RESISTOR_EXOTIC.getStackForm(16))
                 .inputs(SMD_DIODE_EXOTIC.getStackForm(16))
                 .inputs(SMD_TRANSISTOR_EXOTIC.getStackForm(16))
@@ -898,7 +898,7 @@ public class CircuitRecipes {
          */
 
         //Exotic Computer
-        getAssLineResearchBuilder(GTValues.UEV, 300, EXOTIC_ASSEMBLY.getStackForm(), false, false, GCYLCleanroomType.ISO2, (int) 4E+6)
+        getAssLineResearchBuilder(GTValues.UEV, 600, EXOTIC_ASSEMBLY.getStackForm(), false, true, GCYLCleanroomType.ISO2, (int) 4E+6)
                 .inputs(SMD_DIODE_EXOTIC.getStackForm(32))
                 .inputs(SMD_RESISTOR_EXOTIC.getStackForm(32))
                 .inputs(SMD_TRANSISTOR_EXOTIC.getStackForm(32))
@@ -940,7 +940,7 @@ public class CircuitRecipes {
          */
 
         //Exotic Mainframe
-        getAssLineResearchBuilder(GTValues.UEV, 400, EXOTIC_COMPUTER.getStackForm(), true, true, GCYLCleanroomType.ISO2, (int) 1E+7)
+        getAssLineResearchBuilder(GTValues.UIV, 800, EXOTIC_COMPUTER.getStackForm(), false, true, GCYLCleanroomType.ISO2, (int) 1E+7)
                 .inputs(SMD_RESISTOR_EXOTIC.getStackForm(64))
                 .inputs(SMD_DIODE_EXOTIC.getStackForm(64))
                 .inputs(SMD_TRANSISTOR_EXOTIC.getStackForm(64))
@@ -991,9 +991,22 @@ public class CircuitRecipes {
 
     private static void cosmicCircuits() {
 
-
-
         // Cosmic Processor
+
+        for(RecipeBuilder<?> recipeBuilder : buildHigherYieldCleanroomRecipes(CIRCUIT_ASSEMBLER_RECIPES, COSMIC_PROCESSOR, 8, 5, 30_720_000)) {
+            recipeBuilder
+                    .duration(200)
+                    .inputs(QUBIT_CENTRAL_PROCESSING_UNIT.getStackForm(4))
+                    .inputs(SMD_TRANSISTOR_COSMIC.getStackForm(8))
+                    .inputs(SMD_CAPACITOR_COSMIC.getStackForm(16))
+                    .inputs(COSMIC_PROCESSING_CORE.getStackForm())
+                    .inputs(UHASOC.getStackForm(4))
+                    .input(wireFine, AbyssalAlloy, 4)
+                    .fluidInputs(Indalloy140.getFluid(L * 8))
+                    .buildAndRegister();
+        }
+
+        /*
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(30_720_000)
                 .inputs(QUBIT_CENTRAL_PROCESSING_UNIT.getStackForm(4))
                 .inputs(SMD_TRANSISTOR_COSMIC.getStackForm(8))
@@ -1006,7 +1019,29 @@ public class CircuitRecipes {
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
+         */
+
         // Cosmic Assembly
+        getAssLineResearchBuilder(GTValues.UIV, 400, COSMIC_PROCESSOR.getStackForm(), false, true, GCYLCleanroomType.ISO1, 30_720_000)
+                .inputs(COSMIC_PROCESSOR.getStackForm(3))
+                .inputs(SMD_CAPACITOR_COSMIC.getStackForm(32))
+                .inputs(SMD_TRANSISTOR_COSMIC.getStackForm(32))
+                .inputs(SMD_DIODE_COSMIC.getStackForm(32))
+                .inputs(SMD_RESISTOR_COSMIC.getStackForm(32))
+                .input(wireGtSingle, UIVSuperconductor, 4)
+                .input(wireFine, MetastableOganesson, 64)
+                .input(wireFine, MetastableHassium, 64)
+                .input(wireFine, MetastableFlerovium, 64)
+                .inputs(ARAM.getStackForm(64))
+                .input(plate, Quantum, 2)
+                .input(foil, Zylon, 16)
+                .fluidInputs(Tritanium.getFluid(L * 18))
+                .fluidInputs(Polyetheretherketone.getFluid(L * 18))
+                .fluidInputs(NaquadahEnriched.getFluid(L * 9))
+                .outputs(COSMIC_ASSEMBLY.getStackForm())
+                .buildAndRegister();
+
+        /*
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(100).EUt(30_720_000)
                 .inputs(COSMIC_PROCESSOR.getStackForm(3))
                 .inputs(SMD_CAPACITOR_COSMIC.getStackForm(32))
@@ -1027,7 +1062,31 @@ public class CircuitRecipes {
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
+         */
+
         // Cosmic Computer
+        getAssLineResearchBuilder(GTValues.UIV, 600, COSMIC_ASSEMBLY.getStackForm(), false, true, GCYLCleanroomType.ISO1, 30_720_000)
+                .inputs(COSMIC_ASSEMBLY.getStackForm(4))
+                .inputs(SMD_CAPACITOR_COSMIC.getStackForm(48))
+                .inputs(SMD_TRANSISTOR_COSMIC.getStackForm(48))
+                .inputs(SMD_DIODE_COSMIC.getStackForm(48))
+                .inputs(SMD_RESISTOR_COSMIC.getStackForm(48))
+                .input(wireGtSingle, UIVSuperconductor, 16)
+                .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64))
+                .inputs(ARAM.getStackForm(64))
+                .inputs(ARAM.getStackForm(64))
+                .inputs(OPTICAL_SOC.getStackForm(16))
+                .input(plate, HastelloyK243, 4)
+                .input(foil, FullerenePolymerMatrix, 12)
+                .inputs(GRAVI_STAR.getStackForm(32))
+                .fluidInputs(CosmicComputingMix.getFluid(4000))
+                .fluidInputs(Tritanium.getFluid(L * 9))
+                .fluidInputs(Zylon.getFluid(L * 18))
+                .fluidInputs(Naquadria.getFluid(L * 9))
+                .outputs(COSMIC_COMPUTER.getStackForm())
+                .buildAndRegister();
+
+        /*
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(100).EUt(30_720_000)
                 .inputs(COSMIC_ASSEMBLY.getStackForm(4))
                 .inputs(SMD_CAPACITOR_COSMIC.getStackForm(48))
@@ -1047,10 +1106,33 @@ public class CircuitRecipes {
                 .fluidInputs(Zylon.getFluid(L * 18))
                 .fluidInputs(Naquadria.getFluid(L * 9))
                 .outputs(COSMIC_COMPUTER.getStackForm())
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
+         */
+
         // Cosmic Mainframe
+        getAssLineResearchBuilder(GTValues.UXV, 800, COSMIC_COMPUTER.getStackForm(), false, true, GCYLCleanroomType.ISO1, 30_720_000 * 2)
+                .inputs(COSMIC_COMPUTER.getStackForm(2))
+                .inputs(SMD_CAPACITOR_COSMIC.getStackForm(64))
+                .inputs(SMD_TRANSISTOR_COSMIC.getStackForm(64))
+                .inputs(SMD_DIODE_COSMIC.getStackForm(64))
+                .inputs(SMD_RESISTOR_COSMIC.getStackForm(64))
+                .inputs(COSMIC_COMPUTE_UNIT.getStackForm(16))
+                .input(wireGtSingle, UIVSuperconductor, 32)
+                .inputs(UHASOC.getStackForm(64))
+                .inputs(PHOTOCOATED_HASSIUM_WAFER.getStackForm(16))
+                .input(frameGt, HeavyQuarkDegenerateMatter, 4)
+                .input(plate, HastelloyK243, 8)
+                .input(foil, FullerenePolymerMatrix, 64)
+                .inputs(UNSTABLE_STAR.getStackForm(4))
+                .fluidInputs(Taranium.getFluid(L * 2))
+                .fluidInputs(TriniumTitanium.getFluid(L * 9))
+                .fluidInputs(Zylon.getFluid(L * 18))
+                .fluidInputs(Vibranium.getFluid(L * 6))
+                .outputs(COSMIC_MAINFRAME.getStackForm())
+                .buildAndRegister();
+
+        /*
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(200).EUt(30_720_000)
                 .inputs(COSMIC_COMPUTER.getStackForm(2))
                 .inputs(SMD_CAPACITOR_COSMIC.getStackForm(64))
@@ -1070,8 +1152,9 @@ public class CircuitRecipes {
                 .fluidInputs(Zylon.getFluid(L * 18))
                 .fluidInputs(Vibranium.getFluid(L * 6))
                 .outputs(COSMIC_MAINFRAME.getStackForm())
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
+
+         */
     }
 
 
