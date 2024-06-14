@@ -133,4 +133,15 @@ public class GCYLConfig {
         public int LuVRocketEfficiency= 25;
 
     }
+
+
+    @Config.Comment("Config options for recipes")
+    public static Recipes recipes = new Recipes();
+
+    public static class Recipes {
+
+        @Config.Comment({"Base amount of circuits outputted per craft of the first circuit of a tier.", "default = 2"})
+        @Config.RequiresMcRestart
+        public int circuitsPerCraft = 2;
+    }
 }

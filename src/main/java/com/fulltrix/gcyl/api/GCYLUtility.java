@@ -176,7 +176,8 @@ public class GCYLUtility {
                     .circuitMeta(i)
                     .cleanroom(getCleanroomTypeByTierNotV(i))
                     .EUt(i == startCleanRoomTier ? startEUt : (int) (startEUt * Math.pow(4, i - startCleanRoomTier)))
-                    .outputs(output.getStackForm((int) (baseOutputAmount * Math.pow(2, i - startCleanRoomTier)))));
+                    //.outputs(output.getStackForm((int) (baseOutputAmount * Math.pow(2, i - startCleanRoomTier)))) //TODO MAY NEED NERF
+                    .outputs(output.getStackForm(i == startCleanRoomTier ? baseOutputAmount : 2 * baseOutputAmount * (i - startCleanRoomTier))));
         }
         return recipeBuilderList;
     }

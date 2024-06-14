@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.jei;
 
 
+import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityWirelessEnergyHatch;
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import gregtech.api.unification.OreDictUnifier;
@@ -76,8 +77,10 @@ public class JEIGCYLPlugin implements IModPlugin {
             itemBlacklist.addIngredientToBlacklist(CIRCUIT_ASSEMBLER[i].getStackForm());
         }
 
-        for (MetaTileEntityWirelessEnergyHatch metaTileEntityWirelessEnergyHatch : WIRELESS_ENERGY_HATCH_OUTPUT) {
-            itemBlacklist.addIngredientToBlacklist(metaTileEntityWirelessEnergyHatch.getStackForm());
+        if(!GCYLConfig.Misc.enableWirelessDynamos) {
+            for (MetaTileEntityWirelessEnergyHatch metaTileEntityWirelessEnergyHatch : WIRELESS_ENERGY_HATCH_OUTPUT) {
+                itemBlacklist.addIngredientToBlacklist(metaTileEntityWirelessEnergyHatch.getStackForm());
+            }
         }
 
 

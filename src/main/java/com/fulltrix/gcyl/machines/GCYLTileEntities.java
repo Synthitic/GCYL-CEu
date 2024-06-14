@@ -16,6 +16,7 @@ import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityDecayChamber;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityGreenhouse;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityPlasmaCondenser;
 import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
+import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityParallelHatch;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.SimpleGeneratorMetaTileEntity;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
@@ -49,10 +50,9 @@ public class GCYLTileEntities {
     public static MetaTileEntityDeepMiner DEEP_MINER;
     public static MetaTileEntityDecayChamber DECAY_CHAMBER;
     public static MetaTileEntityGreenhouse[] GREEN_HOUSE = new MetaTileEntityGreenhouse[2];
+    public static MetaTileEntityParallelHatch[] GCYL_PARALLEL_HATCH = new MetaTileEntityParallelHatch[3];
+
     public static MetaTileEntityMegaCleanroom MEGA_CLEANROOM;
-
-    public static MetaTileEntityWirelessPowerSubstation WIRELESS_PSS;
-
     public static MetaTileEntitySterileCleaningMaintenanceHatch STERILE_CLEANING_MAINTENANCE_HATCH;
     public static MetaTileEntityISO3CleaningMaintenanceHatch ISO3_CLEANING_MAINTENANCE_HATCH;
     public static MetaTileEntityISO2CleaningMaintenanceHatch ISO2_CLEANING_MAINTENANCE_HATCH;
@@ -64,6 +64,7 @@ public class GCYLTileEntities {
     public static SimpleGeneratorMetaTileEntity[] ROCKET_GENERATOR = new SimpleGeneratorMetaTileEntity[8];
 
     ///////////////////////////////////////////
+    public static MetaTileEntityWirelessPowerSubstation WIRELESS_PSS;
     public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length];
     public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT_4A = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length - 4];
     public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT_16A = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length - 5];
@@ -178,6 +179,10 @@ public class GCYLTileEntities {
             ROCKET_GENERATOR[4] = registerMetaTileEntity(++id, new SimpleGeneratorMetaTileEntity(gcylId("rocket_generator.mk2"), GCYLRecipeMaps.ROCKET_FUEL_RECIPES, ClientHandler.ROCKET_OVERLAY, 5, GTUtility.genericGeneratorTankSizeFunction));
             ROCKET_GENERATOR[5] = registerMetaTileEntity(++id, new SimpleGeneratorMetaTileEntity(gcylId("rocket_generator.mk3"), GCYLRecipeMaps.ROCKET_FUEL_RECIPES, ClientHandler.ROCKET_OVERLAY, 6, GTUtility.genericGeneratorTankSizeFunction));
         //}
+
+        GCYL_PARALLEL_HATCH[0] = registerMetaTileEntity(++id, new MetaTileEntityParallelHatch(gcylId(String.format("parallel_hatch.%s", GTValues.VN[GTValues.UEV])), GTValues.UHV));
+        GCYL_PARALLEL_HATCH[1] = registerMetaTileEntity(++id, new MetaTileEntityParallelHatch(gcylId(String.format("parallel_hatch.%s", GTValues.VN[GTValues.UXV])), GTValues.UEV));
+        GCYL_PARALLEL_HATCH[2] = registerMetaTileEntity(++id, new MetaTileEntityParallelHatch(gcylId(String.format("parallel_hatch.%s", GTValues.VN[GTValues.MAX])), GTValues.UIV));
 
 
         MetaTileEntities.registerSimpleMetaTileEntity(DEHYDRATOR, ++id, "dehydrator", GCYLRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES, Textures.SIFTER_OVERLAY, true, GCYLUtility::gcylId, GTUtility.hvCappedTankSizeFunction);
