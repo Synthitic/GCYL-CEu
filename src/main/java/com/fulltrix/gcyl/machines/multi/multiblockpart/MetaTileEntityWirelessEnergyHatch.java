@@ -72,7 +72,8 @@ public class MetaTileEntityWirelessEnergyHatch extends MetaTileEntityEnergyHatch
                 this.energyContainerWireless.addEnergy(energy);
             } else {
                 if(this.energyContainer.getEnergyStored() != this.energyContainer.getEnergyCapacity()) {
-                    long energy = this.energyContainer.getInputVoltage() * this.energyContainer.getInputAmperage() > this.energyContainerWireless.getEnergyStored() ? this.energyContainerWireless.getEnergyStored() : this.energyContainer.getInputVoltage() * this.energyContainer.getInputAmperage();
+                    //long energy = this.energyContainer.getInputVoltage() * this.energyContainer.getInputAmperage() > this.energyContainerWireless.getEnergyStored() ? this.energyContainerWireless.getEnergyStored() : this.energyContainer.getInputVoltage() * this.energyContainer.getInputAmperage();
+                    long energy = this.energyContainer.getEnergyCapacity() - this.energyContainer.getEnergyStored() > this.energyContainerWireless.getEnergyStored() ? this.energyContainerWireless.getEnergyStored() : this.energyContainer.getEnergyCapacity() - this.energyContainer.getEnergyStored();
                     this.energyContainerWireless.remove(energy);
                     this.energyContainer.addEnergy(energy);
                 }
