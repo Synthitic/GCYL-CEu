@@ -194,7 +194,7 @@ public class MultiblockPartCraftingRecipes {
             }
 
             if(i > 4 && i < 10) {
-                getAssLineResearchBuilder(i, 400, i == 5 ? ENERGY_INPUT_HATCH_16A[i - 5].getStackForm() : WIRELESS_ENERGY_HATCH_INPUT[i - 5].getStackForm(), true, true)
+                getAssLineResearchBuilder(i, 400, i == 5 ? ENERGY_INPUT_HATCH_16A[i - 5].getStackForm() : WIRELESS_ENERGY_HATCH_INPUT_16A[i - 5].getStackForm(), true, true)
                         .outputs(WIRELESS_ENERGY_HATCH_INPUT_16A[i - 5].getStackForm())
                         .inputs(ENERGY_INPUT_HATCH_16A[i - 5].getStackForm())
                         .inputs(getPowerIC(i))
