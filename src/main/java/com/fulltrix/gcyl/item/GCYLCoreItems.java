@@ -6,6 +6,7 @@ import gregtech.common.items.MetaItems;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import scala.tools.cmd.Meta;
 
 import java.util.List;
 
@@ -213,6 +214,7 @@ public class GCYLCoreItems {
     public static MetaItem<?>.MetaValueItem BOULE_RUTHERFORDIUM;
 
     public static MetaItem<?>.MetaValueItem UNSTABLE_STAR;
+    public static MetaItem<?>.MetaValueItem NUCLEAR_STAR;
     public static MetaItem<?>.MetaValueItem CONVEYOR_MODULE_MAX;
     public static MetaItem<?>.MetaValueItem ELECTRIC_MOTOR_MAX;
     public static MetaItem<?>.MetaValueItem ELECTRIC_PISTON_MAX;

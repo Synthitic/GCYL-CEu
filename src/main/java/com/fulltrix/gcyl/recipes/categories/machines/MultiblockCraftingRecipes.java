@@ -240,8 +240,8 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .inputs(DEGENERATE_RHENIUM_PLATE.getStackForm(4))
                 .input(foil, Zylon, 64)
                 .input(foil, Zylon, 64)
-                .inputs(FIELD_GENERATOR_UXV.getStackForm(2))
-                .inputs(ELECTRIC_PUMP_UXV.getStackForm(2))
+                .inputs(FIELD_GENERATOR_OpV.getStackForm(2))
+                .inputs(ELECTRIC_PUMP_OpV.getStackForm(2))
                 .inputs(HYPER_REACTOR[1].getStackForm())
                 .outputs(HYPER_REACTOR[2].getStackForm())
                 .buildAndRegister();

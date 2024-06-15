@@ -48,8 +48,8 @@ public class MultiblockPartCraftingRecipes {
 
         // energy output
         for(int i = 9; i < 14; i++) {
-            getAssLineResearchBuilder(i, 1000, ENERGY_INPUT_HATCH[i-1].getStackForm(), false, false)
-                    .outputs(ENERGY_INPUT_HATCH[i].getStackForm())
+            getAssLineResearchBuilder(i, 1000, ENERGY_OUTPUT_HATCH[i-1].getStackForm(), false, false)
+                    .outputs(ENERGY_OUTPUT_HATCH[i].getStackForm())
                     .inputs(HULL[i].getStackForm())
                     .input(spring, getCableByTier(i), 4)
                     .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm((int) (4 * Math.pow(2, i - 9))))

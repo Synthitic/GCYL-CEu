@@ -252,6 +252,13 @@ highTierVoltageCoils();
                 .chancedOutput(dust, Plutonium244, 2000, 300)
                 .chancedOutput(dustTiny, Uranium238, 3000, 450)
                 .buildAndRegister();
+
+        //NUCLEAR STAR
+        AUTOCLAVE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UIV]).duration(600)
+                .inputs(UNSTABLE_STAR.getStackForm(16))
+                .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 8))
+                .outputs(NUCLEAR_STAR.getStackForm())
+                .buildAndRegister();
     }
 
     private static void highTierVoltageCoils() {

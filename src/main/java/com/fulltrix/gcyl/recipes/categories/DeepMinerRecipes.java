@@ -10,10 +10,13 @@ import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.TextComponentUtil;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
@@ -350,7 +353,7 @@ public class DeepMinerRecipes {
 
         dataItem.setTagCompound(compound);
 
-        dataItem.setStackDisplayName(I18n.format("gcyl.research."+researchId));
+        dataItem.setStackDisplayName((new TextComponentTranslation("gcyl.research." + researchId).getFormattedText()));
 
         if (CWUt > 0) {
             RecipeBuilder<?> researchBuilder = RecipeMaps.RESEARCH_STATION_RECIPES.recipeBuilder()

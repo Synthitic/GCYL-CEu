@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.machines.multi.advance;
 
+import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.item.fusion.GCYLCryostatCasing;
@@ -30,6 +31,8 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.Recipe;
+import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
 import gregtech.api.recipes.recipeproperties.IRecipePropertyStorage;
 import gregtech.api.util.RelativeDirection;
@@ -74,7 +77,7 @@ import java.util.function.DoubleSupplier;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 
-public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockController implements ITieredMetaTileEntity, IFastRenderMetaTileEntity, IBloomEffect {
+public class MetaTileEntityAdvFusionReactor extends GCYLRecipeMapMultiblockController implements ITieredMetaTileEntity, IFastRenderMetaTileEntity, IBloomEffect {
 
     //TODO make this better. make coils independent of tier. fix bloom. make it be able to run regular fusion recipes. make recipe cancel if energy runs out
 
@@ -97,7 +100,7 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
 
 
     public MetaTileEntityAdvFusionReactor(ResourceLocation metaTileEntityId, int tier) {
-        super(metaTileEntityId, GCYLRecipeMaps.ADV_FUSION_RECIPES);
+        super(metaTileEntityId, new RecipeMap[] {GCYLRecipeMaps.ADV_FUSION_RECIPES, RecipeMaps.FUSION_RECIPES}, false);
         this.recipeMapWorkable = new AdvFusionRecipeLogic(this);
         this.tier = tier;
         this.energyContainer = new EnergyContainerHandler(this, 0, 0, 0, 0, 0) {
@@ -109,6 +112,10 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
             }
         };
         this.progressBarSupplier = new MetaTileEntityAdvFusionReactor.FusionProgressSupplier();
+    }
+    @Override
+    public boolean isTiered() {
+        return false;
     }
 
     @Override
@@ -806,11 +813,19 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
             int coilTier = storage.getRecipePropertyValue(AdvFusionCoilProperty.getInstance(), 0);
             double euReturn = storage.getRecipePropertyValue(AdvFusionEUReturnProperty.getInstance(), 0);
 
-            if (fusionTier != 0) fusionTier = MetaTileEntityAdvFusionReactor.this.tier - fusionTier;
-            if (coilTier != 0) coilTier = MetaTileEntityAdvFusionReactor.this.coilTier - coilTier;
+            if(coilTier != 0) {
+                if (fusionTier != 0) fusionTier = MetaTileEntityAdvFusionReactor.this.tier - fusionTier;
+                coilTier = MetaTileEntityAdvFusionReactor.this.coilTier - coilTier;
 
-            values[0] = (int) (values[0] - (values[0] * (euReturn / 100.0)));
-            values[2] = Math.min(fusionTier + coilTier, values[2]);
+                values[0] = (int) (values[0] - (values[0] * (euReturn / 100.0)));
+                values[2] = Math.min(fusionTier + coilTier, values[2]);
+            }
+            else {
+                if (fusionTier != 0) fusionTier = MetaTileEntityAdvFusionReactor.this.tier - fusionTier;
+                values[0] = (int) (values[0] - (values[0] * (euReturn / 100.0)));
+                values[2] = Math.min(fusionTier * 2, values[2]);
+            }
+
         }
 
         /*

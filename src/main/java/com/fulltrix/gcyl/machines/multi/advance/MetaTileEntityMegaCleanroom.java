@@ -352,17 +352,20 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implem
 
     @Override
     public boolean drainEnergy(boolean simulate) {
-        long energyToDrain = this.isClean() ? (long)Math.max(4.0, Math.pow(4.0, this.getEnergyTier())) : (long)GTValues.VA[this.getEnergyTier()];
-        long resultEnergy = this.energyContainer.getEnergyStored() - energyToDrain;
-        if (resultEnergy >= 0L && resultEnergy <= this.energyContainer.getEnergyCapacity()) {
-            if (!simulate) {
-                this.energyContainer.changeEnergy(-energyToDrain);
-            }
+        if(isStructureFormed()) {
+            long energyToDrain = this.isClean() ? (long) Math.max(4.0, Math.pow(4.0, this.getEnergyTier())) : (long) GTValues.VA[this.getEnergyTier()];
+            long resultEnergy = this.energyContainer.getEnergyStored() - energyToDrain;
+            if (resultEnergy >= 0L && resultEnergy <= this.energyContainer.getEnergyCapacity()) {
+                if (!simulate) {
+                    this.energyContainer.changeEnergy(-energyToDrain);
+                }
 
-            return true;
-        } else {
-            return false;
+                return true;
+            } else {
+                return false;
+            }
         }
+        return false;
     }
 
     @Override

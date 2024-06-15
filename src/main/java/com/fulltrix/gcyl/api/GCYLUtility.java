@@ -21,6 +21,7 @@ import java.util.List;
 
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
+import static gregicality.multiblocks.api.unification.GCYMMaterials.Zeron100;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.common.items.MetaItems.*;
@@ -96,7 +97,7 @@ public class GCYLUtility {
             case(3) -> Gold;
             case(4) -> Aluminium;
             case(5) -> Tungsten;
-            case(6) -> NiobiumTitanium;
+            case(6) -> YttriumBariumCuprate;
             case(7) -> Naquadah;
             case(8) -> Duranium;
             case(9) -> TungstenTitaniumCarbide;
@@ -209,6 +210,185 @@ public class GCYLUtility {
         };
     }
 
+    public static Material getMainComponentMaterialByTier(int tier) {
+        return switch (tier) {
+              case(6)->HSSS;
+              case(7)->HSSE;
+              case(8)->Tritanium;
+              case(9)->HDCS;
+              case(10)->EnrichedNaquadahAlloy;
+              case(11)->HastelloyX78;
+              case(12)->HastelloyK243;
+              case(13)->Neutronium;
+              case(14)->QCDMatter;
+              case(15)->CosmicNeutronium;
+            default -> Tin;
+        };
+    }
+
+    public static Material getFluidMaterialByTier(int tier) {
+        return switch (tier) {
+            case (9) -> Seaborgium;
+            case (10) -> Bohrium;
+            case (11) -> MetastableHassium;
+            case (12) -> HeavyQuarkDegenerateMatter;
+            case (13) -> SuperheavyMix;
+            case (14) -> Neutronium;
+            default -> Tin;
+        };
+    }
+
+    public static Material getFluidPipeMaterialByTier(int tier) {
+        return switch (tier) {
+            case (9) -> Zeron100;
+            case (10) -> Lafium;
+            case (11) -> TantalumHafniumSeaborgiumCarbide;
+            case (12) -> EnrichedNaquadahAlloy;
+            case (13) -> Neutronium;
+            case (14) -> CosmicNeutronium;
+            default -> Tin;
+        };
+    }
+
+    public static Material getPolymerByTier(int tier) {
+        return switch (tier) {
+            case(9) -> Polyetheretherketone;
+            case(10) -> Polyetheretherketone;
+            case(11) -> Zylon;
+            case(12) -> Zylon;
+            case(13) -> FullerenePolymerMatrix;
+            case(14) -> FullerenePolymerMatrix;
+            default -> Polyethylene;
+        };
+    }
+
+    public static MetaItem<?>.MetaValueItem getMotorByTier(int tier) {
+        return switch (tier) {
+            case(2) -> ELECTRIC_MOTOR_MV;
+            case(3) -> ELECTRIC_MOTOR_HV;
+            case(4) -> ELECTRIC_MOTOR_EV;
+            case(5) -> ELECTRIC_MOTOR_IV;
+            case(6) -> ELECTRIC_MOTOR_LuV;
+            case(7) -> ELECTRIC_MOTOR_ZPM;
+            case(8) -> ELECTRIC_MOTOR_UV;
+            case(9) -> ELECTRIC_MOTOR_UHV;
+            case(10) -> ELECTRIC_MOTOR_UEV;
+            case(11) -> ELECTRIC_MOTOR_UIV;
+            case(12) -> ELECTRIC_MOTOR_UXV;
+            case(13) -> ELECTRIC_MOTOR_OpV;
+            case(14) -> ELECTRIC_MOTOR_MAX;
+            default -> ELECTRIC_MOTOR_LV;
+        };
+    }
+
+    public static MetaItem<?>.MetaValueItem getConveyorByTier(int tier) {
+        return switch (tier) {
+            case(2) -> CONVEYOR_MODULE_MV;
+            case(3) -> CONVEYOR_MODULE_HV;
+            case(4) -> CONVEYOR_MODULE_EV;
+            case(5) -> CONVEYOR_MODULE_IV;
+            case(6) -> CONVEYOR_MODULE_LuV;
+            case(7) -> CONVEYOR_MODULE_ZPM;
+            case(8) -> CONVEYOR_MODULE_UV;
+            case(9) -> CONVEYOR_MODULE_UHV;
+            case(10) -> CONVEYOR_MODULE_UEV;
+            case(11) -> CONVEYOR_MODULE_UIV;
+            case(12) -> CONVEYOR_MODULE_UXV;
+            case(13) -> CONVEYOR_MODULE_OpV;
+            case(14) -> CONVEYOR_MODULE_MAX;
+            default -> CONVEYOR_MODULE_LV;
+        };
+    }
+
+    public static MetaItem<?>.MetaValueItem getPistonByTier(int tier) {
+        return switch (tier) {
+            case(2) -> ELECTRIC_PISTON_MV;
+            case(3) -> ELECTRIC_PISTON_HV;
+            case(4) -> ELECTRIC_PISTON_EV;
+            case(5) -> ELECTRIC_PISTON_IV;
+            case(6) -> ELECTRIC_PISTON_LUV;
+            case(7) -> ELECTRIC_PISTON_ZPM;
+            case(8) -> ELECTRIC_PISTON_UV;
+            case(9) -> ELECTRIC_PISTON_UHV;
+            case(10) -> ELECTRIC_PISTON_UEV;
+            case(11) -> ELECTRIC_PISTON_UIV;
+            case(12) -> ELECTRIC_PISTON_UXV;
+            case(13) -> ELECTRIC_PISTON_OpV;
+            case(14) -> ELECTRIC_PISTON_MAX;
+            default -> ELECTRIC_PISTON_LV;
+        };
+    }
+
+    public static MetaItem<?>.MetaValueItem getRobotArmByTier(int tier) {
+        return switch (tier) {
+            case(2) -> ROBOT_ARM_MV;
+            case(3) -> ROBOT_ARM_HV;
+            case(4) -> ROBOT_ARM_EV;
+            case(5) -> ROBOT_ARM_IV;
+            case(6) -> ROBOT_ARM_LuV;
+            case(7) -> ROBOT_ARM_ZPM;
+            case(8) -> ROBOT_ARM_UV;
+            case(9) -> ROBOT_ARM_UHV;
+            case(10) -> ROBOT_ARM_UEV;
+            case(11) -> ROBOT_ARM_UIV;
+            case(12) -> ROBOT_ARM_UXV;
+            case(13) -> ROBOT_ARM_OpV;
+            case(14) -> ROBOT_ARM_MAX;
+            default -> ROBOT_ARM_LV;
+        };
+    }
+
+    public static MetaItem<?>.MetaValueItem getEmitterByTier(int tier) {
+        return switch (tier) {
+            case(2) -> EMITTER_MV;
+            case(3) -> EMITTER_HV;
+            case(4) -> EMITTER_EV;
+            case(5) -> EMITTER_IV;
+            case(6) -> EMITTER_LuV;
+            case(7) -> EMITTER_ZPM;
+            case(8) -> EMITTER_UV;
+            case(9) -> EMITTER_UHV;
+            case(10) -> EMITTER_UEV;
+            case(11) -> EMITTER_UIV;
+            case(12) -> EMITTER_UXV;
+            case(13) -> EMITTER_OpV;
+            case(14) -> EMITTER_MAX;
+            default -> EMITTER_LV;
+        };
+    }
+
+    public static MetaItem<?>.MetaValueItem getPumpByTier(int tier) {
+        return switch (tier) {
+            case(2) -> ELECTRIC_PUMP_MV;
+            case(3) -> ELECTRIC_PUMP_HV;
+            case(4) -> ELECTRIC_PUMP_EV;
+            case(5) -> ELECTRIC_PUMP_IV;
+            case(6) -> ELECTRIC_PUMP_LuV;
+            case(7) -> ELECTRIC_PUMP_ZPM;
+            case(8) -> ELECTRIC_PUMP_UV;
+            case(9) -> ELECTRIC_PUMP_UHV;
+            case(10) -> ELECTRIC_PUMP_UEV;
+            case(11) -> ELECTRIC_PUMP_UIV;
+            case(12) -> ELECTRIC_PUMP_UXV;
+            case(13) -> ELECTRIC_PUMP_OpV;
+            case(14) -> ELECTRIC_PUMP_MAX;
+            default -> ELECTRIC_PUMP_LV;
+        };
+    }
+
+    public static MetaItem<?>.MetaValueItem getStarByTier(int tier) {
+        if(tier < 6)
+            return null;
+        if(tier < 8)
+            return QUANTUM_STAR;
+        if(tier < 10)
+            return GRAVI_STAR;
+        if(tier < 12)
+            return UNSTABLE_STAR;
+        else
+            return NUCLEAR_STAR;
+    }
+
     public static List<RecipeBuilder<?>> buildHigherYieldCleanroomRecipes(RecipeMap<?> recipeMap, MetaItem<?>.MetaValueItem output, int baseOutputAmount, int startCleanRoomTier, int startEUt) {
         List<RecipeBuilder<?>> recipeBuilderList = new ArrayList<>();
 
@@ -261,6 +441,15 @@ public class GCYLUtility {
 
     public static RecipeBuilder<AssemblyLineRecipeBuilder> getAssLineResearchBuilder(int tier, int duration, ItemStack researchStack, boolean upTierEUt, boolean upTierCWUt, CleanroomType cleanroomType, int recipeEUt) {
         return ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(recipeEUt).duration(duration).cleanroom(cleanroomType)
+                .stationResearch(b -> b
+                        .dataStack(getDataStack(getCWUt(upTierCWUt ? tier + 1 : tier)))
+                        .CWUt(getCWUt(upTierCWUt ? tier + 1 : tier))
+                        .researchStack(researchStack)
+                        .EUt(GTValues.VA[upTierEUt ? tier + 1 : tier]));
+    }
+
+    public static RecipeBuilder<AssemblyLineRecipeBuilder> getAssLineResearchBuilder(int tier, int duration, ItemStack researchStack, boolean upTierEUt, boolean upTierCWUt, int recipeEUt) {
+        return ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(recipeEUt).duration(duration)
                 .stationResearch(b -> b
                         .dataStack(getDataStack(getCWUt(upTierCWUt ? tier + 1 : tier)))
                         .CWUt(getCWUt(upTierCWUt ? tier + 1 : tier))

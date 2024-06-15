@@ -9,6 +9,7 @@ import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.ItemMaterialInfo;
 import gregtech.api.unification.stack.MaterialStack;
 import gregtech.common.items.behaviors.DataItemBehavior;
+import net.minecraft.item.ItemStack;
 
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregtech.api.GTValues.M;
@@ -106,6 +107,7 @@ public class GCYLCoreItem extends StandardMetaItem {
         BOULE_RUTHERFORDIUM = addItem(341, "boule.rutherfordium");
 
         UNSTABLE_STAR = addItem(343, "unstable.star");
+        NUCLEAR_STAR = addItem(344, "nuclear.star");
 
         CONVEYOR_MODULE_MAX = addItem(353, "conveyor.module.max");
 
@@ -390,5 +392,10 @@ public class GCYLCoreItem extends StandardMetaItem {
         MICA_SHEET = addItem(26, "mica_sheet");
         MICA_INSULATOR_SHEET = addItem(27, "mica_insulator_sheet");
         MICA_INSULATOR_FOIL = addItem(28, "mica_insulator_foil");
+
+    }
+    @Override
+    public boolean hasEffect(ItemStack itemStack) {
+        return super.hasEffect(itemStack) || itemStack.getMetadata() == UNSTABLE_STAR.getStackForm().getMetadata() || itemStack.getMetadata() == NUCLEAR_STAR.getStackForm().getMetadata();
     }
 }
