@@ -6,7 +6,7 @@ import com.fulltrix.gcyl.item.fusion.GCYLCryostatCasing;
 import com.fulltrix.gcyl.item.fusion.GCYLDivertorCasing;
 import com.fulltrix.gcyl.item.fusion.GCYLFusionCasing;
 import com.fulltrix.gcyl.item.fusion.GCYLVacuumCasing;
-import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
+import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionCoilProperty;
 import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionEUReturnProperty;
 import com.google.common.util.concurrent.AtomicDouble;

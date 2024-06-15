@@ -1,7 +1,7 @@
 package com.fulltrix.gcyl.machines.multi.advance;
 
 import com.fulltrix.gcyl.item.metal.MetalCasing1;
-import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
+import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregtech.api.GTValues;
 import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.api.capability.impl.MultiblockFuelRecipeLogic;
@@ -18,7 +18,6 @@ import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
-import org.jetbrains.annotations.NotNull;
 
 import static com.fulltrix.gcyl.client.ClientHandler.NITINOL_60_CASING;
 import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_1;

@@ -1,13 +1,8 @@
 package com.fulltrix.gcyl.recipes.helper;
 
-import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
+import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregtech.api.GTValues;
-import gregtech.api.recipes.ModHandler;
-import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityEnergyHatch;
 import net.minecraftforge.fluids.FluidStack;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class HelperMethods {
 

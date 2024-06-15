@@ -1,6 +1,6 @@
 package com.fulltrix.gcyl.machines.multi.advance;
 
-import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
+import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
 import gregicality.multiblocks.api.render.GCYMTextures;
 import gregicality.multiblocks.api.unification.GCYMMaterials;
@@ -24,13 +24,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
-//TODO: hide or replace gcym large mixer some how
 
 public class MetaTileEntityAdvMixer extends GCYMRecipeMapMultiblockController {
 
     public MetaTileEntityAdvMixer(ResourceLocation metaTileEnttityID) {
-        super(metaTileEnttityID,
-                new RecipeMap[] {RecipeMaps.MIXER_RECIPES, GCYLRecipeMaps.ADVANCED_MIXER_RECIPES});
+        super(metaTileEnttityID, GCYLRecipeMaps.ADVANCED_MIXER_RECIPES);
     }
 
 

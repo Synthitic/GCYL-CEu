@@ -1,16 +1,10 @@
 package com.fulltrix.gcyl.recipes.chain;
 
-import gregtech.api.GTValues;
-import gregtech.api.unification.material.Material;
-
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
-import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.DECAY_CHAMBERS_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.ingot;
-import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.NeutralMatter;
 
 public class NuclearChain {
     public static void init() {

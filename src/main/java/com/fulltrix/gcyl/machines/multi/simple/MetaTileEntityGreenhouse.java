@@ -6,7 +6,6 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
-import gregtech.api.recipes.RecipeMap;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockGlassCasing;
@@ -19,7 +18,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.GREENHOUSE_RECIPES;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.GREENHOUSE_RECIPES;
 
 //TODO: GET A MATCHING TEXTURE FOR THE CASINGS AND BASE TEXTURE
 public class MetaTileEntityGreenhouse extends GCYMRecipeMapMultiblockController {

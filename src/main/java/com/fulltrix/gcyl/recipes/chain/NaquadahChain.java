@@ -4,8 +4,8 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.ADVANCED_CENTRIFUGE_RECIPES;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.ADVANCED_MIXER_RECIPES;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.ADVANCED_CENTRIFUGE_RECIPES;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.ADVANCED_MIXER_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES;
 import static gregtech.api.unification.material.Materials.*;

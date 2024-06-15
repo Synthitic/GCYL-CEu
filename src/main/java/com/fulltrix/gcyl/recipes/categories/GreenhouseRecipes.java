@@ -1,13 +1,10 @@
 package com.fulltrix.gcyl.recipes.categories;
 
-import com.cleanroommc.groovyscript.api.IIngredient;
 import gregtech.common.blocks.MetaBlocks;
-import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.GREENHOUSE_RECIPES;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.GREENHOUSE_RECIPES;
 import static gregtech.api.unification.material.Materials.CarbonDioxide;
 import static gregtech.common.items.MetaItems.STICKY_RESIN;
 

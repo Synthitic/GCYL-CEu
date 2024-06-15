@@ -2,8 +2,7 @@ package com.fulltrix.gcyl.machines.multi.simple;
 
 import com.fulltrix.gcyl.api.multi.GCYLMultiblockRecipeLogic;
 import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
-import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
-import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
+import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregtech.api.capability.IHeatingCoil;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;

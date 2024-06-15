@@ -15,7 +15,7 @@ import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityChemicalPlant;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityDecayChamber;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityGreenhouse;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityPlasmaCondenser;
-import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
+import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityParallelHatch;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.SimpleGeneratorMetaTileEntity;
@@ -25,7 +25,7 @@ import gregtech.client.renderer.texture.Textures;
 import gregtech.common.metatileentities.MetaTileEntities;
 
 import static com.fulltrix.gcyl.api.GCYLUtility.gcylId;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.DEEP_MINER_RECIPES;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.DEEP_MINER_RECIPES;
 import static com.google.common.base.Ascii.toLowerCase;
 import static gregtech.common.metatileentities.MetaTileEntities.registerMetaTileEntity;
 
