@@ -895,7 +895,7 @@ public class RecipeOverride {
                         .EUt(VA[IV]))
                 .duration(1200).EUt(100000).buildAndRegister();
 
-        //energy output hatches luv-uhv
+        //energy output hatches luv-uv
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(HULL[LuV])
                 .input(spring, NiobiumTitanium, 4)
@@ -926,8 +926,8 @@ public class RecipeOverride {
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(HULL[UV])
-                .input(spring, YttriumBariumCuprate, 4)
-                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(spring, Duranium, 4)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 4)
                 .input(circuit, MarkerMaterials.Tier.UV)
                 .input(VOLTAGE_COIL_UV, 2)
                 .fluidInputs(SodiumPotassium.getFluid(10000))
@@ -939,22 +939,7 @@ public class RecipeOverride {
                         .EUt(VA[ZPM]))
                 .duration(800).EUt(VA[UV]).buildAndRegister();
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(HULL[UHV])
-                .input(spring, Europium, 4)
-                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
-                .input(circuit, MarkerMaterials.Tier.UHV)
-                .input(wireGtDouble, UHVSuperconductor, 2)
-                .fluidInputs(SodiumPotassium.getFluid(12000))
-                .fluidInputs(SolderingAlloy.getFluid(5760))
-                .output(ENERGY_OUTPUT_HATCH[UHV])
-                .stationResearch(b -> b
-                        .researchStack(ENERGY_OUTPUT_HATCH[UV].getStackForm())
-                        .CWUt(128)
-                        .EUt(VA[UV]))
-                .duration(1000).EUt(VA[UHV]).buildAndRegister();
-
-        //energy input hatches luv-uhv
+        //energy input hatches luv-uv
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(HULL[LuV])
                 .input(cableGtSingle, NiobiumTitanium, 4)
@@ -985,8 +970,8 @@ public class RecipeOverride {
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(HULL[UV])
-                .input(cableGtSingle, YttriumBariumCuprate, 4)
-                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(cableGtSingle, Duranium, 4)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 4)
                 .input(circuit, MarkerMaterials.Tier.UV)
                 .input(VOLTAGE_COIL_UV, 2)
                 .fluidInputs(SodiumPotassium.getFluid(10000))
@@ -998,20 +983,6 @@ public class RecipeOverride {
                         .EUt(VA[ZPM]))
                 .duration(800).EUt(VA[UV]).buildAndRegister();
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(HULL[UHV])
-                .input(cableGtSingle, Europium, 4)
-                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
-                .input(circuit, MarkerMaterials.Tier.UHV)
-                .input(wireGtDouble, UHVSuperconductor, 2)
-                .fluidInputs(SodiumPotassium.getFluid(12000))
-                .fluidInputs(SolderingAlloy.getFluid(5760))
-                .output(ENERGY_INPUT_HATCH[UHV])
-                .stationResearch(b -> b
-                        .researchStack(ENERGY_INPUT_HATCH[UV].getStackForm())
-                        .CWUt(128)
-                        .EUt(VA[UV]))
-                .duration(1000).EUt(VA[UHV]).buildAndRegister();
 
         //indalloy_140
         ALLOY_BLAST_RECIPES.recipeBuilder().duration(12000).EUt(7680).blastFurnaceTemp(9000)

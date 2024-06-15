@@ -30,7 +30,7 @@ import static kono.ceu.materialreplication.api.unification.materials.MRMaterials
 public class MiscRecipes {
     public static void init() {
         initSolars();
-
+highTierVoltageCoils();
 
         //TODO: FINISH NUCLEAR AND REMOVE
         temporaryNuclearRecipes();
@@ -258,4 +258,48 @@ public class MiscRecipes {
                 .buildAndRegister();
     }
 
+    private static void highTierVoltageCoils() {
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[UHV])
+                .circuitMeta(1)
+                .input(stick, SamariumMagnetic)
+                .input(wireFine, Seaborgium, 16)
+                .outputs(VOLTAGE_COIL_UHV.getStackForm())
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[UEV])
+                .circuitMeta(1)
+                .input(stick, SamariumMagnetic)
+                .input(wireFine, Bohrium, 16)
+                .outputs(VOLTAGE_COIL_UEV.getStackForm())
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[UIV])
+                .circuitMeta(1)
+                .input(stick, SamariumMagnetic)
+                .input(wireFine, MetastableHassium, 16)
+                .outputs(VOLTAGE_COIL_UIV.getStackForm())
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[UXV])
+                .circuitMeta(1)
+                .input(stick, SamariumMagnetic)
+                .input(wireFine, HeavyQuarkDegenerateMatter, 16)
+                .outputs(VOLTAGE_COIL_UXV.getStackForm())
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[OpV])
+                .circuitMeta(1)
+                .input(stick, NaquadriaticTaranium)
+                .input(wireFine, Neutronium, 16)
+                .outputs(VOLTAGE_COIL_OpV.getStackForm())
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[MAX])
+                .circuitMeta(1)
+                .input(stick, NaquadriaticTaranium)
+                .input(wireFine, CosmicNeutronium, 16)
+                .outputs(VOLTAGE_COIL_MAX.getStackForm())
+                .buildAndRegister();
+
+    }
 }

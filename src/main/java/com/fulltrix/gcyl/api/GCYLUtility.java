@@ -68,6 +68,47 @@ public class GCYLUtility {
 
     }
 
+    public static MetaItem<?>.MetaValueItem getVoltageCoilByTier(int tier) {
+        return switch (tier) {
+            case(1) -> VOLTAGE_COIL_LV;
+            case(2) -> VOLTAGE_COIL_MV;
+            case(3) -> VOLTAGE_COIL_HV;
+            case(4) -> VOLTAGE_COIL_EV;
+            case(5) -> VOLTAGE_COIL_IV;
+            case(6) -> VOLTAGE_COIL_LuV;
+            case(7) -> VOLTAGE_COIL_ZPM;
+            case(8) -> VOLTAGE_COIL_UV;
+            case(9) -> VOLTAGE_COIL_UHV;
+            case(10) -> VOLTAGE_COIL_UEV;
+            case(11) -> VOLTAGE_COIL_UIV;
+            case(12) -> VOLTAGE_COIL_UXV;
+            case(13) -> VOLTAGE_COIL_OpV;
+            case(14) -> VOLTAGE_COIL_MAX;
+            default -> VOLTAGE_COIL_ULV;
+
+        };
+    }
+
+    public static Material getCableByTier(int tier) {
+        return switch (tier) {
+            case(1) -> Tin;
+            case(2) -> Copper;
+            case(3) -> Gold;
+            case(4) -> Aluminium;
+            case(5) -> Tungsten;
+            case(6) -> NiobiumTitanium;
+            case(7) -> Naquadah;
+            case(8) -> Duranium;
+            case(9) -> TungstenTitaniumCarbide;
+            case(10) -> Pikyonium;
+            case(11) -> Cinobite;
+            case(12) -> NaquadriaticTaranium;
+            case(13) -> Neutronium;
+            case(14) -> CosmicNeutronium;
+            default -> Lead;
+        };
+    }
+
     public static Material getSuperconductorByTier(int tier) {
         if(tier < 1)
             return LVSuperconductor;

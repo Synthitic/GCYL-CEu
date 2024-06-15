@@ -5113,7 +5113,7 @@ public class GCYLMaterials {
                 .build();
 
         SupercooledCryotheum = new Material.Builder(++id, gcylId("supercooled_cryotheum"))
-                .liquid()
+                .liquid(new FluidBuilder().temperature(10))
                 .color(Cryotheum.getMaterialRGB() - 10)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)

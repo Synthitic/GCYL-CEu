@@ -429,6 +429,13 @@ public class GCYLCoreItems {
     public static MetaItem<?>.MetaValueItem TOOL_DATA_DEEP_MINER_MODULE;
     public static MetaItem<?>.MetaValueItem TOOL_DATA_DEEP_MINER_COMPLEX;
     public static MetaItem<?>.MetaValueItem COVER_ENDER_ITEM_LINK;
+    public static MetaItem<?>.MetaValueItem VOLTAGE_COIL_UHV;
+    public static MetaItem<?>.MetaValueItem VOLTAGE_COIL_UEV;
+    public static MetaItem<?>.MetaValueItem VOLTAGE_COIL_UIV;
+    public static MetaItem<?>.MetaValueItem VOLTAGE_COIL_UXV;
+    public static MetaItem<?>.MetaValueItem VOLTAGE_COIL_OpV;
+    public static MetaItem<?>.MetaValueItem VOLTAGE_COIL_MAX;
+
 
     public static void init() {
         GCYLCoreItem item = new GCYLCoreItem();

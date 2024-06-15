@@ -4,10 +4,14 @@ import com.fulltrix.gcyl.item.behaviors.MinerDataItemBehavior;
 import gregtech.api.items.metaitem.StandardMetaItem;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.MarkerMaterials.Tier;
+import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.api.unification.stack.ItemMaterialInfo;
+import gregtech.api.unification.stack.MaterialStack;
 import gregtech.common.items.behaviors.DataItemBehavior;
 
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
+import static gregtech.api.GTValues.M;
 import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
 
 public class GCYLCoreItem extends StandardMetaItem {
@@ -373,6 +377,14 @@ public class GCYLCoreItem extends StandardMetaItem {
         TOOL_DATA_DEEP_MINER = addItem(616, "tool.data.deep_miner").addComponents(new MinerDataItemBehavior(false));
 
         COVER_ENDER_ITEM_LINK = addItem(620, "cover.ender.item_link");
+
+        VOLTAGE_COIL_UHV = addItem(621, "voltage_coil.uhv");
+        VOLTAGE_COIL_UEV = addItem(622, "voltage_coil.uev");
+        VOLTAGE_COIL_UIV = addItem(623, "voltage_coil.uiv");
+        VOLTAGE_COIL_UXV = addItem(624, "voltage_coil.uxv");
+        VOLTAGE_COIL_OpV = addItem(625, "voltage_coil.opv");
+        VOLTAGE_COIL_MAX = addItem(626, "voltage_coil.max");
+
 
         PYROLYTIC_CARBON = addItem(16, "pyrolytic_carbon");
         MICA_SHEET = addItem(26, "mica_sheet");

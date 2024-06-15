@@ -13,11 +13,10 @@ import static com.fulltrix.gcyl.api.GCYLUtility.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.UVA_HALIDE_LAMP;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
-import static gregtech.api.GTValues.VA;
+import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.api.GTValues.L;
 import static gregtech.common.items.MetaItems.*;
 import static gregtech.common.metatileentities.MetaTileEntities.*;
 
@@ -26,6 +25,42 @@ public class MultiblockPartCraftingRecipes {
         wirelessEnergyHatches();
         cleanroomFilterCasings();
         cleanroomMaintenanceHatch();
+        uhvPlusEnergyHatches();
+    }
+
+    //TODO finish for max hatches
+    private static void uhvPlusEnergyHatches() {
+        // energy input
+        for(int i = 9; i < 14; i++) {
+            getAssLineResearchBuilder(i, 1000, ENERGY_INPUT_HATCH[i-1].getStackForm(), false, false)
+                    .outputs(ENERGY_INPUT_HATCH[i].getStackForm())
+                    .inputs(HULL[i].getStackForm())
+                    .input(cableGtSingle, getCableByTier(i), 4)
+                    .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm((int) (4 * Math.pow(2, i - 9))))
+                    .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm((int) (4 * Math.pow(2, i - 9))))
+                    .input(circuit, getMarkerMaterialByTier(i), (int) (2 * Math.pow(2, i - 9)))
+                    .input(wireGtSingle, getSuperconductorByTier(i),(int) (4 * Math.pow(2, i - 9)))
+                    .inputs(getVoltageCoilByTier(i).getStackForm(2))
+                    .fluidInputs(i == 9 ? SodiumPotassium.getFluid(12000) : SupercooledCryotheum.getFluid((int) (12000 * Math.pow(2, i - 9))))
+                    .fluidInputs(Indalloy140.getFluid((int) (5760 * Math.pow(2, i-9))))
+                    .buildAndRegister();
+        }
+
+        // energy output
+        for(int i = 9; i < 14; i++) {
+            getAssLineResearchBuilder(i, 1000, ENERGY_INPUT_HATCH[i-1].getStackForm(), false, false)
+                    .outputs(ENERGY_INPUT_HATCH[i].getStackForm())
+                    .inputs(HULL[i].getStackForm())
+                    .input(spring, getCableByTier(i), 4)
+                    .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm((int) (4 * Math.pow(2, i - 9))))
+                    .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm((int) (4 * Math.pow(2, i - 9))))
+                    .input(circuit, getMarkerMaterialByTier(i), (int) (2 * Math.pow(2, i - 9)))
+                    .input(wireGtSingle, getSuperconductorByTier(i),(int) (4 * Math.pow(2, i - 9)))
+                    .inputs(getVoltageCoilByTier(i).getStackForm(2))
+                    .fluidInputs(i == 9 ? SodiumPotassium.getFluid(12000) : SupercooledCryotheum.getFluid((int) (12000 * Math.pow(2, i - 9))))
+                    .fluidInputs(Indalloy140.getFluid((int) (5760 * Math.pow(2, i-9))))
+                    .buildAndRegister();
+        }
     }
 
     private static void cleanroomMaintenanceHatch() {

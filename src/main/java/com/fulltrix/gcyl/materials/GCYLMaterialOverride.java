@@ -105,7 +105,7 @@ public class GCYLMaterialOverride {
 
         //FINE WIRE ADDITIONS
         List<Material> wirefinemats = new ArrayList<>();
-        Collections.addAll(wirefinemats, AbyssalAlloy, Titanium, Iron);
+        Collections.addAll(wirefinemats, AbyssalAlloy, Titanium, Iron, Neutronium);
         for (Material mat : wirefinemats) {
             mat.addFlags(GENERATE_FINE_WIRE);
         }
@@ -393,6 +393,13 @@ public class GCYLMaterialOverride {
                 UEVSuperconductorBase,UIVSuperconductorBase,UXVSuperconductorBase,OpVSuperconductorBase);
         for(Material mat: mixermats) {
             mat.addFlags(NO_MIXER_RECIPE);
+        }
+
+        //add springs
+        List<Material> springmats = new ArrayList<>();
+        Collections.addAll(springmats, Pikyonium, NaquadriaticTaranium, TungstenTitaniumCarbide, Cinobite, Duranium);
+        for(Material mat: springmats) {
+            mat.addFlags(GENERATE_SPRING);
         }
 
         //Small Specific cases
