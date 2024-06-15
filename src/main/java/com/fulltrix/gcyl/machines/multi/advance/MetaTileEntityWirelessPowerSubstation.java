@@ -316,7 +316,7 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
     }
 
     protected IBlockState getGlassState() {
-        return MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.LAMINATED_GLASS);
+        return MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS);
     }
 
     protected static final Supplier<TraceabilityPredicate> BATTERY_PREDICATE = () -> new TraceabilityPredicate(
