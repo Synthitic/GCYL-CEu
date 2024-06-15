@@ -7,13 +7,17 @@ import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.item.metal.GCYLCleanroomCasing;
 import gregtech.api.GTValues;
 import gregtech.api.capability.GregtechDataCodes;
+import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.impl.CleanroomLogic;
+import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
+import gregtech.api.metatileentity.multiblock.ICleanroomProvider;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.pattern.*;
 import gregtech.api.util.BlockInfo;
+import gregtech.api.util.GTUtility;
 import gregtech.api.util.Mods;
 import gregtech.client.utils.TooltipHelper;
 import gregtech.common.ConfigHolder;
@@ -47,7 +51,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 //TODO: Decrease tps lag when they try to cheat it
-public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom {
+public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implements ICleanroomProvider {
     public static final int MIN_RADIUS = 10;
     public static final int MIN_DEPTH = 9;
     private int lDist = 0;
@@ -58,6 +62,7 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom {
     private final CleanroomLogic cleanroomLogic;
     private CleanroomType cleanroomType = null;
 
+    private IEnergyContainer energyContainer;
     private boolean initialForm = true;
     public MetaTileEntityMegaCleanroom(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId);
@@ -333,6 +338,36 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom {
                 return new BlockInfo[x$0];
             }), new BlockInfo[0]);
         })).addTooltips(new String[]{"gregtech.multiblock.pattern.error.filters"});
+    }
+
+    @Override
+    public int getEnergyTier() {
+        return this.energyContainer == null ? 1 : Math.max(1, GTUtility.getFloorTierByVoltage(this.energyContainer.getInputVoltage()));
+    }
+
+    @Override
+    public long getEnergyInputPerSecond() {
+        return this.energyContainer.getInputPerSec();
+    }
+
+    @Override
+    public boolean drainEnergy(boolean simulate) {
+        long energyToDrain = this.isClean() ? (long)Math.max(4.0, Math.pow(4.0, this.getEnergyTier())) : (long)GTValues.VA[this.getEnergyTier()];
+        long resultEnergy = this.energyContainer.getEnergyStored() - energyToDrain;
+        if (resultEnergy >= 0L && resultEnergy <= this.energyContainer.getEnergyCapacity()) {
+            if (!simulate) {
+                this.energyContainer.changeEnergy(-energyToDrain);
+            }
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    protected void initializeAbilities() {
+        this.energyContainer = new EnergyContainerList(this.getAbilities(MultiblockAbility.INPUT_ENERGY));
     }
 
     @Override
