@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.api;
 
 import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
+import com.fulltrix.gcyl.item.fusion.GCYLFusionCasing;
 import gregtech.api.GTValues;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
@@ -387,6 +388,36 @@ public class GCYLUtility {
             return UNSTABLE_STAR;
         else
             return NUCLEAR_STAR;
+    }
+
+    public static GCYLFusionCasing.CasingType getAdvFusionCoilByAdvTier(int tier) {
+        return switch (tier) {
+            case(1) -> GCYLFusionCasing.CasingType.ADV_FUSION_COIL_2;
+            case(2) -> GCYLFusionCasing.CasingType.ADV_FUSION_COIL_3;
+            case(3) -> GCYLFusionCasing.CasingType.ADV_FUSION_COIL_4;
+            case(4) -> GCYLFusionCasing.CasingType.ADV_FUSION_COIL_5;
+            default -> GCYLFusionCasing.CasingType.ADV_FUSION_COIL_1;
+        };
+    }
+
+    public static Material getAdvFusionMaterialByAdvTier1(int tier) {
+        return switch (tier) {
+            case(1) -> Bohrium;
+            case(2) -> Vibranium;
+            case(3) -> HeavyQuarkDegenerateMatter;
+            case(4) -> QCDMatter;
+            default -> TantalumHafniumSeaborgiumCarbide;
+        };
+    }
+
+    public static Material getAdvFusionMaterialByAdvTier2(int tier) {
+        return switch (tier) {
+            case(1) -> Einsteinium;
+            case(2) -> Mendelevium;
+            case(3) -> MetastableFlerovium;
+            case(4) -> SuperheavyLAlloy;
+            default -> TantalumHafniumSeaborgiumCarbide;
+        };
     }
 
     public static List<RecipeBuilder<?>> buildHigherYieldCleanroomRecipes(RecipeMap<?> recipeMap, MetaItem<?>.MetaValueItem output, int baseOutputAmount, int startCleanRoomTier, int startEUt) {
