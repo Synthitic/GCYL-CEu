@@ -23,10 +23,15 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
+import static com.fulltrix.gcyl.api.GCYLUtility.getAssLineResearchBuilder;
+import static com.fulltrix.gcyl.machines.GCYLTileEntities.CRYOGENIC_FREEZER;
+import static com.fulltrix.gcyl.machines.GCYLTileEntities.VOLCANUS;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregicality.multiblocks.api.recipes.GCYMRecipeMaps.ALLOY_BLAST_RECIPES;
-import static gregicality.multiblocks.api.unification.GCYMMaterials.Stellite100;
+import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
+import static gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities.MEGA_BLAST_FURNACE;
+import static gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities.MEGA_VACUUM_FREEZER;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
 import static gregtech.api.recipes.ModHandler.removeRecipeByName;
@@ -165,7 +170,7 @@ public class RecipeOverride {
         removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, ManganesePhosphide,4), OreDictUnifier.get(plate, Steel, 2), OreDictUnifier.get(gem, EnderPearl), OreDictUnifier.get(circuit, MarkerMaterials.Tier.LV,2));
         removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, MagnesiumDiboride,4), OreDictUnifier.get(plate, Aluminium, 2), OreDictUnifier.get(gem, EnderEye), OreDictUnifier.get(circuit, MarkerMaterials.Tier.MV,2));
         removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, MercuryBariumCalciumCuprate,4), OreDictUnifier.get(plate, StainlessSteel, 2), QUANTUM_EYE.getStackForm(), OreDictUnifier.get(circuit, MarkerMaterials.Tier.HV,2));
-        removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, UraniumTriplatinum,4), OreDictUnifier.get(plate, Titanium, 2), OreDictUnifier.get(gem, NetherStar), OreDictUnifier.get(circuit, MarkerMaterials.Tier.EV,2));
+        removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, UraniumTriplatinum,4), OreDictUnifier.get(plateDouble, Titanium, 2), OreDictUnifier.get(gem, NetherStar), OreDictUnifier.get(circuit, MarkerMaterials.Tier.EV,2));
         removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, SamariumIronArsenicOxide,4), OreDictUnifier.get(plateDouble, TungstenSteel, 2), QUANTUM_STAR.getStackForm(), OreDictUnifier.get(circuit, MarkerMaterials.Tier.IV,2));
 
 
@@ -341,6 +346,11 @@ public class RecipeOverride {
         //active transformer
         removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{POWER_TRANSFORMER[GTValues.LuV].getStackForm(), OreDictUnifier.get(circuit, MarkerMaterials.Tier.LuV, 2),OreDictUnifier.get(wireGtSingle, IndiumTinBariumTitaniumCuprate, 8), ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(2)}, new FluidStack[]{PCBCoolant.getFluid(1000)});
 
+        //bulk blast chiller
+        removeRecipeByName("gcym:mega_vacuum_freezer");
+
+        //rotary hearth furnace
+        removeRecipeByName("gcym:mega_blast_furnace");
     }
 
     public static void chemistryOverride() {
@@ -1199,6 +1209,49 @@ public class RecipeOverride {
                 .fluidInputs(PCBCoolant.getFluid(1000))
                 .output(ACTIVE_TRANSFORMER)
                 .duration(300).EUt(VA[LuV]).buildAndRegister();
+
+        //bulk blast chiller
+        getAssLineResearchBuilder(GTValues.UV, 2400, CRYOGENIC_FREEZER.getStackForm(), false, false)
+                .outputs(MEGA_VACUUM_FREEZER.getStackForm())
+                .inputs(CRYOGENIC_FREEZER.getStackForm(64))
+                .input(pipeSmallFluid, Zeron100, 64)
+                .input(foil, Rutherfordium, 64)
+                .input(wireFine, UVSuperconductor, 64)
+                .input(gearSmall, Duranium, 32)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 32)
+                .input(gear, AbyssalAlloy, 16)
+                .input(plateDense, IncoloyMA956, 8)
+                .inputs(FIELD_GENERATOR_UV.getStackForm(2))
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .fluidInputs(Indalloy140.getFluid(9216))
+                .fluidInputs(Cryotheum.getFluid(32000))
+                .fluidInputs(Polybenzimidazole.getFluid(9216))
+                .buildAndRegister();
+
+
+        //rotary hearth furnace
+        getAssLineResearchBuilder(GTValues.UV, 2400, VOLCANUS.getStackForm(), false, false)
+                .outputs(MEGA_BLAST_FURNACE.getStackForm())
+                .inputs(VOLCANUS.getStackForm(64))
+                .input(wireFine, UVSuperconductor, 64)
+                .input(foil, Dubnium, 64)
+                .input(bolt, Rutherfordium, 64)
+                .input(gearSmall, Seaborgium, 32)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 32)
+                .input(gear, TitanSteel, 16)
+                .input(plateDense, HastelloyN, 8)
+                .inputs(FIELD_GENERATOR_UV.getStackForm(2))
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .fluidInputs(Indalloy140.getFluid(9216))
+                .fluidInputs(Pyrotheum.getFluid(32000))
+                .fluidInputs(Polybenzimidazole.getFluid(9216))
+                .buildAndRegister();
 
     }
 }
