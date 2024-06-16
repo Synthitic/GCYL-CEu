@@ -250,7 +250,7 @@ public class GCYLMaterialOverride {
         oreProp.addOreByProducts(Iron, Manganese, Niobium);
             //BYPRODUCT OVERRIDES
         oreProp = Pollucite.getProperty(PropertyKey.ORE);
-        oreProp.addOreByProducts(Caesium, Aluminium, Rubidium);
+        oreProp.setOreByProducts(Caesium, Aluminium, Rubidium);
 
         oreProp = Nickel.getProperty(PropertyKey.ORE);
         oreProp.setOreByProducts(Cobalt, PlatinumMetallicPowder, Iron);
