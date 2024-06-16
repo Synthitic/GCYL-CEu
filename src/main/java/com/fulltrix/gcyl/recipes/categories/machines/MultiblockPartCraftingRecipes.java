@@ -13,6 +13,7 @@ import static com.fulltrix.gcyl.api.GCYLUtility.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.UVA_HALIDE_LAMP;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
+import static gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities.PARALLEL_HATCH;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
@@ -26,6 +27,25 @@ public class MultiblockPartCraftingRecipes {
         cleanroomFilterCasings();
         cleanroomMaintenanceHatch();
         uhvPlusEnergyHatches();
+        parallelHatches();
+    }
+
+    private static void parallelHatches() {
+
+        for (int i = 0; i < 5; i+=2) {
+            getAssLineResearchBuilder(i+10, 1000, i == 0 ? PARALLEL_HATCH[3].getStackForm() : GCYL_PARALLEL_HATCH[i / 2 - 1].getStackForm(), false, false)
+                    .outputs(GCYL_PARALLEL_HATCH[i / 2].getStackForm())
+                    .inputs(HULL[i+10].getStackForm())
+                    .inputs(i == 0 ? PARALLEL_HATCH[3].getStackForm(3) : GCYL_PARALLEL_HATCH[i / 2 - 1].getStackForm(3))
+                    .input(circuit, i == 4 ? getMarkerMaterialByTier(i+11) : getMarkerMaterialByTier(i+10), i == 4 ? 32 : 16)
+                    .inputs(getSensorByTier(i+10).getStackForm(4))
+                    .inputs(getEmitterByTier(i+10).getStackForm(4))
+                    .input(cableGtDouble, getCableByTier(i+10), 2)
+                    .fluidInputs(Indalloy140.getFluid((int) (L * 8 * Math.pow(2, i))))
+                    .fluidInputs(getPolymerByTier(i+10).getFluid((int) (L * 16 * Math.pow(2, i))))
+                    .buildAndRegister();
+        }
+
     }
 
     //TODO finish for max hatches

@@ -4922,5 +4922,6 @@ metaitem.nuclear.star.name=Nuclear Star
 gcyl.material.deep_overworld_gas=Deep Overworld Gas
 gcyl.material.deep_nether_gas=Deep Nether Gas
 
-
-
+gcyl.machine.parallel_hatch.uev.name=Super Parallel Control Hatch II
+gcyl.machine.parallel_hatch.uxv.name=Super Parallel Control Hatch III
+gcyl.machine.parallel_hatch.max.name=Perfected Parallel Control Hatch
