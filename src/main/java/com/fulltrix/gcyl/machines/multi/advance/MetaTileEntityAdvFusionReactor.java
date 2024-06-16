@@ -8,6 +8,7 @@ import com.fulltrix.gcyl.item.fusion.GCYLDivertorCasing;
 import com.fulltrix.gcyl.item.fusion.GCYLFusionCasing;
 import com.fulltrix.gcyl.item.fusion.GCYLVacuumCasing;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
+import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionCoilProperty;
 import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionEUReturnProperty;
 import com.google.common.util.concurrent.AtomicDouble;
@@ -141,20 +142,28 @@ public class MetaTileEntityAdvFusionReactor extends GCYLRecipeMapMultiblockContr
                 .where('C', states(getCoilState()))
                 .where('X', states(getCasingState()))
                 .where('d', states(getDivertorState()).or(metaTileEntities(Arrays
+                        .stream(GCYLTileEntities.WIRELESS_ENERGY_HATCH_INPUT)
+                        .filter(mte -> mte != null && tier <= mte.getTier() && mte.getTier() <= GTValues.MAX)
+                        .toArray(MetaTileEntity[]::new))
+                        .or(metaTileEntities(Arrays
                         .stream(MetaTileEntities.ENERGY_INPUT_HATCH)
                         .filter(mte -> mte != null && tier <= mte.getTier() && mte.getTier() <= GTValues.MAX)
                         .toArray(MetaTileEntity[]::new))
-                        .setMinGlobalLimited(1).setPreviewCount(16)))
+                        .setPreviewCount(16))))
                 .where('v', states(getVacuumState()))
                 .where('c', states(getCryostatState()))
                 .where('b', states(GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.FUSION_BLANKET))
                         .or(abilities(MultiblockAbility.IMPORT_FLUIDS).setMinGlobalLimited(3).setMaxGlobalLimited(3).setPreviewCount(3))
                         .or(abilities(MultiblockAbility.EXPORT_FLUIDS).setMaxGlobalLimited(3).setPreviewCount(3)))
                 .where('E', metaTileEntities(Arrays
-                        .stream(MetaTileEntities.ENERGY_INPUT_HATCH)
+                        .stream(GCYLTileEntities.WIRELESS_ENERGY_HATCH_INPUT)
                         .filter(mte -> mte != null && tier <= mte.getTier() && mte.getTier() <= GTValues.MAX)
                         .toArray(MetaTileEntity[]::new))
-                        .setMinGlobalLimited(1).setPreviewCount(16))
+                        .or(metaTileEntities(Arrays
+                        .stream(MetaTileEntities.ENERGY_INPUT_HATCH)
+                        .filter(mte -> mte != null && tier <= mte.getTier() && mte.getTier() <= GTValues.MAX)
+                        .toArray(MetaTileEntity[]::new)))
+                        .setPreviewCount(16))
                 .where('I', states(getCasingState()).or(abilities(MultiblockAbility.IMPORT_FLUIDS).setMinGlobalLimited(3)))
                 .where('i', states(getCasingState()).or(abilities(MultiblockAbility.EXPORT_FLUIDS)))
                 .build();
@@ -222,39 +231,39 @@ public class MetaTileEntityAdvFusionReactor extends GCYLRecipeMapMultiblockContr
     }
 
     private IBlockState getCoilState() {
-        if (tier == GTValues.UV)
-            return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_1);
         if (tier == GTValues.UHV)
-            return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_2);
+            return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_1);
         if (tier == GTValues.UEV)
-            return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_3);
+            return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_2);
         if (tier == GTValues.UIV)
+            return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_3);
+        if (tier == GTValues.UXV)
             return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_4);
 
         return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_5);
     }
 
     private IBlockState getCryostatState() {
-        if (tier == GTValues.UV)
-            return GCYLMetaBlocks.CRYOSTAT_CASING.getState(GCYLCryostatCasing.CasingType.CRYOSTAT_1);
         if (tier == GTValues.UHV)
-            return GCYLMetaBlocks.CRYOSTAT_CASING.getState(GCYLCryostatCasing.CasingType.CRYOSTAT_2);
+            return GCYLMetaBlocks.CRYOSTAT_CASING.getState(GCYLCryostatCasing.CasingType.CRYOSTAT_1);
         if (tier == GTValues.UEV)
-            return GCYLMetaBlocks.CRYOSTAT_CASING.getState(GCYLCryostatCasing.CasingType.CRYOSTAT_3);
+            return GCYLMetaBlocks.CRYOSTAT_CASING.getState(GCYLCryostatCasing.CasingType.CRYOSTAT_2);
         if (tier == GTValues.UIV)
+            return GCYLMetaBlocks.CRYOSTAT_CASING.getState(GCYLCryostatCasing.CasingType.CRYOSTAT_3);
+        if (tier == GTValues.UXV)
             return GCYLMetaBlocks.CRYOSTAT_CASING.getState(GCYLCryostatCasing.CasingType.CRYOSTAT_4);
 
         return GCYLMetaBlocks.CRYOSTAT_CASING.getState(GCYLCryostatCasing.CasingType.CRYOSTAT_5);
     }
 
     private IBlockState getDivertorState() {
-        if (tier == GTValues.UV)
-            return GCYLMetaBlocks.DIVERTOR_CASING.getState(GCYLDivertorCasing.CasingType.DIVERTOR_1);
         if (tier == GTValues.UHV)
-            return GCYLMetaBlocks.DIVERTOR_CASING.getState(GCYLDivertorCasing.CasingType.DIVERTOR_2);
+            return GCYLMetaBlocks.DIVERTOR_CASING.getState(GCYLDivertorCasing.CasingType.DIVERTOR_1);
         if (tier == GTValues.UEV)
-            return GCYLMetaBlocks.DIVERTOR_CASING.getState(GCYLDivertorCasing.CasingType.DIVERTOR_3);
+            return GCYLMetaBlocks.DIVERTOR_CASING.getState(GCYLDivertorCasing.CasingType.DIVERTOR_2);
         if (tier == GTValues.UIV)
+            return GCYLMetaBlocks.DIVERTOR_CASING.getState(GCYLDivertorCasing.CasingType.DIVERTOR_3);
+        if (tier == GTValues.UXV)
             return GCYLMetaBlocks.DIVERTOR_CASING.getState(GCYLDivertorCasing.CasingType.DIVERTOR_4);
 
         return GCYLMetaBlocks.DIVERTOR_CASING.getState(GCYLDivertorCasing.CasingType.DIVERTOR_5);
@@ -328,13 +337,13 @@ public class MetaTileEntityAdvFusionReactor extends GCYLRecipeMapMultiblockContr
      */
 
     private IBlockState getVacuumState() {
-        if (tier == GTValues.UV)
-            return GCYLMetaBlocks.VACUUM_CASING.getState(GCYLVacuumCasing.CasingType.VACUUM_1);
         if (tier == GTValues.UHV)
-            return GCYLMetaBlocks.VACUUM_CASING.getState(GCYLVacuumCasing.CasingType.VACUUM_2);
+            return GCYLMetaBlocks.VACUUM_CASING.getState(GCYLVacuumCasing.CasingType.VACUUM_1);
         if (tier == GTValues.UEV)
-            return GCYLMetaBlocks.VACUUM_CASING.getState(GCYLVacuumCasing.CasingType.VACUUM_3);
+            return GCYLMetaBlocks.VACUUM_CASING.getState(GCYLVacuumCasing.CasingType.VACUUM_2);
         if (tier == GTValues.UIV)
+            return GCYLMetaBlocks.VACUUM_CASING.getState(GCYLVacuumCasing.CasingType.VACUUM_3);
+        if (tier == GTValues.UXV)
             return GCYLMetaBlocks.VACUUM_CASING.getState(GCYLVacuumCasing.CasingType.VACUUM_4);
 
         return GCYLMetaBlocks.VACUUM_CASING.getState(GCYLVacuumCasing.CasingType.VACUUM_5);
@@ -351,7 +360,7 @@ public class MetaTileEntityAdvFusionReactor extends GCYLRecipeMapMultiblockContr
         int cryostatTier = context.getOrDefault("Cryostat", GCYLCryostatCasing.CasingType.CRYOSTAT_1).getTier();
         canWork = Math.min(Math.min(vacuumTier, divertorTier), cryostatTier) >= coilTier;
          */
-        this.coilTier = this.tier - 7;
+        this.coilTier = this.tier - 8;
         long energyStored = this.energyContainer.getEnergyStored();
         this.initializeAbilities();
         ((EnergyContainerHandler) this.energyContainer).setEnergyStored(energyStored);
@@ -377,7 +386,7 @@ public class MetaTileEntityAdvFusionReactor extends GCYLRecipeMapMultiblockContr
     }
 
     private long calculateEnergyStorageFactor(int energyInputAmount) {
-        return energyInputAmount * (long) Math.pow(2, tier - 5) * 10000000L;
+        return energyInputAmount * (long) Math.pow(2, tier - 6) * 10000000L;
     }
 
     @Override

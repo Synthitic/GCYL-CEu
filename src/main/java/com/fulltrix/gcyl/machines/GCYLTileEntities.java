@@ -78,11 +78,11 @@ public class GCYLTileEntities {
 
         BIO_REACTOR = registerMetaTileEntity(id, new MetaTileEntityBioReactor(gcylId("bio_reactor")));
 
-        ADVANCED_FUSION_REACTOR[0] = registerMetaTileEntity(++id, new MetaTileEntityAdvFusionReactor(gcylId("adv_fusion_reactor.uhv"), GTValues.UV));
-        ADVANCED_FUSION_REACTOR[1] = registerMetaTileEntity(++id, new MetaTileEntityAdvFusionReactor(gcylId("adv_fusion_reactor.uev"), GTValues.UHV));
-        ADVANCED_FUSION_REACTOR[2] = registerMetaTileEntity(++id, new MetaTileEntityAdvFusionReactor(gcylId("adv_fusion_reactor.uiv"), GTValues.UEV));
-        ADVANCED_FUSION_REACTOR[3] = registerMetaTileEntity(++id, new MetaTileEntityAdvFusionReactor(gcylId("adv_fusion_reactor.uxv"), GTValues.UIV));
-        ADVANCED_FUSION_REACTOR[4] = registerMetaTileEntity(++id, new MetaTileEntityAdvFusionReactor(gcylId("adv_fusion_reactor.opv"), GTValues.UXV));
+        ADVANCED_FUSION_REACTOR[0] = registerMetaTileEntity(++id, new MetaTileEntityAdvFusionReactor(gcylId("adv_fusion_reactor.uhv"), GTValues.UHV));
+        ADVANCED_FUSION_REACTOR[1] = registerMetaTileEntity(++id, new MetaTileEntityAdvFusionReactor(gcylId("adv_fusion_reactor.uev"), GTValues.UEV));
+        ADVANCED_FUSION_REACTOR[2] = registerMetaTileEntity(++id, new MetaTileEntityAdvFusionReactor(gcylId("adv_fusion_reactor.uiv"), GTValues.UIV));
+        ADVANCED_FUSION_REACTOR[3] = registerMetaTileEntity(++id, new MetaTileEntityAdvFusionReactor(gcylId("adv_fusion_reactor.uxv"), GTValues.UXV));
+        ADVANCED_FUSION_REACTOR[4] = registerMetaTileEntity(++id, new MetaTileEntityAdvFusionReactor(gcylId("adv_fusion_reactor.opv"), GTValues.OpV));
 
         VOID_MINER[0] = registerMetaTileEntity(++id, new MetaTileEntityVoidMiner(gcylId("void_miner"), GTValues.UV, GCYLConfig.multis.voidMiner.maxTemp));
         VOID_MINER[1] = registerMetaTileEntity(++id, new MetaTileEntityVoidMiner(gcylId("void_miner.uhv"), GTValues.UHV, GCYLConfig.multis.voidMiner.maxTempUHV));

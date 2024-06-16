@@ -162,7 +162,8 @@ public class ComponentRecipes {
                         .input(foil, Bohrium, 64)
                         .input(cableGtDouble, getCableByTier(i), 8)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 8 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .fluidInputs(HighEnergyQGP.getFluid(2000))
                         .buildAndRegister();
 
@@ -180,7 +181,8 @@ public class ComponentRecipes {
                         .input(foil, getMainComponentMaterialByTier(i), 64)
                         .input(cableGtDouble, getCableByTier(i), 8)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 8 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             } else if (i == 10) {
                 getAssLineResearchBuilder(i, 600, getEmitterByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i - 9)))
@@ -196,7 +198,8 @@ public class ComponentRecipes {
                         .input(foil, getMainComponentMaterialByTier(i), 64)
                         .input(cableGtDouble, getCableByTier(i), 8)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 8 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             } else if (i == 11) {
                 getAssLineResearchBuilder(i, 600, getEmitterByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i - 9)))
@@ -212,7 +215,8 @@ public class ComponentRecipes {
                         .input(foil, TriniumTitanium, 64)
                         .input(cableGtDouble, getCableByTier(i), 8)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 8 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             } else if (i == 12) {
                 getAssLineResearchBuilder(i, 600, getEmitterByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i - 9)))
@@ -228,7 +232,8 @@ public class ComponentRecipes {
                         .input(foil, ProtoAdamantium, 64)
                         .input(cableGtDouble, getCableByTier(i), 8)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 8 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             } else {
             getAssLineResearchBuilder(i, 600, getEmitterByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i - 9)))
@@ -246,7 +251,8 @@ public class ComponentRecipes {
                     .input(foil, Bohrium, 64)
                     .input(cableGtDouble, getCableByTier(i), 8)
                     .fluidInputs(Indalloy140.getFluid((int) (L * 8 * Math.pow(2, i - 8))))
-                    .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                    //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                    .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                     .fluidInputs(QuarkGluonPlasma.getFluid(2000))
                     .buildAndRegister();
             }
@@ -415,7 +421,8 @@ public class ComponentRecipes {
                         .inputs(BOSE_EINSTEIN_COOLING_CONTAINER.getStackForm(32))
                         .input(cableGtDouble, getCableByTier(i), 8)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 8 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .fluidInputs(HighEnergyQGP.getFluid(2000))
                         .buildAndRegister();
             }
@@ -434,7 +441,8 @@ public class ComponentRecipes {
                         .inputs(BOSE_EINSTEIN_COOLING_CONTAINER.getStackForm())
                         .input(cableGtDouble, getCableByTier(i), 8)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 8 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             }
             else if (i == 10) {
@@ -452,7 +460,8 @@ public class ComponentRecipes {
                         .inputs(BOSE_EINSTEIN_COOLING_CONTAINER.getStackForm(2))
                         .input(cableGtDouble, getCableByTier(i), 8)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 8 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             }
             else if (i == 11) {
@@ -469,7 +478,8 @@ public class ComponentRecipes {
                         .inputs(BOSE_EINSTEIN_COOLING_CONTAINER.getStackForm(4))
                         .input(cableGtDouble, getCableByTier(i), 8)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 8 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .fluidInputs(LiquidCrystalDetector.getFluid(2500))
                         .buildAndRegister();
             }
@@ -487,7 +497,8 @@ public class ComponentRecipes {
                         .inputs(BOSE_EINSTEIN_COOLING_CONTAINER.getStackForm(8))
                         .input(cableGtDouble, getCableByTier(i), 8)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 8 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .fluidInputs(FreeElectronGas.getFluid(2500))
                         .buildAndRegister();
             }
@@ -505,7 +516,8 @@ public class ComponentRecipes {
                         .inputs(BOSE_EINSTEIN_COOLING_CONTAINER.getStackForm(16))
                         .input(cableGtDouble, getCableByTier(i), 8)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 8 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .fluidInputs(QuarkGluonPlasma.getFluid(2000))
                         .buildAndRegister();
             }
@@ -732,7 +744,8 @@ public class ComponentRecipes {
                         .inputs(CONTAINED_EXOTIC_MATTER.getStackForm())
                         .inputs(STABILIZED_WORMHOLE_GENERATOR.getStackForm())
                         .fluidInputs(Indalloy140.getFluid((int) (L * 12 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .fluidInputs(HighEnergyQGP.getFluid(2000))
                         .buildAndRegister();
             } else if(i == 13) {
@@ -750,7 +763,8 @@ public class ComponentRecipes {
                         .inputs(CONTAINED_REISSNER_NORDSTROM_SINGULARITY.getStackForm())
                         .inputs(CRYOGENIC_INTERFACE.getStackForm())
                         .fluidInputs(Indalloy140.getFluid((int) (L * 12 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .fluidInputs(QuarkGluonPlasma.getFluid(2000))
                         .buildAndRegister();
 
@@ -766,7 +780,8 @@ public class ComponentRecipes {
                         .input(wireFine, getSuperconductorByTier(i), 64)
                         .input(cableGtOctal, getCableByTier(i), 4)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 12 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             }
         }
@@ -941,7 +956,8 @@ public class ComponentRecipes {
                         .input(cableGtDouble, getCableByTier(i), 16)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 12 * Math.pow(2, i - 8))))
                         .fluidInputs(Lubricant.getFluid((int) (1000 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             } else {
                 getAssLineResearchBuilder(i, 600, getRobotArmByTier(i - 1).getStackForm(), false, false, (int) (1310720 * Math.pow(2, i - 9)))
@@ -957,7 +973,8 @@ public class ComponentRecipes {
                         .input(cableGtDouble, getCableByTier(i), 16)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 12 * Math.pow(2, i - 8))))
                         .fluidInputs(Lubricant.getFluid((int) (1000 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             }
         }
@@ -1126,7 +1143,8 @@ public class ComponentRecipes {
                         .fluidInputs(Indalloy140.getFluid((int) (L * 4 * Math.pow(2, i - 8))))
                         .fluidInputs(Lubricant.getFluid((int) (1000 * Math.pow(2, i - 8))))
                         .fluidInputs(getPolymerByTier(i).getFluid(L * 24 * (i - 7)))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             }
             else {
@@ -1141,7 +1159,8 @@ public class ComponentRecipes {
                         .fluidInputs(Indalloy140.getFluid((int) (L * 4 * Math.pow(2, i - 8))))
                         .fluidInputs(Lubricant.getFluid((int) (1000 * Math.pow(2, i - 8))))
                         .fluidInputs(getPolymerByTier(i).getFluid(L * 24 * (i - 7)))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             }
         }
@@ -1313,7 +1332,8 @@ public class ComponentRecipes {
                         .input(cableGtSingle, getCableByTier(i), 2)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 4 * Math.pow(2, i - 8))))
                         .fluidInputs(Lubricant.getFluid((int) (1000 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             } else {
                 getAssLineResearchBuilder(i, 600, getPistonByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i)))
@@ -1328,7 +1348,8 @@ public class ComponentRecipes {
                         .input(cableGtSingle, getCableByTier(i), 2)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 4 * Math.pow(2, i - 8))))
                         .fluidInputs(Lubricant.getFluid((int) (1000 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             }
         }
@@ -1507,7 +1528,8 @@ public class ComponentRecipes {
                 .input(cableGtQuadruple, TungstenTitaniumCarbide, 2)
                 .fluidInputs(Indalloy140.getFluid(L * 8))
                 .fluidInputs(Lubricant.getFluid(2000))
-                .fluidInputs(Seaborgium.getFluid(L * 4 * 2))
+                //.fluidInputs(Seaborgium.getFluid(L * 4 * 2))
+                .fluidInputs(Seaborgium.getFluid(L * 4))
                 .stationResearch(b -> b
                         .researchStack(ELECTRIC_MOTOR_UV.getStackForm())
                         .CWUt(128)
@@ -1528,7 +1550,9 @@ public class ComponentRecipes {
                 .input(cableGtQuadruple, Pikyonium, 2)
                 .fluidInputs(Indalloy140.getFluid(L * 16))
                 .fluidInputs(Lubricant.getFluid(4000))
-                .fluidInputs(Bohrium.getFluid(L * 4 * 3))
+               // .fluidInputs(Bohrium.getFluid(L * 4 * 3))
+                .fluidInputs(Bohrium.getFluid(L * 8))
+
                 .stationResearch(b -> b
                         .researchStack(ELECTRIC_MOTOR_UHV.getStackForm())
                         .CWUt(256)
@@ -1550,7 +1574,8 @@ public class ComponentRecipes {
                 .input(cableGtQuadruple, BlackTitanium, 2)
                 .fluidInputs(Indalloy140.getFluid(L * 32))
                 .fluidInputs(Lubricant.getFluid(8000))
-                .fluidInputs(MetastableHassium.getFluid(L * 4 * 4))
+                //.fluidInputs(MetastableHassium.getFluid(L * 4 * 4))
+                .fluidInputs(MetastableHassium.getFluid(L * 16))
                 .stationResearch(b -> b
                         .researchStack(ELECTRIC_MOTOR_UEV.getStackForm())
                         .CWUt(512)
@@ -1573,7 +1598,8 @@ public class ComponentRecipes {
                 .input(cableGtQuadruple, NaquadriaticTaranium, 2)
                 .fluidInputs(Indalloy140.getFluid(L * 64))
                 .fluidInputs(Lubricant.getFluid(16000))
-                .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 4 * 5))
+              //  .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 4 * 5))
+                .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 32))
                 .stationResearch(b -> b
                         .researchStack(ELECTRIC_MOTOR_UIV.getStackForm())
                         .CWUt(1024)
@@ -1595,7 +1621,8 @@ public class ComponentRecipes {
                 .input(cableGtQuadruple, Neutronium, 2)
                 .fluidInputs(Indalloy140.getFluid(L * 128))
                 .fluidInputs(Lubricant.getFluid(32000))
-                .fluidInputs(SuperheavyMix.getFluid(L * 4 * 6))
+                //.fluidInputs(SuperheavyMix.getFluid(L * 4 * 6))
+                .fluidInputs(SuperheavyMix.getFluid(L * 64))
                 .stationResearch(b -> b
                         .researchStack(ELECTRIC_MOTOR_UXV.getStackForm())
                         .CWUt(2048)
@@ -1620,7 +1647,8 @@ public class ComponentRecipes {
                 .inputs(MACROWORMHOLE_GENERATOR.getStackForm())
                 .fluidInputs(Indalloy140.getFluid(L * 256))
                 .fluidInputs(Lubricant.getFluid(64000))
-                .fluidInputs(Neutronium.getFluid(L * 4 * 7))
+              //  .fluidInputs(Neutronium.getFluid(L * 4 * 7))
+                .fluidInputs(Neutronium.getFluid(L * 128))
                 .stationResearch(b -> b
                         .researchStack(ELECTRIC_MOTOR_OpV.getStackForm())
                         .CWUt(4096)
@@ -1735,7 +1763,8 @@ public class ComponentRecipes {
                         .inputs(MACROWORMHOLE_GENERATOR.getStackForm())
                         .fluidInputs(Indalloy140.getFluid((int) (L * 4 * Math.pow(2, i - 8))))
                         .fluidInputs(Lubricant.getFluid((int) (1000 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             } else {
                 getAssLineResearchBuilder(i, 600, getPumpByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i)))
@@ -1749,7 +1778,8 @@ public class ComponentRecipes {
                         .input(cableGtSingle, getCableByTier(i), 2)
                         .fluidInputs(Indalloy140.getFluid((int) (L * 4 * Math.pow(2, i - 8))))
                         .fluidInputs(Lubricant.getFluid((int) (1000 * Math.pow(2, i - 8))))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             }
         }
