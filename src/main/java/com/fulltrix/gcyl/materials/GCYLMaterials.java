@@ -1175,7 +1175,8 @@ public class GCYLMaterials {
     public static Material Tetrabromoindigo;
     public static Material CyanIndigoDye;
     public static Material Erythrosine;
-
+    public static Material DeepOverworldGas;
+    public static Material DeepNetherGas;
 
     //COILS
     public static Material Pikyonium;
@@ -10302,6 +10303,22 @@ public class GCYLMaterials {
                 .iconSet(DULL)
                 .build()
                 .setFormula("C20H6I4Na2O5",true);
+
+        DeepOverworldGas = new Material.Builder(++id, gcylId("deep_overworld_gas"))
+                .gas()
+                .color(Air.getMaterialRGB() - 10)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("?",true);
+
+        DeepNetherGas = new Material.Builder(++id, gcylId("deep_nether_gas"))
+                .gas()
+                .color(NetherAir.getMaterialRGB()-10)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("?",true);
 
         /*
         = new Material.Builder(++id, gcylId("material"))

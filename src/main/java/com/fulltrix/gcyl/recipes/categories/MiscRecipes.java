@@ -259,6 +259,35 @@ highTierVoltageCoils();
                 .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 8))
                 .outputs(NUCLEAR_STAR.getStackForm())
                 .buildAndRegister();
+
+        //liquid deep overworld and nether gas
+        VACUUM_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.EV]).duration(400)
+                .fluidInputs(DeepOverworldGas.getFluid(4000))
+                .fluidOutputs(DeepOverworldGas.getFluid(FluidStorageKeys.LIQUID, 4000))
+                .buildAndRegister();
+
+        VACUUM_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.IV]).duration(400)
+                .fluidInputs(DeepNetherGas.getFluid(4000))
+                .fluidOutputs(DeepNetherGas.getFluid(FluidStorageKeys.LIQUID, 4000))
+                .buildAndRegister();
+
+        //distillation of deep gases
+        DISTILLATION_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.EV]).duration(2000)
+                .fluidInputs(DeepOverworldGas.getFluid(FluidStorageKeys.LIQUID, 128000))
+                .fluidOutputs(SaltWater.getFluid(64000))
+                .fluidOutputs(Chlorine.getFluid(32000))
+                .fluidOutputs(Fluorine.getFluid(32000))
+                .buildAndRegister();
+
+        DISTILLATION_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.IV]).duration(2000)
+                .fluidInputs(DeepNetherGas.getFluid(FluidStorageKeys.LIQUID, 256000))
+                .fluidOutputs(Oil.getFluid(128000))
+                .fluidOutputs(IodizedOil.getFluid(64000))
+                .fluidOutputs(CharcoalByproducts.getFluid(32000))
+                .fluidOutputs(Toluene.getFluid(16000))
+                .fluidOutputs(Octane.getFluid(16000))
+                .buildAndRegister();
+
     }
 
     private static void highTierVoltageCoils() {

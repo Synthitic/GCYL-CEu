@@ -66,6 +66,10 @@ public class DeepMinerRecipes {
         createResearchRecipe("deep_platinum", OreDictUnifier.get(block, Platinum),null, TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
         createResearchRecipe("deep_rare_earth", OreDictUnifier.get(block, Neodymium), null, TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
 
+        createResearchRecipe("deep_overworld_gas", null, LiquidAir.getFluid(32000), TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
+        createResearchRecipe("deep_nether_gas", null, LiquidNetherAir.getFluid(32000), TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 7860, 0);
+
+
         createResearchRecipe("deep_salts", OreDictUnifier.get(block, Salt),HydrofluoricAcid.getFluid(16000), TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
 
         createResearchRecipe( "deep_exotics", OreDictUnifier.get(block, Enderium), null, TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
@@ -211,7 +215,40 @@ public class DeepMinerRecipes {
                 .dimension(-1)
                 .buildAndRegister();
 
+        DEEP_MINER_RECIPES.recipeBuilder()
+                .notConsumable(minerScanMap.get("deep_overworld_gas"))
+                .circuitMeta(0)
+                .input(SENSOR_EV)
+                .input(ELECTRIC_PUMP_EV)
 
+                .fluidInputs(DrillingFluid.getFluid(128000))
+                .fluidOutputs(DeepOverworldGas.getFluid(64000))
+                .chancedFluidOutput(DeepOverworldGas.getFluid(64000), 100, 2000)
+                .chancedFluidOutput(DeepOverworldGas.getFluid(64000), 100, 500)
+                .duration(4000)
+                .EUt(1920)
+                .temperature(3500)
+                .dimension(0)
+                .buildAndRegister();
+
+        DEEP_MINER_RECIPES.recipeBuilder()
+                .notConsumable(minerScanMap.get("deep_nether_gas"))
+                .circuitMeta(1)
+                .input(SENSOR_IV)
+                .input(ELECTRIC_PUMP_IV)
+
+                .fluidInputs(DrillingFluid.getFluid(256000))
+                .fluidInputs(NitricAcid.getFluid(16000))
+                .fluidOutputs(DeepNetherGas.getFluid(64000))
+                .chancedFluidOutput(DeepNetherGas.getFluid(64000), 100, 2000)
+                .chancedFluidOutput(DeepNetherGas.getFluid(64000), 100, 500)
+                .duration(4000)
+                .EUt(7860)
+                .temperature(4500)
+                .dimension(-1)
+                .buildAndRegister();
+
+/*
         DEEP_MINER_RECIPES.recipeBuilder()
                 .notConsumable(minerScanMap.get("deep_salts"))
                 .circuitMeta(1)
@@ -229,6 +266,9 @@ public class DeepMinerRecipes {
                 .dimension(-1)
                 .buildAndRegister();
 
+ */
+
+        /*
         DEEP_MINER_RECIPES.recipeBuilder()
                 .notConsumable(minerScanMap.get("deep_salts"))
                 .circuitMeta(2)
@@ -245,6 +285,8 @@ public class DeepMinerRecipes {
                 .temperature(4500)
                 .dimension(-1)
                 .buildAndRegister();
+
+         */
 
         DEEP_MINER_RECIPES.recipeBuilder()
                 .notConsumable(minerScanMap.get("deep_salts"))
@@ -344,7 +386,7 @@ public class DeepMinerRecipes {
         }
 
 
-    public static void createResearchRecipe(@NotNull String researchId, @NotNull ItemStack researchItem, FluidStack fluid,
+    public static void createResearchRecipe(@NotNull String researchId, ItemStack researchItem, FluidStack fluid,
                                                    @NotNull ItemStack dataItem, boolean ignoreNBT, int duration,
                                                    int EUt, int CWUt) {
 
@@ -379,13 +421,17 @@ public class DeepMinerRecipes {
                     .EUt(EUt);
 
             if (ignoreNBT) {
-                builder.inputNBT(researchItem.getItem(), 1, researchItem.getMetadata(), NBTMatcher.ANY,
-                        NBTCondition.ANY);
+                if (researchItem != null) {
+                    builder.inputNBT(researchItem.getItem(), 1, researchItem.getMetadata(), NBTMatcher.ANY,
+                            NBTCondition.ANY);
+                }
                 if (fluid != null) {
                     builder.fluidInputs(fluid);
                 }
             } else {
-                builder.inputs(researchItem);
+                if (researchItem != null) {
+                    builder.inputs(researchItem);
+                }
                 if (fluid != null) {
                     builder.fluidInputs(fluid);
                 }

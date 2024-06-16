@@ -4760,6 +4760,10 @@ gcyl.research.deep_radioactive=§6Deep Radioactive Data
 gcyl.research.deep_radioactive.tooltip=§aScan a Plutonium 244 Block for this Data
 gcyl.research.deep_rare_earth=§6Deep Rare Earth Data
 gcyl.research.deep_rare_earth.tooltip=§aScan a Neodymium Block for this Data
+gcyl.research.deep_overworld_gas=§6Deep Overworld Gas Data
+gcyl.research.deep_overworld_gas.tooltip=§aScan Liquid Air for this Data
+gcyl.research.deep_nether_gas=§6Deep Nether Gas Data
+gcyl.research.deep_nether_gas.tooltip=§aScan Liquid Nether Air for this Data
 
 gcyl.machine.deep_miner.name=Deep Miner (DM)
 gcyl.machine.deep_miner.config.0=Fluid type set to Lava
@@ -4914,6 +4918,9 @@ gcyl.machine.wireless_energy_hatch.input.max.16.name=§dMAX 16A Wireless Energy 
 gcyl.machine.wireless_energy_hatch.input.max.64.name=§dMAX 64A Wireless Energy Hatch
 
 metaitem.nuclear.star.name=Nuclear Star
+
+gcyl.material.deep_overworld_gas=Deep Overworld Gas
+gcyl.material.deep_nether_gas=Deep Nether Gas
 
 
 

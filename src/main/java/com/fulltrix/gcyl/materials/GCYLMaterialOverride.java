@@ -128,7 +128,7 @@ public class GCYLMaterialOverride {
         List<Material> dmats = new ArrayList<>();
         Collections.addAll(dmats, Dysprosium, Iodine, Gadolinium, Strontium, Holmium, Californium, Zirconium, Thallium, Rubidium, Technetium,
                 Terbium, Promethium, Radium, Tellurium, Francium, Berkelium, Curium, Actinium, Protactinium, Scandium, Thulium, Hafnium, Astatine,
-                Selenium, Praseodymium, Copernicium, Erbium, Polonium);
+                Selenium, Praseodymium, Copernicium, Erbium, Polonium, Nihonium, Moscovium, Livermorium, Tennessine);
         for (Material mat : dmats) {
             addDust(mat, 1, 0);
         }
@@ -149,7 +149,7 @@ public class GCYLMaterialOverride {
         //LIQUIDS
         //TODO: get proper temperatures
         List<Material> lmats = new ArrayList<>();
-        Collections.addAll(lmats, Fluorine, Xenon, Helium3, Hydrogen, Nitrogen);
+        Collections.addAll(lmats, Fluorine, Xenon, Helium3, Hydrogen, Nitrogen, DeepNetherGas, DeepOverworldGas);
         for (Material mat : lmats) {
             addLiquid(mat, new FluidBuilder()
                     .temperature(40)
@@ -249,6 +249,9 @@ public class GCYLMaterialOverride {
         oreProp = Columbite.getProperty(PropertyKey.ORE);
         oreProp.addOreByProducts(Iron, Manganese, Niobium);
             //BYPRODUCT OVERRIDES
+        oreProp = Pollucite.getProperty(PropertyKey.ORE);
+        oreProp.addOreByProducts(Caesium, Aluminium, Rubidium);
+
         oreProp = Nickel.getProperty(PropertyKey.ORE);
         oreProp.setOreByProducts(Cobalt, PlatinumMetallicPowder, Iron);
 
