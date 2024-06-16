@@ -78,12 +78,10 @@ public class CommonProxy {
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void registerMaterials(MaterialEvent event) {
-        //TJFMaterials.registerNuclearMaterials();
-        GCYLNuclearMaterials.registerNuclear();
-        GCYLMaterials.register();
-        GCYLMaterials.register2();
-        GCYLMaterials.registerSuperconductors();
-        GCYLMaterials.initDEMaterials();
+
+        GCYLMaterials.init();
+
+
 
         GCYLMaterialOverride.materialChanges();
         GCYLMaterialOverride.tempMaterialModifications();

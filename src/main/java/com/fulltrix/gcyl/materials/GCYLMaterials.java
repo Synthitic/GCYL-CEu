@@ -1227,9 +1227,16 @@ public class GCYLMaterials {
         CORE_METAL.addAll(Arrays.asList(GENERATE_RING, GENERATE_FRAME, GENERATE_ROTOR, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_FINE_WIRE, GENERATE_GEAR));
     }
 
+    public static void init() {
+        registerNuclear();
+        initDEMaterials();
+        register();
+        register2();
+        registerSuperconductors();
+        register3();
+    }
 
-
-    public static void register() {
+    private static void register() {
 
         //////////////////////
 
@@ -7454,7 +7461,7 @@ public class GCYLMaterials {
                 .setFormula("C2F6S2", true);
     }
 
-    public static void register2() {
+    private static void register2() {
 
         BariumTriflateSolution = new Material.Builder(++id, gcylId("barium_triflate_solution"))
                 .liquid()
@@ -10320,38 +10327,9 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?",true);
 
-        /*
-        = new Material.Builder(++id, gcylId("material"))
-                .ingot().liquid()
-                .color()
-                .iconSet()
-                .flags(DISABLE_REPLICATION)
-                .components()
-                .blast()
-                .build();
-
-        = new Material.Builder(++id, gcylId("material"))
-                .liquid()
-                .color()
-                .flags(DISABLE_REPLICATION)
-                .iconSet(FLUID)
-                .build()
-                .setFormula("",true);
-
-        = new Material.Builder(++id, gcylId("material"))
-                .dust()
-                .color()
-                .flags(DISABLE_REPLICATION)
-                .iconSet()
-                .build()
-                .setFormula("",true);
-
-
-         */
-
     }
 
-    public static void registerSuperconductors() {
+    private static void registerSuperconductors() {
 
         LVSuperconductorBase = new Material.Builder(++id, gcylId("lv_superconductor_base"))
                 .ingot().liquid()
@@ -10610,7 +10588,7 @@ public class GCYLMaterials {
                 .build();
     }
 
-    public static void initDEMaterials() {
+    private static void initDEMaterials() {
 
         Draconium = new Material.Builder(++id, gcylId("draconium"))
                 .ingot().liquid()
@@ -10651,6 +10629,37 @@ public class GCYLMaterials {
                 .blast(50000)
                 .build()
                 .setFormula(makeFancy(TextFormatting.OBFUSCATED+"?????????"));
+    }
+
+    private static void register3() {
+    /*
+        = new Material.Builder(++id, gcylId("material"))
+                .ingot().liquid()
+                .color()
+                .iconSet()
+                .flags(DISABLE_REPLICATION)
+                .components()
+                .blast()
+                .build();
+
+        = new Material.Builder(++id, gcylId("material"))
+                .liquid()
+                .color()
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("",true);
+
+        = new Material.Builder(++id, gcylId("material"))
+                .dust()
+                .color()
+                .flags(DISABLE_REPLICATION)
+                .iconSet()
+                .build()
+                .setFormula("",true);
+
+
+         */
     }
 
     private static String makeFancy(String input) {
