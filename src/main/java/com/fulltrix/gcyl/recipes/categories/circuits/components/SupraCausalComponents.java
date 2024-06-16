@@ -28,7 +28,7 @@ public class SupraCausalComponents {
                 .inputs(HIGHLY_INSULATING_FOIL.getStackForm(64))
                 .notConsumable(MICROWORMHOLE_GENERATOR.getStackForm())
                 .outputs(SMD_CAPACITOR_SUPRACAUSAL.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO0)
                 .buildAndRegister();
 
         // SMD Diode
@@ -38,7 +38,7 @@ public class SupraCausalComponents {
                 .input(dust,Tetracene,8)
                 .notConsumable(MICROWORMHOLE_GENERATOR.getStackForm())
                 .outputs(SMD_DIODE_SUPRACAUSAL.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO0)
                 .buildAndRegister();
 
         // SMD Transistor
@@ -48,7 +48,7 @@ public class SupraCausalComponents {
                 .input(dust,Tetracene,64)
                 .notConsumable(MICROWORMHOLE_GENERATOR.getStackForm())
                 .outputs(SMD_TRANSISTOR_SUPRACAUSAL.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO0)
                 .buildAndRegister();
 
         // SMD Resistor
@@ -58,7 +58,7 @@ public class SupraCausalComponents {
                 .input(dust, ChargedCaesiumCeriumCobaltIndium,16)
                 .notConsumable(MICROWORMHOLE_GENERATOR.getStackForm())
                 .outputs(SMD_RESISTOR_SUPRACAUSAL.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO0)
                 .buildAndRegister();
 
         // Supracausal Processing Core

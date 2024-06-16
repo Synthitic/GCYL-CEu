@@ -24,7 +24,7 @@ public class CosmicComponents {
                 .input(plate, AbyssalAlloy, 4)
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L))
                 .outputs(SMD_DIODE_COSMIC.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO1)
                 .buildAndRegister();
 
         // SMD Transistor
@@ -34,7 +34,7 @@ public class CosmicComponents {
                 .inputs(DEGENERATE_RHENIUM_PLATE.getStackForm(4))
                 .fluidInputs(Zylon.getFluid(L))
                 .outputs(SMD_TRANSISTOR_COSMIC.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO1)
                 .buildAndRegister();
 
         // SMD Capacitor
@@ -44,7 +44,7 @@ public class CosmicComponents {
                 .inputs(AEROGRAPHENE.getStackForm())
                 .fluidInputs(Zylon.getFluid(L))
                 .outputs(SMD_CAPACITOR_COSMIC.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO1)
                 .buildAndRegister();
 
         // SMD Resistor
@@ -54,7 +54,7 @@ public class CosmicComponents {
                 .input(plate, TriniumTitanium, 4)
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L))
                 .outputs(SMD_RESISTOR_COSMIC.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO1)
                 .buildAndRegister();
 
         // Cosmic Processing Core
@@ -146,7 +146,7 @@ public class CosmicComponents {
                 .input(gemFlawless, Tanzanite, 2)
                 .fluidInputs(CosmicComputingMix.getFluid(1000))
                 .outputs(COSMIC_COMPUTE_UNIT.getStackForm())
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO1)
                 .buildAndRegister();
     }
 }

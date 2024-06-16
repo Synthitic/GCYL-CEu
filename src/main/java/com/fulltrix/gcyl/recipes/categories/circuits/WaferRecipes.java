@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories.circuits;
 
+import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 
@@ -87,14 +88,14 @@ public class WaferRecipes {
                 .inputs(HASSIUM_BOULE.getStackForm())
                 .outputs(HASSIUM_SEED_CRYSTAL.getStackForm())
                 .outputs(HASSIUM_WAFER.getStackForm(8))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO1)
                 .buildAndRegister();
 
         CHEMICAL_BATH_RECIPES.recipeBuilder().duration(240).EUt(345000)
                 .inputs(HASSIUM_WAFER.getStackForm())
                 .fluidInputs(Trichloroferane.getFluid(250))
                 .outputs(COATED_HASSIUM_WAFER.getStackForm())
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO1)
                 .buildAndRegister();
 
         // WAFER ENGRAVING =============================================================================================

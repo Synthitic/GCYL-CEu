@@ -24,7 +24,7 @@ public class OpticalComponents {
                 .input(plate, Polyetheretherketone, 4)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 4))
                 .outputs(SMD_DIODE_OPTICAL.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO3)
                 .buildAndRegister();
 
 
@@ -35,7 +35,7 @@ public class OpticalComponents {
                 .input(plate, LithiumTitanate, 4)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 4))
                 .outputs(SMD_TRANSISTOR_OPTICAL.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO3)
                 .buildAndRegister();
 
         // SMD Capacitor
@@ -45,7 +45,7 @@ public class OpticalComponents {
                 .input(foil, Polyetheretherketone, 4)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 4))
                 .outputs(SMD_CAPACITOR_OPTICAL.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO3)
                 .buildAndRegister();
 
         // SMD Resistor
@@ -55,7 +55,7 @@ public class OpticalComponents {
                 .input(dust, TBCCODust, 4)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 4))
                 .outputs(SMD_RESISTOR_OPTICAL.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO3)
                 .buildAndRegister();
 
         // SMD Inductor
