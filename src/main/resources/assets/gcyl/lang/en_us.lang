@@ -4925,3 +4925,21 @@ gcyl.material.deep_nether_gas=Deep Nether Gas
 gcyl.machine.parallel_hatch.uev.name=Super Parallel Control Hatch II
 gcyl.machine.parallel_hatch.uxv.name=Super Parallel Control Hatch III
 gcyl.machine.parallel_hatch.max.name=Perfected Parallel Control Hatch
+
+gcyl.machine.hpca.cooling_component.uv.name=UV HPCA Cooling Component
+gcyl.machine.hpca.cooling_component.uhv.name=UHV HPCA Cooling Component
+gcyl.machine.hpca.cooling_component.uev.name=UEV HPCA Cooling Component
+gcyl.machine.hpca.cooling_component.uiv.name=UIV HPCA Cooling Component
+gcyl.machine.hpca.cooling_component.uxv.name=UXV HPCA Cooling Component
+gcyl.machine.hpca.cooling_component.opv.name=OpV HPCA Cooling Component
+gcyl.machine.hpca.cooling_component.max.name=MAX HPCA Cooling Component
+
+gcyl.machine.hpca.computation_component.uv.name=UV HPCA Computation Component
+gcyl.machine.hpca.computation_component.uhv.name=UHV HPCA Computation Component
+gcyl.machine.hpca.computation_component.uev.name=UEV HPCA Computation Component
+gcyl.machine.hpca.computation_component.uiv.name=UIV HPCA Computation Component
+gcyl.machine.hpca.computation_component.uxv.name=UXV HPCA Computation Component
+gcyl.machine.hpca.computation_component.opv.name=OpV HPCA Computation Component
+gcyl.machine.hpca.computation_component.max.name=MAX HPCA Computation Component
+
+

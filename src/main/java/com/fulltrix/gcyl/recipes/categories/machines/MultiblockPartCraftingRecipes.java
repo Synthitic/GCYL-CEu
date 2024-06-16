@@ -15,6 +15,7 @@ import static com.fulltrix.gcyl.machines.GCYLTileEntities.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities.PARALLEL_HATCH;
 import static gregtech.api.GTValues.*;
+import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
@@ -28,6 +29,30 @@ public class MultiblockPartCraftingRecipes {
         cleanroomMaintenanceHatch();
         uhvPlusEnergyHatches();
         parallelHatches();
+        computerHatches();
+    }
+
+    private static void computerHatches() {
+        for (int i = 0; i < 7; i++) {
+            ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[i+8]).duration(200)
+                    .outputs(HPCA_COMPUTATION_PLUS[i].getStackForm())
+                    .inputs(i == 0 ? HPCA_ADVANCED_COMPUTATION_COMPONENT.getStackForm(2) : HPCA_COMPUTATION_PLUS[i - 1].getStackForm(2))
+                    .input(circuit, getMarkerMaterialByTier(i+9), i == 6 ? 8 : 4)
+                    .inputs(getFieldGeneratorByTier(i+8).getStackForm(i < 3 ? 2 : 4))
+                    .fluidInputs(PCBCoolant.getFluid((int) (2000 * Math.pow(2, i))))
+                    .cleanroom(getCleanroomTypeByTierNotV(i + 1))
+                    .buildAndRegister();
+
+            ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[i+6]).duration(200)
+                    .outputs(HPCA_COOLING_PLUS[i].getStackForm())
+                    .inputs(i == 0 ? HPCA_ACTIVE_COOLER_COMPONENT.getStackForm(2) : HPCA_COOLING_PLUS[i - 1].getStackForm(2))
+                    .input(circuit, getMarkerMaterialByTier(i+8), 2)
+                    .input(getPumpByTier(i+8), 2)
+                    .input(getEmitterByTier(i + 8))
+                    .fluidInputs(PCBCoolant.getFluid((int) (2000 * Math.pow(2, i))))
+                    .cleanroom(getCleanroomTypeByTierNotV(i + 1))
+                    .buildAndRegister();
+        }
     }
 
     private static void parallelHatches() {
@@ -37,7 +62,7 @@ public class MultiblockPartCraftingRecipes {
                     .outputs(GCYL_PARALLEL_HATCH[i / 2].getStackForm())
                     .inputs(HULL[i+10].getStackForm())
                     .inputs(i == 0 ? PARALLEL_HATCH[3].getStackForm(3) : GCYL_PARALLEL_HATCH[i / 2 - 1].getStackForm(3))
-                    .input(circuit, i == 4 ? getMarkerMaterialByTier(i+11) : getMarkerMaterialByTier(i+10), i == 4 ? 32 : 16)
+                    .input(circuit, getMarkerMaterialByTier(i+11), i == 4 ? 32 : 16)
                     .inputs(getSensorByTier(i+10).getStackForm(4))
                     .inputs(getEmitterByTier(i+10).getStackForm(4))
                     .input(cableGtDouble, getCableByTier(i+10), 2)
