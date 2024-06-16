@@ -1,9 +1,6 @@
 package com.fulltrix.gcyl.item;
 
-import com.fulltrix.gcyl.item.fusion.GCYLCryostatCasing;
-import com.fulltrix.gcyl.item.fusion.GCYLDivertorCasing;
-import com.fulltrix.gcyl.item.fusion.GCYLFusionCasing;
-import com.fulltrix.gcyl.item.fusion.GCYLVacuumCasing;
+import com.fulltrix.gcyl.item.fusion.*;
 import com.fulltrix.gcyl.item.metal.GCYLCleanroomCasing;
 import com.fulltrix.gcyl.item.metal.MetalCasing1;
 import com.fulltrix.gcyl.item.metal.MetalCasing2;
@@ -21,6 +18,7 @@ public class GCYLMetaBlocks {
     public static GCYLMultiblockCasing2 MULTIBLOCK_CASING2;
     //public static GCYLTransparentCasing TRANSPARENT_CASING;
     public static GCYLHeatingCoil HEATING_COIL;
+    public static GCYLFusionCoils FUSION_COILS;
     public static GCYLFusionCasing FUSION_CASING;
     public static GCYLVacuumCasing VACUUM_CASING;
     public static GCYLDivertorCasing DIVERTOR_CASING;
@@ -41,6 +39,9 @@ public class GCYLMetaBlocks {
 
         MULTIBLOCK_CASING2 = new GCYLMultiblockCasing2();
         MULTIBLOCK_CASING2.setRegistryName("gcyl_multiblock_casing2");
+
+        FUSION_COILS = new GCYLFusionCoils();
+        FUSION_COILS.setRegistryName("gcyl_fusion_coil");
 
         FUSION_CASING = new GCYLFusionCasing();
         FUSION_CASING.setRegistryName("gcyl_fusion_casing");
@@ -79,6 +80,7 @@ public class GCYLMetaBlocks {
 
         registerItemModel(MULTIBLOCK_CASING2);
         //registerItemModel(TRANSPARENT_CASING);
+        //registerItemModel(FUSION_CASING);
         registerItemModel(FUSION_CASING);
         registerItemModel(VACUUM_CASING);
         registerItemModel(DIVERTOR_CASING);
@@ -91,7 +93,7 @@ public class GCYLMetaBlocks {
         registerItemModel(GCYL_CLEANROOM_CASING);
 
         HEATING_COIL.onModelRegister();
-
+        FUSION_COILS.onModelRegister();
     }
 
     @SideOnly(Side.CLIENT)

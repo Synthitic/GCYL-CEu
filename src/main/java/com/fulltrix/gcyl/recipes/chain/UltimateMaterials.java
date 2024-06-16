@@ -2,7 +2,7 @@ package com.fulltrix.gcyl.recipes.chain;
 
 import com.fulltrix.gcyl.item.GCYLExplosive;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
-import com.fulltrix.gcyl.item.fusion.GCYLFusionCasing;
+import com.fulltrix.gcyl.item.fusion.GCYLFusionCoils;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
@@ -194,7 +194,7 @@ public class UltimateMaterials {
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(150).EUt(15000000)
                 .input(frameGt, QCDMatter)
-                .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_3))
+                .inputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3))
                 .inputs(ELECTRIC_PUMP_UXV.getStackForm(2))
                 .input(circuit, UIV)
                 .input(pipeLargeFluid, Neutronium, 4)

@@ -3,10 +3,7 @@ package com.fulltrix.gcyl.machines.multi.advance;
 import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
-import com.fulltrix.gcyl.item.fusion.GCYLCryostatCasing;
-import com.fulltrix.gcyl.item.fusion.GCYLDivertorCasing;
-import com.fulltrix.gcyl.item.fusion.GCYLFusionCasing;
-import com.fulltrix.gcyl.item.fusion.GCYLVacuumCasing;
+import com.fulltrix.gcyl.item.fusion.*;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionCoilProperty;
@@ -232,15 +229,15 @@ public class MetaTileEntityAdvFusionReactor extends GCYLRecipeMapMultiblockContr
 
     private IBlockState getCoilState() {
         if (tier == GTValues.UHV)
-            return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_1);
+            return GCYLMetaBlocks.FUSION_COILS.getState(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_1);
         if (tier == GTValues.UEV)
-            return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_2);
+            return GCYLMetaBlocks.FUSION_COILS.getState(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_2);
         if (tier == GTValues.UIV)
-            return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_3);
+            return GCYLMetaBlocks.FUSION_COILS.getState(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3);
         if (tier == GTValues.UXV)
-            return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_4);
+            return GCYLMetaBlocks.FUSION_COILS.getState(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_4);
 
-        return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_5);
+        return GCYLMetaBlocks.FUSION_COILS.getState(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_5);
     }
 
     private IBlockState getCryostatState() {

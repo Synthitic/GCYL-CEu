@@ -107,6 +107,7 @@ public class CommonProxy {
         registry.register(HEATING_COIL);
         registry.register(MULTIBLOCK_CASING2);
         //registry.register(TRANSPARENT_CASING);
+        registry.register(FUSION_COILS);
         registry.register(FUSION_CASING);
         registry.register(VACUUM_CASING);
         registry.register(DIVERTOR_CASING);
@@ -125,6 +126,7 @@ public class CommonProxy {
         registry.register(createItemBlock(HEATING_COIL, VariantItemBlock::new));
         registry.register(createItemBlock(MULTIBLOCK_CASING2, VariantItemBlock::new));
         //registry.register(createItemBlock(TRANSPARENT_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(FUSION_COILS, VariantItemBlock::new));
         registry.register(createItemBlock(FUSION_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(VACUUM_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(DIVERTOR_CASING, VariantItemBlock::new));

@@ -2,11 +2,9 @@ package com.fulltrix.gcyl.recipes.categories.machines;
 
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.item.GCYLMultiblockCasing2;
-import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ModHandler;
-import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.blocks.BlockBoilerCasing;
@@ -17,7 +15,7 @@ import gregtech.common.metatileentities.MetaTileEntities;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
-import static com.fulltrix.gcyl.item.fusion.GCYLFusionCasing.CasingType.ADV_FUSION_COIL_3;
+import static com.fulltrix.gcyl.item.fusion.GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.Einsteinium253;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
@@ -285,7 +283,7 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .inputs(SENSOR_UIV.getStackForm(4))
                 .inputs(SCINTILLATOR.getStackForm(2))
                 .inputs(LEPTON_TRAP_CRYSTAL.getStackForm(4))
-                .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(ADV_FUSION_COIL_3, 2))
+                .inputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(ADV_FUSION_COIL_3, 2))
                 .outputs(COSMIC_RAY_DETECTOR.getStackForm())
                 .buildAndRegister();
 

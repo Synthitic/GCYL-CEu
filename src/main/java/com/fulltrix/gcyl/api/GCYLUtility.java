@@ -1,21 +1,18 @@
 package com.fulltrix.gcyl.api;
 
 import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
-import com.fulltrix.gcyl.item.fusion.GCYLFusionCasing;
+import com.fulltrix.gcyl.item.fusion.GCYLFusionCoils;
 import gregtech.api.GTValues;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
-import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.builders.AssemblyLineRecipeBuilder;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Material;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
-import stanhebben.zenscript.annotations.Optional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -390,13 +387,13 @@ public class GCYLUtility {
             return NUCLEAR_STAR;
     }
 
-    public static GCYLFusionCasing.CasingType getAdvFusionCoilByAdvTier(int tier) {
+    public static GCYLFusionCoils.CasingType getAdvFusionCoilByAdvTier(int tier) {
         return switch (tier) {
-            case(1) -> GCYLFusionCasing.CasingType.ADV_FUSION_COIL_2;
-            case(2) -> GCYLFusionCasing.CasingType.ADV_FUSION_COIL_3;
-            case(3) -> GCYLFusionCasing.CasingType.ADV_FUSION_COIL_4;
-            case(4) -> GCYLFusionCasing.CasingType.ADV_FUSION_COIL_5;
-            default -> GCYLFusionCasing.CasingType.ADV_FUSION_COIL_1;
+            case(1) -> GCYLFusionCoils.CasingType.ADV_FUSION_COIL_2;
+            case(2) -> GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3;
+            case(3) -> GCYLFusionCoils.CasingType.ADV_FUSION_COIL_4;
+            case(4) -> GCYLFusionCoils.CasingType.ADV_FUSION_COIL_5;
+            default -> GCYLFusionCoils.CasingType.ADV_FUSION_COIL_1;
         };
     }
 

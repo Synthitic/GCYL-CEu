@@ -8,7 +8,7 @@ import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.item.GCYLExplosive.ExplosiveType.*;
 import static com.fulltrix.gcyl.item.GCYLMetaBlocks.*;
-import static com.fulltrix.gcyl.item.fusion.GCYLFusionCasing.CasingType.ADV_FUSION_COIL_1;
+import static com.fulltrix.gcyl.item.fusion.GCYLFusionCoils.CasingType.ADV_FUSION_COIL_1;
 import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.*;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.recipes.RecipeMaps.*;
@@ -106,7 +106,7 @@ public class SupraCausalComponents {
                 .inputs(NEUTRON_REFLECTOR.getStackForm(2))
                 .inputs(BATTERY_MEDIUM_LIS.getStackForm())
                 .input(wireGtSingle, UXVSuperconductor, 2)
-                .inputs(FUSION_CASING.getItemVariant(ADV_FUSION_COIL_1))
+                .inputs(FUSION_COILS.getItemVariant(ADV_FUSION_COIL_1))
                 .fluidInputs(Neutronium.getFluid(L * 9))
                 .outputs(RELATIVISTIC_SPINORIAL_MEMORY_SYSTEM.getStackForm())
                 .buildAndRegister();

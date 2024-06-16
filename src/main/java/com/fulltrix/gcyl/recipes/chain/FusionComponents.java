@@ -1,16 +1,11 @@
 package com.fulltrix.gcyl.recipes.chain;
 
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
-import com.fulltrix.gcyl.item.fusion.GCYLCryostatCasing;
-import com.fulltrix.gcyl.item.fusion.GCYLDivertorCasing;
-import com.fulltrix.gcyl.item.fusion.GCYLFusionCasing;
-import com.fulltrix.gcyl.item.fusion.GCYLVacuumCasing;
-import com.fulltrix.gcyl.machines.GCYLTileEntities;
+import com.fulltrix.gcyl.item.fusion.*;
 import gregtech.api.GTValues;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.common.blocks.BlockFusionCasing;
 import gregtech.common.blocks.MetaBlocks;
-import gregtech.common.metatileentities.MetaTileEntities;
 
 import static com.fulltrix.gcyl.api.GCYLUtility.*;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.ADVANCED_FUSION_REACTOR;
@@ -23,7 +18,6 @@ import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
-import static gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH;
 import static gregtech.common.metatileentities.MetaTileEntities.FUSION_REACTOR;
 
 public class FusionComponents {
@@ -54,7 +48,7 @@ public class FusionComponents {
         for(int i = 0; i < 5; i++) {
             getAssLineResearchBuilder(i+9, 1000, i == 0 ? FUSION_REACTOR[2].getStackForm() : ADVANCED_FUSION_REACTOR[i-1].getStackForm(), false, false)
                     .outputs(ADVANCED_FUSION_REACTOR[i].getStackForm())
-                    .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(getAdvFusionCoilByAdvTier(i), 4))
+                    .inputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(getAdvFusionCoilByAdvTier(i), 4))
                     .inputs(OreDictUnifier.get(plate, getAdvFusionMaterialByAdvTier1(i), (int) (4 * Math.pow(2, i))))
                     .inputs(OreDictUnifier.get(plate, getAdvFusionMaterialByAdvTier2(i), (int) (4 * Math.pow(2, i))))
                     .inputs(getFieldGeneratorByTier(i+8).getStackForm(4))
@@ -78,7 +72,7 @@ public class FusionComponents {
                 .input(circuit, UHV)
                 .inputs(FIELD_GENERATOR_UV.getStackForm())
                 .fluidInputs(SolderingAlloy.getFluid(144))
-                .outputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_1, 2))
+                .outputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_1, 2))
                 .stationResearch(b -> b
                         .researchStack(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_COIL))
                         .CWUt(128)
@@ -93,9 +87,9 @@ public class FusionComponents {
                 .input(circuit, UEV)
                 .inputs(FIELD_GENERATOR_UHV.getStackForm())
                 .fluidInputs(SolderingAlloy.getFluid(288))
-                .outputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_2, 2))
+                .outputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_2, 2))
                 .stationResearch(b -> b
-                        .researchStack(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_1))
+                        .researchStack(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_1))
                         .CWUt(256)
                         .EUt(VA[GTValues.UEV]))
                 .buildAndRegister();
@@ -108,9 +102,9 @@ public class FusionComponents {
                 .input(circuit, UIV)
                 .inputs(FIELD_GENERATOR_UEV.getStackForm())
                 .fluidInputs(SolderingAlloy.getFluid(576))
-                .outputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_3, 2))
+                .outputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3, 2))
                 .stationResearch(b -> b
-                        .researchStack(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_2))
+                        .researchStack(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_2))
                         .CWUt(512)
                         .EUt(VA[GTValues.UIV]))
                 .buildAndRegister();
@@ -123,9 +117,9 @@ public class FusionComponents {
                 .input(circuit, UXV)
                 .inputs(FIELD_GENERATOR_UIV.getStackForm())
                 .fluidInputs(SolderingAlloy.getFluid(1152))
-                .outputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_4, 2))
+                .outputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_4, 2))
                 .stationResearch(b -> b
-                        .researchStack(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_3))
+                        .researchStack(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3))
                         .CWUt(1024)
                         .EUt(VA[GTValues.UXV]))
                 .buildAndRegister();
@@ -138,9 +132,9 @@ public class FusionComponents {
                 .input(circuit, OpV)
                 .inputs(FIELD_GENERATOR_UXV.getStackForm())
                 .fluidInputs(SolderingAlloy.getFluid(2304))
-                .outputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_5, 2))
+                .outputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_5, 2))
                 .stationResearch(b -> b
-                        .researchStack(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_4))
+                        .researchStack(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_4))
                         .CWUt(2048)
                         .EUt(VA[GTValues.OpV]))
                 .buildAndRegister();
