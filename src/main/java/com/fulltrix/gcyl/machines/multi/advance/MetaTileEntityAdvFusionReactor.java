@@ -554,10 +554,10 @@ public class MetaTileEntityAdvFusionReactor extends GCYLRecipeMapMultiblockContr
 
         buffer.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION_COLOR);
         RenderBufferHelper.renderRing(buffer,
-                getPos().getX() - context.cameraX() + relativeBack.getXOffset() * 7 + 0.5,
+                getPos().getX() - context.cameraX() + relativeBack.getXOffset() * 7 + 1.25,
                 getPos().getY() - context.cameraY() + relativeBack.getYOffset() * 7 + 2.0,
-                getPos().getZ() - context.cameraZ() + relativeBack.getZOffset() * 7 + 1.5,
-                4.5, 0.6, 10, 20,
+                getPos().getZ() - context.cameraZ() + relativeBack.getZOffset() * 7 + 0.75,
+                5.0, 0.6, 10, 20,
                 r, g, b, a, axis);
         Tessellator.getInstance().draw();
     }
