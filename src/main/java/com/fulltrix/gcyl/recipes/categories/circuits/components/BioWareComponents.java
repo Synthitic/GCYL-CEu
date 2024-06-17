@@ -20,26 +20,6 @@ import static gregtech.common.items.MetaItems.*;
 
 public class BioWareComponents {
     public static void init() {
-        //BIO WAFER
-        AUTOCLAVE_RECIPES.recipeBuilder().EUt(1966080).duration(600)
-                        .cleanroom(GCYLCleanroomType.ISO3)
-                .input(OPTICAL_SOC_WAFER)
-                                .input(dust, HeavyQuarkDegenerateMatter, 16)
-                .output(BIO_WAFER)
-                                        .fluidInputs(SterileBioGrowthMedium.getFluid(8000))
-                                                .buildAndRegister();
-
-
-
-        //BIOWARE SOC
-        CUTTER_RECIPES.recipeBuilder().EUt(7864320).duration(150)
-                        .fluidInputs(UUMatter.getFluid(8000))
-                                .inputs(BIO_WAFER.getStackForm())
-                                        .outputs(LIVING_BIO_SOC.getStackForm(16))
-                                                .outputs(BIO_CELLS.getStackForm(16))
-                .cleanroom(GCYLCleanroomType.ISO3)
-                                                        .buildAndRegister();
-
 
         //BIO CELLS
         BIO_REACTOR_RECIPES.recipeBuilder().duration(600).EUt(GTValues.VA[GTValues.UV])
@@ -68,6 +48,25 @@ public class BioWareComponents {
                 .fluidOutputs(SterileBioGrowthMedium.getFluid(2000))
                 .buildAndRegister();
 
+        //BIO WAFER
+        AUTOCLAVE_RECIPES.recipeBuilder().EUt(1966080).duration(600)
+                .cleanroom(GCYLCleanroomType.ISO3)
+                .input(OPTICAL_SOC_WAFER)
+                .input(dust, HeavyQuarkDegenerateMatter, 16)
+                .output(BIO_WAFER)
+                .fluidInputs(SterileBioGrowthMedium.getFluid(8000))
+                .buildAndRegister();
+
+
+
+        //BIOWARE SOC
+        CUTTER_RECIPES.recipeBuilder().EUt(7864320).duration(150)
+                .fluidInputs(UUMatter.getFluid(8000))
+                .inputs(BIO_WAFER.getStackForm())
+                .outputs(LIVING_BIO_SOC.getStackForm(16))
+                .outputs(BIO_CELLS.getStackForm(16))
+                .cleanroom(GCYLCleanroomType.ISO3)
+                .buildAndRegister();
 
         //SMDS
         ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720 * 4)
