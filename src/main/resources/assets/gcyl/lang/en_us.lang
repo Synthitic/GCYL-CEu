@@ -885,8 +885,8 @@ gcyl.material.crude_hexanitrohexaazaisowurtzitane=Crude Hexanitrohexaazaisowurtz
 gcyl.material.sodium_borohydride=Sodium Borohydride
 gcyl.material.sodium_tetrafluoroborate=Sodium Tetrafluoroborate
 gcyl.material.decaborane=Decaborane
-gcyl.material.cesium_carborane_precursor=Cesium Carborane Precursor
-gcyl.material.cesium_carborane=Cesium Carborane
+gcyl.material.cesium_carborane_precursor=Caesium Carborane Precursor
+gcyl.material.cesium_carborane=Caesium Carborane
 gcyl.material.fluorocarborane=Fluorocarborane
 gcyl.material.caesium_nitrate=Caesium Nitrate
 gcyl.material.silver_iodide=Silver Iodide
@@ -1834,7 +1834,7 @@ gcyl.machine.fluid_drilling_plant_hv.name=Fluid Drilling Plant 2 (FDP)
 gcyl.machine.fluid_drilling_plant_ev.name=Fluid Drilling Plant 3 (FDP)
 
 gcyl.machine.cosmic_ray_detector.name=Cosmic Ray Detector (CRD)
-gcyl.multiblock.cosmic_ray_detector.description=The Cosmic Ray Detector produced Heavy Lepton Mixture based on its height.
+gcyl.multiblock.cosmic_ray_detector.description=The Cosmic Ray Detector produces Heavy Lepton Mixture based on its height.
 
 
 
@@ -3038,12 +3038,9 @@ gcyl.multiblock.battery_tower.tooltip.4=Each maintenance problem increases loss 
 
 gcyl.multiblock.cosmic_ray_detector.tooltip.1=The Cosmic Ray Detector can't see the sky!
 gcyl.multiblock.cosmic_ray_detector.tooltip.2=Produces Heavy Lepton Mix based on the Y-level it is built at.
-gcyl.multiblock.cosmic_ray_detector.tooltip.3=At Bedrock it will produce 15 mb/t and at build limit it will produce 50 mb/t.
-gcyl.multiblock.cosmic_ray_detector.tooltip.4=Requires a minimum of 2097152 EU/t to function.
-gcyl.multiblock.cosmic_ray_detector.tooltip.5=Generating %d mb/t of Heavy Lepton Mix.
-gcyl.multiblock.cosmic_ray_detector.tooltip.6=The top Sensor Block needs to be able to see the sky.
-gcyl.multiblock.cosmic_ray_detector.tooltip.7=Overclocks increase the production by approximately 150%%.
-gcyl.multiblock.cosmic_ray_detector.tooltip.8=Output Hatch Full!
+gcyl.multiblock.cosmic_ray_detector.tooltip.3=The recipe duration, before overclocking, is reduced by the Y-level in ticks.
+gcyl.multiblock.cosmic_ray_detector.tooltip.4=Requires a minimum of 2097152 EU/t and computation to function.
+gcyl.multiblock.cosmic_ray_detector.tooltip.5=Has recipes to provide Data for the Laser Miner
 
 
 gregtech.multiblock.recipe=Screw to change recipe. Currently using: %s
@@ -4941,5 +4938,25 @@ gcyl.machine.hpca.computation_component.uiv.name=UIV HPCA Computation Component
 gcyl.machine.hpca.computation_component.uxv.name=UXV HPCA Computation Component
 gcyl.machine.hpca.computation_component.opv.name=OpV HPCA Computation Component
 gcyl.machine.hpca.computation_component.max.name=MAX HPCA Computation Component
+
+gcyl.machine.laser_miner.name=High Precision Laser Miner
+
+gcyl.material.sterile_bio_growth_medium=Sterilized Bio Growth Medium
+gcyl.material.raw_bio_growth_medium=Raw Bio Growth Medium
+
+metaitem.bio_cells.name=Stem Bio Cells
+metaitem.bio_cells.tooltip=Mutated Raw Intelligence
+metaitem.board.bio.name=Bioware Lifesupport Circuit Board
+metaitem.board.bio.tooltip=The Board That Keeps More Life
+metaitem.board_circuit.bio.name=Bio Master Circuit Board
+metaitem.board_circuit.bio.tooltip=The Board That Keeps More Life
+metaitem.crystal.asoc.name=Crystal ASoC
+metaitem.crystal.asoc.tooltip=Advanced Crystal System on Chip
+metaitem.living.soc.name=Living SoC
+metaitem.living.soc.tooltip=Living System on Chip
+metaitem.living_bio.soc.name=Living SoC
+metaitem.living_bio.soc.tooltip=Mutated Living System on Chip
+metaitem.wafer.bio.name=Living Bio Wafer
+metaitem.wafer.bio.tooltip=Mutated Living Raw Circuit
 
 

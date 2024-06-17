@@ -51,6 +51,12 @@ public class GCYLFusionCoils extends VariantActiveBlock<GCYLFusionCoils.CasingTy
             return this.name;
         }
 
+        @NotNull
+        @Override
+        public String toString() {
+            return getName();
+        }
+
         @Override
         public int getHarvestLevel(IBlockState state) {
             return harvestLevel;

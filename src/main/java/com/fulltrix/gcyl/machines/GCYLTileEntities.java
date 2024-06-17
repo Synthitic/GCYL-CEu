@@ -9,6 +9,7 @@ import com.fulltrix.gcyl.machines.multi.MetaTileEntityElectricImplosion;
 import com.fulltrix.gcyl.machines.multi.MetaTileEntityStellarForge;
 import com.fulltrix.gcyl.machines.multi.advance.*;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityDeepMiner;
+import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityLaserMiner;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityVoidMiner;
 import com.fulltrix.gcyl.machines.multi.multiblockpart.*;
 import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityChemicalPlant;
@@ -26,6 +27,7 @@ import gregtech.common.metatileentities.MetaTileEntities;
 
 import static com.fulltrix.gcyl.api.GCYLUtility.gcylId;
 import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.DEEP_MINER_RECIPES;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.LASER_MINER_RECIPES;
 import static com.google.common.base.Ascii.toLowerCase;
 import static gregtech.common.metatileentities.MetaTileEntities.registerMetaTileEntity;
 
@@ -48,6 +50,7 @@ public class GCYLTileEntities {
     public static MetaTileEntityCryogenicFreezer CRYOGENIC_FREEZER;
     public static MetaTileEntityOreFactory ORE_FACTORY;
     public static MetaTileEntityDeepMiner DEEP_MINER;
+    public static MetaTileEntityLaserMiner LASER_MINER;
     public static MetaTileEntityDecayChamber DECAY_CHAMBER;
     public static MetaTileEntityGreenhouse[] GREEN_HOUSE = new MetaTileEntityGreenhouse[2];
     public static MetaTileEntityParallelHatch[] GCYL_PARALLEL_HATCH = new MetaTileEntityParallelHatch[3];
@@ -117,6 +120,8 @@ public class GCYLTileEntities {
         ORE_FACTORY = registerMetaTileEntity(++id, new MetaTileEntityOreFactory(gcylId("ore_factory")));
 
         DEEP_MINER = registerMetaTileEntity(++id, new MetaTileEntityDeepMiner(gcylId("deep_miner"), DEEP_MINER_RECIPES, false));
+
+        LASER_MINER = registerMetaTileEntity(++id, new MetaTileEntityLaserMiner(gcylId("laser_miner"), LASER_MINER_RECIPES, false));
 
         STERILE_CLEANING_MAINTENANCE_HATCH = registerMetaTileEntity(++id, new MetaTileEntitySterileCleaningMaintenanceHatch(gcylId("maintenance_hatch_sterile_cleanroom_auto")));
         ISO3_CLEANING_MAINTENANCE_HATCH = registerMetaTileEntity(++id, new MetaTileEntityISO3CleaningMaintenanceHatch(gcylId("maintenance_hatch_iso_3_cleanroom_auto")));

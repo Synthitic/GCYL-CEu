@@ -438,6 +438,14 @@ public class GCYLCoreItems {
     public static MetaItem<?>.MetaValueItem VOLTAGE_COIL_OpV;
     public static MetaItem<?>.MetaValueItem VOLTAGE_COIL_MAX;
 
+    public static MetaItem<?>.MetaValueItem BIO_CELLS;
+    public static MetaItem<?>.MetaValueItem BIO_BOARD;
+    public static MetaItem<?>.MetaValueItem BIO_CIRCUIT_BOARD;
+    public static MetaItem<?>.MetaValueItem ADVANCED_CRYSTAL_SOC;
+    public static MetaItem<?>.MetaValueItem LIVING_SOC;
+    public static MetaItem<?>.MetaValueItem LIVING_BIO_SOC;
+    public static MetaItem<?>.MetaValueItem BIO_WAFER;
+
 
     public static void init() {
         GCYLCoreItem item = new GCYLCoreItem();

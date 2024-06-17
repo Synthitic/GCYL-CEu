@@ -387,6 +387,14 @@ public class GCYLCoreItem extends StandardMetaItem {
         VOLTAGE_COIL_OpV = addItem(625, "voltage_coil.opv");
         VOLTAGE_COIL_MAX = addItem(626, "voltage_coil.max");
 
+        BIO_CELLS = addItem(627, "bio_cells");
+        BIO_BOARD = addItem(628, "board.bio");
+        BIO_CIRCUIT_BOARD = addItem(629, "board_circuit.bio");
+        ADVANCED_CRYSTAL_SOC = addItem(630, "crystal.asoc");
+        LIVING_SOC = addItem(631, "living.soc");
+        LIVING_BIO_SOC = addItem(632, "living_bio.soc");
+        BIO_WAFER = addItem(633, "wafer.bio");
+
 
         PYROLYTIC_CARBON = addItem(16, "pyrolytic_carbon");
         MICA_SHEET = addItem(26, "mica_sheet");

@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories.circuits.components;
 
+import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 
@@ -58,6 +59,7 @@ public class CosmicComponents {
                 .buildAndRegister();
 
         // Cosmic Processing Core
+        /*
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(320).EUt(11796480)
                 .inputs(COSMIC_COMPUTE_UNIT.getStackForm())
                 .inputs(SMD_DIODE_COSMIC.getStackForm(48))
@@ -75,6 +77,27 @@ public class CosmicComponents {
                 .fluidInputs(SolderingAlloy.getFluid(L * 9))
                 .fluidInputs(ProtoAdamantium.getFluid(L * 3))
                 .outputs(COSMIC_PROCESSING_CORE.getStackForm(8))
+                .cleanroom(GCYLCleanroomType.ISO1)
+                .buildAndRegister();
+         */
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(320).EUt(11796480)
+                .inputs(COSMIC_COMPUTE_UNIT.getStackForm())
+                .inputs(SMD_DIODE_COSMIC.getStackForm(48))
+                .inputs(SMD_RESISTOR_COSMIC.getStackForm(48))
+                .inputs(SMD_TRANSISTOR_COSMIC.getStackForm(48))
+                .inputs(SMD_CAPACITOR_COSMIC.getStackForm(48))
+                .input(foil, FullerenePolymerMatrix, 2)
+                .inputs(ULTRASHORT_PULSE_LASER.getStackForm())
+                .input(wireGtSingle, Cinobite, 8)
+                .inputs(CLADDED_OPTICAL_FIBER_CORE.getStackForm(8))
+                .inputs(BOSE_EINSTEIN_COOLING_CONTAINER.getStackForm(4))
+                .input(plate,BlackTitanium,4)
+                .fluidInputs(Zylon.getFluid(L * 6))
+                .fluidInputs(Quantum.getFluid(L * 3))
+                .fluidInputs(SolderingAlloy.getFluid(L * 9))
+                .fluidInputs(ProtoAdamantium.getFluid(L * 3))
+                .outputs(COSMIC_PROCESSING_CORE.getStackForm(GCYLConfig.recipes.circuitCoresPerCraft))
                 .cleanroom(GCYLCleanroomType.ISO1)
                 .buildAndRegister();
 

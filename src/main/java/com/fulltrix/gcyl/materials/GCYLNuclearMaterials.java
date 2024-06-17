@@ -53,7 +53,7 @@ public class GCYLNuclearMaterials {
     public static Material DepletedNeptuniumDioxide;
 
      */
-    public static void registerNuclear() {
+    public static void registerRequiredNuclear() {
 
         ReactorSteel = new Material.Builder(++id, gcylId("reactor_steel"))
                 .ingot(2).liquid()
@@ -156,7 +156,6 @@ public class GCYLNuclearMaterials {
         registerDecayMats();
 
         //TODO: FINISH NUCLEAR AND REMOVE
-        temporaryNuclearMaterials();
 
         /*
         HighEnrichedNeptuniumDioxide = new Material.Builder(++id, gcylId("high_enriched_neptunium_dioxide"))
@@ -243,15 +242,28 @@ public class GCYLNuclearMaterials {
 
     }
 
-    private static void temporaryNuclearMaterials() {
+    public static int idSecondary;
 
-        Bismuth210 = new Material.Builder(++id, gcylId("bismuth_210"))
+    public static Material Np237Breeder;
+
+    public static void registerSecondaryNuclear() {
+
+
+        Bismuth210 = new Material.Builder(++idSecondary, gcylId("bismuth_210"))
                 .dust()
                 .color(Bismuth.getMaterialRGB())
                 .iconSet(Bismuth.getMaterialIconSet())
                 .build()
                 .setFormula("Bi-210", true);
 
+        Np237Breeder = new Material.Builder(++idSecondary, gcylId("np_237_breeder"))
+                .dust()
+                .components(Neptunium237, 1, Aluminium, 1)
+                .color(Neptunium.getMaterialRGB())
+                .iconSet(DULL)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .fissionFuelProperties(2000, 1000, 1000, 0, 100, 10)
+                .build();
 
     }
 }

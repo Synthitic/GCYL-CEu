@@ -1583,7 +1583,7 @@ public class ComponentRecipes {
                         .EUt(VA[GTValues.UIV]))
                 .buildAndRegister();
 
-        //Change this from carbon nanotubes
+        //TODO: Change this from carbon nanotubes
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(41943040)
                 .outputs(ELECTRIC_MOTOR_UXV.getStackForm())
                 .input(stickLong, SamariumMagnetic, 64)
@@ -1591,6 +1591,10 @@ public class ComponentRecipes {
                 .input(stickLong, HastelloyK243, 4)
                 .input(ring, HastelloyK243, 4)
                 .input(round, HastelloyK243, 8)
+                .input(wireFine, CarbonNanotubes, 64)
+                .input(wireFine, CarbonNanotubes, 64)
+                .input(wireFine, CarbonNanotubes, 64)
+                .input(wireFine, CarbonNanotubes, 64)
                 .input(wireFine, CarbonNanotubes, 64)
                 .input(wireFine, CarbonNanotubes, 64)
                 .input(wireFine, CarbonNanotubes, 64)

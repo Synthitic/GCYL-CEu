@@ -126,6 +126,8 @@ public class ExoticComponents {
                 .outputs(RYDBERG_SPINORIAL_ASSEMBLY.getStackForm())
                 .buildAndRegister();
 
+        //EXOTIC PROCESSING CORE
+        /*
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(160).EUt(4000000)
                 .inputs(NON_LINEAR_OPTICAL_LENS.getStackForm(4))
                 .inputs(DEGENERATE_RHENIUM_PLATE.getStackForm(3))
@@ -142,6 +144,26 @@ public class ExoticComponents {
                 .fluidInputs(SolderingAlloy.getFluid(L * 9))
                 .fluidInputs(Polybenzimidazole.getFluid(L * 6))
                 .outputs(EXOTIC_PROCESSING_CORE.getStackForm(6))
+                .cleanroom(GCYLCleanroomType.ISO2)
+                .buildAndRegister();
+         */
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(160).EUt(4000000)
+                .inputs(NON_LINEAR_OPTICAL_LENS.getStackForm(4))
+                .inputs(DEGENERATE_RHENIUM_PLATE.getStackForm(3))
+                .input(foil, TriniumTitanium, 8)
+                .inputs(RYDBERG_SPINORIAL_ASSEMBLY.getStackForm())
+                .inputs(X_RAY_LASER.getStackForm())
+                .inputs(SMD_CAPACITOR_EXOTIC.getStackForm(32))
+                .inputs(SMD_DIODE_EXOTIC.getStackForm(32))
+                .inputs(SMD_TRANSISTOR_EXOTIC.getStackForm(32))
+                .inputs(SMD_RESISTOR_EXOTIC.getStackForm(32))
+                .input(wireGtSingle, Pikyonium, 8)
+                .inputs(CLADDED_OPTICAL_FIBER_CORE.getStackForm(4))
+                .fluidInputs(QuantumDots.getFluid(100))
+                .fluidInputs(SolderingAlloy.getFluid(L * 9))
+                .fluidInputs(Polybenzimidazole.getFluid(L * 6))
+                .outputs(EXOTIC_PROCESSING_CORE.getStackForm(GCYLConfig.recipes.circuitCoresPerCraft))
                 .cleanroom(GCYLCleanroomType.ISO2)
                 .buildAndRegister();
 

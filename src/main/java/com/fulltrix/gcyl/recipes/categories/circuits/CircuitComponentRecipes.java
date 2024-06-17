@@ -3,6 +3,7 @@ package com.fulltrix.gcyl.recipes.categories.circuits;
 import com.fulltrix.gcyl.recipes.categories.circuits.components.*;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
+import gregtech.api.unification.material.MarkerMaterials;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
@@ -26,7 +27,7 @@ public class CircuitComponentRecipes {
         CrystalComponents.init();
         circuitBoards();
         WetwareComponents.init();
-        biowareSMD();
+        BioWareComponents.init();
         OpticalComponents.init();
         ExoticComponents.init();
         CosmicComponents.init();
@@ -223,59 +224,6 @@ public class CircuitComponentRecipes {
                 .buildAndRegister();
     }
 
-    private static void biowareSMD() {
-
-        ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720 * 4)
-                .input(wireFine, Dubnium, 8)
-                .input(plate, GermaniumTungstenNitride, 4)
-                .fluidInputs(Polyimide.getFluid(L * 2))
-                .outputs(SMD_TRANSISTOR_BIOWARE.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
-                .buildAndRegister();
-
-        ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720 * 4)
-                .input(wireFine, PEDOT, 8)
-                .input(foil, Polytetrafluoroethylene, 4)
-                .input(foil, BariumTitanate, 4)
-                .fluidInputs(Polyimide.getFluid(L * 2))
-                .outputs(SMD_CAPACITOR_BIOWARE.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
-                .buildAndRegister();
-
-        ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720 * 4)
-                .input(wireFine, Osmiridium, 8)
-                .input(dust, AluminiumComplex)
-                .input(dust, CopperGalliumIndiumSelenide)
-                .fluidInputs(Polyimide.getFluid(L * 2))
-                .outputs(SMD_DIODE_BIOWARE.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
-                .buildAndRegister();
-
-        ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30720 * 4)
-                .input(wireFine, NaquadahAlloy, 6)
-                .input(plate, BismuthRuthenate)
-                .input(plate, BismuthIridiate)
-                .fluidInputs(Polyimide.getFluid(L * 2))
-                .outputs(SMD_RESISTOR_BIOWARE.getStackForm(24))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
-                .buildAndRegister();
-
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(foil, SiliconeRubber, 32)
-                .input(wireFine, NaquadahAlloy, 16)
-                .inputs(SMD_TRANSISTOR_BIOWARE.getStackForm(16))
-                .inputs(SMD_RESISTOR_BIOWARE.getStackForm(16))
-                .inputs(SMD_DIODE_BIOWARE.getStackForm(16))
-                .inputs(SMD_CAPACITOR_BIOWARE.getStackForm(16))
-                .inputs(CYBER_PROCESSING_UNIT.getStackForm())
-                .inputs(STEM_CELLS.getStackForm(4))
-                .fluidInputs(Tritanium.getFluid(144))
-                .outputs(NEURO_PROCESSOR.getStackForm(4))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
-                .EUt(30720 * 16)
-                .duration(150)
-                .buildAndRegister();
-    }
 
     private static void circuitBoards() {
 
@@ -303,6 +251,36 @@ public class CircuitComponentRecipes {
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
-        //TODO Red circuit board from GTNH
+        //BIO BOARD
+        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(1200).EUt(GTValues.VA[GTValues.UV])
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .inputs(WETWARE_BOARD.getStackForm(32))
+                .inputs(PETRI_DISH.getStackForm(8))
+                .inputs(ELECTRIC_PUMP_ZPM.getStackForm())
+                .inputs(SENSOR_LuV.getStackForm(2))
+                .input(circuit, MarkerMaterials.Tier.UV)
+                .input(foil, TitanSteel, 32)
+                .fluidInputs(SterileBioGrowthMedium.getFluid(16000))
+                .outputs(BIO_BOARD.getStackForm(32))
+                .buildAndRegister();
+
+
+        //BIO CIRCUIT BOARD
+        CHEMICAL_RECIPES.recipeBuilder().duration(2400).EUt(GTValues.VA[GTValues.EV])
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .inputs(BIO_BOARD.getStackForm(1))
+                .input(foil, TitanSteel, 64)
+                .fluidInputs(Iron3Chloride.getFluid(7500))
+                .outputs(BIO_CIRCUIT_BOARD.getStackForm())
+                .buildAndRegister();
+
+        CHEMICAL_RECIPES.recipeBuilder().duration(2400).EUt(GTValues.VA[GTValues.EV])
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .inputs(BIO_BOARD.getStackForm(1))
+                .input(foil, TitanSteel, 64)
+                .fluidInputs(SodiumPersulfate.getFluid(7500 * 2))
+                .outputs(BIO_CIRCUIT_BOARD.getStackForm())
+                .buildAndRegister();
+
     }
 }

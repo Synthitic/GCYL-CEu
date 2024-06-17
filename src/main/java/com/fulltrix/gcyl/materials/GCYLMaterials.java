@@ -1177,6 +1177,8 @@ public class GCYLMaterials {
     public static Material Erythrosine;
     public static Material DeepOverworldGas;
     public static Material DeepNetherGas;
+    public static Material RawBioGrowthMedium;
+    public static Material SterileBioGrowthMedium;
 
     //COILS
     public static Material Pikyonium;
@@ -1228,12 +1230,14 @@ public class GCYLMaterials {
     }
 
     public static void init() {
-        registerNuclear();
+        registerRequiredNuclear();
         initDEMaterials();
         register();
         register2();
         registerSuperconductors();
+        idSecondary = id+1000;
         register3();
+        registerSecondaryNuclear();
     }
 
     private static void register() {
@@ -1720,7 +1724,7 @@ public class GCYLMaterials {
                 .color(0xA09ED7)
                 .iconSet(FLUID)
                 .build()
-                .setFormula("H20NaNO3", true);
+                .setFormula("(H2O)NaNO3", true);
 
         SodiumNitrite = new Material.Builder(++id, gcylId("sodium_nitrite"))
                 .dust()
@@ -3228,6 +3232,7 @@ public class GCYLMaterials {
                 .dust().liquid(new FluidBuilder().temperature(5000))
                 .color(0xFF9A3C)
                 .iconSet(SAND)
+                .ore()
                 .flags(DISABLE_DECOMPOSITION, EXCLUDE_BLOCK_CRAFTING_RECIPES,DISABLE_REPLICATION)
                 .components(Redstone, 1, Blaze, 2, Sulfur, 1)
                 .build();
@@ -3241,9 +3246,10 @@ public class GCYLMaterials {
                 .build();
 
         Cryotheum = new Material.Builder(++id, gcylId("cryotheum"))
-                .dust().liquid()
+                .dust().liquid(new FluidBuilder().temperature(250))
                 .color(0x01F3F6)
                 .iconSet(DULL)
+                .ore()
                 .flags(DISABLE_DECOMPOSITION, EXCLUDE_BLOCK_CRAFTING_RECIPES,DISABLE_REPLICATION)
                 .components(Redstone, 1, Blizz, 2, Water, 1)
                 .build();
@@ -3464,7 +3470,7 @@ public class GCYLMaterials {
                 .setFormula("LaPrNdPmSmEuGdTbDyHoErTmYbLu", true);
         Actinoids = new Material.Builder(++id, gcylId("actinoids"))
                 .dust()
-                .color((Actinium.getMaterialRGB() + Thorium.getMaterialRGB() + Protactinium.getMaterialRGB() + Uranium.getMaterialRGB() + Neptunium.getMaterialRGB() + Plutonium.getMaterialRGB() + Americium.getMaterialRGB() + Curium.getMaterialRGB() + Berkelium.getMaterialRGB() + Californium.getMaterialRGB() + Einsteinium.getMaterialRGB() + Fermium.getMaterialRGB() + Mendelevium.getMaterialRGB()) / 13)
+                .color((Actinium.getMaterialRGB() + Thorium.getMaterialRGB() + Protactinium.getMaterialRGB() + Uranium.getMaterialRGB() + Neptunium.getMaterialRGB() + Plutonium.getMaterialRGB() + Americium.getMaterialRGB() + Curium.getMaterialRGB() + Berkelium.getMaterialRGB() + Californium.getMaterialRGB() + Einsteinium.getMaterialRGB() + Fermium.getMaterialRGB() + Mendelevium.getMaterialRGB() + Nobelium.getMaterialRGB() + Lawrencium.getMaterialRGB()) / 15)
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
                 .build()
@@ -8517,6 +8523,7 @@ public class GCYLMaterials {
                 .color(6605055)
                 .flags(DISABLE_REPLICATION, NO_SMASHING, NO_SMELTING)
                 .iconSet(EMERALD)
+                .ore()
                 .build()
                 .setFormula("Vt¤",true);
 
@@ -10632,6 +10639,24 @@ public class GCYLMaterials {
     }
 
     private static void register3() {
+
+        RawBioGrowthMedium = new Material.Builder(++id, gcylId("raw_bio_growth_medium"))
+                .liquid()
+                .color(0x24B222)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("?",true);
+
+        SterileBioGrowthMedium = new Material.Builder(++id, gcylId("sterile_bio_growth_medium"))
+                .liquid()
+                .color(0x35FF31)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("?",true);
+
+
     /*
         = new Material.Builder(++id, gcylId("material"))
                 .ingot().liquid()

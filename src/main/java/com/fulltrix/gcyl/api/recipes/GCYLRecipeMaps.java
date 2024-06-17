@@ -4,12 +4,14 @@ package com.fulltrix.gcyl.api.recipes;
 
 import com.fulltrix.gcyl.recipes.impl.AdvFusionRecipeBuilder;
 import com.fulltrix.gcyl.recipes.impl.DeepMinerBuilder;
+import com.fulltrix.gcyl.recipes.impl.LaserMinerBuilder;
 import gregtech.api.GTValues;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.gui.widgets.ProgressWidget.MoveType;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMapBuilder;
+import gregtech.api.recipes.builders.ComputationRecipeBuilder;
 import gregtech.api.recipes.builders.FuelRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.core.sound.GTSoundEvents;
@@ -168,6 +170,20 @@ public final class GCYLRecipeMaps {
             .itemInputs(2)
             .itemOutputs(2)
             .fluidInputs(1)
+            .build();
+
+    public static final RecipeMap<LaserMinerBuilder> LASER_MINER_RECIPES = new RecipeMapBuilder<>("laser_miner",
+            new LaserMinerBuilder())
+            .itemInputs(4)
+            .itemOutputs(16)
+            .build();
+
+    public static final RecipeMap<ComputationRecipeBuilder> COSMIC_RAY_DETECTOR_RECIPES = new RecipeMapBuilder<>("cosmic_ray_detector",
+            new ComputationRecipeBuilder())
+            .itemInputs(1)
+            .itemOutputs(9)
+            .fluidOutputs(1)
+            .sound(GTSoundEvents.ARC)
             .build();
 
 

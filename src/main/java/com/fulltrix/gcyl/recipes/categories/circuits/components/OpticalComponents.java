@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories.circuits.components;
 
+import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import net.minecraft.item.ItemStack;
@@ -59,10 +60,10 @@ public class OpticalComponents {
                 .buildAndRegister();
 
         // SMD Inductor
-        // TODO add optical inductor & research
 
         // Optical Processing Core
 
+         /*
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(320).EUt(1474560)
                 .inputs(OPTICAL_SOC.getStackForm(6))
                 .inputs(SMD_DIODE_OPTICAL.getStackForm(16))
@@ -84,6 +85,30 @@ public class OpticalComponents {
                 .outputs(OPTICAL_PROCESSING_CORE.getStackForm(6))
                 .cleanroom(GCYLCleanroomType.ISO3)
                 .buildAndRegister();
+
+         */
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(320).EUt(1474560)
+                .inputs(OPTICAL_SOC.getStackForm(6))
+                .inputs(SMD_DIODE_OPTICAL.getStackForm(16))
+                .inputs(SMD_RESISTOR_OPTICAL.getStackForm(16))
+                .inputs(SMD_TRANSISTOR_OPTICAL.getStackForm(16))
+                .inputs(SMD_CAPACITOR_OPTICAL.getStackForm(16))
+                .input(foil, Polyetheretherketone, 2)
+                .inputs(LOW_FREQUENCY_LASER.getStackForm())
+                .inputs(MEDIUM_FREQUENCY_LASER.getStackForm())
+                .inputs(HIGH_FREQUENCY_LASER.getStackForm())
+                .inputs(NON_LINEAR_OPTICAL_LENS.getStackForm(2))
+                .inputs(CLADDED_OPTICAL_FIBER_CORE.getStackForm(2))
+                .inputs(BOSE_EINSTEIN_COOLING_CONTAINER.getStackForm())
+                .input(plate,Graphene,4)
+                .fluidInputs(Polytetrafluoroethylene.getFluid(L * 6))
+                .fluidInputs(EnrichedNaquadahAlloy.getFluid(L * 3))
+                .fluidInputs(SolderingAlloy.getFluid(L * 9))
+                .fluidInputs(FullereneDopedNanotubes.getFluid(L))
+                .outputs(OPTICAL_PROCESSING_CORE.getStackForm(GCYLConfig.recipes.circuitCoresPerCraft))
+                .cleanroom(GCYLCleanroomType.ISO3)
+                .buildAndRegister();
+
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(750000)
                 .input(dustSmall, Radium)

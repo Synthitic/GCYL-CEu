@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories.circuits.components;
 
+import com.fulltrix.gcyl.GCYLConfig;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -24,7 +25,23 @@ public class WetwareComponents {
 
     private static void components() {
 
-        //TODO: add wetware inductor
+        // wetware crystal chip
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(600).EUt(80000)
+                        .inputs(CRYSTAL_SYSTEM_ON_CHIP.getStackForm())
+                                .notConsumable(lens, MagnetoResonatic)
+                                        .outputs(ADVANCED_CRYSTAL_SOC.getStackForm())
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .buildAndRegister();
+
+        // wetware soc
+        CHEMICAL_RECIPES.recipeBuilder().duration(600).EUt(160000)
+                .inputs(HIGHLY_ADVANCED_SOC.getStackForm(8))
+                .inputs(ADVANCED_CRYSTAL_SOC.getStackForm())
+                        .outputs(LIVING_SOC.getStackForm())
+                                        .fluidInputs(SterileBioGrowthMedium.getFluid(50))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                                                .buildAndRegister();
+
 
         // SMD Capacitor
         ASSEMBLER_RECIPES.recipeBuilder().duration(80).EUt(30720)
@@ -80,6 +97,8 @@ public class WetwareComponents {
                 .buildAndRegister();
 
         // Cyber Processing Unit
+
+        /*
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .inputs(ELECTRICALLY_WIRED_PETRI_DISH.getStackForm())
                 .input(foil, SiliconeRubber, 8)
@@ -95,6 +114,28 @@ public class WetwareComponents {
                 .fluidInputs(SterileGrowthMedium.getFluid(1000))
                 .fluidInputs(Titanium.getFluid(L * 9))
                 .outputs(CYBER_PROCESSING_UNIT.getStackForm(8))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .EUt(30720 * 4)
+                .duration(250)
+                .buildAndRegister();
+         */
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(ELECTRICALLY_WIRED_PETRI_DISH.getStackForm())
+                .input(foil, SiliconeRubber, 64)
+                .input(wireFine, Gold, 64)
+                .inputs(SMD_TRANSISTOR_WETWARE.getStackForm(4))
+                .inputs(SMD_DIODE_WETWARE.getStackForm(4))
+                .inputs(SMD_RESISTOR_WETWARE.getStackForm(4))
+                .inputs(SMD_CAPACITOR_WETWARE.getStackForm(4))
+                .inputs(WETWARE_CIRCUIT_BOARD.getStackForm())
+                .inputs(STEM_CELLS.getStackForm(16))
+                .inputs(NEURO_SUPPORT_UNIT.getStackForm())
+                .fluidInputs(Polybenzimidazole.getFluid(L * 8))
+                .fluidInputs(SterileGrowthMedium.getFluid(1000))
+                .fluidInputs(Titanium.getFluid(L * 9))
+                .fluidInputs(Cryotheum.getFluid(1000))
+                .outputs(CYBER_PROCESSING_UNIT.getStackForm(GCYLConfig.recipes.circuitCoresPerCraft))
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .EUt(30720 * 4)
                 .duration(250)

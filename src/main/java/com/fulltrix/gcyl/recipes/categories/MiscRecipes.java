@@ -4,11 +4,13 @@ import gregtech.api.GTValues;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.chance.output.ChancedOutputLogic;
+import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.stack.UnificationEntry;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.LASER_MINER_RECIPES;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
@@ -288,6 +290,14 @@ highTierVoltageCoils();
                 .fluidOutputs(Octane.getFluid(16000))
                 .buildAndRegister();
 
+        // Silicon Carbide
+        BLAST_RECIPES.recipeBuilder().EUt(120).duration(3000).blastFurnaceTemp(2500)
+                .input(dust, Silicon)
+                .input(dust, Carbon)
+                .notConsumable(new IntCircuitIngredient(2))
+                .notConsumable(Argon.getFluid(0))
+                .output(dust, SiliconCarbide, 2)
+                .buildAndRegister();
     }
 
     private static void highTierVoltageCoils() {

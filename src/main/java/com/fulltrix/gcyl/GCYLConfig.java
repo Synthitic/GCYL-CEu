@@ -140,8 +140,13 @@ public class GCYLConfig {
 
     public static class Recipes {
 
-        @Config.Comment({"Base amount of circuits outputted per craft of the first circuit of a tier.", "default = 2"})
+        @Config.Comment({"Base amount of circuits outputted per craft of the first circuit of a tier.", "default = 1"})
         @Config.RequiresMcRestart
-        public int circuitsPerCraft = 2;
+        public int circuitsPerCraft = 1;
+
+
+        @Config.Comment({"Base amount of high tier circuit cores outputted per craft.", "default = 1"})
+        @Config.RequiresMcRestart
+        public int circuitCoresPerCraft = 1;
     }
 }

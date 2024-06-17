@@ -126,6 +126,8 @@ public class UltimateMaterials {
                 .fluidInputs(Plutonium.getFluid(144))
                 .fluidInputs(Mendelevium.getFluid(144))
                 .fluidInputs(Einsteinium.getFluid(144))
+                .fluidInputs(Lawrencium.getFluid(144))
+                .fluidInputs(Nobelium.getFluid(144))
                 .output(dust, Actinoids, 13)
                 .buildAndRegister();
 

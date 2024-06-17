@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories.circuits.components;
 
+import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
@@ -62,6 +63,7 @@ public class SupraCausalComponents {
                 .buildAndRegister();
 
         // Supracausal Processing Core
+        /*
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(800).EUt(33550000)
                 .inputs(NUCLEAR_CLOCK.getStackForm())
                 .inputs(TOPOLOGICAL_MANIPULATOR_UNIT.getStackForm(1))
@@ -76,6 +78,23 @@ public class SupraCausalComponents {
                 .inputs(SMD_RESISTOR_SUPRACAUSAL.getStackForm(64))
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L * 9))
                 .outputs(SUPRACAUSAL_PROCESSING_CORE.getStackForm(8))
+                .cleanroom(GCYLCleanroomType.ISO0)
+                .buildAndRegister();
+         */
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(800).EUt(33550000)
+                .inputs(NUCLEAR_CLOCK.getStackForm())
+                .inputs(TOPOLOGICAL_MANIPULATOR_UNIT.getStackForm(1))
+                .inputs(RELATIVISTIC_SPINORIAL_MEMORY_SYSTEM.getStackForm(1))
+                .inputs(GRAVITON_TRANSDUCER.getStackForm(1))
+                .inputs(QCD_PROTECTIVE_PLATING.getStackForm(3))
+                .input(plate, Neutronium)
+                .input(wireGtSingle, UXVSuperconductor, 2)
+                .inputs(SMD_CAPACITOR_SUPRACAUSAL.getStackForm(64))
+                .inputs(SMD_DIODE_SUPRACAUSAL.getStackForm(64))
+                .inputs(SMD_TRANSISTOR_SUPRACAUSAL.getStackForm(64))
+                .inputs(SMD_RESISTOR_SUPRACAUSAL.getStackForm(64))
+                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 9))
+                .outputs(SUPRACAUSAL_PROCESSING_CORE.getStackForm(GCYLConfig.recipes.circuitCoresPerCraft))
                 .cleanroom(GCYLCleanroomType.ISO0)
                 .buildAndRegister();
 

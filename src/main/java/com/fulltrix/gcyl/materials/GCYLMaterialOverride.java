@@ -138,7 +138,7 @@ public class GCYLMaterialOverride {
         Collections.addAll(fmats, Sodium, Bromine, AmmoniumChloride, Rubidium, Caesium, Francium, Polonium, Praseodymium, Ytterbium, Neptunium,
                 ProtoAdamantium, Scandium, Radium, MetastableHassium, MetastableFlerovium, MetastableOganesson, HeavyQuarkDegenerateMatter, Dubnium,
                 Sulfur, Calcium, Curium, Bohrium, Seaborgium, Copernicium, Rutherfordium,Meitnerium, Tennessine, Livermorium, Moscovium, Nihonium,
-                Roentgenium, Astatine, Hafnium, RutheniumTetroxide);
+                Roentgenium, Astatine, Hafnium, RutheniumTetroxide, Lawrencium, Nobelium);
 
         for (Material mat : fmats) {
             addLiquid(mat);

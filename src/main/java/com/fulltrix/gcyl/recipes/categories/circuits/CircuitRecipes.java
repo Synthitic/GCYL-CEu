@@ -8,6 +8,7 @@ import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.unification.stack.UnificationEntry;
+import net.minecraft.world.gen.structure.StructureMineshaftPieces;
 
 import static com.fulltrix.gcyl.api.GCYLUtility.buildHigherYieldCleanroomRecipes;
 import static com.fulltrix.gcyl.api.GCYLUtility.getAssLineResearchBuilder;
@@ -343,7 +344,7 @@ public class CircuitRecipes {
             recipeBuilder
                     .duration(50)
                     .inputs(EXTREME_CIRCUIT_BOARD.getStackForm())
-                    .inputs(SYSTEM_ON_CHIP.getStackForm())
+                    .inputs(ADVANCED_SYSTEM_ON_CHIP.getStackForm())
                     .input(wireFine, Aluminium, 8)
                     .fluidInputs(SolderingAlloy.getFluid(L))
                     .buildAndRegister();
@@ -480,6 +481,7 @@ public class CircuitRecipes {
                 .input(wireGtSingle, IVSuperconductor, 16)
                 .outputs(QUANTUM_MAINFRAME_ZPM.getStackForm())
                 .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(Cryotheum.getFluid(2500))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .scannerResearch(b -> b
                         .researchStack(QUANTUM_COMPUTER_LUV.getStackForm())
@@ -571,9 +573,9 @@ public class CircuitRecipes {
                 .input(wireGtSingle, LuVSuperconductor, 32)
                 .outputs(CRYSTAL_MAINFRAME_UV.getStackForm())
                 .fluidInputs(SolderingAlloy.getFluid(L * 16))
-                .stationResearch(b -> b
-                        .researchStack(CRYSTAL_COMPUTER_ZPM.getStackForm())
-                        .CWUt(16)
+                .fluidInputs(Cryotheum.getFluid(5000))
+                .scannerResearch(b -> b
+                        .researchStack(CRYSTAL_ASSEMBLY_LUV.getStackForm())
                         .EUt(GTValues.VA[GTValues.LuV]))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
@@ -594,13 +596,13 @@ public class CircuitRecipes {
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
-        // ASoC Recipe
-        for(RecipeBuilder<?> recipeBuilder : buildHigherYieldCleanroomRecipes(CIRCUIT_ASSEMBLER_RECIPES, WETWARE_PROCESSOR_LUV, circuitsPerCraft, 2, 480000)) {
+        // SoC Recipe
+        for(RecipeBuilder<?> recipeBuilder : buildHigherYieldCleanroomRecipes(CIRCUIT_ASSEMBLER_RECIPES, WETWARE_PROCESSOR_LUV, circuitsPerCraft, 2, 614400)) {
             recipeBuilder
                     .duration(200)
                     .inputs(CYBER_PROCESSING_UNIT.getStackForm())
-                    .inputs(ADVANCED_SYSTEM_ON_CHIP.getStackForm(4))
-                    .input(wireFine, NaquadahAlloy, 8)
+                    .inputs(LIVING_SOC.getStackForm(1))
+                    .input(wireFine, Vibranium, 16)
                     .fluidInputs(Indalloy140.getFluid(L / 2))
                     .buildAndRegister();
         }
@@ -628,10 +630,11 @@ public class CircuitRecipes {
                 .input(wireGtSingle, ZPMSuperconductor, 4)
                 .input(wireFine, NaquadahAlloy, 64)
                 .input(foil, SiliconeRubber, 16)
-                .fluidInputs(SterileGrowthMedium.getFluid(2000))
+                .fluidInputs(SterileGrowthMedium.getFluid(1000))
                 .outputs(WETWARE_PROCESSOR_ASSEMBLY_ZPM.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .fluidInputs(SolderingAlloy.getFluid(L * 4))
+                .fluidInputs(Cryotheum.getFluid(2500))
                 .stationResearch(b -> b
                         .researchStack(WETWARE_PROCESSOR_LUV.getStackForm())
                         .CWUt(32)
@@ -654,6 +657,7 @@ public class CircuitRecipes {
                 .outputs(WETWARE_SUPER_COMPUTER_UV.getStackForm())
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(Cryotheum.getFluid(5000))
                 .stationResearch(b -> b
                         .researchStack(WETWARE_PROCESSOR_ASSEMBLY_ZPM.getStackForm())
                         .CWUt(48)
@@ -674,8 +678,9 @@ public class CircuitRecipes {
                 .input(plate, Duranium, 4)
                 .input(wireGtSingle, ZPMSuperconductor, 32)
                 .input(foil, Polytetrafluoroethylene, 64)
-                .fluidInputs(SterileGrowthMedium.getFluid(2000))
-                .fluidInputs(UUMatter.getFluid(100))
+                .fluidInputs(SterileGrowthMedium.getFluid(4000))
+                .fluidInputs(UUMatter.getFluid(1000))
+                .fluidInputs(Cryotheum.getFluid(10000))
                 .outputs(WETWARE_MAINFRAME_UHV.getStackForm())
                 .fluidInputs(SolderingAlloy.getFluid(L * 16))
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
@@ -689,34 +694,30 @@ public class CircuitRecipes {
     private static void biowareCircuits() {
 
         // Bioware Processor
-        for(RecipeBuilder<?> recipeBuilder : buildHigherYieldCleanroomRecipes(CIRCUIT_ASSEMBLER_RECIPES, BIOWARE_PROCESSOR, circuitsPerCraft, 2, 240000)) {
-            recipeBuilder
-                    .duration(200)
-                    .inputs(QUBIT_CENTRAL_PROCESSING_UNIT.getStackForm(4))
-                    .inputs(SMD_TRANSISTOR_BIOWARE.getStackForm(8))
-                    .inputs(SMD_CAPACITOR_BIOWARE.getStackForm(4))
-                    .inputs(NEURO_PROCESSOR.getStackForm())
-                    .inputs(HIGHLY_ADVANCED_SOC.getStackForm(4))
-                    .input(wireFine, NaquadahAlloy, 4)
-                    .fluidInputs(Indalloy140.getFluid(L))
-                    .buildAndRegister();
-
-        }
-
-        /*
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(240000)
+                .inputs(NEURO_PROCESSOR.getStackForm())
                 .inputs(QUBIT_CENTRAL_PROCESSING_UNIT.getStackForm(4))
                 .inputs(SMD_TRANSISTOR_BIOWARE.getStackForm(8))
                 .inputs(SMD_CAPACITOR_BIOWARE.getStackForm(4))
-                .inputs(NEURO_PROCESSOR.getStackForm())
-                .inputs(HIGHLY_ADVANCED_SOC.getStackForm(4))
+                .inputs(ADVANCED_CRYSTAL_SOC.getStackForm())
                 .input(wireFine, NaquadahAlloy, 4)
-                .outputs(BIOWARE_PROCESSOR.getStackForm(4))
-                .solderMultiplier(4)
+                .outputs(BIOWARE_PROCESSOR.getStackForm(circuitsPerCraft))
+                .fluidInputs(Indalloy140.getFluid(L))
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
-         */
+
+        //SOC recipe
+        for(RecipeBuilder<?> recipeBuilder : buildHigherYieldCleanroomRecipes(CIRCUIT_ASSEMBLER_RECIPES, BIOWARE_PROCESSOR, circuitsPerCraft, 2, 7864320)) {
+            recipeBuilder
+                    .duration(200)
+                    .inputs(NEURO_PROCESSOR.getStackForm())
+                    .inputs(LIVING_BIO_SOC.getStackForm(1))
+                    .input(wireFine, HeavyQuarkDegenerateMatter, 16)
+                    .fluidInputs(Indalloy140.getFluid(L))
+                    .buildAndRegister();
+        }
+
 
         // Bioware Assembly
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(400).EUt(480000)
@@ -730,7 +731,7 @@ public class CircuitRecipes {
                 .inputs(ARAM.getStackForm(8))
                 .input(plate, Duranium, 2)
                 .input(foil, Polybenzimidazole, 16)
-                .fluidInputs(SterileGrowthMedium.getFluid(1000))
+                .fluidInputs(SterileBioGrowthMedium.getFluid(1000))
                 .fluidInputs(Titanium.getFluid(L * 9))
                 .fluidInputs(Polyethylene.getFluid(L * 18))
                 .fluidInputs(NaquadahEnriched.getFluid(L * 9))
@@ -755,7 +756,7 @@ public class CircuitRecipes {
                 .input(plate, Seaborgium, 2)
                 .input(foil, Polybenzimidazole, 16)
                 .inputs(GRAVI_STAR.getStackForm(2))
-                .fluidInputs(SterileGrowthMedium.getFluid(1000))
+                .fluidInputs(SterileBioGrowthMedium.getFluid(2000))
                 .fluidInputs(Tritanium.getFluid(L * 2))
                 .fluidInputs(Polybenzimidazole.getFluid(L * 9))
                 .fluidInputs(NaquadahEnriched.getFluid(L * 9))
@@ -778,11 +779,11 @@ public class CircuitRecipes {
                 .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(16))
                 .inputs(ARAM.getStackForm(32))
                 .input(foil, Tritanium, 16)
-                .inputs(STEM_CELLS.getStackForm(32))
+                .inputs(BIO_CELLS.getStackForm(32))
                 .input(plate, Naquadria, 8)
                 .input(foil, Polybenzimidazole, 64)
                 .input(frameGt, Seaborgium, 4)
-                .fluidInputs(SterileGrowthMedium.getFluid(1000))
+                .fluidInputs(SterileBioGrowthMedium.getFluid(4000))
                 .fluidInputs(Tritanium.getFluid(L * 9))
                 .fluidInputs(Polybenzimidazole.getFluid(L * 18))
                 .fluidInputs(Naquadria.getFluid(L * 9))

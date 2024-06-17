@@ -1,29 +1,32 @@
 package com.fulltrix.gcyl.api.multi;
 
 import gregicality.multiblocks.api.capability.IParallelMultiblock;
+import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregicality.multiblocks.api.metatileentity.GCYMMultiblockAbility;
 import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
 import gregicality.multiblocks.common.GCYMConfigHolder;
 import gregtech.api.GTValues;
-import gregtech.api.capability.impl.MultiblockRecipeLogic;
+import gregtech.api.capability.impl.ComputationRecipeLogic;
 import gregtech.api.metatileentity.ITieredMetaTileEntity;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class GCYLMultiblockRecipeLogic extends MultiblockRecipeLogic {
-    public GCYLMultiblockRecipeLogic(RecipeMapMultiblockController tileEntity, boolean hasPerfectOC) {
-        super(tileEntity, hasPerfectOC);
+public class GCYLComputationRecipeLogic extends ComputationRecipeLogic {
+
+
+    public GCYLComputationRecipeLogic(RecipeMapMultiblockController metaTileEntity, ComputationType type) {
+        super(metaTileEntity, type);
+    }
+
+    public @NotNull RecipeMapMultiblockController getMetaTileEntity() {
+        return (RecipeMapMultiblockController)super.getMetaTileEntity();
     }
 
     @Override
     public int getParallelLimit() {
         return this.metaTileEntity instanceof IParallelMultiblock && ((IParallelMultiblock)this.metaTileEntity).isParallel() ? ((IParallelMultiblock)this.metaTileEntity).getMaxParallel() : 1;
-    }
-
-    public @NotNull RecipeMapMultiblockController getMetaTileEntity() {
-        return (RecipeMapMultiblockController)super.getMetaTileEntity();
     }
 
     @Override
