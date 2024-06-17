@@ -125,6 +125,7 @@ public class BioWareComponents {
          */
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(BIO_CIRCUIT_BOARD.getStackForm())
                 .input(foil, SiliconeRubber, 64)
                 .input(wireFine, NaquadahAlloy, 16)
                 .inputs(SMD_TRANSISTOR_BIOWARE.getStackForm(16))
