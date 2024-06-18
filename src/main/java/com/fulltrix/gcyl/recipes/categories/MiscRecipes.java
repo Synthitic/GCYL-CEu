@@ -8,6 +8,8 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.stack.UnificationEntry;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.LASER_MINER_RECIPES;
@@ -297,6 +299,17 @@ highTierVoltageCoils();
                 .notConsumable(new IntCircuitIngredient(2))
                 .notConsumable(Argon.getFluid(0))
                 .output(dust, SiliconCarbide, 2)
+                .buildAndRegister();
+
+        // Snow Dust
+        MACERATOR_RECIPES.recipeBuilder().EUt(2).duration(60)
+                .inputs(new ItemStack(Blocks.SNOW))
+                .output(dust, Snow, 4)
+                .buildAndRegister();
+
+        MACERATOR_RECIPES.recipeBuilder().EUt(2).duration(15)
+                .inputs(new ItemStack(Items.SNOWBALL))
+                .output(dust, Snow)
                 .buildAndRegister();
     }
 
