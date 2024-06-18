@@ -85,7 +85,7 @@ public class GCYLNuclearMaterials {
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
                 .build()
-                .setFormula("Fm-241", true);
+                .setFormula("Fm-258", true);
 
         Californium252 = new Material.Builder(++id, gcylId("californium_252"))
                 .ingot().liquid()
