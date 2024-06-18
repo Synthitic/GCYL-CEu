@@ -6270,6 +6270,7 @@ public class GCYLMaterials {
                 .color(Titanium.getMaterialRGB())
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
+                .element(Ti50)
                 .blast(2000)
                 .build()
                 .setFormula("Ti_50");

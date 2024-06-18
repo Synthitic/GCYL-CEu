@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static com.fulltrix.gcyl.GCYLElements.*;
 import static com.fulltrix.gcyl.api.GCYLUtility.gcylId;
+import static gregtech.api.unification.Elements.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.Materials.STD_METAL;
 import static gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION;
@@ -75,6 +77,7 @@ public class GCYLNuclearMaterials {
                 .ingot().liquid()
                 .color(Americium.getMaterialRGB())
                 .iconSet(METALLIC)
+                .element(Am241)
                 .flags(STD_METAL)
                 .build()
                 .setFormula("Am-241", true);
@@ -83,6 +86,7 @@ public class GCYLNuclearMaterials {
                 .ingot().liquid()
                 .color(0x984ACF)
                 .iconSet(METALLIC)
+                .element(Fm258)
                 .flags(STD_METAL)
                 .build()
                 .setFormula("Fm-258", true);
@@ -92,6 +96,7 @@ public class GCYLNuclearMaterials {
                 .color(0xA85A12)
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
+                .element(Cf252)
                 .build()
                 .setFormula("Cf-252", true);
 
@@ -100,6 +105,7 @@ public class GCYLNuclearMaterials {
                 .color(Mendelevium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
+                .element(Md261)
                 .build()
                 .setFormula("Md-261", true);
 
@@ -108,6 +114,7 @@ public class GCYLNuclearMaterials {
                 .color(Americium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
+                .element(Am243)
                 .build()
                 .setFormula("Am-243", true);
 
@@ -116,6 +123,7 @@ public class GCYLNuclearMaterials {
                 .color(Curium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
+                .element(Cm247)
                 .build()
                 .setFormula("Cm-247", true);
 
@@ -124,6 +132,7 @@ public class GCYLNuclearMaterials {
                 .color(Californium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
+                .element(Cf253)
                 .build()
                 .setFormula("Cf-253", true);
 
@@ -132,6 +141,7 @@ public class GCYLNuclearMaterials {
                 .color(Fermium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
+                .element(Fm259)
                 .build()
                 .setFormula("Fm-259", true);
 
@@ -140,6 +150,7 @@ public class GCYLNuclearMaterials {
                 .color(Curium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
+                .element(Cm250)
                 .build()
                 .setFormula("Cm-250", true);
 
@@ -148,6 +159,7 @@ public class GCYLNuclearMaterials {
                 .color(Einsteinium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
+                .element(Es253)
                 .build()
                 .setFormula("Es-253", true);
 
@@ -253,6 +265,7 @@ public class GCYLNuclearMaterials {
                 .dust()
                 .color(Bismuth.getMaterialRGB())
                 .iconSet(Bismuth.getMaterialIconSet())
+                .element(Bi210)
                 .build()
                 .setFormula("Bi-210", true);
 
