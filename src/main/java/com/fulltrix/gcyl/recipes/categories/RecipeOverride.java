@@ -353,9 +353,9 @@ public class RecipeOverride {
         //rotary hearth furnace
         removeRecipeByName("gcym:mega_blast_furnace");
 
-        //iron 3 chloride fix //TODO wtf is this
-        removeRecipesByInputs(CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Iron), getIntegratedCircuit(1)}, new FluidStack[]{HydrochloricAcid.getFluid(3000)});
-        removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Iron), getIntegratedCircuit(1)}, new FluidStack[]{HydrochloricAcid.getFluid(3000)});
+        //epichlorohydrin
+        removeRecipesByInputs(CHEMICAL_RECIPES, Glycerol.getFluid(1000), HydrochloricAcid.getFluid(1000));
+        removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, Glycerol.getFluid(1000), HydrochloricAcid.getFluid(1000));
 
     }
 
@@ -433,13 +433,14 @@ public class RecipeOverride {
                 .output(dust, PreciousMetal)
                 .buildAndRegister();
 
-        //iron 3 chloride //TODO wtf is this
-        CHEMICAL_RECIPES.recipeBuilder().duration(400).EUt(30)
-                .input(dust, Iron)
-                .fluidInputs(HydrochloricAcid.getFluid(3000))
-                .fluidOutputs(Iron3Chloride.getFluid(1000))
-                .fluidOutputs(Hydrogen.getFluid(3000))
-                .buildAndRegister();
+        CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .fluidInputs(Glycerol.getFluid(1000))
+                .fluidInputs(HydrochloricAcid.getFluid(1000))
+                .fluidOutputs(Water.getFluid(2000))
+                .fluidOutputs(Epichlorohydrin.getFluid(1000))
+                .duration(480).EUt(VA[LV]).buildAndRegister();
+
     }
 
     public static void gregtechOverride() {

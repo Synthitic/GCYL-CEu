@@ -336,7 +336,7 @@ public class Dyes {
         // NaOH + H2SO4 + C6H5NH2 -> 2 H2O + C6H6NNaO3S
         CHEMICAL_RECIPES.recipeBuilder().duration(240).EUt(1800)
                 .input(dust, SodiumHydroxide, 3)
-                .circuitMeta(1)
+                .circuitMeta(18)
                 .fluidInputs(SulfuricAcid.getFluid(1000))
                 .fluidInputs(Aniline.getFluid(1000))
                 .fluidOutputs(Water.getFluid(2000))
@@ -463,7 +463,7 @@ public class Dyes {
                 .fluidInputs(HydrogenPeroxide.getFluid(1000))
                 .fluidInputs(Ammonia.getFluid(1000))
                 .input(dust,Anthraquinone,24)
-                .circuitMeta(1)
+                .circuitMeta(6)
                 .output(dust,Aminoanthraquinone,26)
                 .fluidOutputs(DilutedSulfuricAcid.getFluid(3000))
                 .buildAndRegister();

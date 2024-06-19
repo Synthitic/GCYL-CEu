@@ -288,7 +288,7 @@ public class FullereneChain {
                 .fluidInputs(Ethanol.getFluid(1000))
                 .fluidOutputs(Water.getFluid(1000))
                 .output(dust, SodiumEthoxide, 9)
-                .circuitMeta(1)
+                .circuitMeta(9)
                 .EUt(7680)
                 .duration(50)
                 .buildAndRegister();

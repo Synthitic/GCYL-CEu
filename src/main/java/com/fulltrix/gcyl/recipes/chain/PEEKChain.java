@@ -152,7 +152,7 @@ public class PEEKChain {
                 .fluidOutputs(Acetone.getFluid(1000))
                 .fluidOutputs(Hydroquinone.getFluid(1000))
                 .fluidOutputs(Resorcinol.getFluid(1000))
-                .circuitMeta(1)
+                .circuitMeta(6)
                 .EUt(7860)
                 .duration(200)
                 .buildAndRegister();

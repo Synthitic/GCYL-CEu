@@ -47,7 +47,7 @@ public class VariousChains {
                 .fluidOutputs(Water.getFluid(1000))
                 .output(dust, Salt, 2)
                 .output(dust, SodiumHypochlorite, 3)
-                .circuitMeta(1)
+                .circuitMeta(6)
                 .buildAndRegister();
 
         // HClO + NaOH -> H2O + NaClO
@@ -604,6 +604,7 @@ public class VariousChains {
         // Rocket fuel chemicals
         // 2NH3 + H2O2 = N2H4 + H2O
         CHEMICAL_RECIPES.recipeBuilder().duration(320).EUt(30)
+                .circuitMeta(1)
                 .fluidInputs(Ammonia.getFluid(2000))
                 .fluidInputs(HydrogenPeroxide.getFluid(1000))
                 .fluidOutputs(Hydrazine.getFluid(1000))

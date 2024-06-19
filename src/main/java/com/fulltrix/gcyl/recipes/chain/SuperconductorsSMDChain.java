@@ -623,7 +623,7 @@ public class SuperconductorsSMDChain {
                 .fluidInputs(HydrogenCyanide.getFluid(3000))
                 .fluidInputs(Water.getFluid(3000))
                 .notConsumable(dust, PotassiumDichromate)
-                .circuitMeta(1)
+                .circuitMeta(2)
                 .fluidOutputs(CitricAcid.getFluid(1000))
                 .fluidOutputs(AmmoniumChloride.getFluid(3000))
                 .buildAndRegister();
