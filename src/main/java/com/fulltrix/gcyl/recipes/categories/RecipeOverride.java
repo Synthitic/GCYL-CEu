@@ -225,6 +225,7 @@ public class RecipeOverride {
 
         //iv motor
         removeRecipeByName("gregtech:electric_motor_iv");
+        removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(cableGtDouble, Tungsten,2), OreDictUnifier.get(stick, TungstenSteel, 2), OreDictUnifier.get(stick, NeodymiumMagnetic), OreDictUnifier.get(wireGtDouble, Graphene, 4));
 
         //neutronium
         removeRecipesByInputs(FUSION_RECIPES,Americium.getFluid(128),Naquadria.getFluid(128));
@@ -1083,6 +1084,13 @@ public class RecipeOverride {
         ModHandler.addShapedRecipe(true, "electric_motor_iv", ELECTRIC_MOTOR_IV.getStackForm(), "CWR", "WMW", "RWC",
                 'C', new UnificationEntry(cableGtDouble, Tungsten), 'W', new UnificationEntry(wireGtQuadruple, BrightSteel),
                 'R', new UnificationEntry(stick, TungstenSteel), 'M', new UnificationEntry(stick, NeodymiumMagnetic));
+        ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30)
+                        .input(cableGtDouble, Tungsten, 2)
+                                .input(stick, TungstenSteel, 2)
+                                        .input(stick, NeodymiumMagnetic)
+                                                .input(wireGtQuadruple, BrightSteel,4)
+                .outputs(ELECTRIC_MOTOR_IV.getStackForm())
+                                                        .buildAndRegister();
 
         //Superconductor Coil Block //TODO change these to use liquid version of gas instead
         ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.LuV]).duration(100)
