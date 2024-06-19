@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.recipes.categories.circuits;
 
 import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
+import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 
@@ -144,18 +145,29 @@ public class WaferRecipes {
         LASER_ENGRAVER_RECIPES.recipeBuilder().duration(25).EUt(122880).inputs(NEUTRONIUM_WAFER.getStackForm()).notConsumable(craftingLens, Blue).outputs(POWER_INTEGRATED_CIRCUIT_WAFER.getStackForm(16)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
 
         // UHPIC Wafer
-        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(100).EUt(491_520).inputs(WAFER_RUTHERFORDIUM.getStackForm()).notConsumable(lens, Amethyst).outputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER.getStackForm(1)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
-        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(25).EUt(1_966_080).inputs(WAFER_DUBNIUM.getStackForm()).notConsumable(lens, Amethyst).outputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER.getStackForm(2)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
-        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(12).EUt(7_864_320).inputs(NEUTRONIUM_WAFER.getStackForm()).notConsumable(lens, Amethyst).outputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER.getStackForm(4)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+        //LASER_ENGRAVER_RECIPES.recipeBuilder().duration(100).EUt(491_520).inputs(WAFER_RUTHERFORDIUM.getStackForm()).notConsumable(lens, Amethyst).outputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER.getStackForm(1)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+       // LASER_ENGRAVER_RECIPES.recipeBuilder().duration(25).EUt(1_966_080).inputs(WAFER_DUBNIUM.getStackForm()).notConsumable(lens, Amethyst).outputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER.getStackForm(2)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+       // LASER_ENGRAVER_RECIPES.recipeBuilder().duration(12).EUt(7_864_320).inputs(NEUTRONIUM_WAFER.getStackForm()).notConsumable(lens, Amethyst).outputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER.getStackForm(4)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+
+        //NPIC Wafer
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(600).EUt(GTValues.VA[GTValues.UHV]).inputs(WAFER_RUTHERFORDIUM.getStackForm()).notConsumable(lens, Amethyst).outputs(NPIC_WAFER.getStackForm(1)).cleanroom(GCYLCleanroomType.ISO3).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(300).EUt(GTValues.VA[GTValues.UEV]).inputs(WAFER_DUBNIUM.getStackForm()).notConsumable(lens, Amethyst).outputs(NPIC_WAFER.getStackForm(2)).cleanroom(GCYLCleanroomType.ISO3).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(150).EUt(GTValues.VA[GTValues.UIV]).inputs(NEUTRONIUM_WAFER.getStackForm()).notConsumable(lens, Amethyst).outputs(NPIC_WAFER.getStackForm(4)).cleanroom(GCYLCleanroomType.ISO3).buildAndRegister();
+
+        //PPIC WAFER
+        CHEMICAL_RECIPES.recipeBuilder().duration(600).EUt(GTValues.VA[GTValues.UIV]).inputs(NPIC_WAFER.getStackForm(1)).input(dust, IndiumGalliumPhosphide, 64).fluidInputs(Xenon.getFluid(1000)).outputs(PPIC_WAFER.getStackForm(1)).cleanroom(GCYLCleanroomType.ISO2).buildAndRegister();
+
+        //QPIC WAFER
+        CHEMICAL_RECIPES.recipeBuilder().duration(600).EUt(GTValues.VA[GTValues.OpV]).inputs(PPIC_WAFER.getStackForm(1)).input(dust, Neutronium, 16).fluidInputs(MetastableOganesson.getFluid(1000)).outputs(QPIC_WAFER.getStackForm(1)).cleanroom(GCYLCleanroomType.ISO1).buildAndRegister();
 
         // HASoC Wafer
-        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(100).EUt(491_520).inputs(WAFER_RUTHERFORDIUM.getStackForm()).notConsumable(lens, CubicZirconia).outputs(HIGHLY_ADVANCED_SOC_WAFER.getStackForm(1)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
-        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(25).EUt(1_966_080).inputs(WAFER_DUBNIUM.getStackForm()).notConsumable(lens, CubicZirconia).outputs(HIGHLY_ADVANCED_SOC_WAFER.getStackForm(4)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
-        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(12).EUt(7_864_320).inputs(NEUTRONIUM_WAFER.getStackForm()).notConsumable(lens, CubicZirconia).outputs(HIGHLY_ADVANCED_SOC_WAFER.getStackForm(8)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(600).EUt(491_520).inputs(WAFER_RUTHERFORDIUM.getStackForm()).notConsumable(lens, CubicZirconia).outputs(HIGHLY_ADVANCED_SOC_WAFER.getStackForm(1)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(300).EUt(1_966_080).inputs(WAFER_DUBNIUM.getStackForm()).notConsumable(lens, CubicZirconia).outputs(HIGHLY_ADVANCED_SOC_WAFER.getStackForm(4)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(150).EUt(7_864_320).inputs(NEUTRONIUM_WAFER.getStackForm()).notConsumable(lens, CubicZirconia).outputs(HIGHLY_ADVANCED_SOC_WAFER.getStackForm(8)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
 
         // UHASoC Wafer
-        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(25).EUt(1_966_080).inputs(WAFER_DUBNIUM.getStackForm()).notConsumable(lens, Prasiolite).outputs(UHASOC_WAFER.getStackForm(1)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
-        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(12).EUt(7_864_320).inputs(NEUTRONIUM_WAFER.getStackForm()).notConsumable(lens, Prasiolite).outputs(UHASOC_WAFER.getStackForm(4)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(600).EUt(1_966_080).inputs(WAFER_DUBNIUM.getStackForm()).notConsumable(lens, Prasiolite).outputs(UHASOC_WAFER.getStackForm(1)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(300).EUt(7_864_320).inputs(NEUTRONIUM_WAFER.getStackForm()).notConsumable(lens, Prasiolite).outputs(UHASOC_WAFER.getStackForm(4)).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
 
         // Misc Cutting Recipes
         //CUTTER_RECIPES.recipeBuilder().inputs(UHPIC_WAFER.getStackForm()) .outputs(UHPIC.getStackForm(2)) .EUt(491_520).duration(600).buildAndRegister();
@@ -163,14 +175,13 @@ public class WaferRecipes {
         //CUTTER_RECIPES.recipeBuilder().inputs(HASOC_WAFER.getStackForm()) .outputs(HASOC.getStackForm(6)) .EUt(491_520).duration(600).buildAndRegister();
         CUTTER_RECIPES.recipeBuilder().inputs(UHASOC_WAFER.getStackForm()).outputs(UHASOC.getStackForm(6)).EUt(1_966_080).duration(600).cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
 
+        //NPIC
+        CUTTER_RECIPES.recipeBuilder().inputs(NPIC_WAFER.getStackForm()).outputs(NPIC.getStackForm(2)).EUt(GTValues.VA[GTValues.UHV]).duration(600).cleanroom(GCYLCleanroomType.ISO3).buildAndRegister();
+        //PPIC
+        CUTTER_RECIPES.recipeBuilder().inputs(PPIC_WAFER.getStackForm()).outputs(PPIC.getStackForm(2)).EUt(GTValues.VA[GTValues.UIV]).duration(600).cleanroom(GCYLCleanroomType.ISO2).buildAndRegister();
+        //QPIC
+        CUTTER_RECIPES.recipeBuilder().inputs(QPIC_WAFER.getStackForm()).outputs(QPIC.getStackForm(2)).EUt(GTValues.VA[GTValues.OpV]).duration(600).cleanroom(GCYLCleanroomType.ISO1).buildAndRegister();
         // Optical SoC
-        /*
-        EXTRACTOR_RECIPES.recipeBuilder().duration(260).EUt(30)
-                .input(dust, ZBLANDust,1)
-                .fluidOutputs(ZBLANDust.getFluid(L))
-                .buildAndRegister();
-
-         */
 
         LARGE_CHEMICAL_RECIPES.recipeBuilder().duration(390).EUt(983040)
                 .inputs(UHASOC_WAFER.getStackForm())

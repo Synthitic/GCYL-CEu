@@ -10,8 +10,7 @@ import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.unification.stack.UnificationEntry;
 import net.minecraft.world.gen.structure.StructureMineshaftPieces;
 
-import static com.fulltrix.gcyl.api.GCYLUtility.buildHigherYieldCleanroomRecipes;
-import static com.fulltrix.gcyl.api.GCYLUtility.getAssLineResearchBuilder;
+import static com.fulltrix.gcyl.api.GCYLUtility.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregtech.api.GTValues.L;
@@ -866,7 +865,7 @@ public class CircuitRecipes {
                 .inputs(OPTICAL_SOC.getStackForm(4))
                 .input(wireGtSingle, UHVSuperconductor, 16)
                 .inputs(CLADDED_OPTICAL_FIBER_CORE.getStackForm(16))
-                .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(16))
+                .inputs(getPowerIC(GTValues.UHV).getStackForm(16))
                 .inputs(ARAM.getStackForm(32))
                 .input(plate, Quantum, 2)
                 .input(foil, Polybenzimidazole, 16)
@@ -909,7 +908,7 @@ public class CircuitRecipes {
                 .inputs(SMD_DIODE_OPTICAL.getStackForm(64))
                 .inputs(SMD_RESISTOR_OPTICAL.getStackForm(64))
                 .input(wireGtSingle, UHVSuperconductor, 32)
-                .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(32))
+                .inputs(getPowerIC(GTValues.UHV).getStackForm(32))
                 .inputs(UHASOC.getStackForm(16))
                 .inputs(ARAM.getStackForm(64))
                 .input(plate, EnrichedNaquadahAlloy, 4)
@@ -1033,7 +1032,7 @@ public class CircuitRecipes {
                 .inputs(EXOTIC_ASSEMBLY.getStackForm(4))
                 .input(foil, Zylon, 32)
                 .inputs(EXOTIC_CHIP.getStackForm(8))
-                .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(32))
+                .inputs(getPowerIC(GTValues.UEV).getStackForm(32))
                 .inputs(ARAM.getStackForm(64))
                 .input(plate, EnrichedNaquadahAlloy, 4)
                 .input(wireGtSingle, UEVSuperconductor, 16)
@@ -1077,7 +1076,7 @@ public class CircuitRecipes {
                 .inputs(QUBIT_CENTRAL_PROCESSING_UNIT.getStackForm(4))
                 .inputs(UHASOC.getStackForm(32))
                 .input(frameGt, Vibranium, 4)
-                .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64))
+                .inputs(getPowerIC(GTValues.UEV).getStackForm(64))
                 .inputs(ARAM.getStackForm(64))
                 .inputs(ARAM.getStackForm(64))
                 .input(plate, MetastableFlerovium, 4)
@@ -1199,7 +1198,7 @@ public class CircuitRecipes {
                 .inputs(SMD_DIODE_COSMIC.getStackForm(48))
                 .inputs(SMD_RESISTOR_COSMIC.getStackForm(48))
                 .input(wireGtSingle, UIVSuperconductor, 16)
-                .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64))
+                .inputs(getPowerIC(GTValues.UIV).getStackForm(64))
                 .inputs(ARAM.getStackForm(64))
                 .inputs(ARAM.getStackForm(64))
                 .inputs(OPTICAL_SOC.getStackForm(16))

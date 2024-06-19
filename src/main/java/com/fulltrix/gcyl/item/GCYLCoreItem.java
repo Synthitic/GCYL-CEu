@@ -395,6 +395,12 @@ public class GCYLCoreItem extends StandardMetaItem {
         LIVING_BIO_SOC = addItem(632, "living_bio.soc");
         BIO_WAFER = addItem(633, "wafer.bio");
 
+        NPIC_WAFER = addItem(634,"wafer.npic");
+        PPIC_WAFER = addItem(635,"wafer.ppic");
+        QPIC_WAFER = addItem(636,"wafer.qpic");
+        NPIC = addItem(637,"npic");
+        PPIC = addItem(638,"ppic");
+        QPIC = addItem(639,"qpic");
 
         PYROLYTIC_CARBON = addItem(16, "pyrolytic_carbon");
         MICA_SHEET = addItem(26, "mica_sheet");

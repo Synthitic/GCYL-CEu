@@ -39,6 +39,7 @@ public class ClientHandler {
     public static SimpleOverlayRenderer WIRELESS_ENERGY_HATCH_4A;
     public static SimpleOverlayRenderer WIRELESS_ENERGY_HATCH_16A;
     public static SimpleOverlayRenderer WIRELESS_ENERGY_HATCH_OFF;
+    public static SimpleOverlayRenderer WIRELESS_DATA_HATCH;
     public static SimpleOverlayRenderer SEABORGIUM_SUBSTATION_CASING;
 
     public static OrientedOverlayRenderer NAQADAH_OVERLAY;
@@ -77,6 +78,7 @@ public class ClientHandler {
         WIRELESS_ENERGY_HATCH_4A = new SimpleOverlayRenderer("overlay/machine/overlay_wireless_energy_4a");
         WIRELESS_ENERGY_HATCH_16A = new SimpleOverlayRenderer("overlay/machine/overlay_wireless_energy_16a");
         WIRELESS_ENERGY_HATCH_OFF = new SimpleOverlayRenderer("overlay/machine/overlay_wireless_energy_off");
+        WIRELESS_DATA_HATCH = new SimpleOverlayRenderer("overlay/machine/overlay_wireless_data");
 
         //MetaCasing1
         STABALLOY_CASING = new SimpleOverlayRenderer("casings/metal_casings/staballoy");

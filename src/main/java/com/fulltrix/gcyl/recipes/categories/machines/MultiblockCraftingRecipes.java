@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories.machines;
 
+import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.item.GCYLMultiblockCasing2;
 import gregtech.api.GTValues;
@@ -416,11 +417,29 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .input(wireGtSingle, UVSuperconductor, 64)
                 .input(wireGtSingle, UVSuperconductor, 64)
                 .fluidInputs(Indalloy140.getFluid(L * 16))
-                .cleanroom(CleanroomType.CLEANROOM)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .stationResearch(b-> b
                         .researchStack(POWER_SUBSTATION.getStackForm())
                         .CWUt(128)
                         .EUt(GTValues.VA[GTValues.UV]))
+                .buildAndRegister();
+
+        //WIRELESS DATA BANK
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UIV]).duration(1200)
+                .outputs(WIRELESS_DATA_BANK.getStackForm())
+                .inputs(DATA_BANK.getStackForm())
+                .input(circuit, UXV, 8)
+                .input(TOOL_DATA_ULTIMATE)
+                .inputs(FIELD_GENERATOR_UIV.getStackForm(4))
+                .input(wireGtDouble, UIVSuperconductor, 64)
+                .input(wireGtDouble, UIVSuperconductor, 64)
+                .fluidInputs(Indalloy140.getFluid(L * 32))
+                .fluidInputs(MetastableOganesson.getFluid(L * 16))
+                .cleanroom(GCYLCleanroomType.ISO2)
+                .stationResearch(b -> b
+                        .researchStack(DATA_BANK.getStackForm())
+                        .CWUt(1024)
+                        .EUt(GTValues.VA[GTValues.UIV]))
                 .buildAndRegister();
 
 

@@ -74,6 +74,10 @@ public class GCYLTileEntities {
     public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT_64A = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length - 5];
     public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_OUTPUT = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length];
 
+    /////////////////////////////////////////////////
+    public static MetaTileEntityWirelessDataHatch WIRELESS_DATA_HATCH;
+    public static MetaTileEntityWirelessDataBank WIRELESS_DATA_BANK;
+
 
     public static int id = 24000;
 
@@ -189,7 +193,11 @@ public class GCYLTileEntities {
         GCYL_PARALLEL_HATCH[1] = registerMetaTileEntity(++id, new MetaTileEntityParallelHatch(gcylId(String.format("parallel_hatch.%s", GTValues.VN[GTValues.UXV])), GTValues.UEV));
         GCYL_PARALLEL_HATCH[2] = registerMetaTileEntity(++id, new MetaTileEntityParallelHatch(gcylId(String.format("parallel_hatch.%s", GTValues.VN[GTValues.MAX])), GTValues.UIV));
 
-
         MetaTileEntities.registerSimpleMetaTileEntity(DEHYDRATOR, ++id, "dehydrator", GCYLRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES, Textures.SIFTER_OVERLAY, true, GCYLUtility::gcylId, GTUtility.hvCappedTankSizeFunction);
+
+        id = 24131;
+
+        WIRELESS_DATA_BANK = registerMetaTileEntity(++id, new MetaTileEntityWirelessDataBank(gcylId("wireless_data_bank")));
+        WIRELESS_DATA_HATCH = registerMetaTileEntity(++id, new MetaTileEntityWirelessDataHatch(gcylId("wireless_data_hatch"), 11));
     }
 }

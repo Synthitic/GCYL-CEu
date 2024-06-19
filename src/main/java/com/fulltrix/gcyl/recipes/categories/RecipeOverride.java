@@ -351,6 +351,11 @@ public class RecipeOverride {
 
         //rotary hearth furnace
         removeRecipeByName("gcym:mega_blast_furnace");
+
+        //iron 3 chloride fix //TODO wtf is this
+        removeRecipesByInputs(CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Iron), getIntegratedCircuit(1)}, new FluidStack[]{HydrochloricAcid.getFluid(3000)});
+        removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Iron), getIntegratedCircuit(1)}, new FluidStack[]{HydrochloricAcid.getFluid(3000)});
+
     }
 
     public static void chemistryOverride() {
@@ -425,6 +430,14 @@ public class RecipeOverride {
                 .input(dust, Glowstone)
                 .output(dust, Redstone)
                 .output(dust, PreciousMetal)
+                .buildAndRegister();
+
+        //iron 3 chloride //TODO wtf is this
+        CHEMICAL_RECIPES.recipeBuilder().duration(400).EUt(30)
+                .input(dust, Iron)
+                .fluidInputs(HydrochloricAcid.getFluid(3000))
+                .fluidOutputs(Iron3Chloride.getFluid(1000))
+                .fluidOutputs(Hydrogen.getFluid(3000))
                 .buildAndRegister();
     }
 

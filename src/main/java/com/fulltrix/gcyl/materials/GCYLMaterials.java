@@ -9646,7 +9646,7 @@ public class GCYLMaterials {
         MicaPulp = new Material.Builder(++id, gcylId("mica_based"))
                 .dust()
                 .color(0x917445)
-                .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
+                .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION, DISABLE_DECOMPOSITION)
                 .iconSet(SAND)
                 .components(Mica,1,RareEarth,1)
                 .build();

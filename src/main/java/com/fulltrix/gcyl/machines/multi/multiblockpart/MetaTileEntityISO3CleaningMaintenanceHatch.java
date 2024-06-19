@@ -52,7 +52,7 @@ public class MetaTileEntityISO3CleaningMaintenanceHatch extends MetaTileEntityAu
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
-        return new MetaTileEntitySterileCleaningMaintenanceHatch(metaTileEntityId);
+        return new MetaTileEntityISO3CleaningMaintenanceHatch(metaTileEntityId);
     }
 
     @Override

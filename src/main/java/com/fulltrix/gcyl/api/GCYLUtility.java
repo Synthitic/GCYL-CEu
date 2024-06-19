@@ -36,7 +36,7 @@ public class GCYLUtility {
         return Math.min(value, end);
     }
 
-    public static ItemStack getPowerIC(int tier) {
+    public static ItemStack getPowerICStack(int tier) {
         if (tier < 3)
             return ULTRA_LOW_POWER_INTEGRATED_CIRCUIT.getStackForm(64);
         if (tier < 4)
@@ -45,8 +45,34 @@ public class GCYLUtility {
             return POWER_INTEGRATED_CIRCUIT.getStackForm(64);
         if (tier < 7)
             return HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64);
-        else
+        if (tier < 9)
             return ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64);
+        if (tier < 11)
+
+            return NPIC.getStackForm(64);
+        if (tier < 13)
+            return PPIC.getStackForm(64);
+        else
+            return QPIC.getStackForm(64);
+    }
+
+    public static MetaItem<?>.MetaValueItem getPowerIC(int tier) {
+        if (tier < 3)
+            return ULTRA_LOW_POWER_INTEGRATED_CIRCUIT;
+        if (tier < 4)
+            return LOW_POWER_INTEGRATED_CIRCUIT;
+        if (tier < 5)
+            return POWER_INTEGRATED_CIRCUIT;
+        if (tier < 7)
+            return HIGH_POWER_INTEGRATED_CIRCUIT;
+        if (tier < 9)
+            return ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT;
+        if (tier < 11)
+            return NPIC;
+        if (tier < 13)
+            return PPIC;
+        else
+            return QPIC;
     }
 
     public static int getCWUt(int tier) {
@@ -189,8 +215,8 @@ public class GCYLUtility {
             case(7) -> MarkerMaterials.Tier.ZPM;
             case(8) -> MarkerMaterials.Tier.UV;
             case(9) -> MarkerMaterials.Tier.UHV;
-            case(10) -> MarkerMaterials.Tier.UIV;
-            case(11) -> MarkerMaterials.Tier.UEV;
+            case(10) -> MarkerMaterials.Tier.UEV;
+            case(11) -> MarkerMaterials.Tier.UIV;
             case(12) -> MarkerMaterials.Tier.UXV;
             case(13) -> MarkerMaterials.Tier.OpV;
             default -> MarkerMaterials.Tier.MAX;

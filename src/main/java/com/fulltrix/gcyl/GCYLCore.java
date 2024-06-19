@@ -2,6 +2,7 @@ package com.fulltrix.gcyl;
 
 import com.fulltrix.gcyl.api.util.VirtualContainerRegistry;
 import com.fulltrix.gcyl.api.util.VirtualEnergyRegistry;
+import com.fulltrix.gcyl.api.util.VirtualResearchRegistry;
 import com.fulltrix.gcyl.covers.GCYLCoverBehaviors;
 import com.fulltrix.gcyl.item.GCYLHeatingCoil;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
@@ -80,5 +81,6 @@ public class GCYLCore {
     public void serverStopped(FMLServerStoppedEvent event) {
         VirtualEnergyRegistry.clearMaps();
         VirtualContainerRegistry.clearMaps();
+        VirtualResearchRegistry.clearMaps();
     }
 }

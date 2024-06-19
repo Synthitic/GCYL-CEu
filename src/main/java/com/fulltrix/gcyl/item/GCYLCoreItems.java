@@ -446,6 +446,15 @@ public class GCYLCoreItems {
     public static MetaItem<?>.MetaValueItem LIVING_BIO_SOC;
     public static MetaItem<?>.MetaValueItem BIO_WAFER;
 
+    public static MetaItem<?>.MetaValueItem NPIC_WAFER;
+    public static MetaItem<?>.MetaValueItem PPIC_WAFER;
+    public static MetaItem<?>.MetaValueItem QPIC_WAFER;
+    public static MetaItem<?>.MetaValueItem NPIC;
+    public static MetaItem<?>.MetaValueItem PPIC;
+    public static MetaItem<?>.MetaValueItem QPIC;
+
+
+
 
     public static void init() {
         GCYLCoreItem item = new GCYLCoreItem();

@@ -4,6 +4,7 @@ import com.fulltrix.gcyl.api.recipes.GCYLMaterialRecipeHandler;
 import com.fulltrix.gcyl.api.recipes.MixerPropertyAddition;
 import com.fulltrix.gcyl.api.util.VirtualContainerRegistry;
 import com.fulltrix.gcyl.api.util.VirtualEnergyRegistry;
+import com.fulltrix.gcyl.api.util.VirtualResearchRegistry;
 import com.fulltrix.gcyl.item.GCYLCoreItems;
 import com.fulltrix.gcyl.materials.GCYLMaterialOverride;
 import com.fulltrix.gcyl.materials.GCYLMaterials;
@@ -185,6 +186,7 @@ public class CommonProxy {
     public static void onWorldLoadEvent(WorldEvent.Load event) {
         VirtualContainerRegistry.initializeStorage(event.getWorld());
         VirtualEnergyRegistry.initializeStorage(event.getWorld());
+        VirtualResearchRegistry.initializeStorage(event.getWorld());
     }
 
 

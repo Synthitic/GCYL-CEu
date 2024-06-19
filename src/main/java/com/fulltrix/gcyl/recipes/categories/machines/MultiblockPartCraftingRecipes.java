@@ -10,6 +10,8 @@ import gregtech.common.blocks.BlockCleanroomCasing;
 import gregtech.common.blocks.MetaBlocks;
 
 import static com.fulltrix.gcyl.api.GCYLUtility.*;
+import static com.fulltrix.gcyl.api.GCYLUtility.getPowerIC;
+import static com.fulltrix.gcyl.item.GCYLCoreItems.TOOL_DATA_MODULE_CLUSTER;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.UVA_HALIDE_LAMP;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
@@ -30,6 +32,17 @@ public class MultiblockPartCraftingRecipes {
         uhvPlusEnergyHatches();
         parallelHatches();
         computerHatches();
+        otherHatches();
+    }
+    private static void otherHatches() {
+        getAssLineResearchBuilder(UIV, 600, ADVANCED_DATA_ACCESS_HATCH.getStackForm(), false,false, GCYLCleanroomType.ISO2)
+                .outputs(WIRELESS_DATA_HATCH.getStackForm())
+                .inputs(ADVANCED_DATA_ACCESS_HATCH.getStackForm())
+                .input(TOOL_DATA_MODULE_CLUSTER, 8)
+                .inputs(SENSOR_UIV.getStackForm(2))
+                .fluidInputs(Indalloy140.getFluid( L * 8))
+                .fluidInputs(getPolymerByTier(UIV).getFluid(L * 8))
+                .buildAndRegister();
     }
 
     private static void computerHatches() {
@@ -81,8 +94,8 @@ public class MultiblockPartCraftingRecipes {
                     .outputs(ENERGY_INPUT_HATCH[i].getStackForm())
                     .inputs(HULL[i].getStackForm())
                     .input(cableGtSingle, getCableByTier(i), 4)
-                    .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm((int) (4 * Math.pow(2, i - 9))))
-                    .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm((int) (4 * Math.pow(2, i - 9))))
+                    .inputs(getPowerIC(i).getStackForm((int) (4 * Math.pow(2, i - 9))))
+                    .inputs(getPowerIC(i).getStackForm((int) (4 * Math.pow(2, i - 9))))
                     .input(circuit, getMarkerMaterialByTier(i), (int) (2 * Math.pow(2, i - 9)))
                     .input(wireGtSingle, getSuperconductorByTier(i),(int) (4 * Math.pow(2, i - 9)))
                     .inputs(getVoltageCoilByTier(i).getStackForm(2))
@@ -97,8 +110,8 @@ public class MultiblockPartCraftingRecipes {
                     .outputs(ENERGY_OUTPUT_HATCH[i].getStackForm())
                     .inputs(HULL[i].getStackForm())
                     .input(spring, getCableByTier(i), 4)
-                    .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm((int) (4 * Math.pow(2, i - 9))))
-                    .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm((int) (4 * Math.pow(2, i - 9))))
+                    .inputs(getPowerIC(i).getStackForm((int) (4 * Math.pow(2, i - 9))))
+                    .inputs(getPowerIC(i).getStackForm((int) (4 * Math.pow(2, i - 9))))
                     .input(circuit, getMarkerMaterialByTier(i), (int) (2 * Math.pow(2, i - 9)))
                     .input(wireGtSingle, getSuperconductorByTier(i),(int) (4 * Math.pow(2, i - 9)))
                     .inputs(getVoltageCoilByTier(i).getStackForm(2))
@@ -244,8 +257,8 @@ public class MultiblockPartCraftingRecipes {
             getAssLineResearchBuilder(i, 400, i == 0 ? ENERGY_INPUT_HATCH[0].getStackForm() : WIRELESS_ENERGY_HATCH_INPUT[i - 1].getStackForm(), true, true)
                     .outputs(WIRELESS_ENERGY_HATCH_INPUT[i].getStackForm())
                     .inputs(ENERGY_INPUT_HATCH[i].getStackForm())
-                    .inputs(getPowerIC(i))
-                    .inputs(getPowerIC(i))
+                    .inputs(getPowerICStack(i))
+                    .inputs(getPowerICStack(i))
                     .inputs(getSensorByTier(i+1).getStackForm(6))
                     .input(circuit, getMarkerMaterialByTier(i+1), 4)
                     .input(wireGtSingle, getSuperconductorByTier(i), 64)
@@ -260,8 +273,8 @@ public class MultiblockPartCraftingRecipes {
                 getAssLineResearchBuilder(i, 400, i == 4 ? ENERGY_INPUT_HATCH_4A[i - 4].getStackForm() : WIRELESS_ENERGY_HATCH_INPUT_4A[i - 4].getStackForm(), true, true)
                         .outputs(WIRELESS_ENERGY_HATCH_INPUT_4A[i - 4].getStackForm())
                         .inputs(ENERGY_INPUT_HATCH_4A[i - 4].getStackForm())
-                        .inputs(getPowerIC(i))
-                        .inputs(getPowerIC(i))
+                        .inputs(getPowerICStack(i))
+                        .inputs(getPowerICStack(i))
                         .inputs(getSensorByTier(i + 1).getStackForm(6))
                         .input(circuit, getMarkerMaterialByTier(i + 1), 4)
                         .input(wireGtQuadruple, getSuperconductorByTier(i), 64)
@@ -277,8 +290,8 @@ public class MultiblockPartCraftingRecipes {
                 getAssLineResearchBuilder(i, 400, i == 5 ? ENERGY_INPUT_HATCH_16A[i - 5].getStackForm() : WIRELESS_ENERGY_HATCH_INPUT_16A[i - 5].getStackForm(), true, true)
                         .outputs(WIRELESS_ENERGY_HATCH_INPUT_16A[i - 5].getStackForm())
                         .inputs(ENERGY_INPUT_HATCH_16A[i - 5].getStackForm())
-                        .inputs(getPowerIC(i))
-                        .inputs(getPowerIC(i))
+                        .inputs(getPowerICStack(i))
+                        .inputs(getPowerICStack(i))
                         .inputs(getSensorByTier(i + 1).getStackForm(6))
                         .input(circuit, getMarkerMaterialByTier(i + 1), 4)
                         .input(wireGtHex, getSuperconductorByTier(i), 64)

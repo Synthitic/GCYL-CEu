@@ -72,13 +72,21 @@ public class MetaTileEntityWirelessEnergyHatch extends MetaTileEntityEnergyHatch
                 this.energyContainerWireless.addEnergy(energy);
             } else {
                 if(this.energyContainer.getEnergyStored() != this.energyContainer.getEnergyCapacity()) {
-                    //long energy = this.energyContainer.getInputVoltage() * this.energyContainer.getInputAmperage() > this.energyContainerWireless.getEnergyStored() ? this.energyContainerWireless.getEnergyStored() : this.energyContainer.getInputVoltage() * this.energyContainer.getInputAmperage();
-                    long energy = this.energyContainer.getEnergyCapacity() - this.energyContainer.getEnergyStored() > this.energyContainerWireless.getEnergyStored() ? this.energyContainerWireless.getEnergyStored() : this.energyContainer.getEnergyCapacity() - this.energyContainer.getEnergyStored();
+                    long energy = getEnergy();
+                    //long energy = this.energyContainer.getEnergyCapacity() - this.energyContainer.getEnergyStored() > this.energyContainerWireless.getEnergyStored() ? this.energyContainerWireless.getEnergyStored() : this.energyContainer.getEnergyCapacity() - this.energyContainer.getEnergyStored();
                     this.energyContainerWireless.remove(energy);
                     this.energyContainer.addEnergy(energy);
                 }
             }
         }
+    }
+
+    private long getEnergy() {
+        long energy = this.energyContainer.getInputVoltage() * this.energyContainer.getInputAmperage() > this.energyContainerWireless.getEnergyStored() ? this.energyContainerWireless.getEnergyStored() : this.energyContainer.getInputVoltage() * this.energyContainer.getInputAmperage();
+
+        if(energy > this.energyContainer.getEnergyCapacity() - this.energyContainer.getEnergyStored())
+            energy = this.energyContainer.getEnergyCapacity() - this.energyContainer.getEnergyStored();
+        return energy;
     }
 
     @Override
