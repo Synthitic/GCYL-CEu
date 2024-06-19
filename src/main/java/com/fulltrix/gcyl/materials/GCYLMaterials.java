@@ -17,6 +17,7 @@ import java.util.List;
 
 import static com.fulltrix.gcyl.GCYLElements.*;
 import static com.fulltrix.gcyl.api.GCYLUtility.gcylId;
+import static com.fulltrix.gcyl.materials.GCYLMaterialIconSets.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
@@ -10656,6 +10657,15 @@ public class GCYLMaterials {
                 .iconSet(FLUID)
                 .build()
                 .setFormula("?",true);
+
+        /*
+        Infinity = new Material.Builder(++id, gcylId("infinity"))
+                .ingot().liquid()
+                .flags(DISABLE_REPLICATION)
+                .iconSet(INFINITY)
+                .build()
+                .setFormula("*If*",true);
+         */
 
 
     /*

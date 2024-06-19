@@ -244,14 +244,17 @@ public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase im
                 .addEnergyUsageExactLine(getEnergyUsage())
                 .addWorkingStatusLine()
                 .addCustom(tl -> {
-                    try {
-                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.private", Objects.requireNonNull(this.getWorld().getPlayerEntityByUUID(this.playerUUID)).getName()));
-                    }
-                    catch (NullPointerException e) {
-                        if (Objects.equals(this.playerUUID, new UUID(0, 0))) {
-                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.public"));
-                        } else {
-                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.player_offline"));
+                    if(this.initialize) {
+                        tl.add(new TextComponentTranslation("gcyl.multiblock.wireless_pss.not_initialized"));
+                    } else {
+                        try {
+                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.private", Objects.requireNonNull(this.getWorld().getPlayerEntityByUUID(this.playerUUID)).getName()));
+                        } catch (NullPointerException e) {
+                            if (Objects.equals(this.playerUUID, new UUID(0, 0))) {
+                                tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.public"));
+                            } else {
+                                tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.player_offline"));
+                            }
                         }
                     }
                 });
