@@ -56,7 +56,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 import static gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS;
-
+//TODO fix sound even after disabling
 public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase implements IControllable {
 
     private static final int EUT_PER_HATCH = GTValues.VA[GTValues.UEV];
@@ -270,51 +270,54 @@ public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase im
     @Override
     public void updateFormedValid() {
 
-        int energyToConsume = this.getEnergyUsage();
-        boolean hasMaintenance = ConfigHolder.machines.enableMaintenance && hasMaintenanceMechanics();
-        if (hasMaintenance) {
-            // 10% more energy per maintenance problem
-            energyToConsume += getNumMaintenanceProblems() * energyToConsume / 10;
-        }
+        if(isWorkingEnabled()) {
 
-        if (this.hasNotEnoughEnergy && energyContainer.getInputPerSec() > 19L * energyToConsume) {
-            this.hasNotEnoughEnergy = false;
-        }
-
-        if (this.energyContainer.getEnergyStored() >= energyToConsume) {
-            if (!hasNotEnoughEnergy) {
-                long consumed = this.energyContainer.removeEnergy(energyToConsume);
-                if (consumed == -energyToConsume) {
-                    setActive(true);
-                } else {
-                    this.hasNotEnoughEnergy = true;
-                    if(this.researchContainerWireless != null)
-                        this.researchContainerWireless.clearResearch();
-                    setActive(false);
-                }
+            int energyToConsume = this.getEnergyUsage();
+            boolean hasMaintenance = ConfigHolder.machines.enableMaintenance && hasMaintenanceMechanics();
+            if (hasMaintenance) {
+                // 10% more energy per maintenance problem
+                energyToConsume += getNumMaintenanceProblems() * energyToConsume / 10;
             }
-        } else {
-            this.hasNotEnoughEnergy = true;
-            if(this.researchContainerWireless != null)
-                this.researchContainerWireless.clearResearch();
-            setActive(false);
-        }
 
-        if(!this.initialize && !this.getWorld().isRemote && this.getOffsetTimer() % 1200 == 0 && this.isActive()) {
+            if (this.hasNotEnoughEnergy && energyContainer.getInputPerSec() > 19L * energyToConsume) {
+                this.hasNotEnoughEnergy = false;
+            }
 
-            List<String> researchStrings = new ArrayList<>();
-            for(int x = 0; x < this.getAbilities(IMPORT_ITEMS).size(); x++) {
-                for (int i = 0; i < this.getAbilities(IMPORT_ITEMS).get(x).getSlots(); i++) {
-                    ItemStack stack = this.getAbilities(IMPORT_ITEMS).get(x).getStackInSlot(i);
-                    String researchId = AssemblyLineManager.readResearchId(stack);
-                    boolean isValid = AssemblyLineManager.isStackDataItem(stack, true);
-                    if (researchId != null && isValid) {
-                        researchStrings.add(researchId);
+            if (this.energyContainer.getEnergyStored() >= energyToConsume) {
+                if (!this.hasNotEnoughEnergy) {
+                    long consumed = this.energyContainer.removeEnergy(energyToConsume);
+                    if (consumed == -energyToConsume) {
+                        setActive(true);
+                    } else {
+                        this.hasNotEnoughEnergy = true;
+                        if (this.researchContainerWireless != null)
+                            this.researchContainerWireless.clearResearch();
+                        setActive(false);
                     }
                 }
+            } else {
+                this.hasNotEnoughEnergy = true;
+                if (this.researchContainerWireless != null)
+                    this.researchContainerWireless.clearResearch();
+                setActive(false);
             }
 
-            this.researchContainerWireless.setResearchId(researchStrings);
+            if (!this.initialize && !this.getWorld().isRemote && this.getOffsetTimer() % 1200 == 0 && isActive()) {
+
+                List<String> researchStrings = new ArrayList<>();
+                for (int x = 0; x < this.getAbilities(IMPORT_ITEMS).size(); x++) {
+                    for (int i = 0; i < this.getAbilities(IMPORT_ITEMS).get(x).getSlots(); i++) {
+                        ItemStack stack = this.getAbilities(IMPORT_ITEMS).get(x).getStackInSlot(i);
+                        String researchId = AssemblyLineManager.readResearchId(stack);
+                        boolean isValid = AssemblyLineManager.isStackDataItem(stack, true);
+                        if (researchId != null && isValid) {
+                            researchStrings.add(researchId);
+                        }
+                    }
+                }
+
+                this.researchContainerWireless.setResearchId(researchStrings);
+            }
         }
     }
 
@@ -372,8 +375,8 @@ public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase im
     @Override
     public void receiveInitialSyncData(PacketBuffer packetBuffer) {
         super.receiveInitialSyncData(packetBuffer);
-        this.isActive = packetBuffer.readBoolean();
-        this.isWorkingEnabled = packetBuffer.readBoolean();
+        setActive(packetBuffer.readBoolean());
+        setWorkingEnabled(packetBuffer.readBoolean());
         this.initialize = packetBuffer.readBoolean();
         String uuidStr = packetBuffer.readString(36);
         this.playerUUID = uuidStr.equals("null") ? null : UUID.fromString(uuidStr);
@@ -394,8 +397,8 @@ public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase im
     @Override
     public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
-        this.isActive = data.getBoolean("isActive");
-        this.isWorkingEnabled = data.getBoolean("isWorkingEnabled");
+        setActive(data.getBoolean("isActive"));
+        setWorkingEnabled(data.getBoolean("isWorkingEnabled"));
         String uuidStr = data.getString("PlacedUUID");
         this.playerUUID = uuidStr.equals("null") ? null : UUID.fromString(uuidStr);
         this.initialize = data.getBoolean("Initialized");
