@@ -64,10 +64,10 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 'C', new UnificationEntry(circuit, MarkerMaterials.Tier.IV),
                 'H', new UnificationEntry(spring, MolybdenumDisilicide),
                 'P', new UnificationEntry(pipeHugeFluid, StainlessSteel),
-                'R', MetaTileEntities.CENTRIFUGE[IV].getStackForm(),
-                'T', MetaTileEntities.THERMAL_CENTRIFUGE[IV].getStackForm(),
-                'M', MetaItems.ELECTRIC_MOTOR_IV.getStackForm(),
-                'W', new UnificationEntry(cableGtSingle, Platinum));
+                'R', MetaTileEntities.CENTRIFUGE[GTValues.EV].getStackForm(),
+                'T', MetaTileEntities.THERMAL_CENTRIFUGE[GTValues.EV].getStackForm(),
+                'M', MetaItems.ELECTRIC_MOTOR_EV.getStackForm(),
+                'W', new UnificationEntry(cableGtDouble, Aluminium));
         /* Backup recipe
         ModHandler.addShapedRecipe("large_centrifuge", ADVANCED_CENTRIFUGE.getStackForm(),
                 "CBC", "RHR", "DED",
