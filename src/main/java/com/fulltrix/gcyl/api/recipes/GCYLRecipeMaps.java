@@ -186,6 +186,13 @@ public final class GCYLRecipeMaps {
             .sound(GTSoundEvents.ARC)
             .build();
 
+    public static final RecipeMap<SimpleRecipeBuilder> FISHER_RECIPES = new RecipeMapBuilder<>("fisher",
+            new SimpleRecipeBuilder())
+            .itemInputs(2)
+            .itemOutputs(6)
+            .sound(SoundEvents.ENTITY_BOAT_PADDLE_WATER)
+            .build();
+
 
     public static void modifyMaps() {
         LASER_ENGRAVER_RECIPES.setMaxFluidInputs(1);

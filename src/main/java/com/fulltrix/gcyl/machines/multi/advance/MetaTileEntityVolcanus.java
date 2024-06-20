@@ -34,6 +34,8 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -119,9 +121,10 @@ public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController im
     public ICubeRenderer getBaseTexture(IMultiblockPart iMultiblockPart) {
         return HASTELLOY_N_CASING;
     }
-
+    @SideOnly(Side.CLIENT)
+    @NotNull
     @Override
-    protected @NotNull OrientedOverlayRenderer getFrontOverlay() {
+    protected OrientedOverlayRenderer getFrontOverlay() {
         return GCYMTextures.MEGA_BLAST_FURNACE_OVERLAY;
     }
 

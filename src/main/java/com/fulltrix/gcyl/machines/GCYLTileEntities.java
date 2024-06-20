@@ -76,6 +76,7 @@ public class GCYLTileEntities {
     public static MetaTileEntityWirelessDataBank WIRELESS_DATA_BANK;
     /////////////////////////////////////////////////
     public static MetaTileEntityLargeAirCollector LARGE_AIR_COLLECTOR;
+    public static MetaTileEntityLargeFisher LARGE_FISHER;
 
 
     public static int id = 24000;
@@ -200,5 +201,7 @@ public class GCYLTileEntities {
         WIRELESS_DATA_HATCH = registerMetaTileEntity(++id, new MetaTileEntityWirelessDataHatch(gcylId("wireless_data_hatch"), 11));
 
         LARGE_AIR_COLLECTOR = registerMetaTileEntity(++id, new MetaTileEntityLargeAirCollector(gcylId("large_air_collector")));
+
+        LARGE_FISHER = registerMetaTileEntity(++id, new MetaTileEntityLargeFisher(gcylId("large_fisher")));
     }
 }

@@ -452,6 +452,16 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 'M', new UnificationEntry(plate, MaragingSteel250),
                 'R', new UnificationEntry(rotor, MaragingSteel250));
 
+        //Large Fisher
+        ModHandler.addShapedRecipe("large_fisher", LARGE_FISHER.getStackForm(),
+                "CDC", "PAP","MBM",
+                'D', new UnificationEntry(plateDense, WatertightSteel),
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'A', FISHER[3].getStackForm(),
+                'M', ELECTRIC_MOTOR_IV.getStackForm(),
+                'P', ELECTRIC_PISTON_IV.getStackForm(),
+                'B', ELECTRIC_PUMP_IV.getStackForm());
+
 
         /*
 

@@ -4991,3 +4991,9 @@ gcyl.multiblock.wireless_pss.not_enough_coolant=Not Enough Coolant!
 
 gcyl.machine.large_air_collector.name=Large Gas Collector (LGC)
 gcyl.machine.large_air_collector.tooltip.1=Gains §fDuration§7 and §fEU/t§7 bonuses depending on §fFilter Tier§7.
+
+gcyl.machine.large_fisher.name=Large Fisher (LF)
+gcyl.machine.large_fisher.tooltip.1=Requires being in one of these §7Biomes§7:
+gcyl.machine.large_fisher.tooltip.2=§b%s
+recipemap.fisher.name=Large Fisher
+

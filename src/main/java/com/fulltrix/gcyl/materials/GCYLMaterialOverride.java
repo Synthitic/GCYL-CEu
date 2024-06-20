@@ -285,6 +285,7 @@ public class GCYLMaterialOverride {
         Copper.addFlags(GENERATE_DENSE);
         StainlessSteel.addFlags(GENERATE_DENSE);
         Titanium.addFlags(GENERATE_DENSE);
+        WatertightSteel.addFlags(GENERATE_DENSE);
 
         BlastProperty blastProperty;
 

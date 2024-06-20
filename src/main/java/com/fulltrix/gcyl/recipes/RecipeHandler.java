@@ -32,6 +32,7 @@ public class RecipeHandler {
         DeepMinerRecipes.init();
         GreenhouseRecipes.init();
         CosmicRayDetectorRecipes.init();
+        FisherRecipes.init();
     }
 
     public static void initChains() {

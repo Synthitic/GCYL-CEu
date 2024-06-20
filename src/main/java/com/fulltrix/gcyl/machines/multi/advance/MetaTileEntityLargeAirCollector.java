@@ -1,8 +1,5 @@
-package com.fulltrix.gcyl.machines.multi.simple;
+package com.fulltrix.gcyl.machines.multi.advance;
 
-import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
-import com.fulltrix.gcyl.api.multi.GCYLMultiblockRecipeLogic;
-import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.item.metal.GCYLCleanroomCasing;
@@ -14,7 +11,6 @@ import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
@@ -25,7 +21,6 @@ import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockCleanroomCasing;
-import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.block.state.IBlockState;
@@ -47,8 +42,6 @@ import java.util.List;
 import static com.fulltrix.gcyl.api.block.TraceabilityPredicates.filterCasings;
 import static gregtech.api.recipes.RecipeMaps.GAS_COLLECTOR_RECIPES;
 
-//TODO add tooltips and information
-//TODO implement filter tier bonus
 public class MetaTileEntityLargeAirCollector extends GCYMRecipeMapMultiblockController {
 
     private int filterTier = 0;
