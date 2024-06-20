@@ -297,7 +297,7 @@ highTierVoltageCoils();
                 .input(dust, Silicon)
                 .input(dust, Carbon)
                 .notConsumable(new IntCircuitIngredient(2))
-                .notConsumable(Argon.getFluid(0))
+                .notConsumable(Argon.getFluid(1))
                 .output(dust, SiliconCarbide, 2)
                 .buildAndRegister();
 

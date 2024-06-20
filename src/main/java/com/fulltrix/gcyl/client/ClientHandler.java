@@ -41,6 +41,8 @@ public class ClientHandler {
     public static SimpleOverlayRenderer WIRELESS_ENERGY_HATCH_OFF;
     public static SimpleOverlayRenderer WIRELESS_DATA_HATCH;
     public static SimpleOverlayRenderer SEABORGIUM_SUBSTATION_CASING;
+    public static SimpleOverlayRenderer MARAGING_STEEL_250_CASING;
+    public static SimpleOverlayRenderer INCONEL_625_CASING;
 
     public static OrientedOverlayRenderer NAQADAH_OVERLAY;
     public static OrientedOverlayRenderer ROCKET_OVERLAY;
@@ -91,6 +93,8 @@ public class ClientHandler {
         INCOLOY_813_CASING = new SimpleOverlayRenderer("casings/metal_casings/incoloy_813");
         NITINOL_60_CASING = new SimpleOverlayRenderer("casings/metal_casings/nitinol_60");
         HASTELLOY_K243_CASING = new SimpleOverlayRenderer("casings/metal_casings/hastelloy_k243");
+        MARAGING_STEEL_250_CASING = new SimpleOverlayRenderer("casings/metal_casings/maraging_steel_250");
+        INCONEL_625_CASING = new SimpleOverlayRenderer("casings/metal_casings/inconel_625");
 
         ENRICHED_NAQUADAH_ALLOY_CASING = new SimpleOverlayRenderer("casings/metal_casings/enriched_naquadah_alloy");
         NAQUADRIA_CASING = new SimpleOverlayRenderer("casings/metal_casings/naquadria");

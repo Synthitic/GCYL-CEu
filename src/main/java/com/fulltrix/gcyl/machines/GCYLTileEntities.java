@@ -12,10 +12,7 @@ import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityDeepMiner;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityLaserMiner;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityVoidMiner;
 import com.fulltrix.gcyl.machines.multi.multiblockpart.*;
-import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityChemicalPlant;
-import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityDecayChamber;
-import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityGreenhouse;
-import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityPlasmaCondenser;
+import com.fulltrix.gcyl.machines.multi.simple.*;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityParallelHatch;
 import gregtech.api.GTValues;
@@ -77,6 +74,8 @@ public class GCYLTileEntities {
     /////////////////////////////////////////////////
     public static MetaTileEntityWirelessDataHatch WIRELESS_DATA_HATCH;
     public static MetaTileEntityWirelessDataBank WIRELESS_DATA_BANK;
+    /////////////////////////////////////////////////
+    public static MetaTileEntityLargeAirCollector LARGE_AIR_COLLECTOR;
 
 
     public static int id = 24000;
@@ -199,5 +198,7 @@ public class GCYLTileEntities {
 
         WIRELESS_DATA_BANK = registerMetaTileEntity(++id, new MetaTileEntityWirelessDataBank(gcylId("wireless_data_bank")));
         WIRELESS_DATA_HATCH = registerMetaTileEntity(++id, new MetaTileEntityWirelessDataHatch(gcylId("wireless_data_hatch"), 11));
+
+        LARGE_AIR_COLLECTOR = registerMetaTileEntity(++id, new MetaTileEntityLargeAirCollector(gcylId("large_air_collector")));
     }
 }

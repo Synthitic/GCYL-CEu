@@ -21,6 +21,7 @@ import org.jetbrains.annotations.NotNull;
 import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.GREENHOUSE_RECIPES;
 
 //TODO: GET A MATCHING TEXTURE FOR THE CASINGS AND BASE TEXTURE
+//TODO: add tooltips and information
 public class MetaTileEntityGreenhouse extends GCYMRecipeMapMultiblockController {
 
     private final int tier;

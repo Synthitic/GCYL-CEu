@@ -23,7 +23,7 @@ import javax.annotation.Nonnull;
 
 import static com.fulltrix.gcyl.client.ClientHandler.HASTELLOY_N_CASING;
 import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_1;
-
+//TODO add tooltips and information
 public class MetaTileEntityPlasmaCondenser extends GCYLRecipeMapMultiblockController {
 
     public MetaTileEntityPlasmaCondenser(ResourceLocation metaTileEntityId, boolean isParallel) {

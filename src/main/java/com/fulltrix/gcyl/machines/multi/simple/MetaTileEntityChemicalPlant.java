@@ -24,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 
 //TODO implement coil bonus
 //TODO make a separate mega chemical reactor so this one isnt so broken
-
+//TODO add tooltips and information
 public class MetaTileEntityChemicalPlant extends GCYLRecipeMapMultiblockController implements IHeatingCoil {
 
     private int temperature;

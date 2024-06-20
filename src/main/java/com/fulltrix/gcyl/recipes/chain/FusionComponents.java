@@ -4,6 +4,7 @@ import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.item.fusion.*;
 import gregtech.api.GTValues;
 import gregtech.api.unification.OreDictUnifier;
+import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockFusionCasing;
 import gregtech.common.blocks.MetaBlocks;
 
@@ -72,7 +73,7 @@ public class FusionComponents {
                 .input(circuit, UHV)
                 .inputs(FIELD_GENERATOR_UV.getStackForm())
                 .fluidInputs(SolderingAlloy.getFluid(144))
-                .outputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_1, 2))
+                .outputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_1, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_COIL))
                         .CWUt(128)
@@ -87,7 +88,7 @@ public class FusionComponents {
                 .input(circuit, UEV)
                 .inputs(FIELD_GENERATOR_UHV.getStackForm())
                 .fluidInputs(SolderingAlloy.getFluid(288))
-                .outputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_2, 2))
+                .outputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_2, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_1))
                         .CWUt(256)
@@ -102,7 +103,7 @@ public class FusionComponents {
                 .input(circuit, UIV)
                 .inputs(FIELD_GENERATOR_UEV.getStackForm())
                 .fluidInputs(SolderingAlloy.getFluid(576))
-                .outputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3, 2))
+                .outputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_2))
                         .CWUt(512)
@@ -117,7 +118,7 @@ public class FusionComponents {
                 .input(circuit, UXV)
                 .inputs(FIELD_GENERATOR_UIV.getStackForm())
                 .fluidInputs(SolderingAlloy.getFluid(1152))
-                .outputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_4, 2))
+                .outputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_4, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3))
                         .CWUt(1024)
@@ -132,7 +133,7 @@ public class FusionComponents {
                 .input(circuit, OpV)
                 .inputs(FIELD_GENERATOR_UXV.getStackForm())
                 .fluidInputs(SolderingAlloy.getFluid(2304))
-                .outputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_5, 2))
+                .outputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_5, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(GCYLMetaBlocks.FUSION_COILS.getItemVariant(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_4))
                         .CWUt(2048)
@@ -151,7 +152,7 @@ public class FusionComponents {
                 .inputs(SENSOR_UHV.getStackForm())
                 .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_CASING))
                 .fluidInputs(SolderingAlloy.getFluid(144))
-                .outputs(GCYLMetaBlocks.DIVERTOR_CASING.getItemVariant(GCYLDivertorCasing.CasingType.DIVERTOR_1, 2))
+                .outputs(GCYLMetaBlocks.DIVERTOR_CASING.getItemVariant(GCYLDivertorCasing.CasingType.DIVERTOR_1, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING))
                         .CWUt(128)
@@ -167,7 +168,7 @@ public class FusionComponents {
                 .inputs(SENSOR_UEV.getStackForm())
                 .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_CASING))
                 .fluidInputs(SolderingAlloy.getFluid(288))
-                .outputs(GCYLMetaBlocks.DIVERTOR_CASING.getItemVariant(GCYLDivertorCasing.CasingType.DIVERTOR_2, 2))
+                .outputs(GCYLMetaBlocks.DIVERTOR_CASING.getItemVariant(GCYLDivertorCasing.CasingType.DIVERTOR_2, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(GCYLMetaBlocks.DIVERTOR_CASING.getItemVariant(GCYLDivertorCasing.CasingType.DIVERTOR_1))
                         .CWUt(256)
@@ -183,7 +184,7 @@ public class FusionComponents {
                 .inputs(SENSOR_UIV.getStackForm())
                 .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_CASING))
                 .fluidInputs(SolderingAlloy.getFluid(576))
-                .outputs(GCYLMetaBlocks.DIVERTOR_CASING.getItemVariant(GCYLDivertorCasing.CasingType.DIVERTOR_3, 2))
+                .outputs(GCYLMetaBlocks.DIVERTOR_CASING.getItemVariant(GCYLDivertorCasing.CasingType.DIVERTOR_3, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(GCYLMetaBlocks.DIVERTOR_CASING.getItemVariant(GCYLDivertorCasing.CasingType.DIVERTOR_2))
                         .CWUt(512)
@@ -199,7 +200,7 @@ public class FusionComponents {
                 .inputs(SENSOR_UXV.getStackForm())
                 .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_CASING))
                 .fluidInputs(SolderingAlloy.getFluid(1152))
-                .outputs(GCYLMetaBlocks.DIVERTOR_CASING.getItemVariant(GCYLDivertorCasing.CasingType.DIVERTOR_4, 2))
+                .outputs(GCYLMetaBlocks.DIVERTOR_CASING.getItemVariant(GCYLDivertorCasing.CasingType.DIVERTOR_4, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(GCYLMetaBlocks.DIVERTOR_CASING.getItemVariant(GCYLDivertorCasing.CasingType.DIVERTOR_3))
                         .CWUt(1024)
@@ -215,7 +216,7 @@ public class FusionComponents {
                 .inputs(SENSOR_OpV.getStackForm())
                 .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_CASING))
                 .fluidInputs(SolderingAlloy.getFluid(2304))
-                .outputs(GCYLMetaBlocks.DIVERTOR_CASING.getItemVariant(GCYLDivertorCasing.CasingType.DIVERTOR_5, 2))
+                .outputs(GCYLMetaBlocks.DIVERTOR_CASING.getItemVariant(GCYLDivertorCasing.CasingType.DIVERTOR_5, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(GCYLMetaBlocks.DIVERTOR_CASING.getItemVariant(GCYLDivertorCasing.CasingType.DIVERTOR_4))
                         .CWUt(2048)
@@ -233,7 +234,7 @@ public class FusionComponents {
                 .inputs(SENSOR_UHV.getStackForm())
                 .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_CASING))
                 .fluidInputs(SolderingAlloy.getFluid(144))
-                .outputs(GCYLMetaBlocks.VACUUM_CASING.getItemVariant(GCYLVacuumCasing.CasingType.VACUUM_1, 2))
+                .outputs(GCYLMetaBlocks.VACUUM_CASING.getItemVariant(GCYLVacuumCasing.CasingType.VACUUM_1, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING))
                         .CWUt(128)
@@ -249,7 +250,7 @@ public class FusionComponents {
                 .inputs(SENSOR_UEV.getStackForm())
                 .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_CASING))
                 .fluidInputs(SolderingAlloy.getFluid(288))
-                .outputs(GCYLMetaBlocks.VACUUM_CASING.getItemVariant(GCYLVacuumCasing.CasingType.VACUUM_2, 2))
+                .outputs(GCYLMetaBlocks.VACUUM_CASING.getItemVariant(GCYLVacuumCasing.CasingType.VACUUM_2, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(GCYLMetaBlocks.VACUUM_CASING.getItemVariant(GCYLVacuumCasing.CasingType.VACUUM_1))
                         .CWUt(256)
@@ -265,7 +266,7 @@ public class FusionComponents {
                 .inputs(SENSOR_UIV.getStackForm())
                 .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_CASING))
                 .fluidInputs(SolderingAlloy.getFluid(576))
-                .outputs(GCYLMetaBlocks.VACUUM_CASING.getItemVariant(GCYLVacuumCasing.CasingType.VACUUM_3, 2))
+                .outputs(GCYLMetaBlocks.VACUUM_CASING.getItemVariant(GCYLVacuumCasing.CasingType.VACUUM_3, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(GCYLMetaBlocks.VACUUM_CASING.getItemVariant(GCYLVacuumCasing.CasingType.VACUUM_2))
                         .CWUt(512)
@@ -282,7 +283,7 @@ public class FusionComponents {
                 .inputs(SENSOR_UXV.getStackForm())
                 .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_CASING))
                 .fluidInputs(SolderingAlloy.getFluid(1152))
-                .outputs(GCYLMetaBlocks.VACUUM_CASING.getItemVariant(GCYLVacuumCasing.CasingType.VACUUM_4, 2))
+                .outputs(GCYLMetaBlocks.VACUUM_CASING.getItemVariant(GCYLVacuumCasing.CasingType.VACUUM_4, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(GCYLMetaBlocks.VACUUM_CASING.getItemVariant(GCYLVacuumCasing.CasingType.VACUUM_3))
                         .CWUt(1024)
@@ -298,7 +299,7 @@ public class FusionComponents {
                 .inputs(SENSOR_OpV.getStackForm())
                 .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_CASING))
                 .fluidInputs(SolderingAlloy.getFluid(2304))
-                .outputs(GCYLMetaBlocks.VACUUM_CASING.getItemVariant(GCYLVacuumCasing.CasingType.VACUUM_5, 2))
+                .outputs(GCYLMetaBlocks.VACUUM_CASING.getItemVariant(GCYLVacuumCasing.CasingType.VACUUM_5, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(GCYLMetaBlocks.VACUUM_CASING.getItemVariant(GCYLVacuumCasing.CasingType.VACUUM_4))
                         .CWUt(2048)
@@ -316,7 +317,7 @@ public class FusionComponents {
                 .inputs(SENSOR_UHV.getStackForm())
                 .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_CASING))
                 .fluidInputs(SolderingAlloy.getFluid(144))
-                .outputs(GCYLMetaBlocks.CRYOSTAT_CASING.getItemVariant(GCYLCryostatCasing.CasingType.CRYOSTAT_1, 2))
+                .outputs(GCYLMetaBlocks.CRYOSTAT_CASING.getItemVariant(GCYLCryostatCasing.CasingType.CRYOSTAT_1, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING))
                         .CWUt(128)
@@ -332,7 +333,7 @@ public class FusionComponents {
                 .inputs(SENSOR_UEV.getStackForm())
                 .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_CASING))
                 .fluidInputs(SolderingAlloy.getFluid(288))
-                .outputs(GCYLMetaBlocks.CRYOSTAT_CASING.getItemVariant(GCYLCryostatCasing.CasingType.CRYOSTAT_2, 2))
+                .outputs(GCYLMetaBlocks.CRYOSTAT_CASING.getItemVariant(GCYLCryostatCasing.CasingType.CRYOSTAT_2, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(GCYLMetaBlocks.CRYOSTAT_CASING.getItemVariant(GCYLCryostatCasing.CasingType.CRYOSTAT_1))
                         .CWUt(256)
@@ -348,7 +349,7 @@ public class FusionComponents {
                 .inputs(SENSOR_UIV.getStackForm())
                 .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_CASING))
                 .fluidInputs(SolderingAlloy.getFluid(576))
-                .outputs(GCYLMetaBlocks.CRYOSTAT_CASING.getItemVariant(GCYLCryostatCasing.CasingType.CRYOSTAT_3, 2))
+                .outputs(GCYLMetaBlocks.CRYOSTAT_CASING.getItemVariant(GCYLCryostatCasing.CasingType.CRYOSTAT_3, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(GCYLMetaBlocks.CRYOSTAT_CASING.getItemVariant(GCYLCryostatCasing.CasingType.CRYOSTAT_2))
                         .CWUt(512)
@@ -365,7 +366,7 @@ public class FusionComponents {
                 .inputs(SENSOR_UXV.getStackForm())
                 .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_CASING))
                 .fluidInputs(SolderingAlloy.getFluid(1152))
-                .outputs(GCYLMetaBlocks.CRYOSTAT_CASING.getItemVariant(GCYLCryostatCasing.CasingType.CRYOSTAT_4, 2))
+                .outputs(GCYLMetaBlocks.CRYOSTAT_CASING.getItemVariant(GCYLCryostatCasing.CasingType.CRYOSTAT_4, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(GCYLMetaBlocks.CRYOSTAT_CASING.getItemVariant(GCYLCryostatCasing.CasingType.CRYOSTAT_3))
                         .CWUt(1024)
@@ -381,7 +382,7 @@ public class FusionComponents {
                 .inputs(SENSOR_OpV.getStackForm())
                 .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(GCYLFusionCasing.CasingType.ADV_FUSION_CASING))
                 .fluidInputs(SolderingAlloy.getFluid(2304))
-                .outputs(GCYLMetaBlocks.CRYOSTAT_CASING.getItemVariant(GCYLCryostatCasing.CasingType.CRYOSTAT_5, 2))
+                .outputs(GCYLMetaBlocks.CRYOSTAT_CASING.getItemVariant(GCYLCryostatCasing.CasingType.CRYOSTAT_5, ConfigHolder.recipes.casingsPerCraft))
                 .stationResearch(b -> b
                         .researchStack(GCYLMetaBlocks.CRYOSTAT_CASING.getItemVariant(GCYLCryostatCasing.CasingType.CRYOSTAT_4))
                         .CWUt(2048)

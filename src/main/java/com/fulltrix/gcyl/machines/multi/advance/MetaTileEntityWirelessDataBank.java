@@ -45,6 +45,9 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
@@ -55,19 +58,25 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+import static gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS;
 import static gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS;
+import static gregtech.api.unification.material.Materials.PCBCoolant;
+
 //TODO fix sound even after disabling
 public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase implements IControllable {
 
     private static final int EUT_PER_HATCH = GTValues.VA[GTValues.UEV];
-
+    private static final int COOLANT_PER_HATCH = 100;
     private IEnergyContainer energyContainer;
 
     private boolean isActive = false;
     private boolean isWorkingEnabled = true;
     protected boolean hasNotEnoughEnergy;
+    protected boolean hasNotEnoughCoolant;
     private int energyUsage = 0;
     private UUID playerUUID = null;
+
+    private int coolantUsage = 0;
 
     private VirtualResearchRegistry.VirtualResearchContainer researchContainerWireless;
 
@@ -89,10 +98,15 @@ public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase im
         super.formStructure(context);
         this.energyContainer = new EnergyContainerList(getAbilities(MultiblockAbility.INPUT_ENERGY));
         this.energyUsage = calculateEnergyUsage();
+        this.coolantUsage = calculateCoolantUsage();
     }
 
     protected int calculateEnergyUsage() {
         return EUT_PER_HATCH * this.getAbilities(IMPORT_ITEMS).size();
+    }
+
+    protected int calculateCoolantUsage() {
+        return COOLANT_PER_HATCH * this.getAbilities(IMPORT_ITEMS).size();
     }
 
     @NotNull
@@ -105,7 +119,8 @@ public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase im
                 .where('S', selfPredicate())
                 .where('X', states(getOuterState()))
                 .where('D', states(getInnerState()).setMinGlobalLimited(3)
-                        .or(metaTileEntities(MetaTileEntities.ITEM_IMPORT_BUS[GTValues.HV]).setMinGlobalLimited(1,1).setMaxGlobalLimited(8)))
+                        .or(metaTileEntities(MetaTileEntities.ITEM_IMPORT_BUS[GTValues.HV]).setMinGlobalLimited(1,1).setMaxGlobalLimited(8))
+                        .or(abilities(IMPORT_FLUIDS).setExactLimit(1)))
                 .where('A', states(getInnerState()))
                 .where('C', states(getFrontState())
                         .setMinGlobalLimited(4)
@@ -137,11 +152,13 @@ public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase im
         }
         this.energyContainer = new EnergyContainerList(new ArrayList<>());
         this.energyUsage = 0;
+        this.coolantUsage = 0;
     }
 
     protected int getEnergyUsage() {
         return energyUsage;
     }
+    protected int getCoolantUsage() {return coolantUsage;}
 
     @Override
     public boolean isActive() {
@@ -231,6 +248,8 @@ public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase im
         tooltip.add(I18n.format("gcyl.machine.wireless_data_bank.tooltip.4"));
         tooltip.add(
                 I18n.format("gcyl.machine.wireless_data_bank.tooltip.5", TextFormattingUtil.formatNumbers(EUT_PER_HATCH)));
+        tooltip.add(
+                I18n.format("gcyl.machine.wireless_data_bank.tooltip.7", TextFormattingUtil.formatNumbers(COOLANT_PER_HATCH)));
     }
 
     @Override
@@ -264,7 +283,20 @@ public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase im
     protected void addWarningText(List<ITextComponent> textList) {
         MultiblockDisplayText.builder(textList, isStructureFormed(), false)
                 .addLowPowerLine(hasNotEnoughEnergy)
+                .addCustom(tl -> {
+                    if(hasNotEnoughCoolant) {
+                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.RED, "gcyl.multiblock.wireless_pss.not_enough_coolant"));
+                    }
+                })
                 .addMaintenanceProblemLines(getMaintenanceProblems());
+    }
+
+    private boolean checkCoolant() {
+        IFluidTank inputTank = this.getAbilities(IMPORT_FLUIDS).get(0);
+        if (inputTank.getFluid() != null)
+            return (inputTank.getFluid().amount >= getCoolantUsage()) && inputTank.getFluid().containsFluid(PCBCoolant.getFluid(1));
+        else
+            return false;
     }
 
     @Override
@@ -283,8 +315,12 @@ public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase im
                 this.hasNotEnoughEnergy = false;
             }
 
+            if (this.hasNotEnoughCoolant && this.checkCoolant()) {
+                this.hasNotEnoughCoolant = false;
+            }
+
             if (this.energyContainer.getEnergyStored() >= energyToConsume) {
-                if (!this.hasNotEnoughEnergy) {
+                if (!this.hasNotEnoughEnergy && !this.hasNotEnoughCoolant) {
                     long consumed = this.energyContainer.removeEnergy(energyToConsume);
                     if (consumed == -energyToConsume) {
                         setActive(true);
@@ -297,6 +333,28 @@ public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase im
                 }
             } else {
                 this.hasNotEnoughEnergy = true;
+                if (this.researchContainerWireless != null)
+                    this.researchContainerWireless.clearResearch();
+                setActive(false);
+            }
+
+            if (this.checkCoolant()) {
+                if (!this.hasNotEnoughCoolant  && !this.hasNotEnoughEnergy) {
+                    IFluidTank inputTank = this.getAbilities(IMPORT_FLUIDS).get(0);
+                    if(inputTank.drain(this.getCoolantUsage(), false) != null) {
+                        if (inputTank.drain(this.getCoolantUsage(), false).isFluidStackIdentical(PCBCoolant.getFluid(this.getCoolantUsage()))) {
+                            inputTank.drain(this.getCoolantUsage(), true);
+                            setActive(true);
+                        }
+                    }else {
+                        this.hasNotEnoughCoolant = true;
+                        if (this.researchContainerWireless != null)
+                            this.researchContainerWireless.clearResearch();
+                        setActive(false);
+                    }
+                }
+            } else {
+                this.hasNotEnoughCoolant = true;
                 if (this.researchContainerWireless != null)
                     this.researchContainerWireless.clearResearch();
                 setActive(false);

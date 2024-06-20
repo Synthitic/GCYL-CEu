@@ -23,6 +23,7 @@ import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.DECAY_CHAMBERS_RECIPE
 
 
 //TODO: add neutron mechanics
+//TODO: add tooltips and information
 public class MetaTileEntityDecayChamber extends GCYLRecipeMapMultiblockController {
 
     public MetaTileEntityDecayChamber(ResourceLocation metaTileEntityId, boolean isParallel) {

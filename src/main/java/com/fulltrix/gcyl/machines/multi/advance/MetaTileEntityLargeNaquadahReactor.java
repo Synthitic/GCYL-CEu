@@ -27,7 +27,7 @@ import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_2;
 import static gregtech.api.unification.material.Materials.Naquadria;
 
 //TODO finish implementing UI
-
+//TODO add tooltips and information
 public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController implements IProgressBarMultiblock {
 
     private static final int tier = GTValues.UHV;

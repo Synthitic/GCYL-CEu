@@ -67,7 +67,7 @@ public class GCYLMaterialOverride {
 
         //CORE METAL ADDITIONS
         List<Material> cmmats = new ArrayList<>();
-        Collections.addAll(cmmats, Bohrium, Dubnium, Duranium, Seaborgium, Rhenium, Rutherfordium, NaquadahEnriched, IncoloyMA956, CosmicNeutronium, QCDMatter);
+        Collections.addAll(cmmats, Bohrium, Dubnium, Duranium, Seaborgium, Rhenium, Rutherfordium, NaquadahEnriched, IncoloyMA956, CosmicNeutronium, QCDMatter, Cerium, Barium, Calcium, Californium, Thallium, Tennessine);
 
         for (Material mat : cmmats) {
             for (MaterialFlag flag : CORE_METAL) {
@@ -293,7 +293,7 @@ public class GCYLMaterialOverride {
 
         //ADD FRAMES
         List<Material> framemats = new ArrayList<>();
-        Collections.addAll(framemats, Bohrium, Naquadria,Osmiridium);
+        Collections.addAll(framemats, Bohrium, Naquadria,Osmiridium, Inconel625);
         for(Material mat : framemats) {
             mat.addFlags(GENERATE_FRAME);
         }
@@ -435,7 +435,7 @@ public class GCYLMaterialOverride {
 
         //ADD ROTORS
         List<Material> rotmats = new ArrayList<>();
-        Collections.addAll(rotmats, HSSG, Tritanium, HSSE, Neutronium, CosmicNeutronium);
+        Collections.addAll(rotmats, HSSG, Tritanium, HSSE, Neutronium, CosmicNeutronium, MaragingSteel250);
         for (Material mat : rotmats) {
             mat.addFlags(GENERATE_ROTOR);
         }

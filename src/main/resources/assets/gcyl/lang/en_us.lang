@@ -4981,9 +4981,13 @@ gcyl.machine.wireless_data_bank.tooltip.3=Every 60 seconds, it will send Data st
 gcyl.machine.wireless_data_bank.tooltip.6=Can only have 1 Wireless Data Bank for a Public Network or per Private Network.
 gcyl.machine.wireless_data_bank.tooltip.4=Wireless Bulk Data Storage
 gcyl.machine.wireless_data_bank.tooltip.5=Uses §f%s EU/t§7 per Input Bus.
+gcyl.machine.wireless_data_bank.tooltip.7=Uses §f%s mB/t§7 of Dielectric PCB Coolant per Input Bus.
 gcyl.machine.wireless_data_hatch.name=§dWireless Data Access Hatch
 gcyl.machine.wireless_data_hatch.tooltip.1=Wireless Data Access for Multiblocks
 gcyl.machine.wireless_data_hatch.tooltip.2=Use a Screwdriver to activate Wireless. Use while Sneaking to make it Private.
 gcyl.machine.wireless_data_hatch.tooltip.3=Can only be changed by replacing.
 gcyl.machine.wireless_data_hatch.tooltip.4=Every 60 seconds, it will retrieve Data from the Wireless Network.
+gcyl.multiblock.wireless_pss.not_enough_coolant=Not Enough Coolant!
 
+gcyl.machine.large_air_collector.name=Large Gas Collector (LGC)
+gcyl.machine.large_air_collector.tooltip.1=Gains §fDuration§7 and §fEU/t§7 bonuses depending on §fFilter Tier§7.

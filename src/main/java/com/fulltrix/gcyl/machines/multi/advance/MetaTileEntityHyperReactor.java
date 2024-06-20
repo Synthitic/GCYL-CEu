@@ -35,7 +35,7 @@ import static gregtech.api.unification.material.Materials.Naquadria;
 public class MetaTileEntityHyperReactor extends FuelMultiblockController implements IProgressBarMultiblock {
 
     //TODO finish implementing UI and cleanup
-
+//TODO add tooltips and information
     private final int tier;
 
     private static final int a = GTUtility.getTierByVoltage(GCYLConfig.multis.hyperReactors.euGeneration[1]);

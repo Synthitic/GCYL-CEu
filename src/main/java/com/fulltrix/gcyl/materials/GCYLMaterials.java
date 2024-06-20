@@ -1474,6 +1474,7 @@ public class GCYLMaterials {
                 .gem(2)
                 .color(13127760)
                 .iconSet(EMERALD)
+                .ore()
                 .flags(NO_SMELTING, HIGH_SIFTER_OUTPUT)
                 .flags(DISABLE_REPLICATION).build();
 
@@ -8534,6 +8535,7 @@ public class GCYLMaterials {
                 .color(4194504)
                 .flags(DISABLE_REPLICATION, NO_SMASHING, NO_SMELTING, HIGH_SIFTER_OUTPUT)
                 .iconSet(GEM_VERTICAL)
+                .ore()
                 .components(Calcium,2,Aluminium,3,Silicon,3,Hydrogen,1,Oxygen,13)
                 .build();
 

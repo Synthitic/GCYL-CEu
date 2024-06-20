@@ -9,6 +9,7 @@ import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.blocks.BlockBoilerCasing;
+import gregtech.common.blocks.BlockCleanroomCasing;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.MetaItems;
@@ -441,6 +442,15 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                         .CWUt(1024)
                         .EUt(GTValues.VA[GTValues.UIV]))
                 .buildAndRegister();
+
+        //LARGE GAS COLLECTOR
+        ModHandler.addShapedRecipe("large_gas_collector", LARGE_AIR_COLLECTOR.getStackForm(),
+                "FFF", "CAC", "MRM",
+                'F', MetaBlocks.CLEANROOM_CASING.getItemVariant(BlockCleanroomCasing.CasingType.FILTER_CASING),
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'A', GAS_COLLECTOR[5].getStackForm(),
+                'M', new UnificationEntry(plate, MaragingSteel250),
+                'R', new UnificationEntry(rotor, MaragingSteel250));
 
 
         /*
