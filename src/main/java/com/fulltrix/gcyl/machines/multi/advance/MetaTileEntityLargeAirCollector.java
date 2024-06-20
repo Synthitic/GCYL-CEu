@@ -56,6 +56,12 @@ public class MetaTileEntityLargeAirCollector extends GCYMRecipeMapMultiblockCont
     }
 
     @Override
+    public void invalidateStructure() {
+        super.invalidateStructure();
+        this.filterTier = 0;
+    }
+
+    @Override
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
         Object type = context.get("FilterType");

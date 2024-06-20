@@ -4993,7 +4993,9 @@ gcyl.machine.large_air_collector.name=Large Gas Collector (LGC)
 gcyl.machine.large_air_collector.tooltip.1=Gains §fDuration§7 and §fEU/t§7 bonuses depending on §fFilter Tier§7.
 
 gcyl.machine.large_fisher.name=Large Fisher (LF)
-gcyl.machine.large_fisher.tooltip.1=Requires being in one of these §7Biomes§7:
-gcyl.machine.large_fisher.tooltip.2=§b%s
+gcyl.machine.large_fisher.tooltip.1=Requires being in one of these §fBiomes§7:
+gcyl.machine.large_fisher.tooltip.2=§9%s
 recipemap.fisher.name=Large Fisher
 
+gcyl.machine.large_rock_breaker.name=Large Rock Breaker (LRB)
+gcyl.machine.large_rock_breaker.tooltip.1=Requires §f3^Tier mb/t§7 §9Water§7 and §cLava§7 to operate.

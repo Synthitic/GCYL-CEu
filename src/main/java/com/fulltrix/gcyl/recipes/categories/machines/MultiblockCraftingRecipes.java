@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories.machines;
 
+import com.fulltrix.gcyl.api.GCYLUtility;
 import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.item.GCYLMultiblockCasing2;
@@ -8,10 +9,7 @@ import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.stack.UnificationEntry;
-import gregtech.common.blocks.BlockBoilerCasing;
-import gregtech.common.blocks.BlockCleanroomCasing;
-import gregtech.common.blocks.BlockMetalCasing;
-import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.blocks.*;
 import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
 
@@ -20,7 +18,9 @@ import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.item.fusion.GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.Einsteinium253;
+import static com.fulltrix.gcyl.api.GCYLUtility.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
+import static gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities.MEGA_VACUUM_FREEZER;
 import static gregtech.api.GTValues.IV;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.GTValues.VA;
@@ -438,7 +438,8 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .fluidInputs(MetastableOganesson.getFluid(L * 16))
                 .cleanroom(GCYLCleanroomType.ISO2)
                 .stationResearch(b -> b
-                        .researchStack(DATA_BANK.getStackForm())
+                        .researchStack(RESEARCH_STATION.getStackForm())
+                        .dataStack(TOOL_DATA_ULTIMATE.getStackForm())
                         .CWUt(1024)
                         .EUt(GTValues.VA[GTValues.UIV]))
                 .buildAndRegister();
@@ -461,6 +462,21 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 'M', ELECTRIC_MOTOR_IV.getStackForm(),
                 'P', ELECTRIC_PISTON_IV.getStackForm(),
                 'B', ELECTRIC_PUMP_IV.getStackForm());
+
+        //Large Rock Breaker
+        getAssLineResearchBuilder(GTValues.UHV, 2400, ROCK_BREAKER[8].getStackForm(), false, false)
+                .outputs(LARGE_ROCK_BREAKER.getStackForm())
+                .inputs(ROCK_BREAKER[8].getStackForm())
+                .input(COMPONENT_GRINDER_TUNGSTEN, 2)
+                .inputs(ELECTRIC_MOTOR_UHV.getStackForm(4))
+                .inputs(ELECTRIC_PISTON_UHV.getStackForm(4))
+                .inputs(MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.FUSION_GLASS, 8))
+                .input(cableGtDouble, TungstenTitaniumCarbide,2)
+                .fluidInputs(Indalloy140.getFluid(9216))
+                .fluidInputs(Lava.getFluid(32000))
+                .fluidInputs(Water.getFluid(32000))
+                .fluidInputs(getPolymerByTier(9).getFluid(9216))
+                .buildAndRegister();
 
 
         /*

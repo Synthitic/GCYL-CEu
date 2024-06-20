@@ -77,6 +77,7 @@ public class GCYLTileEntities {
     /////////////////////////////////////////////////
     public static MetaTileEntityLargeAirCollector LARGE_AIR_COLLECTOR;
     public static MetaTileEntityLargeFisher LARGE_FISHER;
+    public static MetaTileEntityLargeRockBreaker LARGE_ROCK_BREAKER;
 
 
     public static int id = 24000;
@@ -203,5 +204,7 @@ public class GCYLTileEntities {
         LARGE_AIR_COLLECTOR = registerMetaTileEntity(++id, new MetaTileEntityLargeAirCollector(gcylId("large_air_collector")));
 
         LARGE_FISHER = registerMetaTileEntity(++id, new MetaTileEntityLargeFisher(gcylId("large_fisher")));
+
+        LARGE_ROCK_BREAKER = registerMetaTileEntity(++id, new MetaTileEntityLargeRockBreaker(gcylId("large_rock_breaker")));
     }
 }
