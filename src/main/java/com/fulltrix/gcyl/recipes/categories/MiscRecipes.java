@@ -2,6 +2,7 @@ package com.fulltrix.gcyl.recipes.categories;
 
 import gregtech.api.GTValues;
 import gregtech.api.fluids.store.FluidStorageKeys;
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.chance.output.ChancedOutputLogic;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
@@ -9,10 +10,10 @@ import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.stack.UnificationEntry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.LASER_MINER_RECIPES;
+import static com.fulltrix.gcyl.api.GCYLUtility.getAssLineResearchBuilder;
+import static com.fulltrix.gcyl.api.GCYLUtility.getPolymerByTier;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
@@ -115,6 +116,21 @@ highTierVoltageCoils();
                 .outputs(CARBON_FIBERS.getStackForm(64))
                 .buildAndRegister();
 
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UV]).duration(1200)
+                .outputs(WIRELESS_BATTERY_UV.getStackForm())
+                .inputs(ENERGY_CLUSTER.getStackForm())
+                .input(circuit, MarkerMaterials.Tier.UV, 16)
+                .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64))
+                .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64))
+                .inputs(SENSOR_UV.getStackForm(6))
+                .inputs(FIELD_GENERATOR_UV.getStackForm(3))
+                .input(wireGtDouble, UVSuperconductor, 64)
+                .input(wireGtDouble, UVSuperconductor, 64)
+                .fluidInputs(Indalloy140.getFluid( L * 32))
+                .fluidInputs(getPolymerByTier(UV).getFluid(L * 32))
+                .fluidInputs(Seaborgium.getFluid( L * 32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .buildAndRegister();
 
     }
 

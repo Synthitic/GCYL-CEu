@@ -4999,3 +4999,9 @@ recipemap.fisher.name=Large Fisher
 
 gcyl.machine.large_rock_breaker.name=Large Rock Breaker (LRB)
 gcyl.machine.large_rock_breaker.tooltip.1=Requires §f3^Tier mb/t§7 §9Water§7 and §cLava§7 to operate.
+
+metaitem.wireless_electric.not_initialized.tooltip=Not Initialized. Sneak while using for Private, just use for Public. Cannot be changed later!
+metaitem.wireless_electric.private.tooltip=Private (%s)
+metaitem.wireless_electric.public.tooltip=Public
+
+metaitem.wireless_battery_uv.name=§dWireless UV Energy Module

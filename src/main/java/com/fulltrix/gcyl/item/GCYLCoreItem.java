@@ -1,18 +1,16 @@
 package com.fulltrix.gcyl.item;
 
+import com.fulltrix.gcyl.api.items.WirelessElectricStats;
 import com.fulltrix.gcyl.item.behaviors.MinerDataItemBehavior;
+import gregtech.api.GTValues;
 import gregtech.api.items.metaitem.StandardMetaItem;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.MarkerMaterials.Tier;
-import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.ItemMaterialInfo;
-import gregtech.api.unification.stack.MaterialStack;
 import gregtech.common.items.behaviors.DataItemBehavior;
 import net.minecraft.item.ItemStack;
 
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
-import static gregtech.api.GTValues.M;
 import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
 
 public class GCYLCoreItem extends StandardMetaItem {
@@ -402,6 +400,16 @@ public class GCYLCoreItem extends StandardMetaItem {
         PPIC = addItem(638,"ppic");
         QPIC = addItem(639,"qpic");
 
+        WIRELESS_BATTERY_UV = addItem(640, "wireless_battery_uv").addComponents(WirelessElectricStats.createRechargeableBattery(20_000_000_000L, GTValues.UV)).setModelAmount(8);
+        /*
+        641
+        642
+        643
+        644
+        645
+        646
+         */
+
         PYROLYTIC_CARBON = addItem(16, "pyrolytic_carbon");
         MICA_SHEET = addItem(26, "mica_sheet");
         MICA_INSULATOR_SHEET = addItem(27, "mica_insulator_sheet");
@@ -410,6 +418,9 @@ public class GCYLCoreItem extends StandardMetaItem {
     }
     @Override
     public boolean hasEffect(ItemStack itemStack) {
-        return super.hasEffect(itemStack) || itemStack.getMetadata() == UNSTABLE_STAR.getStackForm().getMetadata() || itemStack.getMetadata() == NUCLEAR_STAR.getStackForm().getMetadata();
+        return super.hasEffect(itemStack)
+                || itemStack.getMetadata() == UNSTABLE_STAR.getStackForm().getMetadata()
+                || itemStack.getMetadata() == NUCLEAR_STAR.getStackForm().getMetadata()
+                || itemStack.getMetadata() == WIRELESS_BATTERY_UV.getStackForm().getMetadata();
     }
 }

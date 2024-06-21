@@ -276,6 +276,7 @@ public class GCYLUtility {
 
     public static Material getPolymerByTier(int tier) {
         return switch (tier) {
+            case(8) -> Polybenzimidazole;
             case(9) -> Polyetheretherketone;
             case(10) -> Polyetheretherketone;
             case(11) -> Zylon;

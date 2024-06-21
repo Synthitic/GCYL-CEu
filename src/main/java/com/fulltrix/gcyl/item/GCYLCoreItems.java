@@ -6,7 +6,6 @@ import gregtech.common.items.MetaItems;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import scala.tools.cmd.Meta;
 
 import java.util.List;
 
@@ -452,6 +451,8 @@ public class GCYLCoreItems {
     public static MetaItem<?>.MetaValueItem NPIC;
     public static MetaItem<?>.MetaValueItem PPIC;
     public static MetaItem<?>.MetaValueItem QPIC;
+
+    public static MetaItem<?>.MetaValueItem WIRELESS_BATTERY_UV;
 
 
 
