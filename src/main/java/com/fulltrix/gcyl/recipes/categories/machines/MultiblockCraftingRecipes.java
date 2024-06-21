@@ -298,8 +298,13 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .input(block, IncoloyMA956, 2)
                 .input(stickLong, Osmium, 64)
                 .input(ring, Osmium, 64)
-                .input(wireGtSingle, UVSuperconductor, 16)
+                .input(wireGtSingle, UVSuperconductor, 64)
+                .input(wireGtSingle, UVSuperconductor, 64)
                 .inputs(ELECTRIC_PISTON_UV.getStackForm(16))
+                .stationResearch(b -> b
+                        .researchStack(IMPLOSION_COMPRESSOR.getStackForm())
+                        .CWUt(64)
+                        .EUt(GTValues.VA[GTValues.UV]))
                 .outputs(ELECTRIC_IMPLOSION.getStackForm())
                 .buildAndRegister();
 

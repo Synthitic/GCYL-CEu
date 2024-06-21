@@ -1,4 +1,4 @@
-package com.fulltrix.gcyl.machines.multi.advance;
+package com.fulltrix.gcyl.machines.multi.generator;
 
 import com.fulltrix.gcyl.item.metal.MetalCasing2;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
@@ -17,10 +17,16 @@ import gregtech.common.blocks.BlockMultiblockCasing;
 import gregtech.common.blocks.BlockTurbineCasing;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 import static com.fulltrix.gcyl.client.ClientHandler.NAQUADRIA_CASING;
 import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_2;
@@ -65,6 +71,14 @@ public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController
 
     protected IBlockState getCasingState() {
         return METAL_CASING_2.getState(MetalCasing2.CasingType.NAQUADRIA);
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
+        super.addInformation(stack, player, tooltip, advanced);
+        tooltip.add(I18n.format("gcyl.multiblock.large_naquadah_reactor.tooltip.1"));
+        tooltip.add(I18n.format("gcyl.multiblock.large_naquadah_reactor.tooltip.2"));
+        tooltip.add(I18n.format("gcyl.multiblock.large_naquadah_reactor.tooltip.3"));
     }
 
     @SideOnly(Side.CLIENT)

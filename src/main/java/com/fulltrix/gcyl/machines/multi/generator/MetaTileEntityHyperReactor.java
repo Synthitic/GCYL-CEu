@@ -1,4 +1,4 @@
-package com.fulltrix.gcyl.machines.multi.advance;
+package com.fulltrix.gcyl.machines.multi.generator;
 
 import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
@@ -18,14 +18,19 @@ import gregtech.client.renderer.ICubeRenderer;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Objects;
 
 import static com.fulltrix.gcyl.client.ClientHandler.*;
@@ -46,7 +51,7 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
     private static final FluidStack boosterB = new FluidStack(FluidRegistry.getFluid("plasma."+ GCYLConfig.multis.hyperReactors.boosterFluid[2]), GCYLConfig.multis.hyperReactors.boosterFluidAmounts[2]);
     private static final FluidStack boosterC = new FluidStack(FluidRegistry.getFluid(GCYLConfig.multis.hyperReactors.boosterFluid[0]), GCYLConfig.multis.hyperReactors.boosterFluidAmounts[0]);
 
-
+    private static final FluidStack[] boosters = {boosterC, boosterA, boosterB};
 
     public MetaTileEntityHyperReactor(ResourceLocation metaTileEntityId, int tier) {
         super(metaTileEntityId, GCYLRecipeMaps.HYPER_REACTOR_FUELS, tier);
@@ -76,10 +81,7 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
 
     @NotNull
     private FluidStack getBooster(int tier) {
-        Fluid temp;
-        temp = FluidRegistry.getFluid(GCYLConfig.multis.hyperReactors.boosterFluid[getIndex(tier)]);
-
-        return new FluidStack(Objects.requireNonNull(temp), GCYLConfig.multis.hyperReactors.boosterFluidAmounts[getIndex(tier)]);
+        return boosters[getIndex(tier)];
     }
 
     @Override
@@ -201,6 +203,13 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
             return GCYLMetaBlocks.REACTOR_CASING.getState(GCYLReactorCasing.CasingType.HYPER_CASING_2);
         else
             return METAL_CASING_2.getState(MetalCasing2.CasingType.NAQUADRIA);
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
+        super.addInformation(stack, player, tooltip, advanced);
+        tooltip.add(I18n.format("gcyl.multiblock.hyper_reactor.tooltip.1", getBooster(this.tier).getLocalizedName()));
+        tooltip.add(I18n.format("gcyl.multiblock.hyper_reactor.tooltip.2", GTValues.VN[this.tier]));
     }
 
     private static class HyperReactorWorkableHandler extends MultiblockFuelRecipeLogic {

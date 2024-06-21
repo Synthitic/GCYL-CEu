@@ -3020,14 +3020,14 @@ gcyl.multiblock.large_rocket_engine.tooltip.3=Use Liquid Oxygen to boost the out
 gcyl.multiblock.alloy_blast_furnace.tooltip.1=Quicker than the Blast Furnace
 gcyl.multiblock.large_naquadah_reactor.tooltip.1=Consumes 1000mb of Tritium every 20 fuel cycles'.
 gcyl.multiblock.large_naquadah_reactor.tooltip.2=Increase output by 3X with 50mb Oxygen Plasma every fuel consume (also consumes 2X fuel).
-gcyl.multiblock.large_naquadah_reactor.tooltip.3=Overclocks to UV tier.
+gcyl.multiblock.large_naquadah_reactor.tooltip.3=Overclocks to UHV tier.
 gregtech.multiblock.large_naquadah_reactor.tritium_amount=Tritium: %dmb
 gregtech.multiblock.large_naquadah_reactor.oxygen_amount=Oxygen Plasma: %sL
 gregtech.multiblock.large_naquadah_reactor.oxygen_boosted=Oxygen Plasma boosted.
 gregtech.multiblock.large_naquadah_reactor.supply_tritium_to_boost=Supply Oxygen Plasma to boost.
 gcyl.multiblock.large_naquadah_reactor.description=Large Version of the Naquadah Reactor generator.
 gcyl.multiblock.hyper_reactor.tooltip.1=Boost With: %s
-gcyl.multiblock.hyper_reactor.tooltip.2=Max Voltage: %,d
+gcyl.multiblock.hyper_reactor.tooltip.2=Max Voltage: %s
 gcyl.multiblock.hyper_reactor.description=The Hyper Reactor uses Hyper Fuel to produce large amounts of power. The power output can be boosted with various fluids.
 gcyl.multiblock.stellar_forge.description=The Stellar Forge produces late game materials using very powerful explosives.
 
@@ -3908,7 +3908,7 @@ gcyl.material.potassium_chloride=Potassium Chloride
 gcyl.material.methylamine=Methylamine
 gcyl.material.phosgene=Phosgene
 gcyl.material.isopropyl_alcohol=Isopropyl Alcohol
-gcyl.material.degenerate_rhenium_plasma=Degenerate Rhenium Plasma
+gcyl.material.degenerate_rhenium_plasma=Degenerate Rhenium
 gcyl.material.liquid_helium=Liquid Helium
 
 
@@ -5004,4 +5004,4 @@ metaitem.wireless_electric.not_initialized.tooltip=Not Initialized. Sneak while 
 metaitem.wireless_electric.private.tooltip=Private (%s)
 metaitem.wireless_electric.public.tooltip=Public
 
-metaitem.wireless_battery_uv.name=§dWireless UV Energy Module
+metaitem.wireless_battery_uv.name=§dWireless Energy Module
