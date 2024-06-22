@@ -3000,11 +3000,13 @@ gcyl.multiblock.monitor_screen.tooltip.2=The proxy mode of Digital Interface Cov
 gcyl.multiblock.monitor_screen.tooltip.3=The screen also supports plugins.
 
 gcyl.multiblock.void_miner.description.1=The Void Ore Miner will produce tons of ores.
-gcyl.multiblock.void_miner.description.2=It will consume Pyrotheum and Cryotheum alternating each second.
-gcyl.multiblock.void_miner.description.3=Temperature will increase if there is only Pyrotheum and will decrease if there is only Cryotheum.
-gcyl.multiblock.void_miner.description.4=The First step will be to only feed with Pyrotheum and when the temperature is at the perfect spot, slowly add Cryotheum.
+gcyl.multiblock.void_miner.description.2=It will consume Pyrotheum and Cryotheum alternating every 10 seconds.
+gcyl.multiblock.void_miner.description.3=Temperature & Fluid use will increase with Pyrotheum and will decrease if there Cryotheum.
+gcyl.multiblock.void_miner.description.7=Temperature & Fluid use will decrease slightly if there is no Pyrotheum.
+gcyl.multiblock.void_miner.description.8=Fluid use does not reset unless overheated or breaking the controller.
+gcyl.multiblock.void_miner.description.9=Temperature will decrease slowly if work is paused.
 gcyl.multiblock.void_miner.description.5=If temperature is above the max temperature the Void Ore Miner will stop working and slowly cool down.
-gcyl.multiblock.void_miner.description.6=Consumes Drilling Mud and outputs Used Drilling Mud every second at the same rate as Pyrotheum.
+gcyl.multiblock.void_miner.description.6=Consumes Drilling Mud, outputs Used Drilling Mud, and 10 random ores with each having a stack size of (Temperature/1000)^2 every 10 seconds.
 gcyl.multiblock.large_transformer.description=Large Transformer can convert any GTEU/AMPS by any GTEU/AMPS.
 gcyl.multiblock.industrial_primitive_blast_furnace.description=The Industrial Primitive Blast Furnace is a large multiblock structure consisting of 1 to 64 "slices".
 gregtech.machine.primitive_blast_furnace.industrial.tooltip.1=It's an upgraded version of The Primitive Blast Furnace.
@@ -4735,6 +4737,10 @@ gcyl.machine.ore_factory.config.1=Macerate>Ore Wash>Macerate>Centrifuge
 gcyl.machine.ore_factory.config.2=Macerate>Ore Wash>Sifter
 gcyl.machine.ore_factory.config.3=Macerate>Macerate>Centrifuge
 gcyl.machine.ore_factory.config.4=Macerate>Thermal Centrifuge>Macerate
+gcyl.multiblock.opf.description.1=Processes 64 ores per energy tier every 5 seconds.
+gcyl.multiblock.opf.description.2=Use a screwdriver to change process modes.
+gcyl.multiblock.opf.description.3=Will void if there is not enough output space.
+gcyl.multiblock.opf.description.4=Set input bus to Auto-Collapse items if not using a Stocking Bus.
 
 metaitem.tool.data.deep_miner.name=Deep Miner Data Storage
 metaitem.tool.data.deep_miner.tooltip=Data Storage Material Scans
@@ -5008,3 +5014,4 @@ metaitem.wireless_electric.public.tooltip=Public
 metaitem.wireless_battery_uv.name=§dWireless Energy Module
 
 gcyl.multiblock.vom.fluid_output_full=Fluid Output Full!
+

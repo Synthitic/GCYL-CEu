@@ -4,6 +4,8 @@ import codechicken.lib.raytracer.CuboidRayTraceResult;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import com.fulltrix.gcyl.api.multi.IOreFactoryProvider;
+import com.fulltrix.gcyl.api.multi.OreFactoryLogic;
 import com.google.common.collect.Lists;
 import gregtech.api.GTValues;
 import gregtech.api.capability.*;
@@ -32,6 +34,7 @@ import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.BlockMachineCasing;
 import gregtech.common.blocks.MetaBlocks;
 import groovy.transform.NullCheck;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -56,6 +59,7 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 
@@ -63,31 +67,27 @@ import static java.util.Arrays.asList;
 
 //TODO: multiblock pattern. proper tiering. different processing durations. fluid input requirements. make sifting work. fix problems with input (does not take items from beyond the first slot)
 
-public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implements IControllable {
+public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implements IWorkable, IOreFactoryProvider {
 
-    protected IMultipleTankHandler inputFluidInventory;
+    private IMultipleTankHandler inputFluidInventory;
 
     private IItemHandlerModifiable inputInventory;
 
-    protected IItemHandlerModifiable outputInventory;
+    private IItemHandlerModifiable outputInventory;
 
     private IEnergyContainer energyContainer;
 
     protected final MetaTileEntity metaTileEntity;
 
-    private boolean isWorkingEnabled = true;
-
-    private boolean isActive = false;
-
     private int voltageTier;
 
-    private int configuration = 0;
+    private OreFactoryLogic oreFactoryLogic;
 
 
     public MetaTileEntityOreFactory(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId);
         this.metaTileEntity = this;
-        this.reinitializeStructurePattern();
+        this.oreFactoryLogic = new OreFactoryLogic(this);
     }
 
     @Override
@@ -98,16 +98,12 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
     @Override
     protected BlockPattern createStructurePattern() {
         return FactoryBlockPattern.start()
-                .aisle(" CCC ", " CCC ", " CCC ", " CCC ")
-                .aisle("CCCCC", "CDDDC", "C###C", "CGGGC")
-                .aisle("CCCCC", "CDDDC", "C###C", "CGGGC")
-                .aisle("CCCCC", "CDDDC", "C###C", "CGGGC")
-                .aisle(" CCC ", " CSC ", " CCC ", " CCC ")
+                .aisle("CCC", "CCC", "CCC")
+                .aisle("CCC", "C#C", "CCC")
+                .aisle("CCC", "CSC", "CCC")
                 .where('S', selfPredicate())
-                .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.TEMPERED_GLASS)))
-                .where('D', states(Blocks.DIRT.getDefaultState(), Blocks.GRASS.getDefaultState()))
                 .where('C', states(MetaBlocks.MACHINE_CASING.getState(BlockMachineCasing.MachineCasingType.ULV))
-                .setMinGlobalLimited(42)
+                .setMinGlobalLimited(10)
                 .or(autoAbilities(true, true, true, true, true, true ,false)))
                 .where('#', air())
                 .build();
@@ -146,7 +142,7 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
     @Override
     @SideOnly(Side.CLIENT)
     public ICubeRenderer getBaseTexture(IMultiblockPart sourcePart) {
-        return Textures.VOLTAGE_CASINGS[9];
+        return Textures.VOLTAGE_CASINGS[0];
     }
 
     @Override
@@ -157,7 +153,7 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
                 String voltageName = GTValues.VN[GTUtility.getTierByVoltage(maxVoltage)];
                 textList.add(new TextComponentTranslation("gregtech.multiblock.max_energy_per_tick", maxVoltage, voltageName));
             }
-            textList.add(new TextComponentTranslation("gregtech.multiblock.universal.energy_used", voltageTier));
+            textList.add(new TextComponentTranslation("gregtech.multiblock.universal.energy_used", GTValues.V[this.voltageTier]));
         }
 
         super.addDisplayText(textList);
@@ -172,6 +168,7 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
         initializeAbilities();
+        this.oreFactoryLogic.setMaxProgress(100);
     }
 
     public void setVoltageTier(int tier) {
@@ -195,14 +192,24 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
     public void invalidateStructure() {
         super.invalidateStructure();
         resetTileAbilities();
-
-        if (this.isActive())
-            this.setActive(false);
+        this.oreFactoryLogic.invalidate();
     }
 
     @Override
+    public int getProgress() {
+        return oreFactoryLogic.getProgressTime();
+    }
+
+    @Override
+    public int getMaxProgress() {
+        return oreFactoryLogic.getMaxProgress();
+    }
+
+    public int getProgressPercent() {return oreFactoryLogic.getProgressPercent();}
+
+    @Override
     public boolean isActive() {
-        return super.isActive() && this.isWorkingEnabled;
+        return super.isActive() && this.oreFactoryLogic.isActive();
     }
 
     private void resetTileAbilities() {
@@ -212,53 +219,28 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
         this.energyContainer = new EnergyContainerList(Lists.newArrayList());
     }
 
-    private void insertItems(NonNullList<ItemStack> itemDrops) {
-        if (GTTransferUtils.addItemsToItemHandler(metaTileEntity.getExportItems(), true, itemDrops)) {
-            GTTransferUtils.addItemsToItemHandler(metaTileEntity.getExportItems(), false, itemDrops);
-        }
-    }
-
     @Override
     public boolean isWorkingEnabled() {
-        return isWorkingEnabled;
+        return this.oreFactoryLogic.isWorkingEnabled();
     }
 
     @Override
     public void setWorkingEnabled(boolean isWorkingAllowed) {
-        this.isWorkingEnabled = isWorkingAllowed;
-        markDirty();
-        World world = getWorld();
-        if (world != null && !world.isRemote) {
-            writeCustomData(GregtechDataCodes.WORKING_ENABLED, buf -> buf.writeBoolean(isWorkingEnabled));
-        }
+        this.oreFactoryLogic.setWorkingEnabled(isWorkingAllowed);
     }
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing side) {
-        if (capability == GregtechTileCapabilities.CAPABILITY_CONTROLLABLE) {
+        if (capability == GregtechTileCapabilities.CAPABILITY_WORKABLE)
+            return GregtechTileCapabilities.CAPABILITY_WORKABLE.cast(this);
+        if (capability == GregtechTileCapabilities.CAPABILITY_CONTROLLABLE)
             return GregtechTileCapabilities.CAPABILITY_CONTROLLABLE.cast(this);
-        }
         return super.getCapability(capability, side);
-    }
-
-    protected void setActive(boolean active) {
-        if (this.isActive != active) {
-            this.isActive = active;
-            markDirty();
-            World world = getWorld();
-            if (world != null && !world.isRemote) {
-                writeCustomData(GregtechDataCodes.WORKABLE_ACTIVE, buf -> buf.writeBoolean(active));
-            }
-        }
-    }
-
-    protected boolean drainStorages(boolean simulate) {
-        return drainEnergy(simulate) && consumeInput(simulate);
     }
 
 
     public boolean drainEnergy(boolean simulate) {
-        long energyToDrain = GTValues.VA[getEnergyTier()];
+        long energyToDrain = GTValues.V[getVoltageTier()];
         long resultEnergy = energyContainer.getEnergyStored() - energyToDrain;
         if (resultEnergy >= 0L && resultEnergy <= energyContainer.getEnergyCapacity()) {
             if (!simulate)
@@ -268,50 +250,54 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
         return false;
     }
 
-    public int getEnergyTier() {
-        return GTUtility.getFloorTierByVoltage(energyContainer.getInputVoltage());
+    @Override
+    public IMultipleTankHandler getImportFluidHandler() {
+        return this.inputFluidInventory;
     }
 
-    public boolean consumeInput(boolean simulate) {
+    @Override
+    public IItemHandlerModifiable getOutputInventory() {
+        return this.outputInventory;
+    }
 
-        ItemStack itemStack = inputInventory.getStackInSlot(0);
+    @Override
+    public IItemHandlerModifiable getInputInventory() {
+        return this.inputInventory;
+    }
 
-        if(itemStack != null) {
-            if(!simulate) {
-                inputInventory.extractItem(0, inputInventory.getStackInSlot(0).getCount(), false);
-            }
-            return true;
-        }
-
-        return false;
+    @Override
+    public int getVoltageTier() {
+        return GTUtility.getFloorTierByVoltage(energyContainer.getInputVoltage());
     }
 
     @Override
     public boolean onScrewdriverClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing,
                                       CuboidRayTraceResult hitResult) {
         if(!getWorld().isRemote) {
-            if(configuration == 0) {
-                configuration = 1;
+            if(this.oreFactoryLogic.getConfiguration() == 0) {
+                this.oreFactoryLogic.setConfiguration(1);
                 playerIn.sendStatusMessage(
                         new TextComponentTranslation("gcyl.machine.ore_factory.config.1"), false);
             }
-            else if(configuration == 1) {
-                configuration = 2;
+            /*
+            else if(this.oreFactoryLogic.getConfiguration() == 1) {
+                this.oreFactoryLogic.setConfiguration(2);
                 playerIn.sendStatusMessage(
                         new TextComponentTranslation("gcyl.machine.ore_factory.config.2"), false);
             }
-            else if(configuration == 2) {
-                configuration = 3;
+             */
+            else if(this.oreFactoryLogic.getConfiguration() == 1) {
+                this.oreFactoryLogic.setConfiguration(3);
                 playerIn.sendStatusMessage(
                         new TextComponentTranslation("gcyl.machine.ore_factory.config.3"), false);
             }
-            else if(configuration == 3) {
-                configuration = 4;
+            else if(this.oreFactoryLogic.getConfiguration() == 3) {
+                this.oreFactoryLogic.setConfiguration(4);
                 playerIn.sendStatusMessage(
                         new TextComponentTranslation("gcyl.machine.ore_factory.config.4"), false);
             }
             else {
-                configuration = 0;
+                this.oreFactoryLogic.setConfiguration(0);
                 playerIn.sendStatusMessage(
                         new TextComponentTranslation("gcyl.machine.ore_factory.config.0"), false);
             }
@@ -319,144 +305,22 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
         return true;
     }
 
-    protected void simulation(List<ItemStack> drops, int fortuneLevel, RecipeMap<?> map, int tier, List<ItemStack> itemStack, List<ItemStack> finalItemStack) {
-        if(itemStack != null) {
-            for (ItemStack item : itemStack) {
-                Recipe recipe = map.findRecipe(Long.MAX_VALUE, Collections.singletonList(item), Collections.emptyList());
-                if (recipe != null && !recipe.getOutputs().isEmpty()) {
-                    for (ItemStack outputStack : recipe.getResultItemOutputs(GTUtility.getTierByVoltage(recipe.getEUt()), tier, map)) {
-                        outputStack = outputStack.copy();
-                        if (fortuneLevel > 0) {
-                            outputStack.grow(outputStack.getCount() * fortuneLevel);
-                        }
-                        if (OreDictUnifier.getPrefix(outputStack) == OrePrefix.dust || OreDictUnifier.getPrefix(outputStack) == OrePrefix.gemExquisite) {
-                            finalItemStack.add(outputStack);
-                        }
-                        else {
-                            drops.add(outputStack);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    protected void simulationWash(List<ItemStack> drops, int fortuneLevel, RecipeMap<?> map, int tier, List<ItemStack> itemStack, List<ItemStack> finalItemStack) {
-        if(itemStack != null) {
-            for (ItemStack item : itemStack) {
-                Recipe recipe = map.findRecipe(Long.MAX_VALUE, Collections.singletonList(item), Collections.singletonList(Materials.DistilledWater.getFluid(100)));
-                if (recipe != null && !recipe.getOutputs().isEmpty()) {
-                    for (ItemStack outputStack : recipe.getResultItemOutputs(GTUtility.getTierByVoltage(recipe.getEUt()), tier, map)) {
-                        outputStack = outputStack.copy();
-                        if (fortuneLevel > 0) {
-                            outputStack.grow(outputStack.getCount() * fortuneLevel);
-                        }
-                        if (OreDictUnifier.getPrefix(outputStack) == OrePrefix.dust) {
-                            finalItemStack.add(outputStack);
-                        } else {
-                            drops.add(outputStack);
-                        }
-                    }
-                }
+    @Override
+    protected void updateFormedValid() {
+        if (!getWorld().isRemote) {
+            this.oreFactoryLogic.updateLogic();
+            if(this.oreFactoryLogic.wasActiveAndNeedsUpdate()) {
+                this.oreFactoryLogic.setWasActiveAndNeedsUpdate(false);
+                this.oreFactoryLogic.setActive(false);
             }
         }
     }
 
     @Override
-    protected void updateFormedValid() {
-        if (!getWorld().isRemote && this.getNumMaintenanceProblems() < 1 && isWorkingEnabled) {
-
-            for (int i = 0; i < inputInventory.getSlots(); i++) {
-                if(!inputInventory.getStackInSlot(i).isEmpty()) {
-                    break;
-                }
-                if(i == inputInventory.getSlots() - 1) {
-                    setActive(false);
-                    return;
-                }
-            }
-
-            if(!drainEnergy(true)) {
-                if(isActive)
-                    setActive(false);
-                return;
-            }
-
-            setActive(true);
-
-            List<ItemStack> drops = NonNullList.create();
-            List<ItemStack> drops1 = NonNullList.create();
-            List<ItemStack> drops2 = NonNullList.create();
-            List<ItemStack> drops3 = NonNullList.create();
-            List<ItemStack> finalOutput = NonNullList.create();
-            NonNullList<ItemStack> finalOutput2 = NonNullList.create();
-
-            if (configuration == 0) {
-                simulation(drops, 0, RecipeMap.getByName("macerator"), voltageTier, GTUtility.itemHandlerToList(metaTileEntity.getImportItems()), finalOutput);
-                simulationWash(drops1, 0, RecipeMap.getByName("ore_washer"), voltageTier, drops, finalOutput);
-                simulation(drops2, 0, RecipeMap.getByName("thermal_centrifuge"), voltageTier, drops1, finalOutput);
-                simulation(drops3, 0, RecipeMap.getByName("macerator"), voltageTier, drops2, finalOutput);
-            }
-
-            if (configuration == 1) {
-                simulation(drops, 0, RecipeMap.getByName("macerator"), voltageTier, GTUtility.itemHandlerToList(metaTileEntity.getImportItems()), finalOutput);
-                simulation(drops1, 0, RecipeMap.getByName("ore_washer"), voltageTier, drops, finalOutput);
-                simulation(drops2, 0, RecipeMap.getByName("macerator"), voltageTier, drops1, finalOutput);
-                simulation(drops3, 0, RecipeMap.getByName("centrifuge"), voltageTier, drops2, finalOutput);
-            }
-
-            if (configuration == 2) {
-                simulation(drops, 0, RecipeMap.getByName("macerator"), voltageTier, GTUtility.itemHandlerToList(metaTileEntity.getImportItems()), finalOutput);
-                simulationWash(drops1, 0, RecipeMap.getByName("ore_washer"), voltageTier, drops, finalOutput);
-                simulation(drops2, 0, RecipeMap.getByName("sifter"), voltageTier, drops1, finalOutput);
-            }
-
-            if (configuration == 3) {
-                simulation(drops, 0, RecipeMap.getByName("macerator"), voltageTier, GTUtility.itemHandlerToList(metaTileEntity.getImportItems()), finalOutput);
-                simulation(drops1, 0, RecipeMap.getByName("macerator"), voltageTier, drops, finalOutput);
-                simulation(drops2, 0, RecipeMap.getByName("centrifuge"), voltageTier, drops1, finalOutput);
-            }
-
-            if (configuration == 4) {
-                simulation(drops, 0, RecipeMap.getByName("macerator"), voltageTier, GTUtility.itemHandlerToList(metaTileEntity.getImportItems()), finalOutput);
-                simulation(drops1, 0, RecipeMap.getByName("thermal_centrifuge"), voltageTier, drops, finalOutput);
-                simulation(drops2, 0, RecipeMap.getByName("macerator"), voltageTier, drops1, finalOutput);
-            }
-
-            //simulationPackager(finalOutput2, dustTiny)
-
-            this.metaTileEntity.addNotifiedInput(this.inputInventory);
-
-            if(configuration == 0 || configuration == 1) {
-                for (ItemStack outputStack : drops3) {
-                    outputStack = outputStack.copy();
-                    outputStack.grow(outputStack.getCount() + 2 * inputInventory.getStackInSlot(0).getCount() - 2);
-                    finalOutput2.add(outputStack);
-                }
-            }
-            else {
-                for (ItemStack outputStack : drops2) {
-                    outputStack = outputStack.copy();
-                    outputStack.grow(outputStack.getCount() + 2 * inputInventory.getStackInSlot(0).getCount() - 2);
-                    finalOutput2.add(outputStack);
-                }
-            }
-
-
-            for (ItemStack outputStack : finalOutput) {
-                outputStack = outputStack.copy();
-                outputStack.grow(outputStack.getCount() + 2*inputInventory.getStackInSlot(0).getCount() - 2);
-                finalOutput2.add(outputStack);
-            }
-
-            insertItems(finalOutput2);
-            drainEnergy(false);
-            consumeInput(false);
-
-
-        }
-        else
-            setActive(false);
+    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
+        tooltip.add(I18n.format("gcyl.multiblock.opf.description.1"));
+        tooltip.add(I18n.format("gcyl.multiblock.opf.description.2"));
+        tooltip.add(I18n.format("gcyl.multiblock.opf.description.3"));
     }
 
     @SideOnly(Side.CLIENT)
@@ -468,50 +332,44 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
     @Override
     public void writeInitialSyncData(PacketBuffer buf) {
         super.writeInitialSyncData(buf);
-        buf.writeBoolean(isActive);
-        buf.writeBoolean(this.isWorkingEnabled);
+        this.oreFactoryLogic.writeInitialSyncData(buf);
     }
 
     @Override
     public void receiveInitialSyncData(PacketBuffer buf) {
         super.receiveInitialSyncData(buf);
-        this.isActive = buf.readBoolean();
-        this.isWorkingEnabled = buf.readBoolean();
+        this.oreFactoryLogic.receiveInitialSyncData(buf);
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound data) {
         super.writeToNBT(data);
-        data.setBoolean("isActive", this.isActive);
-        data.setBoolean("isWorkingEnabled", this.isWorkingEnabled);
-        data.setInteger("configuration", this.configuration);
-        return data;
+        return this.oreFactoryLogic.writeToNBT(data);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
-        this.isActive = data.getBoolean("isActive");
-        this.isWorkingEnabled = data.getBoolean("isWorkingEnabled");
-        this.configuration = data.getInteger("configuration");
+        this.oreFactoryLogic.readFromNBT(data);
     }
 
     @Override
     public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         super.renderMetaTileEntity(renderState, translation, pipeline);
-        getFrontOverlay().renderOrientedState(renderState, translation, pipeline, getFrontFacing(), isActive, isWorkingEnabled);
+        getFrontOverlay().renderOrientedState(renderState, translation, pipeline, getFrontFacing(), this.oreFactoryLogic.isActive(), this.oreFactoryLogic.isWorkingEnabled());
     }
 
     @Override
     public void receiveCustomData(int dataId, PacketBuffer buf) {
         super.receiveCustomData(dataId, buf);
         if (dataId == GregtechDataCodes.WORKABLE_ACTIVE) {
-            this.isActive = buf.readBoolean();
+            this.oreFactoryLogic.setActive(buf.readBoolean());
             scheduleRenderUpdate();
         } else if (dataId == GregtechDataCodes.WORKING_ENABLED) {
-            this.isWorkingEnabled = buf.readBoolean();
+            this.oreFactoryLogic.setWorkingEnabled(buf.readBoolean());
             scheduleRenderUpdate();
         }
+
     }
 
 

@@ -233,7 +233,9 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implement
         tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.1"));
         tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.2"));
         tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.3"));
-        tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.4"));
+        tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.7"));
+        tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.8"));
+        tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.9"));
         tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.5"));
         tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.6"));
     }
