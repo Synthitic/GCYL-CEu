@@ -10,6 +10,7 @@ import com.fulltrix.gcyl.machines.multi.MetaTileEntityStellarForge;
 import com.fulltrix.gcyl.machines.multi.advance.*;
 import com.fulltrix.gcyl.machines.multi.generator.MetaTileEntityHyperReactor;
 import com.fulltrix.gcyl.machines.multi.generator.MetaTileEntityLargeNaquadahReactor;
+import com.fulltrix.gcyl.machines.multi.generator.MetaTileEntityLargeRocketEngine;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityDeepMiner;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityLaserMiner;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityVoidMiner;

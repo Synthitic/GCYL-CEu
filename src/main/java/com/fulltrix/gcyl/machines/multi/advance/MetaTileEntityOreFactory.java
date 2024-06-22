@@ -16,6 +16,7 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
@@ -26,10 +27,12 @@ import gregtech.api.recipes.RecipeMap;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.api.util.GTLog;
 import gregtech.api.util.GTTransferUtils;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
+import gregtech.client.utils.TooltipHelper;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.BlockMachineCasing;
 import gregtech.common.blocks.MetaBlocks;
@@ -60,6 +63,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -80,6 +84,7 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
     protected final MetaTileEntity metaTileEntity;
 
     private int voltageTier;
+    private int tier;
 
     private OreFactoryLogic oreFactoryLogic;
 
@@ -104,7 +109,9 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
                 .where('S', selfPredicate())
                 .where('C', states(MetaBlocks.MACHINE_CASING.getState(BlockMachineCasing.MachineCasingType.ULV))
                 .setMinGlobalLimited(10)
-                .or(autoAbilities(true, true, true, true, true, true ,false)))
+                .or(autoAbilities(false, true, true, true, true, true ,false))
+                        .or(abilities(MultiblockAbility.INPUT_ENERGY)
+                                .or(abilities(MultiblockAbility.INPUT_LASER))))
                 .where('#', air())
                 .build();
     }
@@ -147,16 +154,11 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
 
     @Override
     protected void addDisplayText(List<ITextComponent> textList) {
-        if (this.isStructureFormed() && !this.hasMaintenanceProblems()) {
-            if (energyContainer != null && energyContainer.getEnergyCapacity() > 0) {
-                long maxVoltage = energyContainer.getInputVoltage();
-                String voltageName = GTValues.VN[GTUtility.getTierByVoltage(maxVoltage)];
-                textList.add(new TextComponentTranslation("gregtech.multiblock.max_energy_per_tick", maxVoltage, voltageName));
-            }
-            textList.add(new TextComponentTranslation("gregtech.multiblock.universal.energy_used", GTValues.V[this.voltageTier]));
-        }
-
-        super.addDisplayText(textList);
+        MultiblockDisplayText.builder(textList, isStructureFormed())
+                .addEnergyUsageLine(this.energyContainer)
+                .setWorkingStatus(oreFactoryLogic.isWorkingEnabled(), oreFactoryLogic.isActive())
+                .addWorkingStatusLine()
+                .addProgressLine(getProgressPercent() / 100.0);
     }
 
     @Override
@@ -165,10 +167,16 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
     }
 
     @Override
+    protected boolean shouldShowVoidingModeButton() {
+        return false;
+    }
+
+    @Override
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
         initializeAbilities();
         this.oreFactoryLogic.setMaxProgress(100);
+        this.tier = (int) (Math.log(this.energyContainer.getInputVoltage() * 2) / Math.log(4) - 2);
     }
 
     public void setVoltageTier(int tier) {
@@ -184,7 +192,9 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
         this.inputFluidInventory = new FluidTankList(false, getAbilities(MultiblockAbility.IMPORT_FLUIDS));
         this.inputInventory = new ItemHandlerList(getAbilities(MultiblockAbility.IMPORT_ITEMS));
         this.outputInventory = new ItemHandlerList(getAbilities(MultiblockAbility.EXPORT_ITEMS));
-        this.energyContainer = new EnergyContainerList(getAbilities(MultiblockAbility.INPUT_ENERGY));
+        List<IEnergyContainer> powerInput = new ArrayList<>(getAbilities(MultiblockAbility.INPUT_ENERGY));
+        powerInput.addAll(getAbilities(MultiblockAbility.INPUT_LASER));
+        this.energyContainer = new EnergyContainerList(powerInput);
         this.setVoltageTier(GTUtility.getTierByVoltage(this.energyContainer.getInputVoltage()));
     }
 
@@ -240,7 +250,8 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
 
 
     public boolean drainEnergy(boolean simulate) {
-        long energyToDrain = GTValues.V[getVoltageTier()];
+        long energyToDrain = (long) (Math.pow(4, this.tier + 2) / 2.0);
+
         long resultEnergy = energyContainer.getEnergyStored() - energyToDrain;
         if (resultEnergy >= 0L && resultEnergy <= energyContainer.getEnergyCapacity()) {
             if (!simulate)
@@ -267,7 +278,7 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
 
     @Override
     public int getVoltageTier() {
-        return GTUtility.getFloorTierByVoltage(energyContainer.getInputVoltage());
+        return this.tier;
     }
 
     @Override
@@ -319,8 +330,13 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
     @Override
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.1"));
+        tooltip.add(I18n.format("gcyl.multiblock.opf.description.6"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.2"));
+        tooltip.add(I18n.format("gregtech.machine.power_substation.tooltip6") + TooltipHelper.RAINBOW_SLOW +
+                I18n.format("gregtech.machine.power_substation.tooltip6.5"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.3"));
+        tooltip.add(I18n.format("gcyl.multiblock.opf.description.4"));
+        tooltip.add(I18n.format("gcyl.multiblock.opf.description.5"));
     }
 
     @SideOnly(Side.CLIENT)

@@ -1,4 +1,4 @@
-package com.fulltrix.gcyl.machines.multi.advance;
+package com.fulltrix.gcyl.machines.multi.generator;
 
 import com.fulltrix.gcyl.item.metal.MetalCasing1;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;

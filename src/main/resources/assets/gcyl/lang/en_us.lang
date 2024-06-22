@@ -4738,10 +4738,12 @@ gcyl.machine.ore_factory.config.1=Macerate>Ore Wash>Macerate>Centrifuge
 gcyl.machine.ore_factory.config.2=Macerate>Ore Wash>Sifter
 gcyl.machine.ore_factory.config.3=Macerate>Macerate>Centrifuge
 gcyl.machine.ore_factory.config.4=Macerate>Thermal Centrifuge>Macerate
-gcyl.multiblock.opf.description.1=Processes 64 ores per energy tier every 5 seconds.
+gcyl.multiblock.opf.description.1=Processes 2^(Tier) ores every 60 seconds.
+gcyl.multiblock.opf.description.6=Uses 100mb of Distilled Water and 10mb of Lubricant per Ore Processed.
 gcyl.multiblock.opf.description.2=Use a screwdriver to change process modes.
 gcyl.multiblock.opf.description.3=Will void if there is not enough output space.
-gcyl.multiblock.opf.description.4=Set input bus to Auto-Collapse items if not using a Stocking Bus.
+gcyl.multiblock.opf.description.4=Use a Stocking Input Bus for optimal performance.
+gcyl.multiblock.opf.description.5=Set input bus to Auto-Collapse items if not using a Stocking Bus.
 
 metaitem.tool.data.deep_miner.name=Deep Miner Data Storage
 metaitem.tool.data.deep_miner.tooltip=Data Storage Material Scans

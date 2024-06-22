@@ -324,10 +324,6 @@ public class RecipeOverride {
         //gcym circuit assembler
         removeRecipeByName("gcym:large_circuit_assembler");
 
-        //large scale assembler casing
-        removeRecipeByName("gcym:casing_large_assembler");
-        removeRecipesByInputs(ASSEMBLER_RECIPES,getIntegratedCircuit(6) ,OreDictUnifier.get(plate, Stellite100,6), OreDictUnifier.get(frameGt, Tungsten));
-
         //osmium dust
         removeRecipesByInputs(CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, OsmiumTetroxide, 5)}, new FluidStack[]{Hydrogen.getFluid(8000)});
         removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, OsmiumTetroxide, 5)}, new FluidStack[]{Hydrogen.getFluid(8000)});
@@ -356,6 +352,11 @@ public class RecipeOverride {
         //epichlorohydrin
         removeRecipesByInputs(CHEMICAL_RECIPES, Glycerol.getFluid(1000), HydrochloricAcid.getFluid(1000));
         removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, Glycerol.getFluid(1000), HydrochloricAcid.getFluid(1000));
+
+        //large scale assembler casing
+        removeRecipeByName("gcym:casing_large_assembler");
+        removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(plate, Stellite100,6), OreDictUnifier.get(frameGt, Tungsten, 1), getIntegratedCircuit(6));
+
 
     }
 
@@ -1144,7 +1145,7 @@ public class RecipeOverride {
                 .input(plate, Osmiridium, 2)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 4))
                 .fluidInputs(SolderingAlloy.getFluid(L * 2))
-                .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING, 1))
+                .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING, ConfigHolder.recipes.casingsPerCraft))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
@@ -1156,7 +1157,7 @@ public class RecipeOverride {
                 .input(plate, Rutherfordium, 2)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 8))
                 .fluidInputs(SolderingAlloy.getFluid(L * 4))
-                .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING_MK2, 1))
+                .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING_MK2, ConfigHolder.recipes.casingsPerCraft))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
@@ -1168,7 +1169,7 @@ public class RecipeOverride {
                 .input(plate, Tritanium, 2)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 16))
                 .fluidInputs(Indalloy140.getFluid(L * 8))
-                .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING_MK3, 1))
+                .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING_MK3, ConfigHolder.recipes.casingsPerCraft))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .stationResearch(b->b
                         .researchStack(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING_MK2))
@@ -1191,7 +1192,7 @@ public class RecipeOverride {
                 .input(frameGt, Tungsten, 4)
                 .inputs(MULTIBLOCK_CASING.getItemVariant(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_CONTROL))
                 .fluidInputs(HastelloyN.getFluid(L * 16))
-                .outputs(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING, 4 * ConfigHolder.recipes.casingsPerCraft))
+                .outputs(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING, 2 * ConfigHolder.recipes.casingsPerCraft))
                 .buildAndRegister();
 
         //distillation tower

@@ -11,6 +11,7 @@ import gregtech.api.metatileentity.multiblock.*;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.util.TextComponentUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.common.blocks.BlockBoilerCasing;
 import gregtech.common.blocks.BlockMultiblockCasing;
@@ -20,6 +21,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -33,7 +36,6 @@ import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_2;
 import static gregtech.api.unification.material.Materials.Naquadria;
 
 //TODO finish implementing UI
-//TODO add tooltips and information
 public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController implements IProgressBarMultiblock {
 
     private static final int tier = GTValues.UHV;
@@ -71,6 +73,17 @@ public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController
 
     protected IBlockState getCasingState() {
         return METAL_CASING_2.getState(MetalCasing2.CasingType.NAQUADRIA);
+    }
+
+    @Override
+    protected void addDisplayText(List<ITextComponent> textList) {
+        super.addDisplayText(textList);
+        NaquadahReactorWorkableHandler recipeLogic = (NaquadahReactorWorkableHandler) recipeMapWorkable;
+        if (recipeLogic.isOxygenBoosted) {
+            textList.add(TextComponentUtil.translationWithColor(TextFormatting.AQUA, "gregtech.multiblock.large_naquadah_reactor.oxygen_boosted"));
+        }
+
+
     }
 
     @Override

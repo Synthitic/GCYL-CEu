@@ -14,6 +14,7 @@ import gregtech.api.util.GTLog;
 import gregtech.api.util.GTTransferUtils;
 import gregtech.api.util.GTUtility;
 import gregtech.common.ConfigHolder;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagDouble;
@@ -21,14 +22,18 @@ import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class OreFactoryLogic {
+    private static final int ORES_PER_VOTAGE_TIER = 64;
     private final MetaTileEntity metaTileEntity;
     private final boolean hasMaintenance;
     private boolean isActive;
@@ -52,7 +57,7 @@ public class OreFactoryLogic {
             for (ItemStack item : itemStack) {
                 Recipe recipe = map.findRecipe(32, Collections.singletonList(item), Collections.emptyList());
                 if (recipe != null && !recipe.getOutputs().isEmpty()) {
-                    for(int x = 0; x < item.getCount(); x++) {
+                    //for(int x = 0; x < item.getCount(); x++) {
                         for (ItemStack outputStack : recipe.getResultItemOutputs(GTUtility.getTierByVoltage(recipe.getEUt()), tier, map)) {
                             outputStack = outputStack.copy();
                             if (fortuneLevel > 0) {
@@ -60,12 +65,14 @@ public class OreFactoryLogic {
                             }
                             //if (OreDictUnifier.getPrefix(outputStack) == OrePrefix.dust || OreDictUnifier.getPrefix(outputStack) == OrePrefix.gemExquisite || OreDictUnifier.getPrefix(outputStack) == OrePrefix.gemFlawless || OreDictUnifier.getPrefix(outputStack) == OrePrefix.gem) {
                             if (OreDictUnifier.getPrefix(outputStack) == OrePrefix.dust) {
+                                outputStack.setCount(outputStack.getCount() * item.getCount());
                                 finalItemStack.add(outputStack);
                             } else {
+                                outputStack.setCount(outputStack.getCount() * item.getCount());
                                 drops.add(outputStack);
                             }
                         }
-                    }
+                    //}
                 }
             }
         }
@@ -76,21 +83,21 @@ public class OreFactoryLogic {
             for (ItemStack item : itemStack) {
                 Recipe recipe = map.findRecipe(32, Collections.singletonList(item), Collections.singletonList(Materials.DistilledWater.getFluid(100)));
                 if (recipe != null && !recipe.getOutputs().isEmpty()) {
-                    for(int x = 0; x < item.getCount(); x++) {
+                    //for(int x = 0; x < item.getCount(); x++) {
                         for (ItemStack outputStack : recipe.getResultItemOutputs(GTUtility.getTierByVoltage(recipe.getEUt()), tier, map)) {
                             outputStack = outputStack.copy();
                             if (fortuneLevel > 0) {
                                 outputStack.grow(outputStack.getCount() * fortuneLevel);
                             }
                             if (OreDictUnifier.getPrefix(outputStack) == OrePrefix.dust) {
-
+                                outputStack.setCount(outputStack.getCount() * item.getCount());
                                 finalItemStack.add(outputStack);
                             } else {
-
+                                outputStack.setCount(outputStack.getCount() * item.getCount());
                                 drops.add(outputStack);
                             }
                         }
-                    }
+                    //}
                 }
             }
         }
@@ -103,13 +110,12 @@ public class OreFactoryLogic {
 
         if (hasMaintenance && ((IMaintenance) metaTileEntity).getNumMaintenanceProblems() > 1) return;
 
-        int scanSlots = getInputInventory().getSlots() - 1;
-        int slots = getVoltageTier();
+        if(!checkInput() && progressTime == 0) {
+            setActive(false);
+            return;
+        }
 
-        if(scanSlots < slots)
-            slots = scanSlots;
-
-        if(!checkInput(slots) && progressTime == 0) {
+        if(progressTime == 0 && !checkFluidInput(getInputInventory())) {
             setActive(false);
             return;
         }
@@ -126,7 +132,7 @@ public class OreFactoryLogic {
             consumeEnergy(false);
 
             if (progressTime == 0) {
-                input = consumeGetInput(getInputInventory(), slots);
+                input = consumeGetInput(getInputInventory());
             }
 
             progressTime++;
@@ -189,9 +195,33 @@ public class OreFactoryLogic {
 
     }
 
-    public boolean checkInput(int slots) {
+    public boolean checkFluidInput(IItemHandlerModifiable handler) {
+        int x = 0;
+        //int comparator = ORES_PER_VOTAGE_TIER * getVoltageTier();
+        int comparator = (int) Math.pow(2, getVoltageTier());
+        for (int i = 0; i < handler.getSlots(); i++) {
+            if (x < comparator) {
+                if (x + handler.getStackInSlot(i).getCount() >= comparator) {
+                    x += handler.extractItem(i, comparator - x, true).getCount();
+                } else {
+                    x += handler.extractItem(i, handler.getStackInSlot(i).getCount(), true).getCount();
+                }
+            }
+        }
 
-        for(int i = 0; i < slots; i++) {
+        FluidStack canDrainDistilledWater = getImportFluidHandler().drain(Materials.DistilledWater.getFluid(100 * x), false);
+        FluidStack canDrainLubricant = getImportFluidHandler().drain(Materials.Lubricant.getFluid(x * 10), false);
+
+        if(canDrainLubricant != null && canDrainDistilledWater != null ) {
+            return canDrainLubricant.isFluidStackIdentical(Materials.Lubricant.getFluid(x * 10))
+                    && canDrainDistilledWater.isFluidStackIdentical(Materials.DistilledWater.getFluid(100 * x));
+        }
+        return false;
+    }
+
+    public boolean checkInput() {
+
+        for(int i = 0; i < getInputInventory().getSlots(); i++) {
             ItemStack itemStack = getInputInventory().getStackInSlot(i);
             if (!itemStack.isEmpty()) {
                 return true;
@@ -200,12 +230,26 @@ public class OreFactoryLogic {
         return false;
     }
 
-    public List<ItemStack> consumeGetInput(IItemHandlerModifiable handler, int slots) {
+    public List<ItemStack> consumeGetInput(IItemHandlerModifiable handler) {
         List<ItemStack> itemStacks = new ArrayList<>();
-        for(int i = 0; i < slots; i++) {
-            itemStacks.add( handler.extractItem(i, handler.getStackInSlot(i).getCount(), false));
-
+        int x = 0;
+        //int comparator = ORES_PER_VOTAGE_TIER * getVoltageTier();
+        int comparator = (int) Math.pow(2, getVoltageTier());
+        for (int i = 0; i < handler.getSlots(); i++) {
+            if (x < comparator) {
+                if (x + handler.getStackInSlot(i).getCount() >= comparator) {
+                    itemStacks.add(handler.extractItem(i, comparator - x, false));
+                    x += comparator - x;
+                } else {
+                    x += handler.getStackInSlot(i).getCount();
+                    itemStacks.add(handler.extractItem(i, handler.getStackInSlot(i).getCount(), false));
+                }
+            }
         }
+
+        getImportFluidHandler().drain(Materials.DistilledWater.getFluid(100 * x), true);
+        getImportFluidHandler().drain(Materials.Lubricant.getFluid(x * 10), true);
+
         return itemStacks;
     }
 
@@ -250,6 +294,7 @@ public class OreFactoryLogic {
     public void invalidate() {
         this.progressTime = 0;
         this.maxProgress = 0;
+        this.input.clear();
         setActive(false);
     }
 
