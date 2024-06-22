@@ -58,7 +58,8 @@ public class OreFactoryLogic {
                             if (fortuneLevel > 0) {
                                 outputStack.grow(outputStack.getCount() * fortuneLevel);
                             }
-                            if (OreDictUnifier.getPrefix(outputStack) == OrePrefix.dust || OreDictUnifier.getPrefix(outputStack) == OrePrefix.gemExquisite || OreDictUnifier.getPrefix(outputStack) == OrePrefix.gemFlawless || OreDictUnifier.getPrefix(outputStack) == OrePrefix.gem) {
+                            //if (OreDictUnifier.getPrefix(outputStack) == OrePrefix.dust || OreDictUnifier.getPrefix(outputStack) == OrePrefix.gemExquisite || OreDictUnifier.getPrefix(outputStack) == OrePrefix.gemFlawless || OreDictUnifier.getPrefix(outputStack) == OrePrefix.gem) {
+                            if (OreDictUnifier.getPrefix(outputStack) == OrePrefix.dust) {
                                 finalItemStack.add(outputStack);
                             } else {
                                 drops.add(outputStack);

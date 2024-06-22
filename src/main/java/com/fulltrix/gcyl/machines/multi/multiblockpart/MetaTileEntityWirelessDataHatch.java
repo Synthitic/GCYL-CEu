@@ -184,6 +184,7 @@ public class MetaTileEntityWirelessDataHatch extends MetaTileEntityDataAccessHat
         tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("gcyl.machine.wireless_data_hatch.tooltip.1"));
         tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("gcyl.machine.wireless_data_hatch.tooltip.2"));
         tooltip.add(TooltipHelper.BLINKING_RED + I18n.format("gcyl.machine.wireless_data_hatch.tooltip.3"));
+        tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("gcyl.machine.wireless_data_hatch.tooltip.4"));
         if (canPartShare()) {
             tooltip.add(I18n.format("gregtech.universal.enabled"));
         } else {
