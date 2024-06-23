@@ -30,12 +30,10 @@ import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregicality.multiblocks.api.recipes.GCYMRecipeMaps.ALLOY_BLAST_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
-import static gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities.MEGA_BLAST_FURNACE;
-import static gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities.MEGA_VACUUM_FREEZER;
+import static gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities.*;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
-import static gregtech.api.recipes.ModHandler.removeRecipeByName;
-import static gregtech.api.recipes.ModHandler.removeTieredRecipeByName;
+import static gregtech.api.recipes.ModHandler.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.recipes.ingredients.IntCircuitIngredient.getIntegratedCircuit;
 import static gregtech.api.unification.material.MarkerMaterials.Color.*;
@@ -355,6 +353,7 @@ public class RecipeOverride {
 
         //large scale assembler casing
         removeRecipeByName("gcym:casing_large_assembler");
+
         removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(plate, Stellite100,6), OreDictUnifier.get(frameGt, Tungsten, 1), getIntegratedCircuit(6));
 
 
@@ -1179,20 +1178,21 @@ public class RecipeOverride {
 
         //large circuit assembler
         ModHandler.addShapedRecipe("gcyl_circuit_assembler", GCYMMetaTileEntities.LARGE_CIRCUIT_ASSEMBLER.getStackForm(),
-                "ARA", "CHC", "ARA",
-                'A', MULTIBLOCK_CASING.getItemVariant(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_CONTROL),
+                "ARE", "CHC", "ARA",
+                'A', GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING),
                 'R', ROBOT_ARM_LuV,
-                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.LuV),
-                'H', HULL[6].getStackForm());
+                'C', CONVEYOR_MODULE_LuV,
+                'H', HULL[6].getStackForm(),
+                'E', EMITTER_LuV);
 
         //large scale assembler casing
         ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[IV]).duration(200)
                 .circuitMeta(6)
-                .input(plate, Stellite100, 24)
-                .input(frameGt, Tungsten, 4)
+                .input(plate, Stellite100, 12)
+                .input(frameGt, Tungsten, 2)
                 .inputs(MULTIBLOCK_CASING.getItemVariant(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_CONTROL))
-                .fluidInputs(HastelloyN.getFluid(L * 16))
-                .outputs(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING, 2 * ConfigHolder.recipes.casingsPerCraft))
+                .fluidInputs(HastelloyN.getFluid(L * 8))
+                .outputs(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING, ConfigHolder.recipes.casingsPerCraft))
                 .buildAndRegister();
 
         //distillation tower
