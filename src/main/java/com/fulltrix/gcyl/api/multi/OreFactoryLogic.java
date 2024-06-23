@@ -110,6 +110,14 @@ public class OreFactoryLogic {
 
         if (hasMaintenance && ((IMaintenance) metaTileEntity).getNumMaintenanceProblems() > 1) return;
 
+        if(!consumeEnergy(true)) {
+            if (progressTime >= 2) {
+                if (ConfigHolder.machines.recipeProgressLowEnergy) this.progressTime = 1;
+                else this.progressTime = Math.max(1, progressTime - 2);
+            }
+            return;
+        }
+
         if(!checkInput() && progressTime == 0) {
             setActive(false);
             return;
@@ -119,13 +127,6 @@ public class OreFactoryLogic {
             setActive(false);
             return;
         }
-
-        if(!consumeEnergy(true)) {
-            if (progressTime >= 2) {
-                if (ConfigHolder.machines.recipeProgressLowEnergy) this.progressTime = 1;
-                else this.progressTime = Math.max(1, progressTime - 2);
-            }
-        } else {
 
             setActive(true);
 
@@ -185,7 +186,7 @@ public class OreFactoryLogic {
 
 
             insertItems(finalOutput2);
-        }
+
 
     }
 

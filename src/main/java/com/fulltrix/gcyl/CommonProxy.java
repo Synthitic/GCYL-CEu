@@ -69,7 +69,10 @@ public class CommonProxy {
         //Force enable high tier content, regardless of config option
         event.enableHighTier();
 
+        ConfigHolder.recipes.casingsPerCraft = GCYLConfig.recipes.gcylCasingsPerCraftOverride;
+
         ConfigHolder.machines.enableHighTierSolars = true;
+        ConfigHolder.recipes.harderCircuitRecipes = false;
 
         //Force enable tiered casings from GCYM
         GCYMConfigHolder.globalMultiblocks.enableTieredCasings = true;

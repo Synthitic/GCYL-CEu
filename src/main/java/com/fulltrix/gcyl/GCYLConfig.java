@@ -165,5 +165,9 @@ public class GCYLConfig {
         @Config.Comment({"Base amount of high tier circuit cores outputted per craft.", "default = 1"})
         @Config.RequiresMcRestart
         public int circuitCoresPerCraft = 1;
+
+        @Config.Comment({"How many Multiblock Casings to make per craft. Overrides the default GT Option", "Default: 1"})
+        @Config.RequiresMcRestart
+        public int gcylCasingsPerCraftOverride = 1;
     }
 }
