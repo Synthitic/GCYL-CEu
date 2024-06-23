@@ -483,6 +483,25 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .fluidInputs(getPolymerByTier(9).getFluid(9216))
                 .buildAndRegister();
 
+        //Ore Processing Factory
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(VA[GTValues.UHV]).duration(1200)
+                .outputs(ORE_FACTORY.getStackForm())
+                .input(HULL[GTValues.UHV])
+                .inputs(ELECTRIC_MOTOR_UHV.getStackForm(32))
+                .inputs(ELECTRIC_PISTON_UHV.getStackForm(8))
+                .inputs(ELECTRIC_PUMP_UHV.getStackForm(16))
+                .inputs(CONVEYOR_MODULE_UHV.getStackForm(8))
+                .inputs(ROBOT_ARM_UHV.getStackForm(8))
+                .input(circuit, UEV, 4)
+                .input(cableGtQuadruple, Duranium, 32)
+                .input(pipeNormalFluid, Polybenzimidazole, 64)
+                .input(COMPONENT_GRINDER_TUNGSTEN, 64)
+                .input(plateDouble, StainlessSteel, 32)
+                .input(rotor, Chrome, 16)
+                .fluidInputs(Indalloy140.getFluid(L * 16))
+                .fluidInputs(Seaborgium.getFluid(L*8))
+                .buildAndRegister();
+
 
         /*
 

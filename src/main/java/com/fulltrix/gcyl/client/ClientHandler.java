@@ -22,6 +22,7 @@ public class ClientHandler {
     public static SimpleOverlayRenderer HASTELLOY_N_CASING;
     public static SimpleOverlayRenderer INCOLOY_813_CASING;
     public static SimpleOverlayRenderer NAQUADRIA_CASING;
+    public static SimpleOverlayRenderer IRIDIUM_CASING;
     public static SimpleOverlayRenderer HYPER_CASING;
     public static SimpleOverlayRenderer HYPER_CASING_2;
     public static SimpleOverlayRenderer ENRICHED_NAQUADAH_ALLOY_CASING;
@@ -98,6 +99,7 @@ public class ClientHandler {
 
         ENRICHED_NAQUADAH_ALLOY_CASING = new SimpleOverlayRenderer("casings/metal_casings/enriched_naquadah_alloy");
         NAQUADRIA_CASING = new SimpleOverlayRenderer("casings/metal_casings/naquadria");
+        IRIDIUM_CASING = new SimpleOverlayRenderer("casings/metal_casings/iridium");
         HYPER_CASING = new SimpleOverlayRenderer("casings/solid/hyper_casing");
         HYPER_CASING_2 = new SimpleOverlayRenderer("casings/solid/hyper_casing_2");
         CLADDED_REACTOR_CASING = new SimpleOverlayRenderer("casings/solid/cladded_reactor_casing");

@@ -6,6 +6,9 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import com.fulltrix.gcyl.api.multi.IOreFactoryProvider;
 import com.fulltrix.gcyl.api.multi.OreFactoryLogic;
+import com.fulltrix.gcyl.client.ClientHandler;
+import com.fulltrix.gcyl.item.GCYLMetaBlocks;
+import com.fulltrix.gcyl.item.metal.MetalCasing2;
 import com.google.common.collect.Lists;
 import gregtech.api.GTValues;
 import gregtech.api.capability.*;
@@ -30,12 +33,11 @@ import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.GTTransferUtils;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.TextComponentUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.utils.TooltipHelper;
-import gregtech.common.blocks.BlockGlassCasing;
-import gregtech.common.blocks.BlockMachineCasing;
-import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.blocks.*;
 import groovy.transform.NullCheck;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -67,9 +69,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static gregtech.api.unification.material.Materials.TungstenSteel;
+import static gregtech.api.util.RelativeDirection.*;
 import static java.util.Arrays.asList;
 
-//TODO: multiblock pattern. proper tiering. different processing durations. fluid input requirements. make sifting work. fix problems with input (does not take items from beyond the first slot)
+//TODO: make sifting work. separate base textures so hatches can go elsewhere
 
 public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implements IWorkable, IOreFactoryProvider {
 
@@ -100,20 +104,39 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
         return new MetaTileEntityOreFactory(metaTileEntityId);
     }
 
+    //EXAMPLE CONVERSION FROM GTNH STRUCTURE PATTERN TO CEU
     @Override
     protected BlockPattern createStructurePattern() {
-        return FactoryBlockPattern.start()
-                .aisle("CCC", "CCC", "CCC")
-                .aisle("CCC", "C#C", "CCC")
-                .aisle("CCC", "CSC", "CCC")
-                .where('S', selfPredicate())
-                .where('C', states(MetaBlocks.MACHINE_CASING.getState(BlockMachineCasing.MachineCasingType.ULV))
-                .setMinGlobalLimited(10)
-                .or(autoAbilities(false, true, true, true, true, true ,false))
-                        .or(abilities(MultiblockAbility.INPUT_ENERGY)
-                                .or(abilities(MultiblockAbility.INPUT_LASER))))
-                .where('#', air())
+        return FactoryBlockPattern.start(LEFT, FRONT, DOWN)
+                .aisle("           ", "           ", "       WWW ", "       WWW ", "           ", "           ")
+                .aisle("           ", "       sss ", "      sppps", "      sppps", "       sss ", "           ")
+                .aisle("           ", "       sss ", "      s   s", "      s   s", "       sss ", "           ")
+                .aisle("           ", "       sss ", "      sppps", "      sppps", "       sss ", "           ")
+                .aisle("           ", "       sss ", "      s   s", "      s   s", "       sss ", "           ")
+                .aisle("           ", "       sss ", "      sppps", "      sppps", "       sss ", "           ")
+                .aisle("iiiiii     ", "iiiiiiisssi", "iiiiiis   s", "iiiiiis   s", "iiiiiiisssi", "iiiiii     ")
+                .aisle("iggggi     ", "gt  t isssi", "g xx  sppps", "g xx  sppps", "gt  t isssi", "iggggi     ")
+                .aisle("iggggi     ", "gt  t isssi", "g xx  s   s", "g xx  s   s", "gt  t isssi", "iggggi     ")
+                .aisle("iggggi     ", "gt  t is~si", "g xx  sppps", "g xx  sppps", "gt  t isssi", "iggggi     ")
+                .aisle("iggggi     ", "gt  t isssi", "g xx  s   s", "g xx  s   s", "gt  t isssi", "iggggi     ")
+                .aisle("iiiiii     ", "iiiiiiiiiii", "iiiiiiiiiii", "iiiiiiiiiii", "iiiiiiiiiii", "iiiiii     ")
+                .where(' ', any())
+                .where('i', states(GCYLMetaBlocks.METAL_CASING_2.getState(MetalCasing2.CasingType.IRIDIUM)))
+                .where('x', states(MetaBlocks.TURBINE_CASING.getState(BlockTurbineCasing.TurbineCasingType.STEEL_GEARBOX)))
+                .where('t', frames(TungstenSteel))
+                .where('s', states(MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STAINLESS_CLEAN)).setMinGlobalLimited(90)
+                        .or(autoAbilities(false, true, true, true, true, false ,false)
+                        .or(abilities(MultiblockAbility.INPUT_ENERGY, MultiblockAbility.INPUT_LASER).setExactLimit(1))))
+                .where('W', states(MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STAINLESS_CLEAN)).or(abilities(MultiblockAbility.MUFFLER_HATCH).setExactLimit(1)))
+                .where('p', states(MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.TUNGSTENSTEEL_PIPE)))
+                .where('~', selfPredicate())
+                .where('g', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS)))
                 .build();
+    }
+
+    @Override
+    public boolean hasMufflerMechanics() {
+        return true;
     }
 
     public TraceabilityPredicate autoAbilities(boolean checkEnergyIn,
@@ -149,7 +172,7 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
     @Override
     @SideOnly(Side.CLIENT)
     public ICubeRenderer getBaseTexture(IMultiblockPart sourcePart) {
-        return Textures.VOLTAGE_CASINGS[0];
+        return Textures.CLEAN_STAINLESS_STEEL_CASING;
     }
 
     @Override
@@ -158,6 +181,22 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
                 .addEnergyUsageLine(this.energyContainer)
                 .setWorkingStatus(oreFactoryLogic.isWorkingEnabled(), oreFactoryLogic.isActive())
                 .addWorkingStatusLine()
+                .addCustom(tl -> {
+                    tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gcyl.machine.ore_factory.current_mode"));
+
+                    if(this.oreFactoryLogic.getConfiguration() == 0)
+                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gcyl.machine.ore_factory.config.0"));
+                    if(this.oreFactoryLogic.getConfiguration() == 1)
+                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gcyl.machine.ore_factory.config.1"));
+                    if(this.oreFactoryLogic.getConfiguration() == 2)
+                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gcyl.machine.ore_factory.config.2"));
+                    if(this.oreFactoryLogic.getConfiguration() == 3)
+                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gcyl.machine.ore_factory.config.3"));
+                    if(this.oreFactoryLogic.getConfiguration() == 4)
+                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gcyl.machine.ore_factory.config.4"));
+
+                    tl.add(TextComponentUtil.translationWithColor(TextFormatting.AQUA, "gcyl.machine.ore_factory.max_amount", (long) Math.pow(2, getVoltageTier())));
+                })
                 .addProgressLine(getProgressPercent() / 100.0);
     }
 
@@ -175,7 +214,22 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
         initializeAbilities();
-        this.oreFactoryLogic.setMaxProgress(100);
+        if(this.oreFactoryLogic.getConfiguration() == 0) {
+            this.oreFactoryLogic.setMaxProgress(1200);
+        }
+        else if(this.oreFactoryLogic.getConfiguration() == 1) {
+            this.oreFactoryLogic.setMaxProgress(900);
+        }
+        /*else if(this.oreFactoryLogic.getConfiguration() == 2) {
+            this.oreFactoryLogic.setMaxProgress(1200);
+        }*/
+        else if(this.oreFactoryLogic.getConfiguration() == 3) {
+            this.oreFactoryLogic.setMaxProgress(300);
+        }
+        else {
+            this.oreFactoryLogic.setMaxProgress(600);
+        }
+
         this.tier = (int) (Math.log(this.energyContainer.getInputVoltage() * 2) / Math.log(4) - 2);
     }
 
@@ -285,30 +339,35 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
     public boolean onScrewdriverClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing,
                                       CuboidRayTraceResult hitResult) {
         if(!getWorld().isRemote) {
-            if(this.oreFactoryLogic.getConfiguration() == 0) {
+            if(this.oreFactoryLogic.getConfiguration() == 0 && !this.oreFactoryLogic.isActive()) {
                 this.oreFactoryLogic.setConfiguration(1);
+                invalidateStructure();
                 playerIn.sendStatusMessage(
                         new TextComponentTranslation("gcyl.machine.ore_factory.config.1"), false);
             }
             /*
-            else if(this.oreFactoryLogic.getConfiguration() == 1) {
+            else if(this.oreFactoryLogic.getConfiguration() == 1 && !this.oreFactoryLogic.isActive()) {
                 this.oreFactoryLogic.setConfiguration(2);
+                invalidateStructure();
                 playerIn.sendStatusMessage(
                         new TextComponentTranslation("gcyl.machine.ore_factory.config.2"), false);
             }
              */
-            else if(this.oreFactoryLogic.getConfiguration() == 1) {
+            else if(this.oreFactoryLogic.getConfiguration() == 1 && !this.oreFactoryLogic.isActive()) {
                 this.oreFactoryLogic.setConfiguration(3);
+                invalidateStructure();
                 playerIn.sendStatusMessage(
                         new TextComponentTranslation("gcyl.machine.ore_factory.config.3"), false);
             }
-            else if(this.oreFactoryLogic.getConfiguration() == 3) {
+            else if(this.oreFactoryLogic.getConfiguration() == 3 && !this.oreFactoryLogic.isActive()) {
                 this.oreFactoryLogic.setConfiguration(4);
+                invalidateStructure();
                 playerIn.sendStatusMessage(
                         new TextComponentTranslation("gcyl.machine.ore_factory.config.4"), false);
             }
-            else {
+            else if(!this.oreFactoryLogic.isActive()){
                 this.oreFactoryLogic.setConfiguration(0);
+                invalidateStructure();
                 playerIn.sendStatusMessage(
                         new TextComponentTranslation("gcyl.machine.ore_factory.config.0"), false);
             }
@@ -332,11 +391,11 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.1"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.6"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.2"));
-        tooltip.add(I18n.format("gregtech.machine.power_substation.tooltip6") + TooltipHelper.RAINBOW_SLOW +
-                I18n.format("gregtech.machine.power_substation.tooltip6.5"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.3"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.4"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.5"));
+        tooltip.add(I18n.format("gregtech.machine.power_substation.tooltip6") + TooltipHelper.RAINBOW_SLOW +
+                I18n.format("gregtech.machine.power_substation.tooltip6.5"));
     }
 
     @SideOnly(Side.CLIENT)

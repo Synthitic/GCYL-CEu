@@ -67,6 +67,11 @@
         "textures": {
           "all": "gcyl:blocks/casings/naquadria"
         }
+      },
+      "casing_iridium": {
+        "textures": {
+          "all": "gcyl:blocks/casings/iridium"
+        }
       }
     }
   }

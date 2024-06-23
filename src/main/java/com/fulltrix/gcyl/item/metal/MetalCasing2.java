@@ -28,7 +28,8 @@ public class MetalCasing2 extends VariantBlock<MetalCasing2.CasingType> {
         QUANTUM("casing_quantum", Quantum),
         TRITANIUM("casing_tritanium", Tritanium),
         ENRICHED_NAQUADAH_ALLOY("casing_enriched_naquadah_alloy", EnrichedNaquadahAlloy),
-        NAQUADRIA("casing_naquadria", Naquadria);
+        NAQUADRIA("casing_naquadria", Naquadria),
+        IRIDIUM("casing_iridium", Iridium);
 
         private final String name;
         private final Material material;
@@ -49,9 +50,6 @@ public class MetalCasing2 extends VariantBlock<MetalCasing2.CasingType> {
 
         public ICubeRenderer getTexture() {
             switch (name) {
-                case "casing_staballoy" -> {
-                    return STABALLOY_CASING;
-                }
                 case "casing_quantum" -> {
                     return QUANTUM_CASING;
                 }
@@ -63,6 +61,9 @@ public class MetalCasing2 extends VariantBlock<MetalCasing2.CasingType> {
                 }
                 case "casing_naquadria" -> {
                     return NAQUADRIA_CASING;
+                }
+                case "casing_iridium" -> {
+                    return IRIDIUM_CASING;
                 }
                 default -> {
                     return STABALLOY_CASING;

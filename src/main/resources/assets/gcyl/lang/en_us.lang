@@ -4738,12 +4738,14 @@ gcyl.machine.ore_factory.config.1=Macerate>Ore Wash>Macerate>Centrifuge
 gcyl.machine.ore_factory.config.2=Macerate>Ore Wash>Sifter
 gcyl.machine.ore_factory.config.3=Macerate>Macerate>Centrifuge
 gcyl.machine.ore_factory.config.4=Macerate>Thermal Centrifuge>Macerate
-gcyl.multiblock.opf.description.1=Processes 2^(Tier) ores every 60 seconds.
-gcyl.multiblock.opf.description.6=Uses 100mb of Distilled Water and 10mb of Lubricant per Ore Processed.
-gcyl.multiblock.opf.description.2=Use a screwdriver to change process modes.
-gcyl.multiblock.opf.description.3=Will void if there is not enough output space.
-gcyl.multiblock.opf.description.4=Use a Stocking Input Bus for optimal performance.
-gcyl.multiblock.opf.description.5=Set input bus to Auto-Collapse items if not using a Stocking Bus.
+gcyl.multiblock.opf.description.1=Processes §f2^(Tier)§7 Ores. §fDuration§7 depends on §eProcess Mode§7.
+gcyl.multiblock.opf.description.6=Uses 100mb of §9Distilled Water§7 and 10mb of §6Lubricant§7 per §fOre Processed§7.
+gcyl.multiblock.opf.description.2=Use a §bScrewdriver§7 to change between §eProcess Modes§7.
+gcyl.multiblock.opf.description.3=Will §cVoid§7 if there is not enough output space.
+gcyl.multiblock.opf.description.4=Use a §aStocking Input Bus, Hatch & ME Output Bus§7 for optimal performance.
+gcyl.multiblock.opf.description.5=Set input bus to §fAuto-Collapse§7 items if not using a Stocking Bus.
+gcyl.machine.ore_factory.current_mode=Mode:
+gcyl.machine.ore_factory.max_amount=Max Parallel: %s
 
 metaitem.tool.data.deep_miner.name=Deep Miner Data Storage
 metaitem.tool.data.deep_miner.tooltip=Data Storage Material Scans
@@ -4964,7 +4966,7 @@ metaitem.crystal.asoc.name=Crystal ASoC
 metaitem.crystal.asoc.tooltip=Advanced Crystal System on Chip
 metaitem.living.soc.name=Living SoC
 metaitem.living.soc.tooltip=Living System on Chip
-metaitem.living_bio.soc.name=Living SoC
+metaitem.living_bio.soc.name=Living Bio SoC
 metaitem.living_bio.soc.tooltip=Mutated Living System on Chip
 metaitem.wafer.bio.name=Living Bio Wafer
 metaitem.wafer.bio.tooltip=Mutated Living Raw Circuit
@@ -5018,3 +5020,4 @@ metaitem.wireless_battery_uv.name=§dWireless Energy Module
 
 gcyl.multiblock.vom.fluid_output_full=Fluid Output Full!
 
+tile.gcyl_metal_casing_2.casing_iridium.name=Advanced Iridium Plated Machine Casing
