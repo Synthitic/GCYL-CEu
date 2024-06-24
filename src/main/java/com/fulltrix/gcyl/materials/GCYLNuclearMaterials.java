@@ -2,6 +2,7 @@ package com.fulltrix.gcyl.materials;
 
 import gregtech.api.unification.Elements;
 import gregtech.api.unification.material.Material;
+import gregtech.api.unification.material.properties.BlastProperty;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.Map;
 
 import static com.fulltrix.gcyl.GCYLElements.*;
 import static com.fulltrix.gcyl.api.GCYLUtility.gcylId;
+import static com.fulltrix.gcyl.api.recipes.GCYLMaterialFlags.NO_MIXER_RECIPE;
 import static gregtech.api.unification.Elements.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.Materials.STD_METAL;
@@ -61,8 +63,9 @@ public class GCYLNuclearMaterials {
                 .ingot(2).liquid()
                 .color(0xB4B3B0)
                 .iconSet(SHINY)
-                .flags(GENERATE_DENSE, DISABLE_DECOMPOSITION, DISABLE_REPLICATION)
+                .flags(GENERATE_DENSE, DISABLE_DECOMPOSITION, DISABLE_REPLICATION, NO_MIXER_RECIPE)
                 .components(Iron,15,Niobium,1,Vanadium,4,Carbon,2)
+                .blast(b->b.temp(3800, BlastProperty.GasTier.HIGH))
                 .build();
 
         Plutonium = new Material.Builder(++id, gcylId("plutonium_generic"))
