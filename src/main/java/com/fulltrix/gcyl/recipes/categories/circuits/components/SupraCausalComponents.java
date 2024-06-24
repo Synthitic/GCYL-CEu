@@ -1,5 +1,7 @@
 package com.fulltrix.gcyl.recipes.categories.circuits.components;
 
+import com.fulltrix.gcyl.GCYLConfig;
+import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 
@@ -7,8 +9,8 @@ import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.item.GCYLExplosive.ExplosiveType.*;
 import static com.fulltrix.gcyl.item.GCYLMetaBlocks.*;
-import static com.fulltrix.gcyl.item.fusion.GCYLFusionCasing.CasingType.ADV_FUSION_COIL_1;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.*;
+import static com.fulltrix.gcyl.item.fusion.GCYLFusionCoils.CasingType.ADV_FUSION_COIL_1;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.*;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -27,7 +29,7 @@ public class SupraCausalComponents {
                 .inputs(HIGHLY_INSULATING_FOIL.getStackForm(64))
                 .notConsumable(MICROWORMHOLE_GENERATOR.getStackForm())
                 .outputs(SMD_CAPACITOR_SUPRACAUSAL.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO0)
                 .buildAndRegister();
 
         // SMD Diode
@@ -37,7 +39,7 @@ public class SupraCausalComponents {
                 .input(dust,Tetracene,8)
                 .notConsumable(MICROWORMHOLE_GENERATOR.getStackForm())
                 .outputs(SMD_DIODE_SUPRACAUSAL.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO0)
                 .buildAndRegister();
 
         // SMD Transistor
@@ -47,7 +49,7 @@ public class SupraCausalComponents {
                 .input(dust,Tetracene,64)
                 .notConsumable(MICROWORMHOLE_GENERATOR.getStackForm())
                 .outputs(SMD_TRANSISTOR_SUPRACAUSAL.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO0)
                 .buildAndRegister();
 
         // SMD Resistor
@@ -57,10 +59,11 @@ public class SupraCausalComponents {
                 .input(dust, ChargedCaesiumCeriumCobaltIndium,16)
                 .notConsumable(MICROWORMHOLE_GENERATOR.getStackForm())
                 .outputs(SMD_RESISTOR_SUPRACAUSAL.getStackForm(32))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO0)
                 .buildAndRegister();
 
         // Supracausal Processing Core
+        /*
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(800).EUt(33550000)
                 .inputs(NUCLEAR_CLOCK.getStackForm())
                 .inputs(TOPOLOGICAL_MANIPULATOR_UNIT.getStackForm(1))
@@ -75,7 +78,24 @@ public class SupraCausalComponents {
                 .inputs(SMD_RESISTOR_SUPRACAUSAL.getStackForm(64))
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L * 9))
                 .outputs(SUPRACAUSAL_PROCESSING_CORE.getStackForm(8))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .cleanroom(GCYLCleanroomType.ISO0)
+                .buildAndRegister();
+         */
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(800).EUt(33550000)
+                .inputs(NUCLEAR_CLOCK.getStackForm())
+                .inputs(TOPOLOGICAL_MANIPULATOR_UNIT.getStackForm(1))
+                .inputs(RELATIVISTIC_SPINORIAL_MEMORY_SYSTEM.getStackForm(1))
+                .inputs(GRAVITON_TRANSDUCER.getStackForm(1))
+                .inputs(QCD_PROTECTIVE_PLATING.getStackForm(3))
+                .input(plate, Neutronium)
+                .input(wireGtSingle, UXVSuperconductor, 2)
+                .inputs(SMD_CAPACITOR_SUPRACAUSAL.getStackForm(64))
+                .inputs(SMD_DIODE_SUPRACAUSAL.getStackForm(64))
+                .inputs(SMD_TRANSISTOR_SUPRACAUSAL.getStackForm(64))
+                .inputs(SMD_RESISTOR_SUPRACAUSAL.getStackForm(64))
+                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 9))
+                .outputs(SUPRACAUSAL_PROCESSING_CORE.getStackForm(GCYLConfig.recipes.circuitCoresPerCraft))
+                .cleanroom(GCYLCleanroomType.ISO0)
                 .buildAndRegister();
 
         // Topological Manipulator Unit
@@ -105,7 +125,7 @@ public class SupraCausalComponents {
                 .inputs(NEUTRON_REFLECTOR.getStackForm(2))
                 .inputs(BATTERY_MEDIUM_LIS.getStackForm())
                 .input(wireGtSingle, UXVSuperconductor, 2)
-                .inputs(FUSION_CASING.getItemVariant(ADV_FUSION_COIL_1))
+                .inputs(FUSION_COILS.getItemVariant(ADV_FUSION_COIL_1))
                 .fluidInputs(Neutronium.getFluid(L * 9))
                 .outputs(RELATIVISTIC_SPINORIAL_MEMORY_SYSTEM.getStackForm())
                 .buildAndRegister();

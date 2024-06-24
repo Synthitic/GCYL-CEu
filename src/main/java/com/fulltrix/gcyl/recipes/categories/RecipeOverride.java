@@ -12,6 +12,8 @@ import gregtech.api.recipes.ingredients.nbtmatch.NBTCondition;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
+import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.*;
@@ -21,14 +23,17 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
+import static com.fulltrix.gcyl.api.GCYLUtility.getAssLineResearchBuilder;
+import static com.fulltrix.gcyl.machines.GCYLTileEntities.CRYOGENIC_FREEZER;
+import static com.fulltrix.gcyl.machines.GCYLTileEntities.VOLCANUS;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregicality.multiblocks.api.recipes.GCYMRecipeMaps.ALLOY_BLAST_RECIPES;
-import static gregicality.multiblocks.api.unification.GCYMMaterials.Stellite100;
+import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
+import static gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities.*;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
-import static gregtech.api.recipes.ModHandler.removeRecipeByName;
-import static gregtech.api.recipes.ModHandler.removeTieredRecipeByName;
+import static gregtech.api.recipes.ModHandler.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.recipes.ingredients.IntCircuitIngredient.getIntegratedCircuit;
 import static gregtech.api.unification.material.MarkerMaterials.Color.*;
@@ -86,9 +91,6 @@ public class RecipeOverride {
         removeRecipesByInputs(CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, SodiumHydroxide, 3)}, new FluidStack[]{SulfuricAcid.getFluid(1000)});
         removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, SodiumHydroxide, 3)}, new FluidStack[]{SulfuricAcid.getFluid(1000)});
 
-        removeRecipesByInputs(CHEMICAL_RECIPES, DinitrogenTetroxide.getFluid(1000), Dimethylhydrazine.getFluid(1000));
-        removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, DinitrogenTetroxide.getFluid(1000), Dimethylhydrazine.getFluid(1000));
-
         removeRecipesByInputs(CENTRIFUGE_RECIPES, new ItemStack[]{OreDictUnifier.get(dust,PlatinumGroupSludge,6)}, new FluidStack[]{AquaRegia.getFluid(1200)});
 
         removeRecipesByInputs(CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust,PhosphorusPentoxide,14)}, new FluidStack[]{Water.getFluid(6000)});
@@ -143,7 +145,6 @@ public class RecipeOverride {
 
         //Plat line fixes TODO: remove and replace the recipes that turn ore into platinum group sludge
         removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, RarestMetalMixture, 7)}, new FluidStack[]{HydrochloricAcid.getFluid(4000)});
-        removeRecipesByInputs(CENTRIFUGE_RECIPES, OreDictUnifier.get(dust,RarestMetalMixture,5));
         removeRecipesByInputs(CENTRIFUGE_RECIPES, OreDictUnifier.get(dust,PlatinumSludgeResidue,5));
         removeRecipesByInputs(DISTILLATION_RECIPES, AcidicOsmiumSolution.getFluid(2000));
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(1)}, new FluidStack[]{AcidicOsmiumSolution.getFluid(400)});
@@ -163,7 +164,7 @@ public class RecipeOverride {
         removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, ManganesePhosphide,4), OreDictUnifier.get(plate, Steel, 2), OreDictUnifier.get(gem, EnderPearl), OreDictUnifier.get(circuit, MarkerMaterials.Tier.LV,2));
         removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, MagnesiumDiboride,4), OreDictUnifier.get(plate, Aluminium, 2), OreDictUnifier.get(gem, EnderEye), OreDictUnifier.get(circuit, MarkerMaterials.Tier.MV,2));
         removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, MercuryBariumCalciumCuprate,4), OreDictUnifier.get(plate, StainlessSteel, 2), QUANTUM_EYE.getStackForm(), OreDictUnifier.get(circuit, MarkerMaterials.Tier.HV,2));
-        removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, UraniumTriplatinum,4), OreDictUnifier.get(plate, Titanium, 2), OreDictUnifier.get(gem, NetherStar), OreDictUnifier.get(circuit, MarkerMaterials.Tier.EV,2));
+        removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, UraniumTriplatinum,4), OreDictUnifier.get(plateDouble, Titanium, 2), OreDictUnifier.get(gem, NetherStar), OreDictUnifier.get(circuit, MarkerMaterials.Tier.EV,2));
         removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(wireGtQuadruple, SamariumIronArsenicOxide,4), OreDictUnifier.get(plateDouble, TungstenSteel, 2), QUANTUM_STAR.getStackForm(), OreDictUnifier.get(circuit, MarkerMaterials.Tier.IV,2));
 
 
@@ -203,43 +204,6 @@ public class RecipeOverride {
         //useless gcym electric implosion compressor
         removeRecipeByName("gcym:electric_implosion_compressor");
 
-        /*NOT NEEDED ANYMORE BUT KEEPING
-        //Fusion reactor computers
-        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL), OreDictUnifier.get(circuit, MarkerMaterials.Tier.ZPM,4),
-                OreDictUnifier.get(plateDouble, Plutonium241), OreDictUnifier.get(plateDouble, Osmiridium), FIELD_GENERATOR_IV.getStackForm(2), ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64),
-                OreDictUnifier.get(wireGtSingle, IndiumTinBariumTitaniumCuprate, 32)}, new FluidStack[]{SolderingAlloy.getFluid(L*8), NiobiumTitanium.getFluid(L*8)});
-        removeRecipesByInputs(SCANNER_RECIPES, TOOL_DATA_STICK.getStackForm(), OreDictUnifier.get(wireGtSingle, IndiumTinBariumTitaniumCuprate));
-
-        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{FUSION_CASING.getItemVariant(FUSION_COIL), OreDictUnifier.get(circuit, MarkerMaterials.Tier.UV,4),
-                OreDictUnifier.get(plateDouble, Naquadria), OreDictUnifier.get(plateDouble, Europium), FIELD_GENERATOR_LuV.getStackForm(2), ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64),
-                ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(32), OreDictUnifier.get(wireGtSingle, UraniumRhodiumDinaquadide, 32)},
-                new FluidStack[]{SolderingAlloy.getFluid(L*8), VanadiumGallium.getFluid(L*8)});
-        removeRecipesByInputs(RESEARCH_STATION_RECIPES, TOOL_DATA_ORB.getStackForm(),FUSION_REACTOR[0].getStackForm());
-
-        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{FUSION_CASING.getItemVariant(FUSION_COIL), OreDictUnifier.get(circuit, MarkerMaterials.Tier.UHV,4),
-                        QUANTUM_STAR.getStackForm(), OreDictUnifier.get(plateDouble, Americium), FIELD_GENERATOR_ZPM.getStackForm(2), ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64),
-                        ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64), OreDictUnifier.get(wireGtSingle, EnrichedNaquadahTriniumEuropiumDuranide, 32)},
-                new FluidStack[]{SolderingAlloy.getFluid(L*8), YttriumBariumCuprate.getFluid(L*8)});
-        removeRecipesByInputs(RESEARCH_STATION_RECIPES, TOOL_DATA_MODULE.getStackForm(),FUSION_REACTOR[1].getStackForm());
-
-        //luv-uv emitter
-        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{OreDictUnifier.get(frameGt, HSSS), ELECTRIC_MOTOR_LuV.getStackForm(), OreDictUnifier.get(stickLong, Ruridit,4), QUANTUM_STAR.getStackForm(),
-                OreDictUnifier.get( circuit, MarkerMaterials.Tier.LuV, 2), OreDictUnifier.get(foil, Palladium, 64), OreDictUnifier.get(foil, Palladium, 32), OreDictUnifier.get(cableGtSingle, NiobiumTitanium, 4)},
-                new FluidStack[]{SolderingAlloy.getFluid(L*2)});
-        removeRecipesByInputs(SCANNER_RECIPES, TOOL_DATA_STICK.getStackForm(), EMITTER_IV.getStackForm());
-        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{OreDictUnifier.get(frameGt, NaquadahAlloy), ELECTRIC_MOTOR_ZPM.getStackForm(), OreDictUnifier.get(stickLong, Osmiridium,4), QUANTUM_STAR.getStackForm(2),
-                        OreDictUnifier.get( circuit, MarkerMaterials.Tier.ZPM, 2), OreDictUnifier.get(foil, Trinium, 64), OreDictUnifier.get(foil, Trinium, 32), OreDictUnifier.get(cableGtSingle, VanadiumGallium, 4)},
-                new FluidStack[]{SolderingAlloy.getFluid(L*4)});
-        removeRecipesByInputs(RESEARCH_STATION_RECIPES, TOOL_DATA_ORB.getStackForm(), EMITTER_LuV.getStackForm());
-        removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, new ItemStack[]{OreDictUnifier.get(frameGt, Tritanium), ELECTRIC_MOTOR_UV.getStackForm(), OreDictUnifier.get(stickLong, Tritanium,4), GRAVI_STAR.getStackForm(),
-                        OreDictUnifier.get( circuit, MarkerMaterials.Tier.UV, 2), OreDictUnifier.get(foil, Naquadria, 64), OreDictUnifier.get(foil, Naquadria, 32), OreDictUnifier.get(cableGtSingle, YttriumBariumCuprate, 4)},
-                new FluidStack[]{SolderingAlloy.getFluid(L*8), Naquadria.getFluid(L*4)});
-        removeRecipesByInputs(RESEARCH_STATION_RECIPES, TOOL_DATA_MODULE.getStackForm(), EMITTER_ZPM.getStackForm());
-
-         */
-
-
-
 
         //gravi star
         removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{QUANTUM_STAR.getStackForm()}, new FluidStack[]{Neutronium.getFluid(288)});
@@ -255,12 +219,13 @@ public class RecipeOverride {
 
         //iv motor
         removeRecipeByName("gregtech:electric_motor_iv");
+        removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(cableGtDouble, Tungsten,2), OreDictUnifier.get(stick, TungstenSteel, 2), OreDictUnifier.get(stick, NeodymiumMagnetic), OreDictUnifier.get(wireGtDouble, Graphene, 4));
 
         //neutronium
         removeRecipesByInputs(FUSION_RECIPES,Americium.getFluid(128),Naquadria.getFluid(128));
 
         //sterilized growth medium
-        removeRecipesByInputs(FLUID_HEATER_RECIPES, RawGrowthMedium.getFluid(100));
+        removeRecipesByInputs(FLUID_HEATER_RECIPES, new ItemStack[]{getIntegratedCircuit(1)}, new FluidStack[]{RawGrowthMedium.getFluid(100)});
         //raw growth medium
         removeRecipesByInputs(MIXER_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Meat, 4),OreDictUnifier.get(dust, Salt,4),OreDictUnifier.get(dust,Calcium,4),OreDictUnifier.get(dust,Agar,4)}, new FluidStack[]{Mutagen.getFluid(4000)});
         //engraved crystal chip
@@ -328,11 +293,6 @@ public class RecipeOverride {
         //yttrium barium cuprate dust
         removeRecipesByInputs(MIXER_RECIPES, new ItemStack[]{getIntegratedCircuit(2), OreDictUnifier.get(dust, Yttrium), OreDictUnifier.get(dust, Barium, 2), OreDictUnifier.get(dust, Copper,3)}, new FluidStack[]{Oxygen.getFluid(7000)});
 
-        //cobalt in arc furnace
-        removeRecipesByInputs(ARC_FURNACE_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Cobalt)}, new FluidStack[]{Oxygen.getFluid(59)});
-        //antimony in arc furnace
-        removeRecipesByInputs(ARC_FURNACE_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Antimony)}, new FluidStack[]{Oxygen.getFluid(121)});
-
         //naquadah
         removeRecipesByInputs(BLAST_RECIPES, new ItemStack[]{OreDictUnifier.get(dust,NaquadriaSulfate, 6)}, new FluidStack[]{Hydrogen.getFluid(2000)});
         removeRecipesByInputs(BLAST_RECIPES, new ItemStack[]{OreDictUnifier.get(dust,EnrichedNaquadahSulfate, 6)}, new FluidStack[]{Hydrogen.getFluid(2000)});
@@ -358,9 +318,41 @@ public class RecipeOverride {
         //gcym circuit assembler
         removeRecipeByName("gcym:large_circuit_assembler");
 
+        //osmium dust
+        removeRecipesByInputs(CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, OsmiumTetroxide, 5)}, new FluidStack[]{Hydrogen.getFluid(8000)});
+        removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, OsmiumTetroxide, 5)}, new FluidStack[]{Hydrogen.getFluid(8000)});
+
+        //distillation tower
+        removeRecipeByName("gregtech:distillation_tower");
+
+        //QCD matter plate
+        removeRecipesByInputs(FLUID_SOLIDFICATION_RECIPES, new ItemStack[]{SHAPE_MOLD_PLATE.getStackForm()}, new FluidStack[]{QCDMatter.getFluid(144)});
+
+        //Advanced computer casing
+        removeRecipesByInputs(ASSEMBLER_RECIPES, COMPUTER_CASING.getItemVariant(BlockComputerCasing.CasingType.COMPUTER_CASING), OreDictUnifier.get(circuit, MarkerMaterials.Tier.ZPM), OreDictUnifier.get(wireFine, Cobalt, 64), OreDictUnifier.get(wireFine, Electrum, 64), OreDictUnifier.get(wireGtSingle, IndiumTinBariumTitaniumCuprate, 4));
+
+        //computer heat vent
+        removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(frameGt, StainlessSteel), ELECTRIC_MOTOR_IV.getStackForm(2), OreDictUnifier.get(rotor, StainlessSteel, 2), OreDictUnifier.get(pipeTinyFluid, StainlessSteel, 16), OreDictUnifier.get(plate, Copper, 16), OreDictUnifier.get(wireGtSingle, SamariumIronArsenicOxide));
+
+        //active transformer
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{POWER_TRANSFORMER[GTValues.LuV].getStackForm(), OreDictUnifier.get(circuit, MarkerMaterials.Tier.LuV, 2),OreDictUnifier.get(wireGtSingle, IndiumTinBariumTitaniumCuprate, 8), ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(2)}, new FluidStack[]{PCBCoolant.getFluid(1000)});
+
+        //bulk blast chiller
+        removeRecipeByName("gcym:mega_vacuum_freezer");
+
+        //rotary hearth furnace
+        removeRecipeByName("gcym:mega_blast_furnace");
+
+        //epichlorohydrin
+        removeRecipesByInputs(CHEMICAL_RECIPES, Glycerol.getFluid(1000), HydrochloricAcid.getFluid(1000));
+        removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, Glycerol.getFluid(1000), HydrochloricAcid.getFluid(1000));
+
         //large scale assembler casing
         removeRecipeByName("gcym:casing_large_assembler");
-        removeRecipesByInputs(ASSEMBLER_RECIPES,getIntegratedCircuit(6) ,OreDictUnifier.get(plate, Stellite100,6), OreDictUnifier.get(frameGt, Tungsten));
+
+        removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(plate, Stellite100,6), OreDictUnifier.get(frameGt, Tungsten, 1), getIntegratedCircuit(6));
+
+
     }
 
     public static void chemistryOverride() {
@@ -436,6 +428,15 @@ public class RecipeOverride {
                 .output(dust, Redstone)
                 .output(dust, PreciousMetal)
                 .buildAndRegister();
+
+        CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .fluidInputs(Glycerol.getFluid(1000))
+                .fluidInputs(HydrochloricAcid.getFluid(1000))
+                .fluidOutputs(Water.getFluid(2000))
+                .fluidOutputs(Epichlorohydrin.getFluid(1000))
+                .duration(480).EUt(VA[LV]).buildAndRegister();
+
     }
 
     public static void gregtechOverride() {
@@ -887,7 +888,7 @@ public class RecipeOverride {
                         .EUt(VA[IV]))
                 .duration(1200).EUt(100000).buildAndRegister();
 
-        //energy output hatches luv-uhv
+        //energy output hatches luv-uv
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(HULL[LuV])
                 .input(spring, NiobiumTitanium, 4)
@@ -918,8 +919,8 @@ public class RecipeOverride {
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(HULL[UV])
-                .input(spring, YttriumBariumCuprate, 4)
-                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(spring, Duranium, 4)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 4)
                 .input(circuit, MarkerMaterials.Tier.UV)
                 .input(VOLTAGE_COIL_UV, 2)
                 .fluidInputs(SodiumPotassium.getFluid(10000))
@@ -931,22 +932,7 @@ public class RecipeOverride {
                         .EUt(VA[ZPM]))
                 .duration(800).EUt(VA[UV]).buildAndRegister();
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(HULL[UHV])
-                .input(spring, Europium, 4)
-                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
-                .input(circuit, MarkerMaterials.Tier.UHV)
-                .input(wireGtDouble, UHVSuperconductor, 2)
-                .fluidInputs(SodiumPotassium.getFluid(12000))
-                .fluidInputs(SolderingAlloy.getFluid(5760))
-                .output(ENERGY_OUTPUT_HATCH[UHV])
-                .stationResearch(b -> b
-                        .researchStack(ENERGY_OUTPUT_HATCH[UV].getStackForm())
-                        .CWUt(128)
-                        .EUt(VA[UV]))
-                .duration(1000).EUt(VA[UHV]).buildAndRegister();
-
-        //energy input hatches luv-uhv
+        //energy input hatches luv-uv
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(HULL[LuV])
                 .input(cableGtSingle, NiobiumTitanium, 4)
@@ -977,8 +963,8 @@ public class RecipeOverride {
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(HULL[UV])
-                .input(cableGtSingle, YttriumBariumCuprate, 4)
-                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(cableGtSingle, Duranium, 4)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 4)
                 .input(circuit, MarkerMaterials.Tier.UV)
                 .input(VOLTAGE_COIL_UV, 2)
                 .fluidInputs(SodiumPotassium.getFluid(10000))
@@ -990,20 +976,6 @@ public class RecipeOverride {
                         .EUt(VA[ZPM]))
                 .duration(800).EUt(VA[UV]).buildAndRegister();
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(HULL[UHV])
-                .input(cableGtSingle, Europium, 4)
-                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
-                .input(circuit, MarkerMaterials.Tier.UHV)
-                .input(wireGtDouble, UHVSuperconductor, 2)
-                .fluidInputs(SodiumPotassium.getFluid(12000))
-                .fluidInputs(SolderingAlloy.getFluid(5760))
-                .output(ENERGY_INPUT_HATCH[UHV])
-                .stationResearch(b -> b
-                        .researchStack(ENERGY_INPUT_HATCH[UV].getStackForm())
-                        .CWUt(128)
-                        .EUt(VA[UV]))
-                .duration(1000).EUt(VA[UHV]).buildAndRegister();
 
         //indalloy_140
         ALLOY_BLAST_RECIPES.recipeBuilder().duration(12000).EUt(7680).blastFurnaceTemp(9000)
@@ -1109,6 +1081,13 @@ public class RecipeOverride {
         ModHandler.addShapedRecipe(true, "electric_motor_iv", ELECTRIC_MOTOR_IV.getStackForm(), "CWR", "WMW", "RWC",
                 'C', new UnificationEntry(cableGtDouble, Tungsten), 'W', new UnificationEntry(wireGtQuadruple, BrightSteel),
                 'R', new UnificationEntry(stick, TungstenSteel), 'M', new UnificationEntry(stick, NeodymiumMagnetic));
+        ASSEMBLER_RECIPES.recipeBuilder().duration(100).EUt(30)
+                        .input(cableGtDouble, Tungsten, 2)
+                                .input(stick, TungstenSteel, 2)
+                                        .input(stick, NeodymiumMagnetic)
+                                                .input(wireGtQuadruple, BrightSteel,4)
+                .outputs(ELECTRIC_MOTOR_IV.getStackForm())
+                                                        .buildAndRegister();
 
         //Superconductor Coil Block //TODO change these to use liquid version of gas instead
         ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.LuV]).duration(100)
@@ -1160,8 +1139,8 @@ public class RecipeOverride {
                 .inputs(VOLTAGE_COIL_LuV.getStackForm(2))
                 .input(plate, Osmiridium, 2)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 4))
-                .fluidInputs(Indalloy140.getFluid(L * 2))
-                .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING, 1))
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
+                .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING, ConfigHolder.recipes.casingsPerCraft))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
@@ -1172,8 +1151,8 @@ public class RecipeOverride {
                 .inputs(VOLTAGE_COIL_ZPM.getStackForm(2))
                 .input(plate, Rutherfordium, 2)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 8))
-                .fluidInputs(Indalloy140.getFluid(L * 4))
-                .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING_MK2, 1))
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
+                .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING_MK2, ConfigHolder.recipes.casingsPerCraft))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
@@ -1185,7 +1164,7 @@ public class RecipeOverride {
                 .input(plate, Tritanium, 2)
                 .fluidInputs(Polybenzimidazole.getFluid(L * 16))
                 .fluidInputs(Indalloy140.getFluid(L * 8))
-                .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING_MK3, 1))
+                .outputs(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING_MK3, ConfigHolder.recipes.casingsPerCraft))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .stationResearch(b->b
                         .researchStack(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING_MK2))
@@ -1195,22 +1174,103 @@ public class RecipeOverride {
 
         //large circuit assembler
         ModHandler.addShapedRecipe("gcyl_circuit_assembler", GCYMMetaTileEntities.LARGE_CIRCUIT_ASSEMBLER.getStackForm(),
-                "ARA", "CHC", "ARA",
-                'A', MULTIBLOCK_CASING.getItemVariant(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_CONTROL),
+                "ARE", "CHC", "ARA",
+                'A', GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING),
                 'R', ROBOT_ARM_LuV,
-                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.LuV),
-                'H', HULL[6].getStackForm());
+                'C', CONVEYOR_MODULE_LuV,
+                'H', HULL[6].getStackForm(),
+                'E', EMITTER_LuV);
 
         //large scale assembler casing
         ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[IV]).duration(200)
                 .circuitMeta(6)
-                .input(plate, Stellite100, 24)
-                .input(frameGt, Tungsten, 4)
+                .input(plate, Stellite100, 12)
+                .input(frameGt, Tungsten, 2)
                 .inputs(MULTIBLOCK_CASING.getItemVariant(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_CONTROL))
-                .fluidInputs(HastelloyN.getFluid(L * 16))
-                .outputs(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING, 4 * ConfigHolder.recipes.casingsPerCraft))
+                .fluidInputs(HastelloyN.getFluid(L * 8))
+                .outputs(GCYMMetaBlocks.LARGE_MULTIBLOCK_CASING.getItemVariant(BlockLargeMultiblockCasing.CasingType.ASSEMBLING_CASING, ConfigHolder.recipes.casingsPerCraft))
                 .buildAndRegister();
 
+        //distillation tower
+        ModHandler.addShapedRecipe(true, "gcyl_distillation_tower", MetaTileEntities.DISTILLATION_TOWER.getStackForm(),
+                "CBC", "FMF", "CBC", 'M', MetaTileEntities.HULL[GTValues.EV].getStackForm(), 'B',
+                new UnificationEntry(OrePrefix.pipeLargeFluid, Materials.StainlessSteel), 'C',
+                new UnificationEntry(OrePrefix.circuit, MarkerMaterials.Tier.EV), 'F', MetaItems.ELECTRIC_PUMP_EV);
+
+        //advanced computer casing
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(COMPUTER_CASING.getItemVariant(BlockComputerCasing.CasingType.COMPUTER_CASING))
+                .input(circuit, MarkerMaterials.Tier.ZPM)
+                .input(wireFine, Cobalt, 64)
+                .input(wireFine, Electrum, 64)
+                .input(wireGtSingle, LuVSuperconductor, 4)
+                .outputs(COMPUTER_CASING.getItemVariant(BlockComputerCasing.CasingType.ADVANCED_COMPUTER_CASING))
+                .duration(200).EUt(VA[LuV]).buildAndRegister();
+
+        //computer heat vent
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(frameGt, StainlessSteel)
+                .input(ELECTRIC_MOTOR_IV, 2)
+                .input(rotor, StainlessSteel, 2)
+                .input(pipeTinyFluid, StainlessSteel, 16)
+                .input(plate, Copper, 16)
+                .input(wireGtSingle, IVSuperconductor)
+                .outputs(COMPUTER_CASING.getItemVariant(BlockComputerCasing.CasingType.COMPUTER_HEAT_VENT,
+                        ConfigHolder.recipes.casingsPerCraft))
+                .duration(100).EUt(VA[EV]).buildAndRegister();
+
+        //active transformer
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(POWER_TRANSFORMER[LuV])
+                .input(circuit, MarkerMaterials.Tier.LuV, 2)
+                .input(wireGtSingle, LuVSuperconductor, 8)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .fluidInputs(PCBCoolant.getFluid(1000))
+                .output(ACTIVE_TRANSFORMER)
+                .duration(300).EUt(VA[LuV]).buildAndRegister();
+
+        //bulk blast chiller
+        getAssLineResearchBuilder(GTValues.UV, 2400, CRYOGENIC_FREEZER.getStackForm(), false, false)
+                .outputs(MEGA_VACUUM_FREEZER.getStackForm())
+                .inputs(CRYOGENIC_FREEZER.getStackForm(64))
+                .input(pipeSmallFluid, Zeron100, 64)
+                .input(foil, Rutherfordium, 64)
+                .input(wireFine, UVSuperconductor, 64)
+                .input(gearSmall, Duranium, 32)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 32)
+                .input(gear, AbyssalAlloy, 16)
+                .input(plateDense, IncoloyMA956, 8)
+                .inputs(FIELD_GENERATOR_UV.getStackForm(2))
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .fluidInputs(Indalloy140.getFluid(9216))
+                .fluidInputs(Cryotheum.getFluid(32000))
+                .fluidInputs(Polybenzimidazole.getFluid(9216))
+                .buildAndRegister();
+
+
+        //rotary hearth furnace
+        getAssLineResearchBuilder(GTValues.UV, 2400, VOLCANUS.getStackForm(), false, false)
+                .outputs(MEGA_BLAST_FURNACE.getStackForm())
+                .inputs(VOLCANUS.getStackForm(64))
+                .input(wireFine, UVSuperconductor, 64)
+                .input(foil, Dubnium, 64)
+                .input(bolt, Rutherfordium, 64)
+                .input(gearSmall, Seaborgium, 32)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 32)
+                .input(gear, TitanSteel, 16)
+                .input(plateDense, HastelloyN, 8)
+                .inputs(FIELD_GENERATOR_UV.getStackForm(2))
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .fluidInputs(Indalloy140.getFluid(9216))
+                .fluidInputs(Pyrotheum.getFluid(32000))
+                .fluidInputs(Polybenzimidazole.getFluid(9216))
+                .buildAndRegister();
 
     }
 }

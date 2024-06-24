@@ -21,6 +21,7 @@ public class VoidMinerHandler {
 
     public static void register() {
         OrePrefix.ore.addProcessingHandler(PropertyKey.ORE, VoidMinerHandler::processVoidOre);
+        addWhitelist();
     }
 
     private static void processVoidOre(OrePrefix dustPrefix, Material material, OreProperty property) {
@@ -30,32 +31,36 @@ public class VoidMinerHandler {
         //TODO: add support for other products in ore processing chain? or add ore processing factory from GTNH
 
         if (GCYLConfig.multis.voidMiner.oreVariants) {
-            if (!Arrays.asList(GCYLConfig.multis.voidMiner.oreBlacklist).contains(material.toString())) {
+            if (!Arrays.asList(GCYLConfig.multis.voidMiner.oreBlacklist).contains(material.toString()) && !Arrays.asList(GCYLConfig.multis.voidMiner.oreBlackListDeepMinerConflict).contains(material.toString()) && !Arrays.asList(GCYLConfig.multis.voidMiner.oreBlackListUniversal).contains(material.toString())) {
                 ORES.addAll(OreDictUnifier.getAll(new UnificationEntry(currentOre, material)));
             }
-            if (!Arrays.asList(GCYLConfig.multis.voidMiner.oreBlacklistUHV).contains(material.toString())) {
+            if (!Arrays.asList(GCYLConfig.multis.voidMiner.oreBlacklistUHV).contains(material.toString()) && !Arrays.asList(GCYLConfig.multis.voidMiner.oreBlackListDeepMinerConflict).contains(material.toString()) && !Arrays.asList(GCYLConfig.multis.voidMiner.oreBlackListUniversal).contains(material.toString())) {
                 ORES_2.addAll(OreDictUnifier.getAll(new UnificationEntry(currentOre, material)));
             }
-            if (!Arrays.asList(GCYLConfig.multis.voidMiner.oreBlacklistUEV).contains(material.toString())) {
+            if (!Arrays.asList(GCYLConfig.multis.voidMiner.oreBlacklistUEV).contains(material.toString()) && !Arrays.asList(GCYLConfig.multis.voidMiner.oreBlackListDeepMinerConflict).contains(material.toString()) && !Arrays.asList(GCYLConfig.multis.voidMiner.oreBlackListUniversal).contains(material.toString())) {
                 ORES_3.addAll(OreDictUnifier.getAll(new UnificationEntry(currentOre, material)));
             }
         } else {
-            if (!Arrays.asList(GCYLConfig.multis.voidMiner.oreBlacklist).contains(material.toString())) {
+            if (!Arrays.asList(GCYLConfig.multis.voidMiner.oreBlacklist).contains(material.toString()) && !Arrays.asList(GCYLConfig.multis.voidMiner.oreBlackListDeepMinerConflict).contains(material.toString()) && !Arrays.asList(GCYLConfig.multis.voidMiner.oreBlackListUniversal).contains(material.toString())) {
                 ORES.add(OreDictUnifier.get(new UnificationEntry(currentOre, material)));
             }
-            if (!Arrays.asList(GCYLConfig.multis.voidMiner.oreBlacklistUHV).contains(material.toString())) {
+            if (!Arrays.asList(GCYLConfig.multis.voidMiner.oreBlacklistUHV).contains(material.toString()) && !Arrays.asList(GCYLConfig.multis.voidMiner.oreBlackListDeepMinerConflict).contains(material.toString()) && !Arrays.asList(GCYLConfig.multis.voidMiner.oreBlackListUniversal).contains(material.toString())) {
                 ORES_2.add(OreDictUnifier.get(new UnificationEntry(currentOre, material)));
             }
-            if (!Arrays.asList(GCYLConfig.multis.voidMiner.oreBlacklistUEV).contains(material.toString())) {
+            if (!Arrays.asList(GCYLConfig.multis.voidMiner.oreBlacklistUEV).contains(material.toString()) && !Arrays.asList(GCYLConfig.multis.voidMiner.oreBlackListDeepMinerConflict).contains(material.toString()) && !Arrays.asList(GCYLConfig.multis.voidMiner.oreBlackListUniversal).contains(material.toString())) {
                 ORES_3.add(OreDictUnifier.get(new UnificationEntry(currentOre, material)));
             }
         }
     }
 
     public static void addWhitelist() {
-        addItemsToList(GCYLConfig.multis.voidMiner.oreWhitelist, ORES);
-        addItemsToList(GCYLConfig.multis.voidMiner.oreWhitelistUHV, ORES_2);
-        addItemsToList(GCYLConfig.multis.voidMiner.oreWhitelistUEV, ORES_3);
+        if(GCYLConfig.multis.voidMiner.oreWhitelist.length > 0)
+            addItemsToList(GCYLConfig.multis.voidMiner.oreWhitelist, ORES);
+        if(GCYLConfig.multis.voidMiner.oreWhitelistUHV.length > 0)
+            addItemsToList(GCYLConfig.multis.voidMiner.oreWhitelistUHV, ORES_2);
+        if(GCYLConfig.multis.voidMiner.oreWhitelistUEV.length > 0)
+            addItemsToList(GCYLConfig.multis.voidMiner.oreWhitelistUEV, ORES_3);
+
     }
 
     private static void addItemsToList(String[] itemStrings, List<ItemStack> list) {

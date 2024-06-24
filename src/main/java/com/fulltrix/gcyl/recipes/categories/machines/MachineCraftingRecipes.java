@@ -220,25 +220,6 @@ public class MachineCraftingRecipes {
 
        */
 
-        //STERILE FILTRATION MAINTENANCE HATCH
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .outputs(STERILE_CLEANING_MAINTENANCE_HATCH.getStackForm())
-                .inputs(CLEANING_MAINTENANCE_HATCH.getStackForm())
-                .inputs(ROBOT_ARM_UIV.getStackForm(4))
-                .input(circuit, MarkerMaterials.Tier.UIV, 6)
-                .inputs(HULL[GTValues.UIV].getStackForm())
-                .inputs(EMITTER_UIV.getStackForm(2))
-                .inputs(UVA_HALIDE_LAMP.getStackForm(4))
-                .fluidInputs(Indalloy140.getFluid(L * 8))
-                .fluidInputs(Lubricant.getFluid(L * 4))
-                .stationResearch(b -> b
-                        .researchStack(CLEANING_MAINTENANCE_HATCH.getStackForm())
-                        .CWUt(512)
-                        .dataStack(TOOL_DATA_MODULE_CLUSTER.getStackForm())
-                        .EUt(VA[GTValues.UIV]))
-                .duration(300).EUt(GTValues.VA[GTValues.UIV])
-                .buildAndRegister();
-
     }
 
 

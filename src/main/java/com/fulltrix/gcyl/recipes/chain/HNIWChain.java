@@ -4,7 +4,7 @@ import com.fulltrix.gcyl.item.GCYLCoreItems;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.*;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
@@ -237,7 +237,7 @@ public class HNIWChain {
         CHEMICAL_RECIPES.recipeBuilder()
                 .fluidInputs(Formaldehyde.getFluid(6000))
                 .fluidInputs(Ammonia.getFluid(4000))
-                .notConsumable(IntCircuitIngredient.getIntegratedCircuit(1))
+                .notConsumable(IntCircuitIngredient.getIntegratedCircuit(22))
                 .output(dust, Hexamethylenetetramine, 22)
                 .fluidOutputs(Water.getFluid(6000))
                 .EUt(480)

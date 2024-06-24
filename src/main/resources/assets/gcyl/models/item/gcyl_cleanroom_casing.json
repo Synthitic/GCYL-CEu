@@ -1,0 +1,30 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all"
+  },
+  "variants": {
+    "variant": {
+      "filter_casing_iso_3": {
+        "textures": {
+          "all": "gregtech:blocks/casings/cleanroom/filter_casing_iso_3"
+        }
+      },
+      "filter_casing_iso_2": {
+        "textures": {
+          "all": "gregtech:blocks/casings/cleanroom/filter_casing_iso_2"
+        }
+      },
+      "filter_casing_iso_1": {
+        "textures": {
+          "all": "gregtech:blocks/casings/cleanroom/filter_casing_iso_1"
+        }
+      },
+      "filter_casing_iso_0": {
+        "textures": {
+          "all": "gregtech:blocks/casings/cleanroom/filter_casing_iso_0"
+        }
+      }
+    }
+  }
+}

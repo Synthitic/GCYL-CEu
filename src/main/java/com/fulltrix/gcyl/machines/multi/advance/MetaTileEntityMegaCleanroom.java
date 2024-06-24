@@ -2,14 +2,22 @@ package com.fulltrix.gcyl.machines.multi.advance;
 
 import appeng.core.AEConfig;
 import appeng.core.features.AEFeature;
+import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
+import com.fulltrix.gcyl.item.GCYLMetaBlocks;
+import com.fulltrix.gcyl.item.metal.GCYLCleanroomCasing;
 import gregtech.api.GTValues;
 import gregtech.api.capability.GregtechDataCodes;
+import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.impl.CleanroomLogic;
+import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
+import gregtech.api.metatileentity.multiblock.ICleanroomProvider;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.pattern.*;
+import gregtech.api.util.BlockInfo;
+import gregtech.api.util.GTUtility;
 import gregtech.api.util.Mods;
 import gregtech.client.utils.TooltipHelper;
 import gregtech.common.ConfigHolder;
@@ -18,27 +26,32 @@ import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.common.metatileentities.multi.electric.MetaTileEntityCleanroom;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 //TODO: Decrease tps lag when they try to cheat it
-public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom {
+public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implements ICleanroomProvider {
     public static final int MIN_RADIUS = 10;
     public static final int MIN_DEPTH = 9;
     private int lDist = 0;
@@ -49,6 +62,7 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom {
     private final CleanroomLogic cleanroomLogic;
     private CleanroomType cleanroomType = null;
 
+    private IEnergyContainer energyContainer;
     private boolean initialForm = true;
     public MetaTileEntityMegaCleanroom(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId);
@@ -154,6 +168,21 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom {
             } else if (casingType.equals(BlockCleanroomCasing.CasingType.FILTER_CASING_STERILE)) {
                 this.cleanroomType = CleanroomType.STERILE_CLEANROOM;
             }
+        }
+
+        if (type instanceof GCYLCleanroomCasing.CasingType) {
+            GCYLCleanroomCasing.CasingType casingType = (GCYLCleanroomCasing.CasingType) type;
+
+            if (casingType.equals(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO3)) {
+                this.cleanroomType = GCYLCleanroomType.ISO3;
+            } else if (casingType.equals(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO2)) {
+                this.cleanroomType = GCYLCleanroomType.ISO2;
+            } else if (casingType.equals(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO1)) {
+                this.cleanroomType = GCYLCleanroomType.ISO1;
+            } else if (casingType.equals(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO0)) {
+                this.cleanroomType = GCYLCleanroomType.ISO0;
+            }
+
         }
         // max progress is based on the dimensions of the structure: (x^3)-(x^2)
         // taller cleanrooms take longer than wider ones
@@ -281,6 +310,68 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom {
                 .where(' ', innerPredicate())
                 .build();
     }
+    @Override
+    protected @NotNull TraceabilityPredicate filterPredicate() {
+        super.filterPredicate();
+        return (new TraceabilityPredicate((blockWorldState) -> {
+            IBlockState blockState = blockWorldState.getBlockState();
+            Block block = blockState.getBlock();
+            if (block instanceof GCYLCleanroomCasing) {
+                GCYLCleanroomCasing.CasingType casingType = (GCYLCleanroomCasing.CasingType)((GCYLCleanroomCasing)blockState.getBlock()).getState(blockState);
+                Object currentFilter = blockWorldState.getMatchContext().getOrPut("FilterType", casingType);
+                if (!currentFilter.toString().equals(casingType.getName())) {
+                    blockWorldState.setError(new PatternStringError("gregtech.multiblock.pattern.error.filters"));
+                    return false;
+                } else {
+                    ((LinkedList)blockWorldState.getMatchContext().getOrPut("VABlock", new LinkedList())).add(blockWorldState.getPos());
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        }, () -> {
+            return (BlockInfo[]) ArrayUtils.addAll((BlockInfo[])Arrays.stream(GCYLCleanroomCasing.CasingType.values()).filter((type) -> {
+                return true;
+            }).map((type) -> {
+                return new BlockInfo(GCYLMetaBlocks.GCYL_CLEANROOM_CASING.getState(type), (TileEntity)null);
+            }).toArray((x$0) -> {
+                return new BlockInfo[x$0];
+            }), new BlockInfo[0]);
+        })).addTooltips(new String[]{"gregtech.multiblock.pattern.error.filters"});
+    }
+
+    @Override
+    public int getEnergyTier() {
+        return this.energyContainer == null ? 1 : Math.max(1, GTUtility.getFloorTierByVoltage(this.energyContainer.getInputVoltage()));
+    }
+
+    @Override
+    public long getEnergyInputPerSecond() {
+        return this.energyContainer.getInputPerSec();
+    }
+
+    @Override
+    public boolean drainEnergy(boolean simulate) {
+        if(isStructureFormed()) {
+            long energyToDrain = this.isClean() ? (long) Math.max(4.0, Math.pow(4.0, this.getEnergyTier())) : (long) GTValues.VA[this.getEnergyTier()];
+            long resultEnergy = this.energyContainer.getEnergyStored() - energyToDrain;
+            if (resultEnergy >= 0L && resultEnergy <= this.energyContainer.getEnergyCapacity()) {
+                if (!simulate) {
+                    this.energyContainer.changeEnergy(-energyToDrain);
+                }
+
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    protected void initializeAbilities() {
+        this.energyContainer = new EnergyContainerList(this.getAbilities(MultiblockAbility.INPUT_ENERGY));
+    }
 
     @Override
     public List<MultiblockShapeInfo> getMatchingShapes() {
@@ -346,6 +437,7 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom {
             tooltip.add(I18n.format("gcyl.machine.cleanroom.tooltip.3"));
             tooltip.add(I18n.format("gcyl.machine.cleanroom.tooltip.4"));
             tooltip.add(I18n.format("gcyl.machine.cleanroom.tooltip.5"));
+            tooltip.add(I18n.format("gcyl.machine.cleanroom.tooltip.6"));
             tooltip.add(I18n.format("gregtech.machine.cleanroom.tooltip.5"));
             tooltip.add(I18n.format("gregtech.machine.cleanroom.tooltip.6"));
             tooltip.add(I18n.format("gregtech.machine.cleanroom.tooltip.7"));

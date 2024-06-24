@@ -2,21 +2,23 @@ package com.fulltrix.gcyl.materials;
 
 import gregtech.api.unification.Elements;
 import gregtech.api.unification.material.Material;
+import gregtech.api.unification.material.properties.BlastProperty;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.fulltrix.gcyl.GCYLUtility.gcylId;
+import static com.fulltrix.gcyl.GCYLElements.*;
+import static com.fulltrix.gcyl.api.GCYLUtility.gcylId;
+import static com.fulltrix.gcyl.api.recipes.GCYLMaterialFlags.NO_MIXER_RECIPE;
+import static gregtech.api.unification.Elements.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.Materials.STD_METAL;
 import static gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.id;
 import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE;
 import static gregtech.api.unification.material.info.MaterialIconSet.*;
-import static gregtech.api.util.GTUtility.gregtechId;
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_REPLICATION;
 
 public class GCYLNuclearMaterials {
@@ -55,14 +57,15 @@ public class GCYLNuclearMaterials {
     public static Material DepletedNeptuniumDioxide;
 
      */
-    public static void registerNuclear() {
+    public static void registerRequiredNuclear() {
 
         ReactorSteel = new Material.Builder(++id, gcylId("reactor_steel"))
                 .ingot(2).liquid()
                 .color(0xB4B3B0)
                 .iconSet(SHINY)
-                .flags(GENERATE_DENSE, DISABLE_DECOMPOSITION, DISABLE_REPLICATION)
+                .flags(GENERATE_DENSE, DISABLE_DECOMPOSITION, DISABLE_REPLICATION, NO_MIXER_RECIPE)
                 .components(Iron,15,Niobium,1,Vanadium,4,Carbon,2)
+                .blast(b->b.temp(3800, BlastProperty.GasTier.HIGH))
                 .build();
 
         Plutonium = new Material.Builder(++id, gcylId("plutonium_generic"))
@@ -77,6 +80,7 @@ public class GCYLNuclearMaterials {
                 .ingot().liquid()
                 .color(Americium.getMaterialRGB())
                 .iconSet(METALLIC)
+                .element(Am241)
                 .flags(STD_METAL)
                 .build()
                 .setFormula("Am-241", true);
@@ -85,15 +89,17 @@ public class GCYLNuclearMaterials {
                 .ingot().liquid()
                 .color(0x984ACF)
                 .iconSet(METALLIC)
+                .element(Fm258)
                 .flags(STD_METAL)
                 .build()
-                .setFormula("Fm-241", true);
+                .setFormula("Fm-258", true);
 
         Californium252 = new Material.Builder(++id, gcylId("californium_252"))
                 .ingot().liquid()
                 .color(0xA85A12)
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
+                .element(Cf252)
                 .build()
                 .setFormula("Cf-252", true);
 
@@ -102,6 +108,7 @@ public class GCYLNuclearMaterials {
                 .color(Mendelevium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
+                .element(Md261)
                 .build()
                 .setFormula("Md-261", true);
 
@@ -110,6 +117,7 @@ public class GCYLNuclearMaterials {
                 .color(Americium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
+                .element(Am243)
                 .build()
                 .setFormula("Am-243", true);
 
@@ -118,14 +126,16 @@ public class GCYLNuclearMaterials {
                 .color(Curium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
+                .element(Cm247)
                 .build()
-                .setFormula("Cm-252", true);
+                .setFormula("Cm-247", true);
 
         Californium253 = new Material.Builder(++id, gcylId("californium_253"))
                 .ingot().liquid()
                 .color(Californium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
+                .element(Cf253)
                 .build()
                 .setFormula("Cf-253", true);
 
@@ -134,6 +144,7 @@ public class GCYLNuclearMaterials {
                 .color(Fermium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
+                .element(Fm259)
                 .build()
                 .setFormula("Fm-259", true);
 
@@ -142,6 +153,7 @@ public class GCYLNuclearMaterials {
                 .color(Curium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
+                .element(Cm250)
                 .build()
                 .setFormula("Cm-250", true);
 
@@ -150,6 +162,7 @@ public class GCYLNuclearMaterials {
                 .color(Einsteinium.getMaterialRGB())
                 .iconSet(METALLIC)
                 .flags(STD_METAL)
+                .element(Es253)
                 .build()
                 .setFormula("Es-253", true);
 
@@ -158,7 +171,6 @@ public class GCYLNuclearMaterials {
         registerDecayMats();
 
         //TODO: FINISH NUCLEAR AND REMOVE
-        temporaryNuclearMaterials();
 
         /*
         HighEnrichedNeptuniumDioxide = new Material.Builder(++id, gcylId("high_enriched_neptunium_dioxide"))
@@ -245,15 +257,29 @@ public class GCYLNuclearMaterials {
 
     }
 
-    private static void temporaryNuclearMaterials() {
+    public static int idSecondary;
 
-        Bismuth210 = new Material.Builder(++id, gcylId("bismuth_210"))
+    public static Material Np237Breeder;
+
+    public static void registerSecondaryNuclear() {
+
+
+        Bismuth210 = new Material.Builder(++idSecondary, gcylId("bismuth_210"))
                 .dust()
                 .color(Bismuth.getMaterialRGB())
                 .iconSet(Bismuth.getMaterialIconSet())
+                .element(Bi210)
                 .build()
                 .setFormula("Bi-210", true);
 
+        Np237Breeder = new Material.Builder(++idSecondary, gcylId("np_237_breeder"))
+                .dust()
+                .components(Neptunium237, 1, Aluminium, 1)
+                .color(Neptunium.getMaterialRGB())
+                .iconSet(DULL)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .fissionFuelProperties(2000, 1000, 1000, 0, 100, 10)
+                .build();
 
     }
 }

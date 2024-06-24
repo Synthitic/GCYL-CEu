@@ -1,24 +1,26 @@
 package com.fulltrix.gcyl.recipes.categories.machines;
 
+import com.fulltrix.gcyl.api.GCYLUtility;
+import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
-import com.fulltrix.gcyl.machines.GCYLTileEntities;
+import com.fulltrix.gcyl.item.GCYLMultiblockCasing2;
 import gregtech.api.GTValues;
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ModHandler;
-import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.stack.UnificationEntry;
-import gregtech.common.blocks.BlockBoilerCasing;
-import gregtech.common.blocks.BlockMetalCasing;
-import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.blocks.*;
 import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
-import static com.fulltrix.gcyl.item.fusion.GCYLFusionCasing.CasingType.ADV_FUSION_COIL_3;
+import static com.fulltrix.gcyl.item.fusion.GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.Einsteinium253;
+import static com.fulltrix.gcyl.api.GCYLUtility.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
+import static gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities.MEGA_VACUUM_FREEZER;
 import static gregtech.api.GTValues.IV;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.GTValues.VA;
@@ -63,10 +65,10 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 'C', new UnificationEntry(circuit, MarkerMaterials.Tier.IV),
                 'H', new UnificationEntry(spring, MolybdenumDisilicide),
                 'P', new UnificationEntry(pipeHugeFluid, StainlessSteel),
-                'R', MetaTileEntities.CENTRIFUGE[IV].getStackForm(),
-                'T', MetaTileEntities.THERMAL_CENTRIFUGE[IV].getStackForm(),
-                'M', MetaItems.ELECTRIC_MOTOR_IV.getStackForm(),
-                'W', new UnificationEntry(cableGtSingle, Platinum));
+                'R', MetaTileEntities.CENTRIFUGE[GTValues.EV].getStackForm(),
+                'T', MetaTileEntities.THERMAL_CENTRIFUGE[GTValues.EV].getStackForm(),
+                'M', MetaItems.ELECTRIC_MOTOR_EV.getStackForm(),
+                'W', new UnificationEntry(cableGtDouble, Aluminium));
         /* Backup recipe
         ModHandler.addShapedRecipe("large_centrifuge", ADVANCED_CENTRIFUGE.getStackForm(),
                 "CBC", "RHR", "DED",
@@ -238,8 +240,8 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .inputs(DEGENERATE_RHENIUM_PLATE.getStackForm(4))
                 .input(foil, Zylon, 64)
                 .input(foil, Zylon, 64)
-                .inputs(FIELD_GENERATOR_UXV.getStackForm(2))
-                .inputs(ELECTRIC_PUMP_UXV.getStackForm(2))
+                .inputs(FIELD_GENERATOR_OpV.getStackForm(2))
+                .inputs(ELECTRIC_PUMP_OpV.getStackForm(2))
                 .inputs(HYPER_REACTOR[1].getStackForm())
                 .outputs(HYPER_REACTOR[2].getStackForm())
                 .buildAndRegister();
@@ -283,7 +285,7 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .inputs(SENSOR_UIV.getStackForm(4))
                 .inputs(SCINTILLATOR.getStackForm(2))
                 .inputs(LEPTON_TRAP_CRYSTAL.getStackForm(4))
-                .inputs(GCYLMetaBlocks.FUSION_CASING.getItemVariant(ADV_FUSION_COIL_3, 2))
+                .inputs(GCYLMetaBlocks.FUSION_COILS.getItemVariant(ADV_FUSION_COIL_3, 2))
                 .outputs(COSMIC_RAY_DETECTOR.getStackForm())
                 .buildAndRegister();
 
@@ -296,8 +298,13 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .input(block, IncoloyMA956, 2)
                 .input(stickLong, Osmium, 64)
                 .input(ring, Osmium, 64)
-                .input(wireGtSingle, UVSuperconductor, 16)
+                .input(wireGtSingle, UVSuperconductor, 64)
+                .input(wireGtSingle, UVSuperconductor, 64)
                 .inputs(ELECTRIC_PISTON_UV.getStackForm(16))
+                .stationResearch(b -> b
+                        .researchStack(IMPLOSION_COMPRESSOR.getStackForm())
+                        .CWUt(64)
+                        .EUt(GTValues.VA[GTValues.UV]))
                 .outputs(ELECTRIC_IMPLOSION.getStackForm())
                 .buildAndRegister();
 
@@ -344,11 +351,11 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
         //Decay chamber
         ModHandler.addShapedRecipe("gcyl_decay_chamber", DECAY_CHAMBER.getStackForm(),
                 "RCR", "FAF","WCW",
-                'R', new UnificationEntry(stick, Plutonium241),
-                'F', FIELD_GENERATOR_IV,
+                'R', new UnificationEntry(stick, Plutonium239),
+                'F', FIELD_GENERATOR_EV,
                 'C', new UnificationEntry(circuit, MarkerMaterials.Tier.IV),
-                'A', HULL[IV].getStackForm(),
-                'W', new UnificationEntry(cableGtDouble, NaquadahAlloy));
+                'A', HULL[GTValues.EV].getStackForm(),
+                'W', new UnificationEntry(cableGtDouble, Tungsten));
 
         //Greenhouses
         ModHandler.addShapedRecipe("gcyl_greenhouse_mv", GREEN_HOUSE[0].getStackForm(),
@@ -391,11 +398,108 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .input(rotor, HSSE, 8)
                 .inputs(ELECTRIC_MOTOR_ZPM.getStackForm(8))
                 .input(circuit, MarkerMaterials.Tier.ZPM, 4)
-                .fluidInputs(Indalloy140.getFluid(L * 8))
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(Lubricant.getFluid(L * 16))
                 .outputs(MEGA_CLEANROOM.getStackForm())
                 .scannerResearch(b->b
                         .researchStack(CLEANROOM.getStackForm())
                         .EUt(GTValues.VA[GTValues.ZPM]))
+                .buildAndRegister();
+
+        //WIRELESS PSS
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UV]).duration(1200)
+                .outputs(WIRELESS_PSS.getStackForm())
+                .inputs(POWER_SUBSTATION.getStackForm())
+                .inputs(GCYLMetaBlocks.MULTIBLOCK_CASING2.getItemVariant(GCYLMultiblockCasing2.CasingType.SEABORGIUM_SUBSTATION, 4))
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
+                .input(MetaItems.ENERGY_CLUSTER, 16)
+                .input(circuit, UEV)
+                .input(circuit, UEV)
+                .input(circuit, UEV)
+                .input(circuit, UEV)
+                .input(wireGtSingle, UVSuperconductor, 64)
+                .input(wireGtSingle, UVSuperconductor, 64)
+                .input(wireGtSingle, UVSuperconductor, 64)
+                .input(wireGtSingle, UVSuperconductor, 64)
+                .fluidInputs(Indalloy140.getFluid(L * 16))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .stationResearch(b-> b
+                        .researchStack(POWER_SUBSTATION.getStackForm())
+                        .CWUt(128)
+                        .EUt(GTValues.VA[GTValues.UV]))
+                .buildAndRegister();
+
+        //WIRELESS DATA BANK
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UIV]).duration(1200)
+                .outputs(WIRELESS_DATA_BANK.getStackForm())
+                .inputs(DATA_BANK.getStackForm())
+                .input(circuit, UXV, 8)
+                .input(TOOL_DATA_ULTIMATE)
+                .inputs(FIELD_GENERATOR_UIV.getStackForm(4))
+                .input(wireGtDouble, UIVSuperconductor, 64)
+                .input(wireGtDouble, UIVSuperconductor, 64)
+                .fluidInputs(Indalloy140.getFluid(L * 32))
+                .fluidInputs(MetastableOganesson.getFluid(L * 16))
+                .cleanroom(GCYLCleanroomType.ISO2)
+                .stationResearch(b -> b
+                        .researchStack(RESEARCH_STATION.getStackForm())
+                        .dataStack(TOOL_DATA_ULTIMATE.getStackForm())
+                        .CWUt(1024)
+                        .EUt(GTValues.VA[GTValues.UIV]))
+                .buildAndRegister();
+
+        //LARGE GAS COLLECTOR
+        ModHandler.addShapedRecipe("large_gas_collector", LARGE_AIR_COLLECTOR.getStackForm(),
+                "FFF", "CAC", "MRM",
+                'F', MetaBlocks.CLEANROOM_CASING.getItemVariant(BlockCleanroomCasing.CasingType.FILTER_CASING),
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'A', GAS_COLLECTOR[5].getStackForm(),
+                'M', new UnificationEntry(plate, MaragingSteel250),
+                'R', new UnificationEntry(rotor, MaragingSteel250));
+
+        //Large Fisher
+        ModHandler.addShapedRecipe("large_fisher", LARGE_FISHER.getStackForm(),
+                "CDC", "PAP","MBM",
+                'D', new UnificationEntry(plateDense, WatertightSteel),
+                'C', new UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'A', FISHER[3].getStackForm(),
+                'M', ELECTRIC_MOTOR_IV.getStackForm(),
+                'P', ELECTRIC_PISTON_IV.getStackForm(),
+                'B', ELECTRIC_PUMP_IV.getStackForm());
+
+        //Large Rock Breaker
+        getAssLineResearchBuilder(GTValues.UHV, 2400, ROCK_BREAKER[8].getStackForm(), false, false)
+                .outputs(LARGE_ROCK_BREAKER.getStackForm())
+                .inputs(ROCK_BREAKER[8].getStackForm())
+                .input(COMPONENT_GRINDER_TUNGSTEN, 2)
+                .inputs(ELECTRIC_MOTOR_UHV.getStackForm(4))
+                .inputs(ELECTRIC_PISTON_UHV.getStackForm(4))
+                .inputs(MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.FUSION_GLASS, 8))
+                .input(cableGtDouble, TungstenTitaniumCarbide,2)
+                .fluidInputs(Indalloy140.getFluid(9216))
+                .fluidInputs(Lava.getFluid(32000))
+                .fluidInputs(Water.getFluid(32000))
+                .fluidInputs(getPolymerByTier(9).getFluid(9216))
+                .buildAndRegister();
+
+        //Ore Processing Factory
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(VA[GTValues.UHV]).duration(1200)
+                .outputs(ORE_FACTORY.getStackForm())
+                .input(HULL[GTValues.UHV])
+                .inputs(ELECTRIC_MOTOR_UHV.getStackForm(32))
+                .inputs(ELECTRIC_PISTON_UHV.getStackForm(8))
+                .inputs(ELECTRIC_PUMP_UHV.getStackForm(16))
+                .inputs(CONVEYOR_MODULE_UHV.getStackForm(8))
+                .inputs(ROBOT_ARM_UHV.getStackForm(8))
+                .input(circuit, UEV, 4)
+                .input(cableGtQuadruple, Duranium, 32)
+                .input(pipeNormalFluid, Polybenzimidazole, 64)
+                .input(COMPONENT_GRINDER_TUNGSTEN, 64)
+                .input(plateDouble, StainlessSteel, 32)
+                .input(rotor, Chrome, 16)
+                .fluidInputs(Indalloy140.getFluid(L * 16))
+                .fluidInputs(Seaborgium.getFluid(L*8))
                 .buildAndRegister();
 
 

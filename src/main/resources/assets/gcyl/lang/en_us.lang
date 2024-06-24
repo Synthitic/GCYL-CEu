@@ -885,8 +885,8 @@ gcyl.material.crude_hexanitrohexaazaisowurtzitane=Crude Hexanitrohexaazaisowurtz
 gcyl.material.sodium_borohydride=Sodium Borohydride
 gcyl.material.sodium_tetrafluoroborate=Sodium Tetrafluoroborate
 gcyl.material.decaborane=Decaborane
-gcyl.material.cesium_carborane_precursor=Cesium Carborane Precursor
-gcyl.material.cesium_carborane=Cesium Carborane
+gcyl.material.cesium_carborane_precursor=Caesium Carborane Precursor
+gcyl.material.cesium_carborane=Caesium Carborane
 gcyl.material.fluorocarborane=Fluorocarborane
 gcyl.material.caesium_nitrate=Caesium Nitrate
 gcyl.material.silver_iodide=Silver Iodide
@@ -1834,7 +1834,7 @@ gcyl.machine.fluid_drilling_plant_hv.name=Fluid Drilling Plant 2 (FDP)
 gcyl.machine.fluid_drilling_plant_ev.name=Fluid Drilling Plant 3 (FDP)
 
 gcyl.machine.cosmic_ray_detector.name=Cosmic Ray Detector (CRD)
-gcyl.multiblock.cosmic_ray_detector.description=The Cosmic Ray Detector produced Heavy Lepton Mixture based on its height.
+gcyl.multiblock.cosmic_ray_detector.description=The Cosmic Ray Detector produces Heavy Lepton Mixture based on its height.
 
 
 
@@ -2674,7 +2674,7 @@ gcyl.material.opv_superconductor_base=OpV Superconductor Base
 gcyl.material.samarium_magnetic=Magnetic Samarium
 gcyl.material.quantum=Quantum
 gcyl.material.black_titanium=Black Titanium
-gcyl.material.tungsten_titanium_carbide=Tungsten Titanium Carbide
+gcyl.material.tungsten_titanium_carbide=Tungsten Titanium Carbide 70/30
 gcyl.material.titan_steel=Titan Steel
 gcyl.material.inconel_b=Inconel 792
 gcyl.material.pikyonium=Pikyonium
@@ -3000,11 +3000,14 @@ gcyl.multiblock.monitor_screen.tooltip.2=The proxy mode of Digital Interface Cov
 gcyl.multiblock.monitor_screen.tooltip.3=The screen also supports plugins.
 
 gcyl.multiblock.void_miner.description.1=The Void Ore Miner will produce tons of ores.
-gcyl.multiblock.void_miner.description.2=It will consume Pyrotheum and Cryotheum alternating each second.
-gcyl.multiblock.void_miner.description.3=Temperature will increase if there is only Pyrotheum and will decrease if there is only Cryotheum.
-gcyl.multiblock.void_miner.description.4=The First step will be to only feed with Pyrotheum and when the temperature is at the perfect spot, slowly add Cryotheum.
+gcyl.multiblock.void_miner.description.2=It will consume Pyrotheum and Cryotheum alternating every 10 seconds.
+gcyl.multiblock.void_miner.description.3=Temperature & Fluid use will increase with Pyrotheum and will decrease if there Cryotheum.
+gcyl.multiblock.void_miner.description.4=Temperature increase and decrease amount is Current Fluid Use / 100.
+gcyl.multiblock.void_miner.description.7=Temperature & Fluid use will decrease by half the normal amount if there is no Pyrotheum.
+gcyl.multiblock.void_miner.description.8=Fluid use does not reset unless overheated or breaking the controller.
+gcyl.multiblock.void_miner.description.9=Temperature will decrease slowly if work is paused.
 gcyl.multiblock.void_miner.description.5=If temperature is above the max temperature the Void Ore Miner will stop working and slowly cool down.
-gcyl.multiblock.void_miner.description.6=Consumes Drilling Mud and outputs Used Drilling Mud every second at the same rate as Pyrotheum.
+gcyl.multiblock.void_miner.description.6=Consumes Drilling Mud, outputs Used Drilling Mud, and 10 random ores with each having a stack size of (Temperature/1000)^2 every 10 seconds.
 gcyl.multiblock.large_transformer.description=Large Transformer can convert any GTEU/AMPS by any GTEU/AMPS.
 gcyl.multiblock.industrial_primitive_blast_furnace.description=The Industrial Primitive Blast Furnace is a large multiblock structure consisting of 1 to 64 "slices".
 gregtech.machine.primitive_blast_furnace.industrial.tooltip.1=It's an upgraded version of The Primitive Blast Furnace.
@@ -3020,14 +3023,14 @@ gcyl.multiblock.large_rocket_engine.tooltip.3=Use Liquid Oxygen to boost the out
 gcyl.multiblock.alloy_blast_furnace.tooltip.1=Quicker than the Blast Furnace
 gcyl.multiblock.large_naquadah_reactor.tooltip.1=Consumes 1000mb of Tritium every 20 fuel cycles'.
 gcyl.multiblock.large_naquadah_reactor.tooltip.2=Increase output by 3X with 50mb Oxygen Plasma every fuel consume (also consumes 2X fuel).
-gcyl.multiblock.large_naquadah_reactor.tooltip.3=Overclocks to UV tier.
+gcyl.multiblock.large_naquadah_reactor.tooltip.3=Overclocks to UHV tier.
 gregtech.multiblock.large_naquadah_reactor.tritium_amount=Tritium: %dmb
 gregtech.multiblock.large_naquadah_reactor.oxygen_amount=Oxygen Plasma: %sL
 gregtech.multiblock.large_naquadah_reactor.oxygen_boosted=Oxygen Plasma boosted.
 gregtech.multiblock.large_naquadah_reactor.supply_tritium_to_boost=Supply Oxygen Plasma to boost.
 gcyl.multiblock.large_naquadah_reactor.description=Large Version of the Naquadah Reactor generator.
 gcyl.multiblock.hyper_reactor.tooltip.1=Boost With: %s
-gcyl.multiblock.hyper_reactor.tooltip.2=Max Voltage: %,d
+gcyl.multiblock.hyper_reactor.tooltip.2=Max Voltage: %s
 gcyl.multiblock.hyper_reactor.description=The Hyper Reactor uses Hyper Fuel to produce large amounts of power. The power output can be boosted with various fluids.
 gcyl.multiblock.stellar_forge.description=The Stellar Forge produces late game materials using very powerful explosives.
 
@@ -3038,12 +3041,9 @@ gcyl.multiblock.battery_tower.tooltip.4=Each maintenance problem increases loss 
 
 gcyl.multiblock.cosmic_ray_detector.tooltip.1=The Cosmic Ray Detector can't see the sky!
 gcyl.multiblock.cosmic_ray_detector.tooltip.2=Produces Heavy Lepton Mix based on the Y-level it is built at.
-gcyl.multiblock.cosmic_ray_detector.tooltip.3=At Bedrock it will produce 15 mb/t and at build limit it will produce 50 mb/t.
-gcyl.multiblock.cosmic_ray_detector.tooltip.4=Requires a minimum of 2097152 EU/t to function.
-gcyl.multiblock.cosmic_ray_detector.tooltip.5=Generating %d mb/t of Heavy Lepton Mix.
-gcyl.multiblock.cosmic_ray_detector.tooltip.6=The top Sensor Block needs to be able to see the sky.
-gcyl.multiblock.cosmic_ray_detector.tooltip.7=Overclocks increase the production by approximately 150%%.
-gcyl.multiblock.cosmic_ray_detector.tooltip.8=Output Hatch Full!
+gcyl.multiblock.cosmic_ray_detector.tooltip.3=The recipe duration, before overclocking, is reduced by the Y-level in ticks.
+gcyl.multiblock.cosmic_ray_detector.tooltip.4=Requires a minimum of 2097152 EU/t and computation to function.
+gcyl.multiblock.cosmic_ray_detector.tooltip.5=Has recipes to provide Data for the Laser Miner
 
 
 gregtech.multiblock.recipe=Screw to change recipe. Currently using: %s
@@ -3051,8 +3051,9 @@ gregtech.multiblock.recipe=Screw to change recipe. Currently using: %s
 gregtech.universal.tooltip.efficiency=Efficiency: %s %%
 
 gregtech.multiblock.universal.energy_used=Energy Use: %d EU
-gregtech.multiblock.universal.vom.temperature=Temperature: %s K
-gregtech.multiblock.universal.drilling_fluid_amount=Current Drilling Mud: %.2fmB
+gregtech.multiblock.universal.vom.temperature=Temperature: %sK
+gregtech.multiblock.universal.vom.max_temperature=Max Temperature: %sK
+gregtech.multiblock.universal.drilling_fluid_amount=Fluids Consumption: %.2fmB
 gregtech.multiblock.universal.overheat=Overheated!
 
 gregtech.machine.world_accelerator.mode.tile=Tile Entity Mode
@@ -3836,7 +3837,7 @@ gcyl.material.acidic_mixture=Acidic Mixture
 gcyl.material.benzenesulfonyl_chloride=Benzenesulfonyl Chloride
 gcyl.material.sulfanilamide=Sulfanilamide
 gcyl.material.silica_gel_base=Silica Gel Base
-gcyl.material.ethanol_100=100% Ethanol
+gcyl.material.ethanol_100=100%% Ethanol
 gcyl.material.piranha_solution=Piranha Solution
 gcyl.material.water_agar_mix=Water-Agar Mix
 gcyl.material.bacterial_growth_medium=Bacterial Growth Medium
@@ -3911,7 +3912,7 @@ gcyl.material.potassium_chloride=Potassium Chloride
 gcyl.material.methylamine=Methylamine
 gcyl.material.phosgene=Phosgene
 gcyl.material.isopropyl_alcohol=Isopropyl Alcohol
-gcyl.material.degenerate_rhenium_plasma=Degenerate Rhenium Plasma
+gcyl.material.degenerate_rhenium_plasma=Degenerate Rhenium
 gcyl.material.liquid_helium=Liquid Helium
 
 
@@ -4127,7 +4128,7 @@ gcyl.material.basr_titanate_preparation=Barium-Strontium Titanate Preparation
 gcyl.material.carbon_tetrachloride=Carbon Tetrachloride
 gcyl.material.chloroethane=Chloroethane
 gcyl.material.actinium_superhydride_plasma=Actinium Superhydride Plasma
-gcyl.material.neutron_plasma=Neutron Plasma
+gcyl.material.neutron_plasma=Neutron
 gcyl.material.superheavy_mix=Superheavy Mix
 
 gcyl.material.chlorinated_solvents=Chlorinated Solvents
@@ -4737,8 +4738,14 @@ gcyl.machine.ore_factory.config.1=Macerate>Ore Wash>Macerate>Centrifuge
 gcyl.machine.ore_factory.config.2=Macerate>Ore Wash>Sifter
 gcyl.machine.ore_factory.config.3=Macerate>Macerate>Centrifuge
 gcyl.machine.ore_factory.config.4=Macerate>Thermal Centrifuge>Macerate
-
-gcyl.machine.maintenance_hatch_sterile_cleanroom_auto.name=Automatic Sterile Filtration Maintenance Hatch
+gcyl.multiblock.opf.description.1=Processes §f2^(Tier)§7 Ores. §fDuration§7 depends on §eProcess Mode§7.
+gcyl.multiblock.opf.description.6=Uses 100mb of §9Distilled Water§7 and 10mb of §6Lubricant§7 per §fOre Processed§7.
+gcyl.multiblock.opf.description.2=Use a §bScrewdriver§7 to change between §eProcess Modes§7.
+gcyl.multiblock.opf.description.3=Will §cVoid§7 if there is not enough output space.
+gcyl.multiblock.opf.description.4=Use a §aStocking Input Bus, Hatch & ME Output Bus§7 for optimal performance.
+gcyl.multiblock.opf.description.5=Set input bus to §fAuto-Collapse§7 items if not using a Stocking Bus.
+gcyl.machine.ore_factory.current_mode=Mode:
+gcyl.machine.ore_factory.max_amount=Max Parallel: %s
 
 metaitem.tool.data.deep_miner.name=Deep Miner Data Storage
 metaitem.tool.data.deep_miner.tooltip=Data Storage Material Scans
@@ -4760,6 +4767,12 @@ gcyl.research.deep_salts=§6Deep Salts Data
 gcyl.research.deep_salts.tooltip=§aScan a Salt Block with Hydrofluoric Acid for this Data
 gcyl.research.deep_radioactive=§6Deep Radioactive Data
 gcyl.research.deep_radioactive.tooltip=§aScan a Plutonium 244 Block for this Data
+gcyl.research.deep_rare_earth=§6Deep Rare Earth Data
+gcyl.research.deep_rare_earth.tooltip=§aScan a Neodymium Block for this Data
+gcyl.research.deep_overworld_gas=§6Deep Overworld Gas Data
+gcyl.research.deep_overworld_gas.tooltip=§aScan Liquid Air for this Data
+gcyl.research.deep_nether_gas=§6Deep Nether Gas Data
+gcyl.research.deep_nether_gas.tooltip=§aScan Liquid Nether Air for this Data
 
 gcyl.machine.deep_miner.name=Deep Miner (DM)
 gcyl.machine.deep_miner.config.0=Fluid type set to Lava
@@ -4786,16 +4799,225 @@ tile.gcyl_reactor_casing.cladded_reactor_casing.name=Radiation Safe Casing
 
 gcyl.machine.greenhouse_mv.name=Greenhouse (GH)
 gcyl.machine.greenhouse_uv.name=Industrial Greenhouse (IGH)
+recipemap.greenhouse.name=Greenhouse
 
 metaitem.cover.ender.item_link.name=Ender Item Link Cover
 metaitem.cover.ender.item_link.tooltip=Transports §rItems§7 with a §rWireless §dEnder§r Connection§7 as §rCover§7.
 cover.conveyor.mode=Conveyor Mode
 
-gcyl.machine.mega_cleanroom.name=Mega Cleanroom (MC)
+gcyl.machine.mega_cleanroom.name=Large Cleaning Facility (LCF)
 gcyl.machine.cleanroom.tooltip.1=§bSize: §f21x21x10 to 101x101x101
 gcyl.machine.cleanroom.tooltip.2=§cMay cause performance issues! Read additional structure info.
 gcyl.machine.cleanroom.tooltip.3=§cTo increase performance, the multiblock only checks its structure pattern on forming and when saving the world.
 gcyl.machine.cleanroom.tooltip.4=§c§lDO NOT TRY TO CHEAT THIS! §r§cDoing so will cause the multiblock to constantly check its structure upon loading into the world, causing major TPS lag until fixed.
 gcyl.machine.cleanroom.tooltip.5=§c§lMake sure the structure is valid if you make changes to the multiblock!
+gcyl.machine.cleanroom.tooltip.6=§aReplace the controller block if you are having issues before reporting a bug!
+gcyl.recipe.cleanroom_iso_3.display_name=ISO 3 Cleanroom
+gcyl.recipe.cleanroom_iso_2.display_name=ISO 2 Cleanroom
+gcyl.recipe.cleanroom_iso_1.display_name=ISO 1 Cleanroom
+gcyl.recipe.cleanroom_iso_0.display_name=ISO 0 Cleanroom
+tile.cleanroom_casing.filter_casing_iso_3.name=ISO 3 Filter Casing
+tile.cleanroom_casing.filter_iso_3.tooltip=Creates an §aISO 3 Specification§7 Environment
+tile.cleanroom_casing.filter_casing_iso_2.name=ISO 2 Filter Casing
+tile.cleanroom_casing.filter_iso_2.tooltip=Creates an §aISO 2 Specification§7 Environment
+tile.cleanroom_casing.filter_casing_iso_1.name=ISO 1 Filter Casing
+tile.cleanroom_casing.filter_iso_1.tooltip=Creates an §aISO 1 Specification§7 Environment
+tile.cleanroom_casing.filter_casing_iso_0.name=ISO 0 Filter Casing
+tile.cleanroom_casing.filter_iso_0.tooltip=Creates an §aISO 0 Specification§7 Environment
+tile.cleanroom_casing.warning=Can only be used in the Large Cleaning Facility!
+
+gcyl.machine.maintenance_hatch_sterile_cleanroom_auto.name=Automatic Sterile Filtration Maintenance Hatch
+gcyl.machine.maintenance_hatch_iso_3_cleanroom_auto.name=Automatic ISO 3 Filtration Maintenance Hatch
+gcyl.machine.maintenance_hatch_iso_2_cleanroom_auto.name=Automatic ISO 2 Filtration Maintenance Hatch
+gcyl.machine.maintenance_hatch_iso_1_cleanroom_auto.name=Automatic ISO 1 Filtration Maintenance Hatch
+
 
 gcyl.material.bismuth_210=Bismuth 210
+
+gcyl.machine.wireless_pss.name=§dWireless Power Substation
+gcyl.machine.wireless_power_substation.tooltip1=Use a Screwdriver to activate Wireless. Use while Sneaking to make it Private.
+gcyl.machine.wireless_power_substation.tooltip4=Can only be changed by replacing the controller.
+gcyl.machine.wireless_power_substation.tooltip2=Every 60 seconds, it will balance the power between itself and the Wireless Network.
+gcyl.machine.wireless_power_substation.tooltip3=More restrictive on minimum casings!
+gcyl.multiblock.wireless_pss.wireless_eu=§dWireless EU: %s
+gcyl.multiblock.wireless_pss.player_offline=§c(Player Offworld)
+gcyl.multiblock.wireless_pss.public=(Public)
+gcyl.multiblock.wireless_pss.private=(%s)
+gcyl.multiblock.wireless_pss.not_initialized=§dWireless EU: §cNot Initialized
+tile.gcyl_multiblock_casing2.seaborgium_substation_casing.name=§dField Generating Substation Casing
+gcyl.wireless_initialized_private=Initialized (Private)
+gcyl.wireless_initialized_public=Initialized (Public)
+
+
+gcyl.wireless_hatch.tooltip1=Use a Screwdriver to activate Wireless. Use while Sneaking to make it Private.
+gcyl.wireless_hatch.tooltip2=Can only be changed by replacing.
+gcyl.machine.wireless_energy_hatch.input.ulv.name=§dULV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.ulv.4.name=§dULV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.ulv.16.name=§dULV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.ulv.64.name=§dULV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.lv.name=§dLV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.lv.4.name=§dLV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.lv.16.name=§dLV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.lv.64.name=§dLV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.mv.name=§dMV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.mv.4.name=§dMV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.mv.16.name=§dMV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.mv.64.name=§dMV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.hv.name=§dHV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.hv.4.name=§dHV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.hv.16.name=§dHV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.hv.64.name=§dHV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.ev.name=§dEV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.ev.4.name=§dEV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.ev.16.name=§dEV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.ev.64.name=§dEV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.iv.name=§dIV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.iv.4.name=§dIV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.iv.16.name=§dIV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.iv.64.name=§dIV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.luv.name=§dLuV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.luv.4.name=§dLuV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.luv.16.name=§dLuV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.luv.64.name=§dLuV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.zpm.name=§dZPM Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.zpm.4.name=§dZPM 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.zpm.16.name=§dZPM 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.zpm.64.name=§dZPM 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.uv.name=§dUV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uv.4.name=§dUV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uv.16.name=§dUV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uv.64.name=§dUV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.uhv.name=§dUHV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uhv.4.name=§dUHV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uhv.16.name=§dUHV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uhv.64.name=§dUHV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.uev.name=§dUEV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uev.4.name=§dUEV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uev.16.name=§dUEV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uev.64.name=§dUEV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.uiv.name=§dUIV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uiv.4.name=§dUIV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uiv.16.name=§dUIV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uiv.64.name=§dUIV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.uxv.name=§dUXV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uxv.4.name=§dUXV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uxv.16.name=§dUXV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.uxv.64.name=§dUXV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.opv.name=§dOpV Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.opv.4.name=§dOpV 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.opv.16.name=§dOpV 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.opv.64.name=§dOpV 64A Wireless Energy Hatch
+
+gcyl.machine.wireless_energy_hatch.input.max.name=§dMAX Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.max.4.name=§dMAX 4A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.max.16.name=§dMAX 16A Wireless Energy Hatch
+gcyl.machine.wireless_energy_hatch.input.max.64.name=§dMAX 64A Wireless Energy Hatch
+
+metaitem.nuclear.star.name=Nuclear Star
+
+gcyl.material.deep_overworld_gas=Deep Overworld Gas
+gcyl.material.deep_nether_gas=Deep Nether Gas
+
+gcyl.machine.parallel_hatch.uev.name=Super Parallel Control Hatch II
+gcyl.machine.parallel_hatch.uxv.name=Super Parallel Control Hatch III
+gcyl.machine.parallel_hatch.max.name=Perfected Parallel Control Hatch
+
+gcyl.machine.hpca.cooling_component.uv.name=UV HPCA Cooling Component
+gcyl.machine.hpca.cooling_component.uhv.name=UHV HPCA Cooling Component
+gcyl.machine.hpca.cooling_component.uev.name=UEV HPCA Cooling Component
+gcyl.machine.hpca.cooling_component.uiv.name=UIV HPCA Cooling Component
+gcyl.machine.hpca.cooling_component.uxv.name=UXV HPCA Cooling Component
+gcyl.machine.hpca.cooling_component.opv.name=OpV HPCA Cooling Component
+gcyl.machine.hpca.cooling_component.max.name=MAX HPCA Cooling Component
+
+gcyl.machine.hpca.computation_component.uv.name=UV HPCA Computation Component
+gcyl.machine.hpca.computation_component.uhv.name=UHV HPCA Computation Component
+gcyl.machine.hpca.computation_component.uev.name=UEV HPCA Computation Component
+gcyl.machine.hpca.computation_component.uiv.name=UIV HPCA Computation Component
+gcyl.machine.hpca.computation_component.uxv.name=UXV HPCA Computation Component
+gcyl.machine.hpca.computation_component.opv.name=OpV HPCA Computation Component
+gcyl.machine.hpca.computation_component.max.name=MAX HPCA Computation Component
+
+gcyl.machine.laser_miner.name=High Precision Laser Miner
+
+gcyl.material.sterile_bio_growth_medium=Sterilized Bio Growth Medium
+gcyl.material.raw_bio_growth_medium=Raw Bio Growth Medium
+
+metaitem.bio_cells.name=Stem Bio Cells
+metaitem.bio_cells.tooltip=Mutated Raw Intelligence
+metaitem.board.bio.name=Bioware Lifesupport Circuit Board
+metaitem.board.bio.tooltip=The Board That Keeps More Life
+metaitem.board_circuit.bio.name=Bio Master Circuit Board
+metaitem.board_circuit.bio.tooltip=The Board That Keeps More Life
+metaitem.crystal.asoc.name=Crystal ASoC
+metaitem.crystal.asoc.tooltip=Advanced Crystal System on Chip
+metaitem.living.soc.name=Living SoC
+metaitem.living.soc.tooltip=Living System on Chip
+metaitem.living_bio.soc.name=Living Bio SoC
+metaitem.living_bio.soc.tooltip=Mutated Living System on Chip
+metaitem.wafer.bio.name=Living Bio Wafer
+metaitem.wafer.bio.tooltip=Mutated Living Raw Circuit
+
+metaitem.wafer.npic.name=NPIC Wafer
+metaitem.wafer.npic.tooltip=Raw NPIC
+metaitem.wafer.ppic.name=PPIC Wafer
+metaitem.wafer.ppic.tooltip=Raw PPIC
+metaitem.wafer.qpic.name=QPIC Wafer
+metaitem.wafer.qpic.tooltip=Raw QPIC
+
+#TODO Add tooltips to these
+metaitem.npic.name=NPIC
+metaitem.npic.tooltip=
+metaitem.ppic.name=PPIC
+metaitem.ppic.tooltip=
+metaitem.qpic.name=QPIC
+metaitem.qpic.tooltip=
+
+gcyl.machine.wireless_data_bank.name=§dWireless Data Bank
+gcyl.machine.wireless_data_bank.tooltip.1=Use a Screwdriver to activate Wireless. Use while Sneaking to make it Private.
+gcyl.machine.wireless_data_bank.tooltip.2=Can only be changed by replacing the controller.
+gcyl.machine.wireless_data_bank.tooltip.3=Every 60 seconds, it will send Data stored in its Input Buses to the Wireless Network.
+gcyl.machine.wireless_data_bank.tooltip.6=Can only have 1 Wireless Data Bank for a Public Network or per Private Network.
+gcyl.machine.wireless_data_bank.tooltip.4=Wireless Bulk Data Storage
+gcyl.machine.wireless_data_bank.tooltip.5=Uses §f%s EU/t§7 per Input Bus.
+gcyl.machine.wireless_data_bank.tooltip.7=Uses §f%s mB/t§7 of Dielectric PCB Coolant per Input Bus.
+gcyl.machine.wireless_data_hatch.name=§dWireless Data Access Hatch
+gcyl.machine.wireless_data_hatch.tooltip.1=Wireless Data Access for Multiblocks
+gcyl.machine.wireless_data_hatch.tooltip.2=Use a Screwdriver to activate Wireless. Use while Sneaking to make it Private.
+gcyl.machine.wireless_data_hatch.tooltip.3=Can only be changed by replacing.
+gcyl.machine.wireless_data_hatch.tooltip.4=Every 60 seconds, it will retrieve Data from the Wireless Network.
+gcyl.multiblock.wireless_pss.not_enough_coolant=Not Enough Coolant!
+
+gcyl.machine.large_air_collector.name=Large Gas Collector (LGC)
+gcyl.machine.large_air_collector.tooltip.1=Gains §fDuration§7 and §fEU/t§7 bonuses depending on §fFilter Tier§7.
+
+gcyl.machine.large_fisher.name=Large Fisher (LF)
+gcyl.machine.large_fisher.tooltip.1=Requires being in one of these §fBiomes§7:
+gcyl.machine.large_fisher.tooltip.2=§9%s
+recipemap.fisher.name=Large Fisher
+
+gcyl.machine.large_rock_breaker.name=Large Rock Breaker (LRB)
+gcyl.machine.large_rock_breaker.tooltip.1=Requires §f3^Tier mb/t§7 §9Water§7 and §cLava§7 to operate.
+
+metaitem.wireless_electric.not_initialized.tooltip=Not Initialized. Sneak while using for Private, just use for Public. Cannot be changed later!
+metaitem.wireless_electric.private.tooltip=Private (%s)
+metaitem.wireless_electric.public.tooltip=Public
+
+metaitem.wireless_battery_uv.name=§dWireless Energy Module
+
+gcyl.multiblock.vom.fluid_output_full=Fluid Output Full!
+
+tile.gcyl_metal_casing_2.casing_iridium.name=Advanced Iridium Plated Machine Casing

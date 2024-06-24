@@ -1,11 +1,14 @@
 package com.fulltrix.gcyl.item;
 
+import com.fulltrix.gcyl.api.items.WirelessElectricStats;
 import com.fulltrix.gcyl.item.behaviors.MinerDataItemBehavior;
+import gregtech.api.GTValues;
 import gregtech.api.items.metaitem.StandardMetaItem;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.MarkerMaterials.Tier;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.behaviors.DataItemBehavior;
+import net.minecraft.item.ItemStack;
 
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
@@ -102,6 +105,7 @@ public class GCYLCoreItem extends StandardMetaItem {
         BOULE_RUTHERFORDIUM = addItem(341, "boule.rutherfordium");
 
         UNSTABLE_STAR = addItem(343, "unstable.star");
+        NUCLEAR_STAR = addItem(344, "nuclear.star");
 
         CONVEYOR_MODULE_MAX = addItem(353, "conveyor.module.max");
 
@@ -374,9 +378,49 @@ public class GCYLCoreItem extends StandardMetaItem {
 
         COVER_ENDER_ITEM_LINK = addItem(620, "cover.ender.item_link");
 
+        VOLTAGE_COIL_UHV = addItem(621, "voltage_coil.uhv");
+        VOLTAGE_COIL_UEV = addItem(622, "voltage_coil.uev");
+        VOLTAGE_COIL_UIV = addItem(623, "voltage_coil.uiv");
+        VOLTAGE_COIL_UXV = addItem(624, "voltage_coil.uxv");
+        VOLTAGE_COIL_OpV = addItem(625, "voltage_coil.opv");
+        VOLTAGE_COIL_MAX = addItem(626, "voltage_coil.max");
+
+        BIO_CELLS = addItem(627, "bio_cells");
+        BIO_BOARD = addItem(628, "board.bio");
+        BIO_CIRCUIT_BOARD = addItem(629, "board_circuit.bio");
+        ADVANCED_CRYSTAL_SOC = addItem(630, "crystal.asoc");
+        LIVING_SOC = addItem(631, "living.soc");
+        LIVING_BIO_SOC = addItem(632, "living_bio.soc");
+        BIO_WAFER = addItem(633, "wafer.bio");
+
+        NPIC_WAFER = addItem(634,"wafer.npic");
+        PPIC_WAFER = addItem(635,"wafer.ppic");
+        QPIC_WAFER = addItem(636,"wafer.qpic");
+        NPIC = addItem(637,"npic");
+        PPIC = addItem(638,"ppic");
+        QPIC = addItem(639,"qpic");
+
+        WIRELESS_BATTERY_UV = addItem(640, "wireless_battery_uv").addComponents(WirelessElectricStats.createRechargeableBattery(20_000_000_000L, GTValues.UV)).setModelAmount(8);
+        /*
+        641
+        642
+        643
+        644
+        645
+        646
+         */
+
         PYROLYTIC_CARBON = addItem(16, "pyrolytic_carbon");
         MICA_SHEET = addItem(26, "mica_sheet");
         MICA_INSULATOR_SHEET = addItem(27, "mica_insulator_sheet");
         MICA_INSULATOR_FOIL = addItem(28, "mica_insulator_foil");
+
+    }
+    @Override
+    public boolean hasEffect(ItemStack itemStack) {
+        return super.hasEffect(itemStack)
+                || itemStack.getMetadata() == UNSTABLE_STAR.getStackForm().getMetadata()
+                || itemStack.getMetadata() == NUCLEAR_STAR.getStackForm().getMetadata()
+                || itemStack.getMetadata() == WIRELESS_BATTERY_UV.getStackForm().getMetadata();
     }
 }

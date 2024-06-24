@@ -1,6 +1,6 @@
 package com.fulltrix.gcyl.machines.multi.advance;
 
-import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
+import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
 import gregicality.multiblocks.api.render.GCYMTextures;
 import gregicality.multiblocks.common.block.GCYMMetaBlocks;
@@ -23,13 +23,11 @@ import org.jetbrains.annotations.NotNull;
 
 import static gregtech.api.util.RelativeDirection.*;
 
-//TODO: hide or replace the gcym large centrifuge somehow
-
 public class MetaTileEntityAdvCentrifuge extends GCYMRecipeMapMultiblockController {
 
     public MetaTileEntityAdvCentrifuge(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId,
-                new RecipeMap[] { RecipeMaps.CENTRIFUGE_RECIPES, RecipeMaps.THERMAL_CENTRIFUGE_RECIPES, GCYLRecipeMaps.ADVANCED_CENTRIFUGE_RECIPES });
+                new RecipeMap[] { RecipeMaps.THERMAL_CENTRIFUGE_RECIPES, GCYLRecipeMaps.ADVANCED_CENTRIFUGE_RECIPES });
     }
 
     @Override

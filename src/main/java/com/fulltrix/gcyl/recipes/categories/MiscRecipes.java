@@ -1,72 +1,40 @@
 package com.fulltrix.gcyl.recipes.categories;
 
 import gregtech.api.GTValues;
+import gregtech.api.fluids.store.FluidStorageKeys;
+import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.chance.output.ChancedOutputLogic;
+import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.stack.UnificationEntry;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+import static com.fulltrix.gcyl.api.GCYLUtility.getAssLineResearchBuilder;
+import static com.fulltrix.gcyl.api.GCYLUtility.getPolymerByTier;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
-import static com.fulltrix.gcyl.machines.GCYLTileEntities.DEEP_MINER;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.ADVANCED_MIXER_RECIPES;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.DECAY_CHAMBERS_RECIPES;
-import static gregicality.multiblocks.api.unification.GCYMMaterials.Stellite100;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.DECAY_CHAMBERS_RECIPES;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.Materials.Bismuth;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
-import static gregtech.common.items.MetaItems.COVER_ENDER_FLUID_LINK;
-import static gregtech.common.metatileentities.MetaTileEntities.HULL;
+import static gregtech.common.metatileentities.MetaTileEntities.*;
 import static gregtech.loaders.recipe.MetaTileEntityLoader.registerMachineRecipe;
 import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.NeutralMatter;
 
 public class MiscRecipes {
     public static void init() {
         initSolars();
-
+highTierVoltageCoils();
 
         //TODO: FINISH NUCLEAR AND REMOVE
         temporaryNuclearRecipes();
-
-        // Quantum Dust
-        ADVANCED_MIXER_RECIPES.recipeBuilder().duration(10500).EUt(30)
-                .input(dust, Stellite100, 15)
-                .input(dust, Jasper, 5)
-                .input(dust, Gallium, 5)
-                .input(dust, Americium241, 5)
-                .input(dust, Palladium, 5)
-                .input(dust, Bismuth, 5)
-                .input(dust, Germanium, 5)
-                .input(dust,SiliconCarbide,5)
-                .output(dust, Quantum, 50)
-                .buildAndRegister();
-
-        //Bright steel
-        MIXER_RECIPES.recipeBuilder().duration(400).EUt(1920)
-                .input(dust, Steel, 4)
-                .input(dust, Bismuth, 2)
-                .input(dust, Caesium, 2)
-                .input(dust, Europium,1)
-                .output(dust, BrightSteel, 9)
-                .circuitMeta(9)
-                .buildAndRegister();
-
-        //Inconel 625 dust
-        MIXER_RECIPES.recipeBuilder().duration(860).EUt(480)
-                .input(dust, Nickel, 3)
-                .input(dust, Chrome, 7)
-                .input(dust, Molybdenum, 10)
-                .input(dust, Invar, 10)
-                .input(dust, Nichrome, 13)
-                .circuitMeta(5)
-                .output(dust, Inconel625, 43)
-                .buildAndRegister();
 
         //eglin steel dust and base dust
         MIXER_RECIPES.recipeBuilder().duration(20 * 10).EUt(120)
@@ -77,14 +45,6 @@ public class MiscRecipes {
                 .output(dust, EglinSteelBase, 10)
                 .buildAndRegister();
 
-        MIXER_RECIPES.recipeBuilder().duration(13 * 20).EUt(120)
-                .input(dust, EglinSteelBase, 10)
-                .input(dust, Sulfur)
-                .input(dust, Silicon)
-                .input(dust, Carbon)
-                .output(dust, EglinSteel, 13)
-                .circuitMeta(5)
-                .buildAndRegister();
 
         //Babbitt alloy
         MIXER_RECIPES.recipeBuilder().duration(50 * 20).EUt(GTValues.VA[ZPM])
@@ -124,6 +84,54 @@ public class MiscRecipes {
                 .dimension(1)
                 .outputs(new ItemStack(Blocks.END_STONE))
                 .buildAndRegister();
+
+        //liquid nitrogen
+        VACUUM_RECIPES.recipeBuilder().EUt(1920).duration(200)
+                .fluidInputs(Nitrogen.getFluid(1000))
+                .fluidOutputs(Nitrogen.getFluid(FluidStorageKeys.LIQUID, 1000))
+                .buildAndRegister();
+
+        //liquid helium-3
+        VACUUM_RECIPES.recipeBuilder().EUt(30720).duration(200)
+                .fluidInputs(Helium3.getFluid(1000))
+                .fluidOutputs(Helium3.getFluid(FluidStorageKeys.LIQUID, 1000))
+                .buildAndRegister();
+
+        //carbon fibers from gcyl polymers
+        AUTOCLAVE_RECIPES.recipeBuilder().EUt(GTValues.VA[IV]).duration(37)
+                .fluidInputs(Polyetheretherketone.getFluid(9))
+                .input(dust, Carbon, 8)
+                .outputs(CARBON_FIBERS.getStackForm(32))
+                .buildAndRegister();
+
+        AUTOCLAVE_RECIPES.recipeBuilder().EUt(GTValues.VA[LuV]).duration(37)
+                .fluidInputs(Zylon.getFluid(9))
+                .input(dust, Carbon, 8)
+                .outputs(CARBON_FIBERS.getStackForm(64))
+                .buildAndRegister();
+
+        AUTOCLAVE_RECIPES.recipeBuilder().EUt(GTValues.VA[ZPM]).duration(37)
+                .fluidInputs(FullerenePolymerMatrix.getFluid(9))
+                .input(dust, Carbon, 4)
+                .outputs(CARBON_FIBERS.getStackForm(64))
+                .buildAndRegister();
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UV]).duration(1200)
+                .outputs(WIRELESS_BATTERY_UV.getStackForm())
+                .inputs(ENERGY_CLUSTER.getStackForm())
+                .input(circuit, MarkerMaterials.Tier.UV, 16)
+                .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64))
+                .inputs(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64))
+                .inputs(SENSOR_UV.getStackForm(6))
+                .inputs(FIELD_GENERATOR_UV.getStackForm(3))
+                .input(wireGtDouble, UVSuperconductor, 64)
+                .input(wireGtDouble, UVSuperconductor, 64)
+                .fluidInputs(Indalloy140.getFluid( L * 32))
+                .fluidInputs(getPolymerByTier(UV).getFluid(L * 32))
+                .fluidInputs(Seaborgium.getFluid( L * 32))
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .buildAndRegister();
+
     }
 
     public static void initSolars() {
@@ -212,14 +220,14 @@ public class MiscRecipes {
         //alpha decay
 
         //beta decay
-        DECAY_CHAMBERS_RECIPES.recipeBuilder().EUt(7680).duration(300)
+        DECAY_CHAMBERS_RECIPES.recipeBuilder().EUt(1920).duration(300)
                 .input(dust, Bismuth210, 1)
                 .chancedOutputLogic(ChancedOutputLogic.XOR)
                 .chancedOutput(dust, Polonium, 5000, 0)
                 .chancedOutput(dust, Bismuth, 10000, 0)
                 .buildAndRegister();
 
-        DECAY_CHAMBERS_RECIPES.recipeBuilder().EUt(7680).duration(300)
+        DECAY_CHAMBERS_RECIPES.recipeBuilder().EUt(1920).duration(300)
                 .input(dust, Uranium238, 1)
                 .fluidInputs(NeutralMatter.getFluid(200))
                 .chancedOutputLogic(ChancedOutputLogic.XOR)
@@ -236,7 +244,7 @@ public class MiscRecipes {
                 .buildAndRegister();
 
         //isotopes
-        DECAY_CHAMBERS_RECIPES.recipeBuilder().EUt(7680).duration(300)
+        DECAY_CHAMBERS_RECIPES.recipeBuilder().EUt(1920).duration(300)
                 .input(dust, Bismuth, 1)
                 .fluidInputs(NeutralMatter.getFluid(100))
                 .chancedOutputLogic(ChancedOutputLogic.XOR)
@@ -264,6 +272,105 @@ public class MiscRecipes {
                 .chancedOutput(dust, Plutonium244, 2000, 300)
                 .chancedOutput(dustTiny, Uranium238, 3000, 450)
                 .buildAndRegister();
+
+        //NUCLEAR STAR
+        AUTOCLAVE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UIV]).duration(600)
+                .inputs(UNSTABLE_STAR.getStackForm(16))
+                .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 8))
+                .outputs(NUCLEAR_STAR.getStackForm())
+                .buildAndRegister();
+
+        //liquid deep overworld and nether gas
+        VACUUM_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.EV]).duration(400)
+                .fluidInputs(DeepOverworldGas.getFluid(4000))
+                .fluidOutputs(DeepOverworldGas.getFluid(FluidStorageKeys.LIQUID, 4000))
+                .buildAndRegister();
+
+        VACUUM_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.IV]).duration(400)
+                .fluidInputs(DeepNetherGas.getFluid(4000))
+                .fluidOutputs(DeepNetherGas.getFluid(FluidStorageKeys.LIQUID, 4000))
+                .buildAndRegister();
+
+        //distillation of deep gases
+        DISTILLATION_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.EV]).duration(2000)
+                .fluidInputs(DeepOverworldGas.getFluid(FluidStorageKeys.LIQUID, 128000))
+                .fluidOutputs(SaltWater.getFluid(64000))
+                .fluidOutputs(Chlorine.getFluid(32000))
+                .fluidOutputs(Fluorine.getFluid(32000))
+                .buildAndRegister();
+
+        DISTILLATION_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.IV]).duration(2000)
+                .fluidInputs(DeepNetherGas.getFluid(FluidStorageKeys.LIQUID, 256000))
+                .fluidOutputs(Oil.getFluid(128000))
+                .fluidOutputs(IodizedOil.getFluid(64000))
+                .fluidOutputs(CharcoalByproducts.getFluid(32000))
+                .fluidOutputs(Toluene.getFluid(16000))
+                .fluidOutputs(Octane.getFluid(16000))
+                .buildAndRegister();
+
+        // Silicon Carbide
+        BLAST_RECIPES.recipeBuilder().EUt(120).duration(3000).blastFurnaceTemp(2500)
+                .input(dust, Silicon)
+                .input(dust, Carbon)
+                .notConsumable(new IntCircuitIngredient(2))
+                .notConsumable(Argon.getFluid(1))
+                .output(dust, SiliconCarbide, 2)
+                .buildAndRegister();
+
+        // Snow Dust
+        MACERATOR_RECIPES.recipeBuilder().EUt(2).duration(60)
+                .inputs(new ItemStack(Blocks.SNOW))
+                .output(dust, Snow, 4)
+                .buildAndRegister();
+
+        MACERATOR_RECIPES.recipeBuilder().EUt(2).duration(15)
+                .inputs(new ItemStack(Items.SNOWBALL))
+                .output(dust, Snow)
+                .buildAndRegister();
     }
 
+    private static void highTierVoltageCoils() {
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[UHV])
+                .circuitMeta(1)
+                .input(stick, SamariumMagnetic)
+                .input(wireFine, Seaborgium, 16)
+                .outputs(VOLTAGE_COIL_UHV.getStackForm())
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[UEV])
+                .circuitMeta(1)
+                .input(stick, SamariumMagnetic)
+                .input(wireFine, Bohrium, 16)
+                .outputs(VOLTAGE_COIL_UEV.getStackForm())
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[UIV])
+                .circuitMeta(1)
+                .input(stick, SamariumMagnetic)
+                .input(wireFine, MetastableHassium, 16)
+                .outputs(VOLTAGE_COIL_UIV.getStackForm())
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[UXV])
+                .circuitMeta(1)
+                .input(stick, SamariumMagnetic)
+                .input(wireFine, HeavyQuarkDegenerateMatter, 16)
+                .outputs(VOLTAGE_COIL_UXV.getStackForm())
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[OpV])
+                .circuitMeta(1)
+                .input(stick, NaquadriaticTaranium)
+                .input(wireFine, Neutronium, 16)
+                .outputs(VOLTAGE_COIL_OpV.getStackForm())
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().duration(200).EUt(VA[MAX])
+                .circuitMeta(1)
+                .input(stick, NaquadriaticTaranium)
+                .input(wireFine, CosmicNeutronium, 16)
+                .outputs(VOLTAGE_COIL_MAX.getStackForm())
+                .buildAndRegister();
+
+    }
 }

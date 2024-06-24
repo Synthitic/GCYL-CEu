@@ -5,7 +5,7 @@ import gregtech.api.unification.OreDictUnifier;
 import gregtech.common.items.MetaItems;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.*;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.Materials.Palladium;

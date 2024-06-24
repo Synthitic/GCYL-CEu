@@ -5,7 +5,6 @@ package com.fulltrix.gcyl.materials;
 
 import gregtech.api.GTValues;
 import gregtech.api.fluids.FluidBuilder;
-import gregtech.api.unification.Elements;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
 import gregtech.api.unification.material.properties.*;
@@ -17,7 +16,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.fulltrix.gcyl.GCYLElements.*;
-import static com.fulltrix.gcyl.GCYLUtility.gcylId;
+import static com.fulltrix.gcyl.api.GCYLUtility.gcylId;
+import static com.fulltrix.gcyl.materials.GCYLMaterialIconSets.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
@@ -27,7 +27,6 @@ import static gregtech.api.unification.Elements.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 import static gregtech.api.unification.material.info.MaterialIconSet.*;
-import static gregtech.api.util.GTUtility.gregtechId;
 import static gregtech.integration.groovy.MaterialPropertyExpansion.addLiquid;
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_DECONSTRUCTION;
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_REPLICATION;
@@ -1177,7 +1176,10 @@ public class GCYLMaterials {
     public static Material Tetrabromoindigo;
     public static Material CyanIndigoDye;
     public static Material Erythrosine;
-
+    public static Material DeepOverworldGas;
+    public static Material DeepNetherGas;
+    public static Material RawBioGrowthMedium;
+    public static Material SterileBioGrowthMedium;
 
     //COILS
     public static Material Pikyonium;
@@ -1228,9 +1230,18 @@ public class GCYLMaterials {
         CORE_METAL.addAll(Arrays.asList(GENERATE_RING, GENERATE_FRAME, GENERATE_ROTOR, GENERATE_SMALL_GEAR, GENERATE_DENSE, GENERATE_FINE_WIRE, GENERATE_GEAR));
     }
 
+    public static void init() {
+        registerRequiredNuclear();
+        initDEMaterials();
+        register();
+        register2();
+        registerSuperconductors();
+        idSecondary = id+1000;
+        register3();
+        registerSecondaryNuclear();
+    }
 
-
-    public static void register() {
+    private static void register() {
 
         //////////////////////
 
@@ -1407,7 +1418,7 @@ public class GCYLMaterials {
                 .flags(DISABLE_REPLICATION).build();
 
         TungstenTitaniumCarbide = new Material.Builder(++id, gcylId("tungsten_titanium_carbide"))
-                .ingot(7)
+                .ingot(7).fluid().dust()
                 .color(0x800d0d)
                 .iconSet(SHINY)
                 .flags(CORE_METAL, DISABLE_DECOMPOSITION)
@@ -1450,7 +1461,7 @@ public class GCYLMaterials {
                 .flags(DISABLE_REPLICATION).build();
 
         HDCS = new Material.Builder(++id, gcylId("hdcs"))
-                .ingot(5)
+                .ingot(5).fluid()
                 .color(0x334433)
                 .iconSet(SHINY)
                 .flags(CORE_METAL, DISABLE_DECOMPOSITION)
@@ -1463,6 +1474,7 @@ public class GCYLMaterials {
                 .gem(2)
                 .color(13127760)
                 .iconSet(EMERALD)
+                .ore()
                 .flags(NO_SMELTING, HIGH_SIFTER_OUTPUT)
                 .flags(DISABLE_REPLICATION).build();
 
@@ -1714,7 +1726,7 @@ public class GCYLMaterials {
                 .color(0xA09ED7)
                 .iconSet(FLUID)
                 .build()
-                .setFormula("H20NaNO3", true);
+                .setFormula("(H2O)NaNO3", true);
 
         SodiumNitrite = new Material.Builder(++id, gcylId("sodium_nitrite"))
                 .dust()
@@ -3222,6 +3234,7 @@ public class GCYLMaterials {
                 .dust().liquid(new FluidBuilder().temperature(5000))
                 .color(0xFF9A3C)
                 .iconSet(SAND)
+                .ore()
                 .flags(DISABLE_DECOMPOSITION, EXCLUDE_BLOCK_CRAFTING_RECIPES,DISABLE_REPLICATION)
                 .components(Redstone, 1, Blaze, 2, Sulfur, 1)
                 .build();
@@ -3235,9 +3248,10 @@ public class GCYLMaterials {
                 .build();
 
         Cryotheum = new Material.Builder(++id, gcylId("cryotheum"))
-                .dust().liquid()
+                .dust().liquid(new FluidBuilder().temperature(250))
                 .color(0x01F3F6)
                 .iconSet(DULL)
+                .ore()
                 .flags(DISABLE_DECOMPOSITION, EXCLUDE_BLOCK_CRAFTING_RECIPES,DISABLE_REPLICATION)
                 .components(Redstone, 1, Blizz, 2, Water, 1)
                 .build();
@@ -3458,7 +3472,7 @@ public class GCYLMaterials {
                 .setFormula("LaPrNdPmSmEuGdTbDyHoErTmYbLu", true);
         Actinoids = new Material.Builder(++id, gcylId("actinoids"))
                 .dust()
-                .color((Actinium.getMaterialRGB() + Thorium.getMaterialRGB() + Protactinium.getMaterialRGB() + Uranium.getMaterialRGB() + Neptunium.getMaterialRGB() + Plutonium.getMaterialRGB() + Americium.getMaterialRGB() + Curium.getMaterialRGB() + Berkelium.getMaterialRGB() + Californium.getMaterialRGB() + Einsteinium.getMaterialRGB() + Fermium.getMaterialRGB() + Mendelevium.getMaterialRGB()) / 13)
+                .color((Actinium.getMaterialRGB() + Thorium.getMaterialRGB() + Protactinium.getMaterialRGB() + Uranium.getMaterialRGB() + Neptunium.getMaterialRGB() + Plutonium.getMaterialRGB() + Americium.getMaterialRGB() + Curium.getMaterialRGB() + Berkelium.getMaterialRGB() + Californium.getMaterialRGB() + Einsteinium.getMaterialRGB() + Fermium.getMaterialRGB() + Mendelevium.getMaterialRGB() + Nobelium.getMaterialRGB() + Lawrencium.getMaterialRGB()) / 15)
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
                 .build()
@@ -5115,7 +5129,7 @@ public class GCYLMaterials {
                 .build();
 
         SupercooledCryotheum = new Material.Builder(++id, gcylId("supercooled_cryotheum"))
-                .liquid()
+                .liquid(new FluidBuilder().temperature(10))
                 .color(Cryotheum.getMaterialRGB() - 10)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
@@ -6258,6 +6272,7 @@ public class GCYLMaterials {
                 .color(Titanium.getMaterialRGB())
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
+                .element(Ti50)
                 .blast(2000)
                 .build()
                 .setFormula("Ti_50");
@@ -7455,7 +7470,7 @@ public class GCYLMaterials {
                 .setFormula("C2F6S2", true);
     }
 
-    public static void register2() {
+    private static void register2() {
 
         BariumTriflateSolution = new Material.Builder(++id, gcylId("barium_triflate_solution"))
                 .liquid()
@@ -8511,6 +8526,7 @@ public class GCYLMaterials {
                 .color(6605055)
                 .flags(DISABLE_REPLICATION, NO_SMASHING, NO_SMELTING)
                 .iconSet(EMERALD)
+                .ore()
                 .build()
                 .setFormula("Vt¤",true);
 
@@ -8519,6 +8535,7 @@ public class GCYLMaterials {
                 .color(4194504)
                 .flags(DISABLE_REPLICATION, NO_SMASHING, NO_SMELTING, HIGH_SIFTER_OUTPUT)
                 .iconSet(GEM_VERTICAL)
+                .ore()
                 .components(Calcium,2,Aluminium,3,Silicon,3,Hydrogen,1,Oxygen,13)
                 .build();
 
@@ -9632,7 +9649,7 @@ public class GCYLMaterials {
         MicaPulp = new Material.Builder(++id, gcylId("mica_based"))
                 .dust()
                 .color(0x917445)
-                .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION)
+                .flags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION, DISABLE_DECOMPOSITION)
                 .iconSet(SAND)
                 .components(Mica,1,RareEarth,1)
                 .build();
@@ -10305,38 +10322,25 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C20H6I4Na2O5",true);
 
-        /*
-        = new Material.Builder(++id, gcylId("material"))
-                .ingot().liquid()
-                .color()
-                .iconSet()
-                .flags(DISABLE_REPLICATION)
-                .components()
-                .blast()
-                .build();
-
-        = new Material.Builder(++id, gcylId("material"))
-                .liquid()
-                .color()
+        DeepOverworldGas = new Material.Builder(++id, gcylId("deep_overworld_gas"))
+                .gas()
+                .color(Air.getMaterialRGB() - 10)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
                 .build()
-                .setFormula("",true);
+                .setFormula("?",true);
 
-        = new Material.Builder(++id, gcylId("material"))
-                .dust()
-                .color()
+        DeepNetherGas = new Material.Builder(++id, gcylId("deep_nether_gas"))
+                .gas()
+                .color(NetherAir.getMaterialRGB()-10)
                 .flags(DISABLE_REPLICATION)
-                .iconSet()
+                .iconSet(FLUID)
                 .build()
-                .setFormula("",true);
-
-
-         */
+                .setFormula("?",true);
 
     }
 
-    public static void registerSuperconductors() {
+    private static void registerSuperconductors() {
 
         LVSuperconductorBase = new Material.Builder(++id, gcylId("lv_superconductor_base"))
                 .ingot().liquid()
@@ -10595,7 +10599,7 @@ public class GCYLMaterials {
                 .build();
     }
 
-    public static void initDEMaterials() {
+    private static void initDEMaterials() {
 
         Draconium = new Material.Builder(++id, gcylId("draconium"))
                 .ingot().liquid()
@@ -10636,6 +10640,64 @@ public class GCYLMaterials {
                 .blast(50000)
                 .build()
                 .setFormula(makeFancy(TextFormatting.OBFUSCATED+"?????????"));
+    }
+
+    private static void register3() {
+
+        RawBioGrowthMedium = new Material.Builder(++id, gcylId("raw_bio_growth_medium"))
+                .liquid()
+                .color(0x24B222)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("?",true);
+
+        SterileBioGrowthMedium = new Material.Builder(++id, gcylId("sterile_bio_growth_medium"))
+                .liquid()
+                .color(0x35FF31)
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("?",true);
+
+        /*
+        Infinity = new Material.Builder(++id, gcylId("infinity"))
+                .ingot().liquid()
+                .flags(DISABLE_REPLICATION)
+                .iconSet(INFINITY)
+                .build()
+                .setFormula("*If*",true);
+         */
+
+
+    /*
+        = new Material.Builder(++id, gcylId("material"))
+                .ingot().liquid()
+                .color()
+                .iconSet()
+                .flags(DISABLE_REPLICATION)
+                .components()
+                .blast()
+                .build();
+
+        = new Material.Builder(++id, gcylId("material"))
+                .liquid()
+                .color()
+                .flags(DISABLE_REPLICATION)
+                .iconSet(FLUID)
+                .build()
+                .setFormula("",true);
+
+        = new Material.Builder(++id, gcylId("material"))
+                .dust()
+                .color()
+                .flags(DISABLE_REPLICATION)
+                .iconSet()
+                .build()
+                .setFormula("",true);
+
+
+         */
     }
 
     private static String makeFancy(String input) {

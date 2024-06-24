@@ -11,6 +11,13 @@ public class GCYLConfig {
     public static class Multis {
         public VoidMiner voidMiner = new VoidMiner();
         public HyperReactors hyperReactors = new HyperReactors();
+        public LargeFisher largeFisher = new LargeFisher();
+    }
+
+    public static class LargeFisher {
+        @Config.Comment("The whitelisted biomes for the large fisher to work in.")
+        @Config.RequiresMcRestart
+        public String[] whitelistedBiomes = {"Ocean", "Deep Ocean", "River"};
     }
 
     public static class HyperReactors {
@@ -67,20 +74,30 @@ public class GCYLConfig {
         @Config.Name("Void miner ore variants")
         public boolean oreVariants = true;
 
+        @Config.Comment("The name of the ores to blacklist for all Void Miners because there are existing recipes in the Deep Miner")
+        @Config.RequiresMcRestart
+        @Config.Name("Void Miner because Deep Miner Blacklist")
+        public String[] oreBlackListDeepMinerConflict = new String[]{"diamond", "coal", "pyrochlore", "columbite", "bauxite", "aluminium", "rutile", "gallite", "platinum_metallic_powder", "palladium_metallic_powder", "bastnasite", "monazite", "neodymium", "nether_star", "salt", "fluorite", "lepidolite", "spodumene", "naquadric_compound", "enriched_naquadric_compound", "naquadriatic_compound", "uranium_238", "plutonium_generic", "rarest_metal_mixture", "rhodium_salt", "sodium_ruthenate"};
+
+        @Config.Comment("The name of the ores to blacklist for all Void Miners")
+        @Config.RequiresMcRestart
+        @Config.Name("Universal Void Miner Blacklist")
+        public String[] oreBlackListUniversal = new String[]{"naquadah", "sheldonite", "platinum", "palladium", "iridium", "osmium"};
+
         @Config.Comment("The name of the ores to blacklist for the MK1 Void Miner")
         @Config.RequiresMcRestart
         @Config.Name("MK1 Void Miner Blacklist")
-        public String[] oreBlacklist = new String[]{"trinium, triniite, duranium, tritanium, rutherfordium, californium, curium, seaborgium, berkelium, fermium, einsteinium, dubnium, bohrium"};
+        public String[] oreBlacklist = new String[]{"trinium", "triniite", "duranium", "tritanium", "rutherfordium", "californium", "curium", "seaborgium", "berkelium", "fermium", "einsteinium", "dubnium", "bohrium"};
 
         @Config.Comment("The name of the ores to blacklist for the MK2 Void Miner")
         @Config.RequiresMcRestart
         @Config.Name("MK2 Void Miner Blacklist")
-        public String[] oreBlacklistUHV = new String[]{"trinium, fermium, bohrium, seaborgium, einsteinium"};
+        public String[] oreBlacklistUHV = new String[]{"trinium", "fermium", "bohrium", "seaborgium", "einsteinium"};
 
         @Config.Comment("The name of the ores to blacklist for the MK3 Void Miner")
         @Config.RequiresMcRestart
         @Config.Name("MK3 Void Miner Blacklist")
-        public String[] oreBlacklistUEV = new String[]{"bohrium, fermium"};
+        public String[] oreBlacklistUEV = new String[]{"bohrium", "fermium"};
 
         @Config.Comment("The name of items you wish to add to the MK1 Void Miner. Example: \"minecraft:wool:2\"")
         @Config.RequiresMcRestart
@@ -111,6 +128,11 @@ public class GCYLConfig {
         @Config.RequiresMcRestart
         public boolean enableMagnetoCircuits = true;
 
+        @Config.Comment({"Whether to enable wireless dynamo hatches or not. When false, they will be hidden in JEI. They do not have recipes.", "default=false"})
+        @Config.Name("Enable Wireless Dynamos")
+        @Config.RequiresMcRestart
+        public boolean enableWirelessDynamos = false;
+
         @Config.Comment("Whether or not to add diminishing returns for Gregicality Naquadah Reactors. Does not affect the Large Nauqadah Reactor")
         @Config.Name("Naquadah Reactor efficiency loss")
         @Config.RequiresMcRestart
@@ -127,5 +149,25 @@ public class GCYLConfig {
         @Config.Comment("Efficiency level for the LuV rocket engine")
         public int LuVRocketEfficiency= 25;
 
+    }
+
+
+    @Config.Comment("Config options for recipes")
+    public static Recipes recipes = new Recipes();
+
+    public static class Recipes {
+
+        @Config.Comment({"Base amount of circuits outputted per craft of the first circuit of a tier.", "default = 1"})
+        @Config.RequiresMcRestart
+        public int circuitsPerCraft = 1;
+
+
+        @Config.Comment({"Base amount of high tier circuit cores outputted per craft.", "default = 1"})
+        @Config.RequiresMcRestart
+        public int circuitCoresPerCraft = 1;
+
+        @Config.Comment({"How many Multiblock Casings to make per craft. Overrides the default GT Option", "Default: 1"})
+        @Config.RequiresMcRestart
+        public int gcylCasingsPerCraftOverride = 1;
     }
 }

@@ -5,8 +5,8 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.NANOTOME;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.PIEZOELECTRIC_CRYSTAL;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.CHEMICAL_PLANT_RECIPES;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.CHEMICAL_PLANT_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
@@ -81,7 +81,7 @@ public class NanotubeChain {
         // CH2O + 2C2H4O + NH3 -> C5H5N + 3H2O + 2H
         LARGE_CHEMICAL_RECIPES.recipeBuilder().duration(240).EUt(1920)
                 .notConsumable(dust, ThalliumChloride, 1)
-                .circuitMeta(1)
+                .circuitMeta(6)
                 .fluidInputs(Formaldehyde.getFluid(1000))
                 .fluidInputs(Acetaldehyde.getFluid(2000))
                 .fluidInputs(Ammonia.getFluid(1000))
@@ -94,6 +94,7 @@ public class NanotubeChain {
         MIXER_RECIPES.recipeBuilder().duration(150).EUt(120)
                 .input(dust, Nickel)
                 .input(dust, Aluminium)
+                .circuitMeta(2)
                 .output(dust, NiAlCatalyst, 2)
                 .buildAndRegister();
 

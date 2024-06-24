@@ -1,11 +1,9 @@
 package com.fulltrix.gcyl.machines.multi;
 
 import com.fulltrix.gcyl.client.ClientHandler;
-import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.item.GCYLMultiblockCasing2;
-import com.fulltrix.gcyl.item.fusion.GCYLFusionCasing;
 import com.fulltrix.gcyl.item.metal.MetalCasing2;
-import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
+import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -24,6 +22,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import javax.annotation.Nonnull;
 import java.util.List;
 
+import static com.fulltrix.gcyl.api.block.TraceabilityPredicates.advFusionCoils;
 import static com.fulltrix.gcyl.client.ClientHandler.ENRICHED_NAQUADAH_ALLOY_CASING;
 import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_2;
 import static com.fulltrix.gcyl.item.GCYLMetaBlocks.MULTIBLOCK_CASING2;
@@ -56,7 +55,7 @@ public class MetaTileEntityStellarForge extends RecipeMapMultiblockController { 
                 .where('M', air())
                 .where('C', states(getCasingState()).setMinGlobalLimited(130).or(autoAbilities(true, true, true, true, true, true, false)))
                 .where('X', states(MULTIBLOCK_CASING2.getState(GCYLMultiblockCasing2.CasingType.STELLAR_CONTAINMENT)))
-                .where('F', states(MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.FUSION_COIL)))
+                .where('F', advFusionCoils())
                 .where('S', selfPredicate())
                 .where('#', any())
                 .build();

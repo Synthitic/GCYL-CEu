@@ -5,34 +5,37 @@ import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.recipes.chance.output.ChancedOutputLogic;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTCondition;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.TextComponentUtil;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import stanhebben.zenscript.annotations.Optional;
 
 import java.util.Map;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.TOOL_DATA_DEEP_MINER;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.Plutonium;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.DEEP_MINER_RECIPES;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.DEEP_MINER_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 
 public class DeepMinerRecipes {
+
+    //TODO add platinum, iridium, osmium, ruthenium, rhodium recipe?
 
     public static final String RESEARCH_NBT_TAG = "minerDataResearch";
 
@@ -63,12 +66,18 @@ public class DeepMinerRecipes {
         createResearchRecipe("deep_diamond", OreDictUnifier.get(block, Diamond), null,TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 512, 0);
         createResearchRecipe("deep_aluminium", OreDictUnifier.get(block, Aluminium),null,TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 512, 0);
         createResearchRecipe("deep_platinum", OreDictUnifier.get(block, Platinum),null, TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
+        createResearchRecipe("deep_rare_earth", OreDictUnifier.get(block, Neodymium), null, TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
+
+        createResearchRecipe("deep_overworld_gas", null, LiquidAir.getFluid(32000), TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
+        createResearchRecipe("deep_nether_gas", null, LiquidNetherAir.getFluid(32000), TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 7860, 0);
+
 
         createResearchRecipe("deep_salts", OreDictUnifier.get(block, Salt),HydrofluoricAcid.getFluid(16000), TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
 
         createResearchRecipe( "deep_exotics", OreDictUnifier.get(block, Enderium), null, TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 1920, 0);
 
         createResearchRecipe("deep_radioactive", OreDictUnifier.get(block, Plutonium244), null, TOOL_DATA_DEEP_MINER.getStackForm(), true, 300, 7860, 0);
+
 
 
         DEEP_MINER_RECIPES.recipeBuilder()
@@ -171,6 +180,28 @@ public class DeepMinerRecipes {
                 .buildAndRegister();
 
         DEEP_MINER_RECIPES.recipeBuilder()
+                .notConsumable(minerScanMap.get("deep_rare_earth"))
+                .circuitMeta(0)
+                .input(SENSOR_EV)
+                .input(ELECTRIC_PISTON_EV)
+
+                .fluidInputs(DrillingFluid.getFluid(128000))
+                .output(ore, Bastnasite, 64)
+                .output(ore, Monazite, 16)
+                .output(ore, Neodymium, 16)
+                .chancedOutput(ore, Bastnasite, 64,100,2000)
+                .chancedOutput(ore, Monazite, 16,100,2000)
+                .chancedOutput(ore, Neodymium, 16,100,2000)
+                .chancedOutput(ore, Bastnasite, 64,100,500)
+                .chancedOutput(ore, Monazite, 16,100,500)
+                .chancedOutput(ore, Neodymium, 16,100,500)
+                .duration(4000)
+                .EUt(1920)
+                .temperature(3500)
+                .dimension(0)
+                .buildAndRegister();
+
+        DEEP_MINER_RECIPES.recipeBuilder()
                 .notConsumable(minerScanMap.get("deep_exotics"))
                 .circuitMeta(1)
                 .input(SENSOR_EV)
@@ -186,7 +217,39 @@ public class DeepMinerRecipes {
                 .dimension(-1)
                 .buildAndRegister();
 
+        DEEP_MINER_RECIPES.recipeBuilder()
+                .notConsumable(minerScanMap.get("deep_overworld_gas"))
+                .circuitMeta(0)
+                .input(SENSOR_EV)
+                .input(ELECTRIC_PUMP_EV)
 
+                .fluidInputs(DrillingFluid.getFluid(128000))
+                .fluidOutputs(DeepOverworldGas.getFluid(64000))
+                .chancedFluidOutput(DeepOverworldGas.getFluid(64000), 100, 2000)
+                .chancedFluidOutput(DeepOverworldGas.getFluid(64000), 100, 500)
+                .duration(4000)
+                .EUt(1920)
+                .temperature(3500)
+                .dimension(0)
+                .buildAndRegister();
+
+        DEEP_MINER_RECIPES.recipeBuilder()
+                .notConsumable(minerScanMap.get("deep_nether_gas"))
+                .circuitMeta(1)
+                .input(SENSOR_IV)
+                .input(ELECTRIC_PUMP_IV)
+
+                .fluidInputs(DrillingFluid.getFluid(256000))
+                .fluidInputs(NitricAcid.getFluid(16000))
+                .fluidOutputs(DeepNetherGas.getFluid(64000))
+                .chancedFluidOutput(DeepNetherGas.getFluid(64000), 100, 2000)
+                .chancedFluidOutput(DeepNetherGas.getFluid(64000), 100, 500)
+                .duration(4000)
+                .EUt(7860)
+                .temperature(4500)
+                .dimension(-1)
+                .buildAndRegister();
+/*
         DEEP_MINER_RECIPES.recipeBuilder()
                 .notConsumable(minerScanMap.get("deep_salts"))
                 .circuitMeta(1)
@@ -204,6 +267,9 @@ public class DeepMinerRecipes {
                 .dimension(-1)
                 .buildAndRegister();
 
+ */
+
+        /*
         DEEP_MINER_RECIPES.recipeBuilder()
                 .notConsumable(minerScanMap.get("deep_salts"))
                 .circuitMeta(2)
@@ -220,6 +286,8 @@ public class DeepMinerRecipes {
                 .temperature(4500)
                 .dimension(-1)
                 .buildAndRegister();
+
+         */
 
         DEEP_MINER_RECIPES.recipeBuilder()
                 .notConsumable(minerScanMap.get("deep_salts"))
@@ -301,7 +369,6 @@ public class DeepMinerRecipes {
                 .circuitMeta(0)
                 .input(SENSOR_LuV)
                 .input(ELECTRIC_PISTON_LUV)
-
                 .fluidInputs(DrillingFluid.getFluid(512000))
                 .fluidInputs(NitricAcid.getFluid(64000))
                 .output(ore, Uranium238, 64)
@@ -316,10 +383,35 @@ public class DeepMinerRecipes {
                 .dimension(0)
                 .buildAndRegister();
 
-        }
+        DEEP_MINER_RECIPES.recipeBuilder()
+                .notConsumable(minerScanMap.get("deep_platinum"))
+                .circuitMeta(1)
+                .input(SENSOR_ZPM)
+                .input(ELECTRIC_PISTON_ZPM)
+                .fluidInputs(DrillingFluid.getFluid(1024000))
+                .fluidInputs(NitricAcid.getFluid(128000))
+                .output(ore, RarestMetalMixture, 64)
+                .output(ore, RarestMetalMixture, 64)
+                .output(ore, RhodiumSalt, 64)
+                .output(ore, RhodiumSalt, 64)
+                .output(ore, SodiumRuthenate, 64)
+                .output(ore, SodiumRuthenate, 64)
+                .chancedOutput(ore, RarestMetalMixture, 64, 100,2000)
+                .chancedOutput(ore, RarestMetalMixture, 64, 100,2000)
+                .chancedOutput(ore, RhodiumSalt, 64, 100,2000)
+                .chancedOutput(ore, RhodiumSalt, 64, 100,2000)
+                .chancedOutput(ore, SodiumRuthenate, 64, 100,2000)
+                .chancedOutput(ore, SodiumRuthenate, 64, 100,2000)
+                .duration(4000)
+                .EUt(GTValues.VA[GTValues.ZPM])
+                .temperature(8300)
+                .dimension(0)
+                .buildAndRegister();
+
+    }
 
 
-    public static void createResearchRecipe(@NotNull String researchId, @NotNull ItemStack researchItem, FluidStack fluid,
+    public static void createResearchRecipe(@NotNull String researchId, ItemStack researchItem, FluidStack fluid,
                                                    @NotNull ItemStack dataItem, boolean ignoreNBT, int duration,
                                                    int EUt, int CWUt) {
 
@@ -328,7 +420,7 @@ public class DeepMinerRecipes {
 
         dataItem.setTagCompound(compound);
 
-        dataItem.setStackDisplayName(I18n.format("gcyl.research."+researchId));
+        dataItem.setStackDisplayName((new TextComponentTranslation("gcyl.research." + researchId).getFormattedText()));
 
         if (CWUt > 0) {
             RecipeBuilder<?> researchBuilder = RecipeMaps.RESEARCH_STATION_RECIPES.recipeBuilder()
@@ -354,13 +446,17 @@ public class DeepMinerRecipes {
                     .EUt(EUt);
 
             if (ignoreNBT) {
-                builder.inputNBT(researchItem.getItem(), 1, researchItem.getMetadata(), NBTMatcher.ANY,
-                        NBTCondition.ANY);
+                if (researchItem != null) {
+                    builder.inputNBT(researchItem.getItem(), 1, researchItem.getMetadata(), NBTMatcher.ANY,
+                            NBTCondition.ANY);
+                }
                 if (fluid != null) {
                     builder.fluidInputs(fluid);
                 }
             } else {
-                builder.inputs(researchItem);
+                if (researchItem != null) {
+                    builder.inputs(researchItem);
+                }
                 if (fluid != null) {
                     builder.fluidInputs(fluid);
                 }

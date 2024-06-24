@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.machines.multi.simple;
 
+import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
 import com.fulltrix.gcyl.item.GCYLReactorCasing;
@@ -8,11 +9,9 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
-import gregtech.api.recipes.RecipeMap;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockGlassCasing;
-import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
@@ -20,10 +19,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.DECAY_CHAMBERS_RECIPES;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.DECAY_CHAMBERS_RECIPES;
 
 
 //TODO: add neutron mechanics
+//TODO: add tooltips and information
 public class MetaTileEntityDecayChamber extends GCYLRecipeMapMultiblockController {
 
     public MetaTileEntityDecayChamber(ResourceLocation metaTileEntityId, boolean isParallel) {

@@ -1,0 +1,76 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all",
+    "textures": {
+      "all": "gregtech:blocks/rendering_error"
+    }
+  },
+  "variants": {
+    "active=false,variant=adv_fusion_coil_1": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/solid/advanced_fusion_coil_uhv"
+      }
+    },
+    "active=false,variant=adv_fusion_coil_2": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/solid/advanced_fusion_coil_uev"
+      }
+    },
+    "active=false,variant=adv_fusion_coil_3": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/solid/advanced_fusion_coil_uiv"
+      }
+    },
+    "active=false,variant=adv_fusion_coil_4": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/solid/advanced_fusion_coil_umv"
+      }
+    },
+    "active=false,variant=adv_fusion_coil_5": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gregtech:blocks/casings/solid/advanced_fusion_coil_uxv"
+      }
+    },
+    "active=true,variant=adv_fusion_coil_1": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gregtech:blocks/casings/solid/advanced_fusion_coil_uhv",
+        "top_all": "gregtech:blocks/casings/fusion/machine_coil_fusion_uhv_bloom"
+      }
+    },
+    "active=true,variant=adv_fusion_coil_2": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gregtech:blocks/casings/solid/advanced_fusion_coil_uev",
+        "top_all": "gregtech:blocks/casings/fusion/machine_coil_fusion_uev_bloom"
+      }
+    },
+    "active=true,variant=adv_fusion_coil_3": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gregtech:blocks/casings/solid/advanced_fusion_coil_uiv",
+        "top_all": "gregtech:blocks/casings/fusion/machine_coil_fusion_uiv_bloom"
+      }
+    },
+    "active=true,variant=adv_fusion_coil_4": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gregtech:blocks/casings/solid/advanced_fusion_coil_umv",
+        "top_all": "gregtech:blocks/casings/fusion/machine_coil_fusion_umv_bloom"
+      }
+    },
+    "active=true,variant=adv_fusion_coil_5": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gregtech:blocks/casings/solid/advanced_fusion_coil_uxv",
+        "top_all": "gregtech:blocks/casings/fusion/machine_coil_fusion_uxv_bloom"
+      }
+    }
+  }
+}

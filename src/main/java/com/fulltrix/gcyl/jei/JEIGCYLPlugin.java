@@ -1,6 +1,8 @@
 package com.fulltrix.gcyl.jei;
 
 
+import com.fulltrix.gcyl.GCYLConfig;
+import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityWirelessEnergyHatch;
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
@@ -14,6 +16,7 @@ import mezz.jei.api.ingredients.IIngredientRegistry;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.fulltrix.gcyl.machines.GCYLTileEntities.WIRELESS_ENERGY_HATCH_OUTPUT;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.common.blocks.BlockWireCoil.CoilType.*;
 import static gregtech.common.items.MetaItems.*;
@@ -74,13 +77,19 @@ public class JEIGCYLPlugin implements IModPlugin {
             itemBlacklist.addIngredientToBlacklist(CIRCUIT_ASSEMBLER[i].getStackForm());
         }
 
+        if(!GCYLConfig.Misc.enableWirelessDynamos) {
+            for (MetaTileEntityWirelessEnergyHatch metaTileEntityWirelessEnergyHatch : WIRELESS_ENERGY_HATCH_OUTPUT) {
+                itemBlacklist.addIngredientToBlacklist(metaTileEntityWirelessEnergyHatch.getStackForm());
+            }
+        }
+
 
 
 
         //The list has to be in this order for some godforsaken reason TODO: make it work on manganese phosphide all the way. hide fluids
         //hide old superconductors
         List<Material> oldSuperConductors = Arrays.asList(UraniumTriplatinum, RutheniumTriniumAmericiumNeutronate, EnrichedNaquadahTriniumEuropiumDuranide, UraniumRhodiumDinaquadide,
-                IndiumTinBariumTitaniumCuprate, SamariumIronArsenicOxide, SamariumIronArsenicOxide, MercuryBariumCalciumCuprate, MagnesiumDiboride, ManganesePhosphide);
+                IndiumTinBariumTitaniumCuprate, SamariumIronArsenicOxide, MercuryBariumCalciumCuprate, MagnesiumDiboride, ManganesePhosphide);
 
         for(Material mat : oldSuperConductors) {
             superConductorRemoval(mat);

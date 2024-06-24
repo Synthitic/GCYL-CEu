@@ -93,9 +93,6 @@ public class MetaTileEntityCryogenicFreezer extends GCYMRecipeMapMultiblockContr
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(I18n.format("gregtech.multiblock.cryogenic_freezer.description"));
-        tooltip.add(I18n.format("gtadditions.multiblock.universal.tooltip.1", this.recipeMap.getLocalizedName()));
-        tooltip.add(I18n.format("gtadditions.multiblock.universal.tooltip.2", 20 / 100.0));
-        tooltip.add(I18n.format("gtadditions.multiblock.universal.tooltip.3", 60 / 100.0));
         tooltip.add(I18n.format("gregtech.multiblock.vol_cryo.description"));
     }
 

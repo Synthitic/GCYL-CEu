@@ -2,10 +2,8 @@ package com.fulltrix.gcyl.machines.multi.miner;
 
 import codechicken.lib.raytracer.CuboidRayTraceResult;
 import com.fulltrix.gcyl.client.ClientHandler;
-import com.fulltrix.gcyl.item.GCYLMetaBlocks;
-import com.fulltrix.gcyl.item.metal.MetalCasing1;
 import com.fulltrix.gcyl.materials.GCYLMaterials;
-import com.fulltrix.gcyl.machines.multi.simple.GCYLRecipeMapMultiblockController;
+import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.recipes.recipeproperties.GCYLTemperatureProperty;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregtech.api.block.IHeatingCoilBlockStats;

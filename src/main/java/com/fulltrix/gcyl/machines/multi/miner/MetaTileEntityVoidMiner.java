@@ -3,6 +3,8 @@ package com.fulltrix.gcyl.machines.multi.miner;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import com.fulltrix.gcyl.api.multi.IVoidMinerProvider;
+import com.fulltrix.gcyl.api.multi.VoidMinerLogic;
 import com.fulltrix.gcyl.materials.GCYLMaterials;
 import com.fulltrix.gcyl.item.metal.MetalCasing1;
 import com.fulltrix.gcyl.item.metal.MetalCasing2;
@@ -16,12 +18,14 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.TextComponentUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.core.sound.GTSoundEvents;
@@ -59,7 +63,7 @@ import static com.fulltrix.gcyl.recipes.categories.handlers.VoidMinerHandler.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.util.GTTransferUtils.addItemsToItemHandler;
 
-public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implements IControllable { //TODO: OpenComputers implementation
+public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implements IWorkable, IVoidMinerProvider { //TODO: OpenComputers implementation
     private static final int CONSUME_START = 100;
 
     private boolean isWorkingEnabled = false;
@@ -76,27 +80,42 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implement
     private int temperature = 0;
     private double currentDrillingFluid = CONSUME_START;
 
+    private final VoidMinerLogic voidMinerLogic;
+
 
     public MetaTileEntityVoidMiner(ResourceLocation metaTileEntityId, int tier, int temp) {
         super(metaTileEntityId);
         this.tier = tier;
         this.energyDrain = GTValues.V[tier];
         this.maxTemperature = temp;
-        this.reinitializeStructurePattern();
+        this.voidMinerLogic = new VoidMinerLogic(this, tier, temp);
+    }
+
+    @Override
+    protected boolean shouldShowVoidingModeButton() {
+        return false;
+    }
+
+    @Override
+    public void checkStructurePattern() {
+        if (!this.isStructureFormed()) {
+            reinitializeStructurePattern();
+        }
+        super.checkStructurePattern();
     }
 
     @Override
     public void invalidateStructure() {
         super.invalidateStructure();
         resetTileAbilities();
-        if (isActive)
-            setActive(false);
+       this.voidMinerLogic.invalidate();
     }
 
     @Override
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
         initializeAbilities();
+        this.voidMinerLogic.setMaxProgress(200);
     }
 
     private void initializeAbilities() {
@@ -134,99 +153,29 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implement
     }
 
     @Override
-    protected void updateFormedValid() {
-        if (!getWorld().isRemote && this.getNumMaintenanceProblems() < 6 && isWorkingEnabled()) {
-            if (overheat || !drainEnergy(false)) {
-                if (temperature > 0) {
-                    temperature--;
-                }
-                if (temperature == 0) {
-                    overheat = false;
-                }
-                if (currentDrillingFluid > CONSUME_START) {
-                    currentDrillingFluid--;
-                }
-                if (currentDrillingFluid < CONSUME_START) {
-                    currentDrillingFluid = CONSUME_START;
-                }
-
-                if (isActive)
-                    setActive(false);
-                return;
-            }
-
-            if (getOffsetTimer() % 20 == 0) {
-                FluidStack pyrotheumFluid = GCYLMaterials.Pyrotheum.getFluid((int) currentDrillingFluid);
-                FluidStack cryotheumFluid = GCYLMaterials.Cryotheum.getFluid((int) currentDrillingFluid);
-                FluidStack drillingMudFluid = GCYLMaterials.DrillingMud.getFluid((int) currentDrillingFluid);
-                FluidStack usedDrillingMudFluid = GCYLMaterials.UsedDrillingMud.getFluid((int) currentDrillingFluid);
-                FluidStack canDrainPyrotheum = importFluidHandler.drain(pyrotheumFluid, false);
-                FluidStack canDrainCryotheum = importFluidHandler.drain(cryotheumFluid, false);
-                FluidStack canDrainDrillingMud = importFluidHandler.drain(drillingMudFluid, false);
-                int canFillUsedDrillingMud = exportFluidHandler.fill(usedDrillingMudFluid, false);
-                boolean hasConsume = false;
-                //consume fluid
-                if (canDrainDrillingMud != null && canDrainDrillingMud.amount == (int) currentDrillingFluid &&
-                        canFillUsedDrillingMud != 0 && canFillUsedDrillingMud == (int) currentDrillingFluid) {
-                    importFluidHandler.drain(drillingMudFluid, true);
-                    exportFluidHandler.fill(usedDrillingMudFluid, true);
-                } else {
-                    setActive(false);
-                    return;
-                }
-
-                if (!isActive)
-                    setActive(true);
-
-                calculateMaintenance();
-
-                if (usingPyrotheum && canDrainPyrotheum != null && canDrainPyrotheum.amount == (int) currentDrillingFluid) {
-                    importFluidHandler.drain(pyrotheumFluid, true);
-                    temperature += (int) (currentDrillingFluid / 100.0);
-                    currentDrillingFluid = currentDrillingFluid * 1.02;
-                    hasConsume = true;
-                } else if (temperature > 0 && canDrainCryotheum != null && canDrainCryotheum.amount == (int) currentDrillingFluid) {
-                    importFluidHandler.drain(cryotheumFluid, true);
-                    currentDrillingFluid = currentDrillingFluid / 1.02;
-                    temperature -= (int) (currentDrillingFluid / 100.0);
-                }
-                if (temperature < 0) {
-                    temperature = 0;
-                }
-                if (currentDrillingFluid < CONSUME_START) {
-                    currentDrillingFluid = CONSUME_START;
-                }
-                if (temperature > maxTemperature) {
-                    overheat = true;
-                    currentDrillingFluid = CONSUME_START;
-                    return;
-                }
-                usingPyrotheum = !usingPyrotheum;
-
-                currentDrillingFluid += this.getNumMaintenanceProblems();
-                //mine
-
-                int nbOres = temperature / 1000;
-
-                if (nbOres == 0 || !hasConsume) {
-                    return;
-                }
-
-                List<ItemStack> ores = getOres();
-                Collections.shuffle(ores);
-                ores.stream().limit(10).peek(itemStack -> itemStack.setCount(getWorld().rand.nextInt(nbOres * nbOres) + 1)).forEach(itemStack -> addItemsToItemHandler(outputInventory, false, Collections.singletonList(itemStack)));
-
-
-            }
-        }
+    public IMultipleTankHandler getImportFluidHandler() {
+        return this.importFluidHandler;
     }
 
-    List<ItemStack> getOres() {
-        return switch (tier) {
-            case 8 -> ORES;
-            case 9 -> ORES_2;
-            default -> ORES_3;
-        };
+    @Override
+    public IMultipleTankHandler getExportFluidHandler() {
+        return this.exportFluidHandler;
+    }
+
+    @Override
+    public IItemHandlerModifiable getOutputInventory() {
+        return this.outputInventory;
+    }
+
+    @Override
+    protected void updateFormedValid() {
+        if (!getWorld().isRemote) {
+            this.voidMinerLogic.updateLogic();
+            if (this.voidMinerLogic.wasActiveAndNeedsUpdate()) {
+                this.voidMinerLogic.setWasActiveAndNeedsUpdate(false);
+                this.voidMinerLogic.setActive(false);
+            }
+        }
     }
 
     @Override
@@ -285,27 +234,48 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implement
         tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.2"));
         tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.3"));
         tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.4"));
+        tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.7"));
+        tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.8"));
+        tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.9"));
         tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.5"));
         tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.6"));
     }
 
     @Override
     protected void addDisplayText(List<ITextComponent> textList) {
-        if (this.isStructureFormed() && !this.hasMaintenanceProblems()) {
-            if (energyContainer != null && energyContainer.getEnergyCapacity() > 0) {
-                long maxVoltage = energyContainer.getInputVoltage();
-                String voltageName = GTValues.VN[GTUtility.getTierByVoltage(maxVoltage)];
-                textList.add(new TextComponentTranslation("gregtech.multiblock.max_energy_per_tick", maxVoltage, voltageName));
-            }
-            textList.add(new TextComponentTranslation("gregtech.multiblock.universal.energy_used", energyDrain));
-            textList.add(new TextComponentTranslation("gregtech.multiblock.universal.vom.temperature", temperature, maxTemperature));
-            textList.add(new TextComponentTranslation("gregtech.multiblock.universal.drilling_fluid_amount", (int) currentDrillingFluid));
-            if (overheat) {
-                textList.add(new TextComponentTranslation("gregtech.multiblock.universal.overheat").setStyle(new Style().setColor(TextFormatting.RED)));
-            }
-        }
+        MultiblockDisplayText.builder(textList, isStructureFormed())
+                .setWorkingStatus(voidMinerLogic.isWorkingEnabled(), voidMinerLogic.isActive())
+                .addCustom(tl -> {
+                    if(isStructureFormed()) {
+                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW,"gregtech.multiblock.universal.energy_used", energyDrain));
+                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.GOLD,"gregtech.multiblock.universal.vom.temperature", this.voidMinerLogic.getTemperature()));
+                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.RED,"gregtech.multiblock.universal.vom.max_temperature", this.voidMinerLogic.getMaxTemperature()));
+                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.AQUA,"gregtech.multiblock.universal.drilling_fluid_amount", this.voidMinerLogic.getCurrentDrillingFluid()));
+                    }
+                })
+                .addWorkingStatusLine()
+                .addProgressLine(getProgressPercent() / 100.0);
+    }
 
-        super.addDisplayText(textList);
+    @Override
+    protected void addWarningText(List<ITextComponent> textList) {
+        MultiblockDisplayText.builder(textList, isStructureFormed(), false)
+                .addLowPowerLine(!drainEnergy(true))
+                .addCustom(tl -> {
+                    if(isStructureFormed()) {
+                        if(this.voidMinerLogic.isFluidOutputFull()) {
+                            tl.add(TextComponentUtil.translationWithColor(
+                                    TextFormatting.RED,
+                                    "gcyl.multiblock.vom.fluid_output_full"));
+                        }
+                        if(this.voidMinerLogic.isOverheat()) {
+                            tl.add(TextComponentUtil.translationWithColor(
+                                    TextFormatting.RED,
+                                    "gregtech.multiblock.universal.overheat"));
+                        }
+                    }
+                })
+                .addMaintenanceProblemLines(getMaintenanceProblems());
     }
 
     public IBlockState getCasingState() {
@@ -358,54 +328,45 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implement
     @Override
     public void writeInitialSyncData(PacketBuffer buf) {
         super.writeInitialSyncData(buf);
-        buf.writeBoolean(isActive);
-        buf.writeBoolean(this.isWorkingEnabled);
+        this.voidMinerLogic.writeInitialSyncData(buf);
     }
 
     @Override
     public void receiveInitialSyncData(PacketBuffer buf) {
         super.receiveInitialSyncData(buf);
-        this.isActive = buf.readBoolean();
-        this.isWorkingEnabled = buf.readBoolean();
+        this.voidMinerLogic.receiveInitialSyncData(buf);
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound data) {
         super.writeToNBT(data);
-        data.setTag("temperature", new NBTTagInt(temperature));
-        data.setTag("currentDrillingFluid", new NBTTagDouble(currentDrillingFluid));
-        data.setTag("overheat", new NBTTagInt(overheat ? 1 : 0));
-        data.setBoolean("isActive", this.isActive);
-        data.setBoolean("isWorkingEnabled", this.isWorkingEnabled);
-        return data;
+        return this.voidMinerLogic.writeToNBT(data);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
-        temperature = data.getInteger("temperature");
-        currentDrillingFluid = data.getDouble("currentDrillingFluid");
-        overheat = data.getInteger("overheat") != 0;
-        this.isActive = data.getBoolean("isActive");
-        this.isWorkingEnabled = data.getBoolean("isWorkingEnabled");
+        reinitializeStructurePattern();
+        this.voidMinerLogic.readFromNBT(data);
     }
 
     @Override
     public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         super.renderMetaTileEntity(renderState, translation, pipeline);
-        getFrontOverlay().renderOrientedState(renderState, translation, pipeline, getFrontFacing(), this.isActive(), this.isWorkingEnabled);
+        getFrontOverlay().renderOrientedState(renderState, translation, pipeline, getFrontFacing(), this.voidMinerLogic.isActive(), this.voidMinerLogic.isWorkingEnabled());
     }
 
     @Override
     public void receiveCustomData(int dataId, PacketBuffer buf) {
         super.receiveCustomData(dataId, buf);
         if (dataId == GregtechDataCodes.WORKABLE_ACTIVE) {
-            this.isActive = buf.readBoolean();
+            this.voidMinerLogic.setActive(buf.readBoolean());
             scheduleRenderUpdate();
         } else if (dataId == GregtechDataCodes.WORKING_ENABLED) {
-            this.isWorkingEnabled = buf.readBoolean();
+            this.voidMinerLogic.setWorkingEnabled(buf.readBoolean());
             scheduleRenderUpdate();
         }
+
     }
 
     @Override
@@ -415,56 +376,37 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implement
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing side) {
-        if (capability == GregtechTileCapabilities.CAPABILITY_CONTROLLABLE) {
+        if (capability == GregtechTileCapabilities.CAPABILITY_WORKABLE)
+            return GregtechTileCapabilities.CAPABILITY_WORKABLE.cast(this);
+        if (capability == GregtechTileCapabilities.CAPABILITY_CONTROLLABLE)
             return GregtechTileCapabilities.CAPABILITY_CONTROLLABLE.cast(this);
-        }
         return super.getCapability(capability, side);
     }
 
     @Override
     public boolean isWorkingEnabled() {
-        return isWorkingEnabled;
+        return this.voidMinerLogic.isWorkingEnabled();
     }
 
     @Override
     public void setWorkingEnabled(boolean isWorkingAllowed) {
-        this.isWorkingEnabled = isWorkingAllowed;
-        markDirty();
-        World world = getWorld();
-        if (world != null && !world.isRemote) {
-            writeCustomData(GregtechDataCodes.WORKING_ENABLED, buf -> buf.writeBoolean(isWorkingEnabled));
-        }
+        this.voidMinerLogic.setWorkingEnabled(isWorkingAllowed);
     }
 
     @Override
+    public int getProgress() {
+        return voidMinerLogic.getProgressTime();
+    }
+
+    @Override
+    public int getMaxProgress() {
+        return voidMinerLogic.getMaxProgress();
+    }
+
+    public int getProgressPercent() {return voidMinerLogic.getProgressPercent();}
+
+    @Override
     public boolean isActive() {
-        return super.isActive() && this.isWorkingEnabled;
-    }
-
-    protected void setActive(boolean active) {
-        if (this.isActive != active) {
-            this.isActive = active;
-            markDirty();
-            World world = getWorld();
-            if (world != null && !world.isRemote) {
-                writeCustomData(GregtechDataCodes.WORKABLE_ACTIVE, buf -> buf.writeBoolean(active));
-            }
-        }
-    }
-
-    public int getMaxTemperature() {
-        return maxTemperature;
-    }
-
-    public boolean isOverheat() {
-        return overheat;
-    }
-
-    public int getTemperature() {
-        return temperature;
-    }
-
-    public double getCurrentDrillingFluid() {
-        return currentDrillingFluid;
+        return super.isActive() && this.voidMinerLogic.isActive();
     }
 }

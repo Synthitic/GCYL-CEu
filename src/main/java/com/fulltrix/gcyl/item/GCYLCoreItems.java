@@ -13,9 +13,6 @@ public class GCYLCoreItems {
     private static final List<MetaItem<?>> ITEMS = MetaItem.getMetaItems();
 
     public static MetaItem<?>.MetaValueItem COMPRESSED_COKE_CLAY;
-    public static MetaItem<?>.MetaValueItem ENERGY_MODULE;
-    public static MetaItem<?>.MetaValueItem ENERGY_CLUSTER;
-    public static MetaItem<?>.MetaValueItem MAX_BATTERY;
 
     public static MetaItem<?>.MetaValueItem SMD_CAPACITOR_REFINED;
     public static MetaItem<?>.MetaValueItem SMD_CAPACITOR_NANO;
@@ -216,6 +213,7 @@ public class GCYLCoreItems {
     public static MetaItem<?>.MetaValueItem BOULE_RUTHERFORDIUM;
 
     public static MetaItem<?>.MetaValueItem UNSTABLE_STAR;
+    public static MetaItem<?>.MetaValueItem NUCLEAR_STAR;
     public static MetaItem<?>.MetaValueItem CONVEYOR_MODULE_MAX;
     public static MetaItem<?>.MetaValueItem ELECTRIC_MOTOR_MAX;
     public static MetaItem<?>.MetaValueItem ELECTRIC_PISTON_MAX;
@@ -432,6 +430,32 @@ public class GCYLCoreItems {
     public static MetaItem<?>.MetaValueItem TOOL_DATA_DEEP_MINER_MODULE;
     public static MetaItem<?>.MetaValueItem TOOL_DATA_DEEP_MINER_COMPLEX;
     public static MetaItem<?>.MetaValueItem COVER_ENDER_ITEM_LINK;
+    public static MetaItem<?>.MetaValueItem VOLTAGE_COIL_UHV;
+    public static MetaItem<?>.MetaValueItem VOLTAGE_COIL_UEV;
+    public static MetaItem<?>.MetaValueItem VOLTAGE_COIL_UIV;
+    public static MetaItem<?>.MetaValueItem VOLTAGE_COIL_UXV;
+    public static MetaItem<?>.MetaValueItem VOLTAGE_COIL_OpV;
+    public static MetaItem<?>.MetaValueItem VOLTAGE_COIL_MAX;
+
+    public static MetaItem<?>.MetaValueItem BIO_CELLS;
+    public static MetaItem<?>.MetaValueItem BIO_BOARD;
+    public static MetaItem<?>.MetaValueItem BIO_CIRCUIT_BOARD;
+    public static MetaItem<?>.MetaValueItem ADVANCED_CRYSTAL_SOC;
+    public static MetaItem<?>.MetaValueItem LIVING_SOC;
+    public static MetaItem<?>.MetaValueItem LIVING_BIO_SOC;
+    public static MetaItem<?>.MetaValueItem BIO_WAFER;
+
+    public static MetaItem<?>.MetaValueItem NPIC_WAFER;
+    public static MetaItem<?>.MetaValueItem PPIC_WAFER;
+    public static MetaItem<?>.MetaValueItem QPIC_WAFER;
+    public static MetaItem<?>.MetaValueItem NPIC;
+    public static MetaItem<?>.MetaValueItem PPIC;
+    public static MetaItem<?>.MetaValueItem QPIC;
+
+    public static MetaItem<?>.MetaValueItem WIRELESS_BATTERY_UV;
+
+
+
 
     public static void init() {
         GCYLCoreItem item = new GCYLCoreItem();

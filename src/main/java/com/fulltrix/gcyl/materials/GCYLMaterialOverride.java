@@ -14,11 +14,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.fulltrix.gcyl.api.recipes.GCYLMaterialFlags.NO_MIXER_RECIPE;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
-import static gregicality.multiblocks.api.unification.GCYMMaterials.IncoloyMA956;
-import static gregicality.multiblocks.api.unification.GCYMMaterials.Zeron100;
+import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
 import static gregtech.api.GTValues.OpV;
 import static gregtech.api.GTValues.UV;
 import static gregtech.api.unification.material.Materials.*;
@@ -67,7 +67,7 @@ public class GCYLMaterialOverride {
 
         //CORE METAL ADDITIONS
         List<Material> cmmats = new ArrayList<>();
-        Collections.addAll(cmmats, Bohrium, Dubnium, Duranium, Seaborgium, Rhenium, Rutherfordium, NaquadahEnriched, IncoloyMA956, CosmicNeutronium);
+        Collections.addAll(cmmats, Bohrium, Dubnium, Duranium, Seaborgium, Rhenium, Rutherfordium, NaquadahEnriched, IncoloyMA956, CosmicNeutronium, QCDMatter, Cerium, Barium, Calcium, Californium, Thallium, Tennessine);
 
         for (Material mat : cmmats) {
             for (MaterialFlag flag : CORE_METAL) {
@@ -98,21 +98,21 @@ public class GCYLMaterialOverride {
 
         //FOIL ADDITIONS
         List<Material> foilmats = new ArrayList<>();
-        Collections.addAll(foilmats, Barium, Calcium, Thallium);
+        Collections.addAll(foilmats, Barium, Calcium, Thallium, EnrichedNaquadahAlloy);
         for (Material mat : foilmats) {
             mat.addFlags(GENERATE_FOIL);
         }
 
         //FINE WIRE ADDITIONS
         List<Material> wirefinemats = new ArrayList<>();
-        Collections.addAll(wirefinemats, AbyssalAlloy, Titanium, Iron);
+        Collections.addAll(wirefinemats, AbyssalAlloy, Titanium, Iron, Neutronium);
         for (Material mat : wirefinemats) {
             mat.addFlags(GENERATE_FINE_WIRE);
         }
 
         //LONG STICK ADDITIONS
         List<Material> longstickmats = new ArrayList<>();
-        Collections.addAll(longstickmats, NeodymiumMagnetic);
+        Collections.addAll(longstickmats, NeodymiumMagnetic, Mendelevium);
         for (Material mat : longstickmats) {
             mat.addFlags(GENERATE_LONG_ROD);
         }
@@ -128,7 +128,7 @@ public class GCYLMaterialOverride {
         List<Material> dmats = new ArrayList<>();
         Collections.addAll(dmats, Dysprosium, Iodine, Gadolinium, Strontium, Holmium, Californium, Zirconium, Thallium, Rubidium, Technetium,
                 Terbium, Promethium, Radium, Tellurium, Francium, Berkelium, Curium, Actinium, Protactinium, Scandium, Thulium, Hafnium, Astatine,
-                Selenium, Praseodymium, Copernicium, Erbium, Polonium);
+                Selenium, Praseodymium, Copernicium, Erbium, Polonium, Nihonium, Moscovium, Livermorium, Tennessine);
         for (Material mat : dmats) {
             addDust(mat, 1, 0);
         }
@@ -138,7 +138,7 @@ public class GCYLMaterialOverride {
         Collections.addAll(fmats, Sodium, Bromine, AmmoniumChloride, Rubidium, Caesium, Francium, Polonium, Praseodymium, Ytterbium, Neptunium,
                 ProtoAdamantium, Scandium, Radium, MetastableHassium, MetastableFlerovium, MetastableOganesson, HeavyQuarkDegenerateMatter, Dubnium,
                 Sulfur, Calcium, Curium, Bohrium, Seaborgium, Copernicium, Rutherfordium,Meitnerium, Tennessine, Livermorium, Moscovium, Nihonium,
-                Roentgenium, Astatine, Hafnium, RutheniumTetroxide);
+                Roentgenium, Astatine, Hafnium, RutheniumTetroxide, Lawrencium, Nobelium);
 
         for (Material mat : fmats) {
             addLiquid(mat);
@@ -149,7 +149,7 @@ public class GCYLMaterialOverride {
         //LIQUIDS
         //TODO: get proper temperatures
         List<Material> lmats = new ArrayList<>();
-        Collections.addAll(lmats, Fluorine, Xenon, Helium3, Hydrogen, Nitrogen);
+        Collections.addAll(lmats, Fluorine, Xenon, Helium3, Hydrogen, Nitrogen, DeepNetherGas, DeepOverworldGas);
         for (Material mat : lmats) {
             addLiquid(mat, new FluidBuilder()
                     .temperature(40)
@@ -180,7 +180,7 @@ public class GCYLMaterialOverride {
         Collections.addAll(omats, Lignite, Witherite, Barytocalcite, PlatinumMetallicPowder, IridiumMetalResidue, PreciousMetal,
                 RarestMetalMixture, PalladiumMetallicPowder, Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon, Bowieite,
                 Zinc, Enargite, Andradite, Dolomite, Wollastonite, Kaolinite, Tenorite, Tennantite, Cuprite, Tellurium, Zirkelite,
-                Arsenopyrite, Draconium, Iridium, Osmium, Rutile, Gallite, NetherStar, Plutonium, Uranium238, FluoroApatite);
+                Arsenopyrite, Draconium, Iridium, Osmium, Rutile, Gallite, NetherStar, Plutonium, Uranium238, FluoroApatite, RhodiumSalt, SodiumRuthenate);
         for (Material mat : omats) {
             addOre(mat, 1, 1,false);
         }
@@ -249,6 +249,9 @@ public class GCYLMaterialOverride {
         oreProp = Columbite.getProperty(PropertyKey.ORE);
         oreProp.addOreByProducts(Iron, Manganese, Niobium);
             //BYPRODUCT OVERRIDES
+        oreProp = Pollucite.getProperty(PropertyKey.ORE);
+        oreProp.setOreByProducts(Caesium, Aluminium, Rubidium);
+
         oreProp = Nickel.getProperty(PropertyKey.ORE);
         oreProp.setOreByProducts(Cobalt, PlatinumMetallicPowder, Iron);
 
@@ -282,6 +285,7 @@ public class GCYLMaterialOverride {
         Copper.addFlags(GENERATE_DENSE);
         StainlessSteel.addFlags(GENERATE_DENSE);
         Titanium.addFlags(GENERATE_DENSE);
+        WatertightSteel.addFlags(GENERATE_DENSE);
 
         BlastProperty blastProperty;
 
@@ -290,7 +294,7 @@ public class GCYLMaterialOverride {
 
         //ADD FRAMES
         List<Material> framemats = new ArrayList<>();
-        Collections.addAll(framemats, Bohrium, Naquadria,Osmiridium);
+        Collections.addAll(framemats, Bohrium, Naquadria,Osmiridium, Inconel625);
         for(Material mat : framemats) {
             mat.addFlags(GENERATE_FRAME);
         }
@@ -299,6 +303,7 @@ public class GCYLMaterialOverride {
         //FLUID PIPES
         addFluidPipes(Zeron100, 15000, 1750, true);
         addFluidPipes(Enderium, 1500,650,true);
+        addFluidPipes(CosmicNeutronium, 1000000, 50000, true,true,true,true);
 
         //ORE PREFIX IGNORE FIXES
         plate.removeIgnored(BorosilicateGlass);
@@ -326,6 +331,8 @@ public class GCYLMaterialOverride {
 
         for(Material mat : wireMats) {
             mat.addFlags(NO_ALLOY_BLAST_RECIPES);
+            mat.addFlags(NO_MIXER_RECIPE);
+            mat.addFlags(DISABLE_DECOMPOSITION);
         }
 
         //LENSES
@@ -364,7 +371,7 @@ public class GCYLMaterialOverride {
 
         //Add rounds
         List<Material> rmats = new ArrayList<>();
-        Collections.addAll(rmats, HDCS, HastelloyX78, HSSG, HSSE, Bohrium, Neutronium, CosmicNeutronium);
+        Collections.addAll(rmats, HDCS, HastelloyX78, HSSG, HSSE, Bohrium, Neutronium, CosmicNeutronium, QCDMatter);
         for (Material mat : rmats) {
             mat.addFlags(GENERATE_ROUND);
         }
@@ -379,9 +386,32 @@ public class GCYLMaterialOverride {
 
         //add gears
         List<Material> gearmats = new ArrayList<>();
-        Collections.addAll(gearmats, RhodiumPlatedPalladium, EglinSteel, Magnalium, Inconel625, QCDMatter, AbyssalAlloy, BabbittAlloy, Nitinol60, HG1223);
+        Collections.addAll(gearmats, RhodiumPlatedPalladium, EglinSteel, Magnalium, Inconel625, AbyssalAlloy, BabbittAlloy, Nitinol60, HG1223);
         for (Material mat : gearmats) {
             mat.addFlags(GENERATE_GEAR);
+        }
+
+        //no mixer recipe
+        List<Material> mixermats = new ArrayList<>();
+        Collections.addAll(mixermats, HSSS, Osmiridium, WatertightSteel, MaragingSteel300, Stellite100, HastelloyC276, HastelloyX, Trinaquadalloy, Zeron100, TitaniumCarbide, TantalumCarbide, HSLASteel, BlackSteel, Zircaloy, BlackBronze,
+                Inconel, SterlingSilver, NaquadahAlloy, LVSuperconductorBase, MVSuperconductorBase, HVSuperconductorBase,EVSuperconductorBase,IVSuperconductorBase,LuVSuperconductorBase,ZPMSuperconductorBase,UVSuperconductorBase,UHVSuperconductorBase,
+                UEVSuperconductorBase,UIVSuperconductorBase,UXVSuperconductorBase,OpVSuperconductorBase);
+        for(Material mat: mixermats) {
+            mat.addFlags(NO_MIXER_RECIPE);
+        }
+
+        //add springs
+        List<Material> springmats = new ArrayList<>();
+        Collections.addAll(springmats, Pikyonium, NaquadriaticTaranium, TungstenTitaniumCarbide, Cinobite, Duranium);
+        for(Material mat: springmats) {
+            mat.addFlags(GENERATE_SPRING);
+        }
+
+        //add screws
+        List<Material> screwMats = new ArrayList<>();
+        Collections.addAll(screwMats, Zeron100);
+        for(Material mat: screwMats) {
+            mat.addFlags(GENERATE_BOLT_SCREW);
         }
 
         //Small Specific cases
@@ -389,7 +419,9 @@ public class GCYLMaterialOverride {
         Osmium.addFlags(GENERATE_RING);
         Neutronium.addFlags(GENERATE_RING);
         HSSE.addFlags(GENERATE_SMALL_GEAR);
-        Zeron100.addFlags(GENERATE_BOLT_SCREW);
+        Neutronium.addFlags(GENERATE_SMALL_GEAR);
+
+
         Trinium.addFlags(GENERATE_FRAME);
         Naquadria.addFlags(GENERATE_DENSE);
         Lead.addFlags(GENERATE_DENSE);
@@ -398,12 +430,13 @@ public class GCYLMaterialOverride {
         YttriumBariumCuprate.addFlags(NO_ALLOY_BLAST_RECIPES);
         Glowstone.addFlags(DISABLE_DECOMPOSITION);
         Pyrochlore.addFlags(DISABLE_DECOMPOSITION);
+        Plutonium239.addFlags(GENERATE_ROD);
 
 
 
         //ADD ROTORS
         List<Material> rotmats = new ArrayList<>();
-        Collections.addAll(rotmats, HSSG, Tritanium, HSSE);
+        Collections.addAll(rotmats, HSSG, Tritanium, HSSE, Neutronium, CosmicNeutronium, MaragingSteel250);
         for (Material mat : rotmats) {
             mat.addFlags(GENERATE_ROTOR);
         }
@@ -418,6 +451,7 @@ public class GCYLMaterialOverride {
         wireProp.setVoltage((int) GTValues.V[GTValues.LuV]);
         wireProp.setAmperage(4);
         wireProp.setLossPerBlock(4);
+
 
 
     }

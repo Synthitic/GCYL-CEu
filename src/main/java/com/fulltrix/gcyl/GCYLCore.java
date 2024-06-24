@@ -1,5 +1,8 @@
 package com.fulltrix.gcyl;
 
+import com.fulltrix.gcyl.api.util.VirtualContainerRegistry;
+import com.fulltrix.gcyl.api.util.VirtualEnergyRegistry;
+import com.fulltrix.gcyl.api.util.VirtualResearchRegistry;
 import com.fulltrix.gcyl.covers.GCYLCoverBehaviors;
 import com.fulltrix.gcyl.item.GCYLHeatingCoil;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
@@ -7,6 +10,7 @@ import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import gregtech.GTInternalTags;
 import gregtech.api.GregTechAPI;
 import gregtech.api.cover.CoverDefinition;
+import gregtech.api.util.VirtualTankRegistry;
 import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -14,10 +18,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.event.*;
 
 import java.io.IOException;
 
@@ -74,5 +75,12 @@ public class GCYLCore {
 
     static {
         FluidRegistry.enableUniversalBucket();
+    }
+
+    @EventHandler
+    public void serverStopped(FMLServerStoppedEvent event) {
+        VirtualEnergyRegistry.clearMaps();
+        VirtualContainerRegistry.clearMaps();
+        VirtualResearchRegistry.clearMaps();
     }
 }

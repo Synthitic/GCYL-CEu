@@ -4,7 +4,7 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.UVA_HALIDE_LAMP;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.*;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.MarkerMaterials.Color.Magenta;
 import static gregtech.api.unification.material.Materials.*;
@@ -288,7 +288,7 @@ public class FullereneChain {
                 .fluidInputs(Ethanol.getFluid(1000))
                 .fluidOutputs(Water.getFluid(1000))
                 .output(dust, SodiumEthoxide, 9)
-                .circuitMeta(1)
+                .circuitMeta(9)
                 .EUt(7680)
                 .duration(50)
                 .buildAndRegister();

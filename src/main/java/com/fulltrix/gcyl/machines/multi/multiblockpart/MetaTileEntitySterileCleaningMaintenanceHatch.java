@@ -37,6 +37,7 @@ public class MetaTileEntitySterileCleaningMaintenanceHatch extends MetaTileEntit
     protected static final Set<CleanroomType> CLEANED_TYPES = new ObjectOpenHashSet<>();
 
     static {
+        CLEANED_TYPES.add(CleanroomType.CLEANROOM);
         CLEANED_TYPES.add(CleanroomType.STERILE_CLEANROOM);
     }
 
@@ -63,7 +64,7 @@ public class MetaTileEntitySterileCleaningMaintenanceHatch extends MetaTileEntit
 
     @Override
     public int getTier() {
-        return GTValues.UIV;
+        return GTValues.UHV;
     }
 
     @Override

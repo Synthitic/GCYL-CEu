@@ -1,39 +1,34 @@
 package com.fulltrix.gcyl.machines;
 
 import com.fulltrix.gcyl.GCYLConfig;
-import com.fulltrix.gcyl.GCYLUtility;
+import com.fulltrix.gcyl.api.GCYLUtility;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.machines.multi.MetaTileEntityBioReactor;
 import com.fulltrix.gcyl.machines.multi.MetaTileEntityCosmicRayDetector;
 import com.fulltrix.gcyl.machines.multi.MetaTileEntityElectricImplosion;
 import com.fulltrix.gcyl.machines.multi.MetaTileEntityStellarForge;
 import com.fulltrix.gcyl.machines.multi.advance.*;
+import com.fulltrix.gcyl.machines.multi.generator.MetaTileEntityHyperReactor;
+import com.fulltrix.gcyl.machines.multi.generator.MetaTileEntityLargeNaquadahReactor;
+import com.fulltrix.gcyl.machines.multi.generator.MetaTileEntityLargeRocketEngine;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityDeepMiner;
+import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityLaserMiner;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityVoidMiner;
-import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityHPCAComputationPlus;
-import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityHPCACoolingPlus;
-import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntitySterileCleaningMaintenanceHatch;
-import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityChemicalPlant;
-import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityDecayChamber;
-import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityGreenhouse;
-import com.fulltrix.gcyl.machines.multi.simple.MetaTileEntityPlasmaCondenser;
-import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
+import com.fulltrix.gcyl.machines.multi.multiblockpart.*;
+import com.fulltrix.gcyl.machines.multi.simple.*;
+import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
+import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityParallelHatch;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.SimpleGeneratorMetaTileEntity;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.metatileentities.MetaTileEntities;
-import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityEnergyHatch;
-import gregtech.common.metatileentities.multi.multiblockpart.hpca.MetaTileEntityHPCAComputation;
-import net.minecraft.util.ResourceLocation;
 
-import static com.fulltrix.gcyl.GCYLUtility.gcylId;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.DEEP_MINER_RECIPES;
+import static com.fulltrix.gcyl.api.GCYLUtility.gcylId;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.DEEP_MINER_RECIPES;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.LASER_MINER_RECIPES;
 import static com.google.common.base.Ascii.toLowerCase;
-import static com.ibm.icu.impl.locale.AsciiUtil.toLower;
-import static gregtech.api.util.GTUtility.gregtechId;
-import static gregtech.api.util.GTUtility.toLowerCaseUnderscore;
 import static gregtech.common.metatileentities.MetaTileEntities.registerMetaTileEntity;
 
 public class GCYLTileEntities {
@@ -55,11 +50,16 @@ public class GCYLTileEntities {
     public static MetaTileEntityCryogenicFreezer CRYOGENIC_FREEZER;
     public static MetaTileEntityOreFactory ORE_FACTORY;
     public static MetaTileEntityDeepMiner DEEP_MINER;
+    public static MetaTileEntityLaserMiner LASER_MINER;
     public static MetaTileEntityDecayChamber DECAY_CHAMBER;
     public static MetaTileEntityGreenhouse[] GREEN_HOUSE = new MetaTileEntityGreenhouse[2];
-    public static MetaTileEntityMegaCleanroom MEGA_CLEANROOM;
+    public static MetaTileEntityParallelHatch[] GCYL_PARALLEL_HATCH = new MetaTileEntityParallelHatch[3];
 
+    public static MetaTileEntityMegaCleanroom MEGA_CLEANROOM;
     public static MetaTileEntitySterileCleaningMaintenanceHatch STERILE_CLEANING_MAINTENANCE_HATCH;
+    public static MetaTileEntityISO3CleaningMaintenanceHatch ISO3_CLEANING_MAINTENANCE_HATCH;
+    public static MetaTileEntityISO2CleaningMaintenanceHatch ISO2_CLEANING_MAINTENANCE_HATCH;
+    public static MetaTileEntityISO1CleaningMaintenanceHatch ISO1_CLEANING_MAINTENANCE_HATCH;
 
     public static MetaTileEntityHPCACoolingPlus[] HPCA_COOLING_PLUS = new MetaTileEntityHPCACoolingPlus[7];
     public static MetaTileEntityHPCAComputationPlus[] HPCA_COMPUTATION_PLUS = new MetaTileEntityHPCAComputationPlus[7];
@@ -67,12 +67,23 @@ public class GCYLTileEntities {
     public static SimpleGeneratorMetaTileEntity[] ROCKET_GENERATOR = new SimpleGeneratorMetaTileEntity[8];
 
     ///////////////////////////////////////////
-    public static final MetaTileEntityEnergyHatch[] ENERGY_INPUT_HATCH_4A = new MetaTileEntityEnergyHatch[4]; // UEV, UIV, UXV, OPV
-    public static final MetaTileEntityEnergyHatch[] ENERGY_INPUT_HATCH_16A = new MetaTileEntityEnergyHatch[4];
-    public static final MetaTileEntityEnergyHatch[] ENERGY_OUTPUT_HATCH_4A = new MetaTileEntityEnergyHatch[4];
-    public static final MetaTileEntityEnergyHatch[] ENERGY_OUTPUT_HATCH_16A = new MetaTileEntityEnergyHatch[4];
+    public static MetaTileEntityWirelessPowerSubstation WIRELESS_PSS;
+    public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length];
+    public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT_4A = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length - 4];
+    public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT_16A = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length - 5];
+    public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_INPUT_64A = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length - 5];
+    public static MetaTileEntityWirelessEnergyHatch[] WIRELESS_ENERGY_HATCH_OUTPUT = new MetaTileEntityWirelessEnergyHatch[GTValues.V.length];
 
-    public static int id = 32000;
+    /////////////////////////////////////////////////
+    public static MetaTileEntityWirelessDataHatch WIRELESS_DATA_HATCH;
+    public static MetaTileEntityWirelessDataBank WIRELESS_DATA_BANK;
+    /////////////////////////////////////////////////
+    public static MetaTileEntityLargeAirCollector LARGE_AIR_COLLECTOR;
+    public static MetaTileEntityLargeFisher LARGE_FISHER;
+    public static MetaTileEntityLargeRockBreaker LARGE_ROCK_BREAKER;
+
+
+    public static int id = 24000;
 
     public static void init() {
 
@@ -108,7 +119,7 @@ public class GCYLTileEntities {
 
         LARGE_NAQUADAH_REACTOR = registerMetaTileEntity(++id, new MetaTileEntityLargeNaquadahReactor(gcylId("large_naquadah_reactor")));
 
-        CHEMICAL_PLANT = registerMetaTileEntity(++id, new MetaTileEntityChemicalPlant(gcylId("chemical_plant"),false));
+        CHEMICAL_PLANT = registerMetaTileEntity(++id, new MetaTileEntityChemicalPlant(gcylId("chemical_plant"),true));
 
         LARGE_ROCKET_ENGINE = registerMetaTileEntity(++id, new MetaTileEntityLargeRocketEngine(gcylId("large_rocket_engine")));
 
@@ -118,7 +129,12 @@ public class GCYLTileEntities {
 
         DEEP_MINER = registerMetaTileEntity(++id, new MetaTileEntityDeepMiner(gcylId("deep_miner"), DEEP_MINER_RECIPES, false));
 
+        LASER_MINER = registerMetaTileEntity(++id, new MetaTileEntityLaserMiner(gcylId("laser_miner"), LASER_MINER_RECIPES, false));
+
         STERILE_CLEANING_MAINTENANCE_HATCH = registerMetaTileEntity(++id, new MetaTileEntitySterileCleaningMaintenanceHatch(gcylId("maintenance_hatch_sterile_cleanroom_auto")));
+        ISO3_CLEANING_MAINTENANCE_HATCH = registerMetaTileEntity(++id, new MetaTileEntityISO3CleaningMaintenanceHatch(gcylId("maintenance_hatch_iso_3_cleanroom_auto")));
+        ISO2_CLEANING_MAINTENANCE_HATCH = registerMetaTileEntity(++id, new MetaTileEntityISO2CleaningMaintenanceHatch(gcylId("maintenance_hatch_iso_2_cleanroom_auto")));
+        ISO1_CLEANING_MAINTENANCE_HATCH = registerMetaTileEntity(++id, new MetaTileEntityISO1CleaningMaintenanceHatch(gcylId("maintenance_hatch_iso_1_cleanroom_auto")));
 
         DECAY_CHAMBER = registerMetaTileEntity(++id, new MetaTileEntityDecayChamber(gcylId("decay_chamber"), true));
 
@@ -127,6 +143,24 @@ public class GCYLTileEntities {
 
         MEGA_CLEANROOM = registerMetaTileEntity(++id, new MetaTileEntityMegaCleanroom(gcylId("mega_cleanroom")));
 
+        WIRELESS_PSS = registerMetaTileEntity(++id, new MetaTileEntityWirelessPowerSubstation(gcylId("wireless_pss")));
+
+        for (int i = 0; i < WIRELESS_ENERGY_HATCH_OUTPUT.length; i++) {
+            String voltageName = GTValues.VN[i].toLowerCase();
+            WIRELESS_ENERGY_HATCH_INPUT[i] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName), i, 1, false));
+
+            if(i > 3) {
+                WIRELESS_ENERGY_HATCH_INPUT_4A[i - 4] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName + ".4"), i, 4, false));
+            }
+
+            if(i > 4) {
+                WIRELESS_ENERGY_HATCH_INPUT_16A[i - 5] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName + ".16"), i, 16, false));
+                WIRELESS_ENERGY_HATCH_INPUT_64A[i - 5] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.input." + voltageName + ".64"), i, 64, false));
+            }
+
+            WIRELESS_ENERGY_HATCH_OUTPUT[i] = registerMetaTileEntity(++id, new MetaTileEntityWirelessEnergyHatch(gcylId("wireless_energy_hatch.output." + voltageName), i, 1, true));
+
+        }
         for(int i = 0; i < 7; i++) {
             HPCA_COOLING_PLUS[i] = registerMetaTileEntity(++id, new MetaTileEntityHPCACoolingPlus(gcylId("hpca.cooling_component." + toLowerCase(GTValues.VN[i+8])), i+8));
             HPCA_COMPUTATION_PLUS[i] = registerMetaTileEntity(++id, new MetaTileEntityHPCAComputationPlus(gcylId("hpca.computation_component." + toLowerCase(GTValues.VN[i+8])), i+8));
@@ -159,7 +193,21 @@ public class GCYLTileEntities {
             ROCKET_GENERATOR[5] = registerMetaTileEntity(++id, new SimpleGeneratorMetaTileEntity(gcylId("rocket_generator.mk3"), GCYLRecipeMaps.ROCKET_FUEL_RECIPES, ClientHandler.ROCKET_OVERLAY, 6, GTUtility.genericGeneratorTankSizeFunction));
         //}
 
+        GCYL_PARALLEL_HATCH[0] = registerMetaTileEntity(++id, new MetaTileEntityParallelHatch(gcylId(String.format("parallel_hatch.%s", GTValues.VN[GTValues.UEV])), GTValues.UHV));
+        GCYL_PARALLEL_HATCH[1] = registerMetaTileEntity(++id, new MetaTileEntityParallelHatch(gcylId(String.format("parallel_hatch.%s", GTValues.VN[GTValues.UXV])), GTValues.UEV));
+        GCYL_PARALLEL_HATCH[2] = registerMetaTileEntity(++id, new MetaTileEntityParallelHatch(gcylId(String.format("parallel_hatch.%s", GTValues.VN[GTValues.MAX])), GTValues.UIV));
 
         MetaTileEntities.registerSimpleMetaTileEntity(DEHYDRATOR, ++id, "dehydrator", GCYLRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES, Textures.SIFTER_OVERLAY, true, GCYLUtility::gcylId, GTUtility.hvCappedTankSizeFunction);
+
+        id = 24131;
+
+        WIRELESS_DATA_BANK = registerMetaTileEntity(++id, new MetaTileEntityWirelessDataBank(gcylId("wireless_data_bank")));
+        WIRELESS_DATA_HATCH = registerMetaTileEntity(++id, new MetaTileEntityWirelessDataHatch(gcylId("wireless_data_hatch"), 11));
+
+        LARGE_AIR_COLLECTOR = registerMetaTileEntity(++id, new MetaTileEntityLargeAirCollector(gcylId("large_air_collector")));
+
+        LARGE_FISHER = registerMetaTileEntity(++id, new MetaTileEntityLargeFisher(gcylId("large_fisher")));
+
+        LARGE_ROCK_BREAKER = registerMetaTileEntity(++id, new MetaTileEntityLargeRockBreaker(gcylId("large_rock_breaker")));
     }
 }

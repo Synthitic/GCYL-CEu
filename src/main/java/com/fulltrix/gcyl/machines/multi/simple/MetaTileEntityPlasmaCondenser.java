@@ -1,9 +1,9 @@
 package com.fulltrix.gcyl.machines.multi.simple;
 
+import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.item.metal.MetalCasing1;
-import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
+import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
-import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -23,7 +23,7 @@ import javax.annotation.Nonnull;
 
 import static com.fulltrix.gcyl.client.ClientHandler.HASTELLOY_N_CASING;
 import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_1;
-
+//TODO add tooltips and information
 public class MetaTileEntityPlasmaCondenser extends GCYLRecipeMapMultiblockController {
 
     public MetaTileEntityPlasmaCondenser(ResourceLocation metaTileEntityId, boolean isParallel) {

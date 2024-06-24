@@ -1,9 +1,7 @@
 package com.fulltrix.gcyl.item;
 
-import com.fulltrix.gcyl.item.fusion.GCYLCryostatCasing;
-import com.fulltrix.gcyl.item.fusion.GCYLDivertorCasing;
-import com.fulltrix.gcyl.item.fusion.GCYLFusionCasing;
-import com.fulltrix.gcyl.item.fusion.GCYLVacuumCasing;
+import com.fulltrix.gcyl.item.fusion.*;
+import com.fulltrix.gcyl.item.metal.GCYLCleanroomCasing;
 import com.fulltrix.gcyl.item.metal.MetalCasing1;
 import com.fulltrix.gcyl.item.metal.MetalCasing2;
 import net.minecraft.block.Block;
@@ -20,6 +18,7 @@ public class GCYLMetaBlocks {
     public static GCYLMultiblockCasing2 MULTIBLOCK_CASING2;
     //public static GCYLTransparentCasing TRANSPARENT_CASING;
     public static GCYLHeatingCoil HEATING_COIL;
+    public static GCYLFusionCoils FUSION_COILS;
     public static GCYLFusionCasing FUSION_CASING;
     public static GCYLVacuumCasing VACUUM_CASING;
     public static GCYLDivertorCasing DIVERTOR_CASING;
@@ -29,7 +28,7 @@ public class GCYLMetaBlocks {
     public static GCYLReactorCasing REACTOR_CASING;
     public static MetalCasing1 METAL_CASING_1;
     public static MetalCasing2 METAL_CASING_2;
-
+    public static GCYLCleanroomCasing GCYL_CLEANROOM_CASING;
 
     public static void init() {
         HEATING_COIL = new GCYLHeatingCoil();
@@ -40,6 +39,9 @@ public class GCYLMetaBlocks {
 
         MULTIBLOCK_CASING2 = new GCYLMultiblockCasing2();
         MULTIBLOCK_CASING2.setRegistryName("gcyl_multiblock_casing2");
+
+        FUSION_COILS = new GCYLFusionCoils();
+        FUSION_COILS.setRegistryName("gcyl_fusion_coil");
 
         FUSION_CASING = new GCYLFusionCasing();
         FUSION_CASING.setRegistryName("gcyl_fusion_casing");
@@ -68,6 +70,9 @@ public class GCYLMetaBlocks {
         REACTOR_CASING = new GCYLReactorCasing();
         REACTOR_CASING.setRegistryName("gcyl_reactor_casing");
 
+        GCYL_CLEANROOM_CASING = new GCYLCleanroomCasing();
+        GCYL_CLEANROOM_CASING.setRegistryName("gcyl_cleanroom_casing");
+
     }
 
     @SideOnly(Side.CLIENT)
@@ -75,6 +80,7 @@ public class GCYLMetaBlocks {
 
         registerItemModel(MULTIBLOCK_CASING2);
         //registerItemModel(TRANSPARENT_CASING);
+        //registerItemModel(FUSION_CASING);
         registerItemModel(FUSION_CASING);
         registerItemModel(VACUUM_CASING);
         registerItemModel(DIVERTOR_CASING);
@@ -84,9 +90,10 @@ public class GCYLMetaBlocks {
         registerItemModel(METAL_CASING_1);
         registerItemModel(METAL_CASING_2);
         registerItemModel(REACTOR_CASING);
+        registerItemModel(GCYL_CLEANROOM_CASING);
 
         HEATING_COIL.onModelRegister();
-
+        FUSION_COILS.onModelRegister();
     }
 
     @SideOnly(Side.CLIENT)

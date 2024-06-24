@@ -1,12 +1,8 @@
 package com.fulltrix.gcyl.covers;
 
-import com.fulltrix.gcyl.item.GCYLCoreItem;
 import com.fulltrix.gcyl.item.GCYLCoreItems;
-import gregtech.api.GTValues;
-import gregtech.api.cover.CoverBase;
-import gregtech.common.covers.CoverBehaviors;
 
-import static com.fulltrix.gcyl.GCYLUtility.gcylId;
+import static com.fulltrix.gcyl.api.GCYLUtility.gcylId;
 import static gregtech.api.GTValues.*;
 import static gregtech.common.covers.CoverBehaviors.registerBehavior;
 

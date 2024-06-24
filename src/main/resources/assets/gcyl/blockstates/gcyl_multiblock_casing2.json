@@ -79,6 +79,13 @@
           "bottom": "gregtech:blocks/casings/solid/laser_engraver_casing",
           "top": "gregtech:blocks/casings/solid/laser_engraver_casing"
         }
+      },
+      "seaborgium_substation_casing": {
+        "textures": {
+          "side": "gregtech:blocks/casings/solid/seaborgium_substation_casing",
+          "bottom": "gregtech:blocks/casings/solid/seaborgium_substation_casing",
+          "top": "gregtech:blocks/casings/solid/seaborgium_substation_casing"
+        }
       }
     }
   }

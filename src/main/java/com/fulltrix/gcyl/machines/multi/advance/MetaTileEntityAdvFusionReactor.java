@@ -1,12 +1,11 @@
 package com.fulltrix.gcyl.machines.multi.advance;
 
+import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.item.GCYLMetaBlocks;
-import com.fulltrix.gcyl.item.fusion.GCYLCryostatCasing;
-import com.fulltrix.gcyl.item.fusion.GCYLDivertorCasing;
-import com.fulltrix.gcyl.item.fusion.GCYLFusionCasing;
-import com.fulltrix.gcyl.item.fusion.GCYLVacuumCasing;
-import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
+import com.fulltrix.gcyl.item.fusion.*;
+import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
+import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionCoilProperty;
 import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionEUReturnProperty;
 import com.google.common.util.concurrent.AtomicDouble;
@@ -30,6 +29,8 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.Recipe;
+import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
 import gregtech.api.recipes.recipeproperties.IRecipePropertyStorage;
 import gregtech.api.util.RelativeDirection;
@@ -74,7 +75,7 @@ import java.util.function.DoubleSupplier;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 
-public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockController implements ITieredMetaTileEntity, IFastRenderMetaTileEntity, IBloomEffect {
+public class MetaTileEntityAdvFusionReactor extends GCYLRecipeMapMultiblockController implements ITieredMetaTileEntity, IFastRenderMetaTileEntity, IBloomEffect {
 
     //TODO make this better. make coils independent of tier. fix bloom. make it be able to run regular fusion recipes. make recipe cancel if energy runs out
 
@@ -97,7 +98,7 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
 
 
     public MetaTileEntityAdvFusionReactor(ResourceLocation metaTileEntityId, int tier) {
-        super(metaTileEntityId, GCYLRecipeMaps.ADV_FUSION_RECIPES);
+        super(metaTileEntityId, new RecipeMap[] {GCYLRecipeMaps.ADV_FUSION_RECIPES, RecipeMaps.FUSION_RECIPES}, false);
         this.recipeMapWorkable = new AdvFusionRecipeLogic(this);
         this.tier = tier;
         this.energyContainer = new EnergyContainerHandler(this, 0, 0, 0, 0, 0) {
@@ -109,6 +110,10 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
             }
         };
         this.progressBarSupplier = new MetaTileEntityAdvFusionReactor.FusionProgressSupplier();
+    }
+    @Override
+    public boolean isTiered() {
+        return false;
     }
 
     @Override
@@ -134,20 +139,28 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
                 .where('C', states(getCoilState()))
                 .where('X', states(getCasingState()))
                 .where('d', states(getDivertorState()).or(metaTileEntities(Arrays
-                        .stream(MetaTileEntities.ENERGY_INPUT_HATCH)
-                        .filter(mte -> mte != null && tier <= mte.getTier() && mte.getTier() <= GTValues.OpV)
+                        .stream(GCYLTileEntities.WIRELESS_ENERGY_HATCH_INPUT)
+                        .filter(mte -> mte != null && tier <= mte.getTier() && mte.getTier() <= GTValues.MAX)
                         .toArray(MetaTileEntity[]::new))
-                        .setMinGlobalLimited(1).setPreviewCount(16)))
+                        .or(metaTileEntities(Arrays
+                        .stream(MetaTileEntities.ENERGY_INPUT_HATCH)
+                        .filter(mte -> mte != null && tier <= mte.getTier() && mte.getTier() <= GTValues.MAX)
+                        .toArray(MetaTileEntity[]::new))
+                        .setPreviewCount(16))))
                 .where('v', states(getVacuumState()))
                 .where('c', states(getCryostatState()))
                 .where('b', states(GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.FUSION_BLANKET))
                         .or(abilities(MultiblockAbility.IMPORT_FLUIDS).setMinGlobalLimited(3).setMaxGlobalLimited(3).setPreviewCount(3))
                         .or(abilities(MultiblockAbility.EXPORT_FLUIDS).setMaxGlobalLimited(3).setPreviewCount(3)))
                 .where('E', metaTileEntities(Arrays
-                        .stream(MetaTileEntities.ENERGY_INPUT_HATCH)
-                        .filter(mte -> mte != null && tier <= mte.getTier() && mte.getTier() <= GTValues.OpV)
+                        .stream(GCYLTileEntities.WIRELESS_ENERGY_HATCH_INPUT)
+                        .filter(mte -> mte != null && tier <= mte.getTier() && mte.getTier() <= GTValues.MAX)
                         .toArray(MetaTileEntity[]::new))
-                        .setMinGlobalLimited(1).setPreviewCount(16))
+                        .or(metaTileEntities(Arrays
+                        .stream(MetaTileEntities.ENERGY_INPUT_HATCH)
+                        .filter(mte -> mte != null && tier <= mte.getTier() && mte.getTier() <= GTValues.MAX)
+                        .toArray(MetaTileEntity[]::new)))
+                        .setPreviewCount(16))
                 .where('I', states(getCasingState()).or(abilities(MultiblockAbility.IMPORT_FLUIDS).setMinGlobalLimited(3)))
                 .where('i', states(getCasingState()).or(abilities(MultiblockAbility.EXPORT_FLUIDS)))
                 .build();
@@ -216,15 +229,15 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
 
     private IBlockState getCoilState() {
         if (tier == GTValues.UHV)
-            return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_1);
+            return GCYLMetaBlocks.FUSION_COILS.getState(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_1);
         if (tier == GTValues.UEV)
-            return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_2);
+            return GCYLMetaBlocks.FUSION_COILS.getState(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_2);
         if (tier == GTValues.UIV)
-            return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_3);
+            return GCYLMetaBlocks.FUSION_COILS.getState(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3);
         if (tier == GTValues.UXV)
-            return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_4);
+            return GCYLMetaBlocks.FUSION_COILS.getState(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_4);
 
-        return GCYLMetaBlocks.FUSION_CASING.getState(GCYLFusionCasing.CasingType.ADV_FUSION_COIL_5);
+        return GCYLMetaBlocks.FUSION_COILS.getState(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_5);
     }
 
     private IBlockState getCryostatState() {
@@ -541,10 +554,10 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
 
         buffer.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION_COLOR);
         RenderBufferHelper.renderRing(buffer,
-                getPos().getX() - context.cameraX() + relativeBack.getXOffset() * 7 + 0.5,
+                getPos().getX() - context.cameraX() + relativeBack.getXOffset() * 7 + 1.25,
                 getPos().getY() - context.cameraY() + relativeBack.getYOffset() * 7 + 2.0,
-                getPos().getZ() - context.cameraZ() + relativeBack.getZOffset() * 7 + 1.5,
-                4.5, 0.6, 10, 20,
+                getPos().getZ() - context.cameraZ() + relativeBack.getZOffset() * 7 + 0.75,
+                5.0, 0.6, 10, 20,
                 r, g, b, a, axis);
         Tessellator.getInstance().draw();
     }
@@ -806,11 +819,19 @@ public class MetaTileEntityAdvFusionReactor extends RecipeMapMultiblockControlle
             int coilTier = storage.getRecipePropertyValue(AdvFusionCoilProperty.getInstance(), 0);
             double euReturn = storage.getRecipePropertyValue(AdvFusionEUReturnProperty.getInstance(), 0);
 
-            if (fusionTier != 0) fusionTier = MetaTileEntityAdvFusionReactor.this.tier - fusionTier;
-            if (coilTier != 0) coilTier = MetaTileEntityAdvFusionReactor.this.coilTier - coilTier;
+            if(coilTier != 0) {
+                if (fusionTier != 0) fusionTier = MetaTileEntityAdvFusionReactor.this.tier - fusionTier;
+                coilTier = MetaTileEntityAdvFusionReactor.this.coilTier - coilTier;
 
-            values[0] = (int) (values[0] - (values[0] * (euReturn / 100.0)));
-            values[2] = Math.min(fusionTier + coilTier, values[2]);
+                values[0] = (int) (values[0] - (values[0] * (euReturn / 100.0)));
+                values[2] = Math.min(fusionTier + coilTier, values[2]);
+            }
+            else {
+                if (fusionTier != 0) fusionTier = MetaTileEntityAdvFusionReactor.this.tier - fusionTier;
+                values[0] = (int) (values[0] - (values[0] * (euReturn / 100.0)));
+                values[2] = Math.min(fusionTier * 2, values[2]);
+            }
+
         }
 
         /*

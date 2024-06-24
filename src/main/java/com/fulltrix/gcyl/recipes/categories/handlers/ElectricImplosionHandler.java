@@ -1,6 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories.handlers;
 
-import com.fulltrix.gcyl.recipes.GCYLRecipeMaps;
+import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.ingredients.GTRecipeInput;

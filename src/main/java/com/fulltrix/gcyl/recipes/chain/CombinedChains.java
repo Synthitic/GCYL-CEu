@@ -3,7 +3,7 @@ package com.fulltrix.gcyl.recipes.chain;
 import gregtech.api.GTValues;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.CHEMICAL_PLANT_RECIPES;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.CHEMICAL_PLANT_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 

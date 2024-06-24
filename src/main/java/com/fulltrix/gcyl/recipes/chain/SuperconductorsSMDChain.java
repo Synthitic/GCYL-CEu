@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.INDUCTOR;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.*;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.*;
 import static gregicality.multiblocks.api.recipes.GCYMRecipeMaps.ALLOY_BLAST_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.MarkerMaterials.Color.Magenta;
@@ -623,7 +623,7 @@ public class SuperconductorsSMDChain {
                 .fluidInputs(HydrogenCyanide.getFluid(3000))
                 .fluidInputs(Water.getFluid(3000))
                 .notConsumable(dust, PotassiumDichromate)
-                .circuitMeta(1)
+                .circuitMeta(2)
                 .fluidOutputs(CitricAcid.getFluid(1000))
                 .fluidOutputs(AmmoniumChloride.getFluid(3000))
                 .buildAndRegister();

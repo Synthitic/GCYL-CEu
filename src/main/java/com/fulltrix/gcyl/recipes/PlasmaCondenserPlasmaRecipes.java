@@ -6,7 +6,7 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.Materials;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
-import static com.fulltrix.gcyl.recipes.GCYLRecipeMaps.PLASMA_CONDENSER_RECIPES;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.PLASMA_CONDENSER_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
 
 public class PlasmaCondenserPlasmaRecipes {

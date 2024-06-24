@@ -40,7 +40,9 @@ public class MetalCasing1 extends VariantBlock<MetalCasing1.CasingType> {
         HASTELLOY_N("casing_hastelloy_n", HastelloyN),
         NITINOL_60("casing_nitinol_60", Nitinol60),
         INCOLOY_813("casing_incoloy_813", Incoloy813),
-        HASTELLOY_K243("casing_hastelloy_k243", HastelloyK243);
+        HASTELLOY_K243("casing_hastelloy_k243", HastelloyK243),
+        MARAGING_STEEL_250("casing_maraging_steel_250", MaragingSteel250),
+        INCONEL_625("casing_inconel_625", Inconel625);
 
 
 
