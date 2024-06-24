@@ -395,6 +395,9 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.1"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.6"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.2"));
+        tooltip.add(I18n.format("gcyl.multiblock.opf.description.9"));
+        tooltip.add(I18n.format("gcyl.multiblock.opf.description.7"));
+        tooltip.add(I18n.format("gcyl.multiblock.opf.description.8"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.3"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.4"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.5"));
