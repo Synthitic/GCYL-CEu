@@ -167,9 +167,9 @@ public final class GCYLRecipeMaps {
 
     public static final RecipeMap<SimpleRecipeBuilder> GREENHOUSE_RECIPES = new RecipeMapBuilder<>("greenhouse",
             new SimpleRecipeBuilder())
-            .itemInputs(2)
-            .itemOutputs(2)
-            .fluidInputs(1)
+            .itemInputs(3)
+            .itemOutputs(3)
+            .fluidInputs(2)
             .build();
 
     public static final RecipeMap<LaserMinerBuilder> LASER_MINER_RECIPES = new RecipeMapBuilder<>("laser_miner",
