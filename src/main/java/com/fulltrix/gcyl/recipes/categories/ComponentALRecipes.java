@@ -23,6 +23,11 @@ public class ComponentALRecipes {
                 .outputs(ELECTRIC_MOTOR_LV.getStackForm(64))
                 .buildAndRegister();
 
+        luv();
+
+    }
+
+    private static void luv() {
 
         COMPONENT_AL_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.LuV]).duration(28800)
                 .outputs(ELECTRIC_MOTOR_LuV.getStackForm(64))
@@ -69,7 +74,7 @@ public class ComponentALRecipes {
                 .input(circuit, MarkerMaterials.Tier.LuV, 48)
                 .input(circuit, MarkerMaterials.Tier.IV, 96)
                 .input(circuit, MarkerMaterials.Tier.EV, 192)
-                .input(cableGtHex, YttriumBariumCuprate, 24)
+                .input(cableGtHex, YttriumBariumCuprate, 18)
                 .inputs(ELECTRIC_PISTON_LUV.getStackForm(48))
                 .inputs(ELECTRIC_MOTOR_LuV.getStackForm(96))
                 .fluidInputs(SolderingAlloy.getFluid(192 * L))
@@ -123,9 +128,9 @@ public class ComponentALRecipes {
                 .fluidInputs(SolderingAlloy.getFluid(L * 192))
                 .fluidInputs(LuVSuperconductor.getFluid(768 * L))
                 .buildAndRegister();
+    }
 
-
-
+    private static void zpm() {
 
     }
 }
