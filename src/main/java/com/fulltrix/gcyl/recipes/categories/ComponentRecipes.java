@@ -331,7 +331,7 @@ public class ComponentRecipes {
                 .input(circuit, MarkerMaterials.Tier.LuV, 2)
                 .input(foil, Palladium, 64)
                 .input(foil, Palladium, 64)
-                .input(wireGtDouble, YttriumBariumCuprate, 8)
+                .input(cableGtDouble, YttriumBariumCuprate, 8)
                 .fluidInputs(SolderingAlloy.getFluid(L * 2))
                 .output(SENSOR_LuV)
                 .scannerResearch(b -> b
@@ -363,7 +363,7 @@ public class ComponentRecipes {
                 .input(circuit, MarkerMaterials.Tier.ZPM, 2)
                 .input(foil, Platinum, 64)
                 .input(foil, Platinum, 64)
-                .input(wireGtDouble, Naquadah, 8)
+                .input(cableGtDouble, Naquadah, 8)
                 .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .output(SENSOR_ZPM)
                 .stationResearch(b -> b
@@ -394,7 +394,7 @@ public class ComponentRecipes {
                 .input(circuit, MarkerMaterials.Tier.UV, 2)
                 .input(foil, Osmiridium, 64)
                 .input(foil, Osmiridium, 64)
-                .input(wireGtDouble, Duranium, 8)
+                .input(cableGtDouble, Duranium, 8)
                 .fluidInputs(SolderingAlloy.getFluid(L * 8))
                 .fluidInputs(Naquadria.getFluid(L * 4))
                 .output(SENSOR_UV)

@@ -3476,7 +3476,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
                 .build()
-                .setFormula("AcThPaNpPuAmCmBkCfEsFmMd", true);
+                .setFormula("AcThPaNpPuAmCmBkCfEsFmMdNoLr", true);
 
         NonMetals = new Material.Builder(++id, gcylId("non_metals"))
                 .liquid()
@@ -4657,7 +4657,7 @@ public class GCYLMaterials {
                 .setFormula("PbSe", true);
 
         ZincSelenide = new Material.Builder(++id, gcylId("zinc_selenide"))
-                .dust()
+                .dust().fluid()
                 .color(0xfcfc00)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FINE)

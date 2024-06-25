@@ -3,13 +3,12 @@ package com.fulltrix.gcyl.recipes.categories.circuits.components;
 import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import gregtech.api.fluids.store.FluidStorageKeys;
-import gregtech.api.metatileentity.multiblock.CleanroomType;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
-import static com.fulltrix.gcyl.item.GCYLExplosive.ExplosiveType.*;
-import static com.fulltrix.gcyl.item.GCYLMetaBlocks.*;
-import static com.fulltrix.gcyl.item.fusion.GCYLFusionCoils.CasingType.ADV_FUSION_COIL_1;
+import static com.fulltrix.gcyl.blocks.GCYLExplosive.ExplosiveType.*;
+import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.*;
+import static com.fulltrix.gcyl.blocks.fusion.GCYLFusionCoils.CasingType.ADV_FUSION_COIL_1;
 import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.*;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.recipes.RecipeMaps.*;

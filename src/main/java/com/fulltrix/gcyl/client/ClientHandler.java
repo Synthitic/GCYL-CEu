@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.client;
 
 import com.fulltrix.gcyl.GCYLCore;
+import gregtech.api.gui.resources.TextureArea;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -47,6 +48,8 @@ public class ClientHandler {
 
     public static OrientedOverlayRenderer NAQADAH_OVERLAY;
     public static OrientedOverlayRenderer ROCKET_OVERLAY;
+
+    public static final TextureArea PROGRESS_BAR_COMPONENT_AL = TextureArea.fullImage("textures/gui/progress_bar/progress_bar_component_al.png");;
 
 
     private ClientHandler() {

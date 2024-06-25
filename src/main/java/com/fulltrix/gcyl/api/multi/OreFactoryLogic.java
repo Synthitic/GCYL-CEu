@@ -1,5 +1,7 @@
 package com.fulltrix.gcyl.api.multi;
 
+import com.fulltrix.gcyl.Tags;
+import com.fulltrix.gcyl.api.recipes.CachedRecipes;
 import com.fulltrix.gcyl.machines.multi.advance.MetaTileEntityOreFactory;
 import gregtech.api.capability.GregtechDataCodes;
 import gregtech.api.capability.IMultipleTankHandler;
@@ -14,28 +16,25 @@ import gregtech.api.util.GTLog;
 import gregtech.api.util.GTTransferUtils;
 import gregtech.api.util.GTUtility;
 import gregtech.common.ConfigHolder;
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagDouble;
-import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
 
 import static gregtech.api.recipes.RecipeMaps.*;
 
 public class OreFactoryLogic {
-    private static final int ORES_PER_VOTAGE_TIER = 64;
+    private static final int MAX_PARALLEL = 2048;
+    private static final String MAX_PARALLEL_STRING = "UXV";
     private final MetaTileEntity metaTileEntity;
     private final boolean hasMaintenance;
     private boolean isActive;
@@ -57,13 +56,39 @@ public class OreFactoryLogic {
     protected void simulation(List<ItemStack> drops, int fortuneLevel, RecipeMap<?> map, int tier, List<ItemStack> itemStack, List<ItemStack> finalItemStack) {
         if(itemStack != null) {
             for (ItemStack item : itemStack) {
-                Recipe recipe = map.findRecipe(32, Collections.singletonList(item), Collections.emptyList());
+                OrePrefix orePrefix = OreDictUnifier.getPrefix(item);
+                //Recipe recipe = map.findRecipe(32, Collections.singletonList(item), Collections.emptyList());
+                Recipe recipe = null;
+                String metadata = item.getMetadata() + item.getItem().getCreatorModId(item);
+                if(map == THERMAL_CENTRIFUGE_RECIPES) {
+                    if(orePrefix == OrePrefix.crushed) {
+                        recipe = CachedRecipes.cachedThermalCentrifugeCrushedRecipes.get(metadata);
+                    } else {
+                        recipe = CachedRecipes.cachedThermalCentrifugeCrushedPurifiedRecipes.get(metadata);
+                    }
+                }
+                else if(map == MACERATOR_RECIPES) {
+                    if(orePrefix == OrePrefix.crushed) {
+                        recipe = CachedRecipes.cachedMaceratorCrushedRecipes.get(metadata);
+                    } else if(orePrefix == OrePrefix.crushedPurified) {
+                        recipe = CachedRecipes.cachedMaceratorCrushedPurifiedRecipes.get(metadata);
+                    } else {
+                        recipe = CachedRecipes.cachedMaceratorCrushedCentrifugedRecipes.get(metadata);
+                    }
+                }
+                else if(map == CENTRIFUGE_RECIPES) {
+                    if(orePrefix == OrePrefix.dustPure) {
+                        recipe = CachedRecipes.cachedCentrifugePureRecipes.get(metadata);
+                    } else {
+                        recipe = CachedRecipes.cachedCentrifugeImpureRecipes.get(metadata);
+                    }
+                }
                 if (recipe != null && !recipe.getOutputs().isEmpty()) {
                     //for(int x = 0; x < item.getCount(); x++) {
                         for (ItemStack outputStack : recipe.getResultItemOutputs(GTUtility.getTierByVoltage(recipe.getEUt()), tier, map)) {
                             outputStack = outputStack.copy();
-                            if (fortuneLevel > 0) {
-                                outputStack.grow(outputStack.getCount() * fortuneLevel);
+                            if (fortuneLevel > 1) {
+                                outputStack.setCount(outputStack.getCount() * fortuneLevel);
                             }
                             //if (OreDictUnifier.getPrefix(outputStack) == OrePrefix.dust || OreDictUnifier.getPrefix(outputStack) == OrePrefix.gemExquisite || OreDictUnifier.getPrefix(outputStack) == OrePrefix.gemFlawless || OreDictUnifier.getPrefix(outputStack) == OrePrefix.gem) {
                             if (OreDictUnifier.getPrefix(outputStack) == OrePrefix.dust) {
@@ -83,14 +108,25 @@ public class OreFactoryLogic {
     protected void simulationFirst(List<ItemStack> drops, int fortuneLevel, int tier, List<ItemStack> itemStack, List<ItemStack> finalItemStack) {
         if(itemStack != null) {
             for (ItemStack item : itemStack) {
-                if(OreDictUnifier.getPrefix(item) == OrePrefix.ore) {
-                    Recipe recipe = MACERATOR_RECIPES.findRecipe(32, Collections.singletonList(item), Collections.emptyList());
+                OrePrefix orePrefix = OreDictUnifier.getPrefix(item);
+                if(orePrefix == OrePrefix.ore || orePrefix == OrePrefix.oreNetherrack || orePrefix == OrePrefix.oreEndstone
+                        || orePrefix == OrePrefix.oreGranite
+                        || orePrefix == OrePrefix.oreAndesite
+                        || orePrefix == OrePrefix.oreBlackgranite
+                        || orePrefix == OrePrefix.oreRedgranite
+                        || orePrefix == OrePrefix.oreBasalt
+                        || orePrefix == OrePrefix.oreDiorite
+                        || orePrefix == OrePrefix.oreMarble
+                        || orePrefix == OrePrefix.oreSand
+                        || orePrefix == OrePrefix.oreRedSand) {
+                    //Recipe recipe = MACERATOR_RECIPES.findRecipe(32, Collections.singletonList(item), Collections.emptyList());
+                    Recipe recipe = CachedRecipes.cachedMaceratorOreRecipes.get(item.getItem());
                     if (recipe != null && !recipe.getOutputs().isEmpty()) {
                         //for(int x = 0; x < item.getCount(); x++) {
                         for (ItemStack outputStack : recipe.getResultItemOutputs(GTUtility.getTierByVoltage(recipe.getEUt()), tier, MACERATOR_RECIPES)) {
                             outputStack = outputStack.copy();
-                            if (fortuneLevel > 0) {
-                                outputStack.grow(outputStack.getCount() * fortuneLevel);
+                            if (fortuneLevel > 1) {
+                                outputStack.setCount(outputStack.getCount() * fortuneLevel);
                             }
                             //if (OreDictUnifier.getPrefix(outputStack) == OrePrefix.dust || OreDictUnifier.getPrefix(outputStack) == OrePrefix.gemExquisite || OreDictUnifier.getPrefix(outputStack) == OrePrefix.gemFlawless || OreDictUnifier.getPrefix(outputStack) == OrePrefix.gem) {
                             if (OreDictUnifier.getPrefix(outputStack) == OrePrefix.dust) {
@@ -105,6 +141,9 @@ public class OreFactoryLogic {
                     }
                 }
                 else {
+                    if (fortuneLevel > 1) {
+                        item.setCount(item.getCount() * fortuneLevel);
+                    }
                     drops.add(item);
                 }
             }
@@ -114,13 +153,15 @@ public class OreFactoryLogic {
     protected void simulationWash(List<ItemStack> drops, int fortuneLevel, int tier, List<ItemStack> itemStack, List<ItemStack> finalItemStack) {
         if(itemStack != null) {
             for (ItemStack item : itemStack) {
-                Recipe recipe = ORE_WASHER_RECIPES.findRecipe(32, Collections.singletonList(item), Collections.singletonList(Materials.DistilledWater.getFluid(100)));
+                //Recipe recipe = ORE_WASHER_RECIPES.findRecipe(32, Collections.singletonList(item), Collections.singletonList(Materials.DistilledWater.getFluid(100)));
+                String metadata = item.getMetadata() + item.getItem().getCreatorModId(item);
+                Recipe recipe = CachedRecipes.cachedWasherRecipes.get(metadata);
                 if (recipe != null && !recipe.getOutputs().isEmpty()) {
                     //for(int x = 0; x < item.getCount(); x++) {
                         for (ItemStack outputStack : recipe.getResultItemOutputs(GTUtility.getTierByVoltage(recipe.getEUt()), tier, ORE_WASHER_RECIPES)) {
                             outputStack = outputStack.copy();
-                            if (fortuneLevel > 0) {
-                                outputStack.grow(outputStack.getCount() * fortuneLevel);
+                            if (fortuneLevel > 1) {
+                                outputStack.setCount(outputStack.getCount() * fortuneLevel);
                             }
                             if (OreDictUnifier.getPrefix(outputStack) == OrePrefix.dust) {
                                 outputStack.setCount(outputStack.getCount() * item.getCount());
@@ -151,15 +192,18 @@ public class OreFactoryLogic {
             return;
         }
 
+
         if(!checkInput() && progressTime == 0) {
             setActive(false);
             return;
         }
 
+
         if(progressTime == 0 && !checkFluidInput(getInputInventory())) {
             setActive(false);
             return;
         }
+
 
             setActive(true);
 
@@ -181,14 +225,14 @@ public class OreFactoryLogic {
             NonNullList<ItemStack> finalOutput2 = NonNullList.create();
 
             if (configuration == 0) {
-                simulationFirst(drops, 0, getVoltageTier(), input, finalOutput);
+                simulationFirst(drops, calculateFortune(), getVoltageTier(), input, finalOutput);
                 simulationWash(drops1, 0, getVoltageTier(), drops, finalOutput);
                 simulation(drops2, 0, THERMAL_CENTRIFUGE_RECIPES, getVoltageTier(), drops1, finalOutput);
                 simulation(drops3, 0, MACERATOR_RECIPES, getVoltageTier(), drops2, finalOutput);
             }
 
             if (configuration == 1) {
-                simulationFirst(drops, 0, getVoltageTier(), input, finalOutput);
+                simulationFirst(drops, calculateFortune(), getVoltageTier(), input, finalOutput);
                 simulationWash(drops1, 0, getVoltageTier(), drops, finalOutput);
                 simulation(drops2, 0, MACERATOR_RECIPES, getVoltageTier(), drops1, finalOutput);
                 simulation(drops3, 0, CENTRIFUGE_RECIPES, getVoltageTier(), drops2, finalOutput);
@@ -203,13 +247,13 @@ public class OreFactoryLogic {
              */
 
             if (configuration == 3) {
-                simulationFirst(drops, 0, getVoltageTier(), input, finalOutput);
+                simulationFirst(drops, calculateFortune(), getVoltageTier(), input, finalOutput);
                 simulation(drops1, 0, MACERATOR_RECIPES, getVoltageTier(), drops, finalOutput);
                 simulation(drops2, 0, CENTRIFUGE_RECIPES, getVoltageTier(), drops1, finalOutput);
             }
 
             if (configuration == 4) {
-                simulationFirst(drops, 0, getVoltageTier(), input, finalOutput);
+                simulationFirst(drops, calculateFortune(), getVoltageTier(), input, finalOutput);
                 simulation(drops1, 0, THERMAL_CENTRIFUGE_RECIPES, getVoltageTier(), drops, finalOutput);
                 simulation(drops2, 0, MACERATOR_RECIPES, getVoltageTier(), drops1, finalOutput);
             }
@@ -232,13 +276,26 @@ public class OreFactoryLogic {
     public boolean checkFluidInput(IItemHandlerModifiable handler) {
         int x = 0;
         //int comparator = ORES_PER_VOTAGE_TIER * getVoltageTier();
-        int comparator = (int) Math.pow(2, getVoltageTier());
+        int comparator = getComparator();
         for (int i = 0; i < handler.getSlots(); i++) {
-            if (x < comparator) {
-                if (x + handler.getStackInSlot(i).getCount() >= comparator) {
-                    x += handler.extractItem(i, comparator - x, true).getCount();
-                } else {
-                    x += handler.extractItem(i, handler.getStackInSlot(i).getCount(), true).getCount();
+            ItemStack itemStack = handler.getStackInSlot(i);
+            OrePrefix orePrefix = OreDictUnifier.getPrefix(itemStack);
+            if (!itemStack.isEmpty() && (orePrefix == OrePrefix.ore || orePrefix == OrePrefix.crushed || orePrefix == OrePrefix.oreNetherrack || orePrefix == OrePrefix.oreEndstone
+                    || orePrefix == OrePrefix.oreGranite
+                    || orePrefix == OrePrefix.oreAndesite
+                    || orePrefix == OrePrefix.oreBlackgranite
+                    || orePrefix == OrePrefix.oreRedgranite
+                    || orePrefix == OrePrefix.oreBasalt
+                    || orePrefix == OrePrefix.oreDiorite
+                    || orePrefix == OrePrefix.oreMarble
+                    || orePrefix == OrePrefix.oreSand
+                    || orePrefix == OrePrefix.oreRedSand)) {
+                if (x < comparator) {
+                    if (x + itemStack.getCount() >= comparator) {
+                        x = comparator;
+                    } else {
+                        x += itemStack.getCount();
+                    }
                 }
             }
         }
@@ -257,7 +314,17 @@ public class OreFactoryLogic {
 
         for(int i = 0; i < getInputInventory().getSlots(); i++) {
             ItemStack itemStack = getInputInventory().getStackInSlot(i);
-            if (!itemStack.isEmpty() && (OreDictUnifier.getPrefix(itemStack) == OrePrefix.ore || OreDictUnifier.getPrefix(itemStack) == OrePrefix.crushed)) {
+            OrePrefix orePrefix = OreDictUnifier.getPrefix(itemStack);
+            if (!itemStack.isEmpty() && (orePrefix == OrePrefix.ore || orePrefix == OrePrefix.crushed || orePrefix == OrePrefix.oreNetherrack || orePrefix == OrePrefix.oreEndstone
+                    || orePrefix == OrePrefix.oreGranite
+                    || orePrefix == OrePrefix.oreAndesite
+                    || orePrefix == OrePrefix.oreBlackgranite
+                    || orePrefix == OrePrefix.oreRedgranite
+                    || orePrefix == OrePrefix.oreBasalt
+                    || orePrefix == OrePrefix.oreDiorite
+                    || orePrefix == OrePrefix.oreMarble
+                    || orePrefix == OrePrefix.oreSand
+                    || orePrefix == OrePrefix.oreRedSand)) {
                 return true;
             }
         }
@@ -268,9 +335,19 @@ public class OreFactoryLogic {
         List<ItemStack> itemStacks = new ArrayList<>();
         int x = 0;
         //int comparator = ORES_PER_VOTAGE_TIER * getVoltageTier();
-        int comparator = (int) Math.pow(2, getVoltageTier());
+        int comparator = getComparator();
         for (int i = 0; i < handler.getSlots(); i++) {
-            if(OreDictUnifier.getPrefix(handler.getStackInSlot(i)) == OrePrefix.ore || OreDictUnifier.getPrefix(handler.getStackInSlot(i)) == OrePrefix.crushed) {
+            OrePrefix orePrefix = OreDictUnifier.getPrefix(handler.getStackInSlot(i));
+            if(orePrefix == OrePrefix.ore || orePrefix == OrePrefix.crushed || orePrefix == OrePrefix.oreNetherrack || orePrefix == OrePrefix.oreEndstone
+                    || orePrefix == OrePrefix.oreGranite
+                    || orePrefix == OrePrefix.oreAndesite
+                    || orePrefix == OrePrefix.oreBlackgranite
+                    || orePrefix == OrePrefix.oreRedgranite
+                    || orePrefix == OrePrefix.oreBasalt
+                    || orePrefix == OrePrefix.oreDiorite
+                    || orePrefix == OrePrefix.oreMarble
+                    || orePrefix == OrePrefix.oreSand
+                    || orePrefix == OrePrefix.oreRedSand) {
                 if (x < comparator) {
                     if (x + handler.getStackInSlot(i).getCount() >= comparator) {
                         itemStacks.add(handler.extractItem(i, comparator - x, false));
@@ -327,6 +404,23 @@ public class OreFactoryLogic {
         return ((IOreFactoryProvider) metaTileEntity).getVoltageTier();
     }
 
+    public int getComparator() {
+        return (int) Math.min(Math.max(Math.pow(2, getVoltageTier() - 1) , 1), MAX_PARALLEL);
+    }
+
+    public int calculateFortune() {
+        if(getVoltageTier() > 12 && !metaTileEntity.getWorld().isRemote) {
+            int r = metaTileEntity.getWorld().rand.nextInt(100);
+            if(r > 49) {
+                return (int) ((getVoltageTier() - 11) / 2.0) + 1;
+            }
+            else {
+                return (int) ((getVoltageTier() - 12) / 2.0) + 1;
+            }
+        }
+        else return 0;
+    }
+
     public void invalidate() {
         this.progressTime = 0;
         this.maxProgress = 0;
@@ -379,6 +473,14 @@ public class OreFactoryLogic {
 
     public int getProgressPercent() {
         return (int) ((1.0F * getProgressTime() / getMaxProgress()) * 100);
+    }
+
+    public int getMaxParallel() {
+        return MAX_PARALLEL;
+    }
+
+    public String maxParallelTier() {
+        return MAX_PARALLEL_STRING;
     }
 
     public NBTTagCompound writeToNBT(@NotNull NBTTagCompound data) {

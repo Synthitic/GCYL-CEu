@@ -1,8 +1,8 @@
 package com.fulltrix.gcyl.machines.multi;
 
 import com.fulltrix.gcyl.client.ClientHandler;
-import com.fulltrix.gcyl.item.GCYLMultiblockCasing2;
-import com.fulltrix.gcyl.item.metal.MetalCasing2;
+import com.fulltrix.gcyl.blocks.GCYLMultiblockCasing2;
+import com.fulltrix.gcyl.blocks.metal.MetalCasing2;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
@@ -12,8 +12,6 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
-import gregtech.common.blocks.BlockFusionCasing;
-import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -22,10 +20,10 @@ import net.minecraft.util.text.TextComponentTranslation;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-import static com.fulltrix.gcyl.api.block.TraceabilityPredicates.advFusionCoils;
+import static com.fulltrix.gcyl.api.pattern.TraceabilityPredicates.advFusionCoils;
 import static com.fulltrix.gcyl.client.ClientHandler.ENRICHED_NAQUADAH_ALLOY_CASING;
-import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_2;
-import static com.fulltrix.gcyl.item.GCYLMetaBlocks.MULTIBLOCK_CASING2;
+import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_2;
+import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.MULTIBLOCK_CASING2;
 
 public class MetaTileEntityStellarForge extends RecipeMapMultiblockController { //TODO implement tiering
     private long maxVoltage;

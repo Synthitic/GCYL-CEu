@@ -1,19 +1,15 @@
 package com.fulltrix.gcyl.machines.multi.miner;
 
-import com.fulltrix.gcyl.api.block.TraceabilityPredicates;
 import com.fulltrix.gcyl.api.multi.GCYLComputationRecipeLogic;
 import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.client.ClientHandler;
-import com.fulltrix.gcyl.item.GCYLMetaBlocks;
-import com.fulltrix.gcyl.item.GCYLMultiblockCasing2;
-import com.fulltrix.gcyl.item.fusion.GCYLFusionCoils;
-import com.fulltrix.gcyl.item.metal.MetalCasing1;
-import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionCoilProperty;
-import gregicality.multiblocks.api.render.GCYMTextures;
+import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
+import com.fulltrix.gcyl.blocks.fusion.GCYLFusionCoils;
+import com.fulltrix.gcyl.blocks.metal.MetalCasing1;
+import com.fulltrix.gcyl.api.recipes.properties.AdvFusionCoilProperty;
 import gregtech.api.capability.IOpticalComputationHatch;
 import gregtech.api.capability.IOpticalComputationProvider;
 import gregtech.api.capability.IOpticalComputationReceiver;
-import gregtech.api.capability.impl.ComputationRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -22,24 +18,14 @@ import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.*;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
-import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
-import gregtech.api.util.BlockInfo;
 import gregtech.client.renderer.ICubeRenderer;
-import gregtech.common.blocks.BlockMetalCasing;
-import gregtech.common.blocks.MetaBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
-import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
-import static com.fulltrix.gcyl.api.block.TraceabilityPredicates.advFusionCoils;
+import static com.fulltrix.gcyl.api.pattern.TraceabilityPredicates.advFusionCoils;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.MetastableOganesson;
 
 public class MetaTileEntityLaserMiner extends GCYLRecipeMapMultiblockController implements IOpticalComputationReceiver {

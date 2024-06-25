@@ -24,7 +24,7 @@ public class VoidMinerHandler {
         addWhitelist();
     }
 
-    private static void processVoidOre(OrePrefix dustPrefix, Material material, OreProperty property) {
+    private static void processVoidOre(OrePrefix orePrefix, Material material, OreProperty property) {
 
         OrePrefix currentOre = OrePrefix.ore;
 

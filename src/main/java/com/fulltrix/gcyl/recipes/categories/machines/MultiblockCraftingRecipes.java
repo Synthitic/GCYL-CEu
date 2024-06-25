@@ -1,9 +1,10 @@
 package com.fulltrix.gcyl.recipes.categories.machines;
 
-import com.fulltrix.gcyl.api.GCYLUtility;
 import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
-import com.fulltrix.gcyl.item.GCYLMetaBlocks;
-import com.fulltrix.gcyl.item.GCYLMultiblockCasing2;
+import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
+import com.fulltrix.gcyl.blocks.GCYLMultiblockCasing2;
+import com.fulltrix.gcyl.blocks.component_al.GCYLComponentALCasing;
+import com.fulltrix.gcyl.blocks.fusion.GCYLFusionCoils;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ModHandler;
@@ -15,12 +16,11 @@ import gregtech.common.metatileentities.MetaTileEntities;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
-import static com.fulltrix.gcyl.item.fusion.GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3;
+import static com.fulltrix.gcyl.blocks.fusion.GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.Einsteinium253;
 import static com.fulltrix.gcyl.api.GCYLUtility.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
-import static gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities.MEGA_VACUUM_FREEZER;
 import static gregtech.api.GTValues.IV;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.GTValues.VA;
@@ -500,6 +500,26 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .input(rotor, Chrome, 16)
                 .fluidInputs(Indalloy140.getFluid(L * 16))
                 .fluidInputs(Seaborgium.getFluid(L*8))
+                .buildAndRegister();
+
+        //Component Assembly Line
+        getAssLineResearchBuilder(GTValues.UHV, 600, GCYLMetaBlocks.GCYL_COMPONENT_AL_CASING.getItemVariant(GCYLComponentALCasing.CasingType.CASING_EV), false, false)
+                .outputs(COMPONENT_ASSEMBLY_LINE.getStackForm())
+                .inputs(ASSEMBLY_LINE.getStackForm(16))
+                .inputs(MetaBlocks.MULTIBLOCK_CASING.getItemVariant(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_LINE_CASING, 16))
+                .inputs(MetaBlocks.MULTIBLOCK_CASING.getItemVariant(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_CONTROL, 32))
+                .inputs(ROBOT_ARM_UV.getStackForm(16))
+                .inputs(CONVEYOR_MODULE_UV.getStackForm(32))
+                .inputs(ELECTRIC_MOTOR_UV.getStackForm(32))
+                .input(pipeNormalFluid, Polybenzimidazole, 16)
+                .input(plateDense, Iridium, 32)
+                .inputs(FLUID_SOLIDIFIER[8].getStackForm(16))
+                .input(circuit, MarkerMaterials.Tier.UV, 16)
+                .input(circuit, ZPM, 20)
+                .input(circuit, MarkerMaterials.Tier.LuV, 24)
+                .fluidInputs(Indalloy140.getFluid(12 * L))
+                .fluidInputs(Naquadria.getFluid(L * 16))
+                .fluidInputs(Lubricant.getFluid(5000))
                 .buildAndRegister();
 
 

@@ -1,8 +1,9 @@
 package com.fulltrix.gcyl.recipes.categories.machines;
 
 import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
-import com.fulltrix.gcyl.item.GCYLMetaBlocks;
-import com.fulltrix.gcyl.item.metal.GCYLCleanroomCasing;
+import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
+import com.fulltrix.gcyl.blocks.component_al.GCYLComponentALCasing;
+import com.fulltrix.gcyl.blocks.metal.GCYLCleanroomCasing;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.unification.material.MarkerMaterials;
@@ -33,7 +34,47 @@ public class MultiblockPartCraftingRecipes {
         parallelHatches();
         computerHatches();
         otherHatches();
+        componentALCasings();
     }
+
+    private static void componentALCasings() {
+
+        for(int i = 1; i < 6; i++) {
+            ASSEMBLER_RECIPES.recipeBuilder().EUt(VA[i]).duration(150)
+                    .outputs(GCYLMetaBlocks.GCYL_COMPONENT_AL_CASING.getItemVariant(GCYLComponentALCasing.CasingType.CASING_LV.getCasingByTier(i)))
+                    .input(frameGt, getMaterialByTier(i))
+                    .input(plateDense, getMaterialByTier(i), 4)
+                    .inputs(getRobotArmByTier(i).getStackForm(4))
+                    .inputs(getPistonByTier(i).getStackForm(8))
+                    .inputs(getMotorByTier(i).getStackForm(10))
+                    .input(gear, getMaterialByTier(i), 4)
+                    .input(wireGtQuadruple, getCableByTier(i), 6)
+                    .input(circuit, getMarkerMaterialByTier(i), 8)
+                    .input(circuit, getMarkerMaterialByTier(i-1), 16)
+                    .fluidInputs(SolderingAlloy.getFluid(L * 2 * i))
+                    .buildAndRegister();
+        }
+
+        for(int i = 6; i < 15; i++) {
+            getAssLineResearchBuilder(i, 300, GCYLMetaBlocks.GCYL_COMPONENT_AL_CASING.getItemVariant(GCYLComponentALCasing.CasingType.CASING_LV.getCasingByTier(i-1)), false, false)
+                    .outputs(GCYLMetaBlocks.GCYL_COMPONENT_AL_CASING.getItemVariant(GCYLComponentALCasing.CasingType.CASING_LV.getCasingByTier(i)))
+                    .input(frameGt, getMaterialByTier(i))
+                    .input(plateDense, getMaterialByTier(i), 6)
+                    .inputs(getRobotArmByTier(i).getStackForm(8))
+                    .inputs(getPistonByTier(i).getStackForm(10))
+                    .inputs(getMotorByTier(i).getStackForm(16))
+                    .input(gear, getMaterialByTier(i))
+                    .input(gearSmall, getMaterialByTier(i))
+                    .input(cableGtQuadruple, getCableByTier(i), 8)
+                    .input(circuit, getMarkerMaterialByTier(i), 8)
+                    .input(circuit, getMarkerMaterialByTier(i-1), 16)
+                    .fluidInputs(Indalloy140.getFluid(L * 2 * i))
+                    .fluidInputs(getPolymerByTier(i).getFluid(L * 4 * i))
+                    .fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * i))
+                    .buildAndRegister();
+        }
+    }
+
     private static void otherHatches() {
         getAssLineResearchBuilder(UIV, 600, ADVANCED_DATA_ACCESS_HATCH.getStackForm(), false,false, GCYLCleanroomType.ISO2)
                 .outputs(WIRELESS_DATA_HATCH.getStackForm())

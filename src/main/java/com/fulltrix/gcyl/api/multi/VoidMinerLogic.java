@@ -102,8 +102,10 @@ public class VoidMinerLogic {
                 return;
             }
 
-            FluidStack pyrotheumFluid = GCYLMaterials.Pyrotheum.getFluid((int) currentDrillingFluid);
-            FluidStack cryotheumFluid = GCYLMaterials.Cryotheum.getFluid((int) currentDrillingFluid);
+            int otherAmounts = currentDrillingFluid / 10;
+
+            FluidStack pyrotheumFluid = GCYLMaterials.Pyrotheum.getFluid(otherAmounts);
+            FluidStack cryotheumFluid = GCYLMaterials.Cryotheum.getFluid(otherAmounts);
             FluidStack drillingMudFluid = GCYLMaterials.DrillingMud.getFluid((int) currentDrillingFluid);
             FluidStack usedDrillingMudFluid = GCYLMaterials.UsedDrillingMud.getFluid((int) currentDrillingFluid);
             FluidStack canDrainPyrotheum = getImportFluidHandler().drain(pyrotheumFluid, false);
@@ -135,12 +137,12 @@ public class VoidMinerLogic {
             getImportFluidHandler().drain(drillingMudFluid, true);
             getExportFluidHandler().fill(usedDrillingMudFluid, true);
 
-            if (usingPyrotheum && canDrainPyrotheum != null && canDrainPyrotheum.amount == (int) currentDrillingFluid) {
+            if (usingPyrotheum && canDrainPyrotheum != null && canDrainPyrotheum.amount == otherAmounts) {
                 getImportFluidHandler().drain(pyrotheumFluid, true);
                 temperature += (int) (currentDrillingFluid / 100.0);
                 currentDrillingFluid = (int) (currentDrillingFluid * MUD_MULTIPLIER);
                 hasConsume = true;
-            } else if (temperature > 0 && canDrainCryotheum != null && canDrainCryotheum.amount == (int) currentDrillingFluid) {
+            } else if (temperature > 0 && canDrainCryotheum != null && canDrainCryotheum.amount == otherAmounts) {
                 getImportFluidHandler().drain(cryotheumFluid, true);
                 currentDrillingFluid = (int) (currentDrillingFluid / MUD_MULTIPLIER);
                 temperature -= (int) (currentDrillingFluid / 100.0);
@@ -173,7 +175,8 @@ public class VoidMinerLogic {
 
             List<ItemStack> ores = getOres();
             Collections.shuffle(ores);
-            ores.stream().limit(10).peek(itemStack -> itemStack.setCount(metaTileEntity.getWorld().rand.nextInt(nbOres * nbOres) + 1)).forEach(itemStack -> addItemsToItemHandler(getOutputInventory(), false, Collections.singletonList(itemStack)));
+            ores.stream().limit(10).peek(itemStack -> itemStack.setCount(nbOres * nbOres)).forEach(itemStack -> addItemsToItemHandler(getOutputInventory(), false, Collections.singletonList(itemStack)));
+            //ores.stream().limit(10).peek(itemStack -> itemStack.setCount(metaTileEntity.getWorld().rand.nextInt(nbOres * nbOres) + 1)).forEach(itemStack -> addItemsToItemHandler(getOutputInventory(), false, Collections.singletonList(itemStack)));
 
 
         }
@@ -350,4 +353,6 @@ public class VoidMinerLogic {
     public int getCurrentDrillingFluid() {
         return this.currentDrillingFluid;
     }
+
+    public float getMudMultiplier() { return MUD_MULTIPLIER; }
 }

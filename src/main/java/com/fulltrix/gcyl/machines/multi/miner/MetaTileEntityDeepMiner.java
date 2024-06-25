@@ -4,7 +4,7 @@ import codechicken.lib.raytracer.CuboidRayTraceResult;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.materials.GCYLMaterials;
 import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
-import com.fulltrix.gcyl.recipes.recipeproperties.GCYLTemperatureProperty;
+import com.fulltrix.gcyl.api.recipes.properties.GCYLTemperatureProperty;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregtech.api.block.IHeatingCoilBlockStats;
 import gregtech.api.capability.IHeatingCoil;

@@ -1,7 +1,7 @@
 package com.fulltrix.gcyl.machines.multi.advance;
 
 import com.fulltrix.gcyl.materials.GCYLMaterials;
-import com.fulltrix.gcyl.item.metal.MetalCasing1;
+import com.fulltrix.gcyl.blocks.metal.MetalCasing1;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
 import gregicality.multiblocks.api.render.GCYMTextures;
@@ -42,7 +42,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 import static com.fulltrix.gcyl.client.ClientHandler.HASTELLOY_N_CASING;
-import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_1;
+import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_1;
 import static gregtech.api.GTValues.ZPM;
 import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOverclockingLogic;
 

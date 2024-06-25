@@ -1,7 +1,7 @@
 package com.fulltrix.gcyl.machines.multi.simple;
 
 import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
-import com.fulltrix.gcyl.item.metal.MetalCasing1;
+import com.fulltrix.gcyl.blocks.metal.MetalCasing1;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -22,7 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 
 import static com.fulltrix.gcyl.client.ClientHandler.HASTELLOY_N_CASING;
-import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_1;
+import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_1;
 //TODO add tooltips and information
 public class MetaTileEntityPlasmaCondenser extends GCYLRecipeMapMultiblockController {
 

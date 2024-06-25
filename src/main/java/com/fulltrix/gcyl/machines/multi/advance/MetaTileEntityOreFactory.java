@@ -6,11 +6,9 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import com.fulltrix.gcyl.api.multi.IOreFactoryProvider;
 import com.fulltrix.gcyl.api.multi.OreFactoryLogic;
-import com.fulltrix.gcyl.client.ClientHandler;
-import com.fulltrix.gcyl.item.GCYLMetaBlocks;
-import com.fulltrix.gcyl.item.metal.MetalCasing2;
+import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
+import com.fulltrix.gcyl.blocks.metal.MetalCasing2;
 import com.google.common.collect.Lists;
-import gregtech.api.GTValues;
 import gregtech.api.capability.*;
 import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.capability.impl.FluidTankList;
@@ -25,13 +23,6 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
-import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.RecipeMap;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.util.GTLog;
-import gregtech.api.util.GTTransferUtils;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.client.renderer.ICubeRenderer;
@@ -39,19 +30,13 @@ import gregtech.client.renderer.texture.Textures;
 import gregtech.client.utils.TooltipHelper;
 import gregtech.common.blocks.*;
 import gregtech.core.sound.GTSoundEvents;
-import groovy.transform.NullCheck;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagDouble;
-import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.*;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -64,12 +49,10 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static gregtech.api.unification.material.Materials.TungstenSteel;
 import static gregtech.api.util.RelativeDirection.*;
-import static java.util.Arrays.asList;
 
 //TODO: make sifting work. separate base textures so hatches can go elsewhere
 
@@ -87,6 +70,8 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
 
     private int voltageTier;
     private int tier;
+
+    private long energyToDrain;
 
     private OreFactoryLogic oreFactoryLogic;
 
@@ -199,7 +184,7 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
                     if(this.oreFactoryLogic.getConfiguration() == 4)
                             tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gcyl.machine.ore_factory.config.4"));
 
-                    tl.add(TextComponentUtil.translationWithColor(TextFormatting.AQUA, "gcyl.machine.ore_factory.max_amount", (long) Math.pow(2, getVoltageTier())));
+                    tl.add(TextComponentUtil.translationWithColor(TextFormatting.AQUA, "gcyl.machine.ore_factory.max_amount", this.oreFactoryLogic.getComparator()));
                 })
                 .addProgressLine(getProgressPercent() / 100.0);
     }
@@ -219,22 +204,30 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
         super.formStructure(context);
         initializeAbilities();
         if(this.oreFactoryLogic.getConfiguration() == 0) {
-            this.oreFactoryLogic.setMaxProgress(1200);
+            this.oreFactoryLogic.setMaxProgress(20);
         }
         else if(this.oreFactoryLogic.getConfiguration() == 1) {
-            this.oreFactoryLogic.setMaxProgress(900);
+            this.oreFactoryLogic.setMaxProgress(15);
         }
         /*else if(this.oreFactoryLogic.getConfiguration() == 2) {
             this.oreFactoryLogic.setMaxProgress(1200);
         }*/
         else if(this.oreFactoryLogic.getConfiguration() == 3) {
-            this.oreFactoryLogic.setMaxProgress(300);
+            this.oreFactoryLogic.setMaxProgress(12);
         }
         else {
-            this.oreFactoryLogic.setMaxProgress(600);
+            this.oreFactoryLogic.setMaxProgress(17);
         }
 
-        this.tier = (int) (Math.log(this.energyContainer.getInputVoltage() * 2) / Math.log(4) - 2);
+        if(this.energyContainer.getInputVoltage() % 2147483647 == 0) {
+            long fix = this.energyContainer.getInputVoltage() / 2147483647;
+            this.tier = (int) (Math.log((this.energyContainer.getInputVoltage() + fix) * 2) / Math.log(4) - 2);
+        }
+        else {
+            this.tier = (int) (Math.log(this.energyContainer.getInputVoltage() * 2) / Math.log(4) - 2);
+        }
+
+        this.energyToDrain = (long) (Math.pow(4, this.tier + 2) / 2.0);
     }
 
     public void setVoltageTier(int tier) {
@@ -308,12 +301,10 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
 
 
     public boolean drainEnergy(boolean simulate) {
-        long energyToDrain = (long) (Math.pow(4, this.tier + 2) / 2.0);
-
-        long resultEnergy = energyContainer.getEnergyStored() - energyToDrain;
+        long resultEnergy = energyContainer.getEnergyStored() - this.energyToDrain;
         if (resultEnergy >= 0L && resultEnergy <= energyContainer.getEnergyCapacity()) {
             if (!simulate)
-                energyContainer.changeEnergy(-energyToDrain);
+                energyContainer.changeEnergy(-this.energyToDrain);
             return true;
         }
         return false;
@@ -392,14 +383,15 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
-        tooltip.add(I18n.format("gcyl.multiblock.opf.description.1"));
+        tooltip.add(I18n.format("gcyl.multiblock.opf.description.1", this.oreFactoryLogic.getMaxParallel(), this.oreFactoryLogic.maxParallelTier()));
+        tooltip.add(TooltipHelper.RAINBOW_FAST + I18n.format("gcyl.multiblock.opf.description.10"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.6"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.2"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.9"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.7"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.8"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.3"));
-        tooltip.add(I18n.format("gcyl.multiblock.opf.description.4"));
+        //tooltip.add(I18n.format("gcyl.multiblock.opf.description.4"));
         tooltip.add(I18n.format("gcyl.multiblock.opf.description.5"));
         tooltip.add(I18n.format("gregtech.machine.power_substation.tooltip6") + TooltipHelper.RAINBOW_SLOW +
                 I18n.format("gregtech.machine.power_substation.tooltip6.5"));

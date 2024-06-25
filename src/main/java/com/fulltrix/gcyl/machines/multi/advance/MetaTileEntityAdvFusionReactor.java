@@ -2,12 +2,12 @@ package com.fulltrix.gcyl.machines.multi.advance;
 
 import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.client.ClientHandler;
-import com.fulltrix.gcyl.item.GCYLMetaBlocks;
-import com.fulltrix.gcyl.item.fusion.*;
+import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
+import com.fulltrix.gcyl.blocks.fusion.*;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import com.fulltrix.gcyl.machines.GCYLTileEntities;
-import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionCoilProperty;
-import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionEUReturnProperty;
+import com.fulltrix.gcyl.api.recipes.properties.AdvFusionCoilProperty;
+import com.fulltrix.gcyl.api.recipes.properties.AdvFusionEUReturnProperty;
 import com.google.common.util.concurrent.AtomicDouble;
 import gregtech.api.GTValues;
 import gregtech.api.capability.GregtechDataCodes;

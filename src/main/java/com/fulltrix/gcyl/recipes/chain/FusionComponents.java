@@ -1,7 +1,7 @@
 package com.fulltrix.gcyl.recipes.chain;
 
-import com.fulltrix.gcyl.item.GCYLMetaBlocks;
-import com.fulltrix.gcyl.item.fusion.*;
+import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
+import com.fulltrix.gcyl.blocks.fusion.*;
 import gregtech.api.GTValues;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.common.ConfigHolder;

@@ -1,7 +1,7 @@
 package com.fulltrix.gcyl.api;
 
 import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
-import com.fulltrix.gcyl.item.fusion.GCYLFusionCoils;
+import com.fulltrix.gcyl.blocks.fusion.GCYLFusionCoils;
 import gregtech.api.GTValues;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
@@ -91,6 +91,26 @@ public class GCYLUtility {
         else
             return TOOL_DATA_SUPRACAUSAL.getStackForm();
 
+    }
+
+    public static Material getMaterialByTier(int tier) {
+        return switch (tier) {
+            case(1) -> Steel;
+            case(2) -> Aluminium;
+            case(3) -> StainlessSteel;
+            case(4) -> Titanium;
+            case(5) -> TungstenSteel;
+            case(6) -> RhodiumPlatedPalladium;
+            case(7) -> Duranium;
+            case(8) -> Tritanium;
+            case(9) -> Seaborgium;
+            case(10) -> Bohrium;
+            case(11) -> Quantum;
+            case(12) -> BlackTitanium;
+            case(13) -> HeavyQuarkDegenerateMatter;
+            case(14) -> Neutronium;
+            default -> Lead;
+        };
     }
 
     public static MetaItem<?>.MetaValueItem getVoltageCoilByTier(int tier) {
@@ -258,7 +278,7 @@ public class GCYLUtility {
             case (12) -> HeavyQuarkDegenerateMatter;
             case (13) -> SuperheavyMix;
             case (14) -> Neutronium;
-            default -> Tin;
+            default -> Naquadria;
         };
     }
 

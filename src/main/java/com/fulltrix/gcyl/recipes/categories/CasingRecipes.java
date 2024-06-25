@@ -1,10 +1,9 @@
 package com.fulltrix.gcyl.recipes.categories;
 
-import com.fulltrix.gcyl.item.GCYLMetaBlocks;
-import com.fulltrix.gcyl.item.GCYLMultiblockCasing2;
+import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
+import com.fulltrix.gcyl.blocks.GCYLMultiblockCasing2;
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import gregtech.api.GTValues;
-import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.stack.MaterialStack;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.MetaBlocks;
@@ -12,9 +11,9 @@ import gregtech.common.metatileentities.MetaTileEntities;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
-import static com.fulltrix.gcyl.item.GCYLHeatingCoil.CoilType.*;
-import static com.fulltrix.gcyl.item.GCYLMultiblockCasing2.CasingType.*;
-import static com.fulltrix.gcyl.item.GCYLReactorCasing.CasingType.*;
+import static com.fulltrix.gcyl.blocks.GCYLHeatingCoil.CoilType.*;
+import static com.fulltrix.gcyl.blocks.GCYLMultiblockCasing2.CasingType.*;
+import static com.fulltrix.gcyl.blocks.GCYLReactorCasing.CasingType.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.ReactorSteel;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
 import static gregtech.api.GTValues.L;
@@ -29,7 +28,6 @@ import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.blocks.BlockWireCoil.CoilType.*;
 import static gregtech.common.items.MetaItems.*;
 import static gregtech.common.items.MetaItems.EMITTER_UV;
-import static gregtech.common.metatileentities.MetaTileEntities.HULL;
 
 public class CasingRecipes {
 

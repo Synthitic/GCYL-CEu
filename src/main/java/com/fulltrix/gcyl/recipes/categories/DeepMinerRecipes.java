@@ -1,6 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories;
 
-import com.fulltrix.gcyl.recipes.recipeproperties.GCYLScanProperty;
+import com.fulltrix.gcyl.api.recipes.properties.GCYLScanProperty;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.RecipeBuilder;
@@ -10,13 +10,10 @@ import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.util.GTUtility;
-import gregtech.api.util.TextComponentUtil;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;

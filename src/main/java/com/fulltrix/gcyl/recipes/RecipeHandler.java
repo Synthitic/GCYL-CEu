@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.recipes;
 
 import com.fulltrix.gcyl.api.recipes.GCYLMaterialRecipeHandler;
+import com.fulltrix.gcyl.api.recipes.properties.ComponentALProperty;
 import com.fulltrix.gcyl.recipes.categories.*;
 import com.fulltrix.gcyl.recipes.categories.circuits.CircuitRecipes;
 import com.fulltrix.gcyl.recipes.categories.DeepMinerRecipes;
@@ -21,6 +22,7 @@ public class RecipeHandler {
 
         MetaItemRecipes.init();
         ComponentRecipes.init();
+        ComponentALRecipes.init();
         MachineCraftingRecipes.init();
         MultiblockPartCraftingRecipes.init();
         CircuitRecipes.init();

@@ -1,9 +1,9 @@
 package com.fulltrix.gcyl.machines.multi.generator;
 
 import com.fulltrix.gcyl.GCYLConfig;
-import com.fulltrix.gcyl.item.GCYLMetaBlocks;
-import com.fulltrix.gcyl.item.GCYLReactorCasing;
-import com.fulltrix.gcyl.item.metal.MetalCasing2;
+import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
+import com.fulltrix.gcyl.blocks.GCYLReactorCasing;
+import com.fulltrix.gcyl.blocks.metal.MetalCasing2;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregtech.api.GTValues;
 import gregtech.api.capability.IMultipleTankHandler;
@@ -22,7 +22,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -31,10 +30,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Objects;
 
 import static com.fulltrix.gcyl.client.ClientHandler.*;
-import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_2;
+import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_2;
 import static gregtech.api.unification.material.Materials.Naquadria;
 
 public class MetaTileEntityHyperReactor extends FuelMultiblockController implements IProgressBarMultiblock {

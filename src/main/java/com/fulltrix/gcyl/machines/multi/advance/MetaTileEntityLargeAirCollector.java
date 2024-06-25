@@ -1,9 +1,9 @@
 package com.fulltrix.gcyl.machines.multi.advance;
 
 import com.fulltrix.gcyl.client.ClientHandler;
-import com.fulltrix.gcyl.item.GCYLMetaBlocks;
-import com.fulltrix.gcyl.item.metal.GCYLCleanroomCasing;
-import com.fulltrix.gcyl.item.metal.MetalCasing1;
+import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
+import com.fulltrix.gcyl.blocks.metal.GCYLCleanroomCasing;
+import com.fulltrix.gcyl.blocks.metal.MetalCasing1;
 import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.fulltrix.gcyl.api.block.TraceabilityPredicates.filterCasings;
+import static com.fulltrix.gcyl.api.pattern.TraceabilityPredicates.filterCasings;
 import static gregtech.api.recipes.RecipeMaps.GAS_COLLECTOR_RECIPES;
 
 public class MetaTileEntityLargeAirCollector extends GCYMRecipeMapMultiblockController {

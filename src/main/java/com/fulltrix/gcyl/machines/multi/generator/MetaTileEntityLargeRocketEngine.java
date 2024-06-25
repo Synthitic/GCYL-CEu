@@ -1,6 +1,6 @@
 package com.fulltrix.gcyl.machines.multi.generator;
 
-import com.fulltrix.gcyl.item.metal.MetalCasing1;
+import com.fulltrix.gcyl.blocks.metal.MetalCasing1;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregtech.api.GTValues;
 import gregtech.api.capability.IMultipleTankHandler;
@@ -20,7 +20,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
 import static com.fulltrix.gcyl.client.ClientHandler.NITINOL_60_CASING;
-import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_1;
+import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_1;
 import static gregtech.api.GTValues.LuV;
 import static gregtech.api.util.RelativeDirection.*;
 

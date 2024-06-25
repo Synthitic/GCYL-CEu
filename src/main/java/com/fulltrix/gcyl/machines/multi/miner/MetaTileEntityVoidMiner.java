@@ -5,9 +5,8 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import com.fulltrix.gcyl.api.multi.IVoidMinerProvider;
 import com.fulltrix.gcyl.api.multi.VoidMinerLogic;
-import com.fulltrix.gcyl.materials.GCYLMaterials;
-import com.fulltrix.gcyl.item.metal.MetalCasing1;
-import com.fulltrix.gcyl.item.metal.MetalCasing2;
+import com.fulltrix.gcyl.blocks.metal.MetalCasing1;
+import com.fulltrix.gcyl.blocks.metal.MetalCasing2;
 import com.google.common.collect.Lists;
 import gregtech.api.GTValues;
 import gregtech.api.capability.*;
@@ -24,7 +23,6 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
-import gregtech.api.util.GTUtility;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
@@ -33,19 +31,14 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagDouble;
-import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandlerModifiable;
@@ -53,15 +46,12 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.Collections;
 import java.util.List;
 
 import static com.fulltrix.gcyl.client.ClientHandler.*;
-import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_1;
-import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_2;
-import static com.fulltrix.gcyl.recipes.categories.handlers.VoidMinerHandler.*;
+import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_1;
+import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_2;
 import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.util.GTTransferUtils.addItemsToItemHandler;
 
 public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implements IWorkable, IVoidMinerProvider { //TODO: OpenComputers implementation
     private static final int CONSUME_START = 100;
@@ -232,7 +222,9 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implement
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.1"));
         tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.2"));
+        tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.11"));
         tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.3"));
+        tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.10", (int) ((this.voidMinerLogic.getMudMultiplier() - Math.floor(this.voidMinerLogic.getMudMultiplier())) * 100), this.voidMinerLogic.getMudMultiplier(),(int) (100 * (1.0 - 1.0 / this.voidMinerLogic.getMudMultiplier()))));
         tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.4"));
         tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.7"));
         tooltip.add(I18n.format("gcyl.multiblock.void_miner.description.8"));

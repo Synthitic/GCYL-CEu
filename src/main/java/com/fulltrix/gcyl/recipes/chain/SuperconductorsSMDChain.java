@@ -1,7 +1,7 @@
 package com.fulltrix.gcyl.recipes.chain;
 
-import com.fulltrix.gcyl.item.GCYLExplosive;
-import com.fulltrix.gcyl.item.GCYLMetaBlocks;
+import com.fulltrix.gcyl.blocks.GCYLExplosive;
+import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
@@ -260,6 +260,12 @@ public class SuperconductorsSMDChain {
                 .buildAndRegister();
 
          */
+        BLAST_RECIPES.recipeBuilder().duration(500).EUt(120).blastFurnaceTemp(2400)
+                .input(dust, Tungsten, 9)
+                .input(dust, Thorium)
+                .output(ingot, ThoriumDopedTungsten, 10)
+                .buildAndRegister();
+        //////////////////////////////////////////////////////////////////////////
 
         BLAST_RECIPES.recipeBuilder().duration(270).EUt(120).blastFurnaceTemp(1800)
                 .input(dust, Quartzite)

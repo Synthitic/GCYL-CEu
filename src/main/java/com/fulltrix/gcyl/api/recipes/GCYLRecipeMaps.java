@@ -2,9 +2,11 @@ package com.fulltrix.gcyl.api.recipes;
 
 //import com.fulltrix.tjfcore.recipes.impl.NuclearReactorBuilder;
 
-import com.fulltrix.gcyl.recipes.impl.AdvFusionRecipeBuilder;
-import com.fulltrix.gcyl.recipes.impl.DeepMinerBuilder;
-import com.fulltrix.gcyl.recipes.impl.LaserMinerBuilder;
+import com.fulltrix.gcyl.api.recipes.builders.AdvFusionRecipeBuilder;
+import com.fulltrix.gcyl.api.recipes.builders.ComponentALRecipeBuilder;
+import com.fulltrix.gcyl.api.recipes.builders.DeepMinerBuilder;
+import com.fulltrix.gcyl.api.recipes.builders.LaserMinerBuilder;
+import com.fulltrix.gcyl.api.recipes.ui.ComponentALRecipeUI;
 import gregtech.api.GTValues;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
@@ -192,6 +194,10 @@ public final class GCYLRecipeMaps {
             .itemOutputs(6)
             .sound(SoundEvents.ENTITY_BOAT_PADDLE_WATER)
             .build();
+
+    public static final RecipeMap<ComponentALRecipeBuilder> COMPONENT_AL_RECIPES = new RecipeMapComponentAL<>("component_al_recipes",
+            new ComponentALRecipeBuilder(), ComponentALRecipeUI::new);
+
 
 
     public static void modifyMaps() {

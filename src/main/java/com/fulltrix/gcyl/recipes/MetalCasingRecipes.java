@@ -1,7 +1,7 @@
 package com.fulltrix.gcyl.recipes;
 
-import com.fulltrix.gcyl.item.metal.MetalCasing1;
-import com.fulltrix.gcyl.item.metal.MetalCasing2;
+import com.fulltrix.gcyl.blocks.metal.MetalCasing1;
+import com.fulltrix.gcyl.blocks.metal.MetalCasing2;
 import gregtech.api.block.VariantBlock;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.OreDictUnifier;
@@ -11,8 +11,8 @@ import net.minecraft.util.IStringSerializable;
 
 import java.util.Arrays;
 
-import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_1;
-import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_2;
+import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_1;
+import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_2;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 import static gregtech.api.unification.ore.OrePrefix.frameGt;
 import static gregtech.api.unification.ore.OrePrefix.plate;

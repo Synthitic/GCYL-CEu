@@ -10,82 +10,82 @@
     "variant": {
       "casing_hastelloy_x78": {
         "textures": {
-          "all": "tjfcore:blocks/casings/hastelloy_x78"
+          "all": "gcyl:blocks/casings/hastelloy_x78"
         }
       },
       "casing_hastelloy_n": {
         "textures": {
-          "all": "tjfcore:blocks/casings/hastelloy_n"
+          "all": "gcyl:blocks/casings/hastelloy_n"
         }
       },
       "casing_hastelloy_k243": {
         "textures": {
-          "all": "tjfcore:blocks/casings/hastelloy_k243"
+          "all": "gcyl:blocks/casings/hastelloy_k243"
         }
       },
       "casing_incoloy_813": {
         "textures": {
-          "all": "tjfcore:blocks/casings/incoloy_813"
+          "all": "gcyl:blocks/casings/incoloy_813"
         }
       },
       "casing_incoloy_ma956": {
         "textures": {
-          "all": "tjfcore:blocks/casings/incoloy_ma956"
+          "all": "gcyl:blocks/casings/incoloy_ma956"
         }
       },
       "casing_maraging_steel_250": {
         "textures": {
-          "all": "tjfcore:blocks/casings/maraging_steel_250"
+          "all": "gcyl:blocks/casings/maraging_steel_250"
         }
       },
       "casing_nitinol_60": {
         "textures": {
-          "all": "tjfcore:blocks/casings/nitinol_60"
+          "all": "gcyl:blocks/casings/nitinol_60"
         }
       },
       "casing_inconel_625": {
         "textures": {
-          "all": "tjfcore:blocks/casings/inconel_625"
+          "all": "gcyl:blocks/casings/inconel_625"
         }
       },
       "casing_grisium": {
         "textures": {
-          "all": "tjfcore:blocks/casings/grisium"
+          "all": "gcyl:blocks/casings/grisium"
         }
       },
       "casing_eglin_steel": {
         "textures": {
-          "all": "tjfcore:blocks/casings/eglin_steel"
+          "all": "gcyl:blocks/casings/eglin_steel"
         }
       },
       "casing_babbitt_alloy": {
         "textures": {
-          "all": "tjfcore:blocks/casings/babbitt_alloy"
+          "all": "gcyl:blocks/casings/babbitt_alloy"
         }
       },
       "casing_hg_1223": {
         "textures": {
-          "all": "tjfcore:blocks/casings/hg_1223"
+          "all": "gcyl:blocks/casings/hg_1223"
         }
       },
       "casing_tumbaga": {
         "textures": {
-          "all": "tjfcore:blocks/casings/tumbaga"
+          "all": "gcyl:blocks/casings/tumbaga"
         }
       },
       "casing_talonite": {
         "textures": {
-          "all": "tjfcore:blocks/casings/talonite"
+          "all": "gcyl:blocks/casings/talonite"
         }
       },
       "casing_zirconium_carbide": {
         "textures": {
-          "all": "tjfcore:blocks/casings/zirconium_carbide"
+          "all": "gcyl:blocks/casings/zirconium_carbide"
         }
       },
       "casing_potin": {
         "textures": {
-          "all": "tjfcore:blocks/casings/potin"
+          "all": "gcyl:blocks/casings/potin"
         }
       }
     }

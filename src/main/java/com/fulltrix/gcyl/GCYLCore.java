@@ -1,16 +1,17 @@
 package com.fulltrix.gcyl;
 
+import com.fulltrix.gcyl.api.recipes.CachedRecipes;
 import com.fulltrix.gcyl.api.util.VirtualContainerRegistry;
 import com.fulltrix.gcyl.api.util.VirtualEnergyRegistry;
 import com.fulltrix.gcyl.api.util.VirtualResearchRegistry;
+import com.fulltrix.gcyl.blocks.component_al.GCYLComponentALCasing;
 import com.fulltrix.gcyl.covers.GCYLCoverBehaviors;
-import com.fulltrix.gcyl.item.GCYLHeatingCoil;
-import com.fulltrix.gcyl.item.GCYLMetaBlocks;
+import com.fulltrix.gcyl.blocks.GCYLHeatingCoil;
+import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
 import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import gregtech.GTInternalTags;
 import gregtech.api.GregTechAPI;
 import gregtech.api.cover.CoverDefinition;
-import gregtech.api.util.VirtualTankRegistry;
 import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,7 +23,9 @@ import net.minecraftforge.fml.common.event.*;
 
 import java.io.IOException;
 
-import static com.fulltrix.gcyl.item.GCYLMetaBlocks.HEATING_COIL;
+import static com.fulltrix.gcyl.api.GCYLAPI.COMPONENT_AL_CASINGS;
+import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.GCYL_COMPONENT_AL_CASING;
+import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.HEATING_COIL;
 import static gregtech.api.GregTechAPI.COVER_REGISTRY;
 import static gregtech.api.GregTechAPI.HEATING_COILS;
 
@@ -46,6 +49,10 @@ public class GCYLCore {
             HEATING_COILS.put(HEATING_COIL.getState(type), type);
         }
 
+        for (GCYLComponentALCasing.CasingType type : GCYLComponentALCasing.CasingType.values()) {
+            COMPONENT_AL_CASINGS.put(GCYL_COMPONENT_AL_CASING.getState(type), type);
+        }
+
         HEATING_COILS.remove(MetaBlocks.WIRE_COIL.getState(BlockWireCoil.CoilType.TRINIUM),BlockWireCoil.CoilType.TRINIUM);
         HEATING_COILS.remove(MetaBlocks.WIRE_COIL.getState(BlockWireCoil.CoilType.TRITANIUM),BlockWireCoil.CoilType.TRITANIUM);
 
@@ -65,7 +72,7 @@ public class GCYLCore {
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        //CommonProxy.postInit();
+        proxy.postInit();
     }
 
     @EventHandler

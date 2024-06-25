@@ -1,0 +1,83 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all",
+    "textures": {
+      "all": "gregtech:blocks/rendering_error"
+    }
+  },
+  "variants": {
+    "variant": {
+      "lv": {
+        "textures": {
+          "all": "gcyl:blocks/casings/component_al/lv"
+        }
+      },
+      "mv": {
+        "textures": {
+          "all": "gcyl:blocks/casings/component_al/mv"
+        }
+      },
+      "hv": {
+        "textures": {
+          "all": "gcyl:blocks/casings/component_al/hv"
+        }
+      },
+      "ev": {
+        "textures": {
+          "all": "gcyl:blocks/casings/component_al/ev"
+        }
+      },
+      "iv": {
+        "textures": {
+          "all": "gcyl:blocks/casings/component_al/iv"
+        }
+      },
+      "luv": {
+        "textures": {
+          "all": "gcyl:blocks/casings/component_al/luv"
+        }
+      },
+      "zpm": {
+        "textures": {
+          "all": "gcyl:blocks/casings/component_al/zpm"
+        }
+      },
+      "uv": {
+        "textures": {
+          "all": "gcyl:blocks/casings/component_al/uv"
+        }
+      },
+      "uhv": {
+        "textures": {
+          "all": "gcyl:blocks/casings/component_al/uhv"
+        }
+      },
+      "uev": {
+        "textures": {
+          "all": "gcyl:blocks/casings/component_al/uev"
+        }
+      },
+      "uiv": {
+        "textures": {
+          "all": "gcyl:blocks/casings/component_al/uiv"
+        }
+      },
+      "uxv": {
+        "textures": {
+          "all": "gcyl:blocks/casings/component_al/uxv"
+        }
+      },
+      "opv": {
+        "textures": {
+          "all": "gcyl:blocks/casings/component_al/opv"
+        }
+      },
+      "max": {
+        "textures": {
+          "all": "gcyl:blocks/casings/component_al/max"
+        }
+      }
+    }
+  }
+}

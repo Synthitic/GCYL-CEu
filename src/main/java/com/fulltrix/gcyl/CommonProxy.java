@@ -1,14 +1,16 @@
 package com.fulltrix.gcyl;
 
+import com.fulltrix.gcyl.api.recipes.CachedRecipes;
 import com.fulltrix.gcyl.api.recipes.GCYLMaterialRecipeHandler;
 import com.fulltrix.gcyl.api.recipes.MixerPropertyAddition;
+import com.fulltrix.gcyl.api.recipes.properties.ComponentALProperty;
 import com.fulltrix.gcyl.api.util.VirtualContainerRegistry;
 import com.fulltrix.gcyl.api.util.VirtualEnergyRegistry;
 import com.fulltrix.gcyl.api.util.VirtualResearchRegistry;
+import com.fulltrix.gcyl.blocks.component_al.GCYLComponentALCasing;
 import com.fulltrix.gcyl.item.GCYLCoreItems;
 import com.fulltrix.gcyl.materials.GCYLMaterialOverride;
 import com.fulltrix.gcyl.materials.GCYLMaterials;
-import com.fulltrix.gcyl.materials.GCYLNuclearMaterials;
 import com.fulltrix.gcyl.recipes.RecipeHandler;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import com.fulltrix.gcyl.recipes.categories.RecipeOverrideLate;
@@ -16,9 +18,10 @@ import com.fulltrix.gcyl.recipes.categories.handlers.ElectricImplosionHandler;
 import com.fulltrix.gcyl.recipes.categories.handlers.FuelHandler;
 import com.fulltrix.gcyl.recipes.categories.handlers.VoidMinerHandler;
 import com.fulltrix.gcyl.recipes.helper.GCYLComponents;
-import com.fulltrix.gcyl.recipes.recipeproperties.AdvFusionCoilProperty;
+import com.fulltrix.gcyl.api.recipes.properties.AdvFusionCoilProperty;
 import com.fulltrix.gcyl.worldgen.WorldGenRegister;
 import gregicality.multiblocks.common.GCYMConfigHolder;
+import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.api.event.HighTierEvent;
@@ -47,12 +50,16 @@ import net.minecraftforge.registries.IForgeRegistry;
 import java.io.IOException;
 import java.util.function.Function;
 
-import static com.fulltrix.gcyl.item.GCYLMetaBlocks.*;
+import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.*;
 
 @Mod.EventBusSubscriber(modid = GCYLCore.MODID)
 public class CommonProxy {
     public void preInit() {
         GCYLCoreItems.init();
+    }
+
+    public void postInit() {
+        CachedRecipes.cacheRecipesForOPF();
     }
 
     private static void registerRecipesAfterCT() {
@@ -120,6 +127,7 @@ public class CommonProxy {
         registry.register(METAL_CASING_2);
         registry.register(REACTOR_CASING);
         registry.register(GCYL_CLEANROOM_CASING);
+        registry.register(GCYL_COMPONENT_AL_CASING);
     }
 
     @SubscribeEvent
@@ -139,6 +147,7 @@ public class CommonProxy {
         registry.register(createItemBlock(METAL_CASING_2, VariantItemBlock::new));
         registry.register(createItemBlock(REACTOR_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GCYL_CLEANROOM_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GCYL_COMPONENT_AL_CASING, VariantItemBlock::new));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -167,6 +176,10 @@ public class CommonProxy {
         FusionEUToStartProperty.registerFusionTier(11, "(Adv MK3)");
         FusionEUToStartProperty.registerFusionTier(12, "(Adv MK4)");
         FusionEUToStartProperty.registerFusionTier(13, "(Adv MK5)");
+
+        for(int i = 1; i < GTValues.VN.length; i++) {
+            ComponentALProperty.registerCasingTier(i, GTValues.VN[i]);
+        }
 
         GCYLRecipeMaps.modifyMaps();
 
@@ -198,6 +211,7 @@ public class CommonProxy {
     public static void registerOrePrefix(RegistryEvent.Register<IRecipe> event) {
         //NuclearHandler.register();
         VoidMinerHandler.register();
+        CachedRecipes.register();
 
         //TODO: remove ore prefixes from hidden & removed circuits
 

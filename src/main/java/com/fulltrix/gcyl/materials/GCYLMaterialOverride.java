@@ -112,7 +112,7 @@ public class GCYLMaterialOverride {
 
         //LONG STICK ADDITIONS
         List<Material> longstickmats = new ArrayList<>();
-        Collections.addAll(longstickmats, NeodymiumMagnetic, Mendelevium);
+        Collections.addAll(longstickmats, NeodymiumMagnetic, Mendelevium, IronMagnetic);
         for (Material mat : longstickmats) {
             mat.addFlags(GENERATE_LONG_ROD);
         }
@@ -138,7 +138,7 @@ public class GCYLMaterialOverride {
         Collections.addAll(fmats, Sodium, Bromine, AmmoniumChloride, Rubidium, Caesium, Francium, Polonium, Praseodymium, Ytterbium, Neptunium,
                 ProtoAdamantium, Scandium, Radium, MetastableHassium, MetastableFlerovium, MetastableOganesson, HeavyQuarkDegenerateMatter, Dubnium,
                 Sulfur, Calcium, Curium, Bohrium, Seaborgium, Copernicium, Rutherfordium,Meitnerium, Tennessine, Livermorium, Moscovium, Nihonium,
-                Roentgenium, Astatine, Hafnium, RutheniumTetroxide, Lawrencium, Nobelium);
+                Roentgenium, Astatine, Hafnium, RutheniumTetroxide, Lawrencium, Nobelium, Germanium);
 
         for (Material mat : fmats) {
             addLiquid(mat);
@@ -282,10 +282,11 @@ public class GCYLMaterialOverride {
 
         NaquadahAlloy.addFlags(GENERATE_FINE_WIRE);
 
-        Copper.addFlags(GENERATE_DENSE);
-        StainlessSteel.addFlags(GENERATE_DENSE);
-        Titanium.addFlags(GENERATE_DENSE);
-        WatertightSteel.addFlags(GENERATE_DENSE);
+        List<Material> densemats = new ArrayList<>();
+        Collections.addAll(densemats,Copper, StainlessSteel, Titanium, WatertightSteel, Ruridit, HSSS, Iridium, Steel, Aluminium, Tritanium);
+        for(Material mat : densemats) {
+            mat.addFlags(GENERATE_DENSE);
+        }
 
         BlastProperty blastProperty;
 
@@ -294,7 +295,7 @@ public class GCYLMaterialOverride {
 
         //ADD FRAMES
         List<Material> framemats = new ArrayList<>();
-        Collections.addAll(framemats, Bohrium, Naquadria,Osmiridium, Inconel625);
+        Collections.addAll(framemats, Bohrium, Naquadria,Osmiridium, Inconel625, RhodiumPlatedPalladium);
         for(Material mat : framemats) {
             mat.addFlags(GENERATE_FRAME);
         }

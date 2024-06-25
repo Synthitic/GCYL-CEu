@@ -1,7 +1,6 @@
 package com.fulltrix.gcyl.machines.multi.advance;
 
 import com.fulltrix.gcyl.GCYLConfig;
-import com.fulltrix.gcyl.item.metal.MetalCasing1;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
 import gregicality.multiblocks.api.render.GCYMTextures;
@@ -13,21 +12,13 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
-import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.RecipeMap;
 import gregtech.client.renderer.ICubeRenderer;
-import net.minecraft.block.BlockLiquid;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -35,7 +26,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.FISHER_RECIPES;
-import static com.fulltrix.gcyl.item.GCYLMetaBlocks.METAL_CASING_1;
 import static net.minecraft.init.Blocks.WATER;
 
 //TODO optimize
