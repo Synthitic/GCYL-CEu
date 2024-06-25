@@ -122,7 +122,7 @@ public class ComponentALRecipes {
                 .inputs(QUANTUM_STAR.getStackForm(48))
                 .input(frameGt, HSSS, 48)
                 .input(plateDense, HSSS, 32)
-                .input(cableGtHex, YttriumBariumCuprate, 96)
+                .input(cableGtHex, YttriumBariumCuprate, 48)
                 .inputs(EMITTER_LuV.getStackForm(96))
                 .input(circuit, MarkerMaterials.Tier.LuV, 384)
                 .fluidInputs(SolderingAlloy.getFluid(L * 192))
