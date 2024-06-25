@@ -217,7 +217,7 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
     @Override
     protected void addDisplayText(List<ITextComponent> textList) {
         super.addDisplayText(textList);
-        textList.add(new TextComponentTranslation("gcyl.multiblock.coal.max_recipe_tier", GTValues.VN[this.tier + 1]));
+        textList.add(new TextComponentTranslation("gcyl.multiblock.coal.max_recipe_tier", GTValues.VN[this.tier]));
     }
 
     @Override
