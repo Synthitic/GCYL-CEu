@@ -9,10 +9,15 @@ import com.fulltrix.gcyl.blocks.metal.GCYLCleanroomCasing;
 import com.fulltrix.gcyl.blocks.metal.MetalCasing2;
 import com.fulltrix.gcyl.client.ClientHandler;
 import gregtech.api.GTValues;
+import gregtech.api.capability.IOpticalComputationHatch;
+import gregtech.api.capability.IOpticalComputationProvider;
+import gregtech.api.capability.IOpticalComputationReceiver;
+import gregtech.api.capability.impl.ComputationRecipeLogic;
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
+import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
@@ -48,8 +53,9 @@ import static gregtech.api.unification.material.Materials.TungstenSteel;
 import static gregtech.api.util.RelativeDirection.*;
 
 //TODO implement filter bonus, laser hatches
-public class MetaTileEntityComponentAL extends RecipeMapMultiblockController implements ITier {
+public class MetaTileEntityComponentAL extends RecipeMapMultiblockController implements ITier, IOpticalComputationReceiver {
 
+    private IOpticalComputationProvider computationProvider;
     private int tier;
 
     public MetaTileEntityComponentAL(ResourceLocation metaTileEntityId) {
@@ -107,8 +113,9 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
 				.where('B', states(MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_LINE_CASING)))
 				.where('P', states(MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.POLYTETRAFLUOROETHYLENE_PIPE)))
 				.where('C', states(GCYLMetaBlocks.METAL_CASING_2.getState(MetalCasing2.CasingType.IRIDIUM))
-                .setMinGlobalLimited(635)
-                .or(autoAbilities(true,true,true,true,true,false,false)))
+                .setMinGlobalLimited(630)
+                .or(autoAbilities(true,true,true,true,true,false,false))
+                        .or(abilities(MultiblockAbility.COMPUTATION_DATA_RECEPTION).setExactLimit(1)))
                 .where('#', air())
                 .build();
     }
@@ -117,7 +124,7 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
     public List<MultiblockShapeInfo> getMatchingShapes() {
         ArrayList<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
         MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder(RIGHT, DOWN, FRONT)
-                .aisle("CCCCCCCCC","C##F#F##C","C##CZC##C","C##CCC##C","C#######C","C#######C","CC#CCC#CC","#CCCSCCC#","###CCC###","#########")
+                .aisle("CCCCCCCCC","C##F#F##C","C##CZC##C","C##CCC##C","C#######C","C#######C","CC#CCC#CC","#CCCSCCC#","###CWC###","#########")
                 .aisle("YCCCCCCCC","G#######G","G##CCC##G","G#######G","G#######G","G#######G","C#######C","T#######T","#TMCCCET#","#########")
                 .aisle("YCCCCCCCC","G#######G","G##CCC##G","G#A###A#G","GB#####BG","GB#####BG","CB#####BC","T#######T","#TC###CT#","###CIC###")
                 .aisle("YCCCCCCCC","G#######G","G##CCC##G","G#######G","G#######G","G#######G","C#######C","T#######T","#TC###CT#","###CIC###")
@@ -163,7 +170,8 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
                 .where('Z', MetaTileEntities.ITEM_IMPORT_BUS[5], EnumFacing.NORTH)
                 .where('X', MetaTileEntities.ITEM_EXPORT_BUS[5], EnumFacing.SOUTH)
                 .where('Y', MetaTileEntities.QUADRUPLE_IMPORT_HATCH[3], EnumFacing.EAST)
-                .where('T', MetaBlocks.CLEANROOM_CASING.getState(BlockCleanroomCasing.CasingType.FILTER_CASING));
+                .where('T', MetaBlocks.CLEANROOM_CASING.getState(BlockCleanroomCasing.CasingType.FILTER_CASING))
+                .where('W', MetaTileEntities.COMPUTATION_HATCH_RECEIVER, EnumFacing.NORTH);
 
         Arrays.stream(GCYLComponentALCasing.CasingType.values())
                 .forEach(casingType -> shapeInfo
@@ -196,6 +204,15 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
         }
         else
             this.tier = 0;
+
+        List<IOpticalComputationHatch> providers = getAbilities(MultiblockAbility.COMPUTATION_DATA_RECEPTION);
+        if (providers != null && providers.size() >= 1) {
+            computationProvider = providers.get(0);
+        }
+
+        if (computationProvider == null) {
+            invalidateStructure();
+        }
     }
 
     @Override
@@ -227,13 +244,16 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
         //tooltip.add(I18n.format("gcyl.multiblock.coal.description.3"));
     }
 
+    @Override
+    public IOpticalComputationProvider getComputationProvider() {
+        return null;
+    }
 
-    private class ComponentALRecipeLogic extends MultiblockRecipeLogic {
 
-
+    private class ComponentALRecipeLogic extends ComputationRecipeLogic {
 
         public ComponentALRecipeLogic(RecipeMapMultiblockController metaTileEntity) {
-            super(metaTileEntity);
+            super(metaTileEntity, ComputationType.STEADY);
         }
 
         @Override

@@ -5,6 +5,8 @@ import com.fulltrix.gcyl.api.recipes.properties.ComponentALProperty;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.recipeproperties.ComputationProperty;
+import gregtech.api.recipes.recipeproperties.TotalComputationProperty;
 import gregtech.api.util.EnumValidationResult;
 import gregtech.api.util.GTLog;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -31,6 +33,15 @@ public class ComponentALRecipeBuilder extends RecipeBuilder<ComponentALRecipeBui
             this.CasingTier(((Number) value).intValue());
             return true;
         }
+        if (key.equals(ComputationProperty.KEY)) {
+            this.CWUt(((Number) value).intValue());
+            return true;
+        }
+        if (key.equals(TotalComputationProperty.KEY)) {
+            this.totalCWU(((Number) value).intValue());
+            return true;
+        }
+
         return super.applyProperty(key, value);
     }
 
@@ -54,5 +65,26 @@ public class ComponentALRecipeBuilder extends RecipeBuilder<ComponentALRecipeBui
                 .appendSuper(super.toString())
                 .append(ComponentALProperty.getInstance().getKey(), getCasingTier())
                 .toString();
+    }
+
+    public ComponentALRecipeBuilder CWUt(int cwut) {
+        if (cwut < 0) {
+            GTLog.logger.error("CWU/t cannot be less than 0", new Throwable());
+            recipeStatus = EnumValidationResult.INVALID;
+        }
+        this.applyProperty(ComputationProperty.getInstance(), cwut);
+        return this;
+    }
+
+    /**
+     * The total computation for this recipe. If desired, this should be used instead of a call to duration().
+     */
+    public ComponentALRecipeBuilder totalCWU(int totalCWU) {
+        if (totalCWU < 0) {
+            GTLog.logger.error("Total CWU cannot be less than 0", new Throwable());
+            recipeStatus = EnumValidationResult.INVALID;
+        }
+        this.applyProperty(TotalComputationProperty.getInstance(), totalCWU);
+        return duration(totalCWU);
     }
 }
