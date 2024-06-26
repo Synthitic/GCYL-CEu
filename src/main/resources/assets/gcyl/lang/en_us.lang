@@ -4791,11 +4791,13 @@ gcyl.multiblock.deep_miner.tooltip.3=Use a §bScrewdriver§r§7 to change betwee
 gcyl.multiblock.deep_miner.tooltip.4=Accepts §cLava§r§7 (.75), §6Pyrotheum§r§7 (1), §eHelium Plasma§r§7 (4), or §8Neutron Plasma§r§7 (16) with §bBonuses§r§7 increasing from left to right.
 gcyl.multiblock.deep_miner.tooltip.5=Maximum §bTemperature§r§7 depends on §bFluid§r§7 input and §bCoil§r§7 tier.
 gcyl.multiblock.deep_miner.tooltip.6=Gains §cHeat§r§7 from §bFluid§r§7 input. Hotter §bFluids§r§7 increases the §bTemperature§r§7 faster.
-gcyl.multiblock.deep_miner.tooltip.7=Loses §cHeat§r§7 when not running §lOR§r§7 when there is no heating §bFluids§r§7. (§bFluids§r§7 is not consumed when at maximum §bTemperature§r§7)
-gcyl.multiblock.deep_miner.tooltip.8=For every §b1000K§r§7 above recipe temperature, the recipe duration is multiplied by §e0.80§r§7.
+gcyl.multiblock.deep_miner.tooltip.11=§cHeating Fluid§r§7 Consumption is based on §eEnergy Tier§7. (§bHeating Fluids§r§7 are consumed at 10% normal rate at maximum §bTemperature§r§7)
+gcyl.multiblock.deep_miner.tooltip.7=Loses §cHeat§r§7 when not running §lOR§r§7 when there is no heating §bFluids§r§7.
+gcyl.multiblock.deep_miner.tooltip.8=For every §b1000K§r§7 above recipe temperature, the recipe duration is multiplied by §e%s§r§7. (Additive)
 gcyl.multiblock.deep_miner.tooltip.9=To use §eHelium Plasma§r§7, the casings and frames need to be §2Incoloy 813§r§7.
 gcyl.multiblock.deep_miner.tooltip.10=To use §8Neutron Plasma§r§7, the casings and frames need to be §aHastelloy K243§r§7.
-gregtech.multiblock.deep_miner.max.temperature=Max Temperature: %s K
+gregtech.multiblock.deep_miner.max.temperature=Max Temperature: %sK
+gregtech.multiblock.deep_miner.max.fluid consumption=Fluid Consumption: %smB
 gregtech.multiblock.deep_miner_error=§cY LEVEL TOO HIGH! RECIPES WILL NOT RUN!
 recipemap.deep_miner.name=Deep Miner
 

@@ -53,6 +53,8 @@ import java.util.List;
 public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController implements IHeatingCoil {
 
     protected final MetaTileEntity metaTileEntity;
+    private final float TEMPERATURE_DURATION_MULTIPLIER = 1.11F;
+    private final float TEMPERATURE_DURATION_MULTIPLIER_INVERSE = 0.90F;
 
     private int currentTemperature;
     private int maxTemperature;
@@ -95,8 +97,9 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
         tooltip.add(I18n.format("gcyl.multiblock.deep_miner.tooltip.4"));
         tooltip.add(I18n.format("gcyl.multiblock.deep_miner.tooltip.5"));
         tooltip.add(I18n.format("gcyl.multiblock.deep_miner.tooltip.6"));
+        tooltip.add(I18n.format("gcyl.multiblock.deep_miner.tooltip.11"));
         tooltip.add(I18n.format("gcyl.multiblock.deep_miner.tooltip.7"));
-        tooltip.add(I18n.format("gcyl.multiblock.deep_miner.tooltip.8"));
+        tooltip.add(I18n.format("gcyl.multiblock.deep_miner.tooltip.8", TEMPERATURE_DURATION_MULTIPLIER_INVERSE));
         //tooltip.add(I18n.format("gcyl.multiblock.deep_miner.tooltip.9"));
         //tooltip.add(I18n.format("gcyl.multiblock.deep_miner.tooltip.10"));
     }
@@ -107,6 +110,7 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
         if (this.isStructureFormed() && !this.hasMaintenanceProblems()) {
             textList.add(new TextComponentTranslation("gregtech.multiblock.universal.vom.temperature", getCurrentTemperature()));
             textList.add(new TextComponentTranslation("gregtech.multiblock.deep_miner.max.temperature", getMaxTemperature()));
+            textList.add(new TextComponentTranslation("gregtech.multiblock.deep_miner.max.fluid consumption", this.recipeMapWorkable.isActive() && getCurrentTemperature() == getMaxTemperature() ? getHeatingFluidActiveMax(getFluidType()).amount : getHeatingFluid(getFluidType()).amount));
         }
         if(this.getPos().getY() > 8 && !this.getWorld().isRemote)
             textList.add(new TextComponentTranslation("gregtech.multiblock.deep_miner_error"));
@@ -129,9 +133,12 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
 
         if(this.recipeMapWorkable.isWorkingEnabled() && checkHeatingFluid() && getCurrentTemperature() <= getMaxTemperature()) {
             if(getOffsetTimer() % 20 == 0) {
-                if(getCurrentTemperature() != getMaxTemperature()) {
+                if(getCurrentTemperature() < getMaxTemperature()) {
                     drainHeatingFluid();
                     increaseTemperature();
+                }
+                else if(getCurrentTemperature() == getMaxTemperature() && this.recipeMapWorkable.isActive()) {
+                    drainHeatingFluidActiveMax();
                 }
                 else {
                     if(!this.isActive())
@@ -158,6 +165,18 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
         };
     }
 
+    protected FluidStack getHeatingFluidActiveMax(int fluidType) {
+        return switch (fluidType) {
+            case 0 ->
+                    Materials.Lava.getFluid(4 * (int) (Math.pow(2, 1.5 * GTUtility.getTierByVoltage(this.energyContainer.getInputVoltage())) / 10.0));
+            case 1 ->
+                    GCYLMaterials.Pyrotheum.getFluid((int) (Math.pow(2, 1.5 * GTUtility.getTierByVoltage(this.energyContainer.getInputVoltage())) / 10.0));
+            case 2 ->
+                    Materials.Helium.getFluid(FluidStorageKeys.PLASMA, (int) (4 * Math.pow(2, GTUtility.getTierByVoltage(this.energyContainer.getInputVoltage())) / 10.0));
+            default -> GCYLMaterials.NeutronPlasma.getFluid(FluidStorageKeys.PLASMA,(int) (2 * Math.pow(2, GTUtility.getTierByVoltage(this.energyContainer.getInputVoltage())) / 10.0));
+        };
+    }
+
     protected boolean checkHeatingFluid() {
         IMultipleTankHandler inputTank = this.getInputFluidInventory();
         return getHeatingFluid(getFluidType()).isFluidStackIdentical(inputTank.drain(getHeatingFluid(getFluidType()), false));
@@ -166,6 +185,8 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
     protected void drainHeatingFluid() {
         this.getInputFluidInventory().drain(getHeatingFluid(getFluidType()), true);
     }
+
+    protected void drainHeatingFluidActiveMax() {this.getInputFluidInventory().drain(getHeatingFluidActiveMax(getFluidType()), true);}
 
     protected void increaseTemperature() {
         if (getCurrentTemperature() < getMaxTemperature()) {
@@ -346,7 +367,7 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
 
             int recipeTemperature = storage.getRecipePropertyValue(GCYLTemperatureProperty.getInstance(),0);
             int temperatureDiff = deepMiner.getCurrentTemperature() - recipeTemperature;
-            double durationModifier = temperatureDiff / 1000 < 1 ? 1 : 1.25 * (temperatureDiff / 1000);
+            double durationModifier = temperatureDiff / 1000 < 1 ? 1 : TEMPERATURE_DURATION_MULTIPLIER * (temperatureDiff / 1000);
             int recipeDuration = (int) (values[1] / durationModifier);
 
             values[1] = recipeDuration;
