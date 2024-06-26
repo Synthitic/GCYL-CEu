@@ -128,7 +128,7 @@ public class UltimateMaterials {
                 .fluidInputs(Einsteinium.getFluid(144))
                 .fluidInputs(Lawrencium.getFluid(144))
                 .fluidInputs(Nobelium.getFluid(144))
-                .output(dust, Actinoids, 13)
+                .output(dust, Actinoids, 15)
                 .buildAndRegister();
 
         ADVANCED_MIXER_RECIPES.recipeBuilder().duration(450).EUt(250000)
@@ -169,7 +169,7 @@ public class UltimateMaterials {
                 .input(dust, PreciousMetals, 9)
                 .input(dust, PostTransitionMetals, 14)
                 .input(dust, Lanthanoids, 15)
-                .input(dust, Actinoids, 13)
+                .input(dust, Actinoids, 15)
                 .fluidInputs(NonMetals.getFluid(15000))
                 .fluidInputs(NobleGases.getFluid(6000))
                 .output(dust, Periodicium, 115)
