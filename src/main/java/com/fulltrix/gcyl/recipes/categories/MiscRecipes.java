@@ -116,6 +116,7 @@ highTierVoltageCoils();
                 .outputs(CARBON_FIBERS.getStackForm(64))
                 .buildAndRegister();
 
+        //WIRELESS BATTERY
         ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UV]).duration(1200)
                 .outputs(WIRELESS_BATTERY_UV.getStackForm())
                 .inputs(ENERGY_CLUSTER.getStackForm())
@@ -130,6 +131,17 @@ highTierVoltageCoils();
                 .fluidInputs(getPolymerByTier(UV).getFluid(L * 32))
                 .fluidInputs(Seaborgium.getFluid( L * 32))
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .buildAndRegister();
+
+        //magnetic fluids
+        POLARIZER_RECIPES.recipeBuilder().EUt(256).duration(144)
+                .fluidInputs(Neodymium.getFluid(144))
+                .fluidOutputs(NeodymiumMagnetic.getFluid(144))
+                .buildAndRegister();
+
+        POLARIZER_RECIPES.recipeBuilder().EUt(4096).duration(150)
+                .fluidInputs(Samarium.getFluid(144))
+                .fluidOutputs(SamariumMagnetic.getFluid(144))
                 .buildAndRegister();
 
     }

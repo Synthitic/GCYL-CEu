@@ -2413,7 +2413,7 @@ public class GCYLMaterials {
                 .build();
 
         NaquadriaticTaranium = new Material.Builder(++id, gcylId("naquadriatic_taranium"))
-                .ingot()
+                .ingot().fluid()
                 .color((Naquadria.getMaterialRGB() + Taranium.getMaterialRGB()) / 2)
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
@@ -2621,7 +2621,7 @@ public class GCYLMaterials {
                 .build();
 
         TantalumHafniumSeaborgiumCarbide = new Material.Builder(++id, gcylId("tantalum_hafnium_seaborgium_carbide"))
-                .ingot(6)
+                .ingot(6).fluid()
                 .color(0x2c2c2c)
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
@@ -2727,7 +2727,7 @@ public class GCYLMaterials {
                 .setFormula("(C60)2La2?", true);
 
         LanthanumFullereneNanotubes = new Material.Builder(++id, gcylId("lanthanum_fullerene_nanotubes"))
-                .dust()
+                .dust().ingot().fluid()
                 .color(LanthanumFullereneMix.getMaterialRGB() * 3 / 5)
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
@@ -4593,7 +4593,7 @@ public class GCYLMaterials {
                 .setFormula("(BaTiO3)C2H3BaO2Sr", true);
 
         BariumStrontiumTitanate = new Material.Builder(++id, gcylId("barium_strontium_titanate"))
-                .dust()
+                .dust().fluid()
                 .color(0xFF0066)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(SHINY)
@@ -4641,7 +4641,7 @@ public class GCYLMaterials {
                 .setFormula("Pb(ScTa)O3", true);
 
         MagnetorestrictiveAlloy = new Material.Builder(++id, gcylId("magnetorestrictive_alloy"))
-                .dust()
+                .dust().fluid()
                 .color(0xafefef)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(ROUGH)
@@ -4649,7 +4649,7 @@ public class GCYLMaterials {
                 .setFormula("Tb4Dy7Fe10Co5B2SiC", true);
 
         LeadSenenide = new Material.Builder(++id, gcylId("lead_selenide"))
-                .dust()
+                .dust().fluid()
                 .color((Lead.getMaterialRGB() + Selenium.getMaterialRGB()) / 2)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(ROUGH)
@@ -4665,7 +4665,7 @@ public class GCYLMaterials {
                 .setFormula("ZnSe", true);
 
         FranciumCaesiumCadmiumBromide = new Material.Builder(++id, gcylId("francium_caesium_cadmium_bromide"))
-                .dust()
+                .dust().fluid()
                 .color((Francium.getMaterialRGB() + Caesium.getMaterialRGB() + Cadmium.getMaterialRGB() + Bromine.getMaterialRGB()) / 4)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(SHINY)
@@ -4697,7 +4697,7 @@ public class GCYLMaterials {
                 .setFormula("C4H6O4Pd", true);
 
         Stilbene = new Material.Builder(++id, gcylId("stilbene"))
-                .dust()
+                .dust().fluid()
                 .color(0x3c9c3c)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(SHINY)
@@ -4753,7 +4753,7 @@ public class GCYLMaterials {
                 .setFormula("(C8H20N)(ReH9)(TcH9)", true);
 
         RhodamineB = new Material.Builder(++id, gcylId("rhodamine_b"))
-                .dust()
+                .dust().fluid()
                 .color(0xfc2020)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(SHINY)
@@ -7777,7 +7777,7 @@ public class GCYLMaterials {
                 .setFormula("HPF6", true);
 
         ChargedCaesiumCeriumCobaltIndium = new Material.Builder(++id, gcylId("charged_caesium_cerium_cobalt_indium"))
-                .dust()
+                .dust().fluid()
                 .color(0x52ad25)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(SHINY)
@@ -9059,7 +9059,7 @@ public class GCYLMaterials {
                 .setFormula("H2NqF4",true);
 
         Fluorescein = new Material.Builder(++id, gcylId("fluorescein"))
-                .dust()
+                .dust().fluid()
                 .color(0x990000)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(DULL)

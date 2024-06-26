@@ -211,6 +211,9 @@ public final class GCYLRecipeMaps {
         GAS_CENTRIFUGE_RECIPES.setMaxFluidOutputs(3);
 
         CIRCUIT_ASSEMBLER_RECIPES.setMaxInputs(7);
+
+        POLARIZER_RECIPES.setMaxFluidInputs(1);
+        POLARIZER_RECIPES.setMaxFluidOutputs(1);
     }
 
 }

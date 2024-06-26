@@ -246,7 +246,7 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
 
     @Override
     public IOpticalComputationProvider getComputationProvider() {
-        return null;
+        return computationProvider;
     }
 
 

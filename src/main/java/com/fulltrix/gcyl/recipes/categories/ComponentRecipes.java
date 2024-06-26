@@ -185,7 +185,7 @@ public class ComponentRecipes {
                         .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             } else if (i == 10) {
-                getAssLineResearchBuilder(i, 600, getEmitterByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i - 9)))
+                getAssLineResearchBuilder(i, 600, getEmitterByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(4, i - 9)))
                         .outputs(getEmitterByTier(i).getStackForm())
                         .input(frameGt, getMainComponentMaterialByTier(i))
                         .inputs(getMotorByTier(i).getStackForm())
@@ -202,7 +202,7 @@ public class ComponentRecipes {
                         .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             } else if (i == 11) {
-                getAssLineResearchBuilder(i, 600, getEmitterByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i - 9)))
+                getAssLineResearchBuilder(i, 600, getEmitterByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(4, i - 9)))
                         .outputs(getEmitterByTier(i).getStackForm())
                         .input(frameGt, getMainComponentMaterialByTier(i))
                         .inputs(getMotorByTier(i).getStackForm())
@@ -219,7 +219,7 @@ public class ComponentRecipes {
                         .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             } else if (i == 12) {
-                getAssLineResearchBuilder(i, 600, getEmitterByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i - 9)))
+                getAssLineResearchBuilder(i, 600, getEmitterByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(4, i - 9)))
                         .outputs(getEmitterByTier(i).getStackForm())
                         .input(frameGt, getMainComponentMaterialByTier(i))
                         .inputs(getMotorByTier(i).getStackForm())
@@ -236,7 +236,7 @@ public class ComponentRecipes {
                         .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             } else {
-            getAssLineResearchBuilder(i, 600, getEmitterByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i - 9)))
+            getAssLineResearchBuilder(i, 600, getEmitterByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(4, i - 9)))
                     .outputs(getEmitterByTier(i).getStackForm())
                     .input(frameGt, getMainComponentMaterialByTier(i))
                     .inputs(getMotorByTier(i).getStackForm())
@@ -427,7 +427,7 @@ public class ComponentRecipes {
                         .buildAndRegister();
             }
             else if (i == 9){
-                getAssLineResearchBuilder(i, 600, getSensorByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i - 9)))
+                getAssLineResearchBuilder(i, 600, getSensorByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(4, i - 9)))
                         .outputs(getSensorByTier(i).getStackForm())
                         .input(frameGt, getMainComponentMaterialByTier(i))
                         .inputs(getMotorByTier(i).getStackForm())
@@ -446,7 +446,7 @@ public class ComponentRecipes {
                         .buildAndRegister();
             }
             else if (i == 10) {
-                getAssLineResearchBuilder(i, 600, getSensorByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i - 9)))
+                getAssLineResearchBuilder(i, 600, getSensorByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(4, i - 9)))
                         .outputs(getSensorByTier(i).getStackForm())
                         .input(frameGt, getMainComponentMaterialByTier(i))
                         .inputs(getMotorByTier(i).getStackForm())
@@ -465,7 +465,7 @@ public class ComponentRecipes {
                         .buildAndRegister();
             }
             else if (i == 11) {
-                getAssLineResearchBuilder(i, 600, getSensorByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i - 9)))
+                getAssLineResearchBuilder(i, 600, getSensorByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(4, i - 9)))
                         .outputs(getSensorByTier(i).getStackForm())
                         .input(frameGt, getMainComponentMaterialByTier(i))
                         .inputs(getMotorByTier(i).getStackForm())
@@ -484,7 +484,7 @@ public class ComponentRecipes {
                         .buildAndRegister();
             }
             else if (i == 12) {
-                getAssLineResearchBuilder(i, 600, getSensorByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i - 9)))
+                getAssLineResearchBuilder(i, 600, getSensorByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(4, i - 9)))
                         .outputs(getSensorByTier(i).getStackForm())
                         .input(frameGt, getMainComponentMaterialByTier(i))
                         .inputs(getMotorByTier(i).getStackForm())
@@ -503,7 +503,7 @@ public class ComponentRecipes {
                         .buildAndRegister();
             }
             else {
-                getAssLineResearchBuilder(i, 600, getSensorByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i - 9)))
+                getAssLineResearchBuilder(i, 600, getSensorByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(4, i - 9)))
                         .outputs(getSensorByTier(i).getStackForm())
                         .input(frameGt, getMainComponentMaterialByTier(i))
                         .inputs(getMotorByTier(i).getStackForm())
@@ -680,9 +680,9 @@ public class ComponentRecipes {
                 .buildAndRegister();
          */
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(frameGt, NaquadahAlloy)
-                .input(plate, NaquadahAlloy, 6)
-                .input(QUANTUM_STAR)
+                .input(frameGt, HSSE)
+                .input(plate, HSSE, 6)
+                .inputs(QUANTUM_STAR.getStackForm(2))
                 .input(EMITTER_ZPM, 2)
                 .input(circuit, MarkerMaterials.Tier.ZPM, 8)
                 .input(wireFine, ZPMSuperconductor, 64)
@@ -711,7 +711,7 @@ public class ComponentRecipes {
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(frameGt, Tritanium)
                 .input(plate, Tritanium, 6)
-                .input(GRAVI_STAR)
+                .input(GRAVI_STAR, 2)
                 .input(EMITTER_UV, 2)
                 .input(circuit, MarkerMaterials.Tier.UV, 8)
                 .input(wireFine, UVSuperconductor, 64)
@@ -1144,7 +1144,7 @@ public class ComponentRecipes {
                         .fluidInputs(Lubricant.getFluid((int) (1000 * Math.pow(2, i - 8))))
                         .fluidInputs(getPolymerByTier(i).getFluid(L * 24 * (i - 7)))
                         //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 2 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             }
             else {
@@ -1160,7 +1160,7 @@ public class ComponentRecipes {
                         .fluidInputs(Lubricant.getFluid((int) (1000 * Math.pow(2, i - 8))))
                         .fluidInputs(getPolymerByTier(i).getFluid(L * 24 * (i - 7)))
                         //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 2 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             }
         }
@@ -1333,7 +1333,7 @@ public class ComponentRecipes {
                         .fluidInputs(Indalloy140.getFluid((int) (L * 4 * Math.pow(2, i - 8))))
                         .fluidInputs(Lubricant.getFluid((int) (1000 * Math.pow(2, i - 8))))
                         //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 2 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             } else {
                 getAssLineResearchBuilder(i, 600, getPistonByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i)))
@@ -1349,7 +1349,7 @@ public class ComponentRecipes {
                         .fluidInputs(Indalloy140.getFluid((int) (L * 4 * Math.pow(2, i - 8))))
                         .fluidInputs(Lubricant.getFluid((int) (1000 * Math.pow(2, i - 8))))
                         //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 2 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             }
         }
@@ -1473,7 +1473,7 @@ public class ComponentRecipes {
                 .duration(600).EUt(10240).buildAndRegister();
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(stickLong, NeodymiumMagnetic,16)
+                .input(stickLong, NeodymiumMagnetic,2)
                 .input(stickLong, HSSE, 4)
                 .input(ring, HSSE, 4)
                 .input(round, HSSE, 8)
@@ -1492,7 +1492,7 @@ public class ComponentRecipes {
                 .duration(600).EUt(40960).buildAndRegister();
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(stickLong, NeodymiumMagnetic,64)
+                .input(stickLong, NeodymiumMagnetic,4)
                 .input(stickLong, Tritanium, 4)
                 .input(ring, Tritanium, 4)
                 .input(round, Tritanium, 8)
@@ -1516,8 +1516,7 @@ public class ComponentRecipes {
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(655360)
                 .outputs(ELECTRIC_MOTOR_UHV.getStackForm())
-                .input(stickLong, NeodymiumMagnetic, 64)
-                .input(stickLong, NeodymiumMagnetic, 64)
+                .input(stickLong, NeodymiumMagnetic, 8)
                 .input(stickLong, HDCS, 4)
                 .input(ring, HDCS, 4)
                 .input(round, HDCS, 8)
@@ -1538,8 +1537,7 @@ public class ComponentRecipes {
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(2621440)
                 .outputs(ELECTRIC_MOTOR_UEV.getStackForm())
-                .input(stickLong, SamariumMagnetic, 64)
-                .input(stickLong, SamariumMagnetic, 64)
+                .input(stickLong, SamariumMagnetic, 8)
                 .input(stickLong, EnrichedNaquadahAlloy, 4)
                 .input(ring, EnrichedNaquadahAlloy, 4)
                 .input(round, EnrichedNaquadahAlloy, 8)
@@ -1562,8 +1560,7 @@ public class ComponentRecipes {
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(10485760)
                 .outputs(ELECTRIC_MOTOR_UIV.getStackForm())
-                .input(stickLong, SamariumMagnetic, 64)
-                .input(stickLong, SamariumMagnetic, 64)
+                .input(stickLong, SamariumMagnetic, 16)
                 .input(stickLong, HastelloyX78, 4)
                 .input(ring, HastelloyX78, 4)
                 .input(round, HastelloyX78, 8)
@@ -1583,22 +1580,16 @@ public class ComponentRecipes {
                         .EUt(VA[GTValues.UIV]))
                 .buildAndRegister();
 
-        //TODO: Change this from carbon nanotubes
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(41943040)
                 .outputs(ELECTRIC_MOTOR_UXV.getStackForm())
-                .input(stickLong, SamariumMagnetic, 64)
-                .input(stickLong, SamariumMagnetic, 64)
+                .input(stickLong, SamariumMagnetic, 32)
                 .input(stickLong, HastelloyK243, 4)
                 .input(ring, HastelloyK243, 4)
                 .input(round, HastelloyK243, 8)
-                .input(wireFine, CarbonNanotubes, 64)
-                .input(wireFine, CarbonNanotubes, 64)
-                .input(wireFine, CarbonNanotubes, 64)
-                .input(wireFine, CarbonNanotubes, 64)
-                .input(wireFine, CarbonNanotubes, 64)
-                .input(wireFine, CarbonNanotubes, 64)
-                .input(wireFine, CarbonNanotubes, 64)
-                .input(wireFine, CarbonNanotubes, 64)
+                .input(wireFine, LanthanumFullereneNanotubes, 64)
+                .input(wireFine, LanthanumFullereneNanotubes, 64)
+                .input(wireFine, LanthanumFullereneNanotubes, 64)
+                .input(wireFine, LanthanumFullereneNanotubes, 64)
                 .input(cableGtSingle, NaquadriaticTaranium, 2)
                 .fluidInputs(Indalloy140.getFluid(L * 64))
                 .fluidInputs(Lubricant.getFluid(16000))
@@ -1614,7 +1605,6 @@ public class ComponentRecipes {
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt(536870900)
                 .outputs(ELECTRIC_MOTOR_OpV.getStackForm())
                 .input(stickLong, NaquadriaticTaranium, 64)
-                .input(stickLong, NaquadriaticTaranium, 32)
                 .input(stickLong, Neutronium, 4)
                 .input(ring, Neutronium, 4)
                 .input(round, Neutronium, 8)
@@ -1636,7 +1626,6 @@ public class ComponentRecipes {
 
         ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(600).EUt((int) GTValues.V[GTValues.MAX])
                 .outputs(ELECTRIC_MOTOR_MAX.getStackForm())
-                .input(stickLong, NaquadriaticTaranium, 64)
                 .input(stickLong, NaquadriaticTaranium, 64)
                 .input(stickLong, NaquadriaticTaranium, 64)
                 .input(wireFine, HeavyQuarkDegenerateMatter, 64)
@@ -1768,7 +1757,7 @@ public class ComponentRecipes {
                         .fluidInputs(Indalloy140.getFluid((int) (L * 4 * Math.pow(2, i - 8))))
                         .fluidInputs(Lubricant.getFluid((int) (1000 * Math.pow(2, i - 8))))
                         //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 2 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             } else {
                 getAssLineResearchBuilder(i, 600, getPumpByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i)))
@@ -1783,7 +1772,7 @@ public class ComponentRecipes {
                         .fluidInputs(Indalloy140.getFluid((int) (L * 4 * Math.pow(2, i - 8))))
                         .fluidInputs(Lubricant.getFluid((int) (1000 * Math.pow(2, i - 8))))
                         //.fluidInputs(getFluidMaterialByTier(i).getFluid(L * 4 * (i - 7)))
-                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
+                        .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 2 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             }
         }

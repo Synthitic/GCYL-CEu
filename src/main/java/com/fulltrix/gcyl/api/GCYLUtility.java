@@ -13,6 +13,7 @@ import gregtech.api.unification.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
+import scala.MatchError;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,8 +76,63 @@ public class GCYLUtility {
             return QPIC;
     }
 
+    public static Material getEmitterDustByTier(int tier) {
+        return switch (tier) {
+            case(6) -> ZincSelenide;
+            case(7) -> Fluorescein;
+            case(8) -> Stilbene;
+            case(9) -> FranciumCaesiumCadmiumBromide;
+            case(10) -> RhodamineB;
+            case(11) -> null;
+            case(12) -> null;
+            case(13) -> ChargedCaesiumCeriumCobaltIndium;
+            case(14) -> RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate;
+            default -> null;
+        };
+    }
+
+    public static Material getSensorDustByTier(int tier) {
+        return switch (tier) {
+            case(6) -> Germanium;
+            case(7) -> LeadSenenide;
+            case(8) -> BariumStrontiumTitanate;
+            case(9) -> BariumStrontiumTitanate;
+            case(10) -> MagnetorestrictiveAlloy;
+            case(11) -> null;
+            case(12) -> null;
+            case(13) -> null;
+            case(14) -> null;
+            default -> null;
+        };
+    }
+
+    public static Material getSensorEmitterFoil(int tier) {
+        return switch (tier) {
+            case (6) -> Palladium;
+            case (7) -> Platinum;
+            case (8) -> Osmiridium;
+            case(11) -> TriniumTitanium;
+            case(12) -> ProtoAdamantium;
+            default -> getMainComponentMaterialByTier(tier);
+        };
+    }
+
+    public static Material getGemByTier(int tier) {
+        return switch (tier) {
+            case (6) -> Ruby;
+            case (7) -> Emerald;
+            case (8) -> Diamond;
+            case (9) -> Diamond;
+            case (10) -> Diamond;
+            case (11) -> Diamond;
+            case (12) -> Diamond;
+            case (13) -> Jasper;
+            default -> Diamond;
+        };
+    }
+
     public static int getCWUt(int tier) {
-        return (int) Math.max(32, Math.pow(2, tier - 2));
+        return (int) Math.max(4, Math.pow(2, tier - 2));
     }
 
     public static ItemStack getDataStack(int CWUt) {
@@ -91,6 +147,33 @@ public class GCYLUtility {
         else
             return TOOL_DATA_SUPRACAUSAL.getStackForm();
 
+    }
+
+    public static Material getSolderingAlloyByTier(int tier) {
+        if(tier > 8)
+            return Indalloy140;
+        else
+            return SolderingAlloy;
+    }
+
+    public static Material getFineWireByTier(int tier) {
+        return switch (tier) {
+            case(1) -> Copper;
+            case(2) -> Cupronickel;
+            case(3) -> Electrum;
+            case(4) -> Kanthal;
+            case(5) -> BrightSteel;
+            case(6) -> Ruridit;
+            case(7) -> Europium;
+            case(8) -> Duranium;
+            case(9) -> TungstenTitaniumCarbide;
+            case(10) -> Pikyonium;
+            case(11) -> CarbonNanotubes;
+            case(12) -> LanthanumFullereneNanotubes;
+            case(13) -> MetastableOganesson;
+            case(14) -> HeavyQuarkDegenerateMatter; //TODO CHANGE THIS
+            default -> Lead;
+        };
     }
 
     public static Material getMaterialByTier(int tier) {
@@ -110,6 +193,15 @@ public class GCYLUtility {
             case(13) -> HeavyQuarkDegenerateMatter;
             case(14) -> Neutronium;
             default -> Lead;
+        };
+    }
+
+    public static MetaItem<?>.MetaValueItem getEmitterCrystalByTier(int tier) {
+        return switch (tier) {
+          case(11) -> LEPTON_TRAP_CRYSTAL;
+          case(12) -> CHARGED_LEPTON_TRAP_CRYSTAL;
+          case(13) -> SCINTILLATOR_CRYSTAL;
+            default -> null;
         };
     }
 
@@ -134,11 +226,25 @@ public class GCYLUtility {
         };
     }
 
+    public static Material getMagneticMaterialFluidByTier(int tier) {
+        if(tier == 1)
+            return IronMagnetic;
+        if(tier < 4)
+            return SteelMagnetic;
+        if(tier < 10) {
+            return NeodymiumMagnetic;
+        }
+        if(tier < 13)
+            return SamariumMagnetic;
+        else
+            return NaquadriaticTaranium;
+    }
+
     public static Material getCableByTier(int tier) {
         return switch (tier) {
             case(1) -> Tin;
             case(2) -> Copper;
-            case(3) -> Gold;
+            case(3) -> Silver;
             case(4) -> Aluminium;
             case(5) -> Tungsten;
             case(6) -> YttriumBariumCuprate;
@@ -284,6 +390,11 @@ public class GCYLUtility {
 
     public static Material getFluidPipeMaterialByTier(int tier) {
         return switch (tier) {
+            case(1) -> Bronze;
+            case(2) -> Steel;
+            case(3) -> StainlessSteel;
+            case(4) -> Titanium;
+            case(5) -> TungstenSteel;
             case (9) -> Zeron100;
             case (10) -> Lafium;
             case (11) -> TantalumHafniumSeaborgiumCarbide;
@@ -422,8 +533,8 @@ public class GCYLUtility {
     }
 
     public static MetaItem<?>.MetaValueItem getStarByTier(int tier) {
-        if(tier < 6)
-            return null;
+        if(tier == 4)
+            return QUANTUM_EYE;
         if(tier < 8)
             return QUANTUM_STAR;
         if(tier < 10)
@@ -432,6 +543,26 @@ public class GCYLUtility {
             return UNSTABLE_STAR;
         else
             return NUCLEAR_STAR;
+    }
+
+    public static Material getLowEmitterSensorStarMaterial(int tier) {
+        return switch (tier) {
+            case(1) -> Quartzite;
+            case(2) -> Emerald;
+            case(3) -> EnderEye;
+            default -> null;
+        };
+    }
+
+    public static Material getLowEmitterSensorRodMaterial(int tier) {
+        return switch (tier) {
+            case(1) -> Brass;
+            case(2) -> Electrum;
+            case(3) -> Chrome;
+            case(4) -> Platinum;
+            case(5) -> Iridium;
+            default -> null;
+        };
     }
 
     public static GCYLFusionCoils.CasingType getAdvFusionCoilByAdvTier(int tier) {

@@ -112,7 +112,7 @@ public class GCYLMaterialOverride {
 
         //LONG STICK ADDITIONS
         List<Material> longstickmats = new ArrayList<>();
-        Collections.addAll(longstickmats, NeodymiumMagnetic, Mendelevium, IronMagnetic);
+        Collections.addAll(longstickmats, NeodymiumMagnetic, Mendelevium, IronMagnetic, SteelMagnetic, Chrome);
         for (Material mat : longstickmats) {
             mat.addFlags(GENERATE_LONG_ROD);
         }
@@ -138,7 +138,7 @@ public class GCYLMaterialOverride {
         Collections.addAll(fmats, Sodium, Bromine, AmmoniumChloride, Rubidium, Caesium, Francium, Polonium, Praseodymium, Ytterbium, Neptunium,
                 ProtoAdamantium, Scandium, Radium, MetastableHassium, MetastableFlerovium, MetastableOganesson, HeavyQuarkDegenerateMatter, Dubnium,
                 Sulfur, Calcium, Curium, Bohrium, Seaborgium, Copernicium, Rutherfordium,Meitnerium, Tennessine, Livermorium, Moscovium, Nihonium,
-                Roentgenium, Astatine, Hafnium, RutheniumTetroxide, Lawrencium, Nobelium, Germanium);
+                Roentgenium, Astatine, Hafnium, RutheniumTetroxide, Lawrencium, Nobelium, Germanium, NeodymiumMagnetic, SamariumMagnetic, Lafium);
 
         for (Material mat : fmats) {
             addLiquid(mat);
@@ -282,8 +282,9 @@ public class GCYLMaterialOverride {
 
         NaquadahAlloy.addFlags(GENERATE_FINE_WIRE);
 
+        //DENSE PLATE
         List<Material> densemats = new ArrayList<>();
-        Collections.addAll(densemats,Copper, StainlessSteel, Titanium, WatertightSteel, Ruridit, HSSS, Iridium, Steel, Aluminium, Tritanium);
+        Collections.addAll(densemats,Copper, StainlessSteel, Titanium, WatertightSteel, Ruridit, HSSS, Iridium, Steel, Aluminium, Tritanium, NaquadriaticTaranium, HastelloyK243, EnrichedNaquadahAlloy, HSSE, Osmiridium, Rubber, SiliconeRubber, StyreneButadieneRubber);
         for(Material mat : densemats) {
             mat.addFlags(GENERATE_DENSE);
         }
@@ -379,7 +380,7 @@ public class GCYLMaterialOverride {
 
         //add fine wire
         List<Material> wirefinemats = new ArrayList<>();
-        Collections.addAll(wirefinemats, Trinium, TinAlloy, ReinforcedEpoxyResin, HSSS, Ruthenium, Plutonium, Cerium,
+        Collections.addAll(wirefinemats, Trinium, TinAlloy, ReinforcedEpoxyResin, HSSS, Ruthenium, Plutonium, Cerium, LanthanumFullereneNanotubes,
                 HVSuperconductor, IVSuperconductor, LuVSuperconductor, ZPMSuperconductor, UVSuperconductor, UHVSuperconductor, UEVSuperconductor, UIVSuperconductor, UXVSuperconductor, OpVSuperconductor, MAXSuperconductor);
         for (Material mat : wirefinemats) {
             mat.addFlags(GENERATE_FINE_WIRE);

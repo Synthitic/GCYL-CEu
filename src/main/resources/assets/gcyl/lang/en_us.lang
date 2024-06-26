@@ -5052,3 +5052,4 @@ tile.gcyl_component_al_casing.uxv.name=Component Assembly Line Casing (UXV)
 tile.gcyl_component_al_casing.opv.name=Component Assembly Line Casing (OpV)
 tile.gcyl_component_al_casing.max.name=Component Assembly Line Casing (MAX)
 
+recipemap.cosmic_ray_detector.name=Cosmic Ray Detector
