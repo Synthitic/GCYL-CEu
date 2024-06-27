@@ -5024,7 +5024,7 @@ metaitem.wireless_electric.not_initialized.tooltip=Not Initialized. Sneak while 
 metaitem.wireless_electric.private.tooltip=Private (%s)
 metaitem.wireless_electric.public.tooltip=Public
 
-metaitem.wireless_battery_uv.name=§dWireless Energy Module
+metaitem.wireless_battery_uv.name=§dWireless Energy Cluster
 
 gcyl.multiblock.vom.fluid_output_full=Fluid Output Full!
 
