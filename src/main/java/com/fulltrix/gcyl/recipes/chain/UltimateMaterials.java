@@ -161,7 +161,7 @@ public class UltimateMaterials {
                 .buildAndRegister();
 
         ADVANCED_MIXER_RECIPES.recipeBuilder().duration(360).EUt(5400000)
-                .input(dust, SuperheavyLAlloy, 7)
+                .input(dust, SuperheavyLAlloy, 8)
                 .input(dust, SuperheavyHAlloy, 7)
                 .input(dust, Alkalis, 14)
                 .input(dust, RefractoryMetals, 7)
@@ -172,7 +172,7 @@ public class UltimateMaterials {
                 .input(dust, Actinoids, 15)
                 .fluidInputs(NonMetals.getFluid(15000))
                 .fluidInputs(NobleGases.getFluid(6000))
-                .output(dust, Periodicium, 115)
+                .output(dust, Periodicium, 118)
                 .buildAndRegister();
         
 

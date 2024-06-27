@@ -17,6 +17,7 @@ import java.util.List;
 
 import static com.fulltrix.gcyl.GCYLElements.*;
 import static com.fulltrix.gcyl.api.GCYLUtility.gcylId;
+import static com.fulltrix.gcyl.api.recipes.GCYLMaterialFlags.NO_MIXER_RECIPE;
 import static com.fulltrix.gcyl.materials.GCYLMaterialIconSets.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
@@ -2740,7 +2741,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
                 .flags(GENERATE_PLATE, DISABLE_DECOMPOSITION)
-                .components(Rutherfordium, 1, Dubnium, 1, Seaborgium, 1, Bohrium, 1, MetastableHassium, 1, Meitnerium, 1, Roentgenium, 1)
+                .components(Rutherfordium, 1, Dubnium, 1, Seaborgium, 1, Bohrium, 1, MetastableHassium, 1, Meitnerium, 1, Darmstadtium, 1, Roentgenium, 1)
                 .blast(10600)
                 .build();
 
@@ -3453,7 +3454,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
                 .build()
-                .setFormula("LiBeNaMgKCaScRbSrYCeBaFrRa", true);
+                .setFormula("LiBeNaMgKCaScRbSrYCsBaFrRa", true);
 
         PostTransitionMetals = new Material.Builder(++id, gcylId("post_transition_metals"))
                 .dust()
@@ -3469,14 +3470,14 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
                 .build()
-                .setFormula("LaPrNdPmSmEuGdTbDyHoErTmYbLu", true);
+                .setFormula("CeLaPrNdPmSmEuGdTbDyHoErTmYbLu", true);
         Actinoids = new Material.Builder(++id, gcylId("actinoids"))
                 .dust()
                 .color((Actinium.getMaterialRGB() + Thorium.getMaterialRGB() + Protactinium.getMaterialRGB() + Uranium.getMaterialRGB() + Neptunium.getMaterialRGB() + Plutonium.getMaterialRGB() + Americium.getMaterialRGB() + Curium.getMaterialRGB() + Berkelium.getMaterialRGB() + Californium.getMaterialRGB() + Einsteinium.getMaterialRGB() + Fermium.getMaterialRGB() + Mendelevium.getMaterialRGB() + Nobelium.getMaterialRGB() + Lawrencium.getMaterialRGB()) / 15)
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
                 .build()
-                .setFormula("AcThPaNpPuAmCmBkCfEsFmMdNoLr", true);
+                .setFormula("AcThPaUNpPuAmCmBkCfEsFmMdNoLr", true);
 
         NonMetals = new Material.Builder(++id, gcylId("non_metals"))
                 .liquid()
