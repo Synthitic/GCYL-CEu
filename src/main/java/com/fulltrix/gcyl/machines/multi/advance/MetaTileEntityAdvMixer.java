@@ -25,16 +25,17 @@ import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 
+//TODO: remove regular mixer recipes once small map is implemented
 public class MetaTileEntityAdvMixer extends GCYMRecipeMapMultiblockController {
 
     public MetaTileEntityAdvMixer(ResourceLocation metaTileEnttityID) {
-        super(metaTileEnttityID, GCYLRecipeMaps.ADVANCED_MIXER_RECIPES);
+        super(metaTileEnttityID,  new RecipeMap[] {RecipeMaps.MIXER_RECIPES, GCYLRecipeMaps.ADVANCED_MIXER_RECIPES});
     }
 
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity metaTileEntityHolder) {
-        return new MetaTileEntityLargeMixer(this.metaTileEntityId);
+        return new MetaTileEntityAdvMixer(this.metaTileEntityId);
     }
 
     @Override

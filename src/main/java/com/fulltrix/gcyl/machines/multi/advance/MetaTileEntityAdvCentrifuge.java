@@ -23,16 +23,17 @@ import org.jetbrains.annotations.NotNull;
 
 import static gregtech.api.util.RelativeDirection.*;
 
+//TODO: remove centrifuge map when small recipe maps work
 public class MetaTileEntityAdvCentrifuge extends GCYMRecipeMapMultiblockController {
 
     public MetaTileEntityAdvCentrifuge(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId,
-                new RecipeMap[] { RecipeMaps.THERMAL_CENTRIFUGE_RECIPES, GCYLRecipeMaps.ADVANCED_CENTRIFUGE_RECIPES });
+                new RecipeMap[] { RecipeMaps.THERMAL_CENTRIFUGE_RECIPES, GCYLRecipeMaps.ADVANCED_CENTRIFUGE_RECIPES, RecipeMaps.CENTRIFUGE_RECIPES });
     }
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity metaTileEntityHolder) {
-        return new MetaTileEntityLargeCentrifuge(this.metaTileEntityId);
+        return new MetaTileEntityAdvCentrifuge(this.metaTileEntityId);
     }
 
     @Override

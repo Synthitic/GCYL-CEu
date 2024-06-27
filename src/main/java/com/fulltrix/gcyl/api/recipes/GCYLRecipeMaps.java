@@ -110,8 +110,7 @@ public final class GCYLRecipeMaps {
             .fluidOutputs(1)
             .progressBar(GuiTextures.PROGRESS_BAR_MIXER, MoveType.CIRCULAR)
             .sound(GTSoundEvents.MIXER)
-            .build()
-            .setSmallRecipeMap(MIXER_RECIPES);
+            .build();
 
     //TODO: implement recipe overlap with centrifuge map
     public static final RecipeMap<SimpleRecipeBuilder> ADVANCED_CENTRIFUGE_RECIPES = new RecipeMapBuilder<>("large_centrifuge",
@@ -125,8 +124,7 @@ public final class GCYLRecipeMaps {
             .fluidSlotOverlay(GuiTextures.CENTRIFUGE_OVERLAY, false, true)
             .progressBar(GuiTextures.PROGRESS_BAR_EXTRACT, MoveType.HORIZONTAL)
             .sound(GTSoundEvents.CENTRIFUGE)
-            .build()
-            .setSmallRecipeMap(CENTRIFUGE_RECIPES);
+            .build();
 
     //TODO: ?
     /*
