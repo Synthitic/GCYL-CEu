@@ -72,15 +72,14 @@ highTierVoltageCoils();
         ROCK_BREAKER_RECIPES.recipeBuilder()
                 .notConsumable(new ItemStack(Blocks.NETHERRACK))
                 .duration(16)
-                .EUt(240)
-                .dimension(-1)
+                .EUt(960)
                 .outputs(new ItemStack(Blocks.NETHERRACK))
                 .buildAndRegister();
 
         ROCK_BREAKER_RECIPES.recipeBuilder()
                 .notConsumable(new ItemStack(Blocks.END_STONE))
                 .duration(16)
-                .EUt(960)
+                .EUt(3840)
                 .dimension(1)
                 .outputs(new ItemStack(Blocks.END_STONE))
                 .buildAndRegister();
