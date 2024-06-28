@@ -574,7 +574,7 @@ public class CircuitRecipes {
                 .fluidInputs(SolderingAlloy.getFluid(L * 16))
                 .fluidInputs(Cryotheum.getFluid(5000))
                 .scannerResearch(b -> b
-                        .researchStack(CRYSTAL_ASSEMBLY_LUV.getStackForm())
+                        .researchStack(CRYSTAL_COMPUTER_ZPM.getStackForm())
                         .EUt(GTValues.VA[GTValues.LuV]))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
