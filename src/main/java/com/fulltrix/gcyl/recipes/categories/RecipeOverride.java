@@ -352,6 +352,9 @@ public class RecipeOverride {
 
         removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(plate, Stellite100,6), OreDictUnifier.get(frameGt, Tungsten, 1), getIntegratedCircuit(6));
 
+        //assembly line
+        removeRecipeByName("gregtech:assembly_line");
+
 
     }
 
@@ -1271,6 +1274,13 @@ public class RecipeOverride {
                 .fluidInputs(Pyrotheum.getFluid(32000))
                 .fluidInputs(Polybenzimidazole.getFluid(9216))
                 .buildAndRegister();
+
+        //assembly line
+        ModHandler.addShapedRecipe(true, "assembly_line", MetaTileEntities.ASSEMBLY_LINE.getStackForm(), "CRC", "SAS",
+                "CRC", 'A', MetaTileEntities.HULL[GTValues.IV].getStackForm(), 'R', MetaItems.ROBOT_ARM_IV, 'C',
+                MetaBlocks.MULTIBLOCK_CASING
+                        .getItemVariant(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_CONTROL),
+                'S', new UnificationEntry(OrePrefix.circuit, MarkerMaterials.Tier.LuV));
 
     }
 }
