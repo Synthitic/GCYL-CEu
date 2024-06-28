@@ -64,6 +64,7 @@ public class RecipeOverride {
         recipeRemoval();
         chemistryOverride();
         gregtechOverride();
+        waferRecipeFixes();
     }
 
     private static void recipeRemoval() {
@@ -1281,6 +1282,65 @@ public class RecipeOverride {
                 MetaBlocks.MULTIBLOCK_CASING
                         .getItemVariant(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_CONTROL),
                 'S', new UnificationEntry(OrePrefix.circuit, MarkerMaterials.Tier.LuV));
+
+    }
+
+    private static void waferRecipeFixes() {
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(900).EUt(VA[MV]).input(SILICON_WAFER)
+                .notConsumable(lens, Ruby).output(INTEGRATED_LOGIC_CIRCUIT_WAFER).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(500).EUt(VA[HV]).input(PHOSPHORUS_WAFER)
+                .notConsumable(lens, Ruby).output(INTEGRATED_LOGIC_CIRCUIT_WAFER, 4)
+                .cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(200).EUt(VA[EV]).input(NAQUADAH_WAFER)
+                .notConsumable(lens, Ruby).output(INTEGRATED_LOGIC_CIRCUIT_WAFER, 8)
+                .cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+
+
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(900).EUt(VA[MV]).input(SILICON_WAFER)
+                .notConsumable(lens, Emerald).output(RANDOM_ACCESS_MEMORY_WAFER).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(500).EUt(VA[HV]).input(PHOSPHORUS_WAFER)
+                .notConsumable(lens, Emerald).output(RANDOM_ACCESS_MEMORY_WAFER, 4)
+                .cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(200).EUt(VA[EV]).input(NAQUADAH_WAFER)
+                .notConsumable(lens, Emerald).output(RANDOM_ACCESS_MEMORY_WAFER, 8)
+                .cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+
+
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(900).EUt(VA[MV]).input(SILICON_WAFER)
+                .notConsumable(lens, Diamond).output(CENTRAL_PROCESSING_UNIT_WAFER).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(500).EUt(VA[HV]).input(PHOSPHORUS_WAFER)
+                .notConsumable(lens, Diamond).output(CENTRAL_PROCESSING_UNIT_WAFER, 4)
+                .cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(200).EUt(VA[EV]).input(NAQUADAH_WAFER)
+                .notConsumable(lens, Diamond).output(CENTRAL_PROCESSING_UNIT_WAFER, 8)
+                .cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+
+
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(900).EUt(VA[MV]).input(SILICON_WAFER)
+                .notConsumable(lens, Sapphire).output(ULTRA_LOW_POWER_INTEGRATED_CIRCUIT_WAFER)
+                .buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(500).EUt(VA[HV]).input(PHOSPHORUS_WAFER)
+                .notConsumable(lens, Sapphire).output(ULTRA_LOW_POWER_INTEGRATED_CIRCUIT_WAFER, 4)
+                .cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(200).EUt(VA[EV]).input(NAQUADAH_WAFER)
+                .notConsumable(lens, Sapphire).output(ULTRA_LOW_POWER_INTEGRATED_CIRCUIT_WAFER, 8)
+                .cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+
+
+        /*
+
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(900).EUt(VA[MV]).input(SILICON_WAFER)
+                .notConsumable(craftingLens, MarkerMaterials.Color.Orange).output(LOW_POWER_INTEGRATED_CIRCUIT_WAFER)
+                .buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(500).EUt(VA[HV]).input(PHOSPHORUS_WAFER)
+                .notConsumable(craftingLens, MarkerMaterials.Color.Orange).output(LOW_POWER_INTEGRATED_CIRCUIT_WAFER, 4)
+                .cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+        LASER_ENGRAVER_RECIPES.recipeBuilder().duration(200).EUt(VA[EV]).input(NAQUADAH_WAFER)
+                .notConsumable(craftingLens, MarkerMaterials.Color.Orange).output(LOW_POWER_INTEGRATED_CIRCUIT_WAFER, 8)
+                .cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
+
+         */
+
 
     }
 }
