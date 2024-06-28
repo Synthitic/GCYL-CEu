@@ -4,6 +4,7 @@ package com.fulltrix.gcyl.jei;
 import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.Tags;
 import com.fulltrix.gcyl.jei.category.SpacePumpCategory;
+import com.fulltrix.gcyl.jei.category.VoidMinerCategory;
 import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityWirelessEnergyHatch;
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
@@ -29,6 +30,7 @@ import java.util.Map;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.WIRELESS_ENERGY_HATCH_OUTPUT;
 import static com.fulltrix.gcyl.recipes.categories.ElevatorRecipes.GAS_SIPHON_RECIPES;
 import static com.fulltrix.gcyl.recipes.categories.ElevatorRecipes.getPlanetNameByID;
+import static com.fulltrix.gcyl.recipes.categories.handlers.VoidMinerHandler.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.common.blocks.BlockWireCoil.CoilType.*;
 import static gregtech.common.items.MetaItems.*;
@@ -47,6 +49,7 @@ public class JEIGCYLPlugin implements IModPlugin {
         guiHelper = registry.getJeiHelpers().getGuiHelper();
 
         registry.addRecipeCategories(new SpacePumpCategory(registry.getJeiHelpers().getGuiHelper()));
+        registry.addRecipeCategories(new VoidMinerCategory(registry.getJeiHelpers().getGuiHelper()));
     }
 
 
@@ -92,6 +95,21 @@ public class JEIGCYLPlugin implements IModPlugin {
         registry.addRecipeCatalyst(GCYLTileEntities.PUMP_MODULE[1].getStackForm(), spacePumpID);
         registry.addRecipeCatalyst(GCYLTileEntities.PUMP_MODULE[2].getStackForm(), spacePumpID);
 
+
+        String voidMinerID = Tags.MODID + ":" + "void_miner_ores";
+        List<VoidMinerInfo> voidMinerInfo1 = new ArrayList<>();
+        List<VoidMinerInfo> voidMinerInfo2 = new ArrayList<>();
+        List<VoidMinerInfo> voidMinerInfo3 = new ArrayList<>();
+
+        voidMinerInfo1.add(new VoidMinerInfo(ORES, 0));
+        voidMinerInfo2.add(new VoidMinerInfo(ORES_2, 1));
+        voidMinerInfo3.add(new VoidMinerInfo(ORES_3, 2));
+        registry.addRecipes(voidMinerInfo1, voidMinerID);
+        registry.addRecipes(voidMinerInfo2, voidMinerID);
+        registry.addRecipes(voidMinerInfo3, voidMinerID);
+        registry.addRecipeCatalyst(GCYLTileEntities.VOID_MINER[0].getStackForm(), voidMinerID);
+        registry.addRecipeCatalyst(GCYLTileEntities.VOID_MINER[1].getStackForm(), voidMinerID);
+        registry.addRecipeCatalyst(GCYLTileEntities.VOID_MINER[2].getStackForm(), voidMinerID);
     }
 
     @Override
