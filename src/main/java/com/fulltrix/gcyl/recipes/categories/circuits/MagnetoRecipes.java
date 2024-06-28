@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.recipes.categories.circuits;
 
 import com.fulltrix.gcyl.GCYLConfig;
+import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
@@ -31,7 +32,7 @@ public class MagnetoRecipes {
                 .inputs(CAPACITOR.getStackForm(4))
                 .inputs(TRANSISTOR.getStackForm(4))
                 .fluidInputs(SolderingAlloy.getFluid(L / 4))
-                .outputs(CIRCUIT_MAGNETIC_ULV.getStackForm(4))
+                .outputs(CIRCUIT_MAGNETIC_ULV.getStackForm(GCYLConfig.recipes.circuitsPerCraft))
                 .buildAndRegister();
 
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(150).EUt(120)
@@ -42,7 +43,7 @@ public class MagnetoRecipes {
                 .inputs(SMD_CAPACITOR_REFINED.getStackForm(4))
                 .inputs(SMD_TRANSISTOR_REFINED.getStackForm(4))
                 .fluidInputs(SolderingAlloy.getFluid(L / 2))
-                .outputs(CIRCUIT_MAGNETIC_LV.getStackForm(4))
+                .outputs(CIRCUIT_MAGNETIC_LV.getStackForm(GCYLConfig.recipes.circuitsPerCraft))
                 .buildAndRegister();
 
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(225).EUt(480)
@@ -53,7 +54,7 @@ public class MagnetoRecipes {
                 .inputs(SMD_CAPACITOR.getStackForm(8))
                 .inputs(SMD_TRANSISTOR.getStackForm(8))
                 .fluidInputs(SolderingAlloy.getFluid(L * 3/4))
-                .outputs(CIRCUIT_MAGNETIC_MV.getStackForm(4))
+                .outputs(CIRCUIT_MAGNETIC_MV.getStackForm(GCYLConfig.recipes.circuitsPerCraft))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
@@ -65,7 +66,7 @@ public class MagnetoRecipes {
                 .inputs(SMD_CAPACITOR_NANO.getStackForm(8))
                 .inputs(SMD_TRANSISTOR_NANO.getStackForm(8))
                 .fluidInputs(SolderingAlloy.getFluid(L))
-                .outputs(CIRCUIT_MAGNETIC_HV.getStackForm(4))
+                .outputs(CIRCUIT_MAGNETIC_HV.getStackForm(GCYLConfig.recipes.circuitsPerCraft))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
@@ -77,7 +78,7 @@ public class MagnetoRecipes {
                 .inputs(SMD_CAPACITOR_QUANTUM.getStackForm(16))
                 .inputs(SMD_TRANSISTOR_QUANTUM.getStackForm(16))
                 .fluidInputs(SolderingAlloy.getFluid(L * 5/4))
-                .outputs(CIRCUIT_MAGNETIC_EV.getStackForm(4))
+                .outputs(CIRCUIT_MAGNETIC_EV.getStackForm(GCYLConfig.recipes.circuitsPerCraft))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
@@ -89,7 +90,7 @@ public class MagnetoRecipes {
                 .inputs(SMD_CAPACITOR_CRYSTAL.getStackForm(16))
                 .inputs(SMD_TRANSISTOR_CRYSTAL.getStackForm(16))
                 .fluidInputs(SolderingAlloy.getFluid(L * 6))
-                .outputs(CIRCUIT_MAGNETIC_IV.getStackForm(4))
+                .outputs(CIRCUIT_MAGNETIC_IV.getStackForm(GCYLConfig.recipes.circuitsPerCraft))
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
@@ -101,7 +102,7 @@ public class MagnetoRecipes {
                 .inputs(SMD_CAPACITOR_WETWARE.getStackForm(24))
                 .inputs(SMD_TRANSISTOR_WETWARE.getStackForm(24))
                 .fluidInputs(SolderingAlloy.getFluid(L * 7))
-                .outputs(CIRCUIT_MAGNETIC_LUV.getStackForm(4))
+                .outputs(CIRCUIT_MAGNETIC_LUV.getStackForm(GCYLConfig.recipes.circuitsPerCraft))
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
@@ -113,7 +114,7 @@ public class MagnetoRecipes {
                 .inputs(SMD_CAPACITOR_BIOWARE.getStackForm(24))
                 .inputs(SMD_TRANSISTOR_BIOWARE.getStackForm(24))
                 .fluidInputs(SolderingAlloy.getFluid(L * 32))
-                .outputs(CIRCUIT_MAGNETIC_ZPM.getStackForm(4))
+                .outputs(CIRCUIT_MAGNETIC_ZPM.getStackForm(GCYLConfig.recipes.circuitsPerCraft))
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister();
 
@@ -125,8 +126,8 @@ public class MagnetoRecipes {
                 .inputs(SMD_CAPACITOR_OPTICAL.getStackForm(32))
                 .inputs(SMD_TRANSISTOR_OPTICAL.getStackForm(32))
                 .fluidInputs(SolderingAlloy.getFluid(L * 36))
-                .outputs(CIRCUIT_MAGNETIC_UV.getStackForm(4))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .outputs(CIRCUIT_MAGNETIC_UV.getStackForm(GCYLConfig.recipes.circuitsPerCraft))
+                .cleanroom(GCYLCleanroomType.ISO3)
                 .buildAndRegister();
 
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(750).EUt(7864320)
@@ -137,8 +138,8 @@ public class MagnetoRecipes {
                 .inputs(SMD_CAPACITOR_EXOTIC.getStackForm(32))
                 .inputs(SMD_TRANSISTOR_EXOTIC.getStackForm(32))
                 .fluidInputs(SolderingAlloy.getFluid(L * 40))
-                .outputs(CIRCUIT_MAGNETIC_UHV.getStackForm(4))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .outputs(CIRCUIT_MAGNETIC_UHV.getStackForm(GCYLConfig.recipes.circuitsPerCraft))
+                .cleanroom(GCYLCleanroomType.ISO2)
                 .buildAndRegister();
 
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder().duration(825).EUt(31457280)
@@ -149,8 +150,8 @@ public class MagnetoRecipes {
                 .inputs(SMD_CAPACITOR_COSMIC.getStackForm(64))
                 .inputs(SMD_TRANSISTOR_COSMIC.getStackForm(64))
                 .fluidInputs(SolderingAlloy.getFluid(L * 64))
-                .outputs(CIRCUIT_MAGNETIC_UEV.getStackForm(4))
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .outputs(CIRCUIT_MAGNETIC_UEV.getStackForm(GCYLConfig.recipes.circuitsPerCraft))
+                .cleanroom(GCYLCleanroomType.ISO1)
                 .buildAndRegister();
     }
 
