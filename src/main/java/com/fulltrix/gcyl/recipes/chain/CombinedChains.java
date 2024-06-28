@@ -123,7 +123,7 @@ public class CombinedChains {
                 .fluidOutputs(Polyetheretherketone.getFluid(2592))
                 .fluidOutputs(Water.getFluid(2000))
                 .output(dust, SodiumFluoride, 4)
-                .EUt(122880)
+                .EUt(GTValues.VA[GTValues.UEV])
                 .duration(250)
                 .buildAndRegister();
 
