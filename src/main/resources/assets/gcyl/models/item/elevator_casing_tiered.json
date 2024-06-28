@@ -1,0 +1,48 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all",
+    "textures": {
+      "all": "gregtech:blocks/rendering_error"
+    }
+  },
+  "variants": {
+    "variant": {
+      "elevator_motor_1": {
+        "model": "minecraft:cube_column",
+        "textures": {
+          "end": "gcyl:blocks/casings/elevator/tiered/motor",
+          "side": "gcyl:blocks/casings/elevator/tiered/1"
+        }
+      },
+      "elevator_motor_2": {
+        "model": "minecraft:cube_column",
+        "textures": {
+          "end": "gcyl:blocks/casings/elevator/tiered/motor",
+          "side": "gcyl:blocks/casings/elevator/tiered/2"
+        }
+      },
+      "elevator_motor_3": {
+        "model": "minecraft:cube_column",
+        "textures": {
+          "end": "gcyl:blocks/casings/elevator/tiered/motor",
+          "side": "gcyl:blocks/casings/elevator/tiered/3"
+        }
+      },
+      "elevator_motor_4": {
+        "model": "minecraft:cube_column",
+        "textures": {
+          "end": "gcyl:blocks/casings/elevator/tiered/motor",
+          "side": "gcyl:blocks/casings/elevator/tiered/4"
+        }
+      },
+      "elevator_motor_5": {
+        "model": "minecraft:cube_column",
+        "textures": {
+          "end": "gcyl:blocks/casings/elevator/tiered/motor",
+          "side": "gcyl:blocks/casings/elevator/tiered/5"
+        }
+      }
+    }
+  }
+}

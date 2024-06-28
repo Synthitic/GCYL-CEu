@@ -2,21 +2,33 @@ package com.fulltrix.gcyl.jei;
 
 
 import com.fulltrix.gcyl.GCYLConfig;
+import com.fulltrix.gcyl.Tags;
+import com.fulltrix.gcyl.jei.category.SpacePumpCategory;
+import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityWirelessEnergyHatch;
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.api.util.GTLog;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.MetaItems;
+import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import mezz.jei.api.*;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.ingredients.IIngredientRegistry;
+import mezz.jei.api.recipe.IRecipeCategoryRegistration;
+import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.WIRELESS_ENERGY_HATCH_OUTPUT;
+import static com.fulltrix.gcyl.recipes.categories.ElevatorRecipes.GAS_SIPHON_RECIPES;
+import static com.fulltrix.gcyl.recipes.categories.ElevatorRecipes.getPlanetNameByID;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.common.blocks.BlockWireCoil.CoilType.*;
 import static gregtech.common.items.MetaItems.*;
@@ -28,19 +40,63 @@ public class JEIGCYLPlugin implements IModPlugin {
     private IIngredientBlacklist itemBlacklist;
     private IIngredientRegistry iItemRegistry;
     public static IJeiRuntime jeiRuntime;
+    public static IGuiHelper guiHelper;
+
+    @Override
+    public void registerCategories(@NotNull IRecipeCategoryRegistration registry) {
+        guiHelper = registry.getJeiHelpers().getGuiHelper();
+
+        registry.addRecipeCategories(new SpacePumpCategory(registry.getJeiHelpers().getGuiHelper()));
+    }
+
 
     @Override
     public void register(IModRegistry registry) {
         itemBlacklist = registry.getJeiHelpers().getIngredientBlacklist();
         iItemRegistry = registry.getIngredientRegistry();
 
+        List<SpacePumpInfo> spacePumpInfos = new ArrayList<>();
+        for(Map.Entry<String, FluidStack> entry : GAS_SIPHON_RECIPES.entrySet()) {
+            String key = entry.getKey();
+            FluidStack value = entry.getValue();
 
+            int planetID = 0;
+            int fluidID = 0;
+
+            int index = key.indexOf(',');
+            char[] arr = key.toCharArray();
+
+            StringBuilder stringBuilderPlanet = new StringBuilder();
+            StringBuilder stringBuilderFluid = new StringBuilder();
+
+            for(int i = 0; i < arr.length; i++) {
+                if(i < index) {
+                    stringBuilderPlanet.append(arr[i]);
+                }
+
+                if(i > index) {
+                    stringBuilderFluid.append(arr[i]);
+                }
+            }
+
+            planetID = Integer.parseInt(stringBuilderPlanet.toString());
+            fluidID = Integer.parseInt(stringBuilderFluid.toString());
+
+            spacePumpInfos.add(new SpacePumpInfo(getPlanetNameByID(planetID), planetID, fluidID, value));
+        }
+
+
+        String spacePumpID = Tags.MODID + ":" + "space_pump_fluids";
+        registry.addRecipes(spacePumpInfos, spacePumpID);
+        registry.addRecipeCatalyst(GCYLTileEntities.PUMP_MODULE[0].getStackForm(), spacePumpID);
+        registry.addRecipeCatalyst(GCYLTileEntities.PUMP_MODULE[1].getStackForm(), spacePumpID);
+        registry.addRecipeCatalyst(GCYLTileEntities.PUMP_MODULE[2].getStackForm(), spacePumpID);
 
     }
 
     @Override
-    public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
-        this.jeiRuntime = jeiRuntime;
+    public void onRuntimeAvailable(@NotNull IJeiRuntime jeiRuntime) {
+        JEIGCYLPlugin.jeiRuntime = jeiRuntime;
 
         itemBlacklist.addIngredientToBlacklist(GCYMMetaTileEntities.LARGE_MIXER.getStackForm());
         itemBlacklist.addIngredientToBlacklist(GCYMMetaTileEntities.LARGE_CENTRIFUGE.getStackForm());

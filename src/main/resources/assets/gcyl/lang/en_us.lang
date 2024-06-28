@@ -5053,3 +5053,30 @@ tile.gcyl_component_al_casing.opv.name=Component Assembly Line Casing (OpV)
 tile.gcyl_component_al_casing.max.name=Component Assembly Line Casing (MAX)
 
 recipemap.cosmic_ray_detector.name=Cosmic Ray Detector
+
+gcyl.machine.space_elevator.name=§dSpace Elevator
+
+gcyl.multiblock.pump_module.planet=Planet:
+gcyl.multiblock.pump_module.fluid=Fluid:
+space_pump.name=Space Pumping
+gcyl.jei.space_pump_planet_name=Planet: %s
+gcyl.jei.space_pump_planet_number=Planet #: %s
+gcyl.jei.space_pump_fluid_number=Fluid #: %s
+gcyl.jei.space_pump_fluid_amount=Amount: %s
+
+gcyl.machine.pump_module_1.name=Space Pumping Module MK-I
+gcyl.machine.pump_module_2.name=Space Pumping Module MK-II
+gcyl.machine.pump_module_3.name=Space Pumping Module MK-III
+
+tile.gcyl_elevator_casing.concrete_strong.name=Ultra High Strength Concrete Floor
+tile.gcyl_elevator_casing.elevator_base.name=Space Elevator Base Casing
+tile.gcyl_elevator_casing.elevator_internal.name=Space Elevator Internal Structure
+tile.gcyl_elevator_casing.elevator_support.name=Space Elevator Support Structure
+tile.gcyl_elevator_casing.elevator_cable.name=Space Elevator Cable
+
+tile.gcyl_elevator_casing_tiered.elevator_motor_1.name=Space Elevator Motor MK-I
+tile.gcyl_elevator_casing_tiered.elevator_motor_2.name=Space Elevator Motor MK-II
+tile.gcyl_elevator_casing_tiered.elevator_motor_3.name=Space Elevator Motor MK-III
+tile.gcyl_elevator_casing_tiered.elevator_motor_4.name=Space Elevator Motor MK-IV
+tile.gcyl_elevator_casing_tiered.elevator_motor_5.name=Space Elevator Motor MK-V
+

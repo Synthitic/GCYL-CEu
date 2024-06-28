@@ -128,6 +128,8 @@ public class CommonProxy {
         registry.register(REACTOR_CASING);
         registry.register(GCYL_CLEANROOM_CASING);
         registry.register(GCYL_COMPONENT_AL_CASING);
+        registry.register(ELEVATOR_CASING);
+        registry.register(ELEVATOR_CASING_TIERED);
     }
 
     @SubscribeEvent
@@ -148,6 +150,8 @@ public class CommonProxy {
         registry.register(createItemBlock(REACTOR_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GCYL_CLEANROOM_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GCYL_COMPONENT_AL_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(ELEVATOR_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(ELEVATOR_CASING_TIERED, VariantItemBlock::new));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)

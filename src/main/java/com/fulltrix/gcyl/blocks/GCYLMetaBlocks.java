@@ -1,6 +1,8 @@
 package com.fulltrix.gcyl.blocks;
 
 import com.fulltrix.gcyl.blocks.component_al.GCYLComponentALCasing;
+import com.fulltrix.gcyl.blocks.elevator.ElevatorCasing;
+import com.fulltrix.gcyl.blocks.elevator.ElevatorCasingTiered;
 import com.fulltrix.gcyl.blocks.fusion.*;
 import com.fulltrix.gcyl.blocks.metal.GCYLCleanroomCasing;
 import com.fulltrix.gcyl.blocks.metal.MetalCasing1;
@@ -31,6 +33,8 @@ public class GCYLMetaBlocks {
     public static MetalCasing2 METAL_CASING_2;
     public static GCYLCleanroomCasing GCYL_CLEANROOM_CASING;
     public static GCYLComponentALCasing GCYL_COMPONENT_AL_CASING;
+    public static ElevatorCasing ELEVATOR_CASING;
+    public static ElevatorCasingTiered ELEVATOR_CASING_TIERED;
 
     public static void init() {
         HEATING_COIL = new GCYLHeatingCoil();
@@ -78,6 +82,11 @@ public class GCYLMetaBlocks {
         GCYL_COMPONENT_AL_CASING = new GCYLComponentALCasing();
         GCYL_COMPONENT_AL_CASING.setRegistryName("gcyl_component_al_casing");
 
+        ELEVATOR_CASING = new ElevatorCasing();
+        ELEVATOR_CASING.setRegistryName("elevator_casing");
+        ELEVATOR_CASING_TIERED = new ElevatorCasingTiered();
+        ELEVATOR_CASING_TIERED.setRegistryName("elevator_casing_tiered");
+
     }
 
     @SideOnly(Side.CLIENT)
@@ -97,6 +106,8 @@ public class GCYLMetaBlocks {
         registerItemModel(REACTOR_CASING);
         registerItemModel(GCYL_CLEANROOM_CASING);
         registerItemModel(GCYL_COMPONENT_AL_CASING);
+        registerItemModel(ELEVATOR_CASING);
+        registerItemModel(ELEVATOR_CASING_TIERED);
 
         HEATING_COIL.onModelRegister();
         FUSION_COILS.onModelRegister();

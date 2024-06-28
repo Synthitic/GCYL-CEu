@@ -1,0 +1,45 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all",
+    "textures": {
+      "all": "gregtech:blocks/rendering_error"
+    }
+  },
+  "variants": {
+    "variant": {
+      "concrete_strong": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gcyl:blocks/casings/elevator/concrete_strong"
+        }
+      },
+      "elevator_base": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gcyl:blocks/casings/elevator/elevator_base"
+        }
+      },
+      "elevator_internal": {
+        "model": "minecraft:cube_column",
+        "textures": {
+          "end": "gcyl:blocks/casings/elevator/elevator_internal",
+          "side": "gcyl:blocks/casings/elevator/elevator_internal_side"
+        }
+      },
+      "elevator_support": {
+        "model": "minecraft:cube_column",
+        "textures": {
+          "end": "gcyl:blocks/casings/elevator/elevator_support",
+          "side": "gcyl:blocks/casings/elevator/elevator_support_side"
+        }
+      },
+      "elevator_cable": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gcyl:blocks/casings/elevator/cable"
+        }
+      }
+    }
+  }
+}

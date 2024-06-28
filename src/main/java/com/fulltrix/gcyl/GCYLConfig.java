@@ -170,4 +170,15 @@ public class GCYLConfig {
         @Config.RequiresMcRestart
         public int gcylCasingsPerCraftOverride = 1;
     }
+
+    @Config.Comment("Config options for space")
+    public static Space space = new Space();
+
+    public static class Space{
+
+        @Config.Comment({"List of Planet Names. These are mapped to an ID. Starting Index is 1."})
+        @Config.RequiresMcRestart
+        public String[] planetNames = {"Jupiter", "Saturn", "Uranus", "Neptune"};
+
+    }
 }

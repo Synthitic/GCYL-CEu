@@ -8,6 +8,8 @@ import com.fulltrix.gcyl.machines.multi.MetaTileEntityCosmicRayDetector;
 import com.fulltrix.gcyl.machines.multi.MetaTileEntityElectricImplosion;
 import com.fulltrix.gcyl.machines.multi.MetaTileEntityStellarForge;
 import com.fulltrix.gcyl.machines.multi.advance.*;
+import com.fulltrix.gcyl.machines.multi.advance.elevator.MetaTileEntitySpaceElevator;
+import com.fulltrix.gcyl.machines.multi.advance.elevator.elevatormodules.MetaTileEntityPlanetarySiphon;
 import com.fulltrix.gcyl.machines.multi.generator.MetaTileEntityHyperReactor;
 import com.fulltrix.gcyl.machines.multi.generator.MetaTileEntityLargeNaquadahReactor;
 import com.fulltrix.gcyl.machines.multi.generator.MetaTileEntityLargeRocketEngine;
@@ -26,8 +28,7 @@ import gregtech.client.renderer.texture.Textures;
 import gregtech.common.metatileentities.MetaTileEntities;
 
 import static com.fulltrix.gcyl.api.GCYLUtility.gcylId;
-import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.DEEP_MINER_RECIPES;
-import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.LASER_MINER_RECIPES;
+import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.*;
 import static com.google.common.base.Ascii.toLowerCase;
 import static gregtech.common.metatileentities.MetaTileEntities.registerMetaTileEntity;
 
@@ -82,6 +83,10 @@ public class GCYLTileEntities {
     public static MetaTileEntityLargeFisher LARGE_FISHER;
     public static MetaTileEntityLargeRockBreaker LARGE_ROCK_BREAKER;
     public static MetaTileEntityComponentAL COMPONENT_ASSEMBLY_LINE;
+
+    ///////////////////////////////////////////////////
+    public static MetaTileEntitySpaceElevator SPACE_ELEVATOR;
+    public static MetaTileEntityPlanetarySiphon[] PUMP_MODULE = new MetaTileEntityPlanetarySiphon[3];
 
 
     public static int id = 24000;
@@ -212,5 +217,11 @@ public class GCYLTileEntities {
         LARGE_ROCK_BREAKER = registerMetaTileEntity(++id, new MetaTileEntityLargeRockBreaker(gcylId("large_rock_breaker")));
 
         COMPONENT_ASSEMBLY_LINE = registerMetaTileEntity(++id, new MetaTileEntityComponentAL(gcylId("component_assembly_line")));
+
+        SPACE_ELEVATOR = registerMetaTileEntity(++id, new MetaTileEntitySpaceElevator(gcylId("space_elevator")));
+        PUMP_MODULE[0] = registerMetaTileEntity(++id, new MetaTileEntityPlanetarySiphon(gcylId("pump_module_1"), 9,1,2));
+        PUMP_MODULE[1] = registerMetaTileEntity(++id, new MetaTileEntityPlanetarySiphon(gcylId("pump_module_2"), 11,2,3));
+        PUMP_MODULE[2] = registerMetaTileEntity(++id, new MetaTileEntityPlanetarySiphon(gcylId("pump_module_3"), 13,3,4));
+
     }
 }

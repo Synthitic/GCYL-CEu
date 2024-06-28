@@ -2,6 +2,7 @@ package com.fulltrix.gcyl.api.pattern;
 
 import com.fulltrix.gcyl.api.GCYLAPI;
 import com.fulltrix.gcyl.api.block.IComponentALTier;
+import com.fulltrix.gcyl.api.block.IElevatorMotorTier;
 import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
 import com.fulltrix.gcyl.blocks.component_al.GCYLComponentALCasing;
 import com.fulltrix.gcyl.blocks.fusion.GCYLFusionCoils;
@@ -102,6 +103,26 @@ public class TraceabilityPredicates {
                     .toArray(BlockInfo[]::new))
                     .addTooltips("gcyl.multiblock.pattern.error.component_al_casings");
 
+    private static final Supplier<TraceabilityPredicate> ELEVATOR_MOTOR_PREDICATE =
+            () -> new TraceabilityPredicate(blockWorldState -> {
+                IBlockState blockState = blockWorldState.getBlockState();
+                if (GCYLAPI.ELEVATOR_MOTORS.containsKey(blockState)) {
+                    IElevatorMotorTier tier = GCYLAPI.ELEVATOR_MOTORS.get(blockState);
+                    Object casing = blockWorldState.getMatchContext().getOrPut("ElevatorMotorTier", tier);
+                    if (!casing.equals(tier)) {
+                        blockWorldState.setError(new PatternStringError("gregtech.multiblock.pattern.error.elevator_motor_tier"));
+                        return false;
+                    }
+                    blockWorldState.getMatchContext().getOrPut("VBlock", new LinkedList<>()).add(blockWorldState.getPos());
+                    return true;
+                }
+                return false;
+            }, () -> GCYLAPI.ELEVATOR_MOTORS.entrySet().stream()
+                    .sorted(Comparator.comparingInt(entry -> entry.getValue().getTier()))
+                    .map(entry -> new BlockInfo(entry.getKey(), null))
+                    .toArray(BlockInfo[]::new))
+                    .addTooltips("gcyl.multiblock.pattern.error.elevator_motor_tier");
+
     public static TraceabilityPredicate advFusionCoils() {
         return ADV_FUSION_COIL_PRED.get();
     }
@@ -109,4 +130,8 @@ public class TraceabilityPredicates {
     public static TraceabilityPredicate filterCasings() { return FILTER_CASING_PRED.get(); }
 
     public static TraceabilityPredicate componentALCasings() {return COMPONENT_AL_PREDICATE.get(); }
+
+    public static TraceabilityPredicate elevatorMotors() {return ELEVATOR_MOTOR_PREDICATE.get(); }
+
+
 }

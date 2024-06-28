@@ -35,6 +35,7 @@ public class RecipeHandler {
         GreenhouseRecipes.init();
         CosmicRayDetectorRecipes.init();
         FisherRecipes.init();
+        ElevatorRecipes.init();
     }
 
     public static void initChains() {

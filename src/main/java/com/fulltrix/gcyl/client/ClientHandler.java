@@ -45,6 +45,8 @@ public class ClientHandler {
     public static SimpleOverlayRenderer SEABORGIUM_SUBSTATION_CASING;
     public static SimpleOverlayRenderer MARAGING_STEEL_250_CASING;
     public static SimpleOverlayRenderer INCONEL_625_CASING;
+    public static SimpleOverlayRenderer ELEVATOR_CASING;
+    public static SimpleOverlayRenderer PUMP_MODULE_OVERLAY;
 
     public static OrientedOverlayRenderer NAQADAH_OVERLAY;
     public static OrientedOverlayRenderer ROCKET_OVERLAY;
@@ -106,5 +108,9 @@ public class ClientHandler {
         HYPER_CASING = new SimpleOverlayRenderer("casings/solid/hyper_casing");
         HYPER_CASING_2 = new SimpleOverlayRenderer("casings/solid/hyper_casing_2");
         CLADDED_REACTOR_CASING = new SimpleOverlayRenderer("casings/solid/cladded_reactor_casing");
+
+        //ELEVATOR
+        ELEVATOR_CASING = new SimpleOverlayRenderer("gcyl:casings/elevator/elevator_base");
+        PUMP_MODULE_OVERLAY = new SimpleOverlayRenderer("gcyl:overlay/elevator/pump");
     }
 }

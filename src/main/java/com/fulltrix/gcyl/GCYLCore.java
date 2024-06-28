@@ -5,6 +5,7 @@ import com.fulltrix.gcyl.api.util.VirtualContainerRegistry;
 import com.fulltrix.gcyl.api.util.VirtualEnergyRegistry;
 import com.fulltrix.gcyl.api.util.VirtualResearchRegistry;
 import com.fulltrix.gcyl.blocks.component_al.GCYLComponentALCasing;
+import com.fulltrix.gcyl.blocks.elevator.ElevatorCasingTiered;
 import com.fulltrix.gcyl.covers.GCYLCoverBehaviors;
 import com.fulltrix.gcyl.blocks.GCYLHeatingCoil;
 import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
@@ -24,8 +25,8 @@ import net.minecraftforge.fml.common.event.*;
 import java.io.IOException;
 
 import static com.fulltrix.gcyl.api.GCYLAPI.COMPONENT_AL_CASINGS;
-import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.GCYL_COMPONENT_AL_CASING;
-import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.HEATING_COIL;
+import static com.fulltrix.gcyl.api.GCYLAPI.ELEVATOR_MOTORS;
+import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.*;
 import static gregtech.api.GregTechAPI.COVER_REGISTRY;
 import static gregtech.api.GregTechAPI.HEATING_COILS;
 
@@ -51,6 +52,10 @@ public class GCYLCore {
 
         for (GCYLComponentALCasing.CasingType type : GCYLComponentALCasing.CasingType.values()) {
             COMPONENT_AL_CASINGS.put(GCYL_COMPONENT_AL_CASING.getState(type), type);
+        }
+
+        for(ElevatorCasingTiered.CasingType type : ElevatorCasingTiered.CasingType.values()) {
+            ELEVATOR_MOTORS.put(ELEVATOR_CASING_TIERED.getState(type), type);
         }
 
         HEATING_COILS.remove(MetaBlocks.WIRE_COIL.getState(BlockWireCoil.CoilType.TRINIUM),BlockWireCoil.CoilType.TRINIUM);
