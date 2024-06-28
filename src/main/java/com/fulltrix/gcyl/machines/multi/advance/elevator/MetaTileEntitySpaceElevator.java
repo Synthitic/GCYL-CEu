@@ -123,7 +123,7 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
                     .where('A', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.HIGH_STRENGTH_CONCRETE)))
                     .where('B', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.ELEVATOR_CABLE)))
                     .where('H', frames(Neutronium))
-                    .where('X', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.ELEVATOR_BASE_CASING)).or(abilities(MultiblockAbility.INPUT_ENERGY))) //abilities?
+                    .where('X', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.ELEVATOR_BASE_CASING)).or(abilities(MultiblockAbility.INPUT_ENERGY, MultiblockAbility.INPUT_LASER).setExactLimit(1))) //abilities?
                     .where('C', elevatorMotors())
                     .where('I', modulePredicate())
                     .where('V', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.ELEVATOR_BASE_CASING)).or(abilities(MultiblockAbility.IMPORT_ITEMS,MultiblockAbility.IMPORT_FLUIDS,MultiblockAbility.EXPORT_FLUIDS,MultiblockAbility.EXPORT_ITEMS).setPreviewCount(0)))
@@ -187,7 +187,7 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
                     .where('A', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.HIGH_STRENGTH_CONCRETE)))
                     .where('B', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.ELEVATOR_CABLE)))
                     .where('H', frames(Neutronium))
-                    .where('X', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.ELEVATOR_BASE_CASING)).or(abilities(MultiblockAbility.INPUT_ENERGY))) //abilities?
+                    .where('X', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.ELEVATOR_BASE_CASING)).or(abilities(MultiblockAbility.INPUT_ENERGY, MultiblockAbility.INPUT_LASER).setExactLimit(1))) //abilities?
                     .where('C', elevatorMotors())
                     .where('I', modulePredicate())
                     .where('V', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.ELEVATOR_BASE_CASING)).or(abilities(MultiblockAbility.IMPORT_ITEMS,MultiblockAbility.IMPORT_FLUIDS,MultiblockAbility.EXPORT_FLUIDS,MultiblockAbility.EXPORT_ITEMS).setPreviewCount(0)))
