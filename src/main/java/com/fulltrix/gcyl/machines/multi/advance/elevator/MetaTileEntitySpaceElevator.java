@@ -13,6 +13,7 @@ import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
+import gregtech.api.gui.resources.TextureArea;
 import gregtech.api.gui.widgets.*;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
@@ -23,6 +24,8 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
+import gregtech.api.util.GTLog;
+import gregtech.api.util.function.BooleanConsumer;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.block.Block;
@@ -32,8 +35,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
@@ -42,6 +43,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.function.BooleanSupplier;
 
 import static com.fulltrix.gcyl.api.pattern.TraceabilityPredicates.elevatorMotors;
 import static gregtech.api.unification.material.Materials.Neutronium;
@@ -64,12 +66,19 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     }
 
     @Override
+    public void update() {
+        super.update();
+        if(!isStructureFormed())
+            this.spaceElevatorReceivers.forEach(ISpaceElevatorReceiver::sentWorkingDisabled);
+    }
+
+    @Override
     protected void updateFormedValid() {
-        if(!spaceElevatorReceivers.isEmpty()) {
-            if((this.motorTier == 1 && spaceElevatorReceivers.size() > 6)
-                    || (this.motorTier == 2 && spaceElevatorReceivers.size() > 12)
-                    || (this.motorTier == 3 && spaceElevatorReceivers.size() > 15)
-                    || (this.motorTier == 4 && spaceElevatorReceivers.size() > 18)) {
+        if(!this.spaceElevatorReceivers.isEmpty()) {
+            if((this.motorTier == 1 && this.spaceElevatorReceivers.size() > 6)
+                    || (this.motorTier == 2 && this.spaceElevatorReceivers.size() > 12)
+                    || (this.motorTier == 3 && this.spaceElevatorReceivers.size() > 15)
+                    || (this.motorTier == 4 && this.spaceElevatorReceivers.size() > 18)) {
                 invalidateStructure();
             }
         }
@@ -230,12 +239,6 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
             this.motorTier = 0;
     }
 
-    @SubscribeEvent
-    public void checkStructurePatternLoad(WorldEvent.Load event) {
-        reinitializeStructurePattern();
-        super.checkStructurePattern();
-    }
-
     @Override
     public void checkStructurePattern() {
         if(this.getOffsetTimer() % 20 == 0 || this.isFirstTick()) {
@@ -250,8 +253,8 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     public void invalidateStructure() {
         super.invalidateStructure();
         resetTileAbilities();
-        spaceElevatorReceivers.forEach(ISpaceElevatorReceiver::sentInvalidateStructure);
-        spaceElevatorReceivers.clear();
+        this.spaceElevatorReceivers.forEach(ISpaceElevatorReceiver::sentWorkingDisabled);
+        this.spaceElevatorReceivers.clear();
     }
 
     protected void initializeAbilities() {
@@ -287,7 +290,7 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
             ISpaceElevatorReceiver spaceElevatorReceiver = (ISpaceElevatorReceiver) metaTileEntity;
             if(spaceElevatorReceiver.getSpaceElevator() != this) {
                 spaceElevatorReceiver.setSpaceElevator(this);
-                spaceElevatorReceivers.add(spaceElevatorReceiver);
+                this.spaceElevatorReceivers.add(spaceElevatorReceiver);
             }
             return true;
         });
@@ -312,11 +315,9 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
                 .setClickHandler(this::handleDisplayClick));
 
         // Power Button
-
-        builder.widget(new ToggleButtonWidget(215, 183, 18, 18, GuiTextures.BUTTON_POWER,
-                this::isExtended, this::setExtended).shouldUseBaseBackground()
-                .setTooltipText("extendo magico"));
-        builder.widget(new ImageWidget(215, 201, 18, 18, GuiTextures.BUTTON_POWER_DETAIL));
+        builder.widget(new ImageCycleButtonWidget(215, 183, 18, 18, ClientHandler.BUTTON_ELEVATOR_EXTENSION,
+                this::isExtended, this::setExtended).setTooltipHoverString("gcyl.gui.multiblock.space_elevator_extended"));
+        builder.widget(new ImageWidget(215, 201, 18, 6, GuiTextures.BUTTON_POWER_DETAIL));
 
         // Voiding Mode Button
         builder.widget(new ImageWidget(215, 161, 18, 18, GuiTextures.BUTTON_VOID_NONE)
@@ -333,7 +334,7 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     }
 
     private boolean isExtended() {
-        return isExtended;
+        return this.isExtended;
     }
 
     private void setExtended(boolean bool) {

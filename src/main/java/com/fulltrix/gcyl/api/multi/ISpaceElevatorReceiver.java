@@ -9,5 +9,5 @@ public interface ISpaceElevatorReceiver {
 
     void setSpaceElevator(ISpaceElevatorProvider provider);
 
-    void sentInvalidateStructure();
+    void sentWorkingDisabled();
 }

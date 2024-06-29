@@ -5059,6 +5059,7 @@ tile.gcyl_component_al_casing.max.name=Component Assembly Line Casing (MAX)
 recipemap.cosmic_ray_detector.name=Cosmic Ray Detector
 
 gcyl.machine.space_elevator.name=§dSpace Elevator
+gcyl.gui.multiblock.space_elevator_extended=Extension Toggle
 
 gcyl.multiblock.pump_module.planet=Planet:
 gcyl.multiblock.pump_module.fluid=Fluid:

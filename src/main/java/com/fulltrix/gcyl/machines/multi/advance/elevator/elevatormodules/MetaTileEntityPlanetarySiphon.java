@@ -55,6 +55,7 @@ public class MetaTileEntityPlanetarySiphon extends MetaTileEntityModuleBase {
 
     public MetaTileEntityPlanetarySiphon(ResourceLocation metaTileEntityId, int tier, int moduleTier, int minMotorTier) {
         super(metaTileEntityId, tier, moduleTier, minMotorTier);
+        setMaxProgress(moduleTier == 3 ? 20 : 80);
     }
     @Override
     protected void initializeAbilities() {
@@ -284,13 +285,16 @@ public class MetaTileEntityPlanetarySiphon extends MetaTileEntityModuleBase {
             return;
         }
 
-        if(!checkRecipes()) {
+        if(progressTime == 0 && !checkRecipes()) {
             setActive(false);
-            return;
         }
         else {
             drainEnergy(false);
             setActive(true);
+
+            progressTime++;
+            if (progressTime % getMaxProgress() != 0) return;
+            progressTime = 0;
 
             List<FluidStack> fluidStacks = new ArrayList<>();
             for (int i = 0; i < 4; i++) {

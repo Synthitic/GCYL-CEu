@@ -115,8 +115,8 @@ public abstract class MetaTileEntityModuleRecipeBase extends RecipeMapMultiblock
     }
 
     @Override
-    public void sentInvalidateStructure() {
-        invalidateStructure();
+    public void sentWorkingDisabled() {
+        this.recipeMapWorkable.setWorkingEnabled(false);
     }
 
 }

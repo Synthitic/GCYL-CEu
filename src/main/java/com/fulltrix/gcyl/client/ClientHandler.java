@@ -51,7 +51,8 @@ public class ClientHandler {
     public static OrientedOverlayRenderer NAQADAH_OVERLAY;
     public static OrientedOverlayRenderer ROCKET_OVERLAY;
 
-    public static final TextureArea PROGRESS_BAR_COMPONENT_AL = TextureArea.fullImage("textures/gui/progress_bar/progress_bar_component_al.png");;
+    public static final TextureArea PROGRESS_BAR_COMPONENT_AL = TextureArea.fullImage("textures/gui/progress_bar/progress_bar_component_al.png");
+    public static final TextureArea BUTTON_ELEVATOR_EXTENSION = TextureArea.fullImage("textures/gui/widget/space_elevator_extension.png");
 
 
     private ClientHandler() {

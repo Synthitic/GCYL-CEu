@@ -39,9 +39,9 @@ public abstract class MetaTileEntityModuleBase extends MultiblockWithDisplayBase
     protected IEnergyContainer energyContainer;
 
     protected boolean isActive;
-    protected int maxProgress = 0;
+    protected int maxProgress;
     protected int progressTime = 0;
-    protected boolean isWorkingEnabled = true;
+    protected boolean isWorkingEnabled = false;
 
     public MetaTileEntityModuleBase(ResourceLocation metaTileEntityId, int tier, int moduleTier, int minMotorTier) {
         super(metaTileEntityId);
@@ -134,8 +134,8 @@ public abstract class MetaTileEntityModuleBase extends MultiblockWithDisplayBase
     }
 
     @Override
-    public void sentInvalidateStructure() {
-        invalidateStructure();
+    public void sentWorkingDisabled() {
+        setWorkingEnabled(false);
     }
 
     @Override
@@ -225,6 +225,10 @@ public abstract class MetaTileEntityModuleBase extends MultiblockWithDisplayBase
     @Override
     public boolean isWorkingEnabled() {
         return this.isWorkingEnabled;
+    }
+
+    protected void setMaxProgress(int progress) {
+        this.maxProgress = progress;
     }
 
     @Override
