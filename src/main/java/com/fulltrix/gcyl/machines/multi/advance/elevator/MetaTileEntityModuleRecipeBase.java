@@ -49,6 +49,9 @@ public abstract class MetaTileEntityModuleRecipeBase extends RecipeMapMultiblock
     }
 
     @Override
+    public abstract void initializeAbilities();
+
+    @Override
     public void updateFormedValid() {
         super.updateFormedValid();
         if(this.getOffsetTimer() % 20 == 0 && getSpaceElevator() != null) {
@@ -117,6 +120,14 @@ public abstract class MetaTileEntityModuleRecipeBase extends RecipeMapMultiblock
     @Override
     public void sentWorkingDisabled() {
         this.recipeMapWorkable.setWorkingEnabled(false);
+    }
+
+    @Override
+    public void sentWorkingEnabled() {this.recipeMapWorkable.setWorkingEnabled(true);}
+
+    @Override
+    public String getNameForDisplayCount() {
+        return this.getMetaName() + ".display_count";
     }
 
 }

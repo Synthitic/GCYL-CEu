@@ -196,6 +196,18 @@ public final class GCYLRecipeMaps {
     public static final RecipeMap<ComponentALRecipeBuilder> COMPONENT_AL_RECIPES = new RecipeMapComponentAL<>("component_al_recipes",
             new ComponentALRecipeBuilder(), ComponentALRecipeUI::new);
 
+    public static final RecipeMap<SimpleRecipeBuilder> MINING_MODULE_RECIPES = new RecipeMapBuilder<>("mining_module",
+            new SimpleRecipeBuilder())
+            .itemInputs(4)
+            .itemOutputs(16)
+            .build();
+
+    public static final RecipeMap<SimpleRecipeBuilder> ASSEMBLER_MODULE_RECIPES = new RecipeMapBuilder<>("assembler_module",
+            new SimpleRecipeBuilder())
+            .itemInputs(16)
+            .itemOutputs(1)
+            .build();
+
 
 
     public static void modifyMaps() {

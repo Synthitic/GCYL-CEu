@@ -34,5 +34,6 @@ dependencies {
     compileOnlyApi rfg.deobf("curse.maven:ctm-267602:2915363") // CTM 1.0.2.31
     compileOnlyApi rfg.deobf("curse.maven:ae2-extended-life-570458:5147702") // AE2UEL 0.56.4
     compileOnlyApi rfg.deobf("curse.maven:modularui-624243:5153413")
+    compileOnlyApi rfg.deobf("curse.maven:galacticraft-legacy-564236:4671122")
     api("com.cleanroommc:modularui:2.4.3")
 }

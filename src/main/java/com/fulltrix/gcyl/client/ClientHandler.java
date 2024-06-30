@@ -47,13 +47,17 @@ public class ClientHandler {
     public static SimpleOverlayRenderer INCONEL_625_CASING;
     public static SimpleOverlayRenderer ELEVATOR_CASING;
     public static SimpleOverlayRenderer PUMP_MODULE_OVERLAY;
+    public static SimpleOverlayRenderer MINING_MODULE_OVERLAY;
+    public static SimpleOverlayRenderer ASSEMBLER_MODULE_OVERLAY;
 
     public static OrientedOverlayRenderer NAQADAH_OVERLAY;
     public static OrientedOverlayRenderer ROCKET_OVERLAY;
 
     public static final TextureArea PROGRESS_BAR_COMPONENT_AL = TextureArea.fullImage("textures/gui/progress_bar/progress_bar_component_al.png");
     public static final TextureArea BUTTON_ELEVATOR_EXTENSION = TextureArea.fullImage("textures/gui/widget/space_elevator_extension.png");
-
+    public static  final TextureArea BUTTON_ELEVATOR_TELEPORT = TextureArea.fullImage("textures/gui/widget/planet_teleport.png");
+    public static final TextureArea BUTTON_ENABLE_STATIC = TextureArea.fullImage("textures/gui/widget/button_power_enable_static.png");
+    public static final TextureArea BUTTON_DISABLE_STATIC = TextureArea.fullImage("textures/gui/widget/button_power_disable_static.png");
 
     private ClientHandler() {
     }
@@ -113,5 +117,7 @@ public class ClientHandler {
         //ELEVATOR
         ELEVATOR_CASING = new SimpleOverlayRenderer("gcyl:casings/elevator/elevator_base");
         PUMP_MODULE_OVERLAY = new SimpleOverlayRenderer("gcyl:overlay/elevator/pump");
+        MINING_MODULE_OVERLAY = new SimpleOverlayRenderer("gcyl:overlay/elevator/mining");
+        ASSEMBLER_MODULE_OVERLAY = new SimpleOverlayRenderer("gcyl:overlay/elevator/assembler");
     }
 }

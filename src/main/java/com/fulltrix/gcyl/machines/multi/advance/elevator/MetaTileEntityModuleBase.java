@@ -139,6 +139,11 @@ public abstract class MetaTileEntityModuleBase extends MultiblockWithDisplayBase
     }
 
     @Override
+    public void sentWorkingEnabled() {
+        setWorkingEnabled(true);
+    }
+
+    @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing side) {
         if (capability == GregtechTileCapabilities.CAPABILITY_WORKABLE)
             return GregtechTileCapabilities.CAPABILITY_WORKABLE.cast(this);
@@ -250,6 +255,11 @@ public abstract class MetaTileEntityModuleBase extends MultiblockWithDisplayBase
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String getNameForDisplayCount() {
+        return this.getMetaName() + ".display_count";
     }
 
 }

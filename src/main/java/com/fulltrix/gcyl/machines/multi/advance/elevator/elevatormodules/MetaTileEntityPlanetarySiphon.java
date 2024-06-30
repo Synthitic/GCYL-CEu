@@ -71,7 +71,7 @@ public class MetaTileEntityPlanetarySiphon extends MetaTileEntityModuleBase {
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity iGregTechTileEntity) {
-            return new MetaTileEntityPlanetarySiphon(metaTileEntityId, this.tier, this.moduleTier, this.minMotorTier);
+            return new MetaTileEntityPlanetarySiphon(this.metaTileEntityId, this.tier, this.moduleTier, this.minMotorTier);
     }
 
     @Override
@@ -89,93 +89,39 @@ public class MetaTileEntityPlanetarySiphon extends MetaTileEntityModuleBase {
 
     @Override
     protected ModularUI.Builder createUITemplate(EntityPlayer entityPlayer) {
-        ModularUI.Builder builder;
-        label38: {
-            builder = ModularUI.builder(GuiTextures.BACKGROUND, 198, 208);
-            if (this instanceof IProgressBarMultiblock) {
-                IProgressBarMultiblock progressMulti = (IProgressBarMultiblock)this;
-                if (progressMulti.showProgressBar()) {
-                    builder.image(4, 4, 190, 109, GuiTextures.DISPLAY);
-                    ProgressWidget progressBar;
-                    if (progressMulti.getNumProgressBars() == 3) {
-                        progressBar = (new ProgressWidget(() -> {
-                            return progressMulti.getFillPercentage(0);
-                        }, 4, 115, 62, 7, progressMulti.getProgressBarTexture(0), ProgressWidget.MoveType.HORIZONTAL)).setHoverTextConsumer((list) -> {
-                            progressMulti.addBarHoverText(list, 0);
-                        });
-                        builder.widget(progressBar);
-                        progressBar = (new ProgressWidget(() -> {
-                            return progressMulti.getFillPercentage(1);
-                        }, 68, 115, 62, 7, progressMulti.getProgressBarTexture(1), ProgressWidget.MoveType.HORIZONTAL)).setHoverTextConsumer((list) -> {
-                            progressMulti.addBarHoverText(list, 1);
-                        });
-                        builder.widget(progressBar);
-                        progressBar = (new ProgressWidget(() -> {
-                            return progressMulti.getFillPercentage(2);
-                        }, 132, 115, 62, 7, progressMulti.getProgressBarTexture(2), ProgressWidget.MoveType.HORIZONTAL)).setHoverTextConsumer((list) -> {
-                            progressMulti.addBarHoverText(list, 2);
-                        });
-                        builder.widget(progressBar);
-                    } else if (progressMulti.getNumProgressBars() == 2) {
-                        progressBar = (new ProgressWidget(() -> {
-                            return progressMulti.getFillPercentage(0);
-                        }, 4, 115, 94, 7, progressMulti.getProgressBarTexture(0), ProgressWidget.MoveType.HORIZONTAL)).setHoverTextConsumer((list) -> {
-                            progressMulti.addBarHoverText(list, 0);
-                        });
-                        builder.widget(progressBar);
-                        progressBar = (new ProgressWidget(() -> {
-                            return progressMulti.getFillPercentage(1);
-                        }, 100, 115, 94, 7, progressMulti.getProgressBarTexture(1), ProgressWidget.MoveType.HORIZONTAL)).setHoverTextConsumer((list) -> {
-                            progressMulti.addBarHoverText(list, 1);
-                        });
-                        builder.widget(progressBar);
-                    } else {
-                        progressBar = (new ProgressWidget(() -> {
-                            return progressMulti.getFillPercentage(0);
-                        }, 4, 115, 190, 7, progressMulti.getProgressBarTexture(0), ProgressWidget.MoveType.HORIZONTAL)).setHoverTextConsumer((list) -> {
-                            progressMulti.addBarHoverText(list, 0);
-                        });
-                        builder.widget(progressBar);
-                    }
-
-                    builder.widget((new IndicatorImageWidget(174, 93, 17, 17, this.getLogo())).setWarningStatus(this.getWarningLogo(), this::addWarningText).setErrorStatus(this.getErrorLogo(), this::addErrorText));
-                    break label38;
-                }
-            }
-
-            builder.image(4, 4, 190, 117, GuiTextures.DISPLAY);
-            builder.widget((new IndicatorImageWidget(174, 101, 17, 17, this.getLogo())).setWarningStatus(this.getWarningLogo(), this::addWarningText).setErrorStatus(this.getErrorLogo(), this::addErrorText));
-        }
+        ModularUI.Builder builder = ModularUI.builder(GuiTextures.BACKGROUND, 198, 208);;
+        builder.image(4, 4, 190, 117, GuiTextures.DISPLAY);
+        builder.widget((new IndicatorImageWidget(174, 101, 17, 17, this.getLogo())).setWarningStatus(this.getWarningLogo(), this::addWarningText).setErrorStatus(this.getErrorLogo(), this::addErrorText));
 
         builder.label(9, 9, this.getMetaFullName(), 16777215);
 
-
-        //builder.widget(new ImageWidget(15, 50, 30, 30, GuiTextures.FLUID_SLOT));
         int size = 18;
         int padding = 3;
 
-        builder.widget(new LabelWidget(10, 5 + (size + padding), "gcyl.multiblock.pump_module.planet", 0x55FF55));
-        builder.widget(new TextFieldWidget2(50, 5 + (size + padding), size * size, size, () -> this.getPlanetValue(0), s -> this.setPlanetValue(s, 0)).setMaxLength(3).setAllowedChars(TextFieldWidget2.WHOLE_NUMS));
-        builder.widget(new LabelWidget(10, 5 + 2 *(size + padding), "gcyl.multiblock.pump_module.fluid", 0xFF55FF));
-        builder.widget(new TextFieldWidget2(50, 5 + 2 * (size + padding), size * size, size, () -> this.getFluidValue(0), s -> this.setFluidValue(s, 0)).setMaxLength(3).setAllowedChars(TextFieldWidget2.WHOLE_NUMS));
+        if(this.isStructureFormed()) {
 
-        if(this.moduleTier > 1) {
-            builder.widget(new LabelWidget(100, 5 + (size + padding), "gcyl.multiblock.pump_module.planet", 0x55FF55));
-            builder.widget(new TextFieldWidget2(140, 5 + (size + padding), size * size, size, () -> this.getPlanetValue(1), s -> this.setPlanetValue(s, 1)).setMaxLength(3).setAllowedChars(TextFieldWidget2.WHOLE_NUMS));
-            builder.widget(new LabelWidget(100, 5 + 2 *(size + padding), "gcyl.multiblock.pump_module.fluid", 0xFF55FF));
-            builder.widget(new TextFieldWidget2(140, 5 + 2 * (size + padding), size * size, size, () -> this.getFluidValue(1), s -> this.setFluidValue(s, 1)).setMaxLength(3).setAllowedChars(TextFieldWidget2.WHOLE_NUMS));
+            builder.widget(new LabelWidget(10, 5 + (size + padding), "gcyl.multiblock.pump_module.planet", 0x55FF55));
+            builder.widget(new TextFieldWidget2(50, 5 + (size + padding), size * size, size, () -> this.getPlanetValue(0), s -> this.setPlanetValue(s, 0)).setMaxLength(3).setAllowedChars(TextFieldWidget2.WHOLE_NUMS));
+            builder.widget(new LabelWidget(10, 5 + 2 * (size + padding), "gcyl.multiblock.pump_module.fluid", 0xFF55FF));
+            builder.widget(new TextFieldWidget2(50, 5 + 2 * (size + padding), size * size, size, () -> this.getFluidValue(0), s -> this.setFluidValue(s, 0)).setMaxLength(3).setAllowedChars(TextFieldWidget2.WHOLE_NUMS));
 
-            builder.widget(new LabelWidget(10, 5 + 3 *(size + padding), "gcyl.multiblock.pump_module.planet", 0x55FF55));
-            builder.widget(new TextFieldWidget2(50, 5 + 3 * (size + padding), size * size, size, () -> this.getPlanetValue(2), s -> this.setPlanetValue(s, 2)).setMaxLength(3).setAllowedChars(TextFieldWidget2.WHOLE_NUMS));
-            builder.widget(new LabelWidget(10, 5 + 4 *(size + padding), "gcyl.multiblock.pump_module.fluid", 0xFF55FF));
-            builder.widget(new TextFieldWidget2(50, 5 + 4 * (size + padding), size * size, size, () -> this.getFluidValue(2), s -> this.setFluidValue(s, 2)).setMaxLength(3).setAllowedChars(TextFieldWidget2.WHOLE_NUMS));
+            if (this.moduleTier > 1) {
+                builder.widget(new LabelWidget(100, 5 + (size + padding), "gcyl.multiblock.pump_module.planet", 0x55FF55));
+                builder.widget(new TextFieldWidget2(140, 5 + (size + padding), size * size, size, () -> this.getPlanetValue(1), s -> this.setPlanetValue(s, 1)).setMaxLength(3).setAllowedChars(TextFieldWidget2.WHOLE_NUMS));
+                builder.widget(new LabelWidget(100, 5 + 2 * (size + padding), "gcyl.multiblock.pump_module.fluid", 0xFF55FF));
+                builder.widget(new TextFieldWidget2(140, 5 + 2 * (size + padding), size * size, size, () -> this.getFluidValue(1), s -> this.setFluidValue(s, 1)).setMaxLength(3).setAllowedChars(TextFieldWidget2.WHOLE_NUMS));
 
-            builder.widget(new LabelWidget(100, 5 + 3 * (size + padding), "gcyl.multiblock.pump_module.planet", 0x55FF55));
-            builder.widget(new TextFieldWidget2(140, 5 + 3 * (size + padding), size * size, size, () -> this.getPlanetValue(3), s -> this.setPlanetValue(s, 3)).setMaxLength(3).setAllowedChars(TextFieldWidget2.WHOLE_NUMS));
-            builder.widget(new LabelWidget(100, 5 + 4 *(size + padding), "gcyl.multiblock.pump_module.fluid", 0xFF55FF));
-            builder.widget(new TextFieldWidget2(140, 5 + 4 * (size + padding), size * size, size, () -> this.getFluidValue(3), s -> this.setFluidValue(s, 3)).setMaxLength(3).setAllowedChars(TextFieldWidget2.WHOLE_NUMS));
+                builder.widget(new LabelWidget(10, 5 + 3 * (size + padding), "gcyl.multiblock.pump_module.planet", 0x55FF55));
+                builder.widget(new TextFieldWidget2(50, 5 + 3 * (size + padding), size * size, size, () -> this.getPlanetValue(2), s -> this.setPlanetValue(s, 2)).setMaxLength(3).setAllowedChars(TextFieldWidget2.WHOLE_NUMS));
+                builder.widget(new LabelWidget(10, 5 + 4 * (size + padding), "gcyl.multiblock.pump_module.fluid", 0xFF55FF));
+                builder.widget(new TextFieldWidget2(50, 5 + 4 * (size + padding), size * size, size, () -> this.getFluidValue(2), s -> this.setFluidValue(s, 2)).setMaxLength(3).setAllowedChars(TextFieldWidget2.WHOLE_NUMS));
+
+                builder.widget(new LabelWidget(100, 5 + 3 * (size + padding), "gcyl.multiblock.pump_module.planet", 0x55FF55));
+                builder.widget(new TextFieldWidget2(140, 5 + 3 * (size + padding), size * size, size, () -> this.getPlanetValue(3), s -> this.setPlanetValue(s, 3)).setMaxLength(3).setAllowedChars(TextFieldWidget2.WHOLE_NUMS));
+                builder.widget(new LabelWidget(100, 5 + 4 * (size + padding), "gcyl.multiblock.pump_module.fluid", 0xFF55FF));
+                builder.widget(new TextFieldWidget2(140, 5 + 4 * (size + padding), size * size, size, () -> this.getFluidValue(3), s -> this.setFluidValue(s, 3)).setMaxLength(3).setAllowedChars(TextFieldWidget2.WHOLE_NUMS));
+            }
         }
-
 
         builder.widget((new AdvancedTextWidget(9, 20, this::addDisplayText, 16777215)).setMaxWidthLimit(181).setClickHandler(this::handleDisplayClick));
         IControllable controllable = (IControllable)this.getCapability(GregtechTileCapabilities.CAPABILITY_CONTROLLABLE, (EnumFacing)null);
@@ -224,7 +170,13 @@ public class MetaTileEntityPlanetarySiphon extends MetaTileEntityModuleBase {
     }
 
     private void setPlanetValue(String val, int index) {
-        this.planet[index] = Integer.parseInt(val);
+        try {
+            this.planet[index] = Integer.parseInt(val);
+        }
+        catch (NumberFormatException e) {
+            this.planet[index] = 0;
+        }
+
     }
 
     private String getFluidValue(int index) {
@@ -232,7 +184,12 @@ public class MetaTileEntityPlanetarySiphon extends MetaTileEntityModuleBase {
     }
 
     private void setFluidValue(String val, int index) {
-        this.fluidNumber[index] = Integer.parseInt(val);
+        try {
+            this.fluidNumber[index] = Integer.parseInt(val);
+        }
+        catch (NumberFormatException e) {
+            this.fluidNumber[index] = 0;
+        }
     }
 
     @Override

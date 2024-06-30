@@ -10,4 +10,8 @@ public interface ISpaceElevatorReceiver {
     void setSpaceElevator(ISpaceElevatorProvider provider);
 
     void sentWorkingDisabled();
+
+    void sentWorkingEnabled();
+
+    String getNameForDisplayCount();
 }

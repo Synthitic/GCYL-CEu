@@ -5059,7 +5059,16 @@ tile.gcyl_component_al_casing.max.name=Component Assembly Line Casing (MAX)
 recipemap.cosmic_ray_detector.name=Cosmic Ray Detector
 
 gcyl.machine.space_elevator.name=§dSpace Elevator
+gcyl.machine.space_elevator.max_modules=Maximum Installed Modules: %s
+gcyl.machine.space_elevator.total_modules=Installed Modules Total: %s
+gcyl.machine.space_elevator.modules.none=No Modules Installed!
+gcyl.machine.space_elevator.modules=Modules Installed:
+gcyl.machine.space_elevator.motor_tier=Motor Tier: %s
 gcyl.gui.multiblock.space_elevator_extended=Extension Toggle
+gcyl.gui.multiblock.space_elevator_teleport=Travel
+gcyl.gui.multiblock.space_elevator.enable_all_modules=Enable All Modules
+gcyl.gui.multiblock.space_elevator.disable_all_modules=Disable All Modules
+
 
 gcyl.multiblock.pump_module.planet=Planet:
 gcyl.multiblock.pump_module.fluid=Fluid:
@@ -5072,6 +5081,26 @@ gcyl.jei.space_pump_fluid_amount=Amount: %s
 gcyl.machine.pump_module_1.name=Space Pumping Module MK-I
 gcyl.machine.pump_module_2.name=Space Pumping Module MK-II
 gcyl.machine.pump_module_3.name=Space Pumping Module MK-III
+
+gcyl.machine.pump_module_1.display_count=   Space Pumping Module MK-I x%s
+gcyl.machine.pump_module_2.display_count=   Space Pumping Module MK-II x%s
+gcyl.machine.pump_module_3.display_count=   Space Pumping Module MK-III x%s
+
+gcyl.machine.mining_module_1.name=Space Mining Module MK-I
+gcyl.machine.mining_module_2.name=Space Mining Module MK-II
+gcyl.machine.mining_module_3.name=Space Mining Module MK-III
+
+gcyl.machine.mining_module_1.display_count=   Space Mining Module MK-I x%s
+gcyl.machine.mining_module_2.display_count=   Space Mining Module MK-II x%s
+gcyl.machine.mining_module_3.display_count=   Space Mining Module MK-III x%s
+
+gcyl.machine.assembler_module_1.name=Space Assembler Module MK-I
+gcyl.machine.assembler_module_2.name=Space Assembler Module MK-II
+gcyl.machine.assembler_module_3.name=Space Assembler Module MK-III
+
+gcyl.machine.assembler_module_1.display_count=   Space Assembler Module MK-I x%s
+gcyl.machine.assembler_module_2.display_count=   Space Assembler Module MK-II x%s
+gcyl.machine.assembler_module_3.display_count=   Space Assembler Module MK-III x%s
 
 tile.gcyl_elevator_casing.concrete_strong.name=Ultra High Strength Concrete Floor
 tile.gcyl_elevator_casing.elevator_base.name=Space Elevator Base Casing

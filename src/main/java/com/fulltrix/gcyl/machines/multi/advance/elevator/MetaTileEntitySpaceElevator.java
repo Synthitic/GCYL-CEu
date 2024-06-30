@@ -13,37 +13,40 @@ import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.resources.TextureArea;
+import gregtech.api.gui.Widget;
 import gregtech.api.gui.widgets.*;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
-import gregtech.api.util.GTLog;
-import gregtech.api.util.function.BooleanConsumer;
+import gregtech.api.util.Mods;
+import gregtech.api.util.TextComponentUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
+import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
+import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.function.BooleanSupplier;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static com.fulltrix.gcyl.api.pattern.TraceabilityPredicates.elevatorMotors;
 import static gregtech.api.unification.material.Materials.Neutronium;
@@ -54,7 +57,7 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     protected IEnergyContainer energyContainer;
     protected int motorTier = 0;
     private boolean isExtended = false;
-    private final Collection<ISpaceElevatorReceiver> spaceElevatorReceivers = new HashSet<>();
+    private final Collection<ISpaceElevatorReceiver> spaceElevatorReceivers = ConcurrentHashMap.newKeySet();
 
     public MetaTileEntitySpaceElevator(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId);
@@ -75,18 +78,21 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     @Override
     protected void updateFormedValid() {
         if(!this.spaceElevatorReceivers.isEmpty()) {
-            if((this.motorTier == 1 && this.spaceElevatorReceivers.size() > 6)
-                    || (this.motorTier == 2 && this.spaceElevatorReceivers.size() > 12)
-                    || (this.motorTier == 3 && this.spaceElevatorReceivers.size() > 15)
-                    || (this.motorTier == 4 && this.spaceElevatorReceivers.size() > 18)) {
+            if(!checkModules()) {
                 invalidateStructure();
             }
+        }
+        if(this.getOffsetTimer() % 20 == 0) {
+            this.spaceElevatorReceivers.forEach(s -> {
+                if(s.getSpaceElevator() == null)
+                    this.spaceElevatorReceivers.remove(s);
+            });
         }
     }
 
     @Override
     protected @NotNull BlockPattern createStructurePattern() {
-        if(!isExtended) {
+        if(!this.isExtended) {
             return FactoryBlockPattern.start(RIGHT, DOWN, FRONT)
                     .aisle("                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "               FF FF               ", "               AAAAA               ")
                     .aisle("                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "               D   D               ", "            FFFFF FFFFF            ", "            AAAAAAAAAAA            ")
@@ -241,7 +247,7 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
 
     @Override
     public void checkStructurePattern() {
-        if(this.getOffsetTimer() % 20 == 0 || this.isFirstTick()) {
+        if(this.getOffsetTimer() % 100 == 0 || this.isFirstTick()) {
             if (!this.isStructureFormed()) {
                 reinitializeStructurePattern();
             }
@@ -254,7 +260,6 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
         super.invalidateStructure();
         resetTileAbilities();
         this.spaceElevatorReceivers.forEach(ISpaceElevatorReceiver::sentWorkingDisabled);
-        this.spaceElevatorReceivers.clear();
     }
 
     protected void initializeAbilities() {
@@ -302,10 +307,10 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     }
 
     protected gregtech.api.gui.ModularUI.Builder createUITemplate(EntityPlayer entityPlayer) {
-        gregtech.api.gui.ModularUI.Builder builder = gregtech.api.gui.ModularUI.builder(GuiTextures.BACKGROUND, 240, 208);
+        gregtech.api.gui.ModularUI.Builder builder = gregtech.api.gui.ModularUI.builder(GuiTextures.BACKGROUND, 198, 238);
 
         // Display
-        builder.image(4, 4, 232, 109, GuiTextures.DISPLAY);
+        builder.image(4, 4, 190, 139, GuiTextures.DISPLAY);
 
 
         builder.label(9, 9, getMetaFullName(), 0xFFFFFF);
@@ -314,23 +319,71 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
                 .setMaxWidthLimit(220)
                 .setClickHandler(this::handleDisplayClick));
 
-        // Power Button
-        builder.widget(new ImageCycleButtonWidget(215, 183, 18, 18, ClientHandler.BUTTON_ELEVATOR_EXTENSION,
+
+        // Extend Button
+        builder.widget(new ImageCycleButtonWidget(173, 213, 18, 18, ClientHandler.BUTTON_ELEVATOR_EXTENSION,
                 this::isExtended, this::setExtended).setTooltipHoverString("gcyl.gui.multiblock.space_elevator_extended"));
-        builder.widget(new ImageWidget(215, 201, 18, 6, GuiTextures.BUTTON_POWER_DETAIL));
+        builder.widget(new ImageWidget(173, 201, 18, 6, GuiTextures.BUTTON_POWER_DETAIL));
 
         // Voiding Mode Button
-        builder.widget(new ImageWidget(215, 161, 18, 18, GuiTextures.BUTTON_VOID_NONE)
-                .setTooltip("gregtech.gui.multiblock_voiding_not_supported"));
+        builder.widget(new ClickButtonWidget(173, 173, 18, 18, "", data -> enableAllModules())
+                .setButtonTexture(ClientHandler.BUTTON_ENABLE_STATIC)
+                .setTooltipText("gcyl.gui.multiblock.space_elevator.enable_all_modules"));
 
-        builder.widget(new ImageWidget(215, 143, 18, 18, GuiTextures.BUTTON_NO_DISTINCT_BUSES)
-                .setTooltip("gregtech.multiblock.universal.distinct_not_supported"));
+        builder.widget(new ClickButtonWidget(173, 191, 18, 18, "", data -> disableAllModules())
+                .setButtonTexture(ClientHandler.BUTTON_DISABLE_STATIC)
+                .setTooltipText("gcyl.gui.multiblock.space_elevator.disable_all_modules"));
 
-        // Flex Button
-        builder.widget(getFlexButton(215, 125, 18, 18));
+        // Teleport Button
+        if(Mods.GalacticraftCore.isModLoaded()) {
+            builder.widget(new ClickButtonWidget(173, 155, 18, 18, "", data -> {
+                if(entityPlayer instanceof EntityPlayerMP && this.isStructureFormed()) {
+                    EntityPlayerMP player = (EntityPlayerMP) entityPlayer;
 
-        builder.bindPlayerInventory(entityPlayer.inventory, 125);
+                    final GCPlayerStats stats = GCPlayerStats.get(player);
+                    stats.setCoordsTeleportedFromX(player.posX);
+                    stats.setCoordsTeleportedFromZ(player.posZ);
+
+                    try {
+                        WorldUtil.toCelestialSelection(player, stats, this.motorTier >= 3 ? 9 : 8);
+                    } catch (final Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).setButtonTexture(ClientHandler.BUTTON_ELEVATOR_TELEPORT).setTooltipText("gcyl.gui.multiblock.space_elevator_teleport"));
+        }
+
+        builder.bindPlayerInventory(entityPlayer.inventory, 155);
         return builder;
+    }
+
+    @Override
+    protected void addDisplayText(List<ITextComponent> textList) {
+        MultiblockDisplayText.builder(textList, this.isStructureFormed())
+                .addCustom(tl -> {
+                    if(this.isStructureFormed()) {
+                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.BLUE, "gcyl.machine.space_elevator.motor_tier", this.motorTier));
+                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gcyl.machine.space_elevator.max_modules", getMaxModules()));
+
+                        if (this.spaceElevatorReceivers.isEmpty()) {
+                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.RED, "gcyl.machine.space_elevator.modules.none"));
+                        } else {
+                            tl.add(TextComponentUtil.translationWithColor(getModuleCount() < getMaxModules() ? TextFormatting.AQUA : TextFormatting.YELLOW, "gcyl.machine.space_elevator.total_modules", getModuleCount()));
+
+                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.GREEN, "gcyl.machine.space_elevator.modules"));
+
+                            List<String> moduleNames = new ArrayList<>();
+                            List<String> uniqueNames = new ArrayList<>();
+                            this.spaceElevatorReceivers.forEach(s -> {
+                                moduleNames.add(s.getNameForDisplayCount());
+                                if (!uniqueNames.contains(moduleNames.get(moduleNames.indexOf(s.getNameForDisplayCount())))) {
+                                    uniqueNames.add(s.getNameForDisplayCount());
+                                }
+                            });
+                            uniqueNames.forEach(s -> tl.add(TextComponentUtil.translationWithColor(TextFormatting.WHITE, s, Collections.frequency(moduleNames, s))));
+                        }
+                    }
+                });
     }
 
     private boolean isExtended() {
@@ -339,6 +392,7 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
 
     private void setExtended(boolean bool) {
         this.isExtended = bool;
+        this.spaceElevatorReceivers.forEach(s -> s.setSpaceElevator(null));
         reinitializeStructurePattern();
     }
 
@@ -374,5 +428,36 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     @Override
     public IEnergyContainer getEnergyContainerForModules() {
         return this.energyContainer;
+    }
+
+    private int getMaxModules() {
+        if(this.motorTier == 1)
+            return 6;
+        if(this.motorTier == 2)
+            return 12;
+        if(this.motorTier == 3 && this.isExtended)
+            return 15;
+        if(this.motorTier == 4 && this.isExtended)
+            return 18;
+        if(this.motorTier == 5 && this.isExtended)
+            return 24;
+
+        return 12;
+    }
+
+    private boolean checkModules() {
+        return getModuleCount() <= getMaxModules();
+    }
+
+    private int getModuleCount() {
+        return this.spaceElevatorReceivers.size();
+    }
+
+    private void disableAllModules() {
+        this.spaceElevatorReceivers.forEach(ISpaceElevatorReceiver::sentWorkingDisabled);
+    }
+
+    private void enableAllModules() {
+        this.spaceElevatorReceivers.forEach(ISpaceElevatorReceiver::sentWorkingEnabled);
     }
 }
