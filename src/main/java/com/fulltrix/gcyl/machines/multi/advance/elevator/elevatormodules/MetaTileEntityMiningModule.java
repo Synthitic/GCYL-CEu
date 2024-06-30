@@ -4,6 +4,7 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import com.fulltrix.gcyl.client.ClientHandler;
+import com.fulltrix.gcyl.machines.multi.advance.elevator.MetaTileEntityModuleBase;
 import com.fulltrix.gcyl.machines.multi.advance.elevator.MetaTileEntityModuleRecipeBase;
 import gregtech.api.capability.impl.ItemHandlerList;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -15,11 +16,15 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.IItemHandlerModifiable;
 
-public class MetaTileEntityMiningModule extends MetaTileEntityModuleRecipeBase {
-    public MetaTileEntityMiningModule(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap, int tier, int moduleTier, int minMotorTier) {
-        super(metaTileEntityId, recipeMap, tier, moduleTier, minMotorTier);
+public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase {
+    public MetaTileEntityMiningModule(ResourceLocation metaTileEntityId, int tier, int moduleTier, int minMotorTier) {
+        super(metaTileEntityId, tier, moduleTier, minMotorTier);
     }
+
+    private IItemHandlerModifiable inputInventory;
+    private IItemHandlerModifiable outputInventory;
 
     @Override
     public void initializeAbilities() {
@@ -34,7 +39,7 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleRecipeBase {
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity iGregTechTileEntity) {
-        return new MetaTileEntityMiningModule(this.metaTileEntityId, this.recipeMap, this.tier, this.moduleTier, this.minMotorTier);
+        return new MetaTileEntityMiningModule(this.metaTileEntityId, this.tier, this.moduleTier, this.minMotorTier);
     }
 
     @Override

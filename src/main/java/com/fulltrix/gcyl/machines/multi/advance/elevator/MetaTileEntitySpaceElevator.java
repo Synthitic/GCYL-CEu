@@ -71,8 +71,9 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     @Override
     public void update() {
         super.update();
-        if(!isStructureFormed())
+        if(!isStructureFormed()) {
             this.spaceElevatorReceivers.forEach(ISpaceElevatorReceiver::sentWorkingDisabled);
+        }
     }
 
     @Override
@@ -260,6 +261,7 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
         super.invalidateStructure();
         resetTileAbilities();
         this.spaceElevatorReceivers.forEach(ISpaceElevatorReceiver::sentWorkingDisabled);
+        this.spaceElevatorReceivers.forEach(s -> s.setSpaceElevator(null));
     }
 
     protected void initializeAbilities() {
@@ -392,7 +394,7 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
 
     private void setExtended(boolean bool) {
         this.isExtended = bool;
-        this.spaceElevatorReceivers.forEach(s -> s.setSpaceElevator(null));
+        invalidateStructure();
         reinitializeStructurePattern();
     }
 
@@ -428,6 +430,11 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     @Override
     public IEnergyContainer getEnergyContainerForModules() {
         return this.energyContainer;
+    }
+
+    @Override
+    public boolean amIInTheList(ISpaceElevatorReceiver receiver) {
+        return this.spaceElevatorReceivers.contains(receiver);
     }
 
     private int getMaxModules() {

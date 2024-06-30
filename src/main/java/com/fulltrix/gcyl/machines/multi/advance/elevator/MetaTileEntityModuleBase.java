@@ -5,6 +5,7 @@ import com.fulltrix.gcyl.api.multi.ISpaceElevatorReceiver;
 import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
 import com.fulltrix.gcyl.blocks.elevator.ElevatorCasing;
 import com.fulltrix.gcyl.client.ClientHandler;
+import gregtech.api.GTValues;
 import gregtech.api.capability.GregtechDataCodes;
 import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.api.capability.IEnergyContainer;
@@ -16,6 +17,7 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
+import gregtech.api.util.GTLog;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import net.minecraft.nbt.NBTTagCompound;
@@ -77,6 +79,8 @@ public abstract class MetaTileEntityModuleBase extends MultiblockWithDisplayBase
                 getSpaceElevator().getEnergyContainerForModules().removeEnergy(energyToDraw);
                 this.energyContainer.addEnergy(energyToDraw);
             }
+        } else if (getSpaceElevator() == null) {
+            setWorkingEnabled(false);
         }
     }
 

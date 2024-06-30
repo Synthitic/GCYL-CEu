@@ -60,6 +60,8 @@ public abstract class MetaTileEntityModuleRecipeBase extends RecipeMapMultiblock
                 getSpaceElevator().getEnergyContainerForModules().removeEnergy(energyToDraw);
                 this.energyContainer.addEnergy(energyToDraw);
             }
+        } else if (getSpaceElevator() == null) {
+            this.recipeMapWorkable.setWorkingEnabled(false);
         }
     }
 

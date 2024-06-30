@@ -5060,7 +5060,7 @@ recipemap.cosmic_ray_detector.name=Cosmic Ray Detector
 
 gcyl.machine.space_elevator.name=§dSpace Elevator
 gcyl.machine.space_elevator.max_modules=Maximum Installed Modules: %s
-gcyl.machine.space_elevator.total_modules=Installed Modules Total: %s
+gcyl.machine.space_elevator.total_modules=Modules Installed Total: %s
 gcyl.machine.space_elevator.modules.none=No Modules Installed!
 gcyl.machine.space_elevator.modules=Modules Installed:
 gcyl.machine.space_elevator.motor_tier=Motor Tier: %s
