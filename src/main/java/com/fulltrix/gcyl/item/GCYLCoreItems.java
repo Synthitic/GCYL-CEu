@@ -454,6 +454,22 @@ public class GCYLCoreItems {
 
     public static MetaItem<?>.MetaValueItem WIRELESS_BATTERY_UV;
 
+    public static MetaItem<?>.MetaValueItem MINING_DRONE_1;
+    public static MetaItem<?>.MetaValueItem MINING_DRONE_2;
+    public static MetaItem<?>.MetaValueItem MINING_DRONE_3;
+    public static MetaItem<?>.MetaValueItem MINING_DRONE_4;
+    public static MetaItem<?>.MetaValueItem MINING_DRONE_5;
+    public static MetaItem<?>.MetaValueItem MINING_DRONE_6;
+    public static MetaItem<?>.MetaValueItem MINING_DRONE_7;
+    public static MetaItem<?>.MetaValueItem MINING_DRONE_8;
+    public static MetaItem<?>.MetaValueItem MINING_DRONE_9;
+    public static MetaItem<?>.MetaValueItem MINING_DRONE_10;
+    public static MetaItem<?>.MetaValueItem MINING_DRONE_11;
+    public static MetaItem<?>.MetaValueItem MINING_DRONE_12;
+    public static MetaItem<?>.MetaValueItem MINING_DRONE_13;
+    public static MetaItem<?>.MetaValueItem MINING_DRONE_14;
+
+
 
 
 

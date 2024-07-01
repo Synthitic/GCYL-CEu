@@ -1,4 +1,4 @@
-//version: 1718246243
+//version: 1719793363
 /*
  * DO NOT CHANGE THIS FILE!
  * Also, you may replace this file at any time if there is an update available.
@@ -69,6 +69,7 @@ propertyDefaultIfUnset("includeMCVersionJar", false)
 propertyDefaultIfUnset("autoUpdateBuildScript", false)
 propertyDefaultIfUnset("modArchivesBaseName", project.modId)
 propertyDefaultIfUnsetWithEnvVar("developmentEnvironmentUserName", "Developer", "DEV_USERNAME")
+propertyDefaultIfUnset("additionalJavaArguments", "")
 propertyDefaultIfUnset("enableJava17RunTasks", false)
 propertyDefaultIfUnset("generateGradleTokenClass", "")
 propertyDefaultIfUnset("gradleTokenModId", "")
@@ -119,7 +120,7 @@ if (!getFile(targetPackageJava).exists() && !getFile(targetPackageScala).exists(
 
 if (apiPackage) {
     final String endApiPath = modGroupPath + '/' + apiPackagePath
-    if (useSrcApiPath) {
+    if (useSrcApiPath.toBoolean()) {
         targetPackageJava = 'src/api/java/' + endApiPath
         targetPackageScala = 'src/api/scala/' + endApiPath
         targetPackageKotlin = 'src/api/kotlin/' + endApiPath
@@ -380,6 +381,10 @@ minecraft {
                 '-Dlegacy.debugClassLoadingFiner=true',
                 '-Dlegacy.debugClassLoadingSave=true'
         ])
+    }
+
+    if (additionalJavaArguments.size() != 0) {
+        extraRunJvmArguments.addAll(additionalJavaArguments.split(';'))
     }
 
     if (enableJava17RunTasks.toBoolean()) {

@@ -3,22 +3,22 @@ package com.fulltrix.gcyl.jei;
 
 import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.Tags;
+import com.fulltrix.gcyl.jei.category.SpaceMiningCategory;
 import com.fulltrix.gcyl.jei.category.SpacePumpCategory;
 import com.fulltrix.gcyl.jei.category.VoidMinerCategory;
 import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityWirelessEnergyHatch;
+import com.fulltrix.gcyl.recipes.categories.elevator.SpaceMiningRecipes;
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.util.GTLog;
 import gregtech.common.blocks.MetaBlocks;
-import gregtech.common.items.MetaItems;
-import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import mezz.jei.api.*;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,9 +27,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import static com.fulltrix.gcyl.machines.GCYLTileEntities.MINING_MODULE;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.WIRELESS_ENERGY_HATCH_OUTPUT;
-import static com.fulltrix.gcyl.recipes.categories.ElevatorRecipes.GAS_SIPHON_RECIPES;
-import static com.fulltrix.gcyl.recipes.categories.ElevatorRecipes.getPlanetNameByID;
+import static com.fulltrix.gcyl.recipes.categories.elevator.SpaceMiningRecipes.HASH_TO_ITEMS;
+import static com.fulltrix.gcyl.recipes.categories.elevator.SpaceMiningRecipes.SPACE_MINING_RECIPES;
+import static com.fulltrix.gcyl.recipes.categories.elevator.SpacePumpRecipes.GAS_SIPHON_RECIPES;
+import static com.fulltrix.gcyl.recipes.categories.elevator.SpacePumpRecipes.getPlanetNameByID;
 import static com.fulltrix.gcyl.recipes.categories.handlers.VoidMinerHandler.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.common.blocks.BlockWireCoil.CoilType.*;
@@ -48,6 +51,7 @@ public class JEIGCYLPlugin implements IModPlugin {
     public void registerCategories(@NotNull IRecipeCategoryRegistration registry) {
         guiHelper = registry.getJeiHelpers().getGuiHelper();
 
+        registry.addRecipeCategories(new SpaceMiningCategory(registry.getJeiHelpers().getGuiHelper()));
         registry.addRecipeCategories(new SpacePumpCategory(registry.getJeiHelpers().getGuiHelper()));
         registry.addRecipeCategories(new VoidMinerCategory(registry.getJeiHelpers().getGuiHelper()));
     }
@@ -57,6 +61,45 @@ public class JEIGCYLPlugin implements IModPlugin {
     public void register(IModRegistry registry) {
         itemBlacklist = registry.getJeiHelpers().getIngredientBlacklist();
         iItemRegistry = registry.getIngredientRegistry();
+
+        String spaceMineID = Tags.MODID + ":" + "space_mining";
+        List<SpaceMiningInfo> spaceMiningInfo1 = new ArrayList<>();
+        List<SpaceMiningInfo> spaceMiningInfo2 = new ArrayList<>();
+        List<SpaceMiningInfo> spaceMiningInfo3 = new ArrayList<>();
+
+        for(Map.Entry<Integer, List<SpaceMiningRecipes.SpaceMiningRecipePartTwo>> entry : SPACE_MINING_RECIPES.entrySet()) {
+            Integer key = entry.getKey();
+            List<SpaceMiningRecipes.SpaceMiningRecipePartTwo> recipe = entry.getValue();
+
+            List<ItemStack> inputs = HASH_TO_ITEMS.get(key);
+
+            for(SpaceMiningRecipes.SpaceMiningRecipePartTwo recipeIterate : recipe) {
+                spaceMiningInfo1.add(new SpaceMiningInfo(inputs, recipeIterate));
+
+                /*
+                if(recipeIterate.getMinModuleTier() > 2) {
+                    spaceMiningInfo3.add(new SpaceMiningInfo(inputs, recipeIterate));
+                } else if(recipeIterate.getMinModuleTier() > 1) {
+                    spaceMiningInfo3.add(new SpaceMiningInfo(inputs, recipeIterate));
+                    spaceMiningInfo2.add(new SpaceMiningInfo(inputs, recipeIterate));
+                } else {
+                    spaceMiningInfo3.add(new SpaceMiningInfo(inputs, recipeIterate));
+                    spaceMiningInfo2.add(new SpaceMiningInfo(inputs, recipeIterate));
+                    spaceMiningInfo1.add(new SpaceMiningInfo(inputs, recipeIterate));
+                }
+
+                 */
+            }
+        }
+
+        registry.addRecipes(spaceMiningInfo1, spaceMineID);
+        //registry.addRecipes(spaceMiningInfo2, spaceMineID);
+        //registry.addRecipes(spaceMiningInfo3, spaceMineID);
+        registry.addRecipeCatalyst(MINING_MODULE[0].getStackForm(), spaceMineID);
+        registry.addRecipeCatalyst(MINING_MODULE[1].getStackForm(), spaceMineID);
+        registry.addRecipeCatalyst(MINING_MODULE[2].getStackForm(), spaceMineID);
+
+
 
         List<SpacePumpInfo> spacePumpInfos = new ArrayList<>();
         for(Map.Entry<String, FluidStack> entry : GAS_SIPHON_RECIPES.entrySet()) {

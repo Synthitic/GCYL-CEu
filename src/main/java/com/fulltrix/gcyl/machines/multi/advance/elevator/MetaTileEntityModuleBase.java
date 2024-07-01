@@ -251,6 +251,16 @@ public abstract class MetaTileEntityModuleBase extends MultiblockWithDisplayBase
         }
     }
 
+    protected boolean drainEnergy(boolean simulate, long EU) {
+        long resultEnergy = energyContainer.getEnergyStored() - EU;
+        if (resultEnergy >= 0L && resultEnergy <= energyContainer.getEnergyCapacity()) {
+            if (!simulate)
+                energyContainer.changeEnergy(-EU);
+            return true;
+        }
+        return false;
+    }
+
     protected boolean drainEnergy(boolean simulate) {
         long resultEnergy = energyContainer.getEnergyStored() - energyContainer.getInputVoltage();
         if (resultEnergy >= 0L && resultEnergy <= energyContainer.getEnergyCapacity()) {
@@ -264,6 +274,10 @@ public abstract class MetaTileEntityModuleBase extends MultiblockWithDisplayBase
     @Override
     public String getNameForDisplayCount() {
         return this.getMetaName() + ".display_count";
+    }
+
+    public int getProgressPercent() {
+        return (int) ((1.0F * getProgress() / getMaxProgress()) * 100);
     }
 
 }

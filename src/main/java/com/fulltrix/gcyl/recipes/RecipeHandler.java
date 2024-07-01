@@ -1,11 +1,11 @@
 package com.fulltrix.gcyl.recipes;
 
-import com.fulltrix.gcyl.api.recipes.GCYLMaterialRecipeHandler;
-import com.fulltrix.gcyl.api.recipes.properties.ComponentALProperty;
 import com.fulltrix.gcyl.recipes.categories.*;
 import com.fulltrix.gcyl.recipes.categories.circuits.CircuitRecipes;
 import com.fulltrix.gcyl.recipes.categories.DeepMinerRecipes;
 import com.fulltrix.gcyl.recipes.categories.GreenhouseRecipes;
+import com.fulltrix.gcyl.recipes.categories.elevator.SpaceMiningRecipes;
+import com.fulltrix.gcyl.recipes.categories.elevator.SpacePumpRecipes;
 import com.fulltrix.gcyl.recipes.categories.machines.MachineCraftingRecipes;
 import com.fulltrix.gcyl.recipes.categories.machines.MultiblockPartCraftingRecipes;
 import com.fulltrix.gcyl.recipes.chain.*;
@@ -35,7 +35,8 @@ public class RecipeHandler {
         GreenhouseRecipes.init();
         CosmicRayDetectorRecipes.init();
         FisherRecipes.init();
-        ElevatorRecipes.init();
+        SpacePumpRecipes.init();
+        SpaceMiningRecipes.init();
     }
 
     public static void initChains() {

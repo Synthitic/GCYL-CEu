@@ -11,7 +11,7 @@ import com.fulltrix.gcyl.machines.multi.advance.*;
 import com.fulltrix.gcyl.machines.multi.advance.elevator.MetaTileEntitySpaceElevator;
 import com.fulltrix.gcyl.machines.multi.advance.elevator.elevatormodules.MetaTileEntityAssemblerModule;
 import com.fulltrix.gcyl.machines.multi.advance.elevator.elevatormodules.MetaTileEntityMiningModule;
-import com.fulltrix.gcyl.machines.multi.advance.elevator.elevatormodules.MetaTileEntityPlanetarySiphon;
+import com.fulltrix.gcyl.machines.multi.advance.elevator.elevatormodules.MetaTileEntityPumpingModule;
 import com.fulltrix.gcyl.machines.multi.generator.MetaTileEntityHyperReactor;
 import com.fulltrix.gcyl.machines.multi.generator.MetaTileEntityLargeNaquadahReactor;
 import com.fulltrix.gcyl.machines.multi.generator.MetaTileEntityLargeRocketEngine;
@@ -88,7 +88,7 @@ public class GCYLTileEntities {
 
     ///////////////////////////////////////////////////
     public static MetaTileEntitySpaceElevator SPACE_ELEVATOR;
-    public static MetaTileEntityPlanetarySiphon[] PUMP_MODULE = new MetaTileEntityPlanetarySiphon[3];
+    public static MetaTileEntityPumpingModule[] PUMP_MODULE = new MetaTileEntityPumpingModule[3];
     public static MetaTileEntityMiningModule[] MINING_MODULE = new MetaTileEntityMiningModule[3];
     public static MetaTileEntityAssemblerModule[] ASSEMBLER_MODULE = new MetaTileEntityAssemblerModule[3];
 
@@ -223,12 +223,12 @@ public class GCYLTileEntities {
         COMPONENT_ASSEMBLY_LINE = registerMetaTileEntity(++id, new MetaTileEntityComponentAL(gcylId("component_assembly_line")));
 
         SPACE_ELEVATOR = registerMetaTileEntity(++id, new MetaTileEntitySpaceElevator(gcylId("space_elevator")));
-        PUMP_MODULE[0] = registerMetaTileEntity(++id, new MetaTileEntityPlanetarySiphon(gcylId("pump_module_1"), 9,1,2));
-        PUMP_MODULE[1] = registerMetaTileEntity(++id, new MetaTileEntityPlanetarySiphon(gcylId("pump_module_2"), 11,2,3));
-        PUMP_MODULE[2] = registerMetaTileEntity(++id, new MetaTileEntityPlanetarySiphon(gcylId("pump_module_3"), 13,3,4));
-        MINING_MODULE[0] = registerMetaTileEntity(++id, new MetaTileEntityMiningModule(gcylId("mining_module_1"),9,1,1));
-        MINING_MODULE[1] = registerMetaTileEntity(++id, new MetaTileEntityMiningModule(gcylId("mining_module_2"),11,2,2));
-        MINING_MODULE[2] = registerMetaTileEntity(++id, new MetaTileEntityMiningModule(gcylId("mining_module_3"),13,3,3));
+        PUMP_MODULE[0] = registerMetaTileEntity(++id, new MetaTileEntityPumpingModule(gcylId("pump_module_1"), 9,1,2));
+        PUMP_MODULE[1] = registerMetaTileEntity(++id, new MetaTileEntityPumpingModule(gcylId("pump_module_2"), 11,2,3));
+        PUMP_MODULE[2] = registerMetaTileEntity(++id, new MetaTileEntityPumpingModule(gcylId("pump_module_3"), 13,3,4));
+        MINING_MODULE[0] = registerMetaTileEntity(++id, new MetaTileEntityMiningModule(gcylId("mining_module_1"),9,1,1, 2));
+        MINING_MODULE[1] = registerMetaTileEntity(++id, new MetaTileEntityMiningModule(gcylId("mining_module_2"),11,2,2, 4));
+        MINING_MODULE[2] = registerMetaTileEntity(++id, new MetaTileEntityMiningModule(gcylId("mining_module_3"),13,3,3, 8));
         ASSEMBLER_MODULE[0] = registerMetaTileEntity(++id, new MetaTileEntityAssemblerModule(gcylId("assembler_module_1"), ASSEMBLER_MODULE_RECIPES,9,1,1));
         ASSEMBLER_MODULE[1] = registerMetaTileEntity(++id, new MetaTileEntityAssemblerModule(gcylId("assembler_module_2"), ASSEMBLER_MODULE_RECIPES,11,2,3));
         ASSEMBLER_MODULE[2] = registerMetaTileEntity(++id, new MetaTileEntityAssemblerModule(gcylId("assembler_module_3"), ASSEMBLER_MODULE_RECIPES,13,3,5));

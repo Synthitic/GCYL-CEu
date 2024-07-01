@@ -4654,7 +4654,8 @@ gregtech.multiblock.extreme_diesel_engine.description=The Diesel Engine is a mul
 gcyl.multiblock.electric_blast_furnace.tooltip.1=For every §a900K§7 above the recipe temperature, a multiplicative §a95%%§7 energy multiplier is applied pre-overclocking.
 gcyl.multiblock.electric_blast_furnace.tooltip.2=For every §a1800K§7 above the recipe temperature, one overclock becomes §a100%%§7 efficient.
 gcyl.multiblock.electric_blast_furnace.tooltip.3=For every voltage tier above §aMV§7, temperature is increased by §a100K§7.
-gregtech.multiblock.volcanus.description=The Volcanus is built the same as the EBF, but with different casings. It consumes pyrotheum 2^ max voltage tier mB of pyrotheum per tick. Max Voltage of ZPM.
+gregtech.multiblock.volcanus.description.1=The Volcanus is built the same as the EBF, but with different casings. It consumes pyrotheum 2^ max voltage tier mB of pyrotheum per tick.
+gregtech.multiblock.volcanus.description.2=Max Overclock Voltage of ZPM. Can run recipes of a higher tier given the right energy hatch, but there are no coil bonuses.
 recipemap.volcanus.name=Volcanus
 gcyl.machine.volcanus.name=Volcanus
 gregtech.multiblock.cryogenic_freezer.description=The Cryogenic Freezer is built the same as the Vacuum Freezer, but with different casings. It consumes cryothium 2^ max voltage tier mB of cryotheum per tick.
@@ -5073,14 +5074,16 @@ gcyl.gui.multiblock.space_elevator.disable_all_modules=Disable All Modules
 gcyl.multiblock.pump_module.planet=Planet:
 gcyl.multiblock.pump_module.fluid=Fluid:
 space_pump.name=Space Pumping
-gcyl.jei.space_pump_planet_name=Planet: %s
-gcyl.jei.space_pump_planet_number=Planet #: %s
-gcyl.jei.space_pump_fluid_number=Fluid #: %s
-gcyl.jei.space_pump_fluid_amount=Amount: %s
+
 
 gcyl.machine.pump_module_1.name=Space Pumping Module MK-I
 gcyl.machine.pump_module_2.name=Space Pumping Module MK-II
 gcyl.machine.pump_module_3.name=Space Pumping Module MK-III
+
+gcyl.jei.space_pump_planet_name=Planet: %s
+gcyl.jei.space_pump_planet_number=Planet #: %s
+gcyl.jei.space_pump_fluid_number=Fluid #: %s
+gcyl.jei.space_pump_fluid_amount=Amount: %s
 
 gcyl.machine.pump_module_1.display_count=   Space Pumping Module MK-I x%s
 gcyl.machine.pump_module_2.display_count=   Space Pumping Module MK-II x%s
@@ -5089,6 +5092,43 @@ gcyl.machine.pump_module_3.display_count=   Space Pumping Module MK-III x%s
 gcyl.machine.mining_module_1.name=Space Mining Module MK-I
 gcyl.machine.mining_module_2.name=Space Mining Module MK-II
 gcyl.machine.mining_module_3.name=Space Mining Module MK-III
+
+space_mining.name=Space Mining
+gcyl.jei.space_miner.total_eu=Total: %s
+gcyl.jei.space_miner.eut=Usage: %s EU/t (%s)
+gcyl.jei.space_miner.duration=Duration: %s secs
+gcyl.jei.space_miner.tier=Needs MK-%s Module
+gcyl.jei.space_miner.distance=Distance: %s-%s
+gcyl.jei.space_miner.size=Size: %s-%s
+gcyl.jei.space_miner.cwut=Min. Computation: %s CWU/t
+gcyl.jei.space_miner.weight=Weight: %s
+
+gcyl.gui.mining_module.distance=Distance:
+gcyl.gui.mining_module.range=Range:
+gcyl.gui.mining_module.step=Step:
+gcyl.gui.mining_module.cycle=Steps Through Distance per Operation by set Step
+gcyl.gui.mining_module.parallel=Parallel:
+
+gcyl.gui.mining_module.min_distance=Min Distance: %s
+gcyl.gui.mining_module.max_distance=Max Distance: %s
+
+metaitem.mining_drone.1.name=Mining Drone MK-I
+metaitem.mining_drone.2.name=Mining Drone MK-II
+metaitem.mining_drone.3.name=Mining Drone MK-III
+metaitem.mining_drone.4.name=Mining Drone MK-IV
+metaitem.mining_drone.5.name=Mining Drone MK-V
+metaitem.mining_drone.6.name=Mining Drone MK-VI
+metaitem.mining_drone.7.name=Mining Drone MK-VII
+metaitem.mining_drone.8.name=Mining Drone MK-VIII
+metaitem.mining_drone.9.name=Mining Drone MK-IX
+metaitem.mining_drone.10.name=Mining Drone MK-X
+metaitem.mining_drone.11.name=Mining Drone MK-XI
+metaitem.mining_drone.12.name=Mining Drone MK-XII
+metaitem.mining_drone.13.name=Mining Drone MK-XIII
+metaitem.mining_drone.14.name=Mining Drone MK-XIV
+
+
+
 
 gcyl.machine.mining_module_1.display_count=   Space Mining Module MK-I x%s
 gcyl.machine.mining_module_2.display_count=   Space Mining Module MK-II x%s

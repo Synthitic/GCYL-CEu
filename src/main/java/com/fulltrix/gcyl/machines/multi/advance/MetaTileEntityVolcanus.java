@@ -111,7 +111,8 @@ public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController im
     @Override
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
-        tooltip.add(I18n.format("gregtech.multiblock.volcanus.description"));
+        tooltip.add(I18n.format("gregtech.multiblock.volcanus.description.1"));
+        tooltip.add(I18n.format("gregtech.multiblock.volcanus.description.2"));
         tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.1"));
         tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.2"));
         tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.3"));

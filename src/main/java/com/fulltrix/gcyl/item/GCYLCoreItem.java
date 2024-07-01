@@ -410,6 +410,22 @@ public class GCYLCoreItem extends StandardMetaItem {
         646
          */
 
+        MINING_DRONE_1 = addItem(647, "mining_drone.1");
+        MINING_DRONE_2 = addItem(648, "mining_drone.2");
+        MINING_DRONE_3 = addItem(649, "mining_drone.3");
+        MINING_DRONE_4 = addItem(650, "mining_drone.4");
+        MINING_DRONE_5 = addItem(651, "mining_drone.5");
+        MINING_DRONE_6 = addItem(652, "mining_drone.6");
+        MINING_DRONE_7 = addItem(653, "mining_drone.7");
+        MINING_DRONE_8 = addItem(654, "mining_drone.8");
+        MINING_DRONE_9 = addItem(655, "mining_drone.9");
+        MINING_DRONE_10 = addItem(656, "mining_drone.10");
+        MINING_DRONE_11 = addItem(657, "mining_drone.11");
+        MINING_DRONE_12 = addItem(658, "mining_drone.12");
+        MINING_DRONE_13 = addItem(659, "mining_drone.13");
+        MINING_DRONE_14 = addItem(660, "mining_drone.14");
+
+
         PYROLYTIC_CARBON = addItem(16, "pyrolytic_carbon");
         MICA_SHEET = addItem(26, "mica_sheet");
         MICA_INSULATOR_SHEET = addItem(27, "mica_insulator_sheet");

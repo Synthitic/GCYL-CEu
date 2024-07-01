@@ -82,7 +82,7 @@ public class GCYLConfig {
         @Config.Comment("The name of the ores to blacklist for all Void Miners")
         @Config.RequiresMcRestart
         @Config.Name("Universal Void Miner Blacklist")
-        public String[] oreBlackListUniversal = new String[]{"naquadah", "sheldonite", "platinum", "palladium", "iridium", "osmium"};
+        public String[] oreBlackListUniversal = new String[]{"naquadah", "sheldonite", "platinum", "palladium", "iridium", "osmium", "barium", "arsenic", "titanium", "tungsten"};
 
         @Config.Comment("The name of the ores to blacklist for the MK1 Void Miner")
         @Config.RequiresMcRestart

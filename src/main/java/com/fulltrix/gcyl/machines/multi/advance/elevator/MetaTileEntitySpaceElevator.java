@@ -10,10 +10,11 @@ import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
 import com.fulltrix.gcyl.blocks.elevator.ElevatorCasing;
 import com.fulltrix.gcyl.client.ClientHandler;
 import gregtech.api.capability.IEnergyContainer;
+import gregtech.api.capability.IOpticalComputationHatch;
+import gregtech.api.capability.IOpticalComputationProvider;
 import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.Widget;
 import gregtech.api.gui.widgets.*;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
@@ -55,6 +56,7 @@ import static gregtech.api.util.RelativeDirection.*;
 public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase implements ISpaceElevatorProvider {
 
     protected IEnergyContainer energyContainer;
+    protected IOpticalComputationProvider computationProvider;
     protected int motorTier = 0;
     private boolean isExtended = false;
     private final Collection<ISpaceElevatorReceiver> spaceElevatorReceivers = ConcurrentHashMap.newKeySet();
@@ -142,7 +144,7 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
                     .where('X', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.ELEVATOR_BASE_CASING)).or(abilities(MultiblockAbility.INPUT_ENERGY, MultiblockAbility.INPUT_LASER).setExactLimit(1))) //abilities?
                     .where('C', elevatorMotors())
                     .where('I', modulePredicate())
-                    .where('V', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.ELEVATOR_BASE_CASING)).or(abilities(MultiblockAbility.IMPORT_ITEMS,MultiblockAbility.IMPORT_FLUIDS,MultiblockAbility.EXPORT_FLUIDS,MultiblockAbility.EXPORT_ITEMS).setPreviewCount(0)))
+                    .where('V', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.ELEVATOR_BASE_CASING)).or(abilities(MultiblockAbility.IMPORT_ITEMS,MultiblockAbility.IMPORT_FLUIDS,MultiblockAbility.EXPORT_FLUIDS,MultiblockAbility.EXPORT_ITEMS, MultiblockAbility.COMPUTATION_DATA_RECEPTION).setPreviewCount(0)))
                     .build();
         }
         else {
@@ -203,7 +205,7 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
                     .where('A', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.HIGH_STRENGTH_CONCRETE)))
                     .where('B', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.ELEVATOR_CABLE)))
                     .where('H', frames(Neutronium))
-                    .where('X', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.ELEVATOR_BASE_CASING)).or(abilities(MultiblockAbility.INPUT_ENERGY, MultiblockAbility.INPUT_LASER).setExactLimit(1))) //abilities?
+                    .where('X', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.ELEVATOR_BASE_CASING)).or(abilities(MultiblockAbility.INPUT_ENERGY, MultiblockAbility.INPUT_LASER).setExactLimit(1)).or(abilities(MultiblockAbility.COMPUTATION_DATA_RECEPTION).setExactLimit(1))) //abilities?
                     .where('C', elevatorMotors())
                     .where('I', modulePredicate())
                     .where('V', states(GCYLMetaBlocks.ELEVATOR_CASING.getState(ElevatorCasing.CasingType.ELEVATOR_BASE_CASING)).or(abilities(MultiblockAbility.IMPORT_ITEMS,MultiblockAbility.IMPORT_FLUIDS,MultiblockAbility.EXPORT_FLUIDS,MultiblockAbility.EXPORT_ITEMS).setPreviewCount(0)))
@@ -268,6 +270,10 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
         List<IEnergyContainer> powerInput = new ArrayList<>(getAbilities(MultiblockAbility.INPUT_ENERGY));
         powerInput.addAll(getAbilities(MultiblockAbility.INPUT_LASER));
         this.energyContainer = new EnergyContainerList(powerInput);
+        List<IOpticalComputationHatch> providers = getAbilities(MultiblockAbility.COMPUTATION_DATA_RECEPTION);
+        if (providers != null && providers.size() >= 1) {
+            this.computationProvider = providers.get(0);
+        }
     }
 
     private void resetTileAbilities() {
@@ -466,5 +472,10 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
 
     private void enableAllModules() {
         this.spaceElevatorReceivers.forEach(ISpaceElevatorReceiver::sentWorkingEnabled);
+    }
+
+    @Override
+    public IOpticalComputationProvider getComputationProvider() {
+        return this.computationProvider;
     }
 }

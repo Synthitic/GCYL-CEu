@@ -3,12 +3,16 @@ package com.fulltrix.gcyl.materials;
 import gregtech.api.GTValues;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.fluids.store.FluidStorageKeys;
+import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
 import gregtech.api.unification.material.properties.BlastProperty;
 import gregtech.api.unification.material.properties.OreProperty;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.material.properties.WireProperties;
+import gregtech.api.unification.ore.OrePrefix;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -161,7 +165,7 @@ public class GCYLMaterialOverride {
 
         //PLASMAS
         List<Material> pmats = new ArrayList<>();
-        Collections.addAll(pmats, Carbon, Hydrogen, Helium3, Radon, Krypton, Neon, Magnesium, Silicon, Sulfur, Argon,Calcium, Titanium, Potassium);
+        Collections.addAll(pmats, Carbon, Hydrogen, Helium3, Radon, Krypton, Neon, Magnesium, Silicon, Sulfur, Argon,Calcium, Titanium, Potassium, Bismuth);
         for (Material mat : pmats) {
 
             /*addPlasma(mat, new FluidBuilder()
@@ -180,7 +184,7 @@ public class GCYLMaterialOverride {
         Collections.addAll(omats, Lignite, Witherite, Barytocalcite, PlatinumMetallicPowder, IridiumMetalResidue, PreciousMetal,
                 RarestMetalMixture, PalladiumMetallicPowder, Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon, Bowieite,
                 Zinc, Enargite, Andradite, Dolomite, Wollastonite, Kaolinite, Tenorite, Tennantite, Cuprite, Tellurium, Zirkelite,
-                Arsenopyrite, Draconium, Iridium, Osmium, Rutile, Gallite, NetherStar, Plutonium, Uranium238, FluoroApatite, RhodiumSalt, SodiumRuthenate, Tritanium);
+                Arsenopyrite, Draconium, Iridium, Osmium, Rutile, Gallite, NetherStar, Plutonium, Uranium238, FluoroApatite, RhodiumSalt, SodiumRuthenate, Tritanium, Arsenic, Barium, Titanium, Tungsten);
         for (Material mat : omats) {
             addOre(mat, 1, 1,false);
         }
@@ -359,6 +363,8 @@ public class GCYLMaterialOverride {
         RarestMetalMixture.setMaterialIconSet(ROUGH);
 
         NaquadahAlloy.setFormula("Nq(Ir3Os)",true);
+
+        OreDictUnifier.registerOre(new ItemStack(Blocks.CLAY), OrePrefix.ore, Clay);
     }
 
     public static void tempMaterialModifications() {
