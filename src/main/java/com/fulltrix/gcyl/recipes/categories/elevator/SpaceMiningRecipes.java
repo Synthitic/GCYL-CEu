@@ -37,7 +37,7 @@ public class SpaceMiningRecipes {
     public static void init() {
 
 
-        addNewRecipesForDroneAndMaterial(MINING_DRONE_1.getStackForm(), Steel,
+        addNewRecipesForDroneAndMaterial(1, Steel,
                 Arrays.asList(
                         new SpaceMiningRecipePartTwo(Arrays.asList(new Pair<>(Coal, 70), new Pair<>(Lignite, 10), new Pair<>(Graphite, 20)),
                                 1920, 20, 200, 30,120, 200, 1,40, 1),
@@ -65,14 +65,16 @@ public class SpaceMiningRecipes {
                         makeSpaceMiningRecipePart(30720, 500, 1, 60, 200, 30, 70, 120, 100, Tungsten, 30, Titanium, 30, Neodymium, 20, Molybdenum, 15, Tungstate, 5)
                 ));
 
-        addNewRecipesForDroneAndMaterial(MINING_DRONE_2.getStackForm(), Steel, upTierAllRecipes(MINING_DRONE_1.getStackForm(), Steel, 1));
+        addNewRecipesForDroneAndMaterial(2, Steel, upTierAllRecipes(1, Steel, 1));
     }
 
     public static SpaceMiningRecipePartTwo makeSpaceMiningRecipePart(int EUt, int duration, int minModuleTier, int minDistance, int maxDistance, int minSize, int maxSize, int CWUt, int weight, Object... outputsAndWeights) {
         return new SpaceMiningRecipePartTwo(generateListOfPairs(outputsAndWeights), EUt, CWUt, weight, minSize, maxSize, duration, minDistance, maxDistance, minModuleTier);
     }
 
-    public static void addNewRecipeForDroneAndMaterial(ItemStack droneStack, Material material, SpaceMiningRecipePartTwo recipe) {
+    public static void addNewRecipeForDroneAndMaterial(int droneTier, Material material, SpaceMiningRecipePartTwo recipe) {
+
+        ItemStack droneStack = getDroneByTier(droneTier);
 
         if(SPACE_MINING_RECIPES.get(new SpaceMiningRecipePartOne(droneStack, material).hashCode()) == null) {
             SPACE_MINING_RECIPES.put(new SpaceMiningRecipePartOne(droneStack, material).hashCode(), new ArrayList<>());
@@ -85,7 +87,9 @@ public class SpaceMiningRecipes {
     }
 
 
-    public static void addNewRecipesForDroneAndMaterial(ItemStack droneStack, Material material, List<SpaceMiningRecipePartTwo> list) {
+    public static void addNewRecipesForDroneAndMaterial(int droneTier, Material material, List<SpaceMiningRecipePartTwo> list) {
+
+        ItemStack droneStack = getDroneByTier(droneTier);
 
         if(SPACE_MINING_RECIPES.get(new SpaceMiningRecipePartOne(droneStack, material).hashCode()) == null) {
             SPACE_MINING_RECIPES.put(new SpaceMiningRecipePartOne(droneStack, material).hashCode(), new ArrayList<>());
@@ -97,7 +101,9 @@ public class SpaceMiningRecipes {
             HASH_TO_ITEMS.put(new SpaceMiningRecipePartOne(droneStack, material).hashCode(), Arrays.asList(droneStack, OreDictUnifier.get(OrePrefix.stick, material, STICK_INPUT_STACK_SIZE), OreDictUnifier.get(OrePrefix.toolHeadDrill, material, DRILL_HEAD_INPUT_STACK_SIZE)));
     }
 
-    public static void removeRecipeForDroneAndMaterial(ItemStack droneStack, Material material, SpaceMiningRecipePartTwo recipe) {
+    public static void removeRecipeForDroneAndMaterial(int droneTier, Material material, SpaceMiningRecipePartTwo recipe) {
+
+        ItemStack droneStack = getDroneByTier(droneTier);
 
         if(SPACE_MINING_RECIPES.get(new SpaceMiningRecipePartOne(droneStack, material).hashCode()) == null) {
             throw new RuntimeException("No matching Drone and Material found!");
@@ -112,7 +118,9 @@ public class SpaceMiningRecipes {
 
     }
 
-    public static void removeAllRecipesForDroneAndMaterial(ItemStack droneStack, Material material) {
+    public static void removeAllRecipesForDroneAndMaterial(int droneTier, Material material) {
+
+        ItemStack droneStack = getDroneByTier(droneTier);
 
         if(SPACE_MINING_RECIPES.get(new SpaceMiningRecipePartOne(droneStack, material).hashCode()) == null) {
             throw new RuntimeException("No matching Drone and Material found!");
@@ -123,7 +131,9 @@ public class SpaceMiningRecipes {
         HASH_TO_ITEMS.remove(new SpaceMiningRecipePartOne(droneStack, material).hashCode());
     }
 
-    public static List<SpaceMiningRecipePartTwo> upTierAllRecipes(ItemStack droneStack, Material material, int tier) {
+    public static List<SpaceMiningRecipePartTwo> upTierAllRecipes(int droneTier, Material material, int tier) {
+
+        ItemStack droneStack = getDroneByTier(droneTier);
 
         if(SPACE_MINING_RECIPES.get(new SpaceMiningRecipePartOne(droneStack, material).hashCode()) == null) {
             throw new RuntimeException("No matching Drone and Material found!");
@@ -137,6 +147,26 @@ public class SpaceMiningRecipes {
         }
 
         return recipesUp;
+    }
+
+    private static ItemStack getDroneByTier(int tier) {
+        return switch (tier) {
+            case (1) -> MINING_DRONE_1.getStackForm();
+            case (2) -> MINING_DRONE_2.getStackForm();
+            case (3) -> MINING_DRONE_3.getStackForm();
+            case (4) -> MINING_DRONE_4.getStackForm();
+            case (5) -> MINING_DRONE_5.getStackForm();
+            case (6) -> MINING_DRONE_6.getStackForm();
+            case (7) -> MINING_DRONE_7.getStackForm();
+            case (8) -> MINING_DRONE_8.getStackForm();
+            case (9) -> MINING_DRONE_9.getStackForm();
+            case (10) -> MINING_DRONE_10.getStackForm();
+            case (11) -> MINING_DRONE_11.getStackForm();
+            case (12) -> MINING_DRONE_12.getStackForm();
+            case (13) -> MINING_DRONE_13.getStackForm();
+            case (14) -> MINING_DRONE_14.getStackForm();
+            default -> null;
+        };
     }
 
 
