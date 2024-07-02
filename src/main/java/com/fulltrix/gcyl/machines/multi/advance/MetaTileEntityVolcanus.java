@@ -52,6 +52,7 @@ import static gregtech.api.GTValues.ZPM;
 import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOverclockingLogic;
 
 //TODO: update ui & tooltip. improve performance
+//TODO: make it parallel properly
 
 public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implements IHeatingCoil {
 

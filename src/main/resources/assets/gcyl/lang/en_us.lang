@@ -5110,6 +5110,17 @@ gcyl.gui.mining_module.range=Range:
 gcyl.gui.mining_module.step=Step:
 gcyl.gui.mining_module.cycle=Steps Through Distance per Operation by set Step
 gcyl.gui.mining_module.parallel=Parallel:
+gcyl.gui.mining_module.blank_name=<Material to Add>
+gcyl.gui.mining_module.blank_name_remove=<Material to Remove>
+gcyl.gui.mining_module.whitelist=Whitelist:
+gcyl.gui.mining_module.blacklist=Blacklist:
+gcyl.gui.mining_module.remove=Remove:
+gcyl.gui.mining_module.whitelist_empty=Whitelist Empty!
+gcyl.gui.mining_module.blacklist_empty=Blacklist Empty!
+gcyl.gui.mining_module.whitelist_cleared=Whitelist Cleared!
+gcyl.gui.mining_module.blacklist_cleared=Blacklist Cleared!
+gcyl.gui.mining_module.print_whitelist_or_clear=Shows Current Whitelist/Blacklist, Shift-Click to Clear the List
+gcyl.gui.mining_module.change_whitelist_mode=Changes Between Whitelist/Blacklist Modes
 
 gcyl.gui.mining_module.min_distance=Min Distance: %s
 gcyl.gui.mining_module.max_distance=Max Distance: %s

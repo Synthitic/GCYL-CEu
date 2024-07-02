@@ -168,7 +168,7 @@ public class MetaTileEntityPumpingModule extends MetaTileEntityModuleBase {
     public NBTTagCompound writeToNBT(NBTTagCompound data) {
         super.writeToNBT(data);
         NBTTagList nbtTagPlanetList = new NBTTagList();
-        NBTTagList nbtTagFLuidList = new NBTTagList();
+        NBTTagList nbtTagFluidList = new NBTTagList();
         for(int i = 0; i < 4; i++) {
             NBTTagCompound planetTag = new NBTTagCompound();
             NBTTagCompound fluidTag = new NBTTagCompound();
@@ -177,10 +177,10 @@ public class MetaTileEntityPumpingModule extends MetaTileEntityModuleBase {
             nbtTagPlanetList.appendTag(planetTag);
 
             fluidTag.setInteger("fluid", this.fluidNumber[i]);
-            nbtTagFLuidList.appendTag(fluidTag);
+            nbtTagFluidList.appendTag(fluidTag);
         }
         data.setTag("planets", nbtTagPlanetList);
-        data.setTag("fluids", nbtTagFLuidList);
+        data.setTag("fluids", nbtTagFluidList);
         return data;
     }
 
@@ -188,10 +188,10 @@ public class MetaTileEntityPumpingModule extends MetaTileEntityModuleBase {
     public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
         NBTTagList nbtTagPlanetList = data.getTagList("planets", Constants.NBT.TAG_COMPOUND);
-        NBTTagList nbtTagFLuidList = data.getTagList("fluids", Constants.NBT.TAG_COMPOUND);
+        NBTTagList nbtTagFluidList = data.getTagList("fluids", Constants.NBT.TAG_COMPOUND);
         for(int i = 0; i < 4; i++) {
             NBTTagCompound planetTag = nbtTagPlanetList.getCompoundTagAt(i);
-            NBTTagCompound fluidTag = nbtTagFLuidList.getCompoundTagAt(i);
+            NBTTagCompound fluidTag = nbtTagFluidList.getCompoundTagAt(i);
 
             this.planet[i] = planetTag.getInteger("planet");
             this.fluidNumber[i] = fluidTag.getInteger("fluid");
