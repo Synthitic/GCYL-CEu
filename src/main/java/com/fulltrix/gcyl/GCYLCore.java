@@ -31,7 +31,9 @@ import static gregtech.api.GregTechAPI.COVER_REGISTRY;
 import static gregtech.api.GregTechAPI.HEATING_COILS;
 
 @Mod(modid = GCYLCore.MODID, name = GCYLCore.NAME, version = GCYLCore.VERSION,
-        dependencies = GTInternalTags.DEP_VERSION_STRING)
+        dependencies = "required:forge@[14.23.5.2847,);" + "required-after:codechickenlib@[3.2.3,);" +
+                "required-after:modularui@[2.3,);" + GTInternalTags.DEP_VERSION_STRING + "required-after:gcym@[1.2.8,);" +
+                "required-after:materialreplication@[1.3,);" + "required-after:groovyscript@[1.0.1,);" + "required-after:jei@[4.15.0,);")
 public class GCYLCore {
     public static final String MODID = Tags.MODID;
     public static final String NAME = Tags.MODNAME;
