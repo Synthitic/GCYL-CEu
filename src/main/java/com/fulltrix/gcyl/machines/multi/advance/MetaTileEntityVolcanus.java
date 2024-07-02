@@ -7,17 +7,22 @@ import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockControl
 import gregicality.multiblocks.api.render.GCYMTextures;
 import gregtech.api.GTValues;
 import gregtech.api.block.IHeatingCoilBlockStats;
+import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.IHeatingCoil;
 import gregtech.api.capability.IMultipleTankHandler;
+import gregtech.api.capability.impl.EnergyContainerList;
+import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.recipes.logic.OverclockingLogic;
 import gregtech.api.recipes.recipeproperties.IRecipePropertyStorage;
 import gregtech.api.recipes.recipeproperties.TemperatureProperty;
 import gregtech.api.util.GTUtility;
@@ -48,16 +53,13 @@ import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOverclocki
 
 //TODO: update ui & tooltip. improve performance
 
-public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController implements IHeatingCoil {
+public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implements IHeatingCoil {
 
-    protected final MetaTileEntity metaTileEntity;
     private int blastFurnaceTemperature;
 
     public MetaTileEntityVolcanus(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, RecipeMaps.BLAST_RECIPES);
         this.recipeMapWorkable = new MetaTileEntityVolcanus.VolcanusRecipeLogic(this);
-        this.recipeMapWorkable.setMaximumOverclockVoltage(Math.min(this.energyContainer.getInputVoltage() , GTValues.V[ZPM]));
-        this.metaTileEntity = this;
     }
 
     @Override
@@ -92,11 +94,6 @@ public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController im
     }
 
     @Override
-    public boolean isTiered() {
-        return false;
-    }
-
-    @Override
     public void invalidateStructure() {
         super.invalidateStructure();
         this.blastFurnaceTemperature = 0;
@@ -112,7 +109,9 @@ public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController im
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(I18n.format("gregtech.multiblock.volcanus.description.1"));
+        tooltip.add(I18n.format("gregtech.multiblock.volcanus.description.4"));
         tooltip.add(I18n.format("gregtech.multiblock.volcanus.description.2"));
+        tooltip.add(I18n.format("gregtech.multiblock.volcanus.description.3"));
         tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.1"));
         tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.2"));
         tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.3"));
@@ -164,11 +163,11 @@ public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController im
     }
 
     @SuppressWarnings("InnerClassMayBeStatic")
-    private class VolcanusRecipeLogic extends GCYMMultiblockRecipeLogic {
+    private class VolcanusRecipeLogic extends MultiblockRecipeLogic {
 
         private final MetaTileEntityVolcanus volcanus;
 
-        public VolcanusRecipeLogic(GCYMRecipeMapMultiblockController metaTileEntity) {
+        public VolcanusRecipeLogic(RecipeMapMultiblockController metaTileEntity) {
             super(metaTileEntity);
             this.volcanus = (MetaTileEntityVolcanus) metaTileEntity;
         }
@@ -208,20 +207,51 @@ public class MetaTileEntityVolcanus extends GCYMRecipeMapMultiblockController im
 
         @Override
         public long getMaximumOverclockVoltage() {
-            return Math.min(volcanus.getEnergyContainer().getInputVoltage(), GTValues.V[ZPM]);
+            IEnergyContainer energyContainer = volcanus.getEnergyContainer();
+            if (energyContainer instanceof EnergyContainerList) {
+                long voltage;
+                long amperage;
+                if (energyContainer.getInputVoltage() > energyContainer.getOutputVoltage()) {
+                    voltage = energyContainer.getInputVoltage();
+                    amperage = energyContainer.getInputAmperage();
+                } else {
+                    voltage = energyContainer.getOutputVoltage();
+                    amperage = energyContainer.getOutputAmperage();
+                }
+
+                return amperage == 1L ? Math.min(GTValues.V[GTUtility.getFloorTierByVoltage(voltage)], GTValues.V[GTValues.ZPM]) : Math.min(voltage, GTValues.V[GTValues.ZPM]);
+            } else {
+                return Math.max(energyContainer.getInputVoltage(), energyContainer.getOutputVoltage());
+            }
         }
+
+
+        @Override
+        protected void modifyOverclockPre(@NotNull int[] values, @NotNull IRecipePropertyStorage storage) {
+            super.modifyOverclockPre(values, storage);
+
+            values[0] = (int) (values[0] * 0.9F);
+
+            values[0] = OverclockingLogic.applyCoilEUtDiscount(values[0],
+                    ((IHeatingCoil) volcanus).getCurrentTemperature(),
+                    storage.getRecipePropertyValue(TemperatureProperty.getInstance(), 0));
+
+            values[1] = (int) (values[1] * (1.0F / 2.2F) * 0.125);
+
+        }
+
 
         @Override
         protected int @NotNull [] runOverclockingLogic(@NotNull IRecipePropertyStorage propertyStorage, int recipeEUt,
                                                        long maxVoltage, int duration, int maxOverclocks) {
-            return heatingCoilOverclockingLogic(Math.abs(recipeEUt),
+
+
+            return  heatingCoilOverclockingLogic(Math.abs(recipeEUt),
                     maxVoltage,
                     duration,
                     maxOverclocks,
                     ((IHeatingCoil) metaTileEntity).getCurrentTemperature(),
                     propertyStorage.getRecipePropertyValue(TemperatureProperty.getInstance(), 0));
         }
-
-
     }
 }
