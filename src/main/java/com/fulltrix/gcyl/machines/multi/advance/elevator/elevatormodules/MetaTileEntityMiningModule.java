@@ -47,7 +47,6 @@ import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.recipes.categories.elevator.SpaceMiningRecipes.*;
 import static gregtech.api.unification.material.Materials.*;
 
-//TODO fix cycle button
 public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase implements IOpticalComputationReceiver {
 
     private IItemHandlerModifiable inputInventory;
@@ -220,11 +219,18 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase impleme
     }
 
     public List<SpaceMiningRecipes.SpaceMiningRecipePartTwo> checkRecipes(boolean simulate) {
+
         ItemStack item = null;
+
         Material matStick = null;
-        int stickCount = 0;
         Material matDrill = null;
+
+        int stickCount = 0;
         int drillCount = 0;
+
+        final int neededSticks = STICK_INPUT_STACK_SIZE * this.parallel;
+        final int neededDrills = DRILL_HEAD_INPUT_STACK_SIZE * this.parallel;
+
         for (int i = 0; i < getInputInventory().getSlots(); i++) {
             ItemStack slot = getInputInventory().getStackInSlot(i);
             if (ItemStack.areItemStacksEqual(slot, MINING_DRONE_1.getStackForm())
@@ -260,24 +266,27 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase impleme
                 matDrill = Objects.requireNonNull(OreDictUnifier.getMaterial(slot)).material;
                 drillCount += slot.getCount();
             }
+
+            if(item != null && stickCount >= neededSticks && drillCount >= neededDrills)
+                break;
         }
 
-        if(stickCount < DRILL_HEAD_INPUT_STACK_SIZE * this.parallel || drillCount < STICK_INPUT_STACK_SIZE * this.parallel) {
+        if(stickCount < neededSticks || drillCount < neededDrills) {
             return null;
         }
         else {
-            stickCount = STICK_INPUT_STACK_SIZE * this.parallel;
-            drillCount = DRILL_HEAD_INPUT_STACK_SIZE * this.parallel;
+            stickCount = neededSticks;
+            drillCount = neededDrills;
         }
 
         if (matStick != matDrill || matStick == null)
             return null;
 
         List<SpaceMiningRecipes.SpaceMiningRecipePartTwo> recipesBeforeCheck = SPACE_MINING_RECIPES.get(new SpaceMiningRecipes.SpaceMiningRecipePartOne(item, matStick).hashCode());
-        List<SpaceMiningRecipes.SpaceMiningRecipePartTwo> recipesAfterCheck = new ArrayList<>();
 
         if (recipesBeforeCheck == null) return null;
 
+        List<SpaceMiningRecipes.SpaceMiningRecipePartTwo> recipesAfterCheck = new ArrayList<>();
 
         for (SpaceMiningRecipes.SpaceMiningRecipePartTwo recipe : recipesBeforeCheck) {
             if (recipe != null) {
@@ -298,38 +307,36 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase impleme
                 }
 
                 recipesAfterCheck.add(recipe);
+
+                if(simulate)
+                    return recipesAfterCheck;
             }
         }
         if (recipesAfterCheck.isEmpty())
             return null;
         else {
-            if (simulate)
-                return recipesAfterCheck;
-            else {
-                int currentStickCount = 0;
-                int currentDrillCount = 0;
-                for (int i = 0; i < getInputInventory().getSlots(); i++) {
-                    ItemStack item2 = getInputInventory().getStackInSlot(i);
+            int currentStickCount = 0;
+            int currentDrillCount = 0;
+            for (int i = 0; i < getInputInventory().getSlots(); i++) {
+                ItemStack item2 = getInputInventory().getStackInSlot(i);
 
-                    try {
-                        if (currentStickCount != stickCount && OreDictUnifier.getPrefix(item2) == OrePrefix.stick && OreDictUnifier.getMaterial(item2).material == matStick) {
-                            currentStickCount += item2.getCount();
-                            getInputInventory().extractItem(i, Math.min(item2.getCount(), stickCount), false);
-                        }
-
-                        if (currentDrillCount != drillCount && OreDictUnifier.getPrefix(item2) == OrePrefix.toolHeadDrill && OreDictUnifier.getMaterial(item2).material == matDrill) {
-                            currentDrillCount += item2.getCount();
-                            getInputInventory().extractItem(i, Math.min(item2.getCount(), drillCount), false);
-                        }
-                    } catch (NullPointerException ignored) {
+                try {
+                    if (currentStickCount != stickCount && OreDictUnifier.getPrefix(item2) == OrePrefix.stick && OreDictUnifier.getMaterial(item2).material == matStick) {
+                        currentStickCount += item2.getCount();
+                        getInputInventory().extractItem(i, Math.min(item2.getCount(), stickCount), false);
                     }
 
-                    if(currentStickCount >= stickCount && currentDrillCount >= drillCount)
-                        break;
+                    if (currentDrillCount != drillCount && OreDictUnifier.getPrefix(item2) == OrePrefix.toolHeadDrill && OreDictUnifier.getMaterial(item2).material == matDrill) {
+                        currentDrillCount += item2.getCount();
+                        getInputInventory().extractItem(i, Math.min(item2.getCount(), drillCount), false);
+                    }
+                } catch (NullPointerException ignored) {
                 }
-                return recipesAfterCheck;
-            }
 
+                if(currentStickCount >= stickCount && currentDrillCount >= drillCount)
+                    break;
+            }
+            return recipesAfterCheck;
         }
     }
 
@@ -342,30 +349,25 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase impleme
         if (canDrainHelium != null || canDrainBismuth != null || canDrainRadon != null) {
 
             if (canDrainHelium != null && canDrainHelium.isFluidStackIdentical(Helium.getPlasma(1000 * this.parallel))) {
-                if (simulate)
-                    return Helium.getFluid();
-                else {
+                if (!simulate) {
                     getInputFluidInventory().drain(Helium.getPlasma(1000 * this.parallel), true);
-                    return Helium.getFluid();
                 }
+                return Helium.getFluid();
             }
 
             if (canDrainBismuth != null && canDrainBismuth.isFluidStackIdentical(Bismuth.getPlasma(500 * this.parallel))) {
-                if (simulate)
-                    return Bismuth.getFluid();
-                else {
+                if (!simulate) {
                     getInputFluidInventory().drain(Bismuth.getPlasma(500 * this.parallel), true);
-                    return Bismuth.getFluid();
                 }
+
+                return Bismuth.getFluid();
             }
 
             if (canDrainRadon != null && canDrainRadon.isFluidStackIdentical(Radon.getPlasma(300 * this.parallel))) {
-                if (simulate)
-                    return Radon.getFluid();
-                else {
+                if (!simulate) {
                     getInputFluidInventory().drain(Radon.getPlasma(300 * this.parallel), true);
-                    return Radon.getFluid();
                 }
+                return Radon.getFluid();
             }
 
         }
