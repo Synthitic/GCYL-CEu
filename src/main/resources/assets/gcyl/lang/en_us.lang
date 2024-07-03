@@ -5169,3 +5169,19 @@ tile.gcyl_elevator_casing_tiered.elevator_motor_3.name=Space Elevator Motor MK-I
 tile.gcyl_elevator_casing_tiered.elevator_motor_4.name=Space Elevator Motor MK-IV
 tile.gcyl_elevator_casing_tiered.elevator_motor_5.name=Space Elevator Motor MK-V
 
+metaitem.generic_circuit.ulv.name=ULV Circuit
+metaitem.generic_circuit.lv.name=LV Circuit
+metaitem.generic_circuit.mv.name=MV Circuit
+metaitem.generic_circuit.hv.name=HV Circuit
+metaitem.generic_circuit.ev.name=EV Circuit
+metaitem.generic_circuit.iv.name=IV Circuit
+metaitem.generic_circuit.luv.name=LuV Circuit
+metaitem.generic_circuit.zpm.name=ZPM Circuit
+metaitem.generic_circuit.uv.name=UV Circuit
+metaitem.generic_circuit.uhv.name=UHV Circuit
+metaitem.generic_circuit.uev.name=UEV Circuit
+metaitem.generic_circuit.uiv.name=UIV Circuit
+metaitem.generic_circuit.uxv.name=UXV Circuit
+metaitem.generic_circuit.opv.name=OpV Circuit
+metaitem.generic_circuit.max.name=MAX Circuit
+

@@ -426,6 +426,25 @@ public class GCYLCoreItem extends StandardMetaItem {
         MINING_DRONE_14 = addItem(660, "mining_drone.14");
 
 
+        GENERIC_CIRCUIT_ULV = addItem(661, "generic_circuit.ulv").setUnificationData(OrePrefix.circuit, Tier.ULV);
+        GENERIC_CIRCUIT_LV = addItem(662, "generic_circuit.lv").setUnificationData(OrePrefix.circuit, Tier.LV);
+        GENERIC_CIRCUIT_MV = addItem(663, "generic_circuit.mv").setUnificationData(OrePrefix.circuit, Tier.MV);
+        GENERIC_CIRCUIT_HV = addItem(664, "generic_circuit.hv").setUnificationData(OrePrefix.circuit, Tier.HV);
+        GENERIC_CIRCUIT_EV = addItem(665, "generic_circuit.ev").setUnificationData(OrePrefix.circuit, Tier.EV);
+        GENERIC_CIRCUIT_IV = addItem(666, "generic_circuit.iv").setUnificationData(OrePrefix.circuit, Tier.IV);
+        GENERIC_CIRCUIT_LuV = addItem(667, "generic_circuit.luv").setUnificationData(OrePrefix.circuit, Tier.LuV);
+        GENERIC_CIRCUIT_ZPM = addItem(668, "generic_circuit.zpm").setUnificationData(OrePrefix.circuit, Tier.ZPM);
+        GENERIC_CIRCUIT_UV = addItem(669, "generic_circuit.uv").setUnificationData(OrePrefix.circuit, Tier.UV);
+        GENERIC_CIRCUIT_UHV = addItem(670, "generic_circuit.uhv").setUnificationData(OrePrefix.circuit, Tier.UHV);
+        GENERIC_CIRCUIT_UEV = addItem(671, "generic_circuit.uev").setUnificationData(OrePrefix.circuit, Tier.UEV);
+        GENERIC_CIRCUIT_UIV = addItem(672, "generic_circuit.uiv").setUnificationData(OrePrefix.circuit, Tier.UIV);
+        GENERIC_CIRCUIT_UXV = addItem(673, "generic_circuit.uxv").setUnificationData(OrePrefix.circuit, Tier.UXV);
+        GENERIC_CIRCUIT_OpV = addItem(674, "generic_circuit.opv").setUnificationData(OrePrefix.circuit, Tier.OpV);
+        GENERIC_CIRCUIT_MAX = addItem(675, "generic_circuit.max").setUnificationData(OrePrefix.circuit, Tier.MAX);
+
+
+
+
         PYROLYTIC_CARBON = addItem(16, "pyrolytic_carbon");
         MICA_SHEET = addItem(26, "mica_sheet");
         MICA_INSULATOR_SHEET = addItem(27, "mica_insulator_sheet");

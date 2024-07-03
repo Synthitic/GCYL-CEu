@@ -468,6 +468,21 @@ public class GCYLCoreItems {
     public static MetaItem<?>.MetaValueItem MINING_DRONE_12;
     public static MetaItem<?>.MetaValueItem MINING_DRONE_13;
     public static MetaItem<?>.MetaValueItem MINING_DRONE_14;
+    public static MetaItem<?>.MetaValueItem GENERIC_CIRCUIT_ULV;
+    public static MetaItem<?>.MetaValueItem GENERIC_CIRCUIT_LV;
+    public static MetaItem<?>.MetaValueItem GENERIC_CIRCUIT_MV;
+    public static MetaItem<?>.MetaValueItem GENERIC_CIRCUIT_HV;
+    public static MetaItem<?>.MetaValueItem GENERIC_CIRCUIT_EV;
+    public static MetaItem<?>.MetaValueItem GENERIC_CIRCUIT_IV;
+    public static MetaItem<?>.MetaValueItem GENERIC_CIRCUIT_LuV;
+    public static MetaItem<?>.MetaValueItem GENERIC_CIRCUIT_ZPM;
+    public static MetaItem<?>.MetaValueItem GENERIC_CIRCUIT_UV;
+    public static MetaItem<?>.MetaValueItem GENERIC_CIRCUIT_UHV;
+    public static MetaItem<?>.MetaValueItem GENERIC_CIRCUIT_UEV;
+    public static MetaItem<?>.MetaValueItem GENERIC_CIRCUIT_UIV;
+    public static MetaItem<?>.MetaValueItem GENERIC_CIRCUIT_UXV;
+    public static MetaItem<?>.MetaValueItem GENERIC_CIRCUIT_OpV;
+    public static MetaItem<?>.MetaValueItem GENERIC_CIRCUIT_MAX;
 
 
 

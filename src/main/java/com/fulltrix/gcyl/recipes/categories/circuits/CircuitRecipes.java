@@ -49,6 +49,8 @@ public class CircuitRecipes {
 
         CircuitComponentRecipes.init();
         WaferRecipes.init();
+
+        GenericUnification.init();
     }
 
     private static void primitiveCircuits() {
