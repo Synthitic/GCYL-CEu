@@ -2,6 +2,7 @@ package com.fulltrix.gcyl.machines.multi.advance;
 
 import appeng.core.AEConfig;
 import appeng.core.features.AEFeature;
+import codechicken.lib.raytracer.CuboidRayTraceResult;
 import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
 import com.fulltrix.gcyl.blocks.metal.GCYLCleanroomCasing;
@@ -16,9 +17,7 @@ import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.metatileentity.multiblock.ICleanroomProvider;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.pattern.*;
-import gregtech.api.util.BlockInfo;
-import gregtech.api.util.GTUtility;
-import gregtech.api.util.Mods;
+import gregtech.api.util.*;
 import gregtech.client.utils.TooltipHelper;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockCleanroomCasing;
@@ -30,12 +29,15 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -133,26 +135,31 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implem
         return true;
     }
 
-    /*
-    @Override
-    public void update() {
-        if (getOffsetTimer() % 100 == 0) {
-            super.update();
-        }
-    }
-     */
+
+
     @SubscribeEvent
     public void checkStructurePatternSave(WorldEvent.Save event) {
         this.initialForm = true;
         super.checkStructurePattern();
     }
 
+
     @Override
     public void checkStructurePattern() {
-        if((initialForm) || !isStructureFormed()) {
+        if((this.initialForm) || !isStructureFormed()) {
             this.initialForm = false;
             super.checkStructurePattern();
         }
+    }
+
+    @Override
+    public boolean onScrewdriverClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing,
+                                      CuboidRayTraceResult hitResult) {
+        if (!getWorld().isRemote) {
+            super.checkStructurePattern();
+            playerIn.sendStatusMessage(TextComponentUtil.translationWithColor(TextFormatting.WHITE,"gcyl.machine.cleanroom.screwdriver"), false);
+        }
+        return true;
     }
 
     @Override
@@ -411,6 +418,7 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implem
         if (TooltipHelper.isCtrlDown()) {
             tooltip.add("");
             tooltip.add(I18n.format("gcyl.machine.cleanroom.tooltip.3"));
+            tooltip.add(I18n.format("gcyl.machine.cleanroom.tooltip.7"));
             tooltip.add(I18n.format("gcyl.machine.cleanroom.tooltip.4"));
             tooltip.add(I18n.format("gcyl.machine.cleanroom.tooltip.5"));
             tooltip.add(I18n.format("gcyl.machine.cleanroom.tooltip.6"));
