@@ -26,7 +26,7 @@ dependencies {
     devOnlyNonPublishable(rfg.deobf(project.files("libs/gregtech-1.12.2-2.9.0-beta-dev.jar"))) // GTCEu 2.8.8
     implementation rfg.deobf("curse.maven:codechicken-lib-1-8-242818:2779848") // CCL 3.2.3.358
     implementation rfg.deobf("curse.maven:gregicality-multiblocks-564858:5121714") //GCYM 1.2.8
-    implementation rfg.deobf("curse.maven:groovyscript-687577:5219945") //Groovyscript 1.0.1
+    implementation rfg.deobf("curse.maven:groovyscript-687577:5413179") //Groovyscript 1.0.2
     devOnlyNonPublishable(rfg.deobf(project.files("libs/MaterialReplication-1.3.0-pre1-dev.jar"))) //Material replication 1.2.2
 
     // Soft Dependencies
