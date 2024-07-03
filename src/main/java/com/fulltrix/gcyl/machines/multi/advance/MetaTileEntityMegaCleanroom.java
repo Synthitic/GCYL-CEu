@@ -48,6 +48,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.fulltrix.gcyl.api.pattern.TraceabilityPredicates.filterCasings;
+
 //TODO: Decrease tps lag when they try to cheat it
 public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implements ICleanroomProvider {
     public static final int MIN_RADIUS = 10;
@@ -304,38 +306,9 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implem
                         .or(abilities(MultiblockAbility.PASSTHROUGH_HATCH).setMaxGlobalLimited(30)))
                 .where('K', wallPredicate) // the block beneath the controller must only be a casing for structure
                 // dimension checks
-                .where('F', filterPredicate())
+                .where('F', filterCasings())
                 .where(' ', innerPredicate())
                 .build();
-    }
-    @Override
-    protected @NotNull TraceabilityPredicate filterPredicate() {
-        super.filterPredicate();
-        return (new TraceabilityPredicate((blockWorldState) -> {
-            IBlockState blockState = blockWorldState.getBlockState();
-            Block block = blockState.getBlock();
-            if (block instanceof GCYLCleanroomCasing) {
-                GCYLCleanroomCasing.CasingType casingType = (GCYLCleanroomCasing.CasingType)((GCYLCleanroomCasing)blockState.getBlock()).getState(blockState);
-                Object currentFilter = blockWorldState.getMatchContext().getOrPut("FilterType", casingType);
-                if (!currentFilter.toString().equals(casingType.getName())) {
-                    blockWorldState.setError(new PatternStringError("gregtech.multiblock.pattern.error.filters"));
-                    return false;
-                } else {
-                    ((LinkedList)blockWorldState.getMatchContext().getOrPut("VABlock", new LinkedList())).add(blockWorldState.getPos());
-                    return true;
-                }
-            } else {
-                return false;
-            }
-        }, () -> {
-            return (BlockInfo[]) ArrayUtils.addAll((BlockInfo[])Arrays.stream(GCYLCleanroomCasing.CasingType.values()).filter((type) -> {
-                return true;
-            }).map((type) -> {
-                return new BlockInfo(GCYLMetaBlocks.GCYL_CLEANROOM_CASING.getState(type), (TileEntity)null);
-            }).toArray((x$0) -> {
-                return new BlockInfo[x$0];
-            }), new BlockInfo[0]);
-        })).addTooltips(new String[]{"gregtech.multiblock.pattern.error.filters"});
     }
 
     @Override
@@ -419,6 +392,11 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implem
                 .filter(casingType -> !casingType.equals(BlockCleanroomCasing.CasingType.PLASCRETE))
                 .forEach(casingType -> shapeInfo
                         .add(builder.where('F', MetaBlocks.CLEANROOM_CASING.getState(casingType)).build()));
+
+        Arrays.stream(GCYLCleanroomCasing.CasingType.values())
+                .forEach(casingType -> shapeInfo
+                        .add(builder.where('F', GCYLMetaBlocks.GCYL_CLEANROOM_CASING.getState(casingType)).build()));
+
         return shapeInfo;
     }
 
