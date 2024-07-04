@@ -242,6 +242,7 @@ public abstract class MetaTileEntityModuleBase extends MultiblockWithDisplayBase
 
     @Override
     public void setWorkingEnabled(boolean workingEnabled) {
+        initializeAbilities();
         this.isWorkingEnabled = workingEnabled;
         this.markDirty();
         World world = this.getWorld();
