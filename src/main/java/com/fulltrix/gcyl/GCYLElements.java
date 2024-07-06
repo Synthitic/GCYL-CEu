@@ -9,6 +9,7 @@ public class GCYLElements {
     private GCYLElements() {
 
     }
+    public static final Element He4 = add(2, 2, -1, null, "Helium-4", "He-4", true);
     public static final Element Ti50 = add(22,28, -1, null, "Titanium-50", "Ti-50", true);
     public static final Element Bi210 = add(83,127,-1,null, "Bismuth-210", "Bi-210", true);
     public static final Element Am241 = add(95,146, -1, null, "Americium-241", "Am-241", true);

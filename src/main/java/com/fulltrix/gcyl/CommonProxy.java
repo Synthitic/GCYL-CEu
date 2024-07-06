@@ -94,8 +94,7 @@ public class CommonProxy {
 
 
 
-        GCYLMaterialOverride.materialChanges();
-        GCYLMaterialOverride.tempMaterialModifications();
+        GCYLMaterialOverride.init();
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)

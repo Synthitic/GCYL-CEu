@@ -1181,6 +1181,15 @@ public class GCYLMaterials {
     public static Material DeepNetherGas;
     public static Material RawBioGrowthMedium;
     public static Material SterileBioGrowthMedium;
+    public static Material HeavyWater;
+    public static Material HPHeavySteam;
+    public static Material HotHPHelium3;
+    public static Material HotHPHelium4;
+    public static Material HotLiquidSodium;
+    public static Material HotMercury;
+    public static Material HotLiquidTin;
+    public static Material HotLiquidLead;
+    public static Material HotLiquidBoronTrioxide;
 
     //COILS
     public static Material Pikyonium;
@@ -9451,8 +9460,8 @@ public class GCYLMaterials {
                 .color(Helium.getMaterialRGB()-10)
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
-                .build()
-                .setFormula("He_4",true);
+                .element(He4)
+                .build();
 
         //TUNGSTEN & PLATINUM
         PalladiumAmmonia = new Material.Builder(++id, gcylId("palladium_enriched_ammonia"))
@@ -10660,6 +10669,78 @@ public class GCYLMaterials {
                 .iconSet(FLUID)
                 .build()
                 .setFormula("?",true);
+
+        HeavyWater = new Material.Builder(++id, gcylId("heavy_water"))
+                .liquid()
+                .color(Water.getMaterialRGB() - 10)
+                .flags(DISABLE_REPLICATION)
+                .components(Deuterium, 2, Oxygen, 1)
+                .iconSet(FLUID)
+                .build();
+
+        HPHeavySteam = new Material.Builder(++id, gcylId("hp_heavy_steam"))
+                .gas()
+                .color(HighPressureSteam.getMaterialRGB() - 10)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .components(Deuterium, 2, Oxygen, 1)
+                .iconSet(FLUID)
+                .build();
+
+        HotHPHelium3 = new Material.Builder(++id, gcylId("hot_hp_he_3"))
+                .gas()
+                .color(Helium3.getMaterialRGB() + 10)
+                .element(He3)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .build();
+
+        HotHPHelium4 = new Material.Builder(++id, gcylId("hot_hp_he_4"))
+                .gas()
+                .color(Helium4.getMaterialRGB() + 10)
+                .element(He4)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .build();
+
+        HotLiquidSodium = new Material.Builder(++id, gcylId("hot_sodium"))
+                .liquid()
+                .color(Sodium.getMaterialRGB() + 10)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .element(Na)
+                .build();
+
+        HotMercury = new Material.Builder(++id, gcylId("hot_mercury"))
+                .liquid()
+                .color(Mercury.getMaterialRGB() + 10)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .element(Hg)
+                .build();
+
+        HotLiquidTin = new Material.Builder(++id, gcylId("hot_tin"))
+                .liquid()
+                .color(Tin.getMaterialRGB() + 10)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .element(Sn)
+                .iconSet(FLUID)
+                .build();
+
+        HotLiquidLead = new Material.Builder(++id, gcylId("hot_lead"))
+                .liquid()
+                .color(Lead.getMaterialRGB() + 10)
+                .element(Pb)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .build();
+
+        HotLiquidBoronTrioxide = new Material.Builder(++id, gcylId("hot_boron_trioxide"))
+                .liquid()
+                .color(BoronTrioxide.getMaterialRGB() + 10)
+                .components(BoronTrioxide, 1)
+                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
+                .iconSet(FLUID)
+                .build();
 
         /*
         Infinity = new Material.Builder(++id, gcylId("infinity"))
