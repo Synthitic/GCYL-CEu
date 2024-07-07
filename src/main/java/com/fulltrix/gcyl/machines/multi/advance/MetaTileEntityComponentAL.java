@@ -9,6 +9,7 @@ import com.fulltrix.gcyl.blocks.metal.GCYLCleanroomCasing;
 import com.fulltrix.gcyl.blocks.metal.MetalCasing2;
 import com.fulltrix.gcyl.client.ClientHandler;
 import gregtech.api.GTValues;
+import gregtech.api.block.ICleanroomFilter;
 import gregtech.api.capability.IOpticalComputationHatch;
 import gregtech.api.capability.IOpticalComputationProvider;
 import gregtech.api.capability.IOpticalComputationReceiver;
@@ -57,6 +58,7 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
 
     private IOpticalComputationProvider computationProvider;
     private int tier;
+    private int filterTier;
 
     public MetaTileEntityComponentAL(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, COMPONENT_AL_RECIPES);
@@ -213,6 +215,8 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
         if (computationProvider == null) {
             invalidateStructure();
         }
+
+        this.filterTier = ((ICleanroomFilter) context.get("FilterType")).getTier();
     }
 
     @Override
@@ -252,8 +256,11 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
 
     private class ComponentALRecipeLogic extends ComputationRecipeLogic {
 
-        public ComponentALRecipeLogic(RecipeMapMultiblockController metaTileEntity) {
+        MetaTileEntityComponentAL componentAL;
+
+        public ComponentALRecipeLogic(MetaTileEntityComponentAL metaTileEntity) {
             super(metaTileEntity, ComputationType.STEADY);
+            this.componentAL = metaTileEntity;
         }
 
         @Override
@@ -262,6 +269,11 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
                 return false;
 
             return recipe.getProperty(ComponentALProperty.getInstance(), 0) <= tier;
+        }
+
+        @Override
+        public double getSpeedBonus() {
+            return Math.pow(0.9, this.componentAL.filterTier);
         }
     }
 }

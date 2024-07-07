@@ -9,6 +9,7 @@ import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import gregtech.api.GTValues;
+import gregtech.api.block.ICleanroomFilter;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -64,31 +65,7 @@ public class MetaTileEntityLargeAirCollector extends GCYMRecipeMapMultiblockCont
     @Override
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
-        Object type = context.get("FilterType");
-        if (type instanceof BlockCleanroomCasing.CasingType) {
-            BlockCleanroomCasing.CasingType casingType = (BlockCleanroomCasing.CasingType) type;
-
-            if (casingType.equals(BlockCleanroomCasing.CasingType.FILTER_CASING)) {
-                this.filterTier = 0;
-            } else if (casingType.equals(BlockCleanroomCasing.CasingType.FILTER_CASING_STERILE)) {
-                this.filterTier = 1;
-            }
-        }
-
-        if (type instanceof GCYLCleanroomCasing.CasingType) {
-            GCYLCleanroomCasing.CasingType casingType = (GCYLCleanroomCasing.CasingType) type;
-
-            if (casingType.equals(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO3)) {
-                this.filterTier = 2;
-            } else if (casingType.equals(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO2)) {
-                this.filterTier = 3;
-            } else if (casingType.equals(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO1)) {
-                this.filterTier = 4;
-            } else if (casingType.equals(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO0)) {
-                this.filterTier = 5;
-            }
-
-        }
+        this.filterTier = ((ICleanroomFilter) context.get("FilterType")).getTier();
     }
 
     @Override

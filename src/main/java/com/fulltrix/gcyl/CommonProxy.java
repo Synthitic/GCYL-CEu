@@ -25,6 +25,7 @@ import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.api.event.HighTierEvent;
+import gregtech.api.metatileentity.registry.MTEManager;
 import gregtech.api.recipes.GTRecipeInputCache;
 import gregtech.api.recipes.recipeproperties.FusionEUToStartProperty;
 import gregtech.api.unification.material.event.MaterialEvent;
@@ -95,6 +96,11 @@ public class CommonProxy {
 
 
         GCYLMaterialOverride.init();
+    }
+
+    @SubscribeEvent
+    public static void registerMTERegistry(MTEManager.MTERegistryEvent event) {
+        GregTechAPI.mteManager.createRegistry(Tags.MODID);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)

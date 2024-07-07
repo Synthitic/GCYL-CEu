@@ -39,10 +39,15 @@ public class GCYLConfig {
         @Config.RangeInt(min = 1)
         public int[] boostedEuAmount = {2, 2, 2};
 
-        @Config.Comment("The liquid that boosts the Reactor.")
+        @Config.Comment("The material fluid that boosts the Reactor.")
         @Config.RequiresMcRestart
         @Config.Name("Hyper Reactor boosters")
-        public String[] boosterFluid = {"plasma.helium", "plasma.radon", "degenerate_rhenium_plasma"};
+        public String[] boosterFluid = {"helium", "radon", "gcyl:degenerate_rhenium_plasma"};
+
+        @Config.Comment("The fluid state of the boosters for the Reactor.")
+        @Config.RequiresMcRestart
+        @Config.Name("Hyper Reactor boosters fluid states")
+        public String[] boosterFluidStates = {"plasma", "plasma", "plasma"};
 
         @Config.Comment("The amount of liquid that boosts the Reactor.")
         @Config.RequiresMcRestart

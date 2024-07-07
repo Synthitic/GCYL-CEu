@@ -8,15 +8,18 @@ import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregtech.api.GTValues;
 import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.api.capability.impl.MultiblockFuelRecipeLogic;
+import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.*;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.unification.material.Material;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.core.unification.material.internal.MaterialRegistryManager;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
@@ -31,6 +34,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import static com.fulltrix.gcyl.api.GCYLUtility.getFluidStorageKeyByName;
 import static com.fulltrix.gcyl.client.ClientHandler.*;
 import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_2;
 import static gregtech.api.unification.material.Materials.Naquadria;
@@ -45,9 +49,12 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
     private static final int b = GTUtility.getTierByVoltage(GCYLConfig.multis.hyperReactors.euGeneration[2]);
     private static final int c = GTUtility.getTierByVoltage(GCYLConfig.multis.hyperReactors.euGeneration[0]);
 
-    private static final FluidStack boosterA = new FluidStack(FluidRegistry.getFluid(GCYLConfig.multis.hyperReactors.boosterFluid[1]), GCYLConfig.multis.hyperReactors.boosterFluidAmounts[1]);
-    private static final FluidStack boosterB = new FluidStack(FluidRegistry.getFluid("plasma."+ GCYLConfig.multis.hyperReactors.boosterFluid[2]), GCYLConfig.multis.hyperReactors.boosterFluidAmounts[2]);
-    private static final FluidStack boosterC = new FluidStack(FluidRegistry.getFluid(GCYLConfig.multis.hyperReactors.boosterFluid[0]), GCYLConfig.multis.hyperReactors.boosterFluidAmounts[0]);
+    private static final FluidStack boosterA = MaterialRegistryManager.getInstance().getMaterial(GCYLConfig.multis.hyperReactors.boosterFluid[1]).getFluid(getFluidStorageKeyByName(GCYLConfig.multis.hyperReactors.boosterFluidStates[1]), GCYLConfig.multis.hyperReactors.boosterFluidAmounts[1]);
+    private static final FluidStack boosterB = MaterialRegistryManager.getInstance().getMaterial(GCYLConfig.multis.hyperReactors.boosterFluid[2]).getFluid(getFluidStorageKeyByName(GCYLConfig.multis.hyperReactors.boosterFluidStates[2]), GCYLConfig.multis.hyperReactors.boosterFluidAmounts[2]);
+    private static final FluidStack boosterC = MaterialRegistryManager.getInstance().getMaterial(GCYLConfig.multis.hyperReactors.boosterFluid[0]).getFluid(getFluidStorageKeyByName(GCYLConfig.multis.hyperReactors.boosterFluidStates[0]), GCYLConfig.multis.hyperReactors.boosterFluidAmounts[0]);
+
+
+
 
     private static final FluidStack[] boosters = {boosterC, boosterA, boosterB};
 

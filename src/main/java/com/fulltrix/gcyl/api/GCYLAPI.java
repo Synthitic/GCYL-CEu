@@ -3,6 +3,7 @@ package com.fulltrix.gcyl.api;
 import com.fulltrix.gcyl.api.block.IComponentALTier;
 import com.fulltrix.gcyl.api.block.IElevatorMotorTier;
 import com.fulltrix.gcyl.api.block.IFusionCoilBlockStats;
+import gregtech.api.block.ICleanroomFilter;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.unification.ore.OrePrefix;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
@@ -19,5 +20,7 @@ public class GCYLAPI {
     public static final Object2ObjectMap<IBlockState, IComponentALTier> COMPONENT_AL_CASINGS = new Object2ObjectOpenHashMap<>();
 
     public static final Object2ObjectMap<IBlockState, IElevatorMotorTier> ELEVATOR_MOTORS = new Object2ObjectOpenHashMap<>();
+
+    public static final Object2ObjectMap<IBlockState, ICleanroomFilter> GCYL_FILTER_CASINGS = new Object2ObjectOpenHashMap<>();
 
 }

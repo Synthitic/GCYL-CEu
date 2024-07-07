@@ -7,6 +7,8 @@ import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
 import com.fulltrix.gcyl.blocks.component_al.GCYLComponentALCasing;
 import com.fulltrix.gcyl.blocks.fusion.GCYLFusionCoils;
 import com.fulltrix.gcyl.blocks.metal.GCYLCleanroomCasing;
+import gregtech.api.GregTechAPI;
+import gregtech.api.block.ICleanroomFilter;
 import gregtech.api.pattern.PatternStringError;
 import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.util.BlockInfo;
@@ -46,40 +48,46 @@ public class TraceabilityPredicates {
     private static final Supplier<TraceabilityPredicate> FILTER_CASING_PRED =
             () -> new TraceabilityPredicate(blockWorldState -> {
                 IBlockState blockState = blockWorldState.getBlockState();
-                Block block = blockState.getBlock();
-                if (block instanceof BlockCleanroomCasing) {
-                    BlockCleanroomCasing.CasingType casingType = ((BlockCleanroomCasing) blockState.getBlock())
-                            .getState(blockState);
-                    if (casingType.equals(BlockCleanroomCasing.CasingType.PLASCRETE)) return false;
+                if (GregTechAPI.CLEANROOM_FILTERS.containsKey(blockState)) {
+                    ICleanroomFilter cleanroomFilter = GregTechAPI.CLEANROOM_FILTERS.get(blockState);
+                    if (cleanroomFilter.getCleanroomType() == null) return false;
 
-                    Object currentFilter = blockWorldState.getMatchContext().getOrPut("FilterType", casingType);
-                    if (!currentFilter.toString().equals(casingType.getName())) {
+                    ICleanroomFilter currentFilter = blockWorldState.getMatchContext().getOrPut("FilterType",
+                            cleanroomFilter);
+                    if (!currentFilter.getCleanroomType().equals(cleanroomFilter.getCleanroomType())) {
                         blockWorldState.setError(new PatternStringError("gregtech.multiblock.pattern.error.filters"));
                         return false;
                     }
-                    blockWorldState.getMatchContext().getOrPut("VBlock", new LinkedList<>()).add(blockWorldState.getPos());
+                    blockWorldState.getMatchContext().getOrPut("VABlock", new LinkedList<>()).add(blockWorldState.getPos());
                     return true;
                 }
 
-                if (block instanceof GCYLCleanroomCasing) {
-                    GCYLCleanroomCasing.CasingType casingType = (GCYLCleanroomCasing.CasingType)((GCYLCleanroomCasing)blockState.getBlock()).getState(blockState);
-                    Object currentFilter = blockWorldState.getMatchContext().getOrPut("FilterType", casingType);
-                    if (!currentFilter.toString().equals(casingType.getName())) {
+                if (GCYLAPI.GCYL_FILTER_CASINGS.containsKey(blockState)) {
+                    ICleanroomFilter cleanroomFilter =  GCYLAPI.GCYL_FILTER_CASINGS.get(blockState);
+                    if (cleanroomFilter.getCleanroomType() == null) return false;
+
+                    ICleanroomFilter currentFilter = blockWorldState.getMatchContext().getOrPut("FilterType",
+                            cleanroomFilter);
+
+                    if (!currentFilter.getCleanroomType().equals(cleanroomFilter.getCleanroomType())) {
                         blockWorldState.setError(new PatternStringError("gregtech.multiblock.pattern.error.filters"));
                         return false;
                     } else {
-                        ((LinkedList)blockWorldState.getMatchContext().getOrPut("VABlock", new LinkedList())).add(blockWorldState.getPos());
+                        blockWorldState.getMatchContext().getOrPut("VABlock", new LinkedList<>()).add(blockWorldState.getPos());
                         return true;
                     }
                 }
                 return false;
             }, () -> ArrayUtils.addAll(
-                    Arrays.stream(BlockCleanroomCasing.CasingType.values())
-                            .filter(type -> !type.equals(BlockCleanroomCasing.CasingType.PLASCRETE))
-                            .map(type -> new BlockInfo(MetaBlocks.CLEANROOM_CASING.getState(type), null))
+                    GregTechAPI.CLEANROOM_FILTERS.entrySet().stream()
+                            .filter(entry -> entry.getValue().getCleanroomType() != null)
+                            .sorted(Comparator.comparingInt(entry -> entry.getValue().getTier()))
+                            .map(entry -> new BlockInfo(entry.getKey(), null))
                             .toArray(BlockInfo[]::new),
-                    Arrays.stream(GCYLCleanroomCasing.CasingType.values())
-                            .map(type -> new BlockInfo(GCYLMetaBlocks.GCYL_CLEANROOM_CASING.getState(type), null))
+                    GCYLAPI.GCYL_FILTER_CASINGS.entrySet().stream()
+                            .filter(entry -> entry.getValue().getCleanroomType() != null)
+                            .sorted(Comparator.comparingInt(entry -> entry.getValue().getTier()))
+                            .map(entry -> new BlockInfo(entry.getKey(), null))
                             .toArray(BlockInfo[]::new)))
                     .addTooltips("gregtech.multiblock.pattern.error.filters");
 

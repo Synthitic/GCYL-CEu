@@ -7,6 +7,7 @@ import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
 import com.fulltrix.gcyl.blocks.metal.GCYLCleanroomCasing;
 import gregtech.api.GTValues;
+import gregtech.api.block.ICleanroomFilter;
 import gregtech.api.capability.GregtechDataCodes;
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.impl.CleanroomLogic;
@@ -53,6 +54,7 @@ import java.util.List;
 import static com.fulltrix.gcyl.api.pattern.TraceabilityPredicates.filterCasings;
 
 //TODO: Decrease tps lag when they try to cheat it
+//TODO: fix the display text tooltip of usage
 public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implements ICleanroomProvider {
     public static final int MIN_RADIUS = 10;
     public static final int MIN_DEPTH = 9;
@@ -63,7 +65,7 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implem
     private int hDist = 0;
     private final CleanroomLogic cleanroomLogic;
     private CleanroomType cleanroomType = null;
-
+    private ICleanroomFilter cleanroomFilter;
     private IEnergyContainer energyContainer;
     private boolean initialForm = true;
     public MetaTileEntityMegaCleanroom(ResourceLocation metaTileEntityId) {
@@ -166,36 +168,14 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implem
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
         initializeAbilities();
-        Object type = context.get("FilterType");
-        if (type instanceof BlockCleanroomCasing.CasingType) {
-            BlockCleanroomCasing.CasingType casingType = (BlockCleanroomCasing.CasingType) type;
-
-            if (casingType.equals(BlockCleanroomCasing.CasingType.FILTER_CASING)) {
-                this.cleanroomType = CleanroomType.CLEANROOM;
-            } else if (casingType.equals(BlockCleanroomCasing.CasingType.FILTER_CASING_STERILE)) {
-                this.cleanroomType = CleanroomType.STERILE_CLEANROOM;
-            }
-        }
-
-        if (type instanceof GCYLCleanroomCasing.CasingType) {
-            GCYLCleanroomCasing.CasingType casingType = (GCYLCleanroomCasing.CasingType) type;
-
-            if (casingType.equals(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO3)) {
-                this.cleanroomType = GCYLCleanroomType.ISO3;
-            } else if (casingType.equals(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO2)) {
-                this.cleanroomType = GCYLCleanroomType.ISO2;
-            } else if (casingType.equals(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO1)) {
-                this.cleanroomType = GCYLCleanroomType.ISO1;
-            } else if (casingType.equals(GCYLCleanroomCasing.CasingType.FILTER_CASING_ISO0)) {
-                this.cleanroomType = GCYLCleanroomType.ISO0;
-            }
-
-        }
+        this.cleanroomFilter = context.get("FilterType");
+        this.cleanroomType = cleanroomFilter.getCleanroomType();
         // max progress is based on the dimensions of the structure: (x^3)-(x^2)
         // taller cleanrooms take longer than wider ones
         // minimum of 100 is a 5x5x5 cleanroom: 125-25=100 ticks
         this.cleanroomLogic.setMaxProgress(Math.max(100,
                 ((lDist + rDist + 1) * (bDist + fDist + 1) * hDist) - ((lDist + rDist + 1) * (bDist + fDist + 1))));
+        this.cleanroomLogic.setMinEnergyTier(cleanroomFilter.getMinTier());
     }
 
     @Override
@@ -331,7 +311,7 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implem
     @Override
     public boolean drainEnergy(boolean simulate) {
         if(isStructureFormed()) {
-            long energyToDrain = this.isClean() ? (long) Math.max(4.0, Math.pow(4.0, this.getEnergyTier())) : (long) GTValues.VA[this.getEnergyTier()];
+            long energyToDrain = this.isClean() ? (long) Math.max(4.0, GTValues.VA[this.getEnergyTier() - 1]) : (long) GTValues.VA[this.getEnergyTier()];
             long resultEnergy = this.energyContainer.getEnergyStored() - energyToDrain;
             if (resultEnergy >= 0L && resultEnergy <= this.energyContainer.getEnergyCapacity()) {
                 if (!simulate) {

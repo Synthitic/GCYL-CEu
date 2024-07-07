@@ -3,6 +3,8 @@ package com.fulltrix.gcyl.api;
 import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import com.fulltrix.gcyl.blocks.fusion.GCYLFusionCoils;
 import gregtech.api.GTValues;
+import gregtech.api.fluids.store.FluidStorageKey;
+import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.RecipeBuilder;
@@ -35,6 +37,15 @@ public class GCYLUtility {
         if (value < start)
             return start;
         return Math.min(value, end);
+    }
+
+    public static FluidStorageKey getFluidStorageKeyByName(String name) {
+        return switch (name) {
+          case ("liquid") -> FluidStorageKeys.LIQUID;
+          case ("gas") -> FluidStorageKeys.GAS;
+          case ("plasma") -> FluidStorageKeys.PLASMA;
+            default -> null;
+        };
     }
 
     public static ItemStack getPowerICStack(int tier) {

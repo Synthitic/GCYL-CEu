@@ -93,7 +93,7 @@ public class GCYLTileEntities {
     public static MetaTileEntityAssemblerModule[] ASSEMBLER_MODULE = new MetaTileEntityAssemblerModule[3];
 
 
-    public static int id = 24000;
+    public static int id = 0;
 
     public static void init() {
 
@@ -209,7 +209,7 @@ public class GCYLTileEntities {
 
         MetaTileEntities.registerSimpleMetaTileEntity(DEHYDRATOR, ++id, "dehydrator", GCYLRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES, Textures.SIFTER_OVERLAY, true, GCYLUtility::gcylId, GTUtility.hvCappedTankSizeFunction);
 
-        id = 24131;
+        id = 131;
 
         WIRELESS_DATA_BANK = registerMetaTileEntity(++id, new MetaTileEntityWirelessDataBank(gcylId("wireless_data_bank")));
         WIRELESS_DATA_HATCH = registerMetaTileEntity(++id, new MetaTileEntityWirelessDataHatch(gcylId("wireless_data_hatch"), 11));
