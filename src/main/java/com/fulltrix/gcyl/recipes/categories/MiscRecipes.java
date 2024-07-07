@@ -143,6 +143,18 @@ highTierVoltageCoils();
                 .fluidOutputs(SamariumMagnetic.getFluid(144))
                 .buildAndRegister();
 
+        //sodium hydroxide loop
+        /*
+        CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(100)
+                .circuitMeta(1)
+                .fluidInputs(Water.getFluid(1000))
+                .input(dust, Sodium)
+                .output(dust, SodiumHydroxide,3)
+                .fluidOutputs(Hydrogen.getFluid(1000))
+                .buildAndRegister();
+
+         */
+
     }
 
     public static void initSolars() {

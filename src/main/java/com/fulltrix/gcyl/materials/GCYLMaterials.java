@@ -2471,7 +2471,7 @@ public class GCYLMaterials {
                 .setFormula("H2O", true);
 
         SodiumPotassiumAlloy = new Material.Builder(++id, gcylId("sodium_potassium_alloy"))
-                .dust(2).liquid()
+                .dust(2).liquid(new FluidBuilder().temperature(293))
                 .color(0x252525)
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
@@ -2479,7 +2479,7 @@ public class GCYLMaterials {
                 .build();
 
         SupercriticalSodiumPotassiumAlloy = new Material.Builder(++id, gcylId("supercritical_sodium_potassium_alloy"))
-                .liquid()
+                .liquid(new FluidBuilder().temperature(873))
                 .color(SodiumPotassiumAlloy.getMaterialRGB())
                 .iconSet(FLUID)
                 .flags(DISABLE_REPLICATION)
@@ -2489,7 +2489,7 @@ public class GCYLMaterials {
                 .setFormula("Na7K3", true);
 
         FLiNaK = new Material.Builder(++id, gcylId("flinak"))
-                .dust(2).liquid()
+                .dust(2).liquid(new FluidBuilder().temperature(735))
                 .color(0x252525)
                 .iconSet(DULL)
                 .flags(DISABLE_REPLICATION)
@@ -2497,7 +2497,7 @@ public class GCYLMaterials {
                 .build();
 
         SupercriticalFLiNaK = new Material.Builder(++id, gcylId("supercritical_flinak"))
-                .liquid()
+                .liquid(new FluidBuilder().temperature(1023))
                 .color(FLiNaK.getMaterialRGB())
                 .iconSet(FLUID)
                 .flags(DISABLE_REPLICATION)
@@ -2506,7 +2506,7 @@ public class GCYLMaterials {
                 .build();
 
         FLiBe = new Material.Builder(++id, gcylId("flibe"))
-                .dust(2).liquid()
+                .dust(2).liquid(new FluidBuilder().temperature(636))
                 .color(0x252525)
                 .iconSet(DULL)
                 .flags(DISABLE_REPLICATION)
@@ -2514,7 +2514,7 @@ public class GCYLMaterials {
                 .build();
 
         SupercriticalFLiBe = new Material.Builder(++id, gcylId("supercritical_flibe"))
-                .liquid()
+                .liquid(new FluidBuilder().temperature(973))
                 .color(FLiBe.getMaterialRGB())
                 .components(FLiBe, 1)
                 .flags(DISABLE_REPLICATION)
@@ -2523,7 +2523,7 @@ public class GCYLMaterials {
                 .build();
 
         LeadBismuthEutectic = new Material.Builder(++id, gcylId("lead_bismuth_eutatic"))
-                .ingot().liquid()
+                .ingot().liquid(new FluidBuilder().temperature(397))
                 .color(0x757575)
                 .iconSet(SHINY)
                 .flags(DISABLE_REPLICATION)
@@ -2531,7 +2531,7 @@ public class GCYLMaterials {
                 .build();
 
         SupercriticalLeadBismuthEutectic = new Material.Builder(++id, gcylId("supercritical_lead_bismuth_eutatic"))
-                .liquid()
+                .liquid(new FluidBuilder().temperature(773))
                 .color(LeadBismuthEutectic.getMaterialRGB())
                 .iconSet(FLUID)
                 .flags(DISABLE_REPLICATION)
@@ -6720,7 +6720,7 @@ public class GCYLMaterials {
                 .setFormula("C", true);
 
         SupercriticalCO2 = new Material.Builder(++id, gcylId("supercritcal_co_2"))
-                .liquid()
+                .liquid(new FluidBuilder().temperature(975))
                 .color(CarbonDioxide.getMaterialRGB())
                 .flags(DISABLE_REPLICATION)
                 .iconSet(FLUID)
@@ -10679,7 +10679,7 @@ public class GCYLMaterials {
                 .build();
 
         HPHeavySteam = new Material.Builder(++id, gcylId("hp_heavy_steam"))
-                .gas()
+                .gas(new FluidBuilder().temperature(500))
                 .color(HighPressureSteam.getMaterialRGB() - 10)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
                 .components(Deuterium, 2, Oxygen, 1)
@@ -10687,7 +10687,7 @@ public class GCYLMaterials {
                 .build();
 
         HotHPHelium3 = new Material.Builder(++id, gcylId("hot_hp_he_3"))
-                .gas()
+                .gas(new FluidBuilder().temperature(1225))
                 .color(Helium3.getMaterialRGB() + 10)
                 .element(He3)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -10695,7 +10695,7 @@ public class GCYLMaterials {
                 .build();
 
         HotHPHelium4 = new Material.Builder(++id, gcylId("hot_hp_he_4"))
-                .gas()
+                .gas(new FluidBuilder().temperature(1225))
                 .color(Helium4.getMaterialRGB() + 10)
                 .element(He4)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -10703,7 +10703,7 @@ public class GCYLMaterials {
                 .build();
 
         HotLiquidSodium = new Material.Builder(++id, gcylId("hot_sodium"))
-                .liquid()
+                .liquid(new FluidBuilder().temperature(958))
                 .color(Sodium.getMaterialRGB() + 10)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
                 .iconSet(FLUID)
@@ -10711,7 +10711,7 @@ public class GCYLMaterials {
                 .build();
 
         HotMercury = new Material.Builder(++id, gcylId("hot_mercury"))
-                .liquid()
+                .liquid(new FluidBuilder().temperature(410))
                 .color(Mercury.getMaterialRGB() + 10)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
                 .iconSet(FLUID)
@@ -10719,7 +10719,7 @@ public class GCYLMaterials {
                 .build();
 
         HotLiquidTin = new Material.Builder(++id, gcylId("hot_tin"))
-                .liquid()
+                .liquid(new FluidBuilder().temperature(1600))
                 .color(Tin.getMaterialRGB() + 10)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
                 .element(Sn)
@@ -10727,7 +10727,7 @@ public class GCYLMaterials {
                 .build();
 
         HotLiquidLead = new Material.Builder(++id, gcylId("hot_lead"))
-                .liquid()
+                .liquid(new FluidBuilder().temperature(923))
                 .color(Lead.getMaterialRGB() + 10)
                 .element(Pb)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
@@ -10735,7 +10735,7 @@ public class GCYLMaterials {
                 .build();
 
         HotLiquidBoronTrioxide = new Material.Builder(++id, gcylId("hot_boron_trioxide"))
-                .liquid()
+                .liquid(new FluidBuilder().temperature(573))
                 .color(BoronTrioxide.getMaterialRGB() + 10)
                 .components(BoronTrioxide, 1)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)

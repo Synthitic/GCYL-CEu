@@ -201,10 +201,10 @@ public class GCYLMaterialOverride {
         //LIQUIDS
         //TODO: get proper temperatures
         List<Material> lmats = new ArrayList<>();
-        Collections.addAll(lmats, Fluorine, Xenon, Helium3, Hydrogen, Nitrogen, DeepNetherGas, DeepOverworldGas);
+        Collections.addAll(lmats, Fluorine, Xenon, Helium3, Hydrogen, Nitrogen, DeepNetherGas, DeepOverworldGas, CarbonDioxide);
         for (Material mat : lmats) {
             addLiquid(mat, new FluidBuilder()
-                    .temperature(40)
+                    .temperature(1)
                     .color(mat.getMaterialRGB())
                     .name("liquid_" + mat.getName())
                     .translation("gregtech.fluid.liquid_generic"));
