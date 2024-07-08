@@ -11,6 +11,7 @@ import gregtech.api.unification.material.properties.*;
 import gregtech.api.unification.ore.OrePrefix;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import scala.sys.Prop;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -420,6 +421,9 @@ public class GCYLMaterialOverride {
         NaquadahAlloy.setFormula("Nq(Ir3Os)",true);
 
         OreDictUnifier.registerOre(new ItemStack(Blocks.CLAY), OrePrefix.ore, Clay);
+
+        //Liquid Temperatures
+        Sodium.getProperty(PropertyKey.FLUID).getQueuedBuilder(FluidStorageKeys.LIQUID).temperature(370);
     }
 
     private static void tempMaterialModifications() {
