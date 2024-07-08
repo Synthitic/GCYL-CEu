@@ -43,44 +43,44 @@ public class GCYLMaterialOverride {
 
     private static void coolants() {
         HeavyWater.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(HPHeavySteam, FluidStorageKeys.LIQUID,93., 990, 375, .02, FissionReactor.standardPressure, 2070000, 4242)
+                new CoolantProperty(HPHeavySteam, FluidStorageKeys.LIQUID,93., 990, 375, .02, 2070000, 4242)
                         .setAccumulatesHydrogen(true));
 
         CarbonDioxide.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(SupercriticalCO2, FluidStorageKeys.LIQUID,13.,28,195,0., FissionReactor.standardPressure,380000,846));
+                new CoolantProperty(SupercriticalCO2, FluidStorageKeys.LIQUID,13.,28,195,0.,380000,846));
 
         Helium3.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(HotHPHelium3,FluidStorageKeys.LIQUID, 0.,262,3,60., FissionReactor.standardPressure,8600,5193));
+                new CoolantProperty(HotHPHelium3,FluidStorageKeys.LIQUID, 0.,262,3,60.,8600,5193));
 
         Helium4.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(HotHPHelium4,FluidStorageKeys.LIQUID, 0., 252, 4, 0.,FissionReactor.standardPressure, 20700, 5193));
+                new CoolantProperty(HotHPHelium4,FluidStorageKeys.LIQUID, 0., 252, 4, 0., 20700, 5193));
 
         FLiBe.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(SupercriticalFLiBe,FluidStorageKeys.LIQUID,0.001,1830,1703,330.,FissionReactor.standardPressure,3330000,2386));
+                new CoolantProperty(SupercriticalFLiBe,FluidStorageKeys.LIQUID,0.001,1830,1703,330.,3330000,2386));
 
         FLiNaK.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(SupercriticalFLiNaK,FluidStorageKeys.LIQUID,0., 1290,1844,405.,FissionReactor.standardPressure,9520000,1854));
+                new CoolantProperty(SupercriticalFLiNaK,FluidStorageKeys.LIQUID,0., 1290,1844,405.,9520000,1854));
 
         SodiumPotassiumAlloy.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(SupercriticalSodiumPotassiumAlloy,FluidStorageKeys.LIQUID,0.001,400,1059,12.,FissionReactor.standardPressure, 2500000, 1191));
+                new CoolantProperty(SupercriticalSodiumPotassiumAlloy,FluidStorageKeys.LIQUID,0.001,400,1059,12., 2500000, 1191));
 
         Sodium.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(HotLiquidSodium,FluidStorageKeys.LIQUID, 0.05, 120100,1156,6.,FissionReactor.standardPressure,4250000,1230));
+                new CoolantProperty(HotLiquidSodium,FluidStorageKeys.LIQUID, 0.05, 120100,1156,6.,4250000,1230));
 
         Mercury.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(HotMercury,FluidStorageKeys.LIQUID, 0., 13800,630,6910.,FissionReactor.standardPressure,295000,140));
+                new CoolantProperty(HotMercury,FluidStorageKeys.LIQUID, 0., 13800,630,6910.,295000,140));
 
         Tin.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(HotLiquidTin, FluidStorageKeys.LIQUID,0.01, 54000, 2875, 10.,FissionReactor.standardPressure, 2440000,217));
+                new CoolantProperty(HotLiquidTin, FluidStorageKeys.LIQUID,0.01, 54000, 2875, 10., 2440000,217));
 
         Lead.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(HotLiquidLead,FluidStorageKeys.LIQUID,0.06,55000, 2022,3.,FissionReactor.standardPressure,866000,139));
+                new CoolantProperty(HotLiquidLead,FluidStorageKeys.LIQUID,0.06,55000, 2022,3.,866000,139));
 
         LeadBismuthEutectic.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(SupercriticalLeadBismuthEutectic,FluidStorageKeys.LIQUID, 0.01,10800,1944,1.,FissionReactor.standardPressure,852000,147));
+                new CoolantProperty(SupercriticalLeadBismuthEutectic,FluidStorageKeys.LIQUID, 0.01,10800,1944,1.,852000,147));
 
         BoricAcid.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(HotLiquidBoronTrioxide,FluidStorageKeys.LIQUID,0.,370,573,4800.,FissionReactor.standardPressure,8100000,1392)
+                new CoolantProperty(HotLiquidBoronTrioxide,FluidStorageKeys.LIQUID,0.,370,573,4800.,8100000,1392)
                         .setAccumulatesHydrogen(true));
     }
 
