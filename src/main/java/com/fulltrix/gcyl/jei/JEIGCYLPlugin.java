@@ -10,10 +10,13 @@ import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityWirelessEnergyHatch;
 import com.fulltrix.gcyl.recipes.categories.elevator.SpaceMiningRecipes;
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
+import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.recipes.category.GTRecipeCategory;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.MetaTileEntities;
 import mezz.jei.api.*;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.ingredients.IIngredientRegistry;
@@ -21,6 +24,7 @@ import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,6 +58,11 @@ public class JEIGCYLPlugin implements IModPlugin {
         registry.addRecipeCategories(new SpaceMiningCategory(registry.getJeiHelpers().getGuiHelper()));
         registry.addRecipeCategories(new SpacePumpCategory(registry.getJeiHelpers().getGuiHelper()));
         registry.addRecipeCategories(new VoidMinerCategory(registry.getJeiHelpers().getGuiHelper()));
+
+        @Nullable GTRecipeCategory category = GTRecipeCategory.getByName(RecipeMaps.BLAST_RECIPES.unlocalizedName);
+        if (category != null) {
+            category.jeiIcon(MetaTileEntities.ELECTRIC_BLAST_FURNACE.getStackForm());
+        }
     }
 
 
