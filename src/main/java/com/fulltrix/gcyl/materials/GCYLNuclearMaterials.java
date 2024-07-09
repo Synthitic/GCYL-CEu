@@ -278,7 +278,7 @@ public class GCYLNuclearMaterials {
                 .color(Neptunium.getMaterialRGB())
                 .iconSet(DULL)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
-                .fissionFuelProperties(2000, 1000, 1000, 0, 100, 10)
+                .fissionFuelProperties(2000, 1000, 1000, 0, 100, 10, 1)
                 .build();
 
     }
