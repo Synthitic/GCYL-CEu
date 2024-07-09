@@ -108,7 +108,7 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
                 .where('S', selfPredicate())
                 .where('F', states(getCasingState())
                         .or(autoAbilities(false, true, false, false, false, false, false))
-                        .or(fluidInputPredicate().setMaxGlobalLimited(4).setMinGlobalLimited(1)))
+                        .or(fluidInputPredicate().setExactLimit(1)))
                 .where('O', abilities(MultiblockAbility.EXPORT_ITEMS)
                         .addTooltips("gregtech.multiblock.pattern.location_end"))
                 .where('Y', states(getCasingState())
@@ -380,6 +380,7 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
             // slot count is not enough, so don't try to match it
             if (itemInputInventory.size() < inputs.size()) return false;
 
+
             for (int i = 0; i < inputs.size(); i++) {
                 IItemHandlerModifiable inventory = itemInputInventory.get(i);
                 boolean oneSuccess = false;
@@ -524,12 +525,42 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
         @Override
         public long getMaximumOverclockVoltage() {
             IEnergyContainer energyContainer = advancedAssline.getEnergyContainer();
-            return (long) ((energyContainer.getInputVoltage() * (energyContainer.getInputAmperage() == 2 ? 1 : energyContainer.getInputAmperage())) / (1.0 + (getAbilities(MultiblockAbility.IMPORT_ITEMS).size() - parallelCount) / 4.0));
+            return (long) ((energyContainer.getInputVoltage() * (energyContainer.getInputAmperage() == 2 ? 1 : energyContainer.getInputAmperage())) * ((double) parallelCount / (getAbilities(MultiblockAbility.IMPORT_ITEMS).size())));
         }
 
         @Override
         public void applyParallelBonus(@NotNull RecipeBuilder<?> builder) {
             builder.EUt(builder.getEUt());
+        }
+
+        @Override
+        public void completeRecipe() {
+            super.completeRecipe();
+            if(parallelCount < getAbilities(MultiblockAbility.IMPORT_ITEMS).size()) {
+                parallelCount++;
+            }
+        }
+
+        public boolean checkParallelRecipe(@NotNull Recipe recipe) {
+            // check ordered items
+            if (ConfigHolder.machines.orderedAssembly) {
+                List<GTRecipeInput> inputs = recipe.getInputs();
+                List<IItemHandlerModifiable> itemInputInventory = getAbilities(MultiblockAbility.IMPORT_ITEMS);
+
+                for (int i = 0; i < inputs.size(); i++) {
+                    IItemHandlerModifiable inventory = itemInputInventory.get(i);
+                    boolean oneSuccess = false;
+                    for (int j = 0; j < inventory.getSlots(); j++) {
+                        oneSuccess = inputs.get(i).acceptsStack(inventory.getStackInSlot(j));
+                        if(oneSuccess && inputs.get(i).getAmount() > inventory.getStackInSlot(j).getCount()) {
+                            return false;
+                        }
+                        if (oneSuccess) break;
+                    }
+                    if (!oneSuccess) return false;
+                }
+            }
+            return true;
         }
 
         @Override
@@ -573,11 +604,13 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
                     }
                 }
 
+                if(!checkParallelRecipe(recipe)) {
+                    parallelCount = 1;
+                    return false;
+                }
+
                 this.consumeInputs(recipe);
                 this.metaTileEntity.addNotifiedInput(importInventory);
-                if(parallelCount < getAbilities(MultiblockAbility.IMPORT_ITEMS).size()) {
-                    parallelCount++;
-                }
                 return true;
             }
             return false;
@@ -588,6 +621,28 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
                 recipe.matches(true, getImportItems(), getImportFluids());
                 return;
             }
+
+            /*
+
+            List<GTRecipeInput> ingredients = recipe.getInputs();
+            List<IItemHandlerModifiable> buses = getAbilities(MultiblockAbility.IMPORT_ITEMS);
+
+            IItemHandlerModifiable bus = buses.get(0);
+
+            for (GTRecipeInput ingredient : ingredients) {
+                int amount = ingredient.getAmount();
+                for (int j = 0; j < bus.getSlots(); j++) {
+                    ItemStack stack = bus.getStackInSlot(j);
+                    if (ingredient.acceptsStack(stack)) {
+                        amount -= bus.extractItem(j, amount, false).getCount();
+                    }
+                    if (amount == 0) break;
+                }
+            }
+
+             */
+
+
 
             List<GTRecipeInput> ingredients = recipe.getInputs();
             List<IItemHandlerModifiable> buses = getAbilities(MultiblockAbility.IMPORT_ITEMS);

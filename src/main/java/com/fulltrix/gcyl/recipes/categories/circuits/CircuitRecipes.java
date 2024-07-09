@@ -1403,7 +1403,7 @@ public class CircuitRecipes {
          */
 
         // Supracausal Mainframe
-        getAssLineResearchBuilder(GTValues.MAX, 1200, SUPRACAUSAL_COMPUTER.getStackForm(), false, true, GCYLCleanroomType.ISO0, Integer.MAX_VALUE)
+        getAssLineResearchBuilder(GTValues.MAX, 1200, SUPRACAUSAL_COMPUTER.getStackForm(), false, true, GCYLCleanroomType.ISO0, GTValues.VA[GTValues.MAX])
                 .inputs(SMD_CAPACITOR_SUPRACAUSAL.getStackForm(64))
                 .inputs(SMD_DIODE_SUPRACAUSAL.getStackForm(64))
                 .inputs(SMD_TRANSISTOR_SUPRACAUSAL.getStackForm(64))
