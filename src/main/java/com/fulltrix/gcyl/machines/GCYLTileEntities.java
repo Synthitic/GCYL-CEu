@@ -92,6 +92,8 @@ public class GCYLTileEntities {
     public static MetaTileEntityMiningModule[] MINING_MODULE = new MetaTileEntityMiningModule[3];
     public static MetaTileEntityAssemblerModule[] ASSEMBLER_MODULE = new MetaTileEntityAssemblerModule[3];
 
+    public static MetaTileEntityAdvancedAssline ADVANCED_ASSLINE;
+
 
     public static int id = 0;
 
@@ -232,5 +234,9 @@ public class GCYLTileEntities {
         ASSEMBLER_MODULE[0] = registerMetaTileEntity(++id, new MetaTileEntityAssemblerModule(gcylId("assembler_module_1"), ASSEMBLER_MODULE_RECIPES,9,1,1));
         ASSEMBLER_MODULE[1] = registerMetaTileEntity(++id, new MetaTileEntityAssemblerModule(gcylId("assembler_module_2"), ASSEMBLER_MODULE_RECIPES,11,2,3));
         ASSEMBLER_MODULE[2] = registerMetaTileEntity(++id, new MetaTileEntityAssemblerModule(gcylId("assembler_module_3"), ASSEMBLER_MODULE_RECIPES,13,3,5));
+
+        id+=10;
+
+        ADVANCED_ASSLINE = registerMetaTileEntity(++id, new MetaTileEntityAdvancedAssline(gcylId("advanced_assline")));
     }
 }

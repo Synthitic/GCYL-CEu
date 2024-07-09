@@ -216,13 +216,9 @@ public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implem
             if (energyContainer instanceof EnergyContainerList) {
                 long voltage;
                 long amperage;
-                if (energyContainer.getInputVoltage() > energyContainer.getOutputVoltage()) {
-                    voltage = energyContainer.getInputVoltage();
-                    amperage = energyContainer.getInputAmperage();
-                } else {
-                    voltage = energyContainer.getOutputVoltage();
-                    amperage = energyContainer.getOutputAmperage();
-                }
+
+                voltage = energyContainer.getInputVoltage();
+                amperage = energyContainer.getInputAmperage();
 
                 return amperage == 1L ? Math.min(GTValues.V[GTUtility.getFloorTierByVoltage(voltage)], GTValues.V[GTValues.ZPM]) : Math.min(voltage, GTValues.V[GTValues.ZPM]);
             } else {

@@ -5,6 +5,8 @@ import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
 import com.fulltrix.gcyl.blocks.GCYLMultiblockCasing2;
 import com.fulltrix.gcyl.blocks.component_al.GCYLComponentALCasing;
 import com.fulltrix.gcyl.blocks.fusion.GCYLFusionCoils;
+import com.fulltrix.gcyl.machines.GCYLTileEntities;
+import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ModHandler;
@@ -521,6 +523,21 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .fluidInputs(Naquadria.getFluid(L * 16))
                 .fluidInputs(Lubricant.getFluid(5000))
                 .buildAndRegister();
+
+        //Advanced Assembly Line
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.LuV]).duration(1200)
+                .outputs(ADVANCED_ASSLINE.getStackForm())
+                .inputs(ASSEMBLY_LINE.getStackForm())
+                .inputs(GCYMMetaTileEntities.PARALLEL_HATCH[1].getStackForm(16))
+                .inputs(EMITTER_ZPM.getStackForm(4))
+                .inputs(ROBOT_ARM_ZPM.getStackForm(8))
+                .inputs(CONVEYOR_MODULE_ZPM.getStackForm(8))
+                .fluidInputs(SolderingAlloy.getFluid(L * 16))
+                .fluidInputs(Lubricant.getFluid(2500))
+                .scannerResearch(ASSEMBLY_LINE.getStackForm())
+                .buildAndRegister();
+
+
 
 
         /*
