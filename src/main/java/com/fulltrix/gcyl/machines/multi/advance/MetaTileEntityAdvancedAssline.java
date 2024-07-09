@@ -78,8 +78,10 @@ import static gregtech.api.capability.GregtechDataCodes.STRUCTURE_FORMED;
 import static gregtech.api.recipes.logic.OverclockingLogic.standardOverclockingLogic;
 import static gregtech.api.util.RelativeDirection.*;
 
+//TODO finish tooltip coloring
 public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController {
 
+    private static final int HANG_DURATION = 100;
     private static final ResourceLocation LASER_LOCATION = gcylId("textures/fx/laser/laser.png");
     private static final ResourceLocation LASER_HEAD_LOCATION = gcylId("textures/fx/laser/laser_start.png");
 
@@ -359,6 +361,8 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
     public NBTTagCompound writeToNBT(NBTTagCompound data) {
         super.writeToNBT(data);
         data.setInteger("parallel", this.recipeMapWorkable.getParallelLimit());
+        data.setInteger("wait", ((AdvancedAsslineRecipeLogic) this.recipeMapWorkable).wait);
+        data.setBoolean("hang", ((AdvancedAsslineRecipeLogic) this.recipeMapWorkable).hang);
         return data;
     }
 
@@ -366,6 +370,8 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
     public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
         ((AdvancedAsslineRecipeLogic) this.recipeMapWorkable).parallelCount = data.getInteger("parallel");
+        ((AdvancedAsslineRecipeLogic) this.recipeMapWorkable).wait = data.getInteger("wait");
+        ((AdvancedAsslineRecipeLogic) this.recipeMapWorkable).hang = data.getBoolean("hang");
     }
 
     @Override
@@ -431,10 +437,12 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, @NotNull List<String> tooltip,
                                boolean advanced) {
+        tooltip.add(I18n.format("gcyl.machine.advanced_assline.tooltip.8"));
         tooltip.add(I18n.format("gcyl.machine.advanced_assline.tooltip.1"));
         tooltip.add(I18n.format("gcyl.machine.advanced_assline.tooltip.2"));
         tooltip.add(I18n.format("gcyl.machine.advanced_assline.tooltip.6"));
         tooltip.add(I18n.format("gcyl.machine.advanced_assline.tooltip.3"));
+        tooltip.add(I18n.format("gcyl.machine.advanced_assline.tooltip.9"));
         tooltip.add(I18n.format("gcyl.machine.advanced_assline.tooltip.7"));
         tooltip.add(I18n.format("gcyl.machine.advanced_assline.tooltip.4"));
         tooltip.add(I18n.format("gcyl.machine.advanced_assline.tooltip.5"));
@@ -464,6 +472,8 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
 
         private final MetaTileEntityAdvancedAssline advancedAssline;
         private int parallelCount = 1;
+        private boolean hang = false;
+        private int wait = 0;
 
         public AdvancedAsslineRecipeLogic(RecipeMapMultiblockController metaTileEntity) {
             super(metaTileEntity);
@@ -478,6 +488,18 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
         @Override
         public void updateWorkable() {
             super.updateWorkable();
+            if(wait > 0 && !isWorkingEnabled()) {
+                wait--;
+            }
+
+            if(hang && isActive()) {
+                this.setWorkingEnabled(false);
+                hang = false;
+            }
+            else if(wait == 0) {
+                this.setWorkingEnabled(true);
+            }
+
             if(!advancedAssline.isActive()) {
                 parallelCount = 1;
             }
@@ -523,6 +545,11 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
         }
 
         @Override
+        protected void modifyOverclockPre(@NotNull int[] values, @NotNull IRecipePropertyStorage storage) {
+            values[1] = (int) (values[1] * 1.2);
+        }
+
+        @Override
         public long getMaximumOverclockVoltage() {
             IEnergyContainer energyContainer = advancedAssline.getEnergyContainer();
             return (long) ((energyContainer.getInputVoltage() * (energyContainer.getInputAmperage() == 2 ? 1 : energyContainer.getInputAmperage())) * ((double) parallelCount / (getAbilities(MultiblockAbility.IMPORT_ITEMS).size())));
@@ -563,6 +590,12 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
             return true;
         }
 
+        private void hangMachine() {
+            parallelCount = 1;
+            hang = true;
+            wait = HANG_DURATION;
+        }
+
         @Override
         protected boolean setupAndConsumeRecipeInputs(@NotNull Recipe recipe,
                                                       @NotNull IItemHandlerModifiable importInventory,
@@ -572,6 +605,7 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
             modifyOverclockPost(overclockResults, recipe.getRecipePropertyStorage());
 
             if (!hasEnoughPower(overclockResults)) {
+                hangMachine();
                 return false;
             }
 
@@ -605,7 +639,7 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
                 }
 
                 if(!checkParallelRecipe(recipe)) {
-                    parallelCount = 1;
+                    hangMachine();
                     return false;
                 }
 
@@ -617,32 +651,6 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
         }
 
         protected void consumeInputs(Recipe recipe) {
-            if (!ConfigHolder.machines.orderedAssembly) {
-                recipe.matches(true, getImportItems(), getImportFluids());
-                return;
-            }
-
-            /*
-
-            List<GTRecipeInput> ingredients = recipe.getInputs();
-            List<IItemHandlerModifiable> buses = getAbilities(MultiblockAbility.IMPORT_ITEMS);
-
-            IItemHandlerModifiable bus = buses.get(0);
-
-            for (GTRecipeInput ingredient : ingredients) {
-                int amount = ingredient.getAmount();
-                for (int j = 0; j < bus.getSlots(); j++) {
-                    ItemStack stack = bus.getStackInSlot(j);
-                    if (ingredient.acceptsStack(stack)) {
-                        amount -= bus.extractItem(j, amount, false).getCount();
-                    }
-                    if (amount == 0) break;
-                }
-            }
-
-             */
-
-
 
             List<GTRecipeInput> ingredients = recipe.getInputs();
             List<IItemHandlerModifiable> buses = getAbilities(MultiblockAbility.IMPORT_ITEMS);

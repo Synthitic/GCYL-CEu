@@ -5198,11 +5198,13 @@ gcyl.material.hot_lead=Hot Liquid Lead
 gcyl.material.hot_boron_trioxide=Irradiated Hot Liquid Boron Trioxide
 
 gcyl.machine.advanced_assline.name=Advanced Assembly Line (AAL)
+gcyl.machine.advanced_assline.tooltip.8=Base Recipe Duration is 20%% Longer.
 gcyl.machine.advanced_assline.tooltip.1=Maximum Parallel is equal to the Length.
 gcyl.machine.advanced_assline.tooltip.2=Ramps up its Parallel while Running.
 gcyl.machine.advanced_assline.tooltip.6=Minimum length of recipe input count required to run!
 gcyl.machine.advanced_assline.tooltip.3=Each Input Bus must be populated with items or the machine will Pause!
+gcyl.machine.advanced_assline.tooltip.9=If Full Parallel cannot be done on next run, machine will Hang for a Time!
 gcyl.machine.advanced_assline.tooltip.7=Uses Recipe EU/t * Current Parallel
 gcyl.machine.advanced_assline.tooltip.4=Overclocks start at 4.3x EU/t and increase by .3 per additional overclock.
-gcyl.machine.advanced_assline.tooltip.5=4.3 x 4.6 x 4.9 x ...
+gcyl.machine.advanced_assline.tooltip.5=4.3 x 4.6 x 4.9 x . . .
 
