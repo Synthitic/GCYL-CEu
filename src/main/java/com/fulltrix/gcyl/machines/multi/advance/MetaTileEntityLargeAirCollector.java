@@ -20,6 +20,7 @@ import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.recipeproperties.IRecipePropertyStorage;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
+import gregtech.client.utils.TooltipHelper;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockCleanroomCasing;
 import gregtech.common.blocks.MetaBlocks;
@@ -138,6 +139,13 @@ public class MetaTileEntityLargeAirCollector extends GCYMRecipeMapMultiblockCont
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(I18n.format("gcyl.machine.large_air_collector.tooltip.1"));
+
+        if (TooltipHelper.isCtrlDown()) {
+            tooltip.add(I18n.format("gcyl.machine.large_air_collector.tooltip.2"));
+            tooltip.add(I18n.format("gcyl.machine.large_air_collector.tooltip.3"));
+        } else {
+            tooltip.add(I18n.format("gregtech.machine.cleanroom.tooltip.hold_ctrl"));
+        }
     }
 
     private class LargeAirCollectorRecipeLogic extends GCYMMultiblockRecipeLogic {

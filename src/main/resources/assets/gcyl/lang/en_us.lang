@@ -5019,7 +5019,9 @@ gcyl.machine.wireless_data_hatch.tooltip.4=Every 60 seconds, it will retrieve Da
 gcyl.multiblock.wireless_pss.not_enough_coolant=Not Enough Coolant!
 
 gcyl.machine.large_air_collector.name=Large Gas Collector (LGC)
-gcyl.machine.large_air_collector.tooltip.1=Gains §fDuration§7 and §fEU/t§7 bonuses depending on §fFilter Tier§7.
+gcyl.machine.large_air_collector.tooltip.1=Gains §fDuration§7 and §eEU/t§7 bonuses depending on §bFilter Tier§7.
+gcyl.machine.large_air_collector.tooltip.2=§fDuration§7 Bonus: Base §fDuration§7 / §bFilter Tier§7
+gcyl.machine.large_air_collector.tooltip.3=§eEU/t§7 Bonus: Base §eEU/t§7 / §bFilter Tier§7
 
 gcyl.machine.large_fisher.name=Large Fisher (LF)
 gcyl.machine.large_fisher.tooltip.1=Requires being in one of these §fBiomes§7:
@@ -5194,3 +5196,5 @@ gcyl.material.hot_mercury=Hot Mercury
 gcyl.material.hot_tin=Hot Liquid Tin
 gcyl.material.hot_lead=Hot Liquid Lead
 gcyl.material.hot_boron_trioxide=Irradiated Hot Liquid Boron Trioxide
+
+gcyl.machine.advanced_assline.name=Advanced Assembly Line (AAL)
