@@ -534,7 +534,9 @@ public class MultiblockCraftingRecipes { //TODO: finish this, add research
                 .inputs(CONVEYOR_MODULE_ZPM.getStackForm(8))
                 .fluidInputs(SolderingAlloy.getFluid(L * 16))
                 .fluidInputs(Lubricant.getFluid(2500))
-                .scannerResearch(ASSEMBLY_LINE.getStackForm())
+                .scannerResearch(b -> b
+                        .researchStack(ASSEMBLY_LINE.getStackForm())
+                        .EUt(GTValues.VA[GTValues.ZPM]))
                 .buildAndRegister();
 
 
