@@ -1190,6 +1190,7 @@ public class GCYLMaterials {
     public static Material HotLiquidTin;
     public static Material HotLiquidLead;
     public static Material HotLiquidBoronTrioxide;
+    public static Material Placeholder;
 
     //COILS
     public static Material Pikyonium;
@@ -10740,6 +10741,11 @@ public class GCYLMaterials {
                 .components(BoronTrioxide, 1)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
                 .iconSet(FLUID)
+                .build();
+
+        Placeholder = new Material.Builder(32766, gcylId("placeholder"))
+                .liquid(new FluidBuilder().disableBucket())
+                .color(0xFFFFFF)
                 .build();
 
         /*

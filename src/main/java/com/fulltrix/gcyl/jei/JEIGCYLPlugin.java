@@ -3,25 +3,31 @@ package com.fulltrix.gcyl.jei;
 
 import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.Tags;
+import com.fulltrix.gcyl.api.worldgen.VirtualOreDepositDefinition;
+import com.fulltrix.gcyl.api.worldgen.WorldGenRegister;
 import com.fulltrix.gcyl.jei.category.SpaceMiningCategory;
 import com.fulltrix.gcyl.jei.category.SpacePumpCategory;
+import com.fulltrix.gcyl.jei.category.VirtualOresCategory;
 import com.fulltrix.gcyl.jei.category.VoidMinerCategory;
 import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import com.fulltrix.gcyl.machines.multi.multiblockpart.MetaTileEntityWirelessEnergyHatch;
 import com.fulltrix.gcyl.recipes.categories.elevator.SpaceMiningRecipes;
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
+import gregtech.api.GTValues;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.category.GTRecipeCategory;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
 import mezz.jei.api.*;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -58,6 +64,7 @@ public class JEIGCYLPlugin implements IModPlugin {
         registry.addRecipeCategories(new SpaceMiningCategory(registry.getJeiHelpers().getGuiHelper()));
         registry.addRecipeCategories(new SpacePumpCategory(registry.getJeiHelpers().getGuiHelper()));
         registry.addRecipeCategories(new VoidMinerCategory(registry.getJeiHelpers().getGuiHelper()));
+        registry.addRecipeCategories(new VirtualOresCategory(registry.getJeiHelpers().getGuiHelper()));
 
         @Nullable GTRecipeCategory category = GTRecipeCategory.getByName(RecipeMaps.BLAST_RECIPES.unlocalizedName);
         if (category != null) {
@@ -71,6 +78,22 @@ public class JEIGCYLPlugin implements IModPlugin {
         itemBlacklist = registry.getJeiHelpers().getIngredientBlacklist();
         iItemRegistry = registry.getIngredientRegistry();
 
+        //VIRTUAL ORES
+        List<VirtualOreDepositDefinition> virtualVeins = WorldGenRegister.getVirtualOreDepositDefinitions();
+        List<VirtualOresInfo> virtualOresInfos = new ArrayList<>();
+        for(VirtualOreDepositDefinition definition : virtualVeins) {
+            virtualOresInfos.add(new VirtualOresInfo(definition));
+        }
+
+        String virtualVeinSpawnID = Tags.MODID + ":" + "virtual_ores";
+        registry.addRecipes(virtualOresInfos, virtualVeinSpawnID);
+        registry.addRecipeCatalyst(MetaItems.PROSPECTOR_LV.getStackForm(), virtualVeinSpawnID);
+        registry.addRecipeCatalyst(MetaItems.PROSPECTOR_HV.getStackForm(), virtualVeinSpawnID);
+        registry.addRecipeCatalyst(MetaItems.PROSPECTOR_LUV.getStackForm(), virtualVeinSpawnID);
+
+
+
+        //SPACE MINING
         String spaceMineID = Tags.MODID + ":" + "space_mining";
         List<SpaceMiningInfo> spaceMiningInfo1 = new ArrayList<>();
         List<SpaceMiningInfo> spaceMiningInfo2 = new ArrayList<>();
@@ -210,8 +233,6 @@ public class JEIGCYLPlugin implements IModPlugin {
         }
 
 
-
-
         //The list has to be in this order for some godforsaken reason TODO: make it work on manganese phosphide all the way. hide fluids
         //hide old superconductors
         List<Material> oldSuperConductors = Arrays.asList(UraniumTriplatinum, RutheniumTriniumAmericiumNeutronate, EnrichedNaquadahTriniumEuropiumDuranide, UraniumRhodiumDinaquadide,
@@ -220,7 +241,6 @@ public class JEIGCYLPlugin implements IModPlugin {
         for(Material mat : oldSuperConductors) {
             superConductorRemoval(mat);
         }
-
 
     }
 

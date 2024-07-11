@@ -4,6 +4,9 @@ import com.fulltrix.gcyl.api.recipes.CachedRecipes;
 import com.fulltrix.gcyl.api.util.VirtualContainerRegistry;
 import com.fulltrix.gcyl.api.util.VirtualEnergyRegistry;
 import com.fulltrix.gcyl.api.util.VirtualResearchRegistry;
+import com.fulltrix.gcyl.api.worldgen.PacketVirtualOreVeinList;
+import com.fulltrix.gcyl.api.worldgen.VirtualOreVeinHandler;
+import com.fulltrix.gcyl.api.worldgen.VirtualOreVeinSaveData;
 import com.fulltrix.gcyl.blocks.component_al.GCYLComponentALCasing;
 import com.fulltrix.gcyl.blocks.elevator.ElevatorCasingTiered;
 import com.fulltrix.gcyl.blocks.metal.GCYLCleanroomCasing;
@@ -14,14 +17,19 @@ import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import gregtech.GTInternalTags;
 import gregtech.api.GregTechAPI;
 import gregtech.api.cover.CoverDefinition;
+import gregtech.api.worldgen.bedrockFluids.BedrockFluidVeinHandler;
+import gregtech.api.worldgen.bedrockFluids.BedrockFluidVeinSaveData;
 import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.relauncher.Side;
 
 import java.io.IOException;
 
@@ -68,7 +76,7 @@ public class GCYLCore {
         HEATING_COILS.remove(MetaBlocks.WIRE_COIL.getState(BlockWireCoil.CoilType.TRINIUM),BlockWireCoil.CoilType.TRINIUM);
         HEATING_COILS.remove(MetaBlocks.WIRE_COIL.getState(BlockWireCoil.CoilType.TRITANIUM),BlockWireCoil.CoilType.TRITANIUM);
 
-
+        GregTechAPI.networkHandler.registerPacket(PacketVirtualOreVeinList.class);
     }
 
     @EventHandler
@@ -85,11 +93,32 @@ public class GCYLCore {
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit();
+
+        VirtualOreVeinHandler.recalculateChances(true);
+
     }
 
     @EventHandler
     // register server commands in this event handler (Remove if not needed)
     public void serverStarting(FMLServerStartingEvent event) {
+    }
+
+    @EventHandler
+    public void serverStarted(FMLServerStartedEvent event) {
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
+            World world = FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld();
+            if (!world.isRemote) {
+                VirtualOreVeinSaveData saveData = (VirtualOreVeinSaveData) world
+                        .loadData(VirtualOreVeinSaveData.class, VirtualOreVeinSaveData.dataName);
+                if (saveData == null) {
+                    saveData = new VirtualOreVeinSaveData(VirtualOreVeinSaveData.dataName);
+                    world.setData(VirtualOreVeinSaveData.dataName, saveData);
+                    // the save data does not yet exist, use the latest version number
+                    VirtualOreVeinHandler.saveDataVersion = VirtualOreVeinHandler.MAX_VIRTUAL_ORE_SAVE_DATA_VERSION;
+                }
+                VirtualOreVeinSaveData.setInstance(saveData);
+            }
+        }
     }
 
     static {

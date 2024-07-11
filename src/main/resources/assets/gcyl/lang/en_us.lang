@@ -5208,3 +5208,12 @@ gcyl.machine.advanced_assline.tooltip.7=Uses Recipe EU/t * Current Parallel
 gcyl.machine.advanced_assline.tooltip.4=Overclocks start at 4.3x EU/t and increase by .3 per additional overclock.
 gcyl.machine.advanced_assline.tooltip.5=4.3 x 4.6 x 4.9 x . . .
 
+behavior.tricorder.virtual_ore.amount=Ore In Layer %s: %s %s - %s%%
+
+metaitem.prospector.mode.virtual_ores=§dVirtual Ore Prospection Mode
+
+terminal.prospector.virtual_ores=Virtual Ore Deposit Data
+terminal.prospector.virtual_ores.info=L%s: %s %s - %s%%
+gcyl.jei.virtual_layer=L%s: %s %s - %s
+virtual_ores.name=Virtual Ores
+behavior.tricorder.virtual_ore.amount_unknown=Ore In Layer %s: %s%%

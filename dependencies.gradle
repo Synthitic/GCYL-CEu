@@ -36,4 +36,8 @@ dependencies {
     compileOnlyApi rfg.deobf("curse.maven:modularui-624243:5153413")
     compileOnlyApi rfg.deobf("curse.maven:galacticraft-legacy-564236:4671122")
     api("com.cleanroommc:modularui:2.4.3")
+
+    compileOnly("curse.maven:journeymap-32274:5172461") // Journeymap 5.7.1p3
+    compileOnly("curse.maven:voxelmap-225179:3029445") // VoxelMap 1.9.28
+    compileOnly("curse.maven:xaeros-263420:5394758") // Xaero's Minimap 24.2.0
 }
