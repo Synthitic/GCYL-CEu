@@ -2,24 +2,24 @@ package com.fulltrix.gcyl;
 
 import com.fulltrix.gcyl.api.recipes.CachedRecipes;
 import com.fulltrix.gcyl.api.recipes.GCYLMaterialRecipeHandler;
+import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import com.fulltrix.gcyl.api.recipes.MixerPropertyAddition;
+import com.fulltrix.gcyl.api.recipes.properties.AdvFusionCoilProperty;
 import com.fulltrix.gcyl.api.recipes.properties.ComponentALProperty;
 import com.fulltrix.gcyl.api.util.VirtualContainerRegistry;
 import com.fulltrix.gcyl.api.util.VirtualEnergyRegistry;
 import com.fulltrix.gcyl.api.util.VirtualResearchRegistry;
 import com.fulltrix.gcyl.api.worldgen.VirtualOreVeinSaveData;
+import com.fulltrix.gcyl.api.worldgen.WorldGenRegister;
 import com.fulltrix.gcyl.item.GCYLCoreItems;
 import com.fulltrix.gcyl.materials.GCYLMaterialOverride;
 import com.fulltrix.gcyl.materials.GCYLMaterials;
 import com.fulltrix.gcyl.recipes.RecipeHandler;
-import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import com.fulltrix.gcyl.recipes.categories.RecipeOverrideLate;
 import com.fulltrix.gcyl.recipes.categories.handlers.ElectricImplosionHandler;
 import com.fulltrix.gcyl.recipes.categories.handlers.FuelHandler;
 import com.fulltrix.gcyl.recipes.categories.handlers.VoidMinerHandler;
 import com.fulltrix.gcyl.recipes.helper.GCYLComponents;
-import com.fulltrix.gcyl.api.recipes.properties.AdvFusionCoilProperty;
-import com.fulltrix.gcyl.api.worldgen.WorldGenRegister;
 import gregicality.multiblocks.common.GCYMConfigHolder;
 import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
@@ -32,7 +32,6 @@ import gregtech.api.unification.material.event.MaterialEvent;
 import gregtech.api.unification.material.event.MaterialRegistryEvent;
 import gregtech.api.unification.material.event.PostMaterialEvent;
 import gregtech.common.ConfigHolder;
-import gregtech.common.terminal.app.prospector.ProspectorMode;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -41,7 +40,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
-import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -59,7 +57,6 @@ import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.*;
 public class CommonProxy {
     public void preInit() {
         GCYLCoreItems.init();
-        //EnumHelper.addEnum(ProspectorMode.class, "VIRTUAL_ORE", new Class[]{String.class, String.class}, "virtual_ore_prospector", "metaitem.prospector.mode.fluid");
     }
 
     public void postInit() {

@@ -18,6 +18,7 @@ import com.fulltrix.gcyl.machines.multi.generator.MetaTileEntityLargeRocketEngin
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityDeepMiner;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityLaserMiner;
 import com.fulltrix.gcyl.machines.multi.miner.MetaTileEntityVoidMiner;
+import com.fulltrix.gcyl.machines.multi.miner.virtual.MetaTileEntityPrimitiveVirtual;
 import com.fulltrix.gcyl.machines.multi.multiblockpart.*;
 import com.fulltrix.gcyl.machines.multi.simple.*;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
@@ -93,6 +94,9 @@ public class GCYLTileEntities {
     public static MetaTileEntityAssemblerModule[] ASSEMBLER_MODULE = new MetaTileEntityAssemblerModule[3];
 
     public static MetaTileEntityAdvancedAssline ADVANCED_ASSLINE;
+
+    public static MetaTileEntityDrillHolder DRILL_HOLDER;
+    public static MetaTileEntityPrimitiveVirtual PRIMITIVE_VIRTUAL_MINER;
 
 
     public static int id = 0;
@@ -238,5 +242,8 @@ public class GCYLTileEntities {
         id+=10;
 
         ADVANCED_ASSLINE = registerMetaTileEntity(++id, new MetaTileEntityAdvancedAssline(gcylId("advanced_assline")));
+
+        DRILL_HOLDER = registerMetaTileEntity(++id, new MetaTileEntityDrillHolder(gcylId("drill_holder")));
+        PRIMITIVE_VIRTUAL_MINER = registerMetaTileEntity(++id, new MetaTileEntityPrimitiveVirtual(gcylId("primitive_virtual_miner")));
     }
 }

@@ -17,10 +17,8 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import scala.Int;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class VirtualOreVeinHandler {
 
@@ -63,6 +61,10 @@ public class VirtualOreVeinHandler {
                         }
                     }
                 }
+            }
+
+            if(definition == null) {
+                return null;
             }
 
             ObjectList<Integer> maximumYields = new ObjectArrayList<>();
@@ -181,7 +183,7 @@ public class VirtualOreVeinHandler {
         if (definition == null)
             return;
 
-        info.decreaseOperations(1, layer);
+        info.decreaseOperations(amount, layer);
         VirtualOreVeinSaveData.setDirty();
     }
 
@@ -209,7 +211,7 @@ public class VirtualOreVeinHandler {
 
         public VirtualOreDepositDefinition getDefinition() {return this.vein;}
 
-        public ObjectList<Integer>  getYield() {
+        public ObjectList<Integer> getYield() {
             return this.yield;
         }
 
@@ -238,8 +240,20 @@ public class VirtualOreVeinHandler {
         @NotNull
         public static VirtualOreVeinHandler.VirtualOreVeinWorldEntry readFromNBT(@NotNull NBTTagCompound tag) {
             VirtualOreVeinHandler.VirtualOreVeinWorldEntry info = new VirtualOreVeinHandler.VirtualOreVeinWorldEntry();
-            info.yield = (ObjectList<Integer>) Arrays.stream(tag.getIntArray("yield")).boxed().collect(Collectors.toList());
-            info.operationsRemaining = (ObjectList<Integer>) Arrays.stream(tag.getIntArray("operationsRemaining")).boxed().collect(Collectors.toList());
+
+            int[] tempYield = tag.getIntArray("yield");
+            int[] operationsRemaining = tag.getIntArray("operationsRemaining");
+
+            ObjectList<Integer> ObjectYield = new ObjectArrayList<>();
+            ObjectList<Integer> ObjectOperationsRemaining = new ObjectArrayList<>();
+
+            for(int i = 0; i < tempYield.length; i++) {
+                ObjectYield.add(tempYield[i]);
+                ObjectOperationsRemaining.add(operationsRemaining[i]);
+            }
+
+            info.yield = ObjectYield;
+            info.operationsRemaining = ObjectOperationsRemaining;
 
             if (tag.hasKey("vein")) {
                 String s = tag.getString("vein");

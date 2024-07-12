@@ -131,17 +131,17 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
         return pattern.build();
     }
     @NotNull
-    protected static IBlockState getCasingState() {
+    private static IBlockState getCasingState() {
         return MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_CONTROL);
     }
 
     @NotNull
-    protected static IBlockState getGrateState() {
+    private static IBlockState getGrateState() {
         return MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.GRATE_CASING);
     }
 
     @NotNull
-    protected static TraceabilityPredicate fluidInputPredicate() {
+    private static TraceabilityPredicate fluidInputPredicate() {
         // block multi-fluid hatches if ordered fluids is enabled
         if (ConfigHolder.machines.orderedFluidAssembly) {
             return metaTileEntities(MultiblockAbility.REGISTRY.get(MultiblockAbility.IMPORT_FLUIDS).stream()
@@ -153,7 +153,7 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
     }
 
     @NotNull
-    protected static TraceabilityPredicate dataHatchPredicate() {
+    private static TraceabilityPredicate dataHatchPredicate() {
         // if research is enabled, require the data hatch, otherwise use a grate instead
         if (ConfigHolder.machines.enableResearch) {
             return abilities(MultiblockAbility.DATA_ACCESS_HATCH, MultiblockAbility.OPTICAL_DATA_RECEPTION)

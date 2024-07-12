@@ -34,17 +34,15 @@ public class MixinTricorderBehavior {
             for (int i = 0; i < materials.size(); i++) {
                 Material material = materials.get(i);
                 if (material != null) {
-                    MaterialStack stack = new MaterialStack(material,
-                            VirtualOreVeinHandler.getOperationsRemaining(world, pos.getX() / 16, pos.getZ() / 16).get(i));
-
+                    int operationsRemaining = VirtualOreVeinHandler.getOperationsRemaining(world, pos.getX() / 16, pos.getZ() / 16).get(i);
                     int yield = VirtualOreVeinHandler.getYield(world, pos.getX() / 16, pos.getZ() / 16).get(i);
-                    double materialPercent = stack.amount * 100.0 / yield;
+                    double materialPercent = operationsRemaining * 100.0 / yield;
 
                     if (player.isCreative()) {
                         list.add(new TextComponentTranslation("behavior.tricorder.virtual_ore.amount", i + 1,
                                 new TextComponentTranslation(material.getLocalizedName())
                                         .setStyle(new Style().setColor(TextFormatting.GOLD)),
-                                new TextComponentTranslation(String.valueOf(yield))
+                                new TextComponentTranslation(String.valueOf(operationsRemaining))
                                         .setStyle(new Style().setColor(TextFormatting.GOLD)),
                                 new TextComponentTranslation(String.valueOf(materialPercent))
                                         .setStyle(new Style().setColor(TextFormatting.YELLOW))));
