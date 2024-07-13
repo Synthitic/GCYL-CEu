@@ -27,12 +27,12 @@ public class NewPlatinumGroupMetals {
 
     private static void initial() {
 
-        ELECTROLYZER_RECIPES.recipeBuilder().duration(100).EUt(VA[EV])
+        CENTRIFUGE_RECIPES.recipeBuilder().duration(100).EUt(VA[EV])
                 .input(dust, PlatinumMetallicPowder)
                 .chancedOutput(dust, PlatinumGroupSludge, 2500, 1000)
                 .buildAndRegister();
 
-        ELECTROLYZER_RECIPES.recipeBuilder().duration(100).EUt(VA[EV])
+        CENTRIFUGE_RECIPES.recipeBuilder().duration(100).EUt(VA[EV])
                 .input(dust, PalladiumMetallicPowder)
                 .chancedOutput(dust, PlatinumGroupSludge, 2500, 1000)
                 .buildAndRegister();

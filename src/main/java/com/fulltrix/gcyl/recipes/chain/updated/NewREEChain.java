@@ -18,6 +18,14 @@ public class NewREEChain {
         Bastnasite();
         Monazite();
         Xenotime();
+
+        CENTRIFUGE_RECIPES.recipeBuilder().duration(400).EUt(480)
+                .input(dust, RareEarth, 3)
+                .chancedOutput(dust, Monazite, 2500, 1000)
+                .chancedOutput(dust, Xenotime, 2500, 1000)
+                .chancedOutput(dust, Bastnasite, 2500, 1000)
+                .buildAndRegister();
+
     }
 
     private static void Bastnasite() {
