@@ -1,14 +1,15 @@
 package com.fulltrix.gcyl.recipes;
 
+import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.recipes.categories.*;
 import com.fulltrix.gcyl.recipes.categories.circuits.CircuitRecipes;
-import com.fulltrix.gcyl.recipes.categories.DeepMinerRecipes;
-import com.fulltrix.gcyl.recipes.categories.GreenhouseRecipes;
 import com.fulltrix.gcyl.recipes.categories.elevator.SpaceMiningRecipes;
 import com.fulltrix.gcyl.recipes.categories.elevator.SpacePumpRecipes;
 import com.fulltrix.gcyl.recipes.categories.machines.MachineCraftingRecipes;
 import com.fulltrix.gcyl.recipes.categories.machines.MultiblockPartCraftingRecipes;
 import com.fulltrix.gcyl.recipes.chain.*;
+import com.fulltrix.gcyl.recipes.chain.updated.NewPlatinumGroupMetals;
+import com.fulltrix.gcyl.recipes.chain.updated.NewREEChain;
 
 public class RecipeHandler {
     public static void initRecipes() {
@@ -43,7 +44,20 @@ public class RecipeHandler {
 
         NuclearChain.init();
         Batteries.init();
-        PlatinumSludgeGroupChain.init();
+
+        if(GCYLConfig.recipes.useNewPlatinumChain)
+            NewPlatinumGroupMetals.init();
+        else
+            PlatinumSludgeGroupChain.init();
+
+
+        if(GCYLConfig.recipes.useNewREEChain)
+            NewREEChain.init();
+        else
+            REEChain.init();
+
+
+
         TungstenChain.init();
         UHVMaterials.init();
         PolymerChain.init();
@@ -60,7 +74,7 @@ public class RecipeHandler {
         TaraniumChain.init();
         SensorEmitter.init();
         RheniumChain.init();
-        REEChain.init();
+
         OrganometallicChains.init();
         VariousChains.init();
         AluminiumChain.init();

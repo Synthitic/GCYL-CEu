@@ -174,6 +174,16 @@ public class GCYLConfig {
         @Config.Comment({"How many Multiblock Casings to make per craft. Overrides the default GT Option", "Default: 1"})
         @Config.RequiresMcRestart
         public int gcylCasingsPerCraftOverride = 1;
+
+        @Config.Comment({"Whether to use the new Platinum Group Line instead of Legacy.", "Default: true"})
+        @Config.Name("New Platinum Chain")
+        @Config.RequiresMcRestart
+        public boolean useNewPlatinumChain = true;
+
+        @Config.Comment({"Whether to use the new Rare Earth Processing instead of Legacy.", "Default: true"})
+        @Config.Name("New REE Chain")
+        @Config.RequiresMcRestart
+        public boolean useNewREEChain = true;
     }
 
     @Config.Comment("Config options for space")

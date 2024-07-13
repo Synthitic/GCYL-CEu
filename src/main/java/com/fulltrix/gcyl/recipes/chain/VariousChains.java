@@ -39,17 +39,6 @@ public class VariousChains {
                 .fluidOutputs(UUMatter.getFluid(1000))
                 .buildAndRegister();
 
-        // Sodium Hypochlorite =========================================================================================
-        // 2NaOH + 2Cl -> H2O + NaCl + NaClO
-        LARGE_CHEMICAL_RECIPES.recipeBuilder().duration(80).EUt(120)
-                .fluidInputs(Chlorine.getFluid(2000))
-                .input(dust, SodiumHydroxide, 6)
-                .fluidOutputs(Water.getFluid(1000))
-                .output(dust, Salt, 2)
-                .output(dust, SodiumHypochlorite, 3)
-                .circuitMeta(6)
-                .buildAndRegister();
-
         // HClO + NaOH -> H2O + NaClO
         CHEMICAL_RECIPES.recipeBuilder().duration(90).EUt(120)
                 .fluidInputs(HypochlorousAcid.getFluid(1000))

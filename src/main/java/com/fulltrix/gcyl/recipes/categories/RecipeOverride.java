@@ -4,7 +4,6 @@ import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import gregtech.api.GTValues;
-import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.items.armor.ArmorMetaItem;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.ModHandler;
@@ -24,16 +23,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import static com.fulltrix.gcyl.api.GCYLUtility.getAssLineResearchBuilder;
+import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.CRYOGENIC_FREEZER;
 import static com.fulltrix.gcyl.machines.GCYLTileEntities.VOLCANUS;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
-import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static gregicality.multiblocks.api.recipes.GCYMRecipeMaps.ALLOY_BLAST_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
-import static gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities.*;
+import static gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities.MEGA_BLAST_FURNACE;
+import static gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities.MEGA_VACUUM_FREEZER;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
-import static gregtech.api.recipes.ModHandler.*;
+import static gregtech.api.recipes.ModHandler.removeRecipeByName;
+import static gregtech.api.recipes.ModHandler.removeTieredRecipeByName;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.recipes.ingredients.IntCircuitIngredient.getIntegratedCircuit;
 import static gregtech.api.unification.material.MarkerMaterials.Color.*;
@@ -43,13 +44,10 @@ import static gregtech.common.blocks.BlockFusionCasing.CasingType.FUSION_COIL;
 import static gregtech.common.blocks.BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL;
 import static gregtech.common.blocks.BlockMetalCasing.MetalCasingType.ALUMINIUM_FROSTPROOF;
 import static gregtech.common.blocks.MetaBlocks.*;
-import static gregtech.common.items.MetaItems.*;
-import static gregtech.common.items.MetaItems.ENERGY_CLUSTER;
-import static gregtech.common.items.MetaItems.ENERGY_MODULE;
 import static gregtech.common.items.MetaItems.GRAVITATION_ENGINE;
+import static gregtech.common.items.MetaItems.*;
 import static gregtech.common.metatileentities.MetaTileEntities.*;
 import static gregtech.integration.crafttweaker.recipe.CTRecipeUtils.removeAll;
-import static gregtech.loaders.recipe.CraftingComponent.CASING;
 
 public class RecipeOverride {
     public static void init() {

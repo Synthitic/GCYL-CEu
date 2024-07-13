@@ -10,12 +10,13 @@ import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.builders.AssemblyLineRecipeBuilder;
+import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Material;
+import gregtech.api.unification.ore.OrePrefix;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
-import scala.MatchError;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,9 @@ import java.util.List;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.Zeron100;
-import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
+import static gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
+import static gregtech.api.recipes.RecipeMaps.EXTRACTOR_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.common.items.MetaItems.*;
 
@@ -46,6 +49,10 @@ public class GCYLUtility {
           case ("plasma") -> FluidStorageKeys.PLASMA;
             default -> null;
         };
+    }
+
+    public static void removeExtractorRecipe(Material material, OrePrefix prefix) {
+        removeRecipesByInputs(EXTRACTOR_RECIPES, OreDictUnifier.get(prefix, material));
     }
 
     public static ItemStack getPowerICStack(int tier) {

@@ -3,7 +3,6 @@ package com.fulltrix.gcyl.materials;
 import gregtech.api.GTValues;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.fluids.store.FluidStorageKeys;
-import gregtech.api.nuclear.fission.FissionReactor;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
@@ -11,7 +10,6 @@ import gregtech.api.unification.material.properties.*;
 import gregtech.api.unification.ore.OrePrefix;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import scala.sys.Prop;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,19 +17,16 @@ import java.util.List;
 
 import static com.fulltrix.gcyl.api.recipes.GCYLMaterialFlags.NO_MIXER_RECIPE;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
-import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
+import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.Plutonium;
 import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
 import static gregtech.api.GTValues.OpV;
 import static gregtech.api.GTValues.UV;
 import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.material.Materials.Duranium;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 import static gregtech.api.unification.material.info.MaterialIconSet.ROUGH;
 import static gregtech.api.unification.ore.OrePrefix.plate;
 import static gregtech.integration.crafttweaker.material.MaterialPropertyExpansion.*;
-import static gregtech.integration.crafttweaker.material.MaterialPropertyExpansion.addFluidPipes;
-import static gregtech.integration.groovy.MaterialPropertyExpansion.addLiquid;
 
 public class GCYLMaterialOverride {
 
@@ -192,11 +187,22 @@ public class GCYLMaterialOverride {
         Collections.addAll(fmats, Sodium, Bromine, AmmoniumChloride, Rubidium, Caesium, Francium, Polonium, Praseodymium, Ytterbium, Neptunium,
                 ProtoAdamantium, Scandium, Radium, MetastableHassium, MetastableFlerovium, MetastableOganesson, HeavyQuarkDegenerateMatter, Dubnium,
                 Sulfur, Calcium, Curium, Bohrium, Seaborgium, Copernicium, Rutherfordium,Meitnerium, Tennessine, Livermorium, Moscovium, Nihonium,
-                Roentgenium, Astatine, Hafnium, RutheniumTetroxide, Lawrencium, Nobelium, Germanium, NeodymiumMagnetic, SamariumMagnetic, Lafium);
+                Roentgenium, Astatine, Hafnium, RutheniumTetroxide, Lawrencium, Nobelium, Germanium, NeodymiumMagnetic, SamariumMagnetic, Lafium, PlatinumGroupSludge);
 
         for (Material mat : fmats) {
             mat.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
             //addLiquid(mat);
+        }
+
+        //GAS Additions
+        List<Material> gmats = new ArrayList<>();
+        Collections.addAll(gmats, OsmiumTetroxide, RutheniumTetroxide);
+        for(Material mat : gmats) {
+            try {
+                mat.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.GAS, new FluidBuilder()));
+            } catch (Exception e) {
+                mat.getProperty(PropertyKey.FLUID).enqueueRegistration(FluidStorageKeys.GAS, new FluidBuilder());
+            }
         }
 
         //SPECIFIC FLUID ADDITIONS

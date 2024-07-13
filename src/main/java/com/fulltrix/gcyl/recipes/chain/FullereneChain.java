@@ -212,6 +212,7 @@ public class FullereneChain {
 
         // KCl + H2O -> KOH + HCl
         CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(1)
                 .input(dust, RockSalt, 2)
                 .fluidInputs(Water.getFluid(1000))
                 .fluidOutputs(PotassiumHydroxide.getFluid(1000))

@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories;
 
+import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.api.recipes.properties.GCYLScanProperty;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
@@ -380,30 +381,35 @@ public class DeepMinerRecipes {
                 .dimension(0)
                 .buildAndRegister();
 
-        DEEP_MINER_RECIPES.recipeBuilder()
-                .notConsumable(minerScanMap.get("deep_platinum"))
-                .circuitMeta(1)
-                .input(SENSOR_ZPM)
-                .input(ELECTRIC_PISTON_ZPM)
-                .fluidInputs(DrillingFluid.getFluid(1024000))
-                .fluidInputs(NitricAcid.getFluid(128000))
-                .output(ore, RarestMetalMixture, 64)
-                .output(ore, RarestMetalMixture, 64)
-                .output(ore, RhodiumSalt, 64)
-                .output(ore, RhodiumSalt, 64)
-                .output(ore, SodiumRuthenate, 64)
-                .output(ore, SodiumRuthenate, 64)
-                .chancedOutput(ore, RarestMetalMixture, 64, 100,2000)
-                .chancedOutput(ore, RarestMetalMixture, 64, 100,2000)
-                .chancedOutput(ore, RhodiumSalt, 64, 100,2000)
-                .chancedOutput(ore, RhodiumSalt, 64, 100,2000)
-                .chancedOutput(ore, SodiumRuthenate, 64, 100,2000)
-                .chancedOutput(ore, SodiumRuthenate, 64, 100,2000)
-                .duration(4000)
-                .EUt(GTValues.VA[GTValues.ZPM])
-                .temperature(8300)
-                .dimension(0)
-                .buildAndRegister();
+        if(GCYLConfig.recipes.useNewPlatinumChain) {
+            //TODO Add this
+        }
+        else {
+            DEEP_MINER_RECIPES.recipeBuilder()
+                    .notConsumable(minerScanMap.get("deep_platinum"))
+                    .circuitMeta(1)
+                    .input(SENSOR_ZPM)
+                    .input(ELECTRIC_PISTON_ZPM)
+                    .fluidInputs(DrillingFluid.getFluid(1024000))
+                    .fluidInputs(NitricAcid.getFluid(128000))
+                    .output(ore, RarestMetalMixture, 64)
+                    .output(ore, RarestMetalMixture, 64)
+                    .output(ore, RhodiumSalt, 64)
+                    .output(ore, RhodiumSalt, 64)
+                    .output(ore, SodiumRuthenate, 64)
+                    .output(ore, SodiumRuthenate, 64)
+                    .chancedOutput(ore, RarestMetalMixture, 64, 100, 2000)
+                    .chancedOutput(ore, RarestMetalMixture, 64, 100, 2000)
+                    .chancedOutput(ore, RhodiumSalt, 64, 100, 2000)
+                    .chancedOutput(ore, RhodiumSalt, 64, 100, 2000)
+                    .chancedOutput(ore, SodiumRuthenate, 64, 100, 2000)
+                    .chancedOutput(ore, SodiumRuthenate, 64, 100, 2000)
+                    .duration(4000)
+                    .EUt(GTValues.VA[GTValues.ZPM])
+                    .temperature(8300)
+                    .dimension(0)
+                    .buildAndRegister();
+        }
 
     }
 

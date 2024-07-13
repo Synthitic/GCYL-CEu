@@ -3,11 +3,15 @@ package com.fulltrix.gcyl.materials;
 //import com.fulltrix.tjfcore.materials.IsotopeMaterial;
 //import com.fulltrix.tjfcore.materials.RadioactiveMaterial;
 
+import com.fulltrix.gcyl.materials.chains.NewPlatinumGroupMaterials;
+import com.fulltrix.gcyl.materials.chains.NewREEMaterials;
 import gregtech.api.GTValues;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
-import gregtech.api.unification.material.properties.*;
+import gregtech.api.unification.material.info.MaterialIconSet;
+import gregtech.api.unification.material.properties.BlastProperty;
+import gregtech.api.unification.material.properties.ToolProperty;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextFormatting;
 
@@ -17,8 +21,6 @@ import java.util.List;
 
 import static com.fulltrix.gcyl.GCYLElements.*;
 import static com.fulltrix.gcyl.api.GCYLUtility.gcylId;
-import static com.fulltrix.gcyl.api.recipes.GCYLMaterialFlags.NO_MIXER_RECIPE;
-import static com.fulltrix.gcyl.materials.GCYLMaterialIconSets.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
 import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
@@ -28,7 +30,6 @@ import static gregtech.api.unification.Elements.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 import static gregtech.api.unification.material.info.MaterialIconSet.*;
-import static gregtech.integration.groovy.MaterialPropertyExpansion.addLiquid;
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_DECONSTRUCTION;
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_REPLICATION;
 import static net.minecraft.util.text.TextFormatting.*;
@@ -1249,6 +1250,10 @@ public class GCYLMaterials {
         registerSuperconductors();
         idSecondary = id+1000;
         register3();
+
+        NewPlatinumGroupMaterials.init();
+        NewREEMaterials.init();
+
         registerSecondaryNuclear();
     }
 
@@ -1697,6 +1702,7 @@ public class GCYLMaterials {
 
         BoricAcid = new Material.Builder(++id, gcylId("boric_acid"))
                 .liquid()
+                .dust()
                 .color(0xD5D2D7)
                 .iconSet(FLUID)
                 .build()
@@ -1725,12 +1731,13 @@ public class GCYLMaterials {
                 .setFormula("Co/AC-AB", true);
 
         SodiumNitrate = new Material.Builder(++id, gcylId("sodium_nitrate"))
-                .dust()
-                .color(0x846684)
-                .iconSet(ROUGH)
+                .color((Sodium.getMaterialRGB() + NitricAcid.getMaterialRGB()) / 2)
+                .iconSet(MaterialIconSet.DULL)
                 .flags(DISABLE_DECOMPOSITION)
-                .components(Sodium, 1, Nitrogen, 1, Oxygen, 3)
-                .flags(DISABLE_REPLICATION).build();
+                .dust()
+                .fluid()
+                .build()
+                .setFormula("NaNO3", true);
 
         SodiumNitrateSolution = new Material.Builder(++id, gcylId("sodium_nitrate_solution"))
                 .liquid()
@@ -1740,11 +1747,12 @@ public class GCYLMaterials {
                 .setFormula("(H2O)NaNO3", true);
 
         SodiumNitrite = new Material.Builder(++id, gcylId("sodium_nitrite"))
+                .color(SodiumNitrate.getMaterialRGB() + 5)
+                .iconSet(MaterialIconSet.DULL)
+                .flags(DISABLE_DECOMPOSITION)
                 .dust()
-                .color((Sodium.getMaterialRGB()+Nitrogen.getMaterialRGB())/2)
-                .iconSet(ROUGH)
                 .build()
-                .setFormula("NaNO2",true);
+                .setFormula("NaNO2", true);
 
         Aniline = new Material.Builder(++id, gcylId("aniline"))
                 .liquid()
@@ -2198,12 +2206,13 @@ public class GCYLMaterials {
                         .build()
                         .setFormula("CCl4",true);
 
-        Butanol= new Material.Builder(++id, gcylId("butanol"))
-                .liquid()
-                .color((FermentedBiomass.getMaterialRGB()+20))
-                .iconSet(FLUID)
+        Butanol = new Material.Builder(++id, gcylId("butanol"))
+                .color(0xf0ebe6)
+                .iconSet(MaterialIconSet.FLUID)
+                .flags(DISABLE_DECOMPOSITION)
+                .fluid()
                 .build()
-                .setFormula("C4H9OH",true);
+                .setFormula("C4H9OH", true);
 
                 ButanolGas = new Material.Builder(++id, gcylId("butanol_gas"))
                         .gas()
@@ -2288,6 +2297,7 @@ public class GCYLMaterials {
 
         PotassiumHydroxide= new Material.Builder(++id, gcylId("potassium_hydroxide"))
                 .liquid()
+                .dust()
                 .color((Potassium.getMaterialRGB()+Hydrogen.getMaterialRGB()+Oxygen.getMaterialRGB())/3)
                 .iconSet(FLUID)
                 .build()
@@ -2831,10 +2841,10 @@ public class GCYLMaterials {
                 .setFormula("KNO2", true);
 
         NitrousAcid = new Material.Builder(++id, gcylId("nitrous_acid"))
-                .liquid(new FluidBuilder().attribute(ACID))
-                .color(0x1e73b0)
-                .iconSet(FLUID)
-                .flags(DISABLE_REPLICATION)
+                .color(0xcaecfc)
+                .iconSet(MaterialIconSet.DULL)
+                .flags(DISABLE_DECOMPOSITION)
+                .fluid()
                 .build()
                 .setFormula("HNO2", true);
 
@@ -2864,10 +2874,11 @@ public class GCYLMaterials {
                 .setFormula("KHSO3", true);
 
         HydroxylammoniumSulfate = new Material.Builder(++id, gcylId("hydroxylammonium_sulfate"))
+                .color(0xfcfcfc)
+                .iconSet(MaterialIconSet.DULL)
+                .flags(DISABLE_DECOMPOSITION)
                 .dust()
-                .color(0xF0EAD6)
-                .iconSet(DULL)
-                .flags(DISABLE_REPLICATION)
+                .fluid()
                 .build()
                 .setFormula("(NH3OH)2SO4", true);
 
@@ -9078,12 +9089,12 @@ public class GCYLMaterials {
                 .setFormula("C20H12O5",true);
 
         SodiumBorohydride = new Material.Builder(++id, gcylId("sodium_borohydride"))
-                .dust()
-                .color(0xc2c2fa)
-                .flags(DISABLE_REPLICATION)
-                .iconSet(ROUGH)
+                .color((Sodium.getMaterialRGB() + Boron.getMaterialRGB()) / 2)
+                .iconSet(MaterialIconSet.FLUID)
+                .flags(DISABLE_DECOMPOSITION)
+                .fluid().dust()
                 .build()
-                .setFormula("NaBH4",true);
+                .setFormula("NaBH4", true);
 
         BoronTrifluorideEtherate = new Material.Builder(++id, gcylId("boron_trifluoride_etherate"))
                 .liquid()
@@ -9626,12 +9637,11 @@ public class GCYLMaterials {
                 .build();
 
         RhodiumNitrate = new Material.Builder(++id, gcylId("rhodium_nitrate"))
-                .dust()
-                .color((SodiumNitrate.getMaterialRGB()+Rhodium.getMaterialRGB())/2)
-                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
-                .iconSet(QUARTZ)
-                .components(Rhodium,1,Ammonia,3)
-                .build();
+                .color((Rhodium.getMaterialRGB() + NitricAcid.getMaterialRGB()) / 2)
+                .flags(DISABLE_DECOMPOSITION)
+                .fluid().dust()
+                .build()
+                .setFormula("Rh(NO3)3", true);
 
         RhodiumFilterCake = new Material.Builder(++id, gcylId("rhodium_filter_cake"))
                 .dust()
@@ -10747,8 +10757,9 @@ public class GCYLMaterials {
                 .liquid(new FluidBuilder().disableBucket())
                 .color(0xFFFFFF)
                 .build();
+    }
 
-        /*
+    /*
         Infinity = new Material.Builder(++id, gcylId("infinity"))
                 .ingot().liquid()
                 .flags(DISABLE_REPLICATION)
@@ -10786,7 +10797,6 @@ public class GCYLMaterials {
 
 
          */
-    }
 
     private static String makeFancy(String input) {
         return fancyTest(input, fanciness, 80.0, 1);
