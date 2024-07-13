@@ -8,6 +8,7 @@ import static com.fulltrix.gcyl.api.GCYLUtility.removeExtractorRecipe;
 import static com.fulltrix.gcyl.materials.chains.NewPlatinumGroupMaterials.PotassiumBisulfate;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
 import static gregtech.api.recipes.RecipeMaps.ARC_FURNACE_RECIPES;
+import static gregtech.api.recipes.RecipeMaps.AUTOCLAVE_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.Materials.Oxygen;
 import static gregtech.api.unification.ore.OrePrefix.dust;
@@ -21,5 +22,8 @@ public class RecipeOverrideLate {
 
         //potassium bisulfate extractor
         removeExtractorRecipe(PotassiumBisulfate, dust);
+
+        //monazite autoclave
+        removeRecipesByInputs(AUTOCLAVE_RECIPES, new ItemStack[]{OreDictUnifier.get(dust, Monazite)}, new FluidStack[]{Water.getFluid(250)});
     }
 }

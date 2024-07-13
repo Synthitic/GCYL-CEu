@@ -354,6 +354,8 @@ public class RecipeOverride {
         //assembly line
         removeRecipeByName("gregtech:assembly_line");
 
+        //air centrifuge
+        removeRecipesByInputs(CENTRIFUGE_RECIPES, Air.getFluid(10000));
 
     }
 
@@ -438,6 +440,14 @@ public class RecipeOverride {
                 .fluidOutputs(Water.getFluid(2000))
                 .fluidOutputs(Epichlorohydrin.getFluid(1000))
                 .duration(480).EUt(VA[LV]).buildAndRegister();
+
+        //AIR
+        CENTRIFUGE_RECIPES.recipeBuilder().EUt(7).duration(1600)
+                .circuitMeta(0)
+                .fluidInputs(Air.getFluid(10000))
+                .fluidOutputs(Nitrogen.getFluid(3900))
+                .fluidOutputs(Oxygen.getFluid(1000))
+                .buildAndRegister();
 
     }
 

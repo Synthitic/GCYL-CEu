@@ -2044,8 +2044,8 @@ public class GCYLMaterials {
                         .setFormula("Nb(OH)5",true);
 
         OxalicAcid= new Material.Builder(++id, gcylId("oxalic_acid"))
-                .liquid(new FluidBuilder().attribute(ACID))
-                .color(0x4aaae2)
+                .liquid(new FluidBuilder().attribute(ACID)).dust()
+                .color(0xf7f7f5)
                 .iconSet(FLUID)
                 .build()
                 .setFormula("HOOCCOOH",true);

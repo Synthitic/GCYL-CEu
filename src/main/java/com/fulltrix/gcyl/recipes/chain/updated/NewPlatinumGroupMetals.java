@@ -7,9 +7,11 @@ import static com.fulltrix.gcyl.materials.chains.NewPlatinumGroupMaterials.*;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
+import static gregtech.api.unification.ore.OrePrefix.crushedPurified;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 
 //TODO add additional ores for processing
+//TODO cleanroom requirements?
 public class NewPlatinumGroupMetals {
 
     public static void init() {
@@ -24,6 +26,24 @@ public class NewPlatinumGroupMetals {
     }
 
     private static void initial() {
+
+        CHEMICAL_RECIPES.recipeBuilder().duration(50).EUt(VA[EV])
+                .input(crushedPurified, PlatinumMetallicPowder)
+                .fluidInputs(NitricAcid.getFluid(400))
+                .output(dust, PlatinumGroupSludge, 8)
+                .fluidOutputs(SulfuricNickelSolution.getFluid(2000))
+                .fluidOutputs(PGMSolution1Plat.getFluid(100))
+                .buildAndRegister();
+
+        CHEMICAL_RECIPES.recipeBuilder().duration(50).EUt(VA[EV])
+                .input(crushedPurified, PalladiumMetallicPowder)
+                .fluidInputs(NitricAcid.getFluid(400))
+                .output(dust, PlatinumGroupSludge, 8)
+                .fluidOutputs(SulfuricNickelSolution.getFluid(2000))
+                .fluidOutputs(PGMSolution1Pall.getFluid(100))
+                .buildAndRegister();
+
+
         // should be technically 2.9 dust(every input was divided by 10), but w/e
         MIXER_RECIPES.recipeBuilder()
                 .input(dust, PlatinumGroupSludge, 15)

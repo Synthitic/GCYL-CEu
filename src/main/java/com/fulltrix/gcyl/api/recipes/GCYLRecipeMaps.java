@@ -218,6 +218,8 @@ public final class GCYLRecipeMaps {
 
         POLARIZER_RECIPES.setMaxFluidInputs(1);
         POLARIZER_RECIPES.setMaxFluidOutputs(1);
+
+        MIXER_RECIPES.setMaxOutputs(2);
     }
 
 }

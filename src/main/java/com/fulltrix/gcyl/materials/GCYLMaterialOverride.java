@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.materials;
 
+import com.fulltrix.gcyl.GCYLConfig;
 import gregtech.api.GTValues;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.fluids.store.FluidStorageKeys;
@@ -246,6 +247,12 @@ public class GCYLMaterialOverride {
                 Zinc, Enargite, Andradite, Dolomite, Wollastonite, Kaolinite, Tenorite, Tennantite, Cuprite, Tellurium, Zirkelite,
                 Arsenopyrite, Draconium, Iridium, Osmium, Rutile, Gallite, NetherStar, Plutonium, Uranium238, FluoroApatite, RhodiumSalt, SodiumRuthenate, Tritanium, Arsenic, Barium, Titanium, Tungsten);
         for (Material mat : omats) {
+
+            if(GCYLConfig.recipes.useNewPlatinumChain) {
+                if (mat == RhodiumSalt || mat == SodiumRuthenate || mat == IridiumMetalResidue || mat == RarestMetalMixture)
+                    continue;
+            }
+
             addOre(mat, 1, 1,false);
         }
 
@@ -274,14 +281,39 @@ public class GCYLMaterialOverride {
         oreProp = Arsenopyrite.getProperty(PropertyKey.ORE);
         oreProp.addOreByProducts(Iron, Cobaltite, Cobalt);
 
-        oreProp = PlatinumMetallicPowder.getProperty(PropertyKey.ORE);
-        oreProp.setOreMultiplier(2);
-        oreProp.setWashedIn(SodiumPersulfate);
-        oreProp.addOreByProducts(Nickel,IridiumMetalResidue,RarestMetalMixture,PlatinumMetallicPowder);
+        if(GCYLConfig.recipes.useNewPlatinumChain) {
 
-        oreProp = PalladiumMetallicPowder.getProperty(PropertyKey.ORE);
-        oreProp.setOreMultiplier(2);
-        oreProp.setWashedIn(SodiumPersulfate);
+            oreProp = PlatinumMetallicPowder.getProperty(PropertyKey.ORE);
+            oreProp.setOreMultiplier(2);
+
+            oreProp = PalladiumMetallicPowder.getProperty(PropertyKey.ORE);
+            oreProp.setOreMultiplier(2);
+
+
+        } else {
+            oreProp = PlatinumMetallicPowder.getProperty(PropertyKey.ORE);
+            oreProp.setOreMultiplier(2);
+            oreProp.setWashedIn(SodiumPersulfate);
+            oreProp.addOreByProducts(Nickel, IridiumMetalResidue, RarestMetalMixture, PlatinumMetallicPowder);
+
+            oreProp = PalladiumMetallicPowder.getProperty(PropertyKey.ORE);
+            oreProp.setOreMultiplier(2);
+            oreProp.setWashedIn(SodiumPersulfate);
+
+            oreProp = IridiumMetalResidue.getProperty(PropertyKey.ORE);
+            oreProp.setWashedIn(SodiumPersulfate);
+
+            oreProp = RarestMetalMixture.getProperty(PropertyKey.ORE);
+            oreProp.setWashedIn(SodiumPersulfate);
+
+            oreProp = Iridium.getProperty(PropertyKey.ORE);
+            oreProp.setOreByProducts(PlatinumMetallicPowder, RarestMetalMixture);
+
+            oreProp = Osmium.getProperty(PropertyKey.ORE);
+            oreProp.setOreByProducts(IridiumMetalResidue);
+        }
+
+
 
         oreProp = Bowieite.getProperty(PropertyKey.ORE);
         oreProp.addOreByProducts(Nickel,PlatinumMetallicPowder,RarestMetalMixture,CrudeRhodiumMetal);
@@ -297,12 +329,6 @@ public class GCYLMaterialOverride {
         oreProp = Cuprite.getProperty(PropertyKey.ORE);
         oreProp.setDirectSmeltResult(Copper);
         oreProp.addOreByProducts(Iron, Antimony, Malachite);
-
-        oreProp = IridiumMetalResidue.getProperty(PropertyKey.ORE);
-        oreProp.setWashedIn(SodiumPersulfate);
-
-        oreProp = RarestMetalMixture.getProperty(PropertyKey.ORE);
-        oreProp.setWashedIn(SodiumPersulfate);
 
         oreProp = Witherite.getProperty(PropertyKey.ORE);
         oreProp.setWashedIn(SodiumPersulfate);
@@ -333,12 +359,6 @@ public class GCYLMaterialOverride {
 
         oreProp = Pitchblende.getProperty(PropertyKey.ORE);
         oreProp.addOreByProducts(Thorium, Uranium, Lead);
-
-        oreProp = Iridium.getProperty(PropertyKey.ORE);
-        oreProp.setOreByProducts(PlatinumMetallicPowder, RarestMetalMixture);
-
-        oreProp = Osmium.getProperty(PropertyKey.ORE);
-        oreProp.setOreByProducts(IridiumMetalResidue);
 
         oreProp = Gallite.getProperty(PropertyKey.ORE);
         oreProp.setOreByProducts(Sulfur,Copper,Copper,Gallium);
