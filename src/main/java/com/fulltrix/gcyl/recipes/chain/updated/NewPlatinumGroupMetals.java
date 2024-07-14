@@ -27,6 +27,20 @@ public class NewPlatinumGroupMetals {
 
     private static void initial() {
 
+        //TODO REMOVE
+        CENTRIFUGE_RECIPES.recipeBuilder().duration(1).EUt(1)
+                        .input(dust, PlatinumResidue, 64)
+                                .output(dust, PlatinumGroupSludge, 64)
+                                        .buildAndRegister();
+
+        CENTRIFUGE_RECIPES.recipeBuilder().duration(1).EUt(1)
+                .input(dust, RarestMetalMixture, 16)
+                .output(dust, PlatinumGroupSludge, 64)
+                .buildAndRegister();
+
+
+
+
         CENTRIFUGE_RECIPES.recipeBuilder().duration(100).EUt(VA[EV])
                 .input(dust, PlatinumMetallicPowder)
                 .chancedOutput(dust, PlatinumGroupSludge, 2500, 1000)

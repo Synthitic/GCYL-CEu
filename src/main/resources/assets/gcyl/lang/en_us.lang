@@ -1,3 +1,92 @@
+################################# LANG FROM TJ
+
+tile.casing_block.steel_plated_firebrick.name=Steel Plated Firebrick
+
+
+gcyl.material.ammonium_hydroxide=Ammonium Hydroxide
+gcyl.material.spodumene_ore_slurry=Spodumene Ore Slurry
+gcyl.material.lepidolite_ore_slurry=Lepidolite Ore Slurry
+gcyl.material.aluminium_sulfate_solution=Aluminium Sulfate Solution
+gcyl.material.heated_sodium_hydroxide_bauxite=Heated Sodium Hydroxide Bauxite
+gcyl.material.red_mud_slurry=Red Mud Slurry
+gcyl.material.sodium_aluminate=Sodium Aluminate
+gcyl.material.sodium_aluminate_solution=Sodium Aluminate Solution
+gcyl.material.sodium_silicate=Sodium Silicate
+gcyl.material.cryolite=Cryolite
+gcyl.material.unpure_ilmenite=Impure Ilmenite
+gcyl.material.ferrovanadium_i=Ferrovanadium (I)
+gcyl.material.ferrovanadium_ii=Ferrovanadium (II)
+gcyl.material.palladium_carbon_catalyst=Palladium Carbon Catalyst
+gcyl.material.zirconium_hafnium_oxides=Zirconium-Hafnium Oxides
+gcyl.material.zirconium_oxide=Zirconium Oxide
+gcyl.material.zirconium_chloride=Zirconium Chloride
+gcyl.material.wolframite=Wolframite
+gcyl.material.ammonium_paratungstate_solution=Ammonium Paratungstate Solution
+gcyl.material.sodium_tungstate_solution=Sodium Tungstate Solution
+gcyl.material.tungsten_oxide=Tungsten (VI) Oxide
+gcyl.material.iron_hydroxide=Iron (II) Hydroxide
+gcyl.material.manganese_hydroxide=Manganese (II) Hydroxide
+gcyl.material.palm_oil=Palm Oil
+gcyl.material.octanic_acid=Octanic Acid
+gcyl.material.trioctylamine_isoparatungstate=Trioctylamine Isoparatungstate
+gcyl.material.oleum=Oleum
+gcyl.material.potassium_sulfide=Potassium Sulfide
+gcyl.material.wrought_iron_magnetic=Magnetic Wrought Iron
+gcyl.material.boron_trioxide=Boron Trioxide
+gcyl.material.boron_trifluoride=Boron Trifluoride
+gcyl.material.lithium_tetrafluoroborate=Lithium Tetrafluoroborate
+gcyl.material.colemanite=Colemanite
+gcyl.material.strontianite=Strontianite
+gcyl.material.strontium_aluminate=Strontium Aluminate
+gcyl.material.strontium_sulfide=Strontium Sulfide
+gcyl.material.osmium_chloride_solution=Osmium Chloride Solution
+gcyl.material.acidic_osmium_tetroxide_solution=Acidic Osmium Tetroxide Solution
+gcyl.material.potassium_osmate=Potassium Osmate
+gcyl.material.ammonium_hexachloroplatinate=Ammonium Hexachloroplatinate
+gcyl.material.ammonium_hexachloroiridate=Ammonium Hexachloroiridate
+gcyl.material.palladium_dimethylglyoxime=Palladium Dimethylglyoxime
+gcyl.material.tetraamine_palladium_chloride=Tetraamine Palladium Chloride
+gcyl.material.diamine_dichloropalladium=Diamine Dichloropalladium
+gcyl.material.ammonium_hexachlororhodate=Ammonium Hexachlororhodate
+gcyl.material.potassium_hexachlororuthenate=Potassium Hexachlororuthenate
+gcyl.material.chlorinated_ruthenium_tetroxide_solution=Chlorinated Ruthenium Tetroxide Solution
+gcyl.material.basic_ruthenium_tetroxide_solution=Ruthenium Tetroxide Solution
+gcyl.material.potassium_persulfate=Potassium Persulfate
+gcyl.material.potassium_bisulfate=Potassium Bisulfate
+gcyl.material.potassium_acetate=Potassium Acetate
+gcyl.material.sodium_methoxide=Sodium Methoxide
+gcyl.material.trimethyl_borate=Trimethyl Borate
+gcyl.material.mineral_oil=Mineral Oil
+gcyl.material.ferrous_chloride=Ferrous Chloride
+gcyl.material.dimethylglyoxime=Dimethylglyoxime
+gcyl.material.butanone=Butanone
+gcyl.material.ethyl_nitrite=Ethyl Nitrite
+gcyl.material.diacetyl_monoxime=Diacetyl Monoxime
+gcyl.material.ammonium_nitrite=Ammonium Nitrite
+gcyl.material.hydroxyammonium_sulfate=Hydroxammonium Sulfate
+gcyl.material.potassium_nitrate=Potassium Nitrate
+gcyl.material.lead_oxide=Lead Oxide
+gcyl.material.zinc_bronze=Zinc-Bronze
+gcyl.material.potassium_chloride_solution=Potassium Chloride Solution
+gcyl.material.gold_chloride=Gold Chloride
+gcyl.material.pgm_solution_one=Platinum Group Sludge Solution
+gcyl.material.pgm_solution_one_ir=Iridium Reducted Sludge Solution
+gcyl.material.pgm_solution_one_plat=Platinum Rich Sludge Solution
+gcyl.material.pgm_solution_one_iri=Iridium Rich Sludge Solution
+gcyl.material.pgm_solution_one_irioxide=Iridium (VI) Rich Sludge Solution
+gcyl.material.pgm_solution_one_pall=Palladium Rich Sludge Solution
+gcyl.material.pgm_solution_one_rho=Rhodium Rich Sludge Solution
+gcyl.material.pgm_solution_one_ruth=Ruthenium Rich Sludge Solution
+gcyl.material.pgm_solution_one_inert=Inert Rich Sludge Solution
+
+
+metaitem.ore_strainer.name=Ore Strainer
+
+###################################################################################################################################
+
+
+
+
 metaitem.board.coated.name=Coated Circuit Board
 metaitem.board.coated.tooltip=A Basic Board
 metaitem.board.epoxy.name=Epoxy Circuit Board
