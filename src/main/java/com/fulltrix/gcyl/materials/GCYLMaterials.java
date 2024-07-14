@@ -3,6 +3,7 @@ package com.fulltrix.gcyl.materials;
 //import com.fulltrix.tjfcore.materials.IsotopeMaterial;
 //import com.fulltrix.tjfcore.materials.RadioactiveMaterial;
 
+import com.fulltrix.gcyl.materials.chains.MiscMaterials;
 import com.fulltrix.gcyl.materials.chains.NewPlatinumGroupMaterials;
 import com.fulltrix.gcyl.materials.chains.NewREEMaterials;
 import gregtech.api.GTValues;
@@ -1253,6 +1254,7 @@ public class GCYLMaterials {
 
         NewPlatinumGroupMaterials.init();
         NewREEMaterials.init();
+        MiscMaterials.init();
 
         registerSecondaryNuclear();
     }

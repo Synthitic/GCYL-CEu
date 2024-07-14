@@ -8,6 +8,7 @@ import com.fulltrix.gcyl.recipes.categories.elevator.SpacePumpRecipes;
 import com.fulltrix.gcyl.recipes.categories.machines.MachineCraftingRecipes;
 import com.fulltrix.gcyl.recipes.categories.machines.MultiblockPartCraftingRecipes;
 import com.fulltrix.gcyl.recipes.chain.*;
+import com.fulltrix.gcyl.recipes.chain.updated.MiscChemistry;
 import com.fulltrix.gcyl.recipes.chain.updated.NewPlatinumGroupMetals;
 import com.fulltrix.gcyl.recipes.chain.updated.NewREEChain;
 
@@ -55,6 +56,10 @@ public class RecipeHandler {
             NewREEChain.init();
         else
             REEChain.init();
+
+        if(GCYLConfig.recipes.useNewPlatinumChain || GCYLConfig.recipes.useNewREEChain) {
+            MiscChemistry.init();
+        }
 
 
 
