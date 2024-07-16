@@ -12,6 +12,7 @@ import static gregtech.api.unification.ore.OrePrefix.dust;
 
 //TODO add additional ores for processing
 //TODO cleanroom requirements?
+//TODO duration and eut fixes
 public class NewPlatinumGroupMetals {
 
     public static void init() {
@@ -130,7 +131,7 @@ public class NewPlatinumGroupMetals {
                 .fluidOutputs(PotassiumHydroxide.getFluid(4000))
                 .output(dust, SodiumHydroxide, 18)
                 .fluidOutputs(Water.getFluid(2000))
-                .duration(3600)
+                .duration(3600 / 4)
                 .EUt(VH[LuV])
                 .buildAndRegister();
 
@@ -143,7 +144,7 @@ public class NewPlatinumGroupMetals {
                 .output(dust, PotassiumHydroxide, 6)
                 .fluidOutputs(Steam.getFluid(4000))
                 .blastFurnaceTemp(9200)
-                .duration(1200)
+                .duration(1200 / 4)
                 .EUt(VH[UV])
                 .buildAndRegister();
 
@@ -482,7 +483,7 @@ public class NewPlatinumGroupMetals {
                 .input(dust, PotassiumNitrite, 24)
                 .output(dust, PotassiumHexanitrorhodate, 10)
                 .fluidOutputs(PotassiumNitrate.getFluid(3000))
-                .duration(4000)
+                .duration(4000 / 4)
                 .EUt(VH[EV])
                 .buildAndRegister();
 
@@ -493,7 +494,7 @@ public class NewPlatinumGroupMetals {
                 .fluidOutputs(PotassiumHexachlororhodateSolution.getFluid(1000))
                 .fluidOutputs(NitrogenDioxide.getFluid(3000))
                 .fluidOutputs(NitricOxide.getFluid(3000))
-                .duration(3000)
+                .duration(3000 / 4)
                 .EUt(VH[IV])
                 .buildAndRegister();
 
@@ -503,7 +504,7 @@ public class NewPlatinumGroupMetals {
                 .fluidInputs(PotassiumHexachlororhodateSolution.getFluid(1000))
                 .output(dust, AmmoniumHexachlororhodate, 10)
                 .fluidOutputs(PotassiumChlorideSolution.getFluid(3000))
-                .duration(3600)
+                .duration(3600 / 4)
                 .EUt(VH[EV])
                 .buildAndRegister();
 
@@ -515,7 +516,7 @@ public class NewPlatinumGroupMetals {
                 .output(dust, Rhodium, 2)
                 .fluidOutputs(HydrochloricAcid.getFluid(6000))
                 .output(dust, AmmoniumChloride, 12)
-                .duration(14400)
+                .duration(14400 / 4)
                 .EUt(VA[EV])
                 .buildAndRegister();
 
@@ -529,7 +530,7 @@ public class NewPlatinumGroupMetals {
                 .fluidOutputs(Nitrogen.getFluid(6000))
                 .fluidOutputs(Ammonia.getFluid(12000))
                 .fluidOutputs(SaltWater.getFluid(24000))
-                .duration(3600)
+                .duration(3600 / 4)
                 .EUt(VH[IV])
                 .buildAndRegister();
 
@@ -552,7 +553,7 @@ public class NewPlatinumGroupMetals {
                 .fluidInputs(Water.getFluid(3000))
                 .fluidOutputs(PGMSolution1InertMetals.getFluid(4000))
                 .fluidOutputs(PotassiumHexachlororuthenate.getFluid(3000))
-                .duration(1800)
+                .duration(1800 / 4)
                 .EUt(VA[HV])
                 .buildAndRegister();
 
@@ -562,7 +563,7 @@ public class NewPlatinumGroupMetals {
                 .fluidInputs(PotassiumHexachlororuthenate.getFluid(3000))
                 .output(dust, Salt, 8)
                 .fluidOutputs(ChlorinatedRutheniumTetroxideSolution.getFluid(3000))
-                .duration(1500)
+                .duration(1500 / 4)
                 .EUt(VH[HV])
                 .buildAndRegister();
 
@@ -573,7 +574,7 @@ public class NewPlatinumGroupMetals {
                 .fluidOutputs(Water.getFluid(2000))
                 .fluidOutputs(RutheniumTetroxide.getFluid(FluidStorageKeys.GAS, 2000))
                 .fluidOutputs(Chlorine.getFluid(6000))
-                .duration(800)
+                .duration(800 / 4)
                 .EUt(VA[HV])
                 .buildAndRegister();
 
@@ -604,7 +605,7 @@ public class NewPlatinumGroupMetals {
                 .output(dust, Ruthenium, 1)
                 .fluidOutputs(Steam.getFluid(2000))
                 .blastFurnaceTemp(3300)
-                .duration(1600)
+                .duration(1600 / 4)
                 .EUt(VA[EV])
                 .buildAndRegister();
 
