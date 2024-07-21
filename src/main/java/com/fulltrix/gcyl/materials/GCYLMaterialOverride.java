@@ -41,6 +41,7 @@ public class GCYLMaterialOverride {
                 new CoolantProperty(HPHeavySteam, FluidStorageKeys.LIQUID,93., 990, 375, 2070000, 4242)
                         .setAccumulatesHydrogen(true));
 
+
         CarbonDioxide.setProperty(PropertyKey.COOLANT,
                 new CoolantProperty(SupercriticalCO2, FluidStorageKeys.LIQUID,13.,28,195,380000,846));
 
@@ -58,6 +59,7 @@ public class GCYLMaterialOverride {
 
         SodiumPotassiumAlloy.setProperty(PropertyKey.COOLANT,
                 new CoolantProperty(SupercriticalSodiumPotassiumAlloy,FluidStorageKeys.LIQUID,0.001,400,1059, 2500000, 1191));
+
 
         Sodium.setProperty(PropertyKey.COOLANT,
                 new CoolantProperty(HotLiquidSodium,FluidStorageKeys.LIQUID, 0.05, 120100,1156,4250000,1230));
@@ -77,6 +79,8 @@ public class GCYLMaterialOverride {
         BoricAcid.setProperty(PropertyKey.COOLANT,
                 new CoolantProperty(HotLiquidBoronTrioxide,FluidStorageKeys.LIQUID,0.,370,573,8100000,1392)
                         .setAccumulatesHydrogen(true));
+
+
     }
 
     private static void materialChanges() {

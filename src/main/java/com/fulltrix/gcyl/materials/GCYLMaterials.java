@@ -1704,7 +1704,7 @@ public class GCYLMaterials {
 
 
         BoricAcid = new Material.Builder(++id, gcylId("boric_acid"))
-                .liquid()
+                .liquid(new FluidBuilder().temperature(293))
                 .dust()
                 .color(0xD5D2D7)
                 .iconSet(FLUID)
