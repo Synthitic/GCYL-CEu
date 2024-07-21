@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 //TODO remove (THREADED TESTING MARK123)
-public class GCYLEarlyMixinLoader implements IEarlyMixinLoader {
+public class GCYLEarlyMixinLoader implements IEarlyMixinLoader, IFMLLoadingPlugin {
     @Override
     public List<String> getMixinConfigs() {
         List<String> configs = new ArrayList<>();
@@ -22,5 +22,31 @@ public class GCYLEarlyMixinLoader implements IEarlyMixinLoader {
     @Override
     public boolean shouldMixinConfigQueue(String mixinConfig) {
         return IEarlyMixinLoader.super.shouldMixinConfigQueue(mixinConfig);
+    }
+
+    @Override
+    public String[] getASMTransformerClass() {
+        return null;
+    }
+
+    @Override
+    public String getModContainerClass() {
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public String getSetupClass() {
+        return null;
+    }
+
+    @Override
+    public void injectData(Map<String, Object> data) {
+
+    }
+
+    @Override
+    public String getAccessTransformerClass() {
+        return null;
     }
 }
