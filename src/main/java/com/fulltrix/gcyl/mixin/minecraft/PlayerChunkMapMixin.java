@@ -123,7 +123,15 @@ public class PlayerChunkMapMixin {
 
             try {
                 while (iterator.hasNext()) {
-                    PlayerChunkMapEntry playerchunkmapentry1 = iterator.next();
+
+                    PlayerChunkMapEntry playerchunkmapentry1;
+
+                    try {
+                        playerchunkmapentry1 = iterator.next();
+                    } catch (ConcurrentModificationException e) {
+                        GTLog.logger.info("PlayerChunkMap CME Caught! (iterator.next)");
+                        continue;
+                    }
 
                     if (playerchunkmapentry1.getChunk() == null) {
                         boolean flag = playerchunkmapentry1.hasPlayerMatching(CAN_GENERATE_CHUNKS);
@@ -144,7 +152,7 @@ public class PlayerChunkMapMixin {
                     }
                 }
             } catch (ConcurrentModificationException e) {
-                GTLog.logger.info("PlayerChunkMap CME Caught!");
+                GTLog.logger.info("PlayerChunkMap CME Caught! (iterator.hasNext)");
             }
         }
 
@@ -155,7 +163,14 @@ public class PlayerChunkMapMixin {
 
             try {
                 while (iterator1.hasNext()) {
-                    PlayerChunkMapEntry playerchunkmapentry3 = iterator1.next();
+
+                    PlayerChunkMapEntry playerchunkmapentry3;
+                    try {
+                        playerchunkmapentry3 = iterator1.next();
+                    } catch (ConcurrentModificationException e) {
+                        GTLog.logger.info("PlayerChunkMap CME Caught! (iterator1.next)");
+                        continue;
+                    }
 
                     if (playerchunkmapentry3.sendToPlayers()) {
                         iterator1.remove();
@@ -167,7 +182,7 @@ public class PlayerChunkMapMixin {
                     }
                 }
             } catch (ConcurrentModificationException e) {
-                GTLog.logger.info("PlayerChunkMap CME Caught!");
+                GTLog.logger.info("PlayerChunkMap CME Caught! (iterator1.hasNext)");
             }
         }
 
