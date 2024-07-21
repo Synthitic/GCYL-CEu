@@ -18,7 +18,6 @@ import java.util.List;
 
 import static com.fulltrix.gcyl.api.recipes.GCYLMaterialFlags.NO_MIXER_RECIPE;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
-import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.Plutonium;
 import static gregicality.multiblocks.api.unification.GCYMMaterialFlags.NO_ALLOY_BLAST_RECIPES;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
 import static gregtech.api.GTValues.OpV;
@@ -39,44 +38,44 @@ public class GCYLMaterialOverride {
 
     private static void coolants() {
         HeavyWater.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(HPHeavySteam, FluidStorageKeys.LIQUID,93., 990, 375, .02, 2070000, 4242)
+                new CoolantProperty(HPHeavySteam, FluidStorageKeys.LIQUID,93., 990, 375, 2070000, 4242)
                         .setAccumulatesHydrogen(true));
 
         CarbonDioxide.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(SupercriticalCO2, FluidStorageKeys.LIQUID,13.,28,195,0.,380000,846));
+                new CoolantProperty(SupercriticalCO2, FluidStorageKeys.LIQUID,13.,28,195,380000,846));
 
         Helium3.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(HotHPHelium3,FluidStorageKeys.LIQUID, 0.,262,3,60.,8600,5193));
+                new CoolantProperty(HotHPHelium3,FluidStorageKeys.LIQUID, 0.,262,3,8600,5193));
 
         Helium4.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(HotHPHelium4,FluidStorageKeys.LIQUID, 0., 252, 4, 0., 20700, 5193));
+                new CoolantProperty(HotHPHelium4,FluidStorageKeys.LIQUID, 0., 252, 4, 20700, 5193));
 
         FLiBe.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(SupercriticalFLiBe,FluidStorageKeys.LIQUID,0.001,1830,1703,330.,3330000,2386));
+                new CoolantProperty(SupercriticalFLiBe,FluidStorageKeys.LIQUID,0.001,1830,1703,3330000,2386));
 
         FLiNaK.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(SupercriticalFLiNaK,FluidStorageKeys.LIQUID,0., 1290,1844,405.,9520000,1854));
+                new CoolantProperty(SupercriticalFLiNaK,FluidStorageKeys.LIQUID,0., 1290,1844,9520000,1854));
 
         SodiumPotassiumAlloy.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(SupercriticalSodiumPotassiumAlloy,FluidStorageKeys.LIQUID,0.001,400,1059,12., 2500000, 1191));
+                new CoolantProperty(SupercriticalSodiumPotassiumAlloy,FluidStorageKeys.LIQUID,0.001,400,1059, 2500000, 1191));
 
         Sodium.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(HotLiquidSodium,FluidStorageKeys.LIQUID, 0.05, 120100,1156,6.,4250000,1230));
+                new CoolantProperty(HotLiquidSodium,FluidStorageKeys.LIQUID, 0.05, 120100,1156,4250000,1230));
 
         Mercury.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(HotMercury,FluidStorageKeys.LIQUID, 0., 13800,630,6910.,295000,140));
+                new CoolantProperty(HotMercury,FluidStorageKeys.LIQUID, 0., 13800,630,295000,140));
 
         Tin.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(HotLiquidTin, FluidStorageKeys.LIQUID,0.01, 54000, 2875, 10., 2440000,217));
+                new CoolantProperty(HotLiquidTin, FluidStorageKeys.LIQUID,0.01, 54000, 2875, 2440000,217));
 
         Lead.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(HotLiquidLead,FluidStorageKeys.LIQUID,0.06,55000, 2022,3.,866000,139));
+                new CoolantProperty(HotLiquidLead,FluidStorageKeys.LIQUID,0.06,55000, 2022,866000,139));
 
         LeadBismuthEutectic.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(SupercriticalLeadBismuthEutectic,FluidStorageKeys.LIQUID, 0.01,10800,1944,1.,852000,147));
+                new CoolantProperty(SupercriticalLeadBismuthEutectic,FluidStorageKeys.LIQUID, 0.01,10800,1944,852000,147));
 
         BoricAcid.setProperty(PropertyKey.COOLANT,
-                new CoolantProperty(HotLiquidBoronTrioxide,FluidStorageKeys.LIQUID,0.,370,573,4800.,8100000,1392)
+                new CoolantProperty(HotLiquidBoronTrioxide,FluidStorageKeys.LIQUID,0.,370,573,8100000,1392)
                         .setAccumulatesHydrogen(true));
     }
 
@@ -117,7 +116,7 @@ public class GCYLMaterialOverride {
 
         //CORE METAL ADDITIONS
         List<Material> cmmats = new ArrayList<>();
-        Collections.addAll(cmmats, Bohrium, Dubnium, Duranium, Seaborgium, Rhenium, Rutherfordium, NaquadahEnriched, IncoloyMA956, CosmicNeutronium, QCDMatter, Cerium, Barium, Calcium, Californium, Thallium, Tennessine);
+        Collections.addAll(cmmats, Bohrium, Dubnium, Duranium, Seaborgium, Rhenium, Rutherfordium, NaquadahEnriched, IncoloyMA956, CosmicNeutronium, QCDMatter, Cerium, Barium, Calcium, Californium, Thallium, Tennessine, Plutonium);
 
         for (Material mat : cmmats) {
             for (MaterialFlag flag : CORE_METAL) {
@@ -188,7 +187,8 @@ public class GCYLMaterialOverride {
         Collections.addAll(fmats, Sodium, Bromine, AmmoniumChloride, Rubidium, Caesium, Francium, Polonium, Praseodymium, Ytterbium, Neptunium,
                 ProtoAdamantium, Scandium, Radium, MetastableHassium, MetastableFlerovium, MetastableOganesson, HeavyQuarkDegenerateMatter, Dubnium,
                 Sulfur, Calcium, Curium, Bohrium, Seaborgium, Copernicium, Rutherfordium,Meitnerium, Tennessine, Livermorium, Moscovium, Nihonium,
-                Roentgenium, Astatine, Hafnium, RutheniumTetroxide, Lawrencium, Nobelium, Germanium, NeodymiumMagnetic, SamariumMagnetic, Lafium, PlatinumGroupSludge);
+                Roentgenium, Astatine, Hafnium, RutheniumTetroxide, Lawrencium, Nobelium, Germanium, NeodymiumMagnetic, SamariumMagnetic, Lafium,
+                PlatinumGroupSludge, Plutonium);
 
         for (Material mat : fmats) {
             mat.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
@@ -243,9 +243,10 @@ public class GCYLMaterialOverride {
         //ORE ADDITIONS
         List<Material> omats = new ArrayList<>();
         Collections.addAll(omats, Lignite, Witherite, Barytocalcite, PlatinumMetallicPowder, IridiumMetalResidue, PreciousMetal,
-                RarestMetalMixture, PalladiumMetallicPowder, Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon, Bowieite,
-                Zinc, Enargite, Andradite, Dolomite, Wollastonite, Kaolinite, Tenorite, Tennantite, Cuprite, Tellurium, Zirkelite,
-                Arsenopyrite, Draconium, Iridium, Osmium, Rutile, Gallite, NetherStar, Plutonium, Uranium238, FluoroApatite, RhodiumSalt, SodiumRuthenate, Tritanium, Arsenic, Barium, Titanium, Tungsten);
+                RarestMetalMixture, PalladiumMetallicPowder, Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon,
+                Bowieite, Zinc, Enargite, Andradite, Dolomite, Wollastonite, Kaolinite, Tenorite, Tennantite, Cuprite, Tellurium,
+                Zirkelite, Arsenopyrite, Draconium, Iridium, Osmium, Rutile, Gallite, NetherStar, Uranium238, FluoroApatite,
+                RhodiumSalt, SodiumRuthenate, Tritanium, Arsenic, Barium, Titanium, Tungsten);
         for (Material mat : omats) {
 
             if(GCYLConfig.recipes.useNewPlatinumChain) {
@@ -258,7 +259,7 @@ public class GCYLMaterialOverride {
 
         //EMISSIVE ORES
         List<Material> eomats = new ArrayList<>();
-        Collections.addAll(eomats,Triniite, NaquadricCompound, EnrichedNaquadricCompound, NaquadriaticCompound, Uranium);
+        Collections.addAll(eomats,Triniite, NaquadricCompound, EnrichedNaquadricCompound, NaquadriaticCompound, Uranium, Plutonium);
         for (Material mat : eomats) {
             addOre(mat, 1,1,true);
         }

@@ -59,7 +59,7 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     protected IOpticalComputationProvider computationProvider;
     protected int motorTier = 0;
     private boolean isExtended = false;
-    private final Collection<ISpaceElevatorReceiver> spaceElevatorReceivers = ConcurrentHashMap.newKeySet();
+    private final Collection<ISpaceElevatorReceiver> spaceElevatorReceivers = ConcurrentHashMap.newKeySet(); //TODO fix by using iterator on modification
 
     public MetaTileEntitySpaceElevator(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId);

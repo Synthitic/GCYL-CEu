@@ -9,6 +9,7 @@ import static gregicality.multiblocks.api.unification.GCYMMaterials.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.recipes.RecipeMaps.FUSION_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
+import static gregtech.api.unification.material.Materials.Plutonium;
 import static gregtech.api.unification.material.Materials.Vanadium;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT;

@@ -25,7 +25,6 @@ public class GCYLNuclearMaterials {
 
     //NEEDED FOR RECIPES
     public static Material ReactorSteel;
-    public static Material Plutonium;
     public static Material Americium241;
     public static Material Americium243;
     public static Material Curium247;
@@ -68,13 +67,7 @@ public class GCYLNuclearMaterials {
                 .blast(b->b.temp(3800, BlastProperty.GasTier.HIGH))
                 .build();
 
-        Plutonium = new Material.Builder(++id, gcylId("plutonium_generic"))
-                .ingot(3).liquid()
-                .color(0xF03232)
-                .iconSet(METALLIC)
-                .flags(EXT_METAL)
-                .element(Elements.Pu)
-                .build();
+        ++id; //TODO FREE MATERIAL
 
         Americium241 = new Material.Builder(++id, gcylId("americium_241"))
                 .ingot().liquid()
@@ -278,7 +271,7 @@ public class GCYLNuclearMaterials {
                 .color(Neptunium.getMaterialRGB())
                 .iconSet(DULL)
                 .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
-                .fissionFuelProperties(2000, 1000, 1000, 0, 100, 10, 3.5)
+                .fissionFuel(2000, 1000, 1000, 0, 100, 10, 3.5)
                 .build();
 
     }
