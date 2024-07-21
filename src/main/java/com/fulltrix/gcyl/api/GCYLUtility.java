@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.api;
 
+import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import com.fulltrix.gcyl.blocks.fusion.GCYLFusionCoils;
 import gregtech.api.GTValues;
@@ -14,12 +15,16 @@ import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.common.ConfigHolder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
@@ -31,6 +36,30 @@ import static gregtech.api.unification.material.Materials.*;
 import static gregtech.common.items.MetaItems.*;
 
 public class GCYLUtility {
+
+    //TODO remove (THREADED TESTING MARK123)
+
+    private static ThreadPoolExecutor GLOBAL_THREAD_POOL_EXECUTOR;
+
+    static {
+        if(GCYLConfig.experimental.threadedMTEUpdates) {
+            int cpus = Runtime.getRuntime().availableProcessors();
+
+            if (GCYLConfig.experimental.globalThreadPoolExecutorThreadCount == -1) {
+                cpus = cpus < 4 ? 2 : cpus / 2;
+            } else {
+                cpus = Math.max(2, Math.min(cpus - 2, GCYLConfig.experimental.globalThreadPoolExecutorThreadCount));
+            }
+
+            GLOBAL_THREAD_POOL_EXECUTOR = (ThreadPoolExecutor) Executors.newFixedThreadPool(
+                    cpus, new BasicThreadFactory.Builder()
+                            .namingPattern("gt_global_threads-%d").priority(Thread.NORM_PRIORITY).build());
+        }
+    }
+
+    public static ThreadPoolExecutor getGlobalThreadPoolExecutor() {
+        return GLOBAL_THREAD_POOL_EXECUTOR;
+    }
 
     public static @NotNull ResourceLocation gcylId(@NotNull String path) {
         return new ResourceLocation("gcyl", path);

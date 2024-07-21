@@ -196,4 +196,20 @@ public class GCYLConfig {
         public String[] planetNames = {"Jupiter", "Saturn", "Uranus", "Neptune"};
 
     }
+
+    //TODO remove (THREADED TESTING MARK123)
+    public static Experimental experimental = new Experimental();
+
+    public static class Experimental {
+
+        @Config.Comment({"Whether threading MTE updates is enabled.", "Default: false"})
+        @Config.RequiresMcRestart
+        public boolean threadedMTEUpdates = false;
+
+        @Config.Comment({
+                "Override to number of threads available to the Global Thread Pool Executor. -1 for no override, can't be higher than CPUs - 2.",
+                "Default: -1" })
+        @Config.RangeInt(min = 2)
+        public int globalThreadPoolExecutorThreadCount = -1;
+    }
 }
