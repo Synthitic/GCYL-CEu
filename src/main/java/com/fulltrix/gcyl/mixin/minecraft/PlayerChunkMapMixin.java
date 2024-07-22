@@ -73,27 +73,22 @@ public class PlayerChunkMapMixin {
         {
             this.previousTotalWorldTime = i;
 
-            try {
-                for (int j = 0; j < this.entries.size(); ++j) {
-                    PlayerChunkMapEntry playerchunkmapentry = this.entries.get(j);
-                    playerchunkmapentry.update();
-                    playerchunkmapentry.updateChunkInhabitedTime();
-                }
-            } catch (Exception e) {
-                GTLog.logger.info("PlayerChunkMap CME Caught!* (first for loop)");
+            for (int j = 0; j < this.entries.size(); ++j)
+            {
+                PlayerChunkMapEntry playerchunkmapentry = this.entries.get(j);
+                playerchunkmapentry.update();
+                playerchunkmapentry.updateChunkInhabitedTime();
             }
         }
 
         if (!this.dirtyEntries.isEmpty())
         {
             try {
-                Object[] array = this.dirtyEntries.toArray();
-                for (Object o : array) {
-                    PlayerChunkMapEntry playerChunkMapEntry2 = (PlayerChunkMapEntry) o;
-                    playerChunkMapEntry2.update();
+                for (PlayerChunkMapEntry playerchunkmapentry2 : this.dirtyEntries) {
+                    playerchunkmapentry2.update();
                 }
             } catch (ConcurrentModificationException e) {
-                GTLog.logger.info("PlayerChunkMap CME Caught! (second for loop)");
+                GTLog.logger.info("PlayerChunkMap CME Caught! (dirtyEntries For Loop)");
             }
 
             this.dirtyEntries.clear();
@@ -131,9 +126,7 @@ public class PlayerChunkMapMixin {
 
             try {
                 while (iterator.hasNext()) {
-
                     PlayerChunkMapEntry playerchunkmapentry1 = iterator.next();
-
 
                     if (playerchunkmapentry1.getChunk() == null) {
                         boolean flag = playerchunkmapentry1.hasPlayerMatching(CAN_GENERATE_CHUNKS);
@@ -154,7 +147,7 @@ public class PlayerChunkMapMixin {
                     }
                 }
             } catch (ConcurrentModificationException e) {
-                GTLog.logger.info("PlayerChunkMap CME Caught! (iterator.hasNext)");
+                GTLog.logger.info("PlayerChunkMap CME Caught! (iterator)");
             }
         }
 
@@ -165,8 +158,8 @@ public class PlayerChunkMapMixin {
 
             try {
                 while (iterator1.hasNext()) {
-
                     PlayerChunkMapEntry playerchunkmapentry3 = iterator1.next();
+
                     if (playerchunkmapentry3.sendToPlayers()) {
                         iterator1.remove();
                         --i1;
@@ -176,8 +169,8 @@ public class PlayerChunkMapMixin {
                         }
                     }
                 }
-            } catch (ConcurrentModificationException e) {
-                GTLog.logger.info("PlayerChunkMap CME Caught! (iterator1.hasNext)");
+            }  catch (ConcurrentModificationException e) {
+                GTLog.logger.info("PlayerChunkMap CME Caught! (iterator1)");
             }
         }
 
