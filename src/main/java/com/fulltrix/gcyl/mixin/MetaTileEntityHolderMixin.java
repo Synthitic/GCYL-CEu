@@ -57,6 +57,9 @@ public abstract class MetaTileEntityHolderMixin extends TickableTileEntityBase {
                 if (updateFuture == null || updateFuture.isDone()) {
                     updateFuture = CompletableFuture.runAsync(() -> metaTileEntity.update(), getGlobalThreadPoolExecutor());
                 }
+                while(getGlobalThreadPoolExecutor().getActiveCount() == getGlobalThreadPoolExecutor().getMaximumPoolSize()) {
+
+                }
             } else {
                 metaTileEntity.update();
             }
