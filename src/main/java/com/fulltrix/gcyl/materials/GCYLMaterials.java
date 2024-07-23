@@ -1184,8 +1184,6 @@ public class GCYLMaterials {
     public static Material DeepNetherGas;
     public static Material RawBioGrowthMedium;
     public static Material SterileBioGrowthMedium;
-    public static Material HeavyWater;
-    public static Material HPHeavySteam;
     public static Material HotHPHelium3;
     public static Material HotHPHelium4;
     public static Material HotLiquidSodium;
@@ -10684,21 +10682,9 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?",true);
 
-        HeavyWater = new Material.Builder(++id, gcylId("heavy_water"))
-                .liquid()
-                .color(Water.getMaterialRGB() - 10)
-                .flags(DISABLE_REPLICATION)
-                .components(Deuterium, 2, Oxygen, 1)
-                .iconSet(FLUID)
-                .build();
+        ++id; //TODO FREE MATERIAL ID
 
-        HPHeavySteam = new Material.Builder(++id, gcylId("hp_heavy_steam"))
-                .gas(new FluidBuilder().temperature(500))
-                .color(HighPressureSteam.getMaterialRGB() - 10)
-                .flags(DISABLE_REPLICATION, DISABLE_DECOMPOSITION)
-                .components(Deuterium, 2, Oxygen, 1)
-                .iconSet(FLUID)
-                .build();
+        ++id; //TODO FREE MATERIAL ID
 
         HotHPHelium3 = new Material.Builder(++id, gcylId("hot_hp_he_3"))
                 .gas(new FluidBuilder().temperature(1225))
