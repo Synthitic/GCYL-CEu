@@ -321,7 +321,8 @@ public class NewPlatinumGroupMaterials {
         LeadOxide = new Material.Builder(++id, gcylId("lead_oxide"))
                 .color((Lead.getMaterialRGB() + Oxygen.getMaterialRGB()) / 2)
                 .iconSet(MaterialIconSet.SHINY)
-                .flags(DISABLE_DECOMPOSITION)
+                //.flags(DISABLE_DECOMPOSITION)
+                .components(Lead, 1, Oxygen, 1)
                 .dust()
                 .build()
                 .setFormula("PbO", true);
