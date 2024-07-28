@@ -39,10 +39,10 @@ public class GCYLUtility {
 
     //TODO remove (THREADED TESTING MARK123)
 
-    private static final ThreadPoolExecutor GLOBAL_THREAD_POOL_EXECUTOR;
+    private static ThreadPoolExecutor GLOBAL_THREAD_POOL_EXECUTOR;
 
     static {
-        //if(GCYLConfig.experimental.threadedMTEUpdates) {
+        if(GCYLConfig.experimental.threadedMTEUpdates) {
             int cpus = Runtime.getRuntime().availableProcessors();
 
             if (GCYLConfig.experimental.globalThreadPoolExecutorThreadCount == -1) {
@@ -54,7 +54,7 @@ public class GCYLUtility {
             GLOBAL_THREAD_POOL_EXECUTOR = (ThreadPoolExecutor) Executors.newFixedThreadPool(
                     cpus, new BasicThreadFactory.Builder()
                             .namingPattern("gt_global_threads-%d").priority(Thread.NORM_PRIORITY).build());
-        //}
+        }
     }
 
     public static ThreadPoolExecutor getGlobalThreadPoolExecutor() {
