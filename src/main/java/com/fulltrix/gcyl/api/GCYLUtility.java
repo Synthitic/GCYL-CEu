@@ -28,6 +28,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.chains.MiscMaterials.Irirutan;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.Zeron100;
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
@@ -210,7 +211,7 @@ public class GCYLUtility {
             case(3) -> Electrum;
             case(4) -> Kanthal;
             case(5) -> BrightSteel;
-            case(6) -> Ruridit;
+            case(6) -> Irirutan;
             case(7) -> Europium;
             case(8) -> Duranium;
             case(9) -> TungstenTitaniumCarbide;

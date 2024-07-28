@@ -10,6 +10,7 @@ import static com.fulltrix.gcyl.api.GCYLUtility.getMainComponentMaterialByTier;
 import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.COMPONENT_AL_RECIPES;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
+import static com.fulltrix.gcyl.materials.chains.MiscMaterials.Irirutan;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
@@ -35,7 +36,7 @@ public class ComponentALRecipes {
                 .input(cableGtHex, YttriumBariumCuprate, 6)
                 .fluidInputs(SolderingAlloy.getFluid(L * 48))
                 .fluidInputs(Lubricant.getFluid(12000))
-                .fluidInputs(Ruridit.getFluid(L * 1536))
+                .fluidInputs(Irirutan.getFluid(L * 1536))
                 .fluidInputs(HSSS.getFluid(20352))
                 .buildAndRegister();
 

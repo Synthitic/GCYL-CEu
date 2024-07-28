@@ -5306,3 +5306,5 @@ terminal.prospector.virtual_ores.info=L%s: %s %s - %s%%
 gcyl.jei.virtual_layer=L%s: %s %s - %s
 virtual_ores.name=Virtual Ores
 behavior.tricorder.virtual_ore.amount_unknown=Ore In Layer %s: %s%%
+
+gcyl.material.irirutan=Irirutan

@@ -10,6 +10,7 @@ import static com.fulltrix.gcyl.api.GCYLUtility.*;
 import static com.fulltrix.gcyl.api.GCYLUtility.getMainComponentMaterialByTier;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
+import static com.fulltrix.gcyl.materials.chains.MiscMaterials.Irirutan;
 import static gregicality.multiblocks.api.unification.GCYMMaterials.Zeron100;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
@@ -1461,10 +1462,10 @@ public class ComponentRecipes {
                 .input(stickLong, HSSS, 2)
                 .input(ring, HSSS, 2)
                 .input(round, HSSS, 4)
-                .input(wireFine, Ruridit, 64)
-                .input(wireFine, Ruridit, 64)
-                .input(wireFine, Ruridit, 64)
-                .input(wireFine, Ruridit, 64)
+                .input(wireFine, Irirutan, 64)
+                .input(wireFine, Irirutan, 64)
+                .input(wireFine, Irirutan, 64)
+                .input(wireFine, Irirutan, 64)
                 .input(cableGtSingle, YttriumBariumCuprate, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L))
                 .fluidInputs(Lubricant.getFluid(250))
