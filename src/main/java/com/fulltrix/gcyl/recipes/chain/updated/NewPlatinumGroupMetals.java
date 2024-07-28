@@ -553,7 +553,7 @@ public class NewPlatinumGroupMetals {
                 .fluidInputs(Water.getFluid(3000))
                 .fluidOutputs(PGMSolution1InertMetals.getFluid(4000))
                 .fluidOutputs(PotassiumHexachlororuthenate.getFluid(3000))
-                .duration(1800 / 4)
+                .duration(1800 / 16)
                 .EUt(VA[HV])
                 .buildAndRegister();
 
@@ -563,7 +563,7 @@ public class NewPlatinumGroupMetals {
                 .fluidInputs(PotassiumHexachlororuthenate.getFluid(3000))
                 .output(dust, Salt, 8)
                 .fluidOutputs(ChlorinatedRutheniumTetroxideSolution.getFluid(3000))
-                .duration(1500 / 4)
+                .duration(1500 / 16)
                 .EUt(VH[HV])
                 .buildAndRegister();
 
@@ -574,7 +574,7 @@ public class NewPlatinumGroupMetals {
                 .fluidOutputs(Water.getFluid(2000))
                 .fluidOutputs(RutheniumTetroxide.getFluid(FluidStorageKeys.GAS, 2000))
                 .fluidOutputs(Chlorine.getFluid(6000))
-                .duration(800 / 4)
+                .duration(800 / 16)
                 .EUt(VA[HV])
                 .buildAndRegister();
 
@@ -583,7 +583,7 @@ public class NewPlatinumGroupMetals {
                 .fluidInputs(RutheniumTetroxide.getFluid(FluidStorageKeys.GAS, 1000))
                 .fluidInputs(SodiumHydroxideSolution.getFluid(1000))
                 .fluidOutputs(BasicRutheniumTetroxideSolution.getFluid(1000))
-                .duration(200)
+                .duration(200 / 4)
                 .EUt(VA[MV])
                 .buildAndRegister();
 
@@ -594,7 +594,7 @@ public class NewPlatinumGroupMetals {
                 .output(dust, RutheniumDioxide, 3)
                 .fluidOutputs(SodiumAcetate.getFluid(1000))
                 .fluidOutputs(Water.getFluid(3000))
-                .duration(300)
+                .duration(300 / 4)
                 .EUt(VA[EV])
                 .buildAndRegister();
 
@@ -605,7 +605,7 @@ public class NewPlatinumGroupMetals {
                 .output(dust, Ruthenium, 1)
                 .fluidOutputs(Steam.getFluid(2000))
                 .blastFurnaceTemp(3300)
-                .duration(1600 / 4)
+                .duration(1600 / 16)
                 .EUt(VA[EV])
                 .buildAndRegister();
 
@@ -617,7 +617,7 @@ public class NewPlatinumGroupMetals {
                 .fluidOutputs(Water.getFluid(1000))
                 .output(dust, Salt, 2)
                 .output(dust, SodiumHypochlorite, 3)
-                .duration(240)
+                .duration(240 / 4)
                 .EUt(120)
                 .buildAndRegister();
 
@@ -626,7 +626,7 @@ public class NewPlatinumGroupMetals {
                 .input(dust, SodiumHypochlorite, 9)
                 .output(dust, Salt, 4)
                 .output(dust, SodiumChlorate, 5)
-                .duration(450)
+                .duration(450 / 4)
                 .EUt(120)
                 .buildAndRegister();
 
@@ -636,7 +636,7 @@ public class NewPlatinumGroupMetals {
                 .fluidInputs(HydrochloricAcid.getFluid(1000))
                 .output(dust, Salt, 2)
                 .fluidOutputs(AceticAcid.getFluid(1000))
-                .duration(300)
+                .duration(300 / 4)
                 .EUt(120)
                 .buildAndRegister();
     }
