@@ -470,7 +470,7 @@ public class NewPlatinumGroupMetals {
         // KNO3 (l) + Pb (l) -> KNO2 (s) + PbO (s)
         CHEMICAL_RECIPES.recipeBuilder()
                 .fluidInputs(PotassiumNitrate.getFluid(1000))
-                .fluidInputs(Lead.getFluid(1000))
+                .fluidInputs(Lead.getFluid(144))
                 .output(dust, PotassiumNitrite, 4)
                 .output(dust, LeadOxide, 2)
                 .duration(160)
