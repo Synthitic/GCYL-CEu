@@ -246,7 +246,7 @@ public class GCYLMaterialOverride {
                 RarestMetalMixture, PalladiumMetallicPowder, Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon,
                 Bowieite, Zinc, Enargite, Andradite, Dolomite, Wollastonite, Kaolinite, Tenorite, Tennantite, Cuprite, Tellurium,
                 Zirkelite, Arsenopyrite, Draconium, Iridium, Osmium, Rutile, Gallite, NetherStar, Uranium238, FluoroApatite,
-                RhodiumSalt, SodiumRuthenate, Tritanium, Arsenic, Barium, Titanium, Tungsten);
+                RhodiumSalt, SodiumRuthenate, Tritanium, Arsenic, Barium, Titanium, Tungsten, Tantalum);
         for (Material mat : omats) {
 
             if(GCYLConfig.recipes.useNewPlatinumChain) {

@@ -4875,6 +4875,8 @@ gcyl.research.deep_overworld_gas=§6Deep Overworld Gas Data
 gcyl.research.deep_overworld_gas.tooltip=§aScan Liquid Air for this Data
 gcyl.research.deep_nether_gas=§6Deep Nether Gas Data
 gcyl.research.deep_nether_gas.tooltip=§aScan Liquid Nether Air for this Data
+gcyl.research.deep_tantalum=§6Deep Tantalum Data
+gcyl.research.deep_tantalum.tooltip=§aScan a Tantalum Block for this Data
 
 gcyl.machine.deep_miner.name=Deep Miner (DM)
 gcyl.machine.deep_miner.config.0=Fluid type set to Lava
