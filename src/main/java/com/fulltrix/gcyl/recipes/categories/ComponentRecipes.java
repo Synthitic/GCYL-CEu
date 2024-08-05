@@ -961,7 +961,7 @@ public class ComponentRecipes {
                         .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 4 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             } else {
-                getAssLineResearchBuilder(i, 600, getRobotArmByTier(i - 1).getStackForm(), false, false, (int) (1310720 * Math.pow(2, i - 9)))
+                getAssLineResearchBuilder(i, 600, getRobotArmByTier(i - 1).getStackForm(), false, false, (int) (1310720 * Math.pow(4, i - 9)))
                         .outputs(getRobotArmByTier(i).getStackForm())
                         .input(stickLong, getMainComponentMaterialByTier(i), 4)
                         .input(gear, getMainComponentMaterialByTier(i))
@@ -1149,7 +1149,7 @@ public class ComponentRecipes {
                         .buildAndRegister();
             }
             else {
-                getAssLineResearchBuilder(i, 600, getConveyorByTier(i - 1).getStackForm(), false, false,  (int) (983040 * Math.pow(2, i - 9)))
+                getAssLineResearchBuilder(i, 600, getConveyorByTier(i - 1).getStackForm(), false, false,  (int) (983040 * Math.pow(4, i - 9)))
                         .output(getConveyorByTier(i))
                         .inputs(getMotorByTier(i).getStackForm(2))
                         .input(plate, getMainComponentMaterialByTier(i), 2)
@@ -1337,7 +1337,7 @@ public class ComponentRecipes {
                         .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 2 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             } else {
-                getAssLineResearchBuilder(i, 600, getPistonByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i)))
+                getAssLineResearchBuilder(i, 600, getPistonByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(4, i - 9)))
                         .outputs(getPistonByTier(i).getStackForm())
                         .inputs(getMotorByTier(i).getStackForm())
                         .input(plate, getMainComponentMaterialByTier(i), 4)
@@ -1761,7 +1761,7 @@ public class ComponentRecipes {
                         .fluidInputs(getFluidMaterialByTier(i).getFluid((int) (L * 2 * (Math.pow(2, i - 8)))))
                         .buildAndRegister();
             } else {
-                getAssLineResearchBuilder(i, 600, getPumpByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(2, i)))
+                getAssLineResearchBuilder(i, 600, getPumpByTier(i - 1).getStackForm(), false, false, (int) (983040 * Math.pow(4, i - 9)))
                         .outputs(getPumpByTier(i).getStackForm())
                         .input(getMotorByTier(i))
                         .input(pipeLargeFluid, getFluidPipeMaterialByTier(i), 32)
