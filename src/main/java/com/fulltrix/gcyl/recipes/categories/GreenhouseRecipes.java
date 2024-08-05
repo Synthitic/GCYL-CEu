@@ -17,9 +17,52 @@ import static gregtech.common.items.MetaItems.STICKY_RESIN;
 public class GreenhouseRecipes {
     public static void init() {
 
+        //oak tree apples
+
+        GREENHOUSE_RECIPES.recipeBuilder().EUt(120).duration(600)
+                .circuitMeta(1)
+                .fluidInputs(Water.getFluid(64000))
+                .inputs(new ItemStack(Blocks.SAPLING, 8))
+                .output(new ItemStack(Blocks.LOG).getItem(), 32)
+                .outputs(new ItemStack(Blocks.SAPLING, 16))
+                .chancedOutput(new ItemStack(Items.APPLE, 32), 2500,0)
+                .buildAndRegister();
+
+        GREENHOUSE_RECIPES.recipeBuilder().EUt(480).duration(300)
+                .circuitMeta(2)
+                .fluidInputs(Water.getFluid(128000))
+                .inputs(new ItemStack(Blocks.SAPLING, 8))
+                .fluidInputs(CarbonDioxide.getFluid(16000))
+                .output(new ItemStack(Blocks.LOG).getItem(), 64)
+                .outputs(new ItemStack(Blocks.SAPLING, 32))
+                .chancedOutput(new ItemStack(Items.APPLE, 32), 5000, 250)
+                .buildAndRegister();
+
+        GREENHOUSE_RECIPES.recipeBuilder().EUt(1920).duration(150)
+                .circuitMeta(3)
+                .fluidInputs(Water.getFluid(256000))
+                .inputs(new ItemStack(Blocks.SAPLING, 8))
+                .inputs(FERTILIZER.getStackForm(64))
+                .fluidInputs(CarbonDioxide.getFluid(32000))
+                .output(new ItemStack(Blocks.LOG).getItem(), 128)
+                .outputs(new ItemStack(Blocks.SAPLING, 64))
+                .chancedOutput(new ItemStack(Items.APPLE, 64), 7500, 500)
+                .buildAndRegister();
+
+        GREENHOUSE_RECIPES.recipeBuilder().EUt(1920).duration(150)
+                .circuitMeta(3)
+                .fluidInputs(Water.getFluid(256000))
+                .inputs(new ItemStack(Blocks.SAPLING, 8))
+                .input(dust, OrganicFertilizer, 64)
+                .fluidInputs(CarbonDioxide.getFluid(32000))
+                .output(new ItemStack(Blocks.LOG).getItem(), 128)
+                .outputs(new ItemStack(Blocks.SAPLING, 64))
+                .chancedOutput(new ItemStack(Items.APPLE, 64), 7500, 500)
+                .buildAndRegister();
+
         //LOGS
 
-        for(int i = 0; i < 6; i++) {
+        for(int i = 1; i < 6; i++) {
             GREENHOUSE_RECIPES.recipeBuilder().EUt(120).duration(600)
                     .circuitMeta(1)
                     .fluidInputs(Water.getFluid(64000))
@@ -112,7 +155,6 @@ public class GreenhouseRecipes {
         registerGreenhouseRecipesSeed(Items.BEETROOT_SEEDS, Items.BEETROOT, 120, 600, 1, true);
         registerGreenhouseRecipesSeed(Items.MELON_SEEDS, Item.getItemFromBlock(Blocks.MELON_BLOCK), 120, 600, 8, false);
         registerGreenhouseRecipesSeed(Items.PUMPKIN_SEEDS, Item.getItemFromBlock(Blocks.PUMPKIN), 120, 600, 8, false);
-
 
     }
 
