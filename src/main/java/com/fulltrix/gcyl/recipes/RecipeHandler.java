@@ -21,7 +21,6 @@ public class RecipeHandler {
         /*
         StagedRemovalRecipes.init();
          */
-
         MetaItemRecipes.init();
         ComponentRecipes.init();
         ComponentALRecipes.init();
@@ -61,7 +60,7 @@ public class RecipeHandler {
             MiscChemistry.init();
         }
 
-
+        Bromine.init();
 
         TungstenChain.init();
         UHVMaterials.init();

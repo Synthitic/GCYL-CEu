@@ -2,8 +2,7 @@ package com.fulltrix.gcyl.recipes.chain;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
-import static gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES;
-import static gregtech.api.recipes.RecipeMaps.PYROLYSE_RECIPES;
+import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.stick;
@@ -13,6 +12,7 @@ public class PolymerChain {
         polyimideInit();
         fluorinatedEthylenePropyleneInit();
         polybenzimidazoleInit();
+        polystyreneInit();
     }
 
     public static void polybenzimidazoleInit() {
@@ -112,5 +112,38 @@ public class PolymerChain {
                 .EUt(1920)
                 .duration(125)
                 .buildAndRegister();
+    }
+
+    public static void polystyreneInit() {
+        CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .fluidInputs(Air.getFluid(1000))
+                .fluidInputs(Styrene.getFluid(144))
+                .fluidOutputs(Polystyrene.getFluid(144))
+                .duration(160).EUt(30).buildAndRegister();
+
+        CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .fluidInputs(Oxygen.getFluid(1000))
+                .fluidInputs(Styrene.getFluid(144))
+                .fluidOutputs(Polystyrene.getFluid(216))
+                .duration(160).EUt(30).buildAndRegister();
+
+        LARGE_CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .fluidInputs(Air.getFluid(7500))
+                .fluidInputs(Styrene.getFluid(2160))
+                .fluidInputs(TitaniumTetrachloride.getFluid(100))
+                .fluidOutputs(Polystyrene.getFluid(3240))
+                .duration(800).EUt(30).buildAndRegister();
+
+        LARGE_CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .fluidInputs(Oxygen.getFluid(7500))
+                .fluidInputs(Styrene.getFluid(2160))
+                .fluidInputs(TitaniumTetrachloride.getFluid(100))
+                .fluidOutputs(Polystyrene.getFluid(4320))
+                .duration(800).EUt(30).buildAndRegister();
+
     }
 }
