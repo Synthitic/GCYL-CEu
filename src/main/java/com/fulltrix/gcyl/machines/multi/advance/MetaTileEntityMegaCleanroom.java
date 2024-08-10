@@ -26,6 +26,9 @@ import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.common.metatileentities.multi.electric.MetaTileEntityCleanroom;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.state.IBlockState;
@@ -45,6 +48,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import scala.Int;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,6 +72,18 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implem
     private ICleanroomFilter cleanroomFilter;
     private IEnergyContainer energyContainer;
     private boolean initialForm = true;
+
+    private static final Object2IntMap<CleanroomType> CleanroomTypeMap = new Object2IntOpenHashMap<>();
+
+    static {
+        CleanroomTypeMap.put(CleanroomType.CLEANROOM, 0);
+        CleanroomTypeMap.put(CleanroomType.STERILE_CLEANROOM, 1);
+        CleanroomTypeMap.put(GCYLCleanroomType.ISO3, 2);
+        CleanroomTypeMap.put(GCYLCleanroomType.ISO2, 3);
+        CleanroomTypeMap.put(GCYLCleanroomType.ISO1, 4);
+        CleanroomTypeMap.put(GCYLCleanroomType.ISO0, 5);
+    }
+
     public MetaTileEntityMegaCleanroom(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId);
         this.cleanroomLogic = new CleanroomLogic(this, GTValues.LV);
@@ -180,7 +196,7 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implem
 
     @Override
     public boolean checkCleanroomType(@NotNull CleanroomType type) {
-        return type == this.cleanroomType;
+        return CleanroomTypeMap.get(type) <= CleanroomTypeMap.get(this.cleanroomType);
     }
 
     @NotNull
