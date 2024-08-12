@@ -673,6 +673,12 @@ public class SuperconductorsSMDChain {
                 .fluidOutputs(OxalicAcid.getFluid(3000))
                 .buildAndRegister();
 
+        FLUID_SOLIDFICATION_RECIPES.recipeBuilder().duration(20).EUt(8)
+                .notConsumable(SHAPE_MOLD_BALL)
+                .fluidInputs(OxalicAcid.getFluid(144))
+                .output(dust, OxalicAcid)
+                .buildAndRegister();
+
         // 2C2H2O4 + 2O + Ac -> Ac(C2O4)2 + 2H2O
         CHEMICAL_RECIPES.recipeBuilder().duration(180).EUt(30720)
                 .fluidInputs(OxalicAcid.getFluid(2000))
