@@ -14,6 +14,7 @@ import static gregtech.loaders.recipe.CraftingComponent.Component;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+//TODO Finish cables
 public class GCYLComponents {
     public static Component PLATE_DENSE;
     public static Component CABLE_DOUBLE;
@@ -35,7 +36,9 @@ public class GCYLComponents {
                 {9, new UnificationEntry(plateDense, Seaborgium)},
                 {10, new UnificationEntry(plateDense, Bohrium)},
                 {11, new UnificationEntry(plateDense, Quantum)},
-                {12, new UnificationEntry(plateDense, Neutronium)}
+                {12, new UnificationEntry(plate, BlackTitanium)},
+                {13, new UnificationEntry(plate, HeavyQuarkDegenerateMatter)},
+                {14, new UnificationEntry(plate, Neutronium)}
 
         }).collect(Collectors.toMap(data -> (Integer) data[0], data -> data[1])));
 
@@ -54,8 +57,8 @@ public class GCYLComponents {
                 {10, new UnificationEntry(cableGtDouble, TitanSteel)},
                 {11, new UnificationEntry(cableGtDouble, BlackTitanium)},
                 {12, new UnificationEntry(cableGtDouble, NaquadriaticTaranium)},
-                {13, new UnificationEntry(cableGtDouble, CosmicNeutronium)},
-                {14, new UnificationEntry(cableGtDouble, MAXSuperconductor)}
+                {13, new UnificationEntry(cableGtDouble, Neutronium)},
+                {14, new UnificationEntry(cableGtDouble, CosmicNeutronium)}
 
         }).collect(Collectors.toMap(data -> (Integer) data[0], data -> data[1])));
 
@@ -106,7 +109,7 @@ public class GCYLComponents {
                 { 6, new UnificationEntry(OrePrefix.cableGtSingle, Materials.NiobiumTitanium) },
                 { 7, new UnificationEntry(OrePrefix.cableGtSingle, Materials.Naquadah) },
                 { 8, new UnificationEntry(OrePrefix.cableGtSingle, Materials.NaquadahAlloy) },
-                { 9, new UnificationEntry(OrePrefix.cableGtSingle, TungstenTitaniumCarbide) },
+                { 9, new UnificationEntry(OrePrefix.cableGtSingle, TungstenTitaniumCarbide) }
 
         }).collect(Collectors.toMap(data -> (Integer) data[0], data -> data[1])));
 
@@ -122,6 +125,12 @@ public class GCYLComponents {
                 { 7, new UnificationEntry(OrePrefix.cableGtQuadruple, Naquadah) },
                 { 8, new UnificationEntry(OrePrefix.cableGtQuadruple, NaquadahAlloy) },
                 { 9, new UnificationEntry(OrePrefix.cableGtQuadruple, TungstenTitaniumCarbide) },
+                //TODO: Change these?
+                {10, new UnificationEntry(cableGtQuadruple, TitanSteel)},
+                {11, new UnificationEntry(cableGtQuadruple, BlackTitanium)},
+                {12, new UnificationEntry(cableGtQuadruple, NaquadriaticTaranium)},
+                {13, new UnificationEntry(cableGtQuadruple, Neutronium)},
+                {14, new UnificationEntry(cableGtQuadruple, CosmicNeutronium)}
 
         }).collect(Collectors.toMap(data -> (Integer) data[0], data -> data[1])));
 
@@ -185,6 +194,25 @@ public class GCYLComponents {
 
         }).collect(Collectors.toMap(data -> (Integer) data[0], data -> data[1])));
 
+        CraftingComponent.PLATE = new Component(Stream.of(new Object[][] {
+
+                {0, new UnificationEntry(plate, Lead)},
+                {1, new UnificationEntry(plate, Steel)},
+                {2, new UnificationEntry(plate, Aluminium)},
+                {3, new UnificationEntry(plate, StainlessSteel)},
+                {4, new UnificationEntry(plate, Titanium)},
+                {5, new UnificationEntry(plate, TungstenSteel)},
+                {6, new UnificationEntry(plate, RhodiumPlatedPalladium)},
+                {7, new UnificationEntry(plate, HSSS)},
+                {8, new UnificationEntry(plate, Tritanium)},
+                {9, new UnificationEntry(plate, Seaborgium)},
+                {10, new UnificationEntry(plate, Bohrium)},
+                {11, new UnificationEntry(plate, Quantum)},
+                {12, new UnificationEntry(plate, BlackTitanium)},
+                {13, new UnificationEntry(plate, HeavyQuarkDegenerateMatter)},
+                {14, new UnificationEntry(plate, Neutronium)}
+
+        }).collect(Collectors.toMap(data -> (Integer) data[0], data -> data[1])));
 
     }
 

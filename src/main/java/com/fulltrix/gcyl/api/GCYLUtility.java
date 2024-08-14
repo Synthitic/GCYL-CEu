@@ -66,6 +66,22 @@ public class GCYLUtility {
         return new ResourceLocation("gcyl", path);
     }
 
+    public static MetaItem<?>.MetaValueItem getDiodeByTier(int tier) {
+        return switch (tier) {
+            case (2) -> SMD_DIODE_REFINED;
+            case (3) -> SMD_DIODE;
+            case (4) -> SMD_DIODE_NANO;
+            case (5) -> SMD_DIODE_QUANTUM;
+            case (6) -> SMD_DIODE_CRYSTAL;
+            case (7) -> SMD_DIODE_WETWARE;
+            case (8) -> SMD_DIODE_BIOWARE;
+            case (9) -> SMD_DIODE_OPTICAL;
+            case (10) -> SMD_DIODE_EXOTIC;
+            case (11) -> SMD_DIODE_COSMIC;
+            default -> SMD_DIODE_SUPRACAUSAL;
+        };
+    }
+
     public static int setBetweenInclusive(int value, int start, int end) {
         if (value < start)
             return start;

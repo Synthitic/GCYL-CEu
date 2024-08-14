@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories.machines;
 
+import com.fulltrix.gcyl.api.GCYLUtility;
 import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import gregtech.api.GTValues;
 import gregtech.api.recipes.ModHandler;
@@ -10,8 +11,10 @@ import gregtech.common.blocks.BlockMachineCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
+import gregtech.loaders.recipe.CraftingComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+import org.apache.commons.lang3.ArrayUtils;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.TOOL_DATA_MODULE_CLUSTER;
@@ -30,14 +33,27 @@ import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 import static gregtech.common.metatileentities.MetaTileEntities.CLEANING_MAINTENANCE_HATCH;
 import static gregtech.common.metatileentities.MetaTileEntities.HULL;
+import static gregtech.loaders.recipe.CraftingComponent.CABLE_QUAD;
+import static gregtech.loaders.recipe.CraftingComponent.PLATE;
+import static gregtech.loaders.recipe.MetaTileEntityLoader.registerMachineRecipe;
 
 public class MachineCraftingRecipes {
 
     public static void init() {
         hullOverride();
+        diodeOverride();
         MultiblockCraftingRecipes.init();
         SingleblockCraftingRecipes.init();
         misc();
+    }
+
+    private static void diodeOverride() {
+        removeTieredRecipeByName("gregtech:gregtech.machine.diode.", GTValues.MV, GTValues.MAX);
+
+        for (int i = 2; i < GTValues.MAX + 1; i++) {
+            registerMachineRecipe(ArrayUtils.subarray(MetaTileEntities.DIODES, i, i+1), "CDC", "DHD",
+                    "PDP", 'H', CraftingComponent.HULL, 'D', GCYLUtility.getDiodeByTier(i), 'P', PLATE, 'C', CABLE_QUAD);
+        }
     }
 
     private static void hullOverride() { //TODO add OpV machine hull recipes
@@ -74,8 +90,8 @@ public class MachineCraftingRecipes {
         ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV)).input(cableGtQuadruple, Pikyonium, 2).fluidInputs(Polyetheretherketone.getFluid(L * 2)).outputs(HULL[10].getStackForm()).buildAndRegister();
         ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UIV)).input(cableGtQuadruple, Cinobite, 2).fluidInputs(Zylon.getFluid(L * 2)).outputs(HULL[11].getStackForm()).buildAndRegister();
         ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV)).input(cableGtQuadruple, NaquadriaticTaranium, 2).fluidInputs(Zylon.getFluid(L * 2)).outputs(HULL[12].getStackForm()).buildAndRegister();
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV)).input(cableGtQuadruple, Neutronium, 2).fluidInputs(FullerenePolymerMatrix.getFluid(L * 2)).outputs(HULL[13].getStackForm()).buildAndRegister();
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV)).input(cableGtQuadruple, CosmicNeutronium, 2).fluidInputs(FullerenePolymerMatrix.getFluid(L * 2)).outputs(HULL[14].getStackForm()).buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.OpV)).input(cableGtQuadruple, Neutronium, 2).fluidInputs(FullerenePolymerMatrix.getFluid(L * 2)).outputs(HULL[13].getStackForm()).buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50).inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.MAX)).input(cableGtQuadruple, CosmicNeutronium, 2).fluidInputs(FullerenePolymerMatrix.getFluid(L * 2)).outputs(HULL[14].getStackForm()).buildAndRegister();
 
         removeTieredRecipeByName("gregtech:casing_", GTValues.ZPM, GTValues.MAX);
         // UHV+ Casings
