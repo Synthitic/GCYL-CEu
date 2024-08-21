@@ -649,7 +649,7 @@ public class CircuitRecipes {
                 .inputs(SMD_TRANSISTOR_WETWARE.getStackForm(32))
                 .inputs(SMD_CAPACITOR_WETWARE.getStackForm(32))
                 .inputs(SMD_DIODE_WETWARE.getStackForm(32))
-                .inputs(QUANTUM_STAR.getStackForm(4))
+                .inputs(HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(16))
                 .inputs(ARAM.getStackForm(8))
                 .inputs(QUANTUM_STAR.getStackForm(4))
                 .input(plate, Rutherfordium, 2)
