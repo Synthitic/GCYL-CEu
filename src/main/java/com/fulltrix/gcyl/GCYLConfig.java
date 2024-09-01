@@ -162,18 +162,22 @@ public class GCYLConfig {
 
     public static class Recipes {
 
+        @Config.Comment({"1 click hard mode, makes everything have maximum cost. Other configs that change cost do nothing. (May do other things in the future.)", "default = false"})
+        @Config.RequiresMcRestart
+        public boolean hardMode = false;
+
         @Config.Comment({"Base amount of circuits outputted per craft of the first circuit of a tier.", "default = 1"})
         @Config.RequiresMcRestart
-        public int circuitsPerCraft = 1;
+        public int circuitsPerCraft = 4;
 
 
         @Config.Comment({"Base amount of high tier circuit cores outputted per craft.", "default = 1"})
         @Config.RequiresMcRestart
-        public int circuitCoresPerCraft = 1;
+        public int circuitCoresPerCraft = 8;
 
         @Config.Comment({"How many Multiblock Casings to make per craft. Overrides the default GT Option", "Default: 1"})
         @Config.RequiresMcRestart
-        public int gcylCasingsPerCraftOverride = 1;
+        public int gcylCasingsPerCraftOverride = 2;
 
         @Config.Comment({"Whether to use the new Platinum Group Line instead of Legacy.", "Default: true"})
         @Config.Name("New Platinum Chain")
