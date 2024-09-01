@@ -6,12 +6,14 @@ package com.fulltrix.gcyl.materials;
 import com.fulltrix.gcyl.materials.chains.MiscMaterials;
 import com.fulltrix.gcyl.materials.chains.NewPlatinumGroupMaterials;
 import com.fulltrix.gcyl.materials.chains.NewREEMaterials;
+import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
 import gregtech.api.GTValues;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialFlag;
 import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.unification.material.properties.BlastProperty;
+import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.material.properties.ToolProperty;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextFormatting;
@@ -1191,6 +1193,7 @@ public class GCYLMaterials {
     public static Material HotLiquidTin;
     public static Material HotLiquidLead;
     public static Material HotLiquidBoronTrioxide;
+    public static Material DuctileA356;
     public static Material Placeholder;
 
     //COILS
@@ -10682,7 +10685,17 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("?",true);
 
-        ++id; //TODO FREE MATERIAL ID
+        DuctileA356 = new Material.Builder(++id, gcylId("ductile_a_356"))
+                .ingot()
+                .liquid()
+                .iconSet(SHINY)
+                .color((Aluminium.getMaterialRGB() * 33 + Silicon.getMaterialRGB() * 2 + Magnesium.getMaterialRGB() + Iron.getMaterialRGB() + Europium.getMaterialRGB()) / 38)
+                .flags(DISABLE_REPLICATION , NO_SMELTING, GENERATE_FINE_WIRE)
+                .components(Aluminium, 33, Silicon, 2, Magnesium, 1, Iron, 1, Europium, 1)
+                .build();
+
+        DuctileA356.getProperty(PropertyKey.FLUID).enqueueRegistration(GCYMFluidStorageKeys.MOLTEN, new FluidBuilder()
+                .temperature(2300));
 
         ++id; //TODO FREE MATERIAL ID
 

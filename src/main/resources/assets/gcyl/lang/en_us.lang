@@ -5288,6 +5288,8 @@ gcyl.material.hot_tin=Hot Liquid Tin
 gcyl.material.hot_lead=Hot Liquid Lead
 gcyl.material.hot_boron_trioxide=Irradiated Hot Liquid Boron Trioxide
 
+gcyl.material.ductile_a_356=Ductile A356
+
 gcyl.machine.advanced_assline.name=Advanced Assembly Line (AAL)
 gcyl.machine.advanced_assline.tooltip.8=Base Recipe Duration is 20%% Longer.
 gcyl.machine.advanced_assline.tooltip.1=Maximum Parallel is equal to the Length.

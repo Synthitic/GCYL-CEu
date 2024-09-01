@@ -82,12 +82,12 @@ public class GCYLConfig {
         @Config.Comment("The name of the ores to blacklist for all Void Miners because there are existing recipes in the Deep Miner")
         @Config.RequiresMcRestart
         @Config.Name("Void Miner because Deep Miner Blacklist")
-        public String[] oreBlackListDeepMinerConflict = new String[]{"diamond", "coal", "pyrochlore", "columbite", "bauxite", "aluminium", "rutile", "gallite", "platinum_metallic_powder", "palladium_metallic_powder", "bastnasite", "monazite", "neodymium", "nether_star", "salt", "fluorite", "lepidolite", "spodumene", "naquadric_compound", "enriched_naquadric_compound", "naquadriatic_compound", "uranium_238", "plutonium_generic", "rarest_metal_mixture", "rhodium_salt", "sodium_ruthenate"};
+        public String[] oreBlackListDeepMinerConflict = new String[]{"diamond", "coal", "pyrochlore", "columbite", "bauxite", "aluminium", "rutile", "gallite", "platinum_metallic_powder", "palladium_metallic_powder", "bastnasite", "monazite", "neodymium", "nether_star", "salt", "fluorite", "lepidolite", "spodumene", "naquadric_compound", "enriched_naquadric_compound", "naquadriatic_compound", "uranium_238", "plutonium_generic", "rarest_metal_mixture", "rhodium_salt", "sodium_ruthenate", "tantalum", "tantalite"};
 
         @Config.Comment("The name of the ores to blacklist for all Void Miners")
         @Config.RequiresMcRestart
         @Config.Name("Universal Void Miner Blacklist")
-        public String[] oreBlackListUniversal = new String[]{"naquadah", "sheldonite", "platinum", "palladium", "iridium", "osmium", "barium", "arsenic", "titanium", "tungsten"};
+        public String[] oreBlackListUniversal = new String[]{"naquadah", "cooperite", "platinum", "palladium", "iridium", "osmium", "barium", "arsenic", "titanium", "tungsten"};
 
         @Config.Comment("The name of the ores to blacklist for the MK1 Void Miner")
         @Config.RequiresMcRestart

@@ -228,7 +228,7 @@ public class GCYLUtility {
             case(4) -> Kanthal;
             case(5) -> BrightSteel;
             case(6) -> Irirutan;
-            case(7) -> Europium;
+            case(7) -> DuctileA356;
             case(8) -> Duranium;
             case(9) -> TungstenTitaniumCarbide;
             case(10) -> Pikyonium;

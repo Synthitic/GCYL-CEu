@@ -6,6 +6,7 @@ import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import gregtech.api.GTValues;
 import gregtech.api.items.armor.ArmorMetaItem;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
+import gregtech.api.recipes.GTRecipeHandler;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTCondition;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
@@ -70,12 +71,12 @@ public class RecipeOverride {
         //removeRecipesByInputs(FLUID_SOLIDFICATION_RECIPES, new ItemStack[]{MetaItems.SHAPE_MOLD_CYLINDER.getStackForm()},  new FluidStack[]{Polytetrafluoroethylene.getFluid(36)});
 
         //remove all circuit assembler recipes
-        removeAll(CIRCUIT_ASSEMBLER_RECIPES);
+        GTRecipeHandler.removeAllRecipes(CIRCUIT_ASSEMBLER_RECIPES);
 
         //remove all assembly line recipes
-        removeAll(ASSEMBLY_LINE_RECIPES);
-        removeAll(SCANNER_RECIPES);
-        removeAll(RESEARCH_STATION_RECIPES);
+        GTRecipeHandler.removeAllRecipes(ASSEMBLY_LINE_RECIPES);
+        GTRecipeHandler.removeAllRecipes(SCANNER_RECIPES);
+        GTRecipeHandler.removeAllRecipes(RESEARCH_STATION_RECIPES);
 
         //conflict removal
         removeRecipesByInputs(DISTILLERY_RECIPES, new ItemStack[]{getIntegratedCircuit(1)}, new FluidStack[]{CoalTar.getFluid(100)});

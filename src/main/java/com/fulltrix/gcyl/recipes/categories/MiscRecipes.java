@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories;
 
+import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
 import gregtech.api.GTValues;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
@@ -18,6 +19,7 @@ import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.materials.GCYLNuclearMaterials.*;
 import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.DECAY_CHAMBERS_RECIPES;
+import static gregicality.multiblocks.api.recipes.GCYMRecipeMaps.ALLOY_BLAST_RECIPES;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -142,6 +144,24 @@ highTierVoltageCoils();
         POLARIZER_RECIPES.recipeBuilder().EUt(4096).duration(150)
                 .fluidInputs(Samarium.getFluid(144))
                 .fluidOutputs(SamariumMagnetic.getFluid(144))
+                .buildAndRegister();
+
+        // Ductile A356
+        ALLOY_BLAST_RECIPES.recipeBuilder().EUt(VA[ZPM]).duration(300)
+                .fluidInputs(Argon.getFluid(1000))
+                .circuitMeta(5)
+                .input(dust, Aluminium, 33)
+                .input(dust, Silicon, 2)
+                .input(dust, Magnesium)
+                .input(dust, Iron)
+                .input(dust, Europium)
+                .blastFurnaceTemp(2300)
+                .fluidOutputs(DuctileA356.getFluid(GCYMFluidStorageKeys.MOLTEN,L * 38))
+                .buildAndRegister();
+
+        VACUUM_RECIPES.recipeBuilder().EUt(VA[LuV]).duration(150)
+                .fluidInputs(DuctileA356.getFluid(GCYMFluidStorageKeys.MOLTEN, 144))
+                .fluidOutputs(DuctileA356.getFluid(144))
                 .buildAndRegister();
 
         //sodium hydroxide loop
