@@ -60,7 +60,7 @@ public class GCYLHeatingCoil extends VariantActiveBlock<GCYLHeatingCoil.CoilType
         lines.add(I18n.format("tile.wire_coil.tooltip_heat", coilType.coilTemperature));
 
         if (TooltipHelper.isShiftDown()) {
-            int coilTier = coilType.ordinal();
+            int coilTier = coilType.ordinal() + 6;
             lines.add(I18n.format("tile.wire_coil.tooltip_smelter"));
             lines.add(I18n.format("tile.wire_coil.tooltip_parallel_smelter", coilType.level * 32));
             int EUt = MetaTileEntityMultiSmelter.getEUtForParallel(MetaTileEntityMultiSmelter.getMaxParallel(coilType.getLevel()), coilType.getEnergyDiscount());
@@ -129,7 +129,7 @@ public class GCYLHeatingCoil extends VariantActiveBlock<GCYLHeatingCoil.CoilType
 
         @Override
         public int getTier() {
-            return this.ordinal();
+            return this.ordinal() + 6;
         }
 
         @Nullable
