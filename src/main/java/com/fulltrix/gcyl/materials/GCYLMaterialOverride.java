@@ -317,7 +317,11 @@ public class GCYLMaterialOverride {
 
 
         oreProp = Bowieite.getProperty(PropertyKey.ORE);
-        oreProp.addOreByProducts(Nickel,PlatinumMetallicPowder,RarestMetalMixture,CrudeRhodiumMetal);
+
+        if(GCYLConfig.recipes.useNewPlatinumChain) //TODO: add additional higher tier pgs materials to this
+            oreProp.addOreByProducts(Nickel, PlatinumGroupSludge);
+        else
+            oreProp.addOreByProducts(Nickel,PlatinumMetallicPowder,RarestMetalMixture,CrudeRhodiumMetal);
 
         oreProp = Tennantite.getProperty(PropertyKey.ORE);
         oreProp.setOreMultiplier(2);

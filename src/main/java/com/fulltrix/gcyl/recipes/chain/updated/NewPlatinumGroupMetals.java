@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.recipes.chain.updated;
 
 import gregtech.api.fluids.store.FluidStorageKeys;
+import gregtech.api.unification.OreDictUnifier;
 
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.materials.chains.NewPlatinumGroupMaterials.*;
@@ -33,9 +34,16 @@ public class NewPlatinumGroupMetals {
                 .chancedOutput(dust, PlatinumGroupSludge, 2500, 1000)
                 .buildAndRegister();
 
-        CENTRIFUGE_RECIPES.recipeBuilder().duration(100).EUt(VA[EV])
-                .input(dust, PalladiumMetallicPowder)
-                .chancedOutput(dust, PlatinumGroupSludge, 2500, 1000)
+        //TODO: replace 2 of them with higher tier pgs material
+        CENTRIFUGE_RECIPES.recipeBuilder().duration(984).EUt(30)
+                .input(dust, Bowieite, 5)
+                .output(dust, Sulfur, 3)
+                .chancedOutput(dust, PlatinumGroupSludge, 2, 3300, 330)
+                .chancedOutput(dust, PlatinumGroupSludge, 2, 3300, 330)
+                .chancedOutput(dust, PlatinumGroupSludge, 2, 3300, 330)
+                //.chancedOutput(OreDictUnifier.get(dust, PlatinumMetallicPowder, 2), 3300, 330)
+                //.chancedOutput(OreDictUnifier.get(dust, IridiumMetalResidue, 2), 3300, 330)
+                //.chancedOutput(OreDictUnifier.get(dust, CrudeRhodiumMetal, 2), 3300, 330)
                 .buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder().duration(50).EUt(VA[EV])
