@@ -246,7 +246,7 @@ public class GCYLMaterialOverride {
                 RarestMetalMixture, PalladiumMetallicPowder, Celestine, Caliche, Fluorite, Rhodocrosite, Columbite, Niter, Zircon,
                 Bowieite, Zinc, Enargite, Andradite, Dolomite, Wollastonite, Kaolinite, Tenorite, Tennantite, Cuprite, Tellurium,
                 Zirkelite, Arsenopyrite, Draconium, Iridium, Osmium, Rutile, Gallite, NetherStar, Uranium238, FluoroApatite,
-                RhodiumSalt, SodiumRuthenate, Tritanium, Arsenic, Barium, Titanium, Tungsten, Tantalum);
+                RhodiumSalt, SodiumRuthenate, Tritanium, Arsenic, Barium, Titanium, Tungsten, Tantalum, Duranium);
         for (Material mat : omats) {
 
             if(GCYLConfig.recipes.useNewPlatinumChain) {
@@ -259,7 +259,7 @@ public class GCYLMaterialOverride {
 
         //EMISSIVE ORES
         List<Material> eomats = new ArrayList<>();
-        Collections.addAll(eomats,Triniite, NaquadricCompound, EnrichedNaquadricCompound, NaquadriaticCompound, Uranium, Plutonium, Duranium);
+        Collections.addAll(eomats,Triniite, NaquadricCompound, EnrichedNaquadricCompound, NaquadriaticCompound, Uranium, Plutonium);
         for (Material mat : eomats) {
             addOre(mat, 1,1,true);
         }
