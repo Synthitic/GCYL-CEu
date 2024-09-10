@@ -438,7 +438,13 @@ public class GCYLMaterialOverride {
         //WIRE PROPERTIES
         Neutronium.setProperty(PropertyKey.WIRE, new WireProperties((int) GTValues.V[OpV], 4, 64));
 
+        if(!GCYLConfig.recipes.hardMode) {
+            Draconium.setProperty(PropertyKey.WIRE, new WireProperties((int) GTValues.V[GTValues.UHV], 10, 0, true));
+        }
 
+        AwakenDraconium.setProperty(PropertyKey.WIRE, new WireProperties((int) GTValues.V[GTValues.UEV], 100 , 0, true));
+        Chaos.setProperty(PropertyKey.WIRE, new WireProperties((int) GTValues.V[GTValues.UIV], 1000 , 0, true));
+        ChaosAlloy.setProperty(PropertyKey.WIRE, new WireProperties((int) GTValues.V[OpV], 10000 , 0, true));
 
         //REPLACE MATERIALS
         IridiumMetalResidue.setFormula("Ir2O4(SiO2)2Au3", true);
