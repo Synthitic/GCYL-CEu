@@ -56,6 +56,8 @@ public class RecipeHandler {
         else
             REEChain.init();
 
+        REEOxides.init();
+
         if(GCYLConfig.recipes.useNewPlatinumChain || GCYLConfig.recipes.useNewREEChain) {
             MiscChemistry.init();
         }

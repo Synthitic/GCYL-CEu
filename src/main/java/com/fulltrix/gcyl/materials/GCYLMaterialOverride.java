@@ -177,7 +177,7 @@ public class GCYLMaterialOverride {
         List<Material> dmats = new ArrayList<>();
         Collections.addAll(dmats, Dysprosium, Iodine, Gadolinium, Strontium, Holmium, Californium, Zirconium, Thallium, Rubidium, Technetium,
                 Terbium, Promethium, Radium, Tellurium, Francium, Berkelium, Curium, Actinium, Protactinium, Scandium, Thulium, Hafnium, Astatine,
-                Selenium, Praseodymium, Copernicium, Erbium, Polonium, Nihonium, Moscovium, Livermorium, Tennessine);
+                Selenium, Praseodymium, Copernicium, Erbium, Polonium, Nihonium, Moscovium, Livermorium, Tennessine, Ytterbium);
         for (Material mat : dmats) {
             addDust(mat, 1, 0);
         }
