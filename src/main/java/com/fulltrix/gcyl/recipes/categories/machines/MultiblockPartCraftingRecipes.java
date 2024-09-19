@@ -6,9 +6,11 @@ import com.fulltrix.gcyl.blocks.component_al.GCYLComponentALCasing;
 import com.fulltrix.gcyl.blocks.metal.GCYLCleanroomCasing;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
+import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.common.blocks.BlockCleanroomCasing;
 import gregtech.common.blocks.MetaBlocks;
+import net.minecraft.item.ItemStack;
 
 import static com.fulltrix.gcyl.api.GCYLUtility.*;
 import static com.fulltrix.gcyl.api.GCYLUtility.getPowerIC;
@@ -18,6 +20,7 @@ import static com.fulltrix.gcyl.machines.GCYLTileEntities.*;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities.PARALLEL_HATCH;
 import static gregtech.api.GTValues.*;
+import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
@@ -35,6 +38,48 @@ public class MultiblockPartCraftingRecipes {
         computerHatches();
         otherHatches();
         componentALCasings();
+        energyHatchCorrections();
+    }
+
+    //TODO: finish the rest of these
+    private static void energyHatchCorrections() {
+        //UHV 4A Input
+        removeRecipesByInputs(ASSEMBLER_RECIPES, ENERGY_INPUT_HATCH[UHV].getStackForm(), OreDictUnifier.get(wireGtQuadruple, Europium, 2), OreDictUnifier.get(plate, Neutronium, 2));
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ENERGY_INPUT_HATCH[UHV])
+                .input(wireGtQuadruple, Europium, 2)
+                .input(plate, Seaborgium, 2)
+                .output(ENERGY_INPUT_HATCH_4A[5])
+                .duration(100).EUt(VA[UV]).buildAndRegister();
+
+        //UHV 16A Input
+        removeRecipesByInputs(ASSEMBLER_RECIPES, HI_AMP_TRANSFORMER[UV].getStackForm(), ENERGY_INPUT_HATCH_4A[5].getStackForm(2), OreDictUnifier.get(wireGtOctal, Europium, 2), OreDictUnifier.get(plate, Neutronium, 4));
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(HI_AMP_TRANSFORMER[UV])
+                .input(ENERGY_INPUT_HATCH_4A[5], 2)
+                .input(wireGtOctal, Europium, 2)
+                .input(plate, Seaborgium, 4)
+                .output(ENERGY_INPUT_HATCH_16A[4])
+                .duration(200).EUt(VA[UV]).buildAndRegister();
+
+        //UHV 4A Output
+        removeRecipesByInputs(ASSEMBLER_RECIPES, ENERGY_OUTPUT_HATCH[UHV].getStackForm(), OreDictUnifier.get(wireGtQuadruple, Europium, 2), OreDictUnifier.get(plate, Neutronium, 2));
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ENERGY_OUTPUT_HATCH[UHV])
+                .input(wireGtQuadruple, Europium, 2)
+                .input(plate, Seaborgium, 2)
+                .output(ENERGY_OUTPUT_HATCH_4A[5])
+                .duration(100).EUt(VA[UV]).buildAndRegister();
+
+        //UHV 16A Input
+        removeRecipesByInputs(ASSEMBLER_RECIPES, HI_AMP_TRANSFORMER[UV].getStackForm(), ENERGY_OUTPUT_HATCH_4A[5].getStackForm(2), OreDictUnifier.get(wireGtOctal, Europium, 2), OreDictUnifier.get(plate, Neutronium, 4));
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(HI_AMP_TRANSFORMER[UV])
+                .input(ENERGY_OUTPUT_HATCH_4A[5], 2)
+                .input(wireGtOctal, Europium, 2)
+                .input(plate, Seaborgium, 4)
+                .output(ENERGY_OUTPUT_HATCH_16A[4])
+                .duration(200).EUt(VA[UV]).buildAndRegister();
     }
 
     private static void componentALCasings() {
