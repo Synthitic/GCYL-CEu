@@ -1308,7 +1308,7 @@ public class GCYLMaterials {
                 .iconSet(SHINY)
                 .cableProperties(GTValues.V[GTValues.UEV], 4, 32)
                 .components(Inconel792, 8, EglinSteel, 5, NaquadahEnriched, 4, Cerium, 3, Antimony, 2, Platinum, 2, Ytterbium, 1, TungstenSteel, 4)
-                .blast(11500)
+                .blast(10400)
                 .flags(DISABLE_REPLICATION).build();
 
         LithiumNiobate = new Material.Builder(++id, gcylId("lithium_niobate"))
