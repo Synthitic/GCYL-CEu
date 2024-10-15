@@ -175,8 +175,9 @@ public class NewREEChain {
                 .chancedOutput(dust, YtterbiumOxide, 5, 700, 50)
                 .chancedOutput(dust, LutetiumOxide, 5, 40, 50)
                 .chancedOutput(dust, YttriumOxide, 5, 7200, 50)
+                .chancedOutput(dust, ScandiumOxide, 5, 10000, 50) //TODO: is this right?
                 .fluidOutputs(Chlorine.getFluid(6000))
-                .duration(400)
+                .duration(300)
                 .EUt(480)
                 .buildAndRegister();
     }
@@ -189,7 +190,8 @@ public class NewREEChain {
                 .input(dust, OxalicAcid, 24)
                 .output(dust, oxalate, 1)
                 .fluidOutputs(NitricAcid.getFluid(6000))
-                .duration(2000 / 4)
+                //.duration(2000 / 4) //TODO: ?
+                .duration(300)
                 .EUt(1920)
                 .buildAndRegister();
 
@@ -199,7 +201,8 @@ public class NewREEChain {
                 .fluidInputs(Oxygen.getFluid(6000))
                 .output(dust, oxide, 10)
                 .fluidOutputs(CarbonDioxide.getFluid(12000))
-                .duration(2000 / 4)
+                //.duration(2000 / 4) //TODO: ?
+                .duration(300)
                 .EUt(1920)
                 .buildAndRegister();
 
@@ -210,7 +213,8 @@ public class NewREEChain {
                 .output(dust, pentachloride, 6)
                 .fluidOutputs(Ammonia.getFluid(6000))
                 .fluidOutputs(Water.getFluid(3000))
-                .duration(2000 / 4)
+                //.duration(2000 / 4) //TODO: ?
+                .duration(300)
                 .EUt(1920)
                 .buildAndRegister();
 
