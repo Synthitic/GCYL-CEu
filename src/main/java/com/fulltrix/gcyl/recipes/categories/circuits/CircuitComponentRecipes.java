@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories.circuits;
 
+import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.recipes.categories.circuits.components.*;
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
@@ -257,7 +258,7 @@ public class CircuitComponentRecipes {
                 .inputs(PETRI_DISH.getStackForm(8))
                 .inputs(ELECTRIC_PUMP_ZPM.getStackForm())
                 .inputs(SENSOR_LuV.getStackForm(2))
-                .input(circuit, MarkerMaterials.Tier.UV)
+                .input(circuit, GCYLConfig.recipes.hardMode ? MarkerMaterials.Tier.UV : MarkerMaterials.Tier.LuV)
                 .input(foil, TitanSteel, 32)
                 .fluidInputs(SterileBioGrowthMedium.getFluid(16000))
                 .outputs(BIO_BOARD.getStackForm(32))
