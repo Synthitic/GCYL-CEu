@@ -61,7 +61,6 @@ public class WaferRecipes {
                 .blastFurnaceTemp(9100)
                 .outputs(NEUTRONIUM_BOULE.getStackForm())
                 .fluidInputs(Radon.getFluid(8000))
-                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
         CUTTER_RECIPES.recipeBuilder().EUt(98304).duration(1600)
