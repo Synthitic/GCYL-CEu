@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.machines.multi.advance;
 
+import codechicken.lib.raytracer.CuboidRayTraceResult;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
@@ -29,10 +30,7 @@ import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.ingredients.GTRecipeInput;
 import gregtech.api.recipes.recipeproperties.IRecipePropertyStorage;
 import gregtech.api.recipes.recipeproperties.ResearchProperty;
-import gregtech.api.util.GTLog;
-import gregtech.api.util.GTTransferUtils;
-import gregtech.api.util.GTUtility;
-import gregtech.api.util.RelativeDirection;
+import gregtech.api.util.*;
 import gregtech.client.particle.GTLaserBeamParticle;
 import gregtech.client.particle.GTParticleManager;
 import gregtech.client.renderer.ICubeRenderer;
@@ -52,13 +50,16 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
@@ -90,9 +91,11 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
     private int beamCount;
     private int beamTime;
 
+    private int mode = 0;
+
     public MetaTileEntityAdvancedAssline(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, RecipeMaps.ASSEMBLY_LINE_RECIPES);
-        this.recipeMapWorkable = new AdvancedAsslineRecipeLogic(this);
+        this.recipeMapWorkable = mode == 0 ? new AdvancedAsslineRecipeLogic(this) : new MultiblockRecipeLogic(this);
     }
 
     @Override
@@ -360,18 +363,24 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound data) {
         super.writeToNBT(data);
-        data.setInteger("parallel", this.recipeMapWorkable.getParallelLimit());
-        data.setInteger("wait", ((AdvancedAsslineRecipeLogic) this.recipeMapWorkable).wait);
-        data.setBoolean("hang", ((AdvancedAsslineRecipeLogic) this.recipeMapWorkable).hang);
+        data.setInteger("mode", this.mode);
+        if(this.mode == 0) {
+            data.setInteger("parallel", this.recipeMapWorkable.getParallelLimit());
+            data.setInteger("wait", ((AdvancedAsslineRecipeLogic) this.recipeMapWorkable).wait);
+            data.setBoolean("hang", ((AdvancedAsslineRecipeLogic) this.recipeMapWorkable).hang);
+        }
         return data;
     }
 
     @Override
     public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
-        ((AdvancedAsslineRecipeLogic) this.recipeMapWorkable).parallelCount = data.getInteger("parallel");
-        ((AdvancedAsslineRecipeLogic) this.recipeMapWorkable).wait = data.getInteger("wait");
-        ((AdvancedAsslineRecipeLogic) this.recipeMapWorkable).hang = data.getBoolean("hang");
+        this.mode = data.getInteger("mode");
+        if(this.mode == 0) {
+            ((AdvancedAsslineRecipeLogic) this.recipeMapWorkable).parallelCount = data.getInteger("parallel");
+            ((AdvancedAsslineRecipeLogic) this.recipeMapWorkable).wait = data.getInteger("wait");
+            ((AdvancedAsslineRecipeLogic) this.recipeMapWorkable).hang = data.getBoolean("hang");
+        }
     }
 
     @Override
@@ -466,6 +475,25 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
             orderedHandlerList.add(new FluidTankList(false, hatchTanks));
         }
         return orderedHandlerList;
+    }
+
+    @Override
+    public boolean onScrewdriverClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing,
+                                      CuboidRayTraceResult hitResult) {
+        if (!getWorld().isRemote && !this.recipeMapWorkable.isActive()) {
+
+            if (this.mode == 0) {
+                this.mode = 1;
+                this.recipeMapWorkable = new MultiblockRecipeLogic(this);
+                playerIn.sendStatusMessage(TextComponentUtil.translationWithColor(TextFormatting.WHITE, "AL Mode"), false);
+            } else {
+                this.mode = 0;
+                this.recipeMapWorkable = new AdvancedAsslineRecipeLogic(this);
+                playerIn.sendStatusMessage(TextComponentUtil.translationWithColor(TextFormatting.WHITE, "AAL Mode"), false);
+            }
+
+        }
+        return true;
     }
 
     protected class AdvancedAsslineRecipeLogic extends MultiblockRecipeLogic {
