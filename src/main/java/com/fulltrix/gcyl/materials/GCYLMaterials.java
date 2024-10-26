@@ -3174,7 +3174,7 @@ public class GCYLMaterials {
                 .iconSet(METALLIC)
                 .flags(DISABLE_REPLICATION)
                 .build()
-                .setFormula("C4H4BrNO2", true);
+                .setFormula("C4H5NO2", true);
 
         Acetaldehyde = new Material.Builder(++id, gcylId("acetaldehyde"))
                 .liquid()
