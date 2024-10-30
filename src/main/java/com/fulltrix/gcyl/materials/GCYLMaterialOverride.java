@@ -259,7 +259,7 @@ public class GCYLMaterialOverride {
 
         //EMISSIVE ORES
         List<Material> eomats = new ArrayList<>();
-        Collections.addAll(eomats,Triniite, NaquadricCompound, EnrichedNaquadricCompound, NaquadriaticCompound, Uranium, Plutonium);
+        Collections.addAll(eomats,Triniite, NaquadricCompound, EnrichedNaquadricCompound, NaquadriaticCompound, Uranium, Plutonium, Dubnium);
         for (Material mat : eomats) {
             addOre(mat, 1,1,true);
         }
