@@ -80,6 +80,7 @@ import static gregtech.api.recipes.logic.OverclockingLogic.standardOverclockingL
 import static gregtech.api.util.RelativeDirection.*;
 
 //TODO finish tooltip coloring
+//TODO finish fixing hanging mechanic
 public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController {
 
     private static final int HANG_DURATION = 100;
@@ -387,40 +388,10 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
     public boolean checkRecipe(@NotNull Recipe recipe, boolean consumeIfSuccess) {
         if (consumeIfSuccess) return true; // don't check twice
 
-        // check ordered items
-        if (ConfigHolder.machines.orderedAssembly) {
-            List<GTRecipeInput> inputs = recipe.getInputs();
-            List<IItemHandlerModifiable> itemInputInventory = getAbilities(MultiblockAbility.IMPORT_ITEMS);
+        List<GTRecipeInput> inputs = recipe.getInputs();
+        List<IItemHandlerModifiable> itemInputInventory = getAbilities(MultiblockAbility.IMPORT_ITEMS);
 
-            // slot count is not enough, so don't try to match it
-            if (itemInputInventory.size() < inputs.size()) return false;
-
-
-            for (int i = 0; i < inputs.size(); i++) {
-                IItemHandlerModifiable inventory = itemInputInventory.get(i);
-                boolean oneSuccess = false;
-                for (int j = 0; j < inventory.getSlots(); j++) {
-                    oneSuccess = inputs.get(i).acceptsStack(itemInputInventory.get(i).getStackInSlot(j));
-                    if (oneSuccess) break;
-                }
-                if (!oneSuccess) return false;
-            }
-
-            // check ordered fluids
-            if (ConfigHolder.machines.orderedFluidAssembly) {
-                inputs = recipe.getFluidInputs();
-                List<IFluidTank> fluidInputInventory = getAbilities(MultiblockAbility.IMPORT_FLUIDS);
-
-                // slot count is not enough, so don't try to match it
-                if (fluidInputInventory.size() < inputs.size()) return false;
-
-                for (int i = 0; i < inputs.size(); i++) {
-                    if (!inputs.get(i).acceptsFluid(fluidInputInventory.get(i).getFluid())) {
-                        return false;
-                    }
-                }
-            }
-        }
+        if (itemInputInventory.size() < inputs.size()) return false;
 
 
         if (!ConfigHolder.machines.enableResearch || !recipe.hasProperty(ResearchProperty.getInstance())) {
@@ -459,23 +430,6 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
                 I18n.format("gregtech.machine.power_substation.tooltip6.5"));
     }
 
-
-    protected List<IMultipleTankHandler> getOrderedFluidHatches() {
-        List<MetaTileEntityMultiblockPart> fluidExportParts = this.getMultiblockParts().stream()
-                .filter(iMultiblockPart -> iMultiblockPart instanceof IMultiblockAbilityPart<?>abilityPart &&
-                        abilityPart.getAbility() == MultiblockAbility.EXPORT_FLUIDS &&
-                        abilityPart instanceof MetaTileEntityMultiblockPart)
-                .map(iMultiblockPart -> (MetaTileEntityMultiblockPart) iMultiblockPart)
-                .collect(Collectors.toList());
-        List<IMultipleTankHandler> orderedHandlerList = new ObjectArrayList<>();
-        for (MetaTileEntityMultiblockPart hatch : fluidExportParts) {
-            List<IFluidTank> hatchTanks = new ObjectArrayList<>();
-            // noinspection unchecked
-            ((IMultiblockAbilityPart<IFluidTank>) hatch).registerAbilities(hatchTanks);
-            orderedHandlerList.add(new FluidTankList(false, hatchTanks));
-        }
-        return orderedHandlerList;
-    }
 
     @Override
     public boolean onScrewdriverClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing,
@@ -666,66 +620,17 @@ public class MetaTileEntityAdvancedAssline extends RecipeMapMultiblockController
                     }
                 }
 
-                if(!checkParallelRecipe(recipe)) {
+
+                if (recipe.matches(true, importInventory, importFluids)) {
+                    this.metaTileEntity.addNotifiedInput(importInventory);
+                    return true;
+                } else {
                     hangMachine();
                     return false;
                 }
 
-                this.consumeInputs(recipe);
-                this.metaTileEntity.addNotifiedInput(importInventory);
-                return true;
             }
             return false;
-        }
-
-        protected void consumeInputs(Recipe recipe) {
-
-            List<GTRecipeInput> ingredients = recipe.getInputs();
-            List<IItemHandlerModifiable> buses = getAbilities(MultiblockAbility.IMPORT_ITEMS);
-            for (int i = 0; i < Math.min(ingredients.size(), buses.size()); i++) {
-                IItemHandlerModifiable bus = buses.get(i);
-                GTRecipeInput ingredient = ingredients.get(i);
-                int amount = ingredient.getAmount();
-                for (int j = 0; j < bus.getSlots(); j++) {
-                    ItemStack stack = bus.getStackInSlot(j);
-                    if (ingredient.acceptsStack(stack)) {
-                        amount -= bus.extractItem(j, amount, false).getCount();
-                    }
-                    if (amount == 0) break;
-                }
-            }
-            if (!ConfigHolder.machines.orderedFluidAssembly) {
-                IMultipleTankHandler hatches = getInputTank();
-                ingredients = recipe.getFluidInputs();
-                for (int i = 0; i < ingredients.size(); i++) {
-                    GTRecipeInput ingredient = ingredients.get(i);
-                    int amount = ingredient.getAmount();
-                    for (int j = 0; j < hatches.getTanks(); j++) {
-                        FluidStack stack = hatches.getTankAt(i).getFluid();
-                        if (ingredient.acceptsFluid(stack)) {
-                            FluidStack drain = hatches.getTankAt(i).drain(amount, true);
-                            if (drain != null) amount -= drain.amount;
-                        }
-                        if (amount == 0) break;
-                    }
-                }
-                return;
-            }
-            ingredients = recipe.getFluidInputs();
-            List<IMultipleTankHandler> hatches = getOrderedFluidHatches();
-            for (int i = 0; i < Math.min(ingredients.size(), hatches.size()); i++) {
-                GTRecipeInput ingredient = ingredients.get(i);
-                IMultipleTankHandler hatch = hatches.get(i);
-                int amount = ingredient.getAmount();
-                for (int j = 0; j < hatch.getTanks(); j++) {
-                    FluidStack stack = hatch.getTankAt(j).getFluid();
-                    if (ingredient.acceptsFluid(stack)) {
-                        FluidStack drain = hatch.getTankAt(j).drain(amount, true);
-                        if (drain != null) amount -= drain.amount;
-                    }
-                    if (amount == 0) break;
-                }
-            }
         }
     }
 }
