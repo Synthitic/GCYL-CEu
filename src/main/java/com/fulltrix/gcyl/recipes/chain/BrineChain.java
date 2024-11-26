@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.chain;
 
+import com.fulltrix.gcyl.GCYLConfig;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
 
@@ -413,12 +414,14 @@ public class BrineChain {
                 .output(dust, Boron, 2)
                 .buildAndRegister();
 
-        // Na + H -> NaH
-        CHEMICAL_RECIPES.recipeBuilder().duration(140).EUt(30)
-                .input(dust, Sodium)
-                .fluidInputs(Hydrogen.getFluid(1000))
-                .output(dust, SodiumHydride, 2)
-                .buildAndRegister();
+        if(!GCYLConfig.recipes.useNewPlatinumChain) {
+            // Na + H -> NaH
+            CHEMICAL_RECIPES.recipeBuilder().duration(140).EUt(30)
+                    .input(dust, Sodium)
+                    .fluidInputs(Hydrogen.getFluid(1000))
+                    .output(dust, SodiumHydride, 2)
+                    .buildAndRegister();
+        }
 
         // C + 2S -> CS2
         BLAST_RECIPES.recipeBuilder().duration(120).EUt(120).blastFurnaceTemp(1000)
