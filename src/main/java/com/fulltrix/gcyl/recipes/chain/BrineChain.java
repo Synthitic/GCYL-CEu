@@ -425,6 +425,7 @@ public class BrineChain {
 
         // C + 2S -> CS2
         BLAST_RECIPES.recipeBuilder().duration(120).EUt(120).blastFurnaceTemp(1000)
+                .circuitMeta(1)
                 .input(dust, Carbon)
                 .input(dust, Sulfur, 2)
                 .fluidOutputs(CarbonSulfide.getFluid(1000))

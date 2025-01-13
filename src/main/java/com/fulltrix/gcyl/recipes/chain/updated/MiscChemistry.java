@@ -218,6 +218,7 @@ public class MiscChemistry {
                 .buildAndRegister();
 
         BLAST_RECIPES.recipeBuilder()
+                .circuitMeta(2)
                 .input(dust, Carbon, 1)
                 .input(dust, Sulfur, 2)
                 .output(dust, CarbonDisulfide, 3)
