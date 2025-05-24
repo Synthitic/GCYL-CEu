@@ -100,16 +100,16 @@ public class UHVMaterials {
                 .buildAndRegister();
 
         ALLOY_BLAST_RECIPES.recipeBuilder().EUt(1000000).duration(160)
-                .input(dust, Rutherfordium)
-                .input(dust, Dubnium)
+                .input(dust, Rutherfordium, 4)
+                .input(dust, Dubnium, 4)
                 .circuitMeta(8)
                 .fluidOutputs(Fordnium.getFluid(1152))
                 .blastFurnaceTemp(11200)
                 .buildAndRegister();
 
         ALLOY_BLAST_RECIPES.recipeBuilder().EUt(1000000).duration(160)
-                .input(dust, Seaborgium)
-                .input(dust, Bohrium)
+                .input(dust, Seaborgium, 4)
+                .input(dust, Bohrium, 4)
                 .circuitMeta(8)
                 .fluidOutputs(Seabohrgium.getFluid(1152))
                 .blastFurnaceTemp(11200)
