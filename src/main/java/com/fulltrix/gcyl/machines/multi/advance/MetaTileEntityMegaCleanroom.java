@@ -6,6 +6,7 @@ import codechicken.lib.raytracer.CuboidRayTraceResult;
 import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
 import com.fulltrix.gcyl.blocks.metal.GCYLCleanroomCasing;
+import com.fulltrix.gcyl.machines.GCYLTileEntities;
 import gregtech.api.GTValues;
 import gregtech.api.block.ICleanroomFilter;
 import gregtech.api.capability.GregtechDataCodes;
@@ -17,6 +18,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.metatileentity.multiblock.ICleanroomProvider;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.pattern.*;
 import gregtech.api.util.*;
 import gregtech.client.utils.TooltipHelper;
@@ -28,37 +30,35 @@ import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.common.metatileentities.multi.electric.MetaTileEntityCleanroom;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import scala.Int;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import static com.fulltrix.gcyl.api.pattern.TraceabilityPredicates.filterCasings;
 
 //TODO: Decrease tps lag when they try to cheat it
 //TODO: fix the display text tooltip of usage
+//TODO: make this not extend cleanroom and rewrite it to avoid BS
 public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implements ICleanroomProvider {
     public static final int MIN_RADIUS = 10;
     public static final int MIN_DEPTH = 9;
@@ -327,7 +327,7 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implem
     @Override
     public boolean drainEnergy(boolean simulate) {
         if(isStructureFormed()) {
-            long energyToDrain = this.isClean() ? (long) Math.max(4.0, GTValues.VA[this.getEnergyTier() - 1]) : (long) GTValues.VA[this.getEnergyTier()];
+            long energyToDrain = this.isClean() ? (long) Math.max(4.0, GTValues.VAOC[this.getEnergyTier() - 1]) : GTValues.VAOC[this.getEnergyTier()];
             long resultEnergy = this.energyContainer.getEnergyStored() - energyToDrain;
             if (resultEnergy >= 0L && resultEnergy <= this.energyContainer.getEnergyCapacity()) {
                 if (!simulate) {
@@ -340,6 +340,45 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implem
             }
         }
         return false;
+    }
+
+    @Override
+    protected void addDisplayText(List<ITextComponent> textList) {
+        MultiblockDisplayText.builder(textList, this.isStructureFormed()).setWorkingStatus(this.cleanroomLogic.isWorkingEnabled(), this.cleanroomLogic.isActive()).addEnergyUsageLine(this.energyContainer).addCustom((tl) -> {
+            if (this.isStructureFormed()) {
+                //TODO get rid of this disgusting garbage
+                Field cleanAmountField;
+                try {
+                    cleanAmountField = MetaTileEntityCleanroom.class.getDeclaredField("cleanAmount");
+                } catch (NoSuchFieldException e) {
+                    throw new RuntimeException(e);
+                }
+                cleanAmountField.setAccessible(true);
+
+                int cleanAmount = 0;
+                try {
+                    cleanAmount = (int) cleanAmountField.get(this);
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+
+                TextComponentTranslation cleanState;
+                if (this.isClean()) {
+                    cleanState = TextComponentUtil.translationWithColor(TextFormatting.GREEN, "gregtech.multiblock.cleanroom.clean_state", cleanAmount);
+                } else {
+                    cleanState = TextComponentUtil.translationWithColor(TextFormatting.DARK_RED, "gregtech.multiblock.cleanroom.dirty_state", cleanAmount);
+                }
+
+                tl.add(TextComponentUtil.translationWithColor(TextFormatting.GRAY, "gregtech.multiblock.cleanroom.clean_status", cleanState));
+            }
+
+        }).addCustom((tl) -> {
+            if (!this.cleanroomLogic.isVoltageHighEnough()) {
+                ITextComponent energyNeeded = new TextComponentString(GTValues.VNF[this.cleanroomFilter.getMinTier()]);
+                tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gregtech.multiblock.cleanroom.low_tier", energyNeeded));
+            }
+
+        }).addEnergyUsageExactLine(this.isClean() ? 4L : GTValues.VAOC[this.getEnergyTier()]).addWorkingStatusLine().addProgressLine((double)this.getProgressPercent() / 100.0);
     }
 
     @Override
@@ -374,7 +413,7 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implem
                 .aisle("XXXXXXXXXMXEXXXXXXXXX", "XXXXXXXXXXOXXXXXXXXXX", "XXXXXXXXXXRXXXXXXXXXX", "XXXXXXXXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXXXXXXXX")
                 .where('X', MetaBlocks.CLEANROOM_CASING.getState(BlockCleanroomCasing.CasingType.PLASCRETE))
                 .where('G', MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.CLEANROOM_GLASS))
-                .where('S', MetaTileEntities.CLEANROOM, EnumFacing.SOUTH)
+                .where('S', GCYLTileEntities.MEGA_CLEANROOM, EnumFacing.SOUTH)
                 .where(' ', Blocks.AIR.getDefaultState())
                 .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[GTValues.ZPM], EnumFacing.SOUTH)
                 .where('I', MetaTileEntities.PASSTHROUGH_HATCH_ITEM, EnumFacing.NORTH)
