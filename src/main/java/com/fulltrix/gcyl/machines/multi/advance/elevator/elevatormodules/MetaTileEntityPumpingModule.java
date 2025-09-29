@@ -79,6 +79,7 @@ public class MetaTileEntityPumpingModule extends MetaTileEntityModuleBase {
         }
     }
 
+    /*
     @Override
     protected ModularUI.Builder createUITemplate(EntityPlayer entityPlayer) {
         ModularUI.Builder builder = ModularUI.builder(GuiTextures.BACKGROUND, 198, 208);;
@@ -136,6 +137,7 @@ public class MetaTileEntityPumpingModule extends MetaTileEntityModuleBase {
         builder.bindPlayerInventory(entityPlayer.inventory, 125);
         return builder;
     }
+     */
 
     private String getPlanetValue(int index) {
         return String.valueOf(this.planet[index]);

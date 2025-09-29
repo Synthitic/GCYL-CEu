@@ -17,12 +17,14 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
+import gregtech.api.metatileentity.multiblock.ui.KeyManager;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
+import gregtech.api.util.KeyUtil;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
@@ -82,7 +84,7 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implement
     }
 
     @Override
-    protected boolean shouldShowVoidingModeButton() {
+    public boolean shouldShowVoidingModeButton() {
         return false;
     }
 
@@ -234,40 +236,37 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implement
     }
 
     @Override
-    protected void addDisplayText(List<ITextComponent> textList) {
-        MultiblockDisplayText.builder(textList, isStructureFormed())
-                .setWorkingStatus(voidMinerLogic.isWorkingEnabled(), voidMinerLogic.isActive())
-                .addCustom(tl -> {
-                    if(isStructureFormed()) {
-                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW,"gregtech.multiblock.universal.energy_used", energyDrain));
-                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.GOLD,"gregtech.multiblock.universal.vom.temperature", this.voidMinerLogic.getTemperature()));
-                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.RED,"gregtech.multiblock.universal.vom.max_temperature", this.voidMinerLogic.getMaxTemperature()));
-                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.AQUA,"gregtech.multiblock.universal.drilling_fluid_amount", this.voidMinerLogic.getCurrentDrillingFluid()));
-                    }
-                })
-                .addWorkingStatusLine()
-                .addProgressLine(getProgressPercent() / 100.0);
+    protected void configureDisplayText(MultiblockUIBuilder builder) {
+        builder.setWorkingStatus(voidMinerLogic.isWorkingEnabled(), voidMinerLogic.isActive())
+                .addCustom((keyManager, uiSyncer) -> {
+            if(isStructureFormed()) {
+                keyManager.add(KeyUtil.lang(TextFormatting.YELLOW,"gregtech.multiblock.universal.energy_used", energyDrain));
+                keyManager.add(KeyUtil.lang(TextFormatting.GOLD,"gregtech.multiblock.universal.vom.temperature", this.voidMinerLogic.getTemperature()));
+                keyManager.add(KeyUtil.lang(TextFormatting.RED,"gregtech.multiblock.universal.vom.max_temperature", this.voidMinerLogic.getMaxTemperature()));
+                keyManager.add(KeyUtil.lang(TextFormatting.AQUA,"gregtech.multiblock.universal.drilling_fluid_amount", this.voidMinerLogic.getCurrentDrillingFluid()));
+            }
+        }).addWorkingStatusLine()
+                .addProgressLine(getProgress(), getMaxProgress());
     }
 
     @Override
-    protected void addWarningText(List<ITextComponent> textList) {
-        MultiblockDisplayText.builder(textList, isStructureFormed(), false)
-                .addLowPowerLine(!drainEnergy(true))
-                .addCustom(tl -> {
+    protected void configureWarningText(MultiblockUIBuilder builder) {
+        builder.addLowPowerLine(!drainEnergy(true))
+                .addCustom((keyManager, uiSyncer) -> {
                     if(isStructureFormed()) {
                         if(this.voidMinerLogic.isFluidOutputFull()) {
-                            tl.add(TextComponentUtil.translationWithColor(
+                            keyManager.add(KeyUtil.lang(
                                     TextFormatting.RED,
                                     "gcyl.multiblock.vom.fluid_output_full"));
                         }
                         if(this.voidMinerLogic.isOverheat()) {
-                            tl.add(TextComponentUtil.translationWithColor(
+                            keyManager.add(KeyUtil.lang(
                                     TextFormatting.RED,
                                     "gregtech.multiblock.universal.overheat"));
                         }
                     }
                 })
-                .addMaintenanceProblemLines(getMaintenanceProblems());
+                .addMaintenanceProblemLines(getMaintenanceProblems(), true);
     }
 
     public IBlockState getCasingState() {

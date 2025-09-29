@@ -8,9 +8,11 @@ import gregtech.api.capability.impl.MultiblockFuelRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.*;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.util.KeyUtil;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.common.blocks.BlockBoilerCasing;
@@ -76,14 +78,13 @@ public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController
     }
 
     @Override
-    protected void addDisplayText(List<ITextComponent> textList) {
-        super.addDisplayText(textList);
+    protected void configureDisplayText(MultiblockUIBuilder builder) {
         NaquadahReactorWorkableHandler recipeLogic = (NaquadahReactorWorkableHandler) recipeMapWorkable;
         if (recipeLogic.isOxygenBoosted) {
-            textList.add(TextComponentUtil.translationWithColor(TextFormatting.AQUA, "gregtech.multiblock.large_naquadah_reactor.oxygen_boosted"));
+            builder.addCustom((keyManager, uiSyncer) -> {
+                keyManager.add(KeyUtil.lang(TextFormatting.AQUA, "gregtech.multiblock.large_naquadah_reactor.oxygen_boosted"));
+            });
         }
-
-
     }
 
     @Override
@@ -101,7 +102,7 @@ public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController
     }
 
     @Override
-    protected boolean shouldShowVoidingModeButton() {
+    public boolean shouldShowVoidingModeButton() {
         return false;
     }
 

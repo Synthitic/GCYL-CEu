@@ -17,13 +17,14 @@ import gregtech.api.gui.widgets.*;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.GTTransferUtils;
+import gregtech.api.util.KeyUtil;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.common.ConfigHolder;
 import net.minecraft.client.resources.I18n;
@@ -410,6 +411,7 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase impleme
         return this.computationProvider;
     }
 
+    /*
     @Override
     protected ModularUI.Builder createUITemplate(EntityPlayer entityPlayer) {
         ModularUI.Builder builder = ModularUI.builder(GuiTextures.BACKGROUND, 198, 238);
@@ -469,29 +471,28 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase impleme
         builder.bindPlayerInventory(entityPlayer.inventory, 155);
         return builder;
     }
+     */
 
     @Override
-    protected void addDisplayText(List<ITextComponent> textList) {
-        MultiblockDisplayText.builder(textList, this.isStructureFormed())
-                .setWorkingStatus(isWorkingEnabled(), isActive())
+    protected void configureDisplayText(MultiblockUIBuilder builder) {
+        builder.setWorkingStatus(isWorkingEnabled(), isActive())
                 .addWorkingStatusLine()
                 .addParallelsLine(this.MAX_PARALLEL)
-                .addCustom(tl -> {
-                    tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gcyl.gui.mining_module.min_distance", this.minDistance));
-                    tl.add(TextComponentUtil.translationWithColor(TextFormatting.RED, "gcyl.gui.mining_module.max_distance", this.maxDistance));
+                .addCustom((keyManager, uiSyncer) -> {
+                    keyManager.add(KeyUtil.lang(TextFormatting.YELLOW, "gcyl.gui.mining_module.min_distance", this.minDistance));
+                    keyManager.add(KeyUtil.lang(TextFormatting.RED, "gcyl.gui.mining_module.max_distance", this.maxDistance));
                 })
-                .addCustom(tl -> {
-                    tl.add(TextComponentUtil.translationWithColor(this.isWhitelist ? TextFormatting.DARK_GREEN : TextFormatting.DARK_RED, this.isWhitelist ? "gcyl.gui.mining_module.whitelist" : "gcyl.gui.mining_module.blacklist"));
-                })
-                .addEmptyLine()
-                .addCustom(tl -> {
-                    tl.add(TextComponentUtil.translationWithColor(TextFormatting.RED, "gcyl.gui.mining_module.remove"));
+                .addCustom((keyManager, uiSyncer) -> {
+                    keyManager.add(KeyUtil.lang(this.isWhitelist ? TextFormatting.DARK_GREEN : TextFormatting.DARK_RED, this.isWhitelist ? "gcyl.gui.mining_module.whitelist" : "gcyl.gui.mining_module.blacklist"));
                 })
                 .addEmptyLine()
-                .addProgressLine(getProgressPercent() / 100.0)
+                .addCustom((keyManager, uiSyncer) -> {
+                    keyManager.add(KeyUtil.lang(TextFormatting.RED, "gcyl.gui.mining_module.remove"));
+                })
+                .addEmptyLine()
+                .addProgressLine(getProgress(), getMaxProgress())
                 .addEnergyUsageExactLine(this.totalEUt)
                 .addComputationUsageExactLine(this.totalComputation);
-
     }
 
     private void printWhitelistOrClear(Widget.ClickData data, EntityPlayer player) {

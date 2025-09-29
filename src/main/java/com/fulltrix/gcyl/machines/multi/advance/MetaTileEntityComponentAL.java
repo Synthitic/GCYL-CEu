@@ -19,13 +19,14 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.MultiblockShapeInfo;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.Recipe;
+import gregtech.api.util.KeyUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.common.blocks.*;
 import gregtech.common.metatileentities.MetaTileEntities;
@@ -236,9 +237,10 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
     }
 
     @Override
-    protected void addDisplayText(List<ITextComponent> textList) {
-        super.addDisplayText(textList);
-        textList.add(new TextComponentTranslation("gcyl.multiblock.coal.max_recipe_tier", GTValues.VN[this.tier]));
+    protected void configureDisplayText(MultiblockUIBuilder builder) {
+        builder.addCustom((keyManager, uiSyncer) -> {
+            keyManager.add(KeyUtil.lang("gcyl.multiblock.coal.max_recipe_tier", GTValues.VN[this.tier]));
+        });
     }
 
     @Override

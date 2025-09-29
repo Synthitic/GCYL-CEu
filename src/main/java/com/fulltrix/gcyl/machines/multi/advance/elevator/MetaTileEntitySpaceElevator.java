@@ -3,6 +3,16 @@ package com.fulltrix.gcyl.machines.multi.advance.elevator;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import com.cleanroommc.modularui.factory.PosGuiData;
+import com.cleanroommc.modularui.screen.ModularPanel;
+import com.cleanroommc.modularui.value.sync.BooleanSyncValue;
+import com.cleanroommc.modularui.value.sync.PanelSyncManager;
+import com.cleanroommc.modularui.widget.EmptyWidget;
+import com.cleanroommc.modularui.widget.Widget;
+import com.cleanroommc.modularui.widgets.ButtonWidget;
+import com.cleanroommc.modularui.widgets.CycleButtonWidget;
+import com.cleanroommc.modularui.widgets.ToggleButton;
+import com.cleanroommc.modularui.widgets.layout.Flow;
 import com.fulltrix.gcyl.api.block.IElevatorMotorTier;
 import com.fulltrix.gcyl.api.multi.ISpaceElevatorProvider;
 import com.fulltrix.gcyl.api.multi.ISpaceElevatorReceiver;
@@ -20,12 +30,14 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
+import gregtech.api.util.KeyUtil;
 import gregtech.api.util.Mods;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.client.renderer.ICubeRenderer;
@@ -45,6 +57,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -285,23 +298,23 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
         return new TraceabilityPredicate(blockWorldState -> {
             IBlockState blockState = blockWorldState.getBlockState();
             Block block = blockState.getBlock();
-            if(block instanceof ElevatorCasing) {
+            if (block instanceof ElevatorCasing) {
                 ElevatorCasing.CasingType casingType = ((ElevatorCasing) blockState.getBlock()).getState(blockState);
-                if(casingType == ElevatorCasing.CasingType.ELEVATOR_BASE_CASING) return true;
+                if (casingType == ElevatorCasing.CasingType.ELEVATOR_BASE_CASING) return true;
             }
 
             TileEntity tileEntity = blockWorldState.getTileEntity();
-            if(!(tileEntity instanceof IGregTechTileEntity)) return false;
+            if (!(tileEntity instanceof IGregTechTileEntity)) return false;
 
             MetaTileEntity metaTileEntity = ((IGregTechTileEntity) tileEntity).getMetaTileEntity();
 
-            if(metaTileEntity instanceof ISpaceElevatorProvider)
+            if (metaTileEntity instanceof ISpaceElevatorProvider)
                 return false;
 
-            if(!(metaTileEntity instanceof ISpaceElevatorReceiver)) return false;
+            if (!(metaTileEntity instanceof ISpaceElevatorReceiver)) return false;
 
             ISpaceElevatorReceiver spaceElevatorReceiver = (ISpaceElevatorReceiver) metaTileEntity;
-            if(spaceElevatorReceiver.getSpaceElevator() != this) {
+            if (spaceElevatorReceiver.getSpaceElevator() != this) {
                 spaceElevatorReceiver.setSpaceElevator(this);
                 this.spaceElevatorReceivers.add(spaceElevatorReceiver);
             }
@@ -310,10 +323,63 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     }
 
     @Override
-    protected ModularUI createUI(EntityPlayer entityPlayer) {
-        return createUITemplate(entityPlayer).build(getHolder(), entityPlayer);
+    protected MultiblockUIFactory createUIFactory() {
+        return new MultiblockUIFactory(this) {
+            @Override
+            protected @NotNull Flow createButtons(@NotNull ModularPanel mainPanel, @NotNull PanelSyncManager panelSyncManager, PosGuiData guiData) {
+                BooleanSyncValue isExtendedSync = new BooleanSyncValue(MetaTileEntitySpaceElevator.this::isExtended, MetaTileEntitySpaceElevator.this::setExtended);
+                Flow flow = Flow.column().debugName("button_col").right(4).coverChildren();
+                if (Mods.GalacticraftCore.isModLoaded()) {
+                    flow.child(new ButtonWidget<>().overlay(ClientHandler.BUTTON_ELEVATOR_TELEPORT)
+                            .size(18)
+                            .addTooltipLine(KeyUtil.lang("gcyl.gui.multiblock.space_elevator_teleport"))
+                            .onMousePressed(pressed -> {
+                                if(panelSyncManager.getPlayer() instanceof EntityPlayerMP player && MetaTileEntitySpaceElevator.this.isStructureFormed()) {
+
+                                    final GCPlayerStats stats = GCPlayerStats.get(player);
+                                    stats.setCoordsTeleportedFromX(player.posX);
+                                    stats.setCoordsTeleportedFromZ(player.posZ);
+
+                                    try {
+                                        WorldUtil.toCelestialSelection(player, stats, MetaTileEntitySpaceElevator.this.motorTier >= 3 ? 9 : 8);
+                                    } catch (final Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                                return true;
+                            }));
+                } else {
+                    flow.paddingTop(18);
+                }
+
+                flow.child(new ButtonWidget<>().overlay(ClientHandler.BUTTON_ENABLE_STATIC)
+                        .size(18)
+                        .addTooltipLine(KeyUtil.lang("gcyl.gui.multiblock.space_elevator.enable_all_modules"))
+                        .onMousePressed(pressed -> {
+                            enableAllModules();
+                            return true;
+                        }));
+                flow.child(new ButtonWidget<>().overlay(ClientHandler.BUTTON_DISABLE_STATIC)
+                        .size(18)
+                        .addTooltipLine(KeyUtil.lang("gcyl.gui.multiblock.space_elevator.disable_all_modules"))
+                        .onMousePressed(pressed -> {
+                            disableAllModules();
+                            return true;
+                        }));
+                flow.child(new ToggleButton()
+                        .stateOverlay(ClientHandler.BUTTON_ELEVATOR_EXTENSION)
+                        .size(18)
+                        .value(isExtendedSync)
+                        .marginTop(4)
+                        .addTooltipLine(KeyUtil.lang("gcyl.gui.multiblock.space_elevator_extended")));
+                return flow;
+            }
+        }.configureDisplayText(this::configureDisplayText)
+                .configureErrorText(this::configureErrorText)
+                .configureWarningText(this::configureWarningText);
     }
 
+    /*
     protected gregtech.api.gui.ModularUI.Builder createUITemplate(EntityPlayer entityPlayer) {
         gregtech.api.gui.ModularUI.Builder builder = gregtech.api.gui.ModularUI.builder(GuiTextures.BACKGROUND, 198, 238);
 
@@ -364,34 +430,34 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
         builder.bindPlayerInventory(entityPlayer.inventory, 155);
         return builder;
     }
+     */
 
     @Override
-    protected void addDisplayText(List<ITextComponent> textList) {
-        MultiblockDisplayText.builder(textList, this.isStructureFormed())
-                .addCustom(tl -> {
-                    if(this.isStructureFormed()) {
-                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.BLUE, "gcyl.machine.space_elevator.motor_tier", this.motorTier));
-                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gcyl.machine.space_elevator.max_modules", getMaxModules()));
+    protected void configureDisplayText(MultiblockUIBuilder builder) {
+        builder.addCustom((keyManager, uiSyncer) -> {
+            if(this.isStructureFormed()) {
+                keyManager.add(KeyUtil.lang(TextFormatting.BLUE, "gcyl.machine.space_elevator.motor_tier", this.motorTier));
+                keyManager.add(KeyUtil.lang(TextFormatting.YELLOW, "gcyl.machine.space_elevator.max_modules", getMaxModules()));
 
-                        if (this.spaceElevatorReceivers.isEmpty()) {
-                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.RED, "gcyl.machine.space_elevator.modules.none"));
-                        } else {
-                            tl.add(TextComponentUtil.translationWithColor(getModuleCount() < getMaxModules() ? TextFormatting.AQUA : TextFormatting.YELLOW, "gcyl.machine.space_elevator.total_modules", getModuleCount()));
+                if (this.spaceElevatorReceivers.isEmpty()) {
+                    keyManager.add(KeyUtil.lang(TextFormatting.RED, "gcyl.machine.space_elevator.modules.none"));
+                } else {
+                    keyManager.add(KeyUtil.lang(getModuleCount() < getMaxModules() ? TextFormatting.AQUA : TextFormatting.YELLOW, "gcyl.machine.space_elevator.total_modules", getModuleCount()));
 
-                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.GREEN, "gcyl.machine.space_elevator.modules"));
+                    keyManager.add(KeyUtil.lang(TextFormatting.GREEN, "gcyl.machine.space_elevator.modules"));
 
-                            List<String> moduleNames = new ArrayList<>();
-                            List<String> uniqueNames = new ArrayList<>();
-                            this.spaceElevatorReceivers.forEach(s -> {
-                                moduleNames.add(s.getNameForDisplayCount());
-                                if (!uniqueNames.contains(moduleNames.get(moduleNames.indexOf(s.getNameForDisplayCount())))) {
-                                    uniqueNames.add(s.getNameForDisplayCount());
-                                }
-                            });
-                            uniqueNames.forEach(s -> tl.add(TextComponentUtil.translationWithColor(TextFormatting.WHITE, s, Collections.frequency(moduleNames, s))));
+                    List<String> moduleNames = new ArrayList<>();
+                    List<String> uniqueNames = new ArrayList<>();
+                    this.spaceElevatorReceivers.forEach(s -> {
+                        moduleNames.add(s.getNameForDisplayCount());
+                        if (!uniqueNames.contains(moduleNames.get(moduleNames.indexOf(s.getNameForDisplayCount())))) {
+                            uniqueNames.add(s.getNameForDisplayCount());
                         }
-                    }
-                });
+                    });
+                    uniqueNames.forEach(s -> keyManager.add(KeyUtil.lang(TextFormatting.WHITE, s, Collections.frequency(moduleNames, s))));
+                }
+            }
+        });
     }
 
     private boolean isExtended() {

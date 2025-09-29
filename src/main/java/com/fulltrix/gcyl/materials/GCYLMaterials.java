@@ -213,6 +213,7 @@ public class GCYLMaterials {
     public static Material Oxydianiline;
     public static Material PolyamicAcid;
     public static Material Hexafluoropropylene;
+    public static Material Ferrosilite;
     public static Material FluorinatedEthylenePropylene;
     public static Material Taranium;
     public static Material NaquadriaticTaranium;
@@ -9221,8 +9222,11 @@ public class GCYLMaterials {
                 .build()
                 .setFormula("C6F6",true);
 
-        //TODO FILL WITH MATERIAL
-        ++id;
+        Ferrosilite = new Material.Builder(++id, gcylId("ferrosilite"))
+                .dust(1)
+                .color(0x97632A)
+                .components(Iron, 1, Silicon, 1, Oxygen, 3)
+                .build();
 
         ActiniumRadiumHydroxideSolution = new Material.Builder(++id, gcylId("actinium_radium_hydroxide_solution"))
                 .liquid()

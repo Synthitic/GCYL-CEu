@@ -3,6 +3,7 @@ package com.fulltrix.gcyl.machines.multi.advance;
 import appeng.core.AEConfig;
 import appeng.core.features.AEFeature;
 import codechicken.lib.raytracer.CuboidRayTraceResult;
+import com.cleanroommc.modularui.api.drawable.IKey;
 import com.fulltrix.gcyl.api.multi.GCYLCleanroomType;
 import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
 import com.fulltrix.gcyl.blocks.metal.GCYLCleanroomCasing;
@@ -18,7 +19,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.metatileentity.multiblock.ICleanroomProvider;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.pattern.*;
 import gregtech.api.util.*;
 import gregtech.client.utils.TooltipHelper;
@@ -343,42 +344,44 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implem
     }
 
     @Override
-    protected void addDisplayText(List<ITextComponent> textList) {
-        MultiblockDisplayText.builder(textList, this.isStructureFormed()).setWorkingStatus(this.cleanroomLogic.isWorkingEnabled(), this.cleanroomLogic.isActive()).addEnergyUsageLine(this.energyContainer).addCustom((tl) -> {
-            if (this.isStructureFormed()) {
-                //TODO get rid of this disgusting garbage
-                Field cleanAmountField;
-                try {
-                    cleanAmountField = MetaTileEntityCleanroom.class.getDeclaredField("cleanAmount");
-                } catch (NoSuchFieldException e) {
-                    throw new RuntimeException(e);
-                }
-                cleanAmountField.setAccessible(true);
+    protected void configureDisplayText(MultiblockUIBuilder builder) {
+        builder.setWorkingStatus(this.cleanroomLogic.isWorkingEnabled(), this.cleanroomLogic.isActive())
+                .addEnergyUsageLine(this.energyContainer)
+                .addCustom((keyManager, uiSyncer) -> {
+                    if (this.isStructureFormed()) {
+                        //TODO get rid of this disgusting garbage
+                        Field cleanAmountField;
+                        try {
+                            cleanAmountField = MetaTileEntityCleanroom.class.getDeclaredField("cleanAmount");
+                        } catch (NoSuchFieldException e) {
+                            throw new RuntimeException(e);
+                        }
+                        cleanAmountField.setAccessible(true);
 
-                int cleanAmount = 0;
-                try {
-                    cleanAmount = (int) cleanAmountField.get(this);
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                }
+                        int cleanAmount = 0;
+                        try {
+                            cleanAmount = (int) cleanAmountField.get(this);
+                        } catch (IllegalAccessException e) {
+                            throw new RuntimeException(e);
+                        }
 
-                TextComponentTranslation cleanState;
-                if (this.isClean()) {
-                    cleanState = TextComponentUtil.translationWithColor(TextFormatting.GREEN, "gregtech.multiblock.cleanroom.clean_state", cleanAmount);
-                } else {
-                    cleanState = TextComponentUtil.translationWithColor(TextFormatting.DARK_RED, "gregtech.multiblock.cleanroom.dirty_state", cleanAmount);
-                }
+                        IKey cleanState;
+                        if (this.isClean()) {
+                            cleanState = KeyUtil.lang(TextFormatting.GREEN, "gregtech.multiblock.cleanroom.clean_state", cleanAmount);
+                        } else {
+                            cleanState = KeyUtil.lang(TextFormatting.DARK_RED, "gregtech.multiblock.cleanroom.dirty_state", cleanAmount);
+                        }
 
-                tl.add(TextComponentUtil.translationWithColor(TextFormatting.GRAY, "gregtech.multiblock.cleanroom.clean_status", cleanState));
-            }
+                        keyManager.add(KeyUtil.lang(TextFormatting.GRAY, "gregtech.multiblock.cleanroom.clean_status", cleanState));
 
-        }).addCustom((tl) -> {
-            if (!this.cleanroomLogic.isVoltageHighEnough()) {
-                ITextComponent energyNeeded = new TextComponentString(GTValues.VNF[this.cleanroomFilter.getMinTier()]);
-                tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gregtech.multiblock.cleanroom.low_tier", energyNeeded));
-            }
-
-        }).addEnergyUsageExactLine(this.isClean() ? 4L : GTValues.VAOC[this.getEnergyTier()]).addWorkingStatusLine().addProgressLine((double)this.getProgressPercent() / 100.0);
+                        if (!this.cleanroomLogic.isVoltageHighEnough()) {
+                            IKey energyNeeded = KeyUtil.string(GTValues.VNF[this.cleanroomFilter.getMinTier()]);
+                            keyManager.add(KeyUtil.lang(TextFormatting.YELLOW, "gregtech.multiblock.cleanroom.low_tier", energyNeeded));
+                        }
+                    }
+                }).addEnergyUsageExactLine(this.isClean() ? 4L : GTValues.VAOC[this.getEnergyTier()])
+                .addWorkingStatusLine()
+                .addProgressLine(this.getProgress(), this.getMaxProgress());
     }
 
     @Override

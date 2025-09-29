@@ -13,12 +13,13 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.util.AssemblyLineManager;
+import gregtech.api.util.KeyUtil;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.api.util.TextFormattingUtil;
 import gregtech.client.renderer.ICubeRenderer;
@@ -226,7 +227,7 @@ public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase im
     }
 
     @Override
-    protected boolean shouldShowVoidingModeButton() {
+    public boolean shouldShowVoidingModeButton() {
         return false;
     }
 
@@ -253,26 +254,25 @@ public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase im
     }
 
     @Override
-    protected void addDisplayText(List<ITextComponent> textList) {
-        MultiblockDisplayText.builder(textList, isStructureFormed())
-                .setWorkingStatus(true, isActive() && isWorkingEnabled()) // transform into two-state system for display
+    protected void configureDisplayText(MultiblockUIBuilder builder) {
+        builder.setWorkingStatus(true, isActive() && isWorkingEnabled()) // transform into two-state system for display
                 .setWorkingStatusKeys(
                         "gregtech.multiblock.idling",
                         "gregtech.multiblock.idling",
                         "gregtech.multiblock.data_bank.providing")
                 .addEnergyUsageExactLine(getEnergyUsage())
                 .addWorkingStatusLine()
-                .addCustom(tl -> {
+                .addCustom((keyManager, uiSyncer) -> {
                     if(this.initialize) {
-                        tl.add(new TextComponentTranslation("gcyl.multiblock.wireless_pss.not_initialized"));
+                        keyManager.add(KeyUtil.lang("gcyl.multiblock.wireless_pss.not_initialized"));
                     } else {
                         try {
-                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.private", Objects.requireNonNull(this.getWorld().getPlayerEntityByUUID(this.playerUUID)).getName()));
+                            keyManager.add(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.private", Objects.requireNonNull(this.getWorld().getPlayerEntityByUUID(this.playerUUID)).getName()));
                         } catch (NullPointerException e) {
                             if (Objects.equals(this.playerUUID, new UUID(0, 0))) {
-                                tl.add(TextComponentUtil.translationWithColor(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.public"));
+                                keyManager.add(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.public"));
                             } else {
-                                tl.add(TextComponentUtil.translationWithColor(TextFormatting.RED, "gcyl.multiblock.wireless_pss.player_offline"));
+                                keyManager.add(KeyUtil.lang(TextFormatting.RED, "gcyl.multiblock.wireless_pss.player_offline"));
                             }
                         }
                     }
@@ -280,15 +280,14 @@ public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase im
     }
 
     @Override
-    protected void addWarningText(List<ITextComponent> textList) {
-        MultiblockDisplayText.builder(textList, isStructureFormed(), false)
-                .addLowPowerLine(hasNotEnoughEnergy)
-                .addCustom(tl -> {
+    protected void configureWarningText(MultiblockUIBuilder builder) {
+        builder.addLowPowerLine(hasNotEnoughEnergy)
+                .addCustom((keyManager, uiSyncer) -> {
                     if(hasNotEnoughCoolant) {
-                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.RED, "gcyl.multiblock.wireless_pss.not_enough_coolant"));
+                        keyManager.add(KeyUtil.lang(TextFormatting.RED, "gcyl.multiblock.wireless_pss.not_enough_coolant"));
                     }
                 })
-                .addMaintenanceProblemLines(getMaintenanceProblems());
+                .addMaintenanceProblemLines(getMaintenanceProblems(), true);
     }
 
     private boolean checkCoolant() {
