@@ -172,7 +172,7 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
                 .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[9], EnumFacing.NORTH)
                 .where('Z', MetaTileEntities.ITEM_IMPORT_BUS[5], EnumFacing.NORTH)
                 .where('X', MetaTileEntities.ITEM_EXPORT_BUS[5], EnumFacing.SOUTH)
-                .where('Y', MetaTileEntities.QUADRUPLE_IMPORT_HATCH[3], EnumFacing.EAST)
+                .where('Y', MetaTileEntities.QUADRUPLE_IMPORT_HATCH[GTValues.ZPM], EnumFacing.EAST)
                 .where('T', MetaBlocks.CLEANROOM_CASING.getState(BlockCleanroomCasing.CasingType.FILTER_CASING))
                 .where('W', MetaTileEntities.COMPUTATION_HATCH_RECEIVER, EnumFacing.NORTH);
 

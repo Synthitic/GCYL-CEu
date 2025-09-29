@@ -251,6 +251,7 @@ public class JEIGCYLPlugin implements IModPlugin {
         itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.wireGtOctal, mat));
         itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.wireGtHex, mat));
         itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.ingot, mat));
+        if (!mat.equals(ManganesePhosphide))
         itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.ingotHot, mat));
         itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.block, mat));
         itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustSmall, mat));
