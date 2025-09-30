@@ -356,9 +356,9 @@ public class MultiblockPartCraftingRecipes {
 
             if(i > 3 && i < 14) {
 
-                getAssLineResearchBuilder(i, 400, i == 4 ? ENERGY_INPUT_HATCH_4A[i - 4].getStackForm() : WIRELESS_ENERGY_HATCH_INPUT_4A[i - 5].getStackForm(), true, true)
+                getAssLineResearchBuilder(i, 400, i == 4 ? ENERGY_INPUT_HATCH_4A[i].getStackForm() : WIRELESS_ENERGY_HATCH_INPUT_4A[i - 5].getStackForm(), true, true)
                         .outputs(WIRELESS_ENERGY_HATCH_INPUT_4A[i - 4].getStackForm())
-                        .inputs(ENERGY_INPUT_HATCH_4A[i - 4].getStackForm())
+                        .inputs(ENERGY_INPUT_HATCH_4A[i].getStackForm())
                         .inputs(getPowerICStack(i))
                         .inputs(getPowerICStack(i))
                         .inputs(getSensorByTier(i + 1).getStackForm(6))
@@ -373,9 +373,9 @@ public class MultiblockPartCraftingRecipes {
             }
 
             if(i > 4 && i < 14) {
-                getAssLineResearchBuilder(i, 400, i == 5 ? ENERGY_INPUT_HATCH_16A[i - 5].getStackForm() : WIRELESS_ENERGY_HATCH_INPUT_16A[i - 5].getStackForm(), true, true)
+                getAssLineResearchBuilder(i, 400, i == 5 ? ENERGY_INPUT_HATCH_16A[i].getStackForm() : WIRELESS_ENERGY_HATCH_INPUT_16A[i - 5].getStackForm(), true, true)
                         .outputs(WIRELESS_ENERGY_HATCH_INPUT_16A[i - 5].getStackForm())
-                        .inputs(ENERGY_INPUT_HATCH_16A[i - 5].getStackForm())
+                        .inputs(ENERGY_INPUT_HATCH_16A[i].getStackForm())
                         .inputs(getPowerICStack(i))
                         .inputs(getPowerICStack(i))
                         .inputs(getSensorByTier(i + 1).getStackForm(6))
