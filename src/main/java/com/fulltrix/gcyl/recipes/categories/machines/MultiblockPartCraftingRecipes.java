@@ -49,7 +49,7 @@ public class MultiblockPartCraftingRecipes {
                 .input(ENERGY_INPUT_HATCH[UHV])
                 .input(wireGtQuadruple, Europium, 2)
                 .input(plate, Seaborgium, 2)
-                .output(ENERGY_INPUT_HATCH_4A[5])
+                .output(ENERGY_INPUT_HATCH_4A[UHV])
                 .duration(100).EUt(VA[UV]).buildAndRegister();
 
         //UHV 16A Input
@@ -59,7 +59,7 @@ public class MultiblockPartCraftingRecipes {
                 .input(ENERGY_INPUT_HATCH_4A[5], 2)
                 .input(wireGtOctal, Europium, 2)
                 .input(plate, Seaborgium, 4)
-                .output(ENERGY_INPUT_HATCH_16A[4])
+                .output(ENERGY_INPUT_HATCH_16A[UHV])
                 .duration(200).EUt(VA[UV]).buildAndRegister();
 
         //UHV 4A Output
@@ -68,7 +68,7 @@ public class MultiblockPartCraftingRecipes {
                 .input(ENERGY_OUTPUT_HATCH[UHV])
                 .input(wireGtQuadruple, Europium, 2)
                 .input(plate, Seaborgium, 2)
-                .output(ENERGY_OUTPUT_HATCH_4A[5])
+                .output(ENERGY_OUTPUT_HATCH_4A[UHV])
                 .duration(100).EUt(VA[UV]).buildAndRegister();
 
         //UHV 16A Input
@@ -78,7 +78,7 @@ public class MultiblockPartCraftingRecipes {
                 .input(ENERGY_OUTPUT_HATCH_4A[5], 2)
                 .input(wireGtOctal, Europium, 2)
                 .input(plate, Seaborgium, 4)
-                .output(ENERGY_OUTPUT_HATCH_16A[4])
+                .output(ENERGY_OUTPUT_HATCH_16A[UHV])
                 .duration(200).EUt(VA[UV]).buildAndRegister();
     }
 
