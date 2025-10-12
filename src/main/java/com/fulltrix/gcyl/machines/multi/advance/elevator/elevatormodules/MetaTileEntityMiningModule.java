@@ -21,7 +21,6 @@ import com.fulltrix.gcyl.recipes.categories.elevator.SpaceMiningRecipes;
 import gregtech.api.capability.*;
 import gregtech.api.capability.impl.FluidTankList;
 import gregtech.api.capability.impl.ItemHandlerList;
-import gregtech.api.gui.widgets.LabelWidget;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
@@ -226,7 +225,7 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase impleme
                 }
             }
 
-            if (this.randomRecipe == null || this.randomOutput == null) {
+            if (this.randomRecipe == null || this.randomOutput == null || this.outputInventory == null || !GTTransferUtils.addItemsToItemHandler(this.outputInventory, true, this.randomOutput)) {
                 progressTime = 0;
                 return;
             }
@@ -643,13 +642,12 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase impleme
     }
 
     private void setDistance(int distance) {
-        int real = distance;
-        if (real > this.MAX_DISTANCE) {
-            while (real > this.MAX_DISTANCE) {
-                real -= this.MAX_DISTANCE;
+        if (distance > this.MAX_DISTANCE) {
+            while (distance > this.MAX_DISTANCE) {
+                distance -= this.MAX_DISTANCE;
             }
         }
-        this.distance = real;
+        this.distance = distance;
         this.minDistance = Math.max(this.distance - this.range / 2, 0);
         this.maxDistance = Math.min(this.distance + this.range / 2, this.MAX_DISTANCE);
     }
