@@ -486,8 +486,8 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
                         "gregtech.machine.active_transformer.routing")
                 .addCustom((keyManager, uiSyncer) -> {
                     if (uiSyncer.syncBoolean(isStructureFormed())) {
-                        BigInteger energyStored = uiSyncer.syncBigInt(energyBank.getStored());
-                        BigInteger energyCapacity = uiSyncer.syncBigInt(energyBank.getCapacity());
+                        BigInteger energyStored = uiSyncer.syncBigInt(energyBank != null ? energyBank.getStored() : BigInteger.valueOf(0));
+                        BigInteger energyCapacity = uiSyncer.syncBigInt(energyBank != null ? energyBank.getCapacity() : BigInteger.valueOf(0));
                         long averageInLastSec = uiSyncer.syncLong(getAverageInLastSec());
                         long averageOutLastSec = uiSyncer.syncLong(getAverageOutLastSec());
                         long passiveDrainSync = uiSyncer.syncLong(getPassiveDrain());
@@ -594,22 +594,21 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
 
     @Override
     protected void configureWarningText(MultiblockUIBuilder builder) {
-        builder.addCustom((keyManager, uiSyncer) -> {
-                        long averageInLastSec = uiSyncer.syncLong(this.averageInLastSec);
-                        long averageOutLastSec = uiSyncer.syncLong(this.averageOutLastSec);
-                        BigInteger stored =  uiSyncer.syncBigInt(energyBank.getStored());
-                        if (uiSyncer.syncBoolean(isStructureFormed())) {
-                            if ( averageInLastSec < averageOutLastSec) { // decreasing
-                                BigInteger timeToDrainSeconds = stored.divide(BigInteger.valueOf((averageOutLastSec - averageInLastSec) * 20));
-                                if (timeToDrainSeconds.compareTo(BigInteger.valueOf(60 * 60)) < 0) { // less than 1 hour left
-                                    keyManager.add(KeyUtil.lang(
-                                            TextFormatting.YELLOW,
-                                            "gregtech.multiblock.power_substation.under_one_hour_left"));
-                                }
-                            }
+            builder.addCustom((keyManager, uiSyncer) -> {
+                long averageInLastSec = uiSyncer.syncLong(this.averageInLastSec);
+                long averageOutLastSec = uiSyncer.syncLong(this.averageOutLastSec);
+                BigInteger stored = uiSyncer.syncBigInt(energyBank != null ? energyBank.getStored() : BigInteger.valueOf(0));
+                if (uiSyncer.syncBoolean(isStructureFormed())) {
+                    if ( averageInLastSec < averageOutLastSec) { // decreasing
+                        BigInteger timeToDrainSeconds = stored.divide(BigInteger.valueOf((averageOutLastSec - averageInLastSec) * 20));
+                        if (timeToDrainSeconds.compareTo(BigInteger.valueOf(60 * 60)) < 0) { // less than 1 hour left
+                            keyManager.add(KeyUtil.lang(
+                                    TextFormatting.YELLOW,
+                                    "gregtech.multiblock.power_substation.under_one_hour_left"));
                         }
-
-                    });
+                    }
+                }
+            });
     }
 
     private static IKey getTimeToFillDrainText(BigInteger timeToFillSeconds) {
