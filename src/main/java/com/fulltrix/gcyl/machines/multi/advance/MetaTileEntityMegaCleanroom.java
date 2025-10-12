@@ -348,7 +348,7 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implem
         builder.setWorkingStatus(this.cleanroomLogic.isWorkingEnabled(), this.cleanroomLogic.isActive())
                 .addEnergyUsageLine(this.energyContainer)
                 .addCustom((keyManager, uiSyncer) -> {
-                    if (this.isStructureFormed()) {
+                    if (uiSyncer.syncBoolean(this.isStructureFormed())) {
                         //TODO get rid of this disgusting garbage
                         Field cleanAmountField;
                         try {
@@ -367,9 +367,9 @@ public class MetaTileEntityMegaCleanroom extends MetaTileEntityCleanroom  implem
 
                         IKey cleanState;
                         if (this.isClean()) {
-                            cleanState = KeyUtil.lang(TextFormatting.GREEN, "gregtech.multiblock.cleanroom.clean_state", cleanAmount);
+                            cleanState = KeyUtil.lang(TextFormatting.GREEN, "gregtech.multiblock.cleanroom.clean_state", uiSyncer.syncInt(cleanAmount));
                         } else {
-                            cleanState = KeyUtil.lang(TextFormatting.DARK_RED, "gregtech.multiblock.cleanroom.dirty_state", cleanAmount);
+                            cleanState = KeyUtil.lang(TextFormatting.DARK_RED, "gregtech.multiblock.cleanroom.dirty_state", uiSyncer.syncInt(cleanAmount));
                         }
 
                         keyManager.add(KeyUtil.lang(TextFormatting.GRAY, "gregtech.multiblock.cleanroom.clean_status", cleanState));

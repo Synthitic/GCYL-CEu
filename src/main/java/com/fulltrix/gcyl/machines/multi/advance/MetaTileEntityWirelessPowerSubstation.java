@@ -485,9 +485,12 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
                         "gregtech.multiblock.idling",
                         "gregtech.machine.active_transformer.routing")
                 .addCustom((keyManager, uiSyncer) -> {
-                    if (isStructureFormed() && energyBank != null) {
-                        BigInteger energyStored = energyBank.getStored();
-                        BigInteger energyCapacity = energyBank.getCapacity();
+                    if (uiSyncer.syncBoolean(isStructureFormed())) {
+                        BigInteger energyStored = uiSyncer.syncBigInt(energyBank.getStored());
+                        BigInteger energyCapacity = uiSyncer.syncBigInt(energyBank.getCapacity());
+                        long averageInLastSec = uiSyncer.syncLong(getAverageInLastSec());
+                        long averageOutLastSec = uiSyncer.syncLong(getAverageOutLastSec());
+                        long passiveDrainSync = uiSyncer.syncLong(getPassiveDrain());
 
                         // Stored EU line
                         IKey storedFormatted = KeyUtil.string(
@@ -510,7 +513,7 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
                         // Passive Drain line
                         IKey passiveDrain = KeyUtil.string(
                                 TextFormatting.DARK_RED,
-                                TextFormattingUtil.formatNumbers(getPassiveDrain()) + " EU/t");
+                                TextFormattingUtil.formatNumbers(passiveDrainSync) + " EU/t");
                         keyManager.add(KeyUtil.lang(
                                 TextFormatting.GRAY,
                                 "gregtech.multiblock.power_substation.passive_drain",
@@ -544,18 +547,18 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
 
                         // Time to fill/drain line
                         if (averageInLastSec > averageOutLastSec) {
-                            ITextComponent timeToFill = getTimeToFillDrainText(energyCapacity.subtract(energyStored)
+                            IKey timeToFill = getTimeToFillDrainText(energyCapacity.subtract(energyStored)
                                     .divide(BigInteger.valueOf((averageInLastSec - averageOutLastSec) * 20)));
-                            TextComponentUtil.setColor(timeToFill, TextFormatting.GREEN);
+                            timeToFill.style(TextFormatting.GREEN);
                             keyManager.add(KeyUtil.lang(
                                     TextFormatting.GRAY,
                                     "gregtech.multiblock.power_substation.time_to_fill",
                                     timeToFill));
                         } else if (averageInLastSec < averageOutLastSec) {
-                            ITextComponent timeToDrain = getTimeToFillDrainText(
+                            IKey timeToDrain = getTimeToFillDrainText(
                                     energyStored.divide(BigInteger.valueOf(
                                             (averageOutLastSec - averageInLastSec) * 20)));
-                            TextComponentUtil.setColor(timeToDrain, TextFormatting.RED);
+                            timeToDrain.style(TextFormatting.RED);
                             keyManager.add(KeyUtil.lang(
                                     TextFormatting.GRAY,
                                     "gregtech.multiblock.power_substation.time_to_drain",
@@ -563,8 +566,9 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
                         }
                     }
 
-                    if(!initialize && !this.getWorld().isRemote && isStructureFormed()) {
-                        IKey wirelessFormatted = KeyUtil.string(TextFormatting.LIGHT_PURPLE, TextFormattingUtil.formatNumbers(this.energyContainerWireless.getEnergyStored()) + " EU");
+                    if(!uiSyncer.syncBoolean(initialize)  && uiSyncer.syncBoolean(isStructureFormed())) {
+                        long energyStoredContainer = uiSyncer.syncLong(this.energyContainerWireless.getEnergyStored());
+                        IKey wirelessFormatted = KeyUtil.string(TextFormatting.LIGHT_PURPLE, TextFormattingUtil.formatNumbers(energyStoredContainer) + " EU");
                         try {
                             keyManager.add(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.private", Objects.requireNonNull(this.getWorld().getPlayerEntityByUUID(this.playerUUID)).getName()));
                             keyManager.add(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.wireless_pss.wireless_eu", wirelessFormatted));
@@ -590,22 +594,25 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
 
     @Override
     protected void configureWarningText(MultiblockUIBuilder builder) {
-        if (isStructureFormed()) {
-            if (averageInLastSec < averageOutLastSec) { // decreasing
-                BigInteger timeToDrainSeconds = energyBank.getStored()
-                        .divide(BigInteger.valueOf((averageOutLastSec - averageInLastSec) * 20));
-                if (timeToDrainSeconds.compareTo(BigInteger.valueOf(60 * 60)) < 0) { // less than 1 hour left
-                    builder.addCustom((keyManager, uiSyncer) -> {
-                        keyManager.add(KeyUtil.lang(
-                                TextFormatting.YELLOW,
-                                "gregtech.multiblock.power_substation.under_one_hour_left"));
+        builder.addCustom((keyManager, uiSyncer) -> {
+                        long averageInLastSec = uiSyncer.syncLong(this.averageInLastSec);
+                        long averageOutLastSec = uiSyncer.syncLong(this.averageOutLastSec);
+                        BigInteger stored =  uiSyncer.syncBigInt(energyBank.getStored());
+                        if (uiSyncer.syncBoolean(isStructureFormed())) {
+                            if ( averageInLastSec < averageOutLastSec) { // decreasing
+                                BigInteger timeToDrainSeconds = stored.divide(BigInteger.valueOf((averageOutLastSec - averageInLastSec) * 20));
+                                if (timeToDrainSeconds.compareTo(BigInteger.valueOf(60 * 60)) < 0) { // less than 1 hour left
+                                    keyManager.add(KeyUtil.lang(
+                                            TextFormatting.YELLOW,
+                                            "gregtech.multiblock.power_substation.under_one_hour_left"));
+                                }
+                            }
+                        }
+
                     });
-                }
-            }
-        }
     }
 
-    private static ITextComponent getTimeToFillDrainText(BigInteger timeToFillSeconds) {
+    private static IKey getTimeToFillDrainText(BigInteger timeToFillSeconds) {
         if (timeToFillSeconds.compareTo(BIG_INTEGER_MAX_LONG) > 0) {
             // too large to represent in a java Duration
             timeToFillSeconds = BIG_INTEGER_MAX_LONG;
@@ -630,10 +637,10 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
             fillTime = duration.toDays() / 365;
             key = "gregtech.multiblock.power_substation.time_years";
         } else {
-            return new TextComponentTranslation("gregtech.multiblock.power_substation.time_forever");
+            return KeyUtil.lang("gregtech.multiblock.power_substation.time_forever");
         }
 
-        return new TextComponentTranslation(key, TextFormattingUtil.formatNumbers(fillTime));
+        return KeyUtil.lang(key, TextFormattingUtil.formatNumbers(fillTime));
     }
 
     @Override
@@ -782,11 +789,6 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
 
     public long getAverageOutLastSec() {
         return averageOutLastSec;
-    }
-
-    public double getFillPercentage() {
-        if (energyBank == null) return 0;
-        return energyBank.getStored().doubleValue() / energyBank.getCapacity().doubleValue();
     }
 
 

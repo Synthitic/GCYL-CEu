@@ -263,7 +263,7 @@ public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase im
                 .addEnergyUsageExactLine(getEnergyUsage())
                 .addWorkingStatusLine()
                 .addCustom((keyManager, uiSyncer) -> {
-                    if(this.initialize) {
+                    if(uiSyncer.syncBoolean(this.initialize)) {
                         keyManager.add(KeyUtil.lang("gcyl.multiblock.wireless_pss.not_initialized"));
                     } else {
                         try {
@@ -283,7 +283,7 @@ public class MetaTileEntityWirelessDataBank extends MultiblockWithDisplayBase im
     protected void configureWarningText(MultiblockUIBuilder builder) {
         builder.addLowPowerLine(hasNotEnoughEnergy)
                 .addCustom((keyManager, uiSyncer) -> {
-                    if(hasNotEnoughCoolant) {
+                    if(uiSyncer.syncBoolean(hasNotEnoughCoolant)) {
                         keyManager.add(KeyUtil.lang(TextFormatting.RED, "gcyl.multiblock.wireless_pss.not_enough_coolant"));
                     }
                 })
