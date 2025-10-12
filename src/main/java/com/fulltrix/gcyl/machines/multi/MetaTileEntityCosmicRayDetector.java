@@ -104,12 +104,12 @@ public class MetaTileEntityCosmicRayDetector extends GCYLRecipeMapMultiblockCont
 
     @Override
     protected void configureDisplayText(MultiblockUIBuilder builder) {
-        if (this.isStructureFormed()) {
-            if (!canSeeSky())
-                builder.addCustom((keyManager, uiSyncer) -> {
-                    keyManager.add(KeyUtil.lang(TextFormatting.RED, "gcyl.multiblock.cosmic_ray_detector.tooltip.1"));
+        builder.structureFormed(isStructureFormed())
+                .addCustom((keyManager, uiSyncer) -> {
+                    if (!uiSyncer.syncBoolean(canSeeSky())) {
+                        keyManager.add(KeyUtil.lang(TextFormatting.RED, "gcyl.multiblock.cosmic_ray_detector.tooltip.1"));
+                    }
                 });
-        }
     }
 
 

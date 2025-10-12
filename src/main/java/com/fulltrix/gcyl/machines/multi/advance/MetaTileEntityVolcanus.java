@@ -76,12 +76,9 @@ public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implem
 
     @Override
     protected void configureDisplayText(MultiblockUIBuilder builder) {
-        if (isStructureFormed()) {
-            builder.addCustom((keyManager, uiSyncer) -> {
-                keyManager.add(KeyUtil.lang(TextFormatting.RED, "gregtech.multiblock.blast_furnace.max_temperature",
-                                blastFurnaceTemperature));
-            });
-        }
+        builder.structureFormed(isStructureFormed())
+                .addCustom((keyManager, uiSyncer) -> keyManager.add(KeyUtil.lang(TextFormatting.RED, "gregtech.multiblock.blast_furnace.max_temperature",
+                        blastFurnaceTemperature)));
     }
 
     @Override

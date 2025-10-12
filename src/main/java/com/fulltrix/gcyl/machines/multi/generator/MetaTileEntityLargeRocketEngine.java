@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.machines.multi.generator;
 
+import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 import com.fulltrix.gcyl.blocks.metal.MetalCasing1;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregtech.api.GTValues;
@@ -9,6 +10,7 @@ import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.*;
+import gregtech.api.metatileentity.multiblock.ui.TemplateBarBuilder;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.unification.material.Materials;
@@ -19,6 +21,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
+import java.util.List;
+import java.util.function.UnaryOperator;
+
 import static com.fulltrix.gcyl.client.ClientHandler.NITINOL_60_CASING;
 import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_1;
 import static gregtech.api.GTValues.LuV;
@@ -26,7 +31,7 @@ import static gregtech.api.util.RelativeDirection.*;
 
 //TODO: implement ui, tooltip
 
-public class MetaTileEntityLargeRocketEngine extends FuelMultiblockController implements IProgressBarMultiblock {
+public class MetaTileEntityLargeRocketEngine extends FuelMultiblockController implements ProgressBarMultiblock {
 
     public MetaTileEntityLargeRocketEngine(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, GCYLRecipeMaps.ROCKET_FUEL_RECIPES, LuV);
@@ -64,8 +69,13 @@ public class MetaTileEntityLargeRocketEngine extends FuelMultiblockController im
     }
 
     @Override
-    public double getFillPercentage(int i) {
+    public int getProgressBarCount() {
         return 0;
+    }
+
+    @Override
+    public void registerBars(List<UnaryOperator<TemplateBarBuilder>> list, PanelSyncManager panelSyncManager) {
+
     }
 
 

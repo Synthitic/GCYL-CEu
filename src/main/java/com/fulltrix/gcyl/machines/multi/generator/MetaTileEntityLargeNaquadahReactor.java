@@ -1,5 +1,7 @@
 package com.fulltrix.gcyl.machines.multi.generator;
 
+import com.cleanroommc.modularui.value.sync.DoubleSyncValue;
+import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 import com.fulltrix.gcyl.blocks.metal.MetalCasing2;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregtech.api.GTValues;
@@ -9,6 +11,8 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.*;
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
+import gregtech.api.metatileentity.multiblock.ui.TemplateBarBuilder;
+import gregtech.api.mui.GTGuiTextures;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.unification.material.Materials;
@@ -32,13 +36,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.UnaryOperator;
 
 import static com.fulltrix.gcyl.client.ClientHandler.NAQUADRIA_CASING;
 import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_2;
 import static gregtech.api.unification.material.Materials.Naquadria;
 
 //TODO finish implementing UI
-public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController implements IProgressBarMultiblock {
+public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController implements ProgressBarMultiblock {
 
     private static final int tier = GTValues.UHV;
 
@@ -80,11 +85,11 @@ public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController
     @Override
     protected void configureDisplayText(MultiblockUIBuilder builder) {
         NaquadahReactorWorkableHandler recipeLogic = (NaquadahReactorWorkableHandler) recipeMapWorkable;
-        if (recipeLogic.isOxygenBoosted) {
             builder.addCustom((keyManager, uiSyncer) -> {
-                keyManager.add(KeyUtil.lang(TextFormatting.AQUA, "gregtech.multiblock.large_naquadah_reactor.oxygen_boosted"));
+                if (uiSyncer.syncBoolean(recipeLogic.isOxygenBoosted)) {
+                    keyManager.add(KeyUtil.lang(TextFormatting.AQUA, "gregtech.multiblock.large_naquadah_reactor.oxygen_boosted"));
+                }
             });
-        }
     }
 
     @Override
@@ -106,40 +111,54 @@ public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController
         return false;
     }
 
+    private double getFuelPercentage() {
+        int[] fuelAmount = new int[2];
+        if (getInputFluidInventory() != null) {
+            MultiblockFuelRecipeLogic recipeLogic = (MultiblockFuelRecipeLogic) recipeMapWorkable;
+            if (recipeLogic.getInputFluidStack() != null) {
+                FluidStack testStack = recipeLogic.getInputFluidStack().copy();
+                testStack.amount = Integer.MAX_VALUE;
+                fuelAmount = getTotalFluidAmount(testStack, getInputFluidInventory());
+            }
+        }
+        return fuelAmount[1] != 0 ? 1.0 * fuelAmount[0] / fuelAmount[1] : 0;
+    }
+
+    private double getTritiumPercentage() {
+        int[] tritiumAmount = new int[2];
+        if (getInputFluidInventory() != null) {
+            tritiumAmount = getTotalFluidAmount(Materials.Tritium.getFluid(Integer.MAX_VALUE),
+                    getInputFluidInventory());
+        }
+        return tritiumAmount[1] != 0 ? 1.0 * tritiumAmount[0] / tritiumAmount[1] : 0;
+    }
+
+    private double getOxygenPercentage() {
+        int[] oxygenAmount = new int[2];
+        if (getInputFluidInventory() != null) {
+            FluidStack oxygenStack = Materials.Oxygen.getPlasma(Integer.MAX_VALUE);
+            oxygenAmount = getTotalFluidAmount(oxygenStack, getInputFluidInventory());
+
+        }
+        return oxygenAmount[1] != 0 ? 1.0 * oxygenAmount[0] / oxygenAmount[1] : 0;
+    }
+
     @Override
-    public int getNumProgressBars() {
+    public int getProgressBarCount() {
         return 3;
     }
 
     @Override
-    public double getFillPercentage(int index) {
-        if (index == 0) {
-            int[] fuelAmount = new int[2];
-            if (getInputFluidInventory() != null) {
-                MultiblockFuelRecipeLogic recipeLogic = (MultiblockFuelRecipeLogic) recipeMapWorkable;
-                if (recipeLogic.getInputFluidStack() != null) {
-                    FluidStack testStack = recipeLogic.getInputFluidStack().copy();
-                    testStack.amount = Integer.MAX_VALUE;
-                    fuelAmount = getTotalFluidAmount(testStack, getInputFluidInventory());
-                }
-            }
-            return fuelAmount[1] != 0 ? 1.0 * fuelAmount[0] / fuelAmount[1] : 0;
-        } else if (index == 1) {
-            int[] tritiumAmount = new int[2];
-            if (getInputFluidInventory() != null) {
-                tritiumAmount = getTotalFluidAmount(Materials.Tritium.getFluid(Integer.MAX_VALUE),
-                        getInputFluidInventory());
-            }
-            return tritiumAmount[1] != 0 ? 1.0 * tritiumAmount[0] / tritiumAmount[1] : 0;
-        } else {
-            int[] oxygenAmount = new int[2];
-            if (getInputFluidInventory() != null) {
-                    FluidStack oxygenStack = Materials.Oxygen.getPlasma(Integer.MAX_VALUE);
-                    oxygenAmount = getTotalFluidAmount(oxygenStack, getInputFluidInventory());
-
-            }
-            return oxygenAmount[1] != 0 ? 1.0 * oxygenAmount[0] / oxygenAmount[1] : 0;
-        }
+    public void registerBars(List<UnaryOperator<TemplateBarBuilder>> list, PanelSyncManager panelSyncManager) {
+        DoubleSyncValue fuelPercentageSync = new DoubleSyncValue(this::getFuelPercentage);
+        DoubleSyncValue tritiumPercentageSync = new DoubleSyncValue(this::getTritiumPercentage);
+        DoubleSyncValue oxygenPercentageSync = new DoubleSyncValue(this::getOxygenPercentage);
+        list.add(bar -> bar.value(fuelPercentageSync)
+                .texture(GTGuiTextures.PROGRESS_BAR_LCE_FUEL));
+        list.add(bar -> bar.value(tritiumPercentageSync)
+                .texture(GTGuiTextures.PROGRESS_BAR_LCE_LUBRICANT));
+        list.add(bar -> bar.value(oxygenPercentageSync)
+                .texture(GTGuiTextures.PROGRESS_BAR_LCE_OXYGEN));
     }
 
     private static class NaquadahReactorWorkableHandler extends MultiblockFuelRecipeLogic {

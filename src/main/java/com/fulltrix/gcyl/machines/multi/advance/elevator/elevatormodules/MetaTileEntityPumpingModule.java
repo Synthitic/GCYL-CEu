@@ -3,26 +3,28 @@ package com.fulltrix.gcyl.machines.multi.advance.elevator.elevatormodules;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import com.cleanroommc.modularui.value.sync.IntSyncValue;
+import com.cleanroommc.modularui.widgets.TextWidget;
+import com.cleanroommc.modularui.widgets.textfield.TextFieldWidget;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.machines.multi.advance.elevator.MetaTileEntityModuleBase;
-import gregtech.api.capability.GregtechTileCapabilities;
-import gregtech.api.capability.IControllable;
 import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.api.capability.impl.FluidTankList;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.resources.TextureArea;
 import gregtech.api.gui.widgets.*;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory;
 import gregtech.api.pattern.TraceabilityPredicate;
+import gregtech.api.util.GTTransferUtils;
+import gregtech.api.util.KeyUtil;
 import gregtech.common.ConfigHolder;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -78,6 +80,77 @@ public class MetaTileEntityPumpingModule extends MetaTileEntityModuleBase {
                 ClientHandler.PUMP_MODULE_OVERLAY.renderSided(renderSide, renderState, translation, pipeline);
         }
     }
+
+    @Override
+    protected MultiblockUIFactory createUIFactory() {
+        return super.createUIFactory().addScreenChildren(((parentWidget, panelSyncManager) -> {
+            IntSyncValue firstPlanetValueSync = new IntSyncValue(this::getFirstPlanetValue, this::setFirstPlanetValue);
+            IntSyncValue secondPlanetValueSync = new IntSyncValue(this::getSecondPlanetValue, this::setSecondPlanetValue);
+            IntSyncValue thirdPlanetValueSync = new IntSyncValue(this::getThirdPlanetValue, this::setThirdPlanetValue);
+            IntSyncValue fourthPlanetValueSync = new IntSyncValue(this::getFourthPlanetValue, this::setFourthPlanetValue);
+
+            IntSyncValue firstFluidValueSync = new IntSyncValue(this::getFirstFluidValue, this::setFirstFluidValue);
+            IntSyncValue secondFluidValueSync = new IntSyncValue(this::getSecondFluidValue, this::setSecondFluidValue);
+            IntSyncValue thirdFluidValueSync = new IntSyncValue(this::getThirdFluidValue, this::setThirdFluidValue);
+            IntSyncValue fourthFluidValueSync = new IntSyncValue(this::getFourthFluidValue, this::setFourthFluidValue);
+
+            int padding = 18;
+            parentWidget.child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.planet"))
+                    .pos(10, 9 + padding))
+                    .child(new TextFieldWidget()
+                            .pos(43, 7 + padding)
+                            .size(25, 10)
+                            .value(firstPlanetValueSync))
+                    .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.fluid"))
+                            .pos(10, 9 + 2 * padding))
+                    .child(new TextFieldWidget()
+                            .pos(43, 7 + 2 * padding)
+                            .size(25, 10)
+                            .value(firstFluidValueSync));
+            if (moduleTier > 1) {
+                parentWidget.child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.planet"))
+                                .pos(100, 9 + padding))
+                        .child(new TextFieldWidget()
+                                .pos(133, 7 + padding)
+                                .size(25, 10)
+                                .value(secondPlanetValueSync))
+                        .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.fluid"))
+                                .pos(100, 9 + 2 * padding))
+                        .child(new TextFieldWidget()
+                                .pos(133, 7 + 2 * padding)
+                                .size(25, 10)
+                                .value(secondFluidValueSync))
+
+                        .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.planet"))
+                                .pos(10, 9 + 3 * padding))
+                        .child(new TextFieldWidget()
+                                .pos(43, 7 + 3 * padding)
+                                .size(25, 10)
+                                .value(thirdPlanetValueSync))
+                        .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.fluid"))
+                                .pos(10, 9 + 4 * padding))
+                        .child(new TextFieldWidget()
+                                .pos(43, 7 + 4 * padding)
+                                .size(25, 10)
+                                .value(thirdFluidValueSync))
+
+                        .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.planet"))
+                                .pos(100, 9 + 3 * padding))
+                        .child(new TextFieldWidget()
+                                .pos(133, 7 + 3 * padding)
+                                .size(25, 10)
+                                .value(fourthPlanetValueSync))
+                        .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.fluid"))
+                                .pos(100, 9 + 4 * padding))
+                        .child(new TextFieldWidget()
+                                .pos(133, 7 + 4 * padding)
+                                .size(25, 10)
+                                .value(fourthFluidValueSync));
+            }
+        }));
+    }
+
+
 
     /*
     @Override
@@ -139,31 +212,68 @@ public class MetaTileEntityPumpingModule extends MetaTileEntityModuleBase {
     }
      */
 
-    private String getPlanetValue(int index) {
-        return String.valueOf(this.planet[index]);
+    private int getFirstPlanetValue() {
+        return this.planet[0];
     }
 
-    private void setPlanetValue(String val, int index) {
-        try {
-            this.planet[index] = Integer.parseInt(val);
-        }
-        catch (NumberFormatException e) {
-            this.planet[index] = 0;
-        }
-
+    private void setFirstPlanetValue(int val) {
+        this.planet[0] = val;
     }
 
-    private String getFluidValue(int index) {
-        return String.valueOf(this.fluidNumber[index]);
+    private int getSecondPlanetValue() {
+        return this.planet[1];
     }
 
-    private void setFluidValue(String val, int index) {
-        try {
-            this.fluidNumber[index] = Integer.parseInt(val);
-        }
-        catch (NumberFormatException e) {
-            this.fluidNumber[index] = 0;
-        }
+    private void setSecondPlanetValue(int val) {
+        this.planet[1] = val;
+    }
+
+    private int getThirdPlanetValue() {
+        return this.planet[2];
+    }
+
+    private void setThirdPlanetValue(int val) {
+        this.planet[2] = val;
+    }
+
+    private int getFourthPlanetValue() {
+        return this.planet[3];
+    }
+
+    private void setFourthPlanetValue(int val) {
+        this.planet[3] = val;
+    }
+
+    private int getFirstFluidValue() {
+        return this.fluidNumber[0];
+    }
+
+    private void setFirstFluidValue(int val) {
+            this.fluidNumber[0] = val;
+    }
+
+    private int getSecondFluidValue() {
+        return this.fluidNumber[1];
+    }
+
+    private void setSecondFluidValue(int val) {
+        this.fluidNumber[1] = val;
+    }
+
+    private int getThirdFluidValue() {
+        return this.fluidNumber[2];
+    }
+
+    private void setThirdFluidValue(int val) {
+        this.fluidNumber[2] = val;
+    }
+
+    private int getFourthFluidValue() {
+        return this.fluidNumber[3];
+    }
+
+    private void setFourthFluidValue(int val) {
+        this.fluidNumber[3] = val;
     }
 
     @Override
@@ -207,6 +317,16 @@ public class MetaTileEntityPumpingModule extends MetaTileEntityModuleBase {
             return;
         }
 
+        List<FluidStack> fluidStacks = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            if(GAS_SIPHON_RECIPES.get(this.planet[i] + "," + this.fluidNumber[i]) != null) {
+                fluidStacks.add(GAS_SIPHON_RECIPES.get(this.planet[i] + "," + this.fluidNumber[i]));
+            }
+        }
+
+        if (this.canVoidRecipeFluidOutputs() && (this.outputFluidInventory == null || !GTTransferUtils.addFluidsToFluidHandler(this.outputFluidInventory, true, fluidStacks)))
+            return;
+
 
         if(!drainEnergy(true)) {
             if (this.progressTime >= 2) {
@@ -226,13 +346,6 @@ public class MetaTileEntityPumpingModule extends MetaTileEntityModuleBase {
             progressTime++;
             if (progressTime % getMaxProgress() != 0) return;
             progressTime = 0;
-
-            List<FluidStack> fluidStacks = new ArrayList<>();
-            for (int i = 0; i < 4; i++) {
-                if(GAS_SIPHON_RECIPES.get(this.planet[i] + "," + this.fluidNumber[i]) != null) {
-                    fluidStacks.add(GAS_SIPHON_RECIPES.get(this.planet[i] + "," + this.fluidNumber[i]));
-                }
-            }
 
             for(FluidStack fluidStack : fluidStacks) {
                 this.outputFluidInventory.fill(fluidStack, true);
