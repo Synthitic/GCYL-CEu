@@ -109,18 +109,17 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
 
     @Override
     protected void configureDisplayText(MultiblockUIBuilder builder) {
-        if (this.isStructureFormed() && !this.hasMaintenanceProblems()) {
-            builder.addCustom((keyManager, uiSyncer) -> {
-                keyManager.add(KeyUtil.lang("gregtech.multiblock.universal.vom.temperature", getCurrentTemperature()));
-                keyManager.add(KeyUtil.lang("gregtech.multiblock.deep_miner.max.temperature", getMaxTemperature()));
-                keyManager.add(KeyUtil.lang("gregtech.multiblock.deep_miner.max.fluid consumption", this.recipeMapWorkable.isActive() && getCurrentTemperature() == getMaxTemperature() ? getHeatingFluidActiveMax(getFluidType()).amount : getHeatingFluid(getFluidType()).amount));
+            builder.structureFormed(this.isStructureFormed())
+                    .addMaintenanceProblemLines(this.maintenance_problems, this.hasMaintenanceProblems())
+                    .addCustom((keyManager, uiSyncer) -> {
+                        int currentTemp = uiSyncer.syncInt(getCurrentTemperature());
+                        int maxTemp = uiSyncer.syncInt(getMaxTemperature());
+                        keyManager.add(KeyUtil.lang("gregtech.multiblock.universal.vom.temperature", currentTemp));
+                        keyManager.add(KeyUtil.lang("gregtech.multiblock.deep_miner.max.temperature", maxTemp));
+                        keyManager.add(KeyUtil.lang("gregtech.multiblock.deep_miner.max.fluid consumption", uiSyncer.syncBoolean(this.recipeMapWorkable.isActive()) && currentTemp == maxTemp ? getHeatingFluidActiveMax(getFluidType()).amount : getHeatingFluid(getFluidType()).amount));
             });
-        }
         if(this.getPos().getY() > 8 && !this.getWorld().isRemote)
-            builder.addCustom((keyManager, uiSyncer) -> {
-                keyManager.add(KeyUtil.lang("gregtech.multiblock.deep_miner_error"));
-
-            });
+            builder.addCustom((keyManager, uiSyncer) -> keyManager.add(KeyUtil.lang("gregtech.multiblock.deep_miner_error")));
     }
 
 

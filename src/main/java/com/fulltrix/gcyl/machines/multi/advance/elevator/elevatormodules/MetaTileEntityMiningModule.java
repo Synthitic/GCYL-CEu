@@ -3,40 +3,47 @@ package com.fulltrix.gcyl.machines.multi.advance.elevator.elevatormodules;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import com.cleanroommc.modularui.factory.PosGuiData;
+import com.cleanroommc.modularui.screen.ModularPanel;
+import com.cleanroommc.modularui.value.sync.BooleanSyncValue;
+import com.cleanroommc.modularui.value.sync.IntSyncValue;
+import com.cleanroommc.modularui.value.sync.PanelSyncManager;
+import com.cleanroommc.modularui.value.sync.StringSyncValue;
+import com.cleanroommc.modularui.widget.Widget;
+import com.cleanroommc.modularui.widgets.ButtonWidget;
+import com.cleanroommc.modularui.widgets.TextWidget;
+import com.cleanroommc.modularui.widgets.ToggleButton;
+import com.cleanroommc.modularui.widgets.layout.Flow;
+import com.cleanroommc.modularui.widgets.textfield.TextFieldWidget;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.machines.multi.advance.elevator.MetaTileEntityModuleBase;
 import com.fulltrix.gcyl.recipes.categories.elevator.SpaceMiningRecipes;
 import gregtech.api.capability.*;
 import gregtech.api.capability.impl.FluidTankList;
 import gregtech.api.capability.impl.ItemHandlerList;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.Widget;
-import gregtech.api.gui.resources.TextureArea;
-import gregtech.api.gui.widgets.*;
+import gregtech.api.gui.widgets.LabelWidget;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory;
+import gregtech.api.mui.GTGuiTextures;
 import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.util.GTLog;
 import gregtech.api.util.GTTransferUtils;
 import gregtech.api.util.KeyUtil;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.common.ConfigHolder;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fluids.Fluid;
@@ -45,9 +52,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import org.eclipse.xtext.xbase.lib.Pair;
+import org.jetbrains.annotations.NotNull;
+import org.lwjgl.input.Keyboard;
 
 import java.util.*;
-import java.util.function.BooleanSupplier;
 
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.recipes.categories.elevator.SpaceMiningRecipes.*;
@@ -143,7 +151,7 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase impleme
         if (progressTime == 0 && checkRecipes(true) == null) {
             setActive(false);
             if (this.cycleMode) {
-                setDistance(String.valueOf(this.distance + this.step));
+                setDistance(this.distance + this.step);
             }
         } else {
             Random rand = this.getWorld().rand;
@@ -231,7 +239,7 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase impleme
             progressTime = 0;
 
             if (this.cycleMode) {
-                setDistance(String.valueOf(this.distance + this.step));
+                setDistance(this.distance + this.step);
             }
 
             GTTransferUtils.addItemsToItemHandler(this.outputInventory, false, this.randomOutput);
@@ -411,6 +419,87 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase impleme
         return this.computationProvider;
     }
 
+    @Override
+    protected MultiblockUIFactory createUIFactory() {
+        return new MultiblockUIFactory(this) {
+            @Override
+            protected @NotNull Flow createButtons(@NotNull ModularPanel mainPanel, @NotNull PanelSyncManager panelSyncManager, PosGuiData guiData) {
+                BooleanSyncValue cycleModeSync = new BooleanSyncValue(MetaTileEntityMiningModule.this::getCycleMode, MetaTileEntityMiningModule.this::setCycleMode);
+                BooleanSyncValue whitelistModeSync = new BooleanSyncValue(MetaTileEntityMiningModule.this::getWhitelistMode, MetaTileEntityMiningModule.this::setWhitelistMode);
+
+                Widget powerButton = this.createPowerButton(mainPanel, panelSyncManager);
+                return Flow.column().debugName("button_col").right(4).coverChildren()
+                        .child(new ToggleButton()
+                                .stateOverlay(ClientHandler.BUTTON_CYCLE)
+                                .addTooltipLine(KeyUtil.lang("gcyl.gui.mining_module.cycle"))
+                                .value(cycleModeSync)
+                                .size(18))
+                        .child(new ToggleButton()
+                                .stateOverlay(ClientHandler.BUTTON_WHITE_BLACK_LIST)
+                                .addTooltipLine(KeyUtil.lang("gcyl.gui.mining_module.change_whitelist_mode"))
+                                .value(whitelistModeSync)
+                                .size(18))
+                        .child(new ButtonWidget<>()
+                                .overlay(GTGuiTextures.BUTTON_CLEAR_GRID)
+                                .addTooltipLine(KeyUtil.lang("gcyl.gui.mining_module.print_whitelist_or_clear"))
+                                .onMousePressed(mousePressed -> MetaTileEntityMiningModule.this.printWhitelistOrClear(panelSyncManager.getPlayer()))
+                                .size(18)
+                        )
+                        .childIf(powerButton != null, powerButton);
+            }
+        }.addScreenChildren((parentWidget, syncManager) -> {
+            IntSyncValue distanceSync = new IntSyncValue(this::getDistance, this::setDistance);
+            IntSyncValue rangeSync = new IntSyncValue(this::getRange, this::setRange);
+            IntSyncValue stepSync = new IntSyncValue(this::getStep, this::setStep);
+            IntSyncValue parallelSync = new IntSyncValue(this::getParallel, this::setParallel);
+            StringSyncValue addToWhitelistSync = new StringSyncValue(this::getBlankName, this::addToWhiteList);
+            StringSyncValue RemoveFromWhitelistSync = new StringSyncValue(this::getBlankRemoveName, this::removeFromWhitelist);
+
+            int padding = 18;
+
+            parentWidget
+                    .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.gui.mining_module.distance"))
+                            .pos(120, 5 + padding))
+                    .child(new TextFieldWidget()
+                            .pos(163, 3 + padding)
+                            .size(25,10)
+                            .value(distanceSync)
+                            .setNumbers(0, this.MAX_DISTANCE))
+                    .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.gui.mining_module.range"))
+                            .pos(120, 5 + 2 * padding))
+                    .child(new TextFieldWidget()
+                            .pos(163, 3 + 2 * padding)
+                            .size(25,10)
+                            .value(rangeSync)
+                            .setNumbers(0, this.MAX_RANGE))
+                    .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.gui.mining_module.step"))
+                            .pos(120, 5 + 3 * padding))
+                    .child(new TextFieldWidget()
+                            .pos(163, 3 + 3 * padding)
+                            .size(25,10)
+                            .value(stepSync))
+                    .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.gui.mining_module.parallel"))
+                            .pos(120, 5 + 4 * padding))
+                    .child(new TextFieldWidget()
+                            .pos(163, 3 + 4 * padding)
+                            .size(25,10)
+                            .value(parallelSync)
+                            .setNumbers(0, this.MAX_PARALLEL))
+                    .child(new TextFieldWidget()
+                            .pos(47, 56)
+                            .width(70)
+                            .height(10)
+                            .value(addToWhitelistSync))
+                    .child(new TextFieldWidget()
+                            .pos(47, 70)
+                            .width(70)
+                            .height(10)
+                            .value(RemoveFromWhitelistSync));
+        }).configureWarningText(this::configureWarningText)
+                .configureDisplayText(this::configureDisplayText)
+                .configureErrorText(this::configureErrorText);
+    }
+
     /*
     @Override
     protected ModularUI.Builder createUITemplate(EntityPlayer entityPlayer) {
@@ -479,30 +568,26 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase impleme
                 .addWorkingStatusLine()
                 .addParallelsLine(this.MAX_PARALLEL)
                 .addCustom((keyManager, uiSyncer) -> {
-                    keyManager.add(KeyUtil.lang(TextFormatting.YELLOW, "gcyl.gui.mining_module.min_distance", this.minDistance));
-                    keyManager.add(KeyUtil.lang(TextFormatting.RED, "gcyl.gui.mining_module.max_distance", this.maxDistance));
+                    keyManager.add(KeyUtil.lang(TextFormatting.YELLOW, "gcyl.gui.mining_module.min_distance", uiSyncer.syncInt(this.minDistance)));
+                    keyManager.add(KeyUtil.lang(TextFormatting.RED, "gcyl.gui.mining_module.max_distance", uiSyncer.syncInt(this.maxDistance)));
                 })
-                .addCustom((keyManager, uiSyncer) -> {
-                    keyManager.add(KeyUtil.lang(this.isWhitelist ? TextFormatting.DARK_GREEN : TextFormatting.DARK_RED, this.isWhitelist ? "gcyl.gui.mining_module.whitelist" : "gcyl.gui.mining_module.blacklist"));
-                })
+                .addCustom((keyManager, uiSyncer) -> keyManager.add(KeyUtil.lang(uiSyncer.syncBoolean(this.isWhitelist) ? TextFormatting.DARK_GREEN : TextFormatting.DARK_RED, uiSyncer.syncBoolean(this.isWhitelist) ? "gcyl.gui.mining_module.whitelist" : "gcyl.gui.mining_module.blacklist")))
                 .addEmptyLine()
-                .addCustom((keyManager, uiSyncer) -> {
-                    keyManager.add(KeyUtil.lang(TextFormatting.RED, "gcyl.gui.mining_module.remove"));
-                })
+                .addCustom((keyManager, uiSyncer) -> keyManager.add(KeyUtil.lang(TextFormatting.RED, "gcyl.gui.mining_module.remove")))
                 .addEmptyLine()
                 .addProgressLine(getProgress(), getMaxProgress())
                 .addEnergyUsageExactLine(this.totalEUt)
                 .addComputationUsageExactLine(this.totalComputation);
     }
 
-    private void printWhitelistOrClear(Widget.ClickData data, EntityPlayer player) {
 
+    private boolean printWhitelistOrClear(EntityPlayer player) {
         if(this.whitelist.isEmpty()) {
             player.sendStatusMessage(TextComponentUtil.translationWithColor(TextFormatting.WHITE, "gcyl.gui.mining_module." + (this.isWhitelist ? "whitelist_empty" : "blacklist_empty")), false);
-            return;
+            return true;
         }
 
-        if(data.isShiftClick) {
+        if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
             this.whitelist.clear();
             player.sendStatusMessage(TextComponentUtil.translationWithColor(TextFormatting.WHITE, "gcyl.gui.mining_module." + (this.isWhitelist ? "whitelist_cleared" : "blacklist_cleared")), false);
         }
@@ -519,7 +604,9 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase impleme
 
             player.sendStatusMessage(TextComponentUtil.stringWithColor(TextFormatting.WHITE, sb.toString()), false);
         }
+        return true;
     }
+
 
     private void addToWhiteList(String name) {
         if (!this.whitelist.contains(name) && !Objects.equals(name, I18n.format("gcyl.gui.mining_module.blank_name"))) {
@@ -555,76 +642,54 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase impleme
         return this.cycleMode;
     }
 
-    private void setDistance(String distance) {
-        try {
-            int real = Integer.parseInt(distance);
-
-            if (real > this.MAX_DISTANCE) {
-                while (real > this.MAX_DISTANCE) {
-                    real -= this.MAX_DISTANCE;
-                }
+    private void setDistance(int distance) {
+        int real = distance;
+        if (real > this.MAX_DISTANCE) {
+            while (real > this.MAX_DISTANCE) {
+                real -= this.MAX_DISTANCE;
             }
-            this.distance = real;
-            this.minDistance = Math.max(this.distance - this.range / 2, 0);
-            this.maxDistance = Math.min(this.distance + this.range / 2, this.MAX_DISTANCE);
-        } catch (NumberFormatException e) {
-            this.distance = 0;
-            this.minDistance = Math.max(this.distance - this.range / 2, 0);
-            this.maxDistance = Math.min(this.distance + this.range / 2, this.MAX_DISTANCE);
         }
+        this.distance = real;
+        this.minDistance = Math.max(this.distance - this.range / 2, 0);
+        this.maxDistance = Math.min(this.distance + this.range / 2, this.MAX_DISTANCE);
     }
 
-    private String getDistance() {
-        return String.valueOf(this.distance);
+    private int getDistance() {
+        return this.distance;
     }
 
-    private void setRange(String range) {
-        try {
-            if (Integer.parseInt(range) > this.MAX_RANGE) {
-                this.range = 0;
-                this.minDistance = this.distance;
-                this.maxDistance = this.distance;
-            } else {
-                this.range = Integer.parseInt(range);
-                this.minDistance = Math.max(this.distance - this.range / 2, 0);
-                this.maxDistance = Math.min(this.distance + this.range / 2, this.MAX_DISTANCE);
-            }
-        } catch (NumberFormatException e) {
+    private void setRange(int range) {
+        if (range > this.MAX_RANGE) {
             this.range = 0;
             this.minDistance = this.distance;
             this.maxDistance = this.distance;
+        } else {
+            this.range = range;
+            this.minDistance = Math.max(this.distance - this.range / 2, 0);
+            this.maxDistance = Math.min(this.distance + this.range / 2, this.MAX_DISTANCE);
         }
     }
 
-    private String getRange() {
-        return String.valueOf(this.range);
+    private int getRange() {
+        return this.range;
     }
 
-    private void setStep(String step) {
-        try {
-            this.step = Integer.parseInt(step);
-        } catch (NumberFormatException e) {
-            this.step = 0;
-        }
+    private void setStep(int step) {
+        this.step = step;
     }
 
-    private String getStep() {
-        return String.valueOf(this.step);
+    private int getStep() {
+        return this.step;
     }
 
-    private void setParallel(String parallel) {
-        try {
-            int real = Integer.parseInt(parallel);
-            if (real < 1)
+    private void setParallel(int parallel) {
+        if (parallel < 1)
                 this.parallel = 1;
-            else this.parallel = Math.min(real, this.MAX_PARALLEL);
-        } catch (NumberFormatException e) {
-            this.parallel = 1;
-        }
+            else this.parallel = Math.min(parallel, this.MAX_PARALLEL);
     }
 
-    private String getParallel() {
-        return String.valueOf(this.parallel);
+    private int getParallel() {
+        return this.parallel;
     }
 
 

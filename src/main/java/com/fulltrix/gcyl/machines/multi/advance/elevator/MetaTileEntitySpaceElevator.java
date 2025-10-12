@@ -5,6 +5,7 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import com.cleanroommc.modularui.factory.PosGuiData;
 import com.cleanroommc.modularui.screen.ModularPanel;
+import com.cleanroommc.modularui.utils.serialization.ByteBufAdapters;
 import com.cleanroommc.modularui.value.sync.BooleanSyncValue;
 import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 import com.cleanroommc.modularui.widget.EmptyWidget;
@@ -42,6 +43,8 @@ import gregtech.api.util.Mods;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import net.minecraft.block.Block;
@@ -432,32 +435,37 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     }
      */
 
+    public List<String> getModuleNames() {
+        List<String> moduleNames = new ArrayList<>();
+        for (ISpaceElevatorReceiver spaceElevatorReceiver : spaceElevatorReceivers)  {
+            moduleNames.add(spaceElevatorReceiver.getNameForDisplayCount());
+        }
+        return moduleNames;
+    }
+
     @Override
     protected void configureDisplayText(MultiblockUIBuilder builder) {
-        builder.addCustom((keyManager, uiSyncer) -> {
-            if(this.isStructureFormed()) {
-                keyManager.add(KeyUtil.lang(TextFormatting.BLUE, "gcyl.machine.space_elevator.motor_tier", this.motorTier));
-                keyManager.add(KeyUtil.lang(TextFormatting.YELLOW, "gcyl.machine.space_elevator.max_modules", getMaxModules()));
+            builder.structureFormed(this.isStructureFormed())
+                    .addCustom((keyManager, uiSyncer) -> {
+                int motorTier  = uiSyncer.syncInt(getMotorTier());
+                int maxModules = uiSyncer.syncInt(getMaxModules());
+                int moduleCount = uiSyncer.syncInt(getModuleCount());
+                List<String> moduleNames = uiSyncer.syncCollection(getModuleNames(), ByteBufAdapters.STRING);
 
-                if (this.spaceElevatorReceivers.isEmpty()) {
+                keyManager.add(KeyUtil.lang(TextFormatting.BLUE, "gcyl.machine.space_elevator.motor_tier", motorTier));
+                keyManager.add(KeyUtil.lang(TextFormatting.YELLOW, "gcyl.machine.space_elevator.max_modules", maxModules));
+
+                if (moduleNames.isEmpty()) {
                     keyManager.add(KeyUtil.lang(TextFormatting.RED, "gcyl.machine.space_elevator.modules.none"));
                 } else {
-                    keyManager.add(KeyUtil.lang(getModuleCount() < getMaxModules() ? TextFormatting.AQUA : TextFormatting.YELLOW, "gcyl.machine.space_elevator.total_modules", getModuleCount()));
+                    keyManager.add(KeyUtil.lang(moduleCount < maxModules ? TextFormatting.AQUA : TextFormatting.YELLOW, "gcyl.machine.space_elevator.total_modules", moduleCount));
 
                     keyManager.add(KeyUtil.lang(TextFormatting.GREEN, "gcyl.machine.space_elevator.modules"));
 
-                    List<String> moduleNames = new ArrayList<>();
-                    List<String> uniqueNames = new ArrayList<>();
-                    this.spaceElevatorReceivers.forEach(s -> {
-                        moduleNames.add(s.getNameForDisplayCount());
-                        if (!uniqueNames.contains(moduleNames.get(moduleNames.indexOf(s.getNameForDisplayCount())))) {
-                            uniqueNames.add(s.getNameForDisplayCount());
-                        }
-                    });
+                    Set<String> uniqueNames = new HashSet<>(moduleNames);
                     uniqueNames.forEach(s -> keyManager.add(KeyUtil.lang(TextFormatting.WHITE, s, Collections.frequency(moduleNames, s))));
                 }
-            }
-        });
+            });
     }
 
     private boolean isExtended() {
