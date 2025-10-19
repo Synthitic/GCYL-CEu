@@ -22,7 +22,7 @@ public class ElectricImplosionHandler {
      * Note that it does NOT compare count, since I needed this
      * to properly remove the explosive without knowing its count.
      */
-    private static final Hash.Strategy<ItemStack> strategy = new ItemStackHashStrategy.ItemStackHashStrategyBuilder()
+    private static final Hash.Strategy<ItemStack> strategy = new ItemStackHashStrategy.Builder()
             .compareItem(true)
             .compareDamage(true)
             .build();

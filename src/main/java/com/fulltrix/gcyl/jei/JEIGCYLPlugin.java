@@ -85,7 +85,7 @@ public class JEIGCYLPlugin implements IModPlugin {
             virtualOresInfos.add(new VirtualOresInfo(definition));
         }
 
-        String virtualVeinSpawnID = Tags.MODID + ":" + "virtual_ores";
+        String virtualVeinSpawnID = Tags.MODID + "." + "virtual_ores";
         registry.addRecipes(virtualOresInfos, virtualVeinSpawnID);
         registry.addRecipeCatalyst(MetaItems.PROSPECTOR_LV.getStackForm(), virtualVeinSpawnID);
         registry.addRecipeCatalyst(MetaItems.PROSPECTOR_HV.getStackForm(), virtualVeinSpawnID);
@@ -94,7 +94,7 @@ public class JEIGCYLPlugin implements IModPlugin {
 
 
         //SPACE MINING
-        String spaceMineID = Tags.MODID + ":" + "space_mining";
+        String spaceMineID = Tags.MODID + "." + "space_mining";
         List<SpaceMiningInfo> spaceMiningInfo1 = new ArrayList<>();
         List<SpaceMiningInfo> spaceMiningInfo2 = new ArrayList<>();
         List<SpaceMiningInfo> spaceMiningInfo3 = new ArrayList<>();
@@ -164,14 +164,14 @@ public class JEIGCYLPlugin implements IModPlugin {
         }
 
 
-        String spacePumpID = Tags.MODID + ":" + "space_pump_fluids";
+        String spacePumpID = Tags.MODID + "." + "space_pump_fluids";
         registry.addRecipes(spacePumpInfos, spacePumpID);
         registry.addRecipeCatalyst(GCYLTileEntities.PUMP_MODULE[0].getStackForm(), spacePumpID);
         registry.addRecipeCatalyst(GCYLTileEntities.PUMP_MODULE[1].getStackForm(), spacePumpID);
         registry.addRecipeCatalyst(GCYLTileEntities.PUMP_MODULE[2].getStackForm(), spacePumpID);
 
 
-        String voidMinerID = Tags.MODID + ":" + "void_miner_ores";
+        String voidMinerID = Tags.MODID + "." + "void_miner_ores";
         List<VoidMinerInfo> voidMinerInfo1 = new ArrayList<>();
         List<VoidMinerInfo> voidMinerInfo2 = new ArrayList<>();
         List<VoidMinerInfo> voidMinerInfo3 = new ArrayList<>();
@@ -251,6 +251,7 @@ public class JEIGCYLPlugin implements IModPlugin {
         itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.wireGtOctal, mat));
         itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.wireGtHex, mat));
         itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.ingot, mat));
+        if (!mat.equals(ManganesePhosphide))
         itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.ingotHot, mat));
         itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.block, mat));
         itemBlacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustSmall, mat));

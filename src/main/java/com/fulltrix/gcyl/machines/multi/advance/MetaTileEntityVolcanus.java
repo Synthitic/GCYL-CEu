@@ -18,6 +18,7 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.ParallelLogicType;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
@@ -31,6 +32,7 @@ import gregtech.api.recipes.machines.RecipeMapFurnace;
 import gregtech.api.recipes.properties.RecipePropertyStorage;
 import gregtech.api.recipes.properties.impl.TemperatureProperty;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.KeyUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import gregtech.common.blocks.BlockWireCoil;
@@ -73,13 +75,10 @@ public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implem
     }
 
     @Override
-    protected void addDisplayText(List<ITextComponent> textList) {
-        if (isStructureFormed()) {
-            textList.add(new TextComponentTranslation("gregtech.multiblock.blast_furnace.max_temperature",
-                    blastFurnaceTemperature)
-                    .setStyle(new Style().setColor(TextFormatting.RED)));
-        }
-        super.addDisplayText(textList);
+    protected void configureDisplayText(MultiblockUIBuilder builder) {
+        builder.structureFormed(isStructureFormed())
+                .addCustom((keyManager, uiSyncer) -> keyManager.add(KeyUtil.lang(TextFormatting.RED, "gregtech.multiblock.blast_furnace.max_temperature",
+                        blastFurnaceTemperature)));
     }
 
     @Override

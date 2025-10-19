@@ -12,12 +12,14 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.logic.OCParams;
 import gregtech.api.recipes.properties.RecipePropertyStorage;
+import gregtech.api.util.KeyUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
@@ -101,14 +103,15 @@ public class MetaTileEntityCosmicRayDetector extends GCYLRecipeMapMultiblockCont
     }
 
     @Override
-    protected void addDisplayText(List<ITextComponent> textList) {
-        super.addDisplayText(textList);
-        if (this.isStructureFormed()) {
-            if (!canSeeSky())
-                textList.add(new TextComponentTranslation("gcyl.multiblock.cosmic_ray_detector.tooltip.1")
-                        .setStyle(new Style().setColor(TextFormatting.RED)));
-        }
+    protected void configureDisplayText(MultiblockUIBuilder builder) {
+        builder.structureFormed(isStructureFormed())
+                .addCustom((keyManager, uiSyncer) -> {
+                    if (!uiSyncer.syncBoolean(canSeeSky())) {
+                        keyManager.add(KeyUtil.lang(TextFormatting.RED, "gcyl.multiblock.cosmic_ray_detector.tooltip.1"));
+                    }
+                });
     }
+
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {

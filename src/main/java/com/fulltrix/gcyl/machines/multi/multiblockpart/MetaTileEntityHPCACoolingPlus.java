@@ -1,11 +1,13 @@
 package com.fulltrix.gcyl.machines.multi.multiblockpart;
 
+import com.cleanroommc.modularui.drawable.UITexture;
 import gregtech.api.GTValues;
 import gregtech.api.capability.IHPCACoolantProvider;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.resources.TextureArea;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.mui.GTGuiTextures;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
 import gregtech.common.metatileentities.multi.multiblockpart.hpca.MetaTileEntityHPCAComponent;
@@ -56,8 +58,8 @@ public class MetaTileEntityHPCACoolingPlus extends MetaTileEntityHPCAComponent i
     }
 
     @Override
-    public TextureArea getComponentIcon() {
-        return GuiTextures.HPCA_ICON_ACTIVE_COOLER_COMPONENT;
+    public UITexture getComponentIcon() {
+        return GTGuiTextures.HPCA_ICON_ACTIVE_COOLER_COMPONENT;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.fulltrix.gcyl.machines.multi.generator;
 
+import com.cleanroommc.modularui.value.sync.DoubleSyncValue;
+import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
 import com.fulltrix.gcyl.blocks.GCYLReactorCasing;
@@ -12,6 +14,8 @@ import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.*;
+import gregtech.api.metatileentity.multiblock.ui.TemplateBarBuilder;
+import gregtech.api.mui.GTGuiTextures;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.unification.material.Material;
@@ -33,13 +37,14 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.UnaryOperator;
 
 import static com.fulltrix.gcyl.api.GCYLUtility.getFluidStorageKeyByName;
 import static com.fulltrix.gcyl.client.ClientHandler.*;
 import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_2;
 import static gregtech.api.unification.material.Materials.Naquadria;
 
-public class MetaTileEntityHyperReactor extends FuelMultiblockController implements IProgressBarMultiblock {
+public class MetaTileEntityHyperReactor extends FuelMultiblockController implements ProgressBarMultiblock {
 
     //TODO finish implementing UI and cleanup
 //TODO add tooltips and information
@@ -80,7 +85,7 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
     }
 
     @Override
-    protected boolean shouldShowVoidingModeButton() {
+    public boolean shouldShowVoidingModeButton() {
         return false;
     }
 
@@ -89,9 +94,7 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
         return boosters[getIndex(tier)];
     }
 
-    @Override
-    public double getFillPercentage(int index) {
-        if(index == 0) {
+    public double getFuelPercentage() {
             int[] fuelAmount = new int[2];
             if (getInputFluidInventory() != null) {
                 MultiblockFuelRecipeLogic recipeLogic = (MultiblockFuelRecipeLogic) recipeMapWorkable;
@@ -102,14 +105,15 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
                 }
             }
             return fuelAmount[1] != 0 ? 1.0 * fuelAmount[0] / fuelAmount[1] : 0;
-        } else {
-            int[] boosterAmount = new int[2];
-            if (getInputFluidInventory() != null) {
-                boosterAmount = getTotalFluidAmount(getBooster(tier),
-                        getInputFluidInventory());
-            }
-            return boosterAmount[1] != 0 ? 1.0 * boosterAmount[0] / boosterAmount[1] : 0;
+    }
+
+    private double getBoosterPercentage() {
+        int[] boosterAmount = new int[2];
+        if (getInputFluidInventory() != null) {
+            boosterAmount = getTotalFluidAmount(getBooster(tier),
+                    getInputFluidInventory());
         }
+        return boosterAmount[1] != 0 ? 1.0 * boosterAmount[0] / boosterAmount[1] : 0;
     }
 
 
@@ -215,6 +219,21 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(I18n.format("gcyl.multiblock.hyper_reactor.tooltip.1", getBooster(this.tier).getLocalizedName()));
         tooltip.add(I18n.format("gcyl.multiblock.hyper_reactor.tooltip.2", GTValues.VN[this.tier]));
+    }
+
+    @Override
+    public int getProgressBarCount() {
+        return 2;
+    }
+
+    @Override
+    public void registerBars(List<UnaryOperator<TemplateBarBuilder>> list, PanelSyncManager panelSyncManager) {
+        DoubleSyncValue fuelAmount = new DoubleSyncValue(this::getFuelPercentage);
+        DoubleSyncValue boosterAmount = new DoubleSyncValue(this::getBoosterPercentage);
+        list.add(bar -> bar.value(fuelAmount)
+                    .texture(GTGuiTextures.PROGRESS_BAR_LCE_FUEL));
+        list.add(bar -> bar.value(boosterAmount)
+                .texture(GTGuiTextures.PROGRESS_BAR_LCE_LUBRICANT));
     }
 
     private static class HyperReactorWorkableHandler extends MultiblockFuelRecipeLogic {

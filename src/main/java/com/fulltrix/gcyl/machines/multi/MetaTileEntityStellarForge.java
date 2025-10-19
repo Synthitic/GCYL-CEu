@@ -8,8 +8,10 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.util.KeyUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import net.minecraft.block.state.IBlockState;
@@ -66,9 +68,10 @@ public class MetaTileEntityStellarForge extends RecipeMapMultiblockController { 
     }
 
     @Override
-    protected void addDisplayText(List<ITextComponent> textList) {
-        super.addDisplayText(textList);
-        textList.add(new TextComponentTranslation("gregtech.multiblock.universal.framework", this.maxVoltage));
+    protected void configureDisplayText(MultiblockUIBuilder builder) {
+        builder.addCustom((keyManager, uiSyncer) -> {
+            keyManager.add(KeyUtil.lang("gregtech.multiblock.universal.framework", this.maxVoltage));
+        });
     }
 
     @Override

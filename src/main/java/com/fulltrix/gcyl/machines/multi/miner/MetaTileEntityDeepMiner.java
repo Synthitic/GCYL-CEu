@@ -14,6 +14,7 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
@@ -24,6 +25,7 @@ import gregtech.api.recipes.logic.OCParams;
 import gregtech.api.recipes.properties.RecipePropertyStorage;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.KeyUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockMetalCasing;
@@ -106,16 +108,20 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
     }
 
     @Override
-    protected void addDisplayText(List<ITextComponent> textList) {
-        super.addDisplayText(textList);
-        if (this.isStructureFormed() && !this.hasMaintenanceProblems()) {
-            textList.add(new TextComponentTranslation("gregtech.multiblock.universal.vom.temperature", getCurrentTemperature()));
-            textList.add(new TextComponentTranslation("gregtech.multiblock.deep_miner.max.temperature", getMaxTemperature()));
-            textList.add(new TextComponentTranslation("gregtech.multiblock.deep_miner.max.fluid consumption", this.recipeMapWorkable.isActive() && getCurrentTemperature() == getMaxTemperature() ? getHeatingFluidActiveMax(getFluidType()).amount : getHeatingFluid(getFluidType()).amount));
-        }
+    protected void configureDisplayText(MultiblockUIBuilder builder) {
+            builder.structureFormed(this.isStructureFormed())
+                    .addMaintenanceProblemLines(this.maintenance_problems, this.hasMaintenanceProblems())
+                    .addCustom((keyManager, uiSyncer) -> {
+                        int currentTemp = uiSyncer.syncInt(getCurrentTemperature());
+                        int maxTemp = uiSyncer.syncInt(getMaxTemperature());
+                        keyManager.add(KeyUtil.lang("gregtech.multiblock.universal.vom.temperature", currentTemp));
+                        keyManager.add(KeyUtil.lang("gregtech.multiblock.deep_miner.max.temperature", maxTemp));
+                        keyManager.add(KeyUtil.lang("gregtech.multiblock.deep_miner.max.fluid consumption", uiSyncer.syncBoolean(this.recipeMapWorkable.isActive()) && currentTemp == maxTemp ? getHeatingFluidActiveMax(getFluidType()).amount : getHeatingFluid(getFluidType()).amount));
+            });
         if(this.getPos().getY() > 8 && !this.getWorld().isRemote)
-            textList.add(new TextComponentTranslation("gregtech.multiblock.deep_miner_error"));
+            builder.addCustom((keyManager, uiSyncer) -> keyManager.add(KeyUtil.lang("gregtech.multiblock.deep_miner_error")));
     }
+
 
     @Override
     protected void formStructure(PatternMatchContext context) {

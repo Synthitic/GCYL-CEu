@@ -17,13 +17,14 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.KeyUtil;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
@@ -165,28 +166,25 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
     }
 
     @Override
-    protected void addDisplayText(List<ITextComponent> textList) {
-        MultiblockDisplayText.builder(textList, isStructureFormed())
-                .addEnergyUsageLine(this.energyContainer)
+    protected void configureDisplayText(MultiblockUIBuilder builder) {
+        builder.addEnergyUsageLine(this.energyContainer)
                 .setWorkingStatus(oreFactoryLogic.isWorkingEnabled(), oreFactoryLogic.isActive())
                 .addWorkingStatusLine()
-                .addCustom(tl -> {
-                    tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gcyl.machine.ore_factory.current_mode"));
+                .addCustom((keyManager, uiSyncer) ->  {
+            keyManager.add(KeyUtil.lang(TextFormatting.YELLOW, "gcyl.machine.ore_factory.current_mode"));
+            if(this.oreFactoryLogic.getConfiguration() == 0)
+                keyManager.add(KeyUtil.lang(TextFormatting.YELLOW, "gcyl.machine.ore_factory.config.0"));
+            if(this.oreFactoryLogic.getConfiguration() == 1)
+                keyManager.add(KeyUtil.lang(TextFormatting.YELLOW, "gcyl.machine.ore_factory.config.1"));
+            if(this.oreFactoryLogic.getConfiguration() == 2)
+                keyManager.add(KeyUtil.lang(TextFormatting.YELLOW, "gcyl.machine.ore_factory.config.2"));
+            if(this.oreFactoryLogic.getConfiguration() == 3)
+                keyManager.add(KeyUtil.lang(TextFormatting.YELLOW, "gcyl.machine.ore_factory.config.3"));
+            if(this.oreFactoryLogic.getConfiguration() == 4)
+                keyManager.add(KeyUtil.lang(TextFormatting.YELLOW, "gcyl.machine.ore_factory.config.4"));
 
-                    if(this.oreFactoryLogic.getConfiguration() == 0)
-                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gcyl.machine.ore_factory.config.0"));
-                    if(this.oreFactoryLogic.getConfiguration() == 1)
-                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gcyl.machine.ore_factory.config.1"));
-                    if(this.oreFactoryLogic.getConfiguration() == 2)
-                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gcyl.machine.ore_factory.config.2"));
-                    if(this.oreFactoryLogic.getConfiguration() == 3)
-                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gcyl.machine.ore_factory.config.3"));
-                    if(this.oreFactoryLogic.getConfiguration() == 4)
-                            tl.add(TextComponentUtil.translationWithColor(TextFormatting.YELLOW, "gcyl.machine.ore_factory.config.4"));
-
-                    tl.add(TextComponentUtil.translationWithColor(TextFormatting.AQUA, "gcyl.machine.ore_factory.max_amount", this.oreFactoryLogic.getComparator()));
-                })
-                .addProgressLine(getProgressPercent() / 100.0);
+            keyManager.add(KeyUtil.lang(TextFormatting.AQUA, "gcyl.machine.ore_factory.max_amount", this.oreFactoryLogic.getComparator()));
+        });
     }
 
     @Override
@@ -195,7 +193,7 @@ public class MetaTileEntityOreFactory extends MultiblockWithDisplayBase implemen
     }
 
     @Override
-    protected boolean shouldShowVoidingModeButton() {
+    public boolean shouldShowVoidingModeButton() {
         return false;
     }
 

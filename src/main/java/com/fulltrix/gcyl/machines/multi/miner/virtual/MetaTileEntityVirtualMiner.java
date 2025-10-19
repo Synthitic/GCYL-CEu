@@ -313,7 +313,7 @@ public abstract class MetaTileEntityVirtualMiner extends MultiblockWithDisplayBa
     }
 
     @Override
-    protected boolean shouldShowVoidingModeButton() {
+    public boolean shouldShowVoidingModeButton() {
         return false;
     }
 
