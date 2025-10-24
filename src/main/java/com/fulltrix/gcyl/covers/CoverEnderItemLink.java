@@ -5,22 +5,24 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Matrix4;
+import com.cleanroommc.modularui.api.drawable.IDrawable;
 import com.cleanroommc.modularui.api.drawable.IKey;
 import com.cleanroommc.modularui.api.widget.IWidget;
 import com.cleanroommc.modularui.drawable.DynamicDrawable;
 import com.cleanroommc.modularui.drawable.Rectangle;
+import com.cleanroommc.modularui.factory.GuiData;
 import com.cleanroommc.modularui.factory.SidedPosGuiData;
 import com.cleanroommc.modularui.screen.ModularPanel;
 import com.cleanroommc.modularui.utils.Color;
 import com.cleanroommc.modularui.value.sync.*;
-import com.cleanroommc.modularui.widgets.FluidSlot;
 import com.cleanroommc.modularui.widgets.ItemSlot;
+import com.cleanroommc.modularui.widgets.ListWidget;
+import com.cleanroommc.modularui.widgets.TextWidget;
 import com.cleanroommc.modularui.widgets.ToggleButton;
 import com.cleanroommc.modularui.widgets.layout.Column;
 import com.cleanroommc.modularui.widgets.layout.Grid;
 import com.cleanroommc.modularui.widgets.layout.Row;
 import com.cleanroommc.modularui.widgets.textfield.TextFieldWidget;
-import com.fulltrix.gcyl.CommonProxy;
 import com.fulltrix.gcyl.api.util.ItemContainerSwitchShim;
 import com.fulltrix.gcyl.api.util.VirtualContainerRegistry;
 import com.fulltrix.gcyl.client.ClientHandler;
@@ -30,16 +32,11 @@ import gregtech.api.cover.CoverBase;
 import gregtech.api.cover.CoverDefinition;
 import gregtech.api.cover.CoverWithUI;
 import gregtech.api.cover.CoverableView;
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.widgets.*;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.mui.GTGuiTextures;
 import gregtech.api.mui.GTGuis;
 import gregtech.api.util.GTTransferUtils;
-import gregtech.client.renderer.texture.Textures;
 import gregtech.common.covers.CoverConveyor;
-import gregtech.common.covers.CoverPump;
 import gregtech.common.covers.filter.ItemFilterContainer;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -285,6 +282,7 @@ public class CoverEnderItemLink extends CoverBase implements CoverWithUI, ITicka
     public boolean usesMui2() {
         return true;
     }
+
     @Override
     public ModularPanel buildUI(SidedPosGuiData guiData, PanelSyncManager guiSyncManager) {
         var panel = GTGuis.createPanel(this, 176, 208);
@@ -293,11 +291,10 @@ public class CoverEnderItemLink extends CoverBase implements CoverWithUI, ITicka
 
         return panel.child(CoverWithUI.createTitleRow(getPickItem()))
                 .bindPlayerInventory()
-                .child(createWidgets(panel, guiSyncManager));
-
+                .child(createWidgets(guiData, guiSyncManager));
     }
 
-    protected Column createWidgets(ModularPanel panel, PanelSyncManager syncManager) {
+    protected Column createWidgets(GuiData guiData, PanelSyncManager syncManager) {
         var isPrivate = new BooleanSyncValue(this::isPrivate, this::setPrivate);
         isPrivate.updateCacheFromSource(true);
 
@@ -313,16 +310,10 @@ public class CoverEnderItemLink extends CoverBase implements CoverWithUI, ITicka
         syncManager.registerSlotGroup("item_inv", this.linkedShim.getSlots());
 
         int rowSize = this.linkedShim.getSlots();
-        List<ItemSlot> itemSlots = new ArrayList<>();
+        List<IWidget> itemSlots = new ArrayList<>();
         for (int i = 0; i < rowSize; i++) {
-            itemSlots.add(new ItemSlot().slot(SyncHandlers.itemSlot(this.linkedShim, i).slotGroup("item_inv")));
-            itemSlots.get(i).setEnabled(false); //disable faulty itemslots
+            itemSlots.add(new ItemSlot().slot(SyncHandlers.itemSlot(this.linkedShim, i).accessibility(false, false)));
         }
-
-        List<List<IWidget>> widgets = new ArrayList<>();
-        widgets.add(new ArrayList<>());
-            widgets.get(0).addAll(itemSlots);
-
 
         return (Column) new Column().coverChildrenHeight().top(24)
                 .margin(7, 0).widthRel(1f)
@@ -361,7 +352,7 @@ public class CoverEnderItemLink extends CoverBase implements CoverWithUI, ITicka
                                         .height(18)
                                         .minElementMargin(0, 0)
                                         .minColWidth(18).minRowHeight(18)
-                                        .matrix(widgets)))
+                                        .row(itemSlots)))
                 .child(new Row().marginBottom(2)
                         .coverChildrenHeight()
                         .child(new ToggleButton()
@@ -373,7 +364,7 @@ public class CoverEnderItemLink extends CoverBase implements CoverWithUI, ITicka
                                 .widthRel(0.6f)
                                 .left(0)))
                 // TODO UI AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-                // .child(getItemFilterContainer().initUI(panel, syncManager))
+                .child(getItemFilterContainer().initUI(guiData, syncManager))
                 .child(new EnumRowBuilder<>(CoverConveyor.ConveyorMode.class)
                         .value(conveyorMode)
                         .overlay(GTGuiTextures.CONVEYOR_MODE_OVERLAY)
