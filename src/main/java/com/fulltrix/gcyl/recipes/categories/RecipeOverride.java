@@ -1,5 +1,6 @@
 package com.fulltrix.gcyl.recipes.categories;
 
+import com.google.common.collect.ImmutableMap;
 import gregicality.multiblocks.common.block.GCYMMetaBlocks;
 import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
 import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
@@ -12,9 +13,14 @@ import gregtech.api.recipes.ingredients.nbtmatch.NBTCondition;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
+import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.material.properties.PropertyKey;
+import gregtech.api.unification.material.properties.WireProperties;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.api.unification.stack.MaterialStack;
 import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.api.util.GTUtility;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.*;
 import gregtech.common.items.MetaItems;
@@ -22,6 +28,8 @@ import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+
+import java.util.Map;
 
 import static com.fulltrix.gcyl.api.GCYLUtility.getAssLineResearchBuilder;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
@@ -51,6 +59,19 @@ import static gregtech.common.metatileentities.MetaTileEntities.*;
 import static gregtech.integration.crafttweaker.recipe.CTRecipeUtils.removeAll;
 
 public class RecipeOverride {
+
+    private static final Map<OrePrefix, Integer> INSULATION_AMOUNT = ImmutableMap.of(
+            cableGtSingle, 1,
+            cableGtDouble, 1,
+            cableGtQuadruple, 2,
+            cableGtOctal, 3,
+            cableGtHex, 5);
+
+    private static final MaterialStack[] cableFluids = {
+            new MaterialStack(StyreneButadieneRubber, 36),
+            new MaterialStack(SiliconeRubber, 72)
+    };
+
     public static void init() {
 
         /*
@@ -67,6 +88,13 @@ public class RecipeOverride {
     }
 
     private static void recipeRemoval() {
+
+        // Cables
+        wireGtSingle.addProcessingHandler(PropertyKey.WIRE, RecipeOverride::cablesInit);
+        wireGtDouble.addProcessingHandler(PropertyKey.WIRE, RecipeOverride::cablesInit);
+        wireGtHex.addProcessingHandler(PropertyKey.WIRE, RecipeOverride::cablesInit);
+        wireGtOctal.addProcessingHandler(PropertyKey.WIRE, RecipeOverride::cablesInit);
+        wireGtQuadruple.addProcessingHandler(PropertyKey.WIRE, RecipeOverride::cablesInit);
 
         //removeRecipesByInputs(FLUID_SOLIDFICATION_RECIPES, new ItemStack[]{MetaItems.SHAPE_MOLD_CYLINDER.getStackForm()},  new FluidStack[]{Polytetrafluoroethylene.getFluid(36)});
 
@@ -360,6 +388,7 @@ public class RecipeOverride {
 
         //tungstic acid
         removeRecipesByInputs(ELECTROLYZER_RECIPES, OreDictUnifier.get(dust, TungsticAcid, 7));
+
 
     }
 
@@ -1352,7 +1381,35 @@ public class RecipeOverride {
                 .cleanroom(CleanroomType.CLEANROOM).buildAndRegister();
 
          */
+    }
 
+    public static void cablesInit(OrePrefix wirePrefix, Material material, WireProperties property) {
+        for (MaterialStack fluid : cableFluids) {
+            int voltageTier = GTUtility.getTierByVoltage(property.getVoltage());
+            if (property.isSuperconductor() || voltageTier < UV) {
+                return;
+            }
 
+            OrePrefix cablePrefix = OrePrefix.getPrefix("cable" + wirePrefix.name().substring(4));
+            int insulationAmount = INSULATION_AMOUNT.get(cablePrefix);
+
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{ OreDictUnifier.get(wirePrefix, material), OreDictUnifier.get(foil, PolyphenyleneSulfide, insulationAmount), OreDictUnifier.get(foil, PolyvinylChloride, insulationAmount) }, new FluidStack[]{ fluid.material.getFluid((int) fluid.amount) });
+            var builder = ASSEMBLER_RECIPES.recipeBuilder().EUt(VA[ULV]).duration(100)
+                    .fluidInput(fluid.material.getFluid(), (int) fluid.amount)
+                    .input(wirePrefix, material)
+                    .output(cablePrefix, material);
+            builder.input(foil, PolyphenyleneSulfide, insulationAmount);
+            builder.input(foil, PolyvinylChloride, insulationAmount);
+            if (voltageTier >= UHV) {
+                builder.input(foil, Polyetheretherketone, insulationAmount);
+            }
+            if (voltageTier >= UXV) {
+                builder.input(foil, Zylon, insulationAmount);
+            }
+            if (voltageTier == OpV) {
+                builder.input(foil, FullerenePolymerMatrix, insulationAmount);
+            }
+            builder.buildAndRegister();
+        }
     }
 }

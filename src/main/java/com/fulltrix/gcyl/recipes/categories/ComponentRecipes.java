@@ -3,7 +3,6 @@ package com.fulltrix.gcyl.recipes.categories;
 import gregtech.api.GTValues;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.MarkerMaterials;
-import gregtech.api.unification.stack.MaterialStack;
 import gregtech.api.unification.stack.UnificationEntry;
 
 import static com.fulltrix.gcyl.api.GCYLUtility.*;
@@ -11,7 +10,6 @@ import static com.fulltrix.gcyl.api.GCYLUtility.getMainComponentMaterialByTier;
 import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static com.fulltrix.gcyl.item.GCYLCoreItems.*;
 import static com.fulltrix.gcyl.materials.chains.MiscMaterials.Irirutan;
-import static gregicality.multiblocks.api.unification.GCYMMaterials.Zeron100;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -20,12 +18,6 @@ import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 
 public class ComponentRecipes {
-    private static final MaterialStack[] cableFluids = {
-            new MaterialStack(Rubber, 144),
-            new MaterialStack(StyreneButadieneRubber, 108),
-            new MaterialStack(SiliconeRubber, 72)
-
-    };
 
     public static void init() {
         pumpInit();
