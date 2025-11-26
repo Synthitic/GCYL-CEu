@@ -81,7 +81,7 @@ public class GCYLHeatingCoil extends VariantActiveBlock<GCYLHeatingCoil.CoilType
 
 
     @Override
-    protected boolean isBloomEnabled(GCYLHeatingCoil.CoilType value) {
+    public boolean isBloomEnabled(GCYLHeatingCoil.CoilType value) {
         return ConfigHolder.client.coilsActiveEmissiveTextures;
     }
 

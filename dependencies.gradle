@@ -37,7 +37,7 @@ dependencies {
     compileOnlyApi rfg.deobf("curse.maven:ae2-extended-life-570458:5147702") // AE2UEL 0.56.4
     compileOnlyApi rfg.deobf("curse.maven:ae2-fluid-crafting-rework-623955:5751930")
     compileOnlyApi rfg.deobf("curse.maven:galacticraft-legacy-564236:4671122")
-    api("com.cleanroommc:modularui:2.5.0-rc4") { transitive = false }
+    api("com.cleanroommc:modularui:3.0.4") { transitive = false }
 
     compileOnly("curse.maven:journeymap-32274:5172461") // Journeymap 5.7.1p3
     compileOnly("curse.maven:voxelmap-225179:3029445") // VoxelMap 1.9.28

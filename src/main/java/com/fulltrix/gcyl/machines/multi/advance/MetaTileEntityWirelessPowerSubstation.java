@@ -6,6 +6,7 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import com.cleanroommc.modularui.api.drawable.IKey;
 import com.cleanroommc.modularui.value.DoubleValue;
+import com.cleanroommc.modularui.value.sync.BigIntSyncValue;
 import com.cleanroommc.modularui.value.sync.DoubleSyncValue;
 import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 import com.fulltrix.gcyl.api.util.VirtualEnergyRegistry;
@@ -27,7 +28,6 @@ import gregtech.api.metatileentity.multiblock.*;
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.metatileentity.multiblock.ui.TemplateBarBuilder;
 import gregtech.api.mui.GTGuiTextures;
-import gregtech.api.mui.sync.BigIntegerSyncValue;
 import gregtech.api.pattern.*;
 import gregtech.api.util.BlockInfo;
 import gregtech.api.util.KeyUtil;
@@ -798,9 +798,9 @@ public class MetaTileEntityWirelessPowerSubstation extends MultiblockWithDisplay
 
     @Override
     public void registerBars(List<UnaryOperator<TemplateBarBuilder>> bars, PanelSyncManager syncManager) {
-        BigIntegerSyncValue energyStoredValue = new BigIntegerSyncValue(
+        BigIntSyncValue energyStoredValue = new BigIntSyncValue(
                 () -> energyBank == null ? BigInteger.ZERO : energyBank.getStored(), null);
-        BigIntegerSyncValue energyCapacityValue = new BigIntegerSyncValue(
+        BigIntSyncValue energyCapacityValue = new BigIntSyncValue(
                 () -> energyBank == null ? BigInteger.ZERO : energyBank.getCapacity(), null);
         syncManager.syncValue("energy_stored", energyStoredValue);
         syncManager.syncValue("energy_capacity", energyCapacityValue);
