@@ -311,9 +311,9 @@ public class RecipeOverride {
         removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{OreDictUnifier.get(wireGtDouble, RutheniumTriniumAmericiumNeutronate, 4), OreDictUnifier.get(foil, NiobiumTitanium, 4)}, new FluidStack[]{Trinium.getFluid(576)});
 
         //fusion casings
-        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.LuV), FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL), NEUTRON_REFLECTOR.getStackForm(), ELECTRIC_PUMP_LuV.getStackForm(), OreDictUnifier.get(plate, TungstenSteel, 6)}, new FluidStack[]{Polybenzimidazole.getFluid(144)});
-        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.ZPM), FUSION_CASING.getItemVariant(FUSION_COIL), VOLTAGE_COIL_ZPM.getStackForm(2), FIELD_GENERATOR_LuV.getStackForm(), OreDictUnifier.get(plate, Europium, 6)}, new FluidStack[]{Polybenzimidazole.getFluid(288)});
-        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UV), FUSION_CASING.getItemVariant(FUSION_COIL), VOLTAGE_COIL_UV.getStackForm(2), FIELD_GENERATOR_ZPM.getStackForm(), OreDictUnifier.get(plate, Americium, 6)}, new FluidStack[]{Polybenzimidazole.getFluid(576)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.LuV), FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL), NEUTRON_REFLECTOR.getStackForm(), ELECTRIC_PUMP_LuV.getStackForm(), OreDictUnifier.get(plate, TungstenSteel, 6)}, new FluidStack[]{Polybenzimidazole.getFluid(144)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.ZPM), FUSION_CASING.getItemVariant(FUSION_COIL), VOLTAGE_COIL_ZPM.getStackForm(2), FIELD_GENERATOR_LuV.getStackForm(), OreDictUnifier.get(plate, Europium, 6)}, new FluidStack[]{Polybenzimidazole.getFluid(288)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UV), FUSION_CASING.getItemVariant(FUSION_COIL), VOLTAGE_COIL_UV.getStackForm(2), FIELD_GENERATOR_ZPM.getStackForm(), OreDictUnifier.get(plate, Americium, 6)}, new FluidStack[]{Polybenzimidazole.getFluid(576)});
 
         //lv solar
         removeRecipeByName("gregtech:solar_panel_lv");
@@ -363,7 +363,7 @@ public class RecipeOverride {
         removeRecipesByInputs(ASSEMBLER_RECIPES, OreDictUnifier.get(frameGt, StainlessSteel), ELECTRIC_MOTOR_IV.getStackForm(2), OreDictUnifier.get(rotor, StainlessSteel, 2), OreDictUnifier.get(pipeTinyFluid, StainlessSteel, 16), OreDictUnifier.get(plate, Copper, 16), OreDictUnifier.get(wireGtSingle, SamariumIronArsenicOxide));
 
         //active transformer
-        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{POWER_TRANSFORMER[GTValues.LuV].getStackForm(), OreDictUnifier.get(circuit, MarkerMaterials.Tier.LuV, 2),OreDictUnifier.get(wireGtSingle, IndiumTinBariumTitaniumCuprate, 8), ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(2)}, new FluidStack[]{PCBCoolant.getFluid(1000)});
+        removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{POWER_TRANSFORMER[LuV].getStackForm(), OreDictUnifier.get(circuit, MarkerMaterials.Tier.LuV, 2),OreDictUnifier.get(wireGtSingle, IndiumTinBariumTitaniumCuprate, 8), ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(2)}, new FluidStack[]{PCBCoolant.getFluid(1000)});
 
         //bulk blast chiller
         removeRecipeByName("gcym:mega_vacuum_freezer");
@@ -725,7 +725,7 @@ public class RecipeOverride {
                 .buildAndRegister();
 
         //advanced quarktech
-        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(1000).EUt(GTValues.VA[GTValues.LuV])
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().duration(1000).EUt(VA[LuV])
                 .inputNBT(((ArmorMetaItem<?>) QUANTUM_CHESTPLATE.getStackForm().getItem())
                         .getItem(QUANTUM_CHESTPLATE.getStackForm()), NBTMatcher.ANY, NBTCondition.ANY)
                 .inputs(HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(2))
@@ -1115,10 +1115,10 @@ public class RecipeOverride {
                 .duration(400).EUt(157286400).buildAndRegister();
 
         //Vacuum freezer
-        ModHandler.addShapedRecipe("gcyl_vacuum_freezer", MetaTileEntities.VACUUM_FREEZER.getStackForm(),
+        ModHandler.addShapedRecipe("gcyl_vacuum_freezer", VACUUM_FREEZER.getStackForm(),
                 "PPP", "CMC", "WCW",
-                'M', MetaBlocks.METAL_CASING.getItemVariant(ALUMINIUM_FROSTPROOF),
-                'P', MetaItems.ELECTRIC_PUMP_HV,
+                'M', METAL_CASING.getItemVariant(ALUMINIUM_FROSTPROOF),
+                'P', ELECTRIC_PUMP_HV,
                 'C', new UnificationEntry(circuit, MarkerMaterials.Tier.HV),
                 'W', new UnificationEntry(cableGtSingle, Gold));
 
@@ -1135,7 +1135,7 @@ public class RecipeOverride {
                                                         .buildAndRegister();
 
         //Superconductor Coil Block //TODO change these to use liquid version of gas instead
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.LuV]).duration(100)
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(VA[LuV]).duration(100)
                 .input(wireGtSingle, LuVSuperconductor, 16)
                 .input(plate, Osmiridium, 16)
                 .fluidInputs(Helium.getFluid( 8000))
@@ -1143,7 +1143,7 @@ public class RecipeOverride {
                 .outputs(FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL))
                 .buildAndRegister();
 
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.ZPM]).duration(100)
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(VA[ZPM]).duration(100)
                 .input(wireGtSingle, ZPMSuperconductor, 8)
                 .input(plate, Rutherfordium, 8)
                 .fluidInputs(Argon.getFluid(4000))
@@ -1151,7 +1151,7 @@ public class RecipeOverride {
                 .outputs(FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL))
                 .buildAndRegister();
 
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UV]).duration(100)
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(VA[UV]).duration(100)
                 .input(wireGtSingle, UVSuperconductor, 4)
                 .input(plate, Dubnium, 4)
                 .fluidInputs(Krypton.getFluid(2000))
@@ -1159,7 +1159,7 @@ public class RecipeOverride {
                 .outputs(FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL))
                 .buildAndRegister();
 
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UHV]).duration(100)
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(VA[UHV]).duration(100)
                 .input(wireGtSingle, UHVSuperconductor, 2)
                 .input(plate, Tennessine, 2)
                 .fluidInputs(Radon.getFluid(1000))
@@ -1167,7 +1167,7 @@ public class RecipeOverride {
                 .outputs(FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL))
                 .buildAndRegister();
 
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UEV]).duration(100)
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(VA[UEV]).duration(100)
                 .input(wireGtSingle, UEVSuperconductor, 1)
                 .input(plate, Bohrium, 1)
                 .fluidInputs(Xenon.getFluid( 500))
@@ -1176,8 +1176,8 @@ public class RecipeOverride {
                 .buildAndRegister();
 
         //Fusion casings //TODO: MIGHT BE TOO EXPENSIVE, change output count to ConfigHolder.recipes.casingsPerCraft
-        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.LuV]).duration(100)
-                .inputs(HULL[GTValues.LuV].getStackForm())
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(VA[LuV]).duration(100)
+                .inputs(HULL[LuV].getStackForm())
                 .inputs(FUSION_CASING.getItemVariant(SUPERCONDUCTOR_COIL))
                 .inputs(NEUTRON_REFLECTOR.getStackForm())
                 .inputs(FIELD_GENERATOR_LuV.getStackForm())
@@ -1189,8 +1189,8 @@ public class RecipeOverride {
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.ZPM]).duration(100)
-                .inputs(HULL[GTValues.ZPM].getStackForm())
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(VA[ZPM]).duration(100)
+                .inputs(HULL[ZPM].getStackForm())
                 .inputs(FUSION_CASING.getItemVariant(FUSION_COIL))
                 .inputs(FIELD_GENERATOR_ZPM.getStackForm())
                 .inputs(VOLTAGE_COIL_ZPM.getStackForm(2))
@@ -1201,8 +1201,8 @@ public class RecipeOverride {
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister();
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(GTValues.VA[GTValues.UV]).duration(100)
-                .inputs(HULL[GTValues.UV].getStackForm())
+        ASSEMBLY_LINE_RECIPES.recipeBuilder().EUt(VA[UV]).duration(100)
+                .inputs(HULL[UV].getStackForm())
                 .inputs(FUSION_CASING.getItemVariant(FUSION_COIL))
                 .inputs(FIELD_GENERATOR_UV.getStackForm(2))
                 .inputs(VOLTAGE_COIL_UV.getStackForm(2))
@@ -1213,7 +1213,7 @@ public class RecipeOverride {
                 .cleanroom(CleanroomType.CLEANROOM)
                 .stationResearch(b->b
                         .researchStack(FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_CASING_MK2))
-                        .EUt(GTValues.VA[GTValues.UV])
+                        .EUt(VA[UV])
                         .CWUt(32))
                 .buildAndRegister();
 
@@ -1227,7 +1227,7 @@ public class RecipeOverride {
                 'E', EMITTER_LuV);
 
         //large scale assembler casing
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(GTValues.VA[IV]).duration(200)
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(VA[IV]).duration(200)
                 .circuitMeta(6)
                 .input(plate, Stellite100, 12)
                 .input(frameGt, Tungsten, 2)
@@ -1237,10 +1237,10 @@ public class RecipeOverride {
                 .buildAndRegister();
 
         //distillation tower
-        ModHandler.addShapedRecipe(true, "gcyl_distillation_tower", MetaTileEntities.DISTILLATION_TOWER.getStackForm(),
-                "CBC", "FMF", "CBC", 'M', MetaTileEntities.HULL[GTValues.EV].getStackForm(), 'B',
-                new UnificationEntry(OrePrefix.pipeLargeFluid, Materials.StainlessSteel), 'C',
-                new UnificationEntry(OrePrefix.circuit, MarkerMaterials.Tier.EV), 'F', MetaItems.ELECTRIC_PUMP_EV);
+        ModHandler.addShapedRecipe(true, "gcyl_distillation_tower", DISTILLATION_TOWER.getStackForm(),
+                "CBC", "FMF", "CBC", 'M', HULL[EV].getStackForm(), 'B',
+                new UnificationEntry(pipeLargeFluid, StainlessSteel), 'C',
+                new UnificationEntry(circuit, MarkerMaterials.Tier.EV), 'F', ELECTRIC_PUMP_EV);
 
         //advanced computer casing
         ASSEMBLER_RECIPES.recipeBuilder()
@@ -1275,7 +1275,7 @@ public class RecipeOverride {
                 .duration(300).EUt(VA[LuV]).buildAndRegister();
 
         //bulk blast chiller
-        getAssLineResearchBuilder(GTValues.UV, 2400, CRYOGENIC_FREEZER.getStackForm(), false, false)
+        getAssLineResearchBuilder(UV, 2400, CRYOGENIC_FREEZER.getStackForm(), false, false)
                 .outputs(MEGA_VACUUM_FREEZER.getStackForm())
                 .inputs(CRYOGENIC_FREEZER.getStackForm(64))
                 .input(pipeSmallFluid, Zeron100, 64)
@@ -1297,7 +1297,7 @@ public class RecipeOverride {
 
 
         //rotary hearth furnace
-        getAssLineResearchBuilder(GTValues.UV, 2400, VOLCANUS.getStackForm(), false, false)
+        getAssLineResearchBuilder(UV, 2400, VOLCANUS.getStackForm(), false, false)
                 .outputs(MEGA_BLAST_FURNACE.getStackForm())
                 .inputs(VOLCANUS.getStackForm(64))
                 .input(wireFine, UVSuperconductor, 64)
@@ -1318,11 +1318,11 @@ public class RecipeOverride {
                 .buildAndRegister();
 
         //assembly line
-        ModHandler.addShapedRecipe(true, "assembly_line", MetaTileEntities.ASSEMBLY_LINE.getStackForm(), "CRC", "SAS",
-                "CRC", 'A', MetaTileEntities.HULL[GTValues.IV].getStackForm(), 'R', MetaItems.ROBOT_ARM_IV, 'C',
-                MetaBlocks.MULTIBLOCK_CASING
+        ModHandler.addShapedRecipe(true, "assembly_line", ASSEMBLY_LINE.getStackForm(), "CRC", "SAS",
+                "CRC", 'A', HULL[IV].getStackForm(), 'R', ROBOT_ARM_IV, 'C',
+                MULTIBLOCK_CASING
                         .getItemVariant(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_CONTROL),
-                'S', new UnificationEntry(OrePrefix.circuit, MarkerMaterials.Tier.LuV));
+                'S', new UnificationEntry(circuit, MarkerMaterials.Tier.LuV));
 
     }
 
@@ -1383,6 +1383,7 @@ public class RecipeOverride {
          */
     }
 
+    // Cable have two recipes: one with 4x the cost of the previous tier foils and one with 1x of the on tier foil
     public static void cablesInit(OrePrefix wirePrefix, Material material, WireProperties property) {
         for (MaterialStack fluid : cableFluids) {
             int voltageTier = GTUtility.getTierByVoltage(property.getVoltage());
@@ -1390,26 +1391,40 @@ public class RecipeOverride {
                 return;
             }
 
-            OrePrefix cablePrefix = OrePrefix.getPrefix("cable" + wirePrefix.name().substring(4));
+            OrePrefix cablePrefix = getPrefix("cable" + wirePrefix.name().substring(4));
             int insulationAmount = INSULATION_AMOUNT.get(cablePrefix);
 
-            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{ OreDictUnifier.get(wirePrefix, material), OreDictUnifier.get(foil, PolyphenyleneSulfide, insulationAmount), OreDictUnifier.get(foil, PolyvinylChloride, insulationAmount) }, new FluidStack[]{ fluid.material.getFluid((int) fluid.amount) });
+            removeRecipesByInputs(ASSEMBLER_RECIPES, new ItemStack[]{ OreDictUnifier.get(wirePrefix, material), OreDictUnifier.get(foil, PolyphenyleneSulfide, insulationAmount), OreDictUnifier.get(foil, PolyvinylChloride, insulationAmount) }, new FluidStack[]{ fluid.material.getFluid((int) fluid.amount * insulationAmount) });
             var builder = ASSEMBLER_RECIPES.recipeBuilder().EUt(VA[ULV]).duration(100)
-                    .fluidInput(fluid.material.getFluid(), (int) fluid.amount)
+                    .fluidInput(fluid.material.getFluid(), (int) fluid.amount * insulationAmount)
                     .input(wirePrefix, material)
                     .output(cablePrefix, material);
-            builder.input(foil, PolyphenyleneSulfide, insulationAmount);
-            builder.input(foil, PolyvinylChloride, insulationAmount);
-            if (voltageTier >= UHV) {
+            var secondBuilder = builder.copy();
+
+            if (voltageTier >= UHV && voltageTier < UXV) {
+                secondBuilder.input(foil, PolyphenyleneSulfide, 4 * insulationAmount);
+                secondBuilder.input(foil, PolyvinylChloride, 4 * insulationAmount);
+                secondBuilder.buildAndRegister();
+
                 builder.input(foil, Polyetheretherketone, insulationAmount);
+                builder.buildAndRegister();
             }
-            if (voltageTier >= UXV) {
+
+            if (voltageTier >= UXV && voltageTier < OpV) {
+                secondBuilder.input(foil, Polyetheretherketone, 4 * insulationAmount);
+                secondBuilder.buildAndRegister();
+
                 builder.input(foil, Zylon, insulationAmount);
+                builder.buildAndRegister();
             }
+
             if (voltageTier == OpV) {
+                secondBuilder.input(foil, Zylon, 4 * insulationAmount);
+                secondBuilder.buildAndRegister();
+
                 builder.input(foil, FullerenePolymerMatrix, insulationAmount);
+                builder.buildAndRegister();
             }
-            builder.buildAndRegister();
         }
     }
 }
