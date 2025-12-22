@@ -26,6 +26,7 @@ import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -260,6 +261,19 @@ public class MetaTileEntityLargeRocketEngine extends FuelMultiblockController im
         public void invalidate() {
             isOxygenBoosted = false;
             super.invalidate();
+        }
+
+        @Override
+        public @NotNull NBTTagCompound serializeNBT() {
+            NBTTagCompound compound = super.serializeNBT();
+            compound.setBoolean("isBoosted", this.isOxygenBoosted);
+            return compound;
+        }
+
+        @Override
+        public void deserializeNBT(@NotNull NBTTagCompound compound) {
+            super.deserializeNBT(compound);
+            this.isOxygenBoosted = compound.getBoolean("isBoosted");
         }
 
         public boolean isOxygenBoosted() {

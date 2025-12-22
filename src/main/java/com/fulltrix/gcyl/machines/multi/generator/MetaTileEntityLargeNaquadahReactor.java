@@ -29,6 +29,7 @@ import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -95,7 +96,6 @@ public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController
             list.add(new TextComponentTranslation("gregtech.multiblock.universal.generator.boosted"));
         return list;
     }
-
 
     @Override
     protected void configureDisplayText(MultiblockUIBuilder builder) {
@@ -281,6 +281,21 @@ public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController
         public void invalidate() {
             isOxygenBoosted = false;
             super.invalidate();
+        }
+
+        @Override
+        public @NotNull NBTTagCompound serializeNBT() {
+            NBTTagCompound compound = super.serializeNBT();
+            compound.setBoolean("isBoosted", this.isOxygenBoosted);
+            compound.setInteger("cycles", this.cycles);
+            return compound;
+        }
+
+        @Override
+        public void deserializeNBT(@NotNull NBTTagCompound compound) {
+            super.deserializeNBT(compound);
+            this.isOxygenBoosted = compound.getBoolean("isBoosted");
+            this.cycles = compound.getInteger("cycles");
         }
 
         public int getCycles() {
