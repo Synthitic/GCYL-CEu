@@ -3115,6 +3115,8 @@ gregtech.multiblock.advanced_distillation_tower.description4=    Distillery & Fl
 gcyl.multiblock.large_rocket_engine.tooltip.1=The Large Rocket Engine will produce large amounts of power.
 gcyl.multiblock.large_rocket_engine.tooltip.2=It Consumes 37500mB of Air per Cycle.
 gcyl.multiblock.large_rocket_engine.tooltip.3=Use Liquid Oxygen to boost the output energy by 3x.
+gcyl.multiblock.large_rocket_engine.air_none=§cNo Air!
+gcyl.multiblock.large_rocket_engine.air_amount=Air: §b%,d / %,d L
 gcyl.multiblock.alloy_blast_furnace.tooltip.1=Quicker than the Blast Furnace
 gcyl.multiblock.large_naquadah_reactor.tooltip.1=Consumes 1000mb of Tritium every 20 fuel cycles'.
 gcyl.multiblock.large_naquadah_reactor.tooltip.2=Increase output by 3X with 50mb Oxygen Plasma every fuel consume (also consumes 2X fuel).
@@ -3145,6 +3147,8 @@ gregtech.multiblock.recipe=Screw to change recipe. Currently using: %s
 
 gregtech.universal.tooltip.efficiency=Efficiency: %s %%
 
+gregtech.multiblock.universal.energy.production=§7Producing: §c%,d §7EU/t (%s§7)
+gregtech.multiblock.universal.generator.boosted=§aBoosted!
 gregtech.multiblock.universal.energy_used=Energy Use: %d EU
 gregtech.multiblock.universal.vom.temperature=Temperature: %sK
 gregtech.multiblock.universal.vom.max_temperature=Max Temperature: %sK
