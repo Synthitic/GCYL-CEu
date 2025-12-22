@@ -94,6 +94,11 @@ public class MetaTileEntityLargeRocketEngine extends FuelMultiblockController im
     }
 
     @Override
+    public boolean shouldShowVoidingModeButton() {
+        return false;
+    }
+
+    @Override
     public @NotNull List<ITextComponent> getDataInfo() {
         List<ITextComponent> list = super.getDataInfo();
         if (((LREWorkableHandler) this.recipeMapWorkable).isOxygenBoosted())

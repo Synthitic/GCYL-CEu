@@ -92,7 +92,7 @@ public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController
     @Override
     public @NotNull List<ITextComponent> getDataInfo() {
         List<ITextComponent> list = super.getDataInfo();
-        if (((MetaTileEntityLargeRocketEngine.LREWorkableHandler) this.recipeMapWorkable).isOxygenBoosted())
+        if (((NaquadahReactorWorkableHandler) this.recipeMapWorkable).isOxygenBoosted)
             list.add(new TextComponentTranslation("gregtech.multiblock.universal.generator.boosted"));
         return list;
     }
