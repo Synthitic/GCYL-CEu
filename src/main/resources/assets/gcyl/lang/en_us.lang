@@ -3121,6 +3121,9 @@ gcyl.multiblock.alloy_blast_furnace.tooltip.1=Quicker than the Blast Furnace
 gcyl.multiblock.large_naquadah_reactor.tooltip.1=Consumes 1000mb of Tritium every 20 fuel cycles'.
 gcyl.multiblock.large_naquadah_reactor.tooltip.2=Increase output by 3X with 50mb Oxygen Plasma every fuel consume (also consumes 2X fuel).
 gcyl.multiblock.large_naquadah_reactor.tooltip.3=Overclocks to UHV tier.
+gcyl.multiblock.large_naquadah_reactor.tritium_none=§cNo Tritium!
+gcyl.multiblock.large_naquadah_reactor.tritium_amount=Tritium: §c%,d / %,d L
+gcyl.multiblock.large_naquadah_reactor.cycles=§7Cycles Left: %,d
 gregtech.multiblock.large_naquadah_reactor.tritium_amount=Tritium: %dmb
 gregtech.multiblock.large_naquadah_reactor.oxygen_amount=Oxygen Plasma: %sL
 gregtech.multiblock.large_naquadah_reactor.oxygen_boosted=Oxygen Plasma boosted.
@@ -3147,6 +3150,7 @@ gregtech.multiblock.recipe=Screw to change recipe. Currently using: %s
 
 gregtech.universal.tooltip.efficiency=Efficiency: %s %%
 
+gregtech.multiblock.universal.fluid_amount=%s: §b%,d / %,d L
 gregtech.multiblock.universal.energy.production=§7Producing: §c%,d §7EU/t (%s§7)
 gregtech.multiblock.universal.generator.boosted=§aBoosted!
 gregtech.multiblock.universal.energy_used=Energy Use: %d EU
