@@ -18,6 +18,7 @@ import gregtech.api.mui.GTGuiTextures;
 import gregtech.api.mui.sync.FixedIntArraySyncValue;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.recipes.Recipe;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
@@ -202,49 +203,28 @@ public class MetaTileEntityLargeRocketEngine extends FuelMultiblockController im
         protected void updateRecipeProgress() {
             if (canRecipeProgress && drawEnergy(recipeEUt, true)) {
                 drawEnergy(recipeEUt, false);
+                drainOxygen();
                 if (++progressTime > maxProgressTime) {
                     completeRecipe();
                 }
             }
         }
 
-        protected void checkOxygen() {
-            IMultipleTankHandler inputTank = rocketEngine.getInputFluidInventory();
-            FluidStack boosterStack = OXYGEN_STACK;
-            isOxygenBoosted = boosterStack.isFluidStackIdentical(inputTank.drain(boosterStack, false));
-        }
-
         protected void drainOxygen() {
-            if (isOxygenBoosted && totalContinuousRunningTime % 20 == 0) {
-                rocketEngine.getInputFluidInventory().drain(OXYGEN_STACK, true);
+            if (this.totalContinuousRunningTime % 20 == 0) {
+                this.isOxygenBoosted = OXYGEN_STACK.isFluidStackIdentical(this.rocketEngine.getInputFluidInventory().drain(OXYGEN_STACK, true));
             }
         }
 
-        protected boolean checkAir() {
-            // check lubricant and invalidate if it fails
-            IMultipleTankHandler inputTank = rocketEngine.getInputFluidInventory();
-            if (AIR_STACK.isFluidStackIdentical(inputTank.drain(AIR_STACK, false))) {
-                return true;
-            } else {
-                invalidate();
+        @Override
+        public boolean checkRecipe(@NotNull Recipe recipe) {
+            if (!super.checkRecipe(recipe))
                 return false;
-            }
-        }
-
-        protected void drainAir() {
-                IMultipleTankHandler inputTank = rocketEngine.getInputFluidInventory();
-                inputTank.drain(AIR_STACK, true);
-        }
-
-        @Override
-        protected boolean shouldSearchForRecipes() {
-            checkOxygen();
-            return super.shouldSearchForRecipes() && checkAir();
-        }
-
-        @Override
-        protected boolean canProgressRecipe() {
-            return super.canProgressRecipe() && checkAir();
+            IMultipleTankHandler tanks = this.rocketEngine.getInputFluidInventory();
+            if (!AIR_STACK.isFluidStackIdentical(tanks.drain(AIR_STACK, false)))
+                return false;
+            tanks.drain(AIR_STACK, true);
+            return true;
         }
 
         @Override
