@@ -209,7 +209,7 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
     public @NotNull List<ITextComponent> getDataInfo() {
         List<ITextComponent> list = super.getDataInfo();
         if (((HyperReactorWorkableHandler) this.recipeMapWorkable).isBoosted)
-            list.add(new TextComponentTranslation("gregtech.multiblock.universal.generator.boosted"));
+            list.add(new TextComponentTranslation("gregtech.multiblock.universal.generator.boosted", this.getBooster(this.tier).getLocalizedName()));
         return list;
     }
 
@@ -224,7 +224,7 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
             if (EUt > 0)
                 keyManager.add(IKey.lang("gregtech.multiblock.universal.energy.production", EUt, GTValues.VOCNF[tier]));
             if (uiSyncer.syncBoolean(recipeLogic.isBoosted))
-                keyManager.add(KeyUtil.lang(TextFormatting.AQUA, "gregtech.multiblock.large_naquadah_reactor.oxygen_boosted"));
+                keyManager.add(KeyUtil.lang(TextFormatting.AQUA, "gregtech.multiblock.universal.generator.boosted", this.getBooster(this.tier).getLocalizedName()));
             if (this.isStructureFormed())
                 keyManager.add(IKey.lang("gcyl.multiblock.large_naquadah_reactor.cycles", uiSyncer.syncInt(20 - recipeLogic.getCycles())));
         });

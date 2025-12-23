@@ -47,7 +47,6 @@ import java.util.function.UnaryOperator;
 
 import static com.fulltrix.gcyl.client.ClientHandler.NAQUADRIA_CASING;
 import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_2;
-import static com.fulltrix.gcyl.machines.multi.generator.MetaTileEntityLargeRocketEngine.LREWorkableHandler.OXYGEN_STACK;
 import static gregtech.api.unification.material.Materials.Naquadria;
 
 
@@ -94,7 +93,7 @@ public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController
     public @NotNull List<ITextComponent> getDataInfo() {
         List<ITextComponent> list = super.getDataInfo();
         if (((NaquadahReactorWorkableHandler) this.recipeMapWorkable).isOxygenBoosted)
-            list.add(new TextComponentTranslation("gregtech.multiblock.universal.generator.boosted"));
+            list.add(new TextComponentTranslation("gregtech.multiblock.universal.generator.boosted", NaquadahReactorWorkableHandler.OXYGEN_STACK.getLocalizedName()));
         return list;
     }
 
@@ -109,7 +108,7 @@ public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController
             if (EUt > 0)
                 keyManager.add(IKey.lang("gregtech.multiblock.universal.energy.production", EUt, GTValues.VOCNF[tier]));
             if (uiSyncer.syncBoolean(recipeLogic.isOxygenBoosted))
-                keyManager.add(KeyUtil.lang(TextFormatting.AQUA, "gregtech.multiblock.large_naquadah_reactor.oxygen_boosted"));
+                keyManager.add(KeyUtil.lang(TextFormatting.AQUA, "gregtech.multiblock.universal.generator.boosted", NaquadahReactorWorkableHandler.OXYGEN_STACK.getLocalizedName()));
             if (this.isStructureFormed())
                 keyManager.add(IKey.lang("gcyl.multiblock.large_naquadah_reactor.cycles", uiSyncer.syncInt(20 - recipeLogic.getCycles())));
         });
@@ -165,7 +164,7 @@ public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController
                 .texture(GTGuiTextures.PROGRESS_BAR_LCE_OXYGEN)
                 .tooltipBuilder(tooltip -> tooltip.addLine(!this.isStructureFormed() ? IKey.lang("gregtech.multiblock.invalid_structure")
                         : oxygenPlasmaValue.getValue(0) == 0 ? IKey.lang("gregtech.multiblock.large_combustion_engine.oxygen_none")
-                        : IKey.lang("gregtech.multiblock.universal.fluid_amount", OXYGEN_STACK.getLocalizedName(), oxygenPlasmaValue.getValue(0), oxygenPlasmaValue.getValue(1)))));
+                        : IKey.lang("gregtech.multiblock.universal.fluid_amount", NaquadahReactorWorkableHandler.OXYGEN_STACK.getLocalizedName(), oxygenPlasmaValue.getValue(0), oxygenPlasmaValue.getValue(1)))));
     }
 
     /**

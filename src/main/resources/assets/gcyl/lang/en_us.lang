@@ -3153,7 +3153,7 @@ gregtech.universal.tooltip.efficiency=Efficiency: %s %%
 
 gregtech.multiblock.universal.fluid_amount=%s: §b%,d / %,d L
 gregtech.multiblock.universal.energy.production=§7Producing: §c%,d §7EU/t (%s§7)
-gregtech.multiblock.universal.generator.boosted=§aBoosted!
+gregtech.multiblock.universal.generator.boosted=§b%s Boosted!
 gregtech.multiblock.universal.energy_used=Energy Use: %d EU
 gregtech.multiblock.universal.vom.temperature=Temperature: %sK
 gregtech.multiblock.universal.vom.max_temperature=Max Temperature: %sK

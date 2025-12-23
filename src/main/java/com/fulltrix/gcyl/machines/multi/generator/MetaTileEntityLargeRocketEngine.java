@@ -103,7 +103,7 @@ public class MetaTileEntityLargeRocketEngine extends FuelMultiblockController im
     public @NotNull List<ITextComponent> getDataInfo() {
         List<ITextComponent> list = super.getDataInfo();
         if (((LREWorkableHandler) this.recipeMapWorkable).isOxygenBoosted())
-            list.add(new TextComponentTranslation("gregtech.multiblock.universal.generator.boosted"));
+            list.add(new TextComponentTranslation("gregtech.multiblock.universal.generator.boosted", LREWorkableHandler.OXYGEN_STACK.getLocalizedName()));
         return list;
     }
 
@@ -118,7 +118,7 @@ public class MetaTileEntityLargeRocketEngine extends FuelMultiblockController im
            if (EUt > 0)
                key.add(IKey.lang("gregtech.multiblock.universal.energy.production", EUt, GTValues.VOCNF[tier]));
            if (syncer.syncBoolean(recipeLogic.isOxygenBoosted()))
-               key.add(IKey.lang("gregtech.multiblock.universal.generator.boosted"));
+               key.add(IKey.lang("gregtech.multiblock.universal.generator.boosted", LREWorkableHandler.OXYGEN_STACK.getLocalizedName()));
         });
     }
 
