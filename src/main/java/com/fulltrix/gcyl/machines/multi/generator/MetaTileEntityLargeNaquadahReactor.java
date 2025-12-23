@@ -18,6 +18,7 @@ import gregtech.api.mui.GTGuiTextures;
 import gregtech.api.mui.sync.FixedIntArraySyncValue;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.recipes.Recipe;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.KeyUtil;
@@ -200,7 +201,7 @@ public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController
 
         private boolean isOxygenBoosted = false;
 
-        private int cycles = 0;
+        private int cycles = 20;
 
         private final MetaTileEntityLargeNaquadahReactor naquadahReactor;
 
@@ -214,53 +215,32 @@ public class MetaTileEntityLargeNaquadahReactor extends FuelMultiblockController
 
         @Override
         protected void updateRecipeProgress() {
-            if(canRecipeProgress && drawEnergy(recipeEUt, true)) {
-                drainTritium();
-                drainOxygen();
+            if (canRecipeProgress && drawEnergy(recipeEUt, true)) {
                 drawEnergy(recipeEUt, false);
-
-                if(++progressTime > maxProgressTime) {
+                if (++progressTime > maxProgressTime) {
                     completeRecipe();
-                    if(cycles < 20)
-                        cycles++;
                 }
             }
         }
 
-        protected void checkOxygen() {
-            IMultipleTankHandler inputTank = naquadahReactor.getInputFluidInventory();
-            FluidStack boosterStack = OXYGEN_STACK;
-            isOxygenBoosted = boosterStack.isFluidStackIdentical(inputTank.drain(boosterStack, false));
-        }
-
-        protected void drainOxygen() {
-            if (isOxygenBoosted && ++progressTime > maxProgressTime) {
-                naquadahReactor.getInputFluidInventory().drain(OXYGEN_STACK, true);
-            }
-        }
-
-        protected boolean checkTritium() {
-            IMultipleTankHandler inputTank = naquadahReactor.getInputFluidInventory();
-            if (TRITIUM_STACK.isFluidStackIdentical(inputTank.drain(TRITIUM_STACK, false))) {
-                return true;
-            } else {
-                invalidate();
-                return false;
-            }
-        }
-
-        protected void drainTritium() {
-            if (cycles == 20 || totalContinuousRunningTime == 0) {
-                IMultipleTankHandler inputTank = naquadahReactor.getInputFluidInventory();
-                inputTank.drain(TRITIUM_STACK, true);
-                cycles = 0;
-            }
-        }
-
         @Override
-        protected boolean shouldSearchForRecipes() {
-            checkOxygen();
-            return super.shouldSearchForRecipes() && checkTritium();
+        public boolean checkRecipe(@NotNull Recipe recipe) {
+            if (!super.checkRecipe(recipe))
+                return false;
+            IMultipleTankHandler tanks = this.naquadahReactor.getInputFluidInventory();
+            if (this.cycles >= 19) {
+                if (TRITIUM_STACK.isFluidStackIdentical(tanks.drain(TRITIUM_STACK, false))) {
+                    tanks.drain(TRITIUM_STACK, true);
+                    this.cycles = 0;
+                } else {
+                    if (this.cycles < 20)
+                        this.cycles++;
+                    return false;
+                }
+            } else this.cycles++;
+            if (this.isOxygenBoosted = OXYGEN_STACK.isFluidStackIdentical(tanks.drain(OXYGEN_STACK, false)))
+                tanks.drain(OXYGEN_STACK, true);
+            return true;
         }
 
         @Override

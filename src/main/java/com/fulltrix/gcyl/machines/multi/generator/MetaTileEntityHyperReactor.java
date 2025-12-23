@@ -20,6 +20,7 @@ import gregtech.api.mui.GTGuiTextures;
 import gregtech.api.mui.sync.FixedIntArraySyncValue;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.recipes.Recipe;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.KeyUtil;
 import gregtech.client.renderer.ICubeRenderer;
@@ -301,7 +302,7 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
         private final int tier;
         private boolean isBoosted = false;
         private final MetaTileEntityHyperReactor hyperReactor;
-        private int cycles;
+        private int cycles = 20;
 
         public HyperReactorWorkableHandler(RecipeMapMultiblockController tileEntity, int tier) {
             super(tileEntity);
@@ -312,41 +313,11 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
         @Override
         protected void updateRecipeProgress() {
             if (canRecipeProgress && drawEnergy(recipeEUt, true)) {
-                drainGas();
-                drainBooster();
                 drawEnergy(recipeEUt, false);
-
                 // as recipe starts with progress on 1 this has to be > only not => to compensate for it
                 if (++progressTime > maxProgressTime) {
                     completeRecipe();
-                    if (cycles < 20)
-                        cycles++;
                 }
-            }
-        }
-
-        protected boolean checkGas() {
-            IMultipleTankHandler inputTank = hyperReactor.getInputFluidInventory();
-            if (this.hyperReactor.getGas(this.tier).isFluidStackIdentical(inputTank.drain(this.hyperReactor.getGas(this.tier), false))) {
-                return true;
-            } else {
-                invalidate();
-                return false;
-            }
-        }
-
-        protected void drainGas() {
-            if (cycles == 20 || totalContinuousRunningTime == 0) {
-                IMultipleTankHandler inputTank = hyperReactor.getInputFluidInventory();
-                inputTank.drain(this.hyperReactor.getGas(this.tier), true);
-                cycles = 0;
-            }
-        }
-
-        protected void drainBooster() {
-            if (isBoosted && totalContinuousRunningTime % 20 == 0) {
-                FluidStack boosterStack = getBoosterFromTier(tier);
-                hyperReactor.getInputFluidInventory().drain(boosterStack, true);
             }
         }
 
@@ -360,16 +331,26 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
                 return boosterC;
         }
 
-        protected void checkBooster() {
-            IMultipleTankHandler inputTank = hyperReactor.getInputFluidInventory();
-            FluidStack boosterStack = getBoosterFromTier(tier);
-            isBoosted = boosterStack.isFluidStackIdentical(inputTank.drain(boosterStack, false));
-        }
-
         @Override
-        protected boolean shouldSearchForRecipes() {
-            checkBooster();
-            return super.shouldSearchForRecipes() && checkGas();
+        public boolean checkRecipe(@NotNull Recipe recipe) {
+            if (!super.checkRecipe(recipe))
+                return false;
+            IMultipleTankHandler tanks = this.hyperReactor.getInputFluidInventory();
+            if (this.cycles >= 19) {
+                FluidStack gas = this.hyperReactor.getGas(this.tier);
+                if (gas.isFluidStackIdentical(tanks.drain(gas, false))) {
+                    tanks.drain(gas, true);
+                    this.cycles = 0;
+                } else {
+                    if (this.cycles < 20)
+                        this.cycles++;
+                    return false;
+                }
+            } else this.cycles++;
+            FluidStack booster = this.getBoosterFromTier(this.tier);
+            if (this.isBoosted = booster.isFluidStackIdentical(tanks.drain(booster, false)))
+                tanks.drain(booster, true);
+            return true;
         }
 
         @Override

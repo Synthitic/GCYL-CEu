@@ -200,13 +200,10 @@ public class MetaTileEntityLargeRocketEngine extends FuelMultiblockController im
 
         @Override
         protected void updateRecipeProgress() {
-            if(canRecipeProgress && drawEnergy(recipeEUt, true)) {
-                drainOxygen();
+            if (canRecipeProgress && drawEnergy(recipeEUt, true)) {
                 drawEnergy(recipeEUt, false);
-
-                if(++progressTime > maxProgressTime) {
+                if (++progressTime > maxProgressTime) {
                     completeRecipe();
-                    drainAir();
                 }
             }
         }
