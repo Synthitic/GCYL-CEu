@@ -1,37 +1,45 @@
 package com.fulltrix.gcyl.machines.multi;
 
+import com.fulltrix.gcyl.api.pattern.TraceabilityPredicates;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.blocks.GCYLMultiblockCasing2;
 import com.fulltrix.gcyl.blocks.metal.MetalCasing2;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
+import gregicality.multiblocks.common.GCYMConfigHolder;
+import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityTieredHatch;
+import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
-import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
-import gregtech.api.util.KeyUtil;
+import gregtech.api.pattern.PatternMatchContext;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
 
 import javax.annotation.Nonnull;
-import java.util.List;
+import java.util.ArrayList;
 
 import static com.fulltrix.gcyl.api.pattern.TraceabilityPredicates.advFusionCoils;
 import static com.fulltrix.gcyl.client.ClientHandler.ENRICHED_NAQUADAH_ALLOY_CASING;
 import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_2;
 import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.MULTIBLOCK_CASING2;
 
-public class MetaTileEntityStellarForge extends RecipeMapMultiblockController { //TODO implement tiering
+public class MetaTileEntityStellarForge extends RecipeMapMultiblockController {
+
     private long maxVoltage;
 
     public MetaTileEntityStellarForge(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, GCYLRecipeMaps.STELLAR_FORGE_RECIPES);
+        this.recipeMapWorkable = new MultiblockRecipeLogic(this) {
+            @Override
+            public long getMaxVoltage() {
+                return GCYMConfigHolder.globalMultiblocks.enableTieredCasings ? maxVoltage : super.getMaxVoltage();
+            }
+        };
     }
 
     @Override
@@ -52,7 +60,7 @@ public class MetaTileEntityStellarForge extends RecipeMapMultiblockController { 
                 .aisle("######C#C######", "###FF#####FF###", "###############", "###############", "###############", "###############", "###############", "###FF#####FF###", "######C#C######")
                 .aisle("######C#C######", "#####FFFFF#####", "###############", "###############", "###############", "###############", "###############", "#####FFFFF#####", "######C#C######")
                 .aisle("###############", "######CSC######", "######C#C######", "######C#C######", "######C#C######", "######C#C######", "######C#C######", "######CCC######", "###############")
-                .where('M', air())
+                .where('M', TraceabilityPredicates.tieredHatchPredicate())
                 .where('C', states(getCasingState()).setMinGlobalLimited(130).or(autoAbilities(true, true, true, true, true, true, false)))
                 .where('X', states(MULTIBLOCK_CASING2.getState(GCYLMultiblockCasing2.CasingType.STELLAR_CONTAINMENT)))
                 .where('F', advFusionCoils())
@@ -62,16 +70,16 @@ public class MetaTileEntityStellarForge extends RecipeMapMultiblockController { 
     }
 
     @Override
-    public void invalidateStructure() {
-        super.invalidateStructure();
-        this.maxVoltage = 0;
+    protected void formStructure(PatternMatchContext context) {
+        super.formStructure(context);
+        int tier = context.getOrDefault("tiered_hatches", new ArrayList<MetaTileEntityTieredHatch>()).get(0).getTier() - 1;
+        this.maxVoltage = 32L << tier * 2;
     }
 
     @Override
-    protected void configureDisplayText(MultiblockUIBuilder builder) {
-        builder.addCustom((keyManager, uiSyncer) -> {
-            keyManager.add(KeyUtil.lang("gregtech.multiblock.universal.framework", this.maxVoltage));
-        });
+    public void invalidateStructure() {
+        super.invalidateStructure();
+        this.maxVoltage = 0;
     }
 
     @Override

@@ -4,23 +4,20 @@ import com.fulltrix.gcyl.api.GCYLAPI;
 import com.fulltrix.gcyl.api.block.IComponentALTier;
 import com.fulltrix.gcyl.api.block.IElevatorMotorTier;
 import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
-import com.fulltrix.gcyl.blocks.component_al.GCYLComponentALCasing;
 import com.fulltrix.gcyl.blocks.fusion.GCYLFusionCoils;
-import com.fulltrix.gcyl.blocks.metal.GCYLCleanroomCasing;
+import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityTieredHatch;
 import gregtech.api.GregTechAPI;
 import gregtech.api.block.ICleanroomFilter;
+import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.pattern.PatternStringError;
 import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.util.BlockInfo;
-import gregtech.common.blocks.BlockCleanroomCasing;
-import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import org.apache.commons.lang3.ArrayUtils;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.function.Supplier;
 
 public class TraceabilityPredicates {
@@ -130,6 +127,20 @@ public class TraceabilityPredicates {
                     .map(entry -> new BlockInfo(entry.getKey(), null))
                     .toArray(BlockInfo[]::new))
                     .addTooltips("gcyl.multiblock.pattern.error.elevator_motor_tier");
+
+    public static TraceabilityPredicate tieredHatchPredicate() {
+        return new TraceabilityPredicate(blockWorldState -> {
+            if (blockWorldState.getTileEntity() instanceof MetaTileEntityHolder holder) {
+                MetaTileEntity tileEntity = holder.getMetaTileEntity();
+                if (tileEntity instanceof MetaTileEntityTieredHatch tieredHatch) {
+                    List<MetaTileEntityTieredHatch> tieredHatches = blockWorldState.getMatchContext().getOrCreate("tiered_hatches", ArrayList::new);
+                    tieredHatches.add(tieredHatch);
+                    return tieredHatches.get(0).getTier() == tieredHatch.getTier();
+                }
+            }
+            return false;
+        });
+    }
 
     public static TraceabilityPredicate advFusionCoils() {
         return ADV_FUSION_COIL_PRED.get();
