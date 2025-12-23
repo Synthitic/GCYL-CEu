@@ -1,5 +1,7 @@
 package com.fulltrix.gcyl.machines.multi;
 
+import com.fulltrix.gcyl.api.multi.GCYLMultiblockRecipeLogic;
+import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.api.pattern.TraceabilityPredicates;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.blocks.GCYLMultiblockCasing2;
@@ -7,11 +9,9 @@ import com.fulltrix.gcyl.blocks.metal.MetalCasing2;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregicality.multiblocks.common.GCYMConfigHolder;
 import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityTieredHatch;
-import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
-import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
@@ -28,13 +28,13 @@ import static com.fulltrix.gcyl.client.ClientHandler.ENRICHED_NAQUADAH_ALLOY_CAS
 import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_2;
 import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.MULTIBLOCK_CASING2;
 
-public class MetaTileEntityStellarForge extends RecipeMapMultiblockController {
+public class MetaTileEntityStellarForge extends GCYLRecipeMapMultiblockController {
 
     private long maxVoltage;
 
     public MetaTileEntityStellarForge(ResourceLocation metaTileEntityId) {
-        super(metaTileEntityId, GCYLRecipeMaps.STELLAR_FORGE_RECIPES);
-        this.recipeMapWorkable = new MultiblockRecipeLogic(this) {
+        super(metaTileEntityId, GCYLRecipeMaps.STELLAR_FORGE_RECIPES, false);
+        this.recipeMapWorkable = new GCYLMultiblockRecipeLogic(this, false) {
             @Override
             public long getMaxVoltage() {
                 return GCYMConfigHolder.globalMultiblocks.enableTieredCasings ? maxVoltage : super.getMaxVoltage();

@@ -3,6 +3,7 @@ package com.fulltrix.gcyl.api.multi;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregicality.multiblocks.api.metatileentity.GCYMMultiblockAbility;
 import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.recipes.RecipeMap;
 import net.minecraft.util.ResourceLocation;
@@ -23,6 +24,11 @@ public abstract class GCYLRecipeMapMultiblockController extends GCYMRecipeMapMul
         this.isParallel = isParallel;
     }
 
+    @Override
+    protected void configureDisplayText(MultiblockUIBuilder builder) {
+        super.configureDisplayText(builder);
+        builder.addRecipeOutputLine(this.recipeMapWorkable).addEmptyLine();
+    }
 
     @Override
     public boolean isTiered() { return  true; }

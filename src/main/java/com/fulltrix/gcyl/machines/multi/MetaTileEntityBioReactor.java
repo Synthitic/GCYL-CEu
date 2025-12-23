@@ -1,5 +1,7 @@
 package com.fulltrix.gcyl.machines.multi;
 
+import com.fulltrix.gcyl.api.multi.GCYLMultiblockRecipeLogic;
+import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.api.pattern.TraceabilityPredicates;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
@@ -7,11 +9,9 @@ import com.fulltrix.gcyl.blocks.GCYLMultiblockCasing2;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregicality.multiblocks.common.GCYMConfigHolder;
 import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityTieredHatch;
-import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
-import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
@@ -25,13 +25,13 @@ import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
-public class MetaTileEntityBioReactor extends RecipeMapMultiblockController {
+public class MetaTileEntityBioReactor extends GCYLRecipeMapMultiblockController {
 
     private long maxVoltage;
 
     public MetaTileEntityBioReactor(ResourceLocation metaTileEntityId) {
-        super(metaTileEntityId, GCYLRecipeMaps.BIO_REACTOR_RECIPES);
-        this.recipeMapWorkable = new MultiblockRecipeLogic(this) {
+        super(metaTileEntityId, GCYLRecipeMaps.BIO_REACTOR_RECIPES, false);
+        this.recipeMapWorkable = new GCYLMultiblockRecipeLogic(this, false) {
             @Override
             public long getMaxVoltage() {
                 return GCYMConfigHolder.globalMultiblocks.enableTieredCasings ? maxVoltage : super.getMaxVoltage();

@@ -2,10 +2,13 @@ package com.fulltrix.gcyl.machines.multi;
 
 import com.fulltrix.gcyl.api.multi.GCYLComputationRecipeLogic;
 import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
+import com.fulltrix.gcyl.api.pattern.TraceabilityPredicates;
 import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
 import com.fulltrix.gcyl.blocks.fusion.GCYLFusionCoils;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.blocks.metal.MetalCasing2;
+import gregicality.multiblocks.common.GCYMConfigHolder;
+import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityTieredHatch;
 import gregtech.api.capability.*;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
@@ -34,6 +37,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps.COSMIC_RAY_DETECTOR_RECIPES;
@@ -42,10 +46,18 @@ import static com.fulltrix.gcyl.client.ClientHandler.QUANTUM_CASING;
 import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_2;
 
 public class MetaTileEntityCosmicRayDetector extends GCYLRecipeMapMultiblockController implements IOpticalComputationReceiver {
+
     private IOpticalComputationProvider computationProvider;
+    private long maxVoltage;
+
     public MetaTileEntityCosmicRayDetector(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, COSMIC_RAY_DETECTOR_RECIPES, false);
-        this.recipeMapWorkable = new CosmicRayRecipeLogic(this);
+        this.recipeMapWorkable = new CosmicRayRecipeLogic(this) {
+            @Override
+            public long getMaxVoltage() {
+                return GCYMConfigHolder.globalMultiblocks.enableTieredCasings ? maxVoltage : super.getMaxVoltage();
+            }
+        };
     }
 
     private boolean canSeeSky() {
@@ -65,9 +77,9 @@ public class MetaTileEntityCosmicRayDetector extends GCYLRecipeMapMultiblockCont
                 .aisle("######XXX######", "######XXX######", "######XXX######", "###############", "###############", "#######X#######", "#####xxxxx#####", "###xx#####xx###", "##x#########x##", "###############")
                 .aisle("#####XXXXX#####", "#####X###X#####", "#####X###X#####", "######XXX######", "######XXX######", "#####XXXXX#####", "####xxxxxxx####", "##xx#######xx##", "#x###########x#", "###############")
                 .aisle("####XXXXXXX####", "####X#####X####", "####X#####X####", "#####X###X#####", "#####X###X#####", "####XXxxxXX####", "###xxx###xxx###", "##x#########x##", "#x###########x#", "###############")
-                .aisle("###XXXXXXXXX###", "###X###E###X###", "###X#######X###", "####X#####X####", "####X##F##X####", "####XxxxxxX####", "###xx#####xx###", "#xx#########xx#", "x#############x", "###############")
-                .aisle("###XXXXXXXXX###", "###X##EcE##X###", "###X###c###X###", "####X##c##X####", "####X#FcF#X####", "###XXxxExxXX###", "##xxx##C##xxx##", "#x#####C#####x#", "x######C######x", "#######s#######")
-                .aisle("###XXXXXXXXX###", "###X###E###X###", "###X#######X###", "####X#####X####", "####X##F##X####", "####XxxxxxX####", "###xx#####xx###", "#xx#########xx#", "x#############x", "###############")
+                .aisle("###XXXXXXXXX###", "###X###E###X###", "###X#######X###", "####X#####X####", "####X##E##X####", "####XxxxxxX####", "###xx#####xx###", "#xx#########xx#", "x#############x", "###############")
+                .aisle("###XXXXXXXXX###", "###X##EcE##X###", "###X###c###X###", "####X##c##X####", "####X#EcE#X####", "###XXxxExxXX###", "##xxx##C##xxx##", "#x#####C#####x#", "x######C######x", "#######s#######")
+                .aisle("###XXXXXXXXX###", "###X###E###X###", "###X#######X###", "####X#####X####", "####X##E##X####", "####XxxxxxX####", "###xx#####xx###", "#xx#########xx#", "x#############x", "###############")
                 .aisle("####XXXXXXX####", "####X#####X####", "####X#####X####", "#####X###X#####", "#####X###X#####", "####XXxxxXX####", "###xxx###xxx###", "##x#########x##", "#x###########x#", "###############")
                 .aisle("#####XXXXX#####", "#####X###X#####", "#####X###X#####", "######XXX######", "######XXX######", "#####XXXXX#####", "####xxxxxxx####", "##xx#######xx##", "#x###########x#", "###############")
                 .aisle("######XXX######", "######XSX######", "######XXX######", "###############", "###############", "#######X#######", "#####xxxxx#####", "###xx#####xx###", "##x#########x##", "###############")
@@ -79,8 +91,7 @@ public class MetaTileEntityCosmicRayDetector extends GCYLRecipeMapMultiblockCont
                 .where('x', states(getSecondaryCasingState()))
                 .where('C', frames(BlackTitanium))
                 .where('c', states(GCYLMetaBlocks.FUSION_COILS.getState(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3)))
-                .where('F', tieredCasing())
-                .where('E', tieredCasing())
+                .where('E', TraceabilityPredicates.tieredHatchPredicate())
                 .where('s', states(GCYLMetaBlocks.FUSION_COILS.getState(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3)))
                 .where('#', any())
                 .build();
@@ -89,6 +100,8 @@ public class MetaTileEntityCosmicRayDetector extends GCYLRecipeMapMultiblockCont
     @Override
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
+        int tier = context.getOrDefault("tiered_hatches", new ArrayList<MetaTileEntityTieredHatch>()).get(0).getTier() - 1;
+        this.maxVoltage = 32L << tier * 2;
         List<IOpticalComputationHatch> providers = getAbilities(MultiblockAbility.COMPUTATION_DATA_RECEPTION);
         if (providers != null && providers.size() >= 1) {
             computationProvider = providers.get(0);
@@ -100,11 +113,16 @@ public class MetaTileEntityCosmicRayDetector extends GCYLRecipeMapMultiblockCont
     }
 
     @Override
+    public void invalidateStructure() {
+        super.invalidateStructure();
+        this.maxVoltage = 0;
+    }
+
+    @Override
     protected void configureDisplayText(MultiblockUIBuilder builder) {
         super.configureDisplayText(builder);
         CosmicRayRecipeLogic recipeLogic = (CosmicRayRecipeLogic)this.recipeMapWorkable;
         builder.addComputationUsageLine(recipeLogic.getRecipeCWUt())
-                .addRecipeOutputLine(recipeLogic)
                 .addCustom((keyManager, uiSyncer) -> {
                     if (!uiSyncer.syncBoolean(canSeeSky())) {
                         keyManager.add(KeyUtil.lang(TextFormatting.RED, "gcyl.multiblock.cosmic_ray_detector.tooltip.1"));
