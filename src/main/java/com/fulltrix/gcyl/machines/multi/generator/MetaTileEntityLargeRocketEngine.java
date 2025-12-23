@@ -114,7 +114,7 @@ public class MetaTileEntityLargeRocketEngine extends FuelMultiblockController im
         builder.addProgressLine(recipeLogic.getProgress(), recipeLogic.getMaxProgress());
         builder.addCustom((key, syncer) -> {
            long EUt = syncer.syncLong(recipeLogic.getInfoProviderEUt());
-           int tier = GTUtility.getFloorTierByVoltage(EUt) + 1;
+           int tier = GTUtility.getFloorTierByVoltage(EUt);
            if (EUt > 0)
                key.add(IKey.lang("gregtech.multiblock.universal.energy.production", EUt, GTValues.VOCNF[tier]));
            if (syncer.syncBoolean(recipeLogic.isOxygenBoosted()))

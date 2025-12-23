@@ -220,7 +220,7 @@ public class MetaTileEntityHyperReactor extends FuelMultiblockController impleme
         builder.addProgressLine(recipeLogic.getProgress(), recipeLogic.getMaxProgress());
         builder.addCustom((keyManager, uiSyncer) -> {
             long EUt = uiSyncer.syncLong(recipeLogic.getInfoProviderEUt());
-            int tier = GTUtility.getFloorTierByVoltage(EUt) + 1;
+            int tier = GTUtility.getFloorTierByVoltage(EUt);
             if (EUt > 0)
                 keyManager.add(IKey.lang("gregtech.multiblock.universal.energy.production", EUt, GTValues.VOCNF[tier]));
             if (uiSyncer.syncBoolean(recipeLogic.isBoosted))
