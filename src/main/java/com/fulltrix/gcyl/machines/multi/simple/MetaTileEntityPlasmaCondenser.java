@@ -1,14 +1,18 @@
 package com.fulltrix.gcyl.machines.multi.simple;
 
-import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
+import com.fulltrix.gcyl.api.pattern.TraceabilityPredicates;
 import com.fulltrix.gcyl.blocks.metal.MetalCasing1;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
-import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
+import gregicality.multiblocks.common.GCYMConfigHolder;
+import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityTieredHatch;
+import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
+import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.PatternMatchContext;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockBoilerCasing;
@@ -21,19 +25,28 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 
+import java.util.ArrayList;
+
 import static com.fulltrix.gcyl.client.ClientHandler.HASTELLOY_N_CASING;
 import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_1;
 //TODO add tooltips and information
-public class MetaTileEntityPlasmaCondenser extends GCYLRecipeMapMultiblockController {
+public class MetaTileEntityPlasmaCondenser extends RecipeMapMultiblockController {
 
-    public MetaTileEntityPlasmaCondenser(ResourceLocation metaTileEntityId, boolean isParallel) {
-        super(metaTileEntityId, GCYLRecipeMaps.PLASMA_CONDENSER_RECIPES, isParallel);
-        this.recipeMapWorkable = new GCYMMultiblockRecipeLogic(this);
+    private long maxVoltage;
+
+    public MetaTileEntityPlasmaCondenser(ResourceLocation metaTileEntityId) {
+        super(metaTileEntityId, GCYLRecipeMaps.PLASMA_CONDENSER_RECIPES);
+        this.recipeMapWorkable = new MultiblockRecipeLogic(this) {
+            @Override
+            public long getMaxVoltage() {
+                return GCYMConfigHolder.globalMultiblocks.enableTieredCasings ? maxVoltage : super.getMaxVoltage();
+            }
+        };
     }
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
-        return new MetaTileEntityPlasmaCondenser(metaTileEntityId, this.isParallel());
+        return new MetaTileEntityPlasmaCondenser(metaTileEntityId);
     }
 
     @Override
@@ -50,8 +63,21 @@ public class MetaTileEntityPlasmaCondenser extends GCYLRecipeMapMultiblockContro
                 .where('P', states(MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.TUNGSTENSTEEL_PIPE)))
                 .where('A', air())
                 .where('#', any())
-                .where('p', tieredCasing())
+                .where('p', TraceabilityPredicates.tieredHatchPredicate())
                 .build();
+    }
+
+    @Override
+    protected void formStructure(PatternMatchContext context) {
+        super.formStructure(context);
+        int tier = context.getOrDefault("tiered_hatches", new ArrayList<MetaTileEntityTieredHatch>()).get(0).getTier() - 1;
+        this.maxVoltage = 32L << tier * 2;
+    }
+
+    @Override
+    public void invalidateStructure() {
+        super.invalidateStructure();
+        this.maxVoltage = 0;
     }
 
     private IBlockState getCasingState() {
