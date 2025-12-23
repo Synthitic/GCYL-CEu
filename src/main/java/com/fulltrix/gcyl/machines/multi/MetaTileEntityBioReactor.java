@@ -1,15 +1,20 @@
 package com.fulltrix.gcyl.machines.multi;
 
-import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
+import com.fulltrix.gcyl.api.pattern.TraceabilityPredicates;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
 import com.fulltrix.gcyl.blocks.GCYLMultiblockCasing2;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
+import gregicality.multiblocks.common.GCYMConfigHolder;
+import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityTieredHatch;
+import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
+import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.PatternMatchContext;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import gregtech.common.blocks.BlockGlassCasing;
@@ -18,11 +23,20 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 
-public class MetaTileEntityBioReactor extends GCYLRecipeMapMultiblockController {
+public class MetaTileEntityBioReactor extends RecipeMapMultiblockController {
+
+    private long maxVoltage;
 
     public MetaTileEntityBioReactor(ResourceLocation metaTileEntityId) {
-        super(metaTileEntityId, GCYLRecipeMaps.BIO_REACTOR_RECIPES, false);
+        super(metaTileEntityId, GCYLRecipeMaps.BIO_REACTOR_RECIPES);
+        this.recipeMapWorkable = new MultiblockRecipeLogic(this) {
+            @Override
+            public long getMaxVoltage() {
+                return GCYMConfigHolder.globalMultiblocks.enableTieredCasings ? maxVoltage : super.getMaxVoltage();
+            }
+        };
     }
 
     @Override
@@ -30,10 +44,8 @@ public class MetaTileEntityBioReactor extends GCYLRecipeMapMultiblockController 
         return new MetaTileEntityBioReactor(metaTileEntityId);
     }
 
-    public long maxVoltage = 0;
-
     @Override
-    protected BlockPattern createStructurePattern() { //TODO: add tiered casings
+    protected BlockPattern createStructurePattern() {
         return FactoryBlockPattern.start()
                 .aisle("XXXXX", "XGGGX", "XGGGX", "XGGGX", "XXXXX")
                 .aisle("XXXXX", "G###G", "G#T#G", "G###G", "XXXXX")
@@ -45,8 +57,15 @@ public class MetaTileEntityBioReactor extends GCYLRecipeMapMultiblockController 
                 .where('L', states(getCasingState()))
                 .where('#', air())
                 .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.LAMINATED_GLASS)))
-                .where('T', tieredCasing())
+                .where('T', TraceabilityPredicates.tieredHatchPredicate())
                 .build();
+    }
+
+    @Override
+    protected void formStructure(PatternMatchContext context) {
+        super.formStructure(context);
+        int tier = context.getOrDefault("tiered_hatches", new ArrayList<MetaTileEntityTieredHatch>()).get(0).getTier() - 1;
+        this.maxVoltage = 32L << tier * 2;
     }
 
     @Override
