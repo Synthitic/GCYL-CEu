@@ -27,9 +27,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -104,7 +101,10 @@ public class MetaTileEntityCosmicRayDetector extends GCYLRecipeMapMultiblockCont
 
     @Override
     protected void configureDisplayText(MultiblockUIBuilder builder) {
-        builder.structureFormed(isStructureFormed())
+        super.configureDisplayText(builder);
+        CosmicRayRecipeLogic recipeLogic = (CosmicRayRecipeLogic)this.recipeMapWorkable;
+        builder.addComputationUsageLine(recipeLogic.getRecipeCWUt())
+                .addRecipeOutputLine(recipeLogic)
                 .addCustom((keyManager, uiSyncer) -> {
                     if (!uiSyncer.syncBoolean(canSeeSky())) {
                         keyManager.add(KeyUtil.lang(TextFormatting.RED, "gcyl.multiblock.cosmic_ray_detector.tooltip.1"));
@@ -154,7 +154,7 @@ public class MetaTileEntityCosmicRayDetector extends GCYLRecipeMapMultiblockCont
         return computationProvider;
     }
 
-    private class CosmicRayRecipeLogic extends GCYLComputationRecipeLogic {
+    private static class CosmicRayRecipeLogic extends GCYLComputationRecipeLogic {
         public CosmicRayRecipeLogic(RecipeMapMultiblockController metaTileEntity) {
             super(metaTileEntity, ComputationType.STEADY);
         }
