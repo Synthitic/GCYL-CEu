@@ -5,11 +5,13 @@ import com.fulltrix.gcyl.api.block.IComponentALTier;
 import com.fulltrix.gcyl.api.block.IElevatorMotorTier;
 import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
 import com.fulltrix.gcyl.blocks.fusion.GCYLFusionCoils;
+import gregicality.multiblocks.api.metatileentity.GCYMMultiblockAbility;
 import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityTieredHatch;
 import gregtech.api.GregTechAPI;
 import gregtech.api.block.ICleanroomFilter;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
+import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.pattern.PatternStringError;
 import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.util.BlockInfo;
@@ -139,7 +141,13 @@ public class TraceabilityPredicates {
                 }
             }
             return false;
-        });
+        }, () -> MultiblockAbility.REGISTRY.get(GCYMMultiblockAbility.TIERED_HATCH).stream()
+                .map(tileEntity -> {
+                    MetaTileEntityHolder holder = new MetaTileEntityHolder();
+                    holder.setMetaTileEntity(tileEntity);
+                    holder.getMetaTileEntity().onPlacement();
+                    return new BlockInfo(tileEntity.getBlock().getDefaultState(), holder);
+                }).toArray(BlockInfo[]::new));
     }
 
     public static TraceabilityPredicate advFusionCoils() {
