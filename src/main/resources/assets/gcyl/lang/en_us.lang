@@ -3146,7 +3146,7 @@ gregtech.multiblock.recipe=Screw to change recipe. Currently using: %s
 gregtech.universal.tooltip.efficiency=Efficiency: %s %%
 
 gregtech.multiblock.universal.energy_used=Energy Use: %d EU
-gregtech.multiblock.universal.vom.temperature=Temperature: %sK
+gregtech.multiblock.universal.vom.temperature=Temperature: §c%sK
 gregtech.multiblock.universal.vom.max_temperature=Max Temperature: %sK
 gregtech.multiblock.universal.drilling_fluid_amount=Fluids Consumption: %.2fmB
 gregtech.multiblock.universal.overheat=Overheated!
@@ -4871,7 +4871,7 @@ gcyl.machine.deep_miner.config.1=Fluid type set to Pyrotheum
 gcyl.machine.deep_miner.config.2=Fluid type set to Helium Plasma
 gcyl.machine.deep_miner.config.3=Fluid type set to Neutron Plasma
 gcyl.multiblock.deep_miner.tooltip.1=For obtaining resources deep in §6Bedrock§r§7. §aRecipes require scanned Data§r§7.
-gcyl.multiblock.deep_miner.tooltip.2=Controller must be placed at §eY=8§r§7 or lower.
+gcyl.multiblock.deep_miner.tooltip.2=Mines all the way to §6Bedrock§r§7. Make sure things below the miner are clear.
 gcyl.multiblock.deep_miner.tooltip.3=Use a §bScrewdriver§r§7 to change between §bFluid§r§7 inputs.
 gcyl.multiblock.deep_miner.tooltip.4=Accepts §cLava§r§7 (.75), §6Pyrotheum§r§7 (1), §eHelium Plasma§r§7 (4), or §8Neutron Plasma§r§7 (16) with §bBonuses§r§7 increasing from left to right.
 gcyl.multiblock.deep_miner.tooltip.5=Maximum §bTemperature§r§7 depends on §bFluid§r§7 input and §bCoil§r§7 tier.
@@ -4881,9 +4881,10 @@ gcyl.multiblock.deep_miner.tooltip.7=Loses §cHeat§r§7 when not running §lOR�
 gcyl.multiblock.deep_miner.tooltip.8=For every §b1000K§r§7 above recipe temperature, the recipe duration is multiplied by §e%s§r§7. (Additive)
 gcyl.multiblock.deep_miner.tooltip.9=To use §eHelium Plasma§r§7, the casings and frames need to be §2Incoloy 813§r§7.
 gcyl.multiblock.deep_miner.tooltip.10=To use §8Neutron Plasma§r§7, the casings and frames need to be §aHastelloy K243§r§7.
-gregtech.multiblock.deep_miner.max.temperature=Max Temperature: %sK
-gregtech.multiblock.deep_miner.max.fluid consumption=Fluid Consumption: %smB
-gregtech.multiblock.deep_miner_error=§cY LEVEL TOO HIGH! RECIPES WILL NOT RUN!
+gcyl.multiblock.deep_miner.clear=Miner is clear to run!
+gregtech.multiblock.deep_miner.max.temperature=Max Temperature: §c%sK
+gregtech.multiblock.deep_miner.max.fluid consumption=Fluid Consumption: §e%smB
+gregtech.multiblock.deep_miner_error=§eMiner obstructed, Mining block at §7(§fX:%,d§7) (§fY:%,d§7) (§fZ:%,d§7)
 recipemap.deep_miner.name=Deep Miner
 
 gcyl.machine.decay_chamber.name=Decay Chamber (DC)
