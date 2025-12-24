@@ -134,6 +134,7 @@ public class MetaTileEntityCosmicRayDetector extends GCYLRecipeMapMultiblockCont
     @Override
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
+        tooltip.add(I18n.format("gcyl.multiblock.cosmic_ray_detector.description"));
         tooltip.add(I18n.format("gcyl.multiblock.cosmic_ray_detector.tooltip.2"));
         tooltip.add(I18n.format("gcyl.multiblock.cosmic_ray_detector.tooltip.3"));
         tooltip.add(I18n.format("gcyl.multiblock.cosmic_ray_detector.tooltip.4"));
