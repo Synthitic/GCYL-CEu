@@ -31,6 +31,11 @@ public abstract class GCYLRecipeMapMultiblockController extends GCYMRecipeMapMul
     }
 
     @Override
+    public boolean canBeDistinct() {
+        return true;
+    }
+
+    @Override
     public boolean isTiered() { return  true; }
 
     @Override
