@@ -3233,6 +3233,7 @@ gcyl.multiblock.mega_blast_logic.tooltip.1=EU/t Usage: §eParallel Amount * Reci
 gcyl.multiblock.mega_blast_logic.tooltip.2=Prioritizes Parallel Recipes over Heating Coil Bonuses.
 
 gcyl.multiblock.chemical_plant.tooltip.1=Does not run in parallel when running chemical plant recipes.
+gcyl.multiblock.chemical_plant.tooltip.2=Every coil after §6Cupronickel reduces energy usage by §f5%%§7.
 
 gcyl.multiblock.preview.left_or_right=Can only be placed in the second layer, on the left or right sides, excluding the front and back faces
 gcyl.multiblock.preview.rear_output=Can only be placed in the second layer in the center of the back face
