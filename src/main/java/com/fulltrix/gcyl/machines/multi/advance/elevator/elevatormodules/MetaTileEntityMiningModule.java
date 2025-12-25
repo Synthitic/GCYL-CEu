@@ -3,6 +3,7 @@ package com.fulltrix.gcyl.machines.multi.advance.elevator.elevatormodules;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import com.cleanroommc.modularui.api.widget.IWidget;
 import com.cleanroommc.modularui.factory.PosGuiData;
 import com.cleanroommc.modularui.screen.ModularPanel;
 import com.cleanroommc.modularui.value.sync.BooleanSyncValue;
@@ -11,6 +12,7 @@ import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 import com.cleanroommc.modularui.value.sync.StringSyncValue;
 import com.cleanroommc.modularui.widget.Widget;
 import com.cleanroommc.modularui.widgets.ButtonWidget;
+import com.cleanroommc.modularui.widgets.ScrollingTextWidget;
 import com.cleanroommc.modularui.widgets.TextWidget;
 import com.cleanroommc.modularui.widgets.ToggleButton;
 import com.cleanroommc.modularui.widgets.layout.Flow;
@@ -427,7 +429,7 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase impleme
                 BooleanSyncValue whitelistModeSync = new BooleanSyncValue(MetaTileEntityMiningModule.this::getWhitelistMode, MetaTileEntityMiningModule.this::setWhitelistMode);
 
                 Widget powerButton = this.createPowerButton(mainPanel, panelSyncManager);
-                return Flow.column().debugName("button_col").right(4).coverChildren()
+                return Flow.column().name("button_col").right(4).coverChildren()
                         .child(new ToggleButton()
                                 .stateOverlay(ClientHandler.BUTTON_CYCLE)
                                 .addTooltipLine(KeyUtil.lang("gcyl.gui.mining_module.cycle"))
@@ -457,27 +459,27 @@ public class MetaTileEntityMiningModule extends MetaTileEntityModuleBase impleme
             int padding = 18;
 
             parentWidget
-                    .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.gui.mining_module.distance"))
+                    .child(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.gui.mining_module.distance").asWidget()
                             .pos(120, 5 + padding))
                     .child(new TextFieldWidget()
                             .pos(163, 3 + padding)
                             .size(25,10)
                             .value(distanceSync)
                             .setNumbers(0, this.MAX_DISTANCE))
-                    .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.gui.mining_module.range"))
+                    .child(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.gui.mining_module.range").asWidget()
                             .pos(120, 5 + 2 * padding))
                     .child(new TextFieldWidget()
                             .pos(163, 3 + 2 * padding)
                             .size(25,10)
                             .value(rangeSync)
                             .setNumbers(0, this.MAX_RANGE))
-                    .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.gui.mining_module.step"))
+                    .child(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.gui.mining_module.step").asWidget()
                             .pos(120, 5 + 3 * padding))
                     .child(new TextFieldWidget()
                             .pos(163, 3 + 3 * padding)
                             .size(25,10)
                             .value(stepSync))
-                    .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.gui.mining_module.parallel"))
+                    .child(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.gui.mining_module.parallel").asWidget()
                             .pos(120, 5 + 4 * padding))
                     .child(new TextFieldWidget()
                             .pos(163, 3 + 4 * padding)

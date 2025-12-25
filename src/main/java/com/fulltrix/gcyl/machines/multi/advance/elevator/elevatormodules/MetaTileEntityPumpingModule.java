@@ -3,6 +3,7 @@ package com.fulltrix.gcyl.machines.multi.advance.elevator.elevatormodules;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import com.cleanroommc.modularui.api.widget.IWidget;
 import com.cleanroommc.modularui.value.sync.IntSyncValue;
 import com.cleanroommc.modularui.widgets.TextWidget;
 import com.cleanroommc.modularui.widgets.textfield.TextFieldWidget;
@@ -95,52 +96,52 @@ public class MetaTileEntityPumpingModule extends MetaTileEntityModuleBase {
             IntSyncValue fourthFluidValueSync = new IntSyncValue(this::getFourthFluidValue, this::setFourthFluidValue);
 
             int padding = 18;
-            parentWidget.child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.planet"))
+            parentWidget.child(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.planet").asWidget()
                     .pos(10, 9 + padding))
                     .child(new TextFieldWidget()
                             .pos(43, 7 + padding)
                             .size(25, 10)
                             .value(firstPlanetValueSync))
-                    .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.fluid"))
+                    .child(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.fluid").asWidget()
                             .pos(10, 9 + 2 * padding))
                     .child(new TextFieldWidget()
                             .pos(43, 7 + 2 * padding)
                             .size(25, 10)
                             .value(firstFluidValueSync));
             if (moduleTier > 1) {
-                parentWidget.child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.planet"))
+                parentWidget.child(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.planet").asWidget()
                                 .pos(100, 9 + padding))
                         .child(new TextFieldWidget()
                                 .pos(133, 7 + padding)
                                 .size(25, 10)
                                 .value(secondPlanetValueSync))
-                        .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.fluid"))
+                        .child(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.fluid").asWidget()
                                 .pos(100, 9 + 2 * padding))
                         .child(new TextFieldWidget()
                                 .pos(133, 7 + 2 * padding)
                                 .size(25, 10)
                                 .value(secondFluidValueSync))
 
-                        .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.planet"))
+                        .child(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.planet").asWidget()
                                 .pos(10, 9 + 3 * padding))
                         .child(new TextFieldWidget()
                                 .pos(43, 7 + 3 * padding)
                                 .size(25, 10)
                                 .value(thirdPlanetValueSync))
-                        .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.fluid"))
+                        .child(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.fluid").asWidget()
                                 .pos(10, 9 + 4 * padding))
                         .child(new TextFieldWidget()
                                 .pos(43, 7 + 4 * padding)
                                 .size(25, 10)
                                 .value(thirdFluidValueSync))
 
-                        .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.planet"))
+                        .child(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.planet").asWidget()
                                 .pos(100, 9 + 3 * padding))
                         .child(new TextFieldWidget()
                                 .pos(133, 7 + 3 * padding)
                                 .size(25, 10)
                                 .value(fourthPlanetValueSync))
-                        .child(new TextWidget(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.fluid"))
+                        .child(KeyUtil.lang(TextFormatting.LIGHT_PURPLE, "gcyl.multiblock.pump_module.fluid").asWidget()
                                 .pos(100, 9 + 4 * padding))
                         .child(new TextFieldWidget()
                                 .pos(133, 7 + 4 * padding)
