@@ -128,7 +128,7 @@ public class MetaTileEntityCosmicRayDetector extends GCYLRecipeMapMultiblockCont
                 .where('O', MetaTileEntities.ITEM_EXPORT_BUS[3], EnumFacing.SOUTH)
                 .where('o', MetaTileEntities.FLUID_EXPORT_HATCH[3], EnumFacing.SOUTH)
                 .where('M', MetaTileEntities.MAINTENANCE_HATCH, EnumFacing.NORTH)
-                .where('R', MetaTileEntities.OPTICAL_DATA_HATCH_RECEIVER, EnumFacing.NORTH)
+                .where('R', MetaTileEntities.COMPUTATION_HATCH_RECEIVER, EnumFacing.NORTH)
                 .where('C', MetaBlocks.FRAMES.get(BlackTitanium).getStateFromMeta(14))
                 .where('c', GCYLMetaBlocks.FUSION_COILS.getState(GCYLFusionCoils.CasingType.ADV_FUSION_COIL_3))
                 .where('X', this.getCasingState())
