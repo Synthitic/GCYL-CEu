@@ -22,6 +22,7 @@ import gregtech.api.mui.GTGuiTextures;
 import gregtech.api.mui.sync.FixedIntArraySyncValue;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.MultiblockShapeInfo;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
@@ -36,9 +37,11 @@ import gregtech.api.util.KeyUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import gregtech.common.blocks.BlockWireCoil;
+import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -48,14 +51,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
 
 import static com.fulltrix.gcyl.client.ClientHandler.HASTELLOY_N_CASING;
 import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_1;
 
 import static gregtech.api.GTValues.ZPM;
+import static gregtech.api.GregTechAPI.HEATING_COILS;
 import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOC;
+import static gregtech.api.util.RelativeDirection.*;
 
 //TODO: update ui & tooltip. improve performance
 
@@ -155,6 +162,27 @@ public class MetaTileEntityVolcanus extends GCYLRecipeMapMultiblockController im
                 .where('C', heatingCoils())
                 .where('#', air())
                 .build();
+    }
+
+    @Override
+    public List<MultiblockShapeInfo> getMatchingShapes() {
+        MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder(RIGHT, DOWN, FRONT)
+                .aisle("mEX", "CCC", "CCC", "XXX")
+                .aisle("XXX", "C#C", "C#C", "XMX")
+                .aisle("ISO", "CCC", "CCC", "iXo")
+                .where('S', this, EnumFacing.SOUTH)
+                .where('X', this.getCasingState())
+                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[3], EnumFacing.SOUTH)
+                .where('O', MetaTileEntities.ITEM_EXPORT_BUS[3], EnumFacing.SOUTH)
+                .where('i', MetaTileEntities.FLUID_IMPORT_HATCH[3], EnumFacing.SOUTH)
+                .where('o', MetaTileEntities.FLUID_EXPORT_HATCH[3], EnumFacing.SOUTH)
+                .where('M', MetaTileEntities.MUFFLER_HATCH[3], EnumFacing.UP)
+                .where('m', MetaTileEntities.MAINTENANCE_HATCH, EnumFacing.NORTH);
+        return HEATING_COILS.entrySet().stream()
+                .sorted(Comparator.comparingInt(entry -> entry.getValue().getTier()))
+                .map(entry -> builder.where('C', entry.getKey())
+                        .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[entry.getValue().getTier() + 1], EnumFacing.NORTH).build())
+                .collect(Collectors.toList());
     }
 
     protected IBlockState getCasingState() {

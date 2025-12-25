@@ -10,6 +10,7 @@ import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.api.recipes.properties.GCYLTemperatureProperty;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
 import gregicality.multiblocks.common.GCYMConfigHolder;
+import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityTieredHatch;
 import gregtech.api.block.IHeatingCoilBlockStats;
 import gregtech.api.capability.IHeatingCoil;
@@ -24,10 +25,7 @@ import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.metatileentity.multiblock.ui.TemplateBarBuilder;
 import gregtech.api.mui.GTGuiTextures;
 import gregtech.api.mui.sync.FixedIntArraySyncValue;
-import gregtech.api.pattern.BlockPattern;
-import gregtech.api.pattern.FactoryBlockPattern;
-import gregtech.api.pattern.PatternMatchContext;
-import gregtech.api.pattern.TraceabilityPredicate;
+import gregtech.api.pattern.*;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.logic.OCParams;
@@ -41,6 +39,7 @@ import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
@@ -65,8 +64,13 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
+
+import static gregtech.api.GregTechAPI.HEATING_COILS;
+import static gregtech.api.util.RelativeDirection.*;
 
 //TODO add fram and casing requirements to use helium and neutron plasma (traceability predicate stuff)
 public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController implements IHeatingCoil, ProgressBarMultiblock {
@@ -110,6 +114,35 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
                 .where('M', abilities(MultiblockAbility.MUFFLER_HATCH))
                 .where('T', TraceabilityPredicates.tieredHatchPredicate())
                 .build();
+    }
+
+    @Override
+    public List<MultiblockShapeInfo> getMatchingShapes() {
+        MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder(RIGHT, DOWN, FRONT)
+                .aisle("##C###C##","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########")
+                .aisle("#CC###CC#","##C###C##","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########")
+                .aisle("CCCFFFCCC","#CCFFFCC#","##CmMEC##","##F###F##","##F###F##","##F###F##","##CFFFC##","#########","#########","#########","#########","#########","#########")
+                .aisle("##FTTTF##","##FHHHF##","##CHHHC##","###HHH###","###HHH###","###HHH###","##FCCCF##","####F####","####F####","####F####","#########","#########","#########")
+                .aisle("##FTATF##","##FHAHF##","##CHAHC##","###HAH###","###HAH###","###HAH###","##FCACF##","###FCF###","###FCF###","###FCF###","####F####","####F####","####F####")
+                .aisle("##FTTTF##","##FHHHF##","##CHHHC##","###HHH###","###HHH###","###HHH###","##FCCCF##","####F####","####F####","####F####","#########","#########","#########")
+                .aisle("CCCFFFCCC","#CCFFFCC#","##iISOo##","##F###F##","##F###F##","##F###F##","##CFFFC##","#########","#########","#########","#########","#########","#########")
+                .aisle("#CC###CC#","##C###C##","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########")
+                .aisle("##C###C##","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########")
+                .where('S', this, EnumFacing.SOUTH)
+                .where('M', MetaTileEntities.MUFFLER_HATCH[1], EnumFacing.NORTH)
+                .where('m', MetaTileEntities.MAINTENANCE_HATCH, EnumFacing.NORTH)
+                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[3], EnumFacing.SOUTH)
+                .where('O', MetaTileEntities.ITEM_EXPORT_BUS[3], EnumFacing.SOUTH)
+                .where('i', MetaTileEntities.FLUID_IMPORT_HATCH[3], EnumFacing.SOUTH)
+                .where('o', MetaTileEntities.FLUID_EXPORT_HATCH[3], EnumFacing.SOUTH)
+                .where('C', this.getCasingState())
+                .where('F', MetaBlocks.FRAMES.get(Materials.Steel).getStateFromMeta(4));
+        return HEATING_COILS.entrySet().stream()
+                .sorted(Comparator.comparingInt(entry -> entry.getValue().getTier()))
+                .map(entry -> builder.where('H', entry.getKey())
+                        .where('T', GCYMMetaTileEntities.TIERED_HATCH[entry.getValue().getTier() + 1], EnumFacing.DOWN)
+                        .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[entry.getValue().getTier() + 1], EnumFacing.NORTH).build())
+                .collect(Collectors.toList());
     }
 
     @Override

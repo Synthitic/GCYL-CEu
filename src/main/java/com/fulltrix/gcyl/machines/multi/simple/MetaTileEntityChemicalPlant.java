@@ -6,6 +6,7 @@ import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.api.pattern.TraceabilityPredicates;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregicality.multiblocks.common.GCYMConfigHolder;
+import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityTieredHatch;
 import gregtech.api.block.IHeatingCoilBlockStats;
 import gregtech.api.capability.IHeatingCoil;
@@ -15,6 +16,7 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.MultiblockShapeInfo;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
@@ -27,9 +29,11 @@ import gregtech.common.blocks.BlockBoilerCasing;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -39,7 +43,13 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static gregtech.api.GregTechAPI.HEATING_COILS;
+import static gregtech.api.util.RelativeDirection.*;
 
 //TODO make a separate mega chemical reactor so this one isnt so broken
 public class MetaTileEntityChemicalPlant extends GCYLRecipeMapMultiblockController implements IHeatingCoil {
@@ -98,6 +108,30 @@ public class MetaTileEntityChemicalPlant extends GCYLRecipeMapMultiblockControll
                 .where('#', air())
                 .where('M', TraceabilityPredicates.tieredHatchPredicate())
                 .build();
+    }
+
+    @Override
+    public List<MultiblockShapeInfo> getMatchingShapes() {
+        MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder(RIGHT, DOWN, FRONT)
+                .aisle("E###m", "XXXXX", "X###X", "XXXXX", "X###X")
+                .aisle("XXXXX", "XCCCX", "XPPPX", "XCCCX", "XXXXX")
+                .aisle("X###X", "XPPPX", "XMMMX", "XPPPX", "X###X")
+                .aisle("XXXXX", "XCCCX", "XPPPX", "XCCCX", "XXXXX")
+                .aisle("X###X", "oIOiS", "X###X", "XXXXX", "X###X")
+                .where('S', this, EnumFacing.SOUTH)
+                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[3], EnumFacing.SOUTH)
+                .where('O', MetaTileEntities.ITEM_EXPORT_BUS[3], EnumFacing.SOUTH)
+                .where('i', MetaTileEntities.FLUID_IMPORT_HATCH[3], EnumFacing.SOUTH)
+                .where('o', MetaTileEntities.FLUID_EXPORT_HATCH[3], EnumFacing.SOUTH)
+                .where('m', MetaTileEntities.MAINTENANCE_HATCH, EnumFacing.NORTH)
+                .where('X', this.getCasingState())
+                .where('P', MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.POLYTETRAFLUOROETHYLENE_PIPE));
+        return HEATING_COILS.entrySet().stream()
+                .sorted(Comparator.comparingInt(entry -> entry.getValue().getTier()))
+                .map(entry -> builder.where('C', entry.getKey())
+                        .where('M', GCYMMetaTileEntities.TIERED_HATCH[entry.getValue().getTier() + 1], EnumFacing.DOWN)
+                        .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[entry.getValue().getTier() + 1], EnumFacing.NORTH).build())
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -8,20 +8,24 @@ import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
 import com.fulltrix.gcyl.blocks.GCYLMultiblockCasing2;
 import com.fulltrix.gcyl.api.recipes.GCYLRecipeMaps;
 import gregicality.multiblocks.common.GCYMConfigHolder;
+import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
 import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityTieredHatch;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.MultiblockShapeInfo;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -30,7 +34,11 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static gregtech.api.util.RelativeDirection.*;
 
 public class MetaTileEntityBioReactor extends GCYLRecipeMapMultiblockController {
 
@@ -73,6 +81,30 @@ public class MetaTileEntityBioReactor extends GCYLRecipeMapMultiblockController 
                 .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.LAMINATED_GLASS)))
                 .where('T', TraceabilityPredicates.tieredHatchPredicate())
                 .build();
+    }
+
+    @Override
+    public List<MultiblockShapeInfo> getMatchingShapes() {
+        MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder(RIGHT, DOWN, FRONT)
+                .aisle("XXEMX", "XGGGX", "XGGGX", "XGGGX", "XXXXX")
+                .aisle("XXXXX", "G###G", "G#T#G", "G###G", "XXXXX")
+                .aisle("XXXXX", "G#T#G", "GTTTG", "G#T#G", "XXXXX")
+                .aisle("XXXXX", "G###G", "G#T#G", "G###G", "XXXXX")
+                .aisle("iISOo", "XGGGX", "XGGGX", "XGGGX", "XXXXX")
+                .where('S', this, EnumFacing.SOUTH)
+                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[3], EnumFacing.SOUTH)
+                .where('O', MetaTileEntities.ITEM_EXPORT_BUS[3], EnumFacing.SOUTH)
+                .where('i', MetaTileEntities.FLUID_IMPORT_HATCH[3], EnumFacing.SOUTH)
+                .where('o', MetaTileEntities.FLUID_EXPORT_HATCH[3], EnumFacing.SOUTH)
+                .where('M', MetaTileEntities.MAINTENANCE_HATCH, EnumFacing.NORTH)
+                .where('X', this.getCasingState())
+                .where('L', this.getCasingState())
+                .where('G', MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.LAMINATED_GLASS));
+        return Arrays.stream(GCYMMetaTileEntities.TIERED_HATCH)
+                .map(hatch -> builder.where('T', hatch, EnumFacing.DOWN)
+                        .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[hatch.getTier()], EnumFacing.NORTH)
+                        .build())
+                .collect(Collectors.toList());
     }
 
     @Override
