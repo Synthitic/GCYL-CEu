@@ -4,6 +4,7 @@ import com.fulltrix.gcyl.api.GCYLAPI;
 import com.fulltrix.gcyl.api.block.IComponentALTier;
 import com.fulltrix.gcyl.api.block.IElevatorMotorTier;
 import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
+import com.fulltrix.gcyl.blocks.component_al.GCYLComponentALCasing;
 import com.fulltrix.gcyl.blocks.fusion.GCYLFusionCoils;
 import gregicality.multiblocks.api.metatileentity.GCYMMultiblockAbility;
 import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityTieredHatch;
@@ -15,6 +16,7 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.pattern.PatternStringError;
 import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.util.BlockInfo;
+import groovyjarjarantlr4.runtime.misc.IntArray;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import org.apache.commons.lang3.ArrayUtils;
@@ -58,6 +60,9 @@ public class TraceabilityPredicates {
                         return false;
                     }
                     blockWorldState.getMatchContext().getOrPut("VABlock", new LinkedList<>()).add(blockWorldState.getPos());
+
+                    IntArray bonus = blockWorldState.getMatchContext().getOrCreate("filtered_casings_speed", IntArray::new);
+                    bonus.add(currentFilter.getTier() * 5);
                     return true;
                 }
 
@@ -148,6 +153,36 @@ public class TraceabilityPredicates {
                     holder.getMetaTileEntity().onPlacement();
                     return new BlockInfo(tileEntity.getBlock().getDefaultState(), holder);
                 }).toArray(BlockInfo[]::new));
+    }
+
+    public static TraceabilityPredicate componentAssemblyLineCasingPredicate() {
+        return new TraceabilityPredicate(blockWorldState -> {
+            if (blockWorldState.getBlockState().getBlock() instanceof GCYLComponentALCasing componentALCasing) {
+                GCYLComponentALCasing.CasingType casingType = componentALCasing.getState(blockWorldState.getBlockState());
+                List<GCYLComponentALCasing.CasingType> casingTypes = blockWorldState.getMatchContext().getOrCreate("componentAssemblyLineCasings", ArrayList::new);
+                casingTypes.add(casingType);
+                return casingTypes.get(0).getTier() == casingType.getTier();
+            }
+            return false;
+        }, () -> Arrays.stream(GCYLComponentALCasing.CasingType.values())
+                .sorted(Comparator.comparingInt(GCYLComponentALCasing.CasingType::getTier))
+                .map(entry -> new BlockInfo(GCYLMetaBlocks.GCYL_COMPONENT_AL_CASING.getState(entry)))
+                .toArray(BlockInfo[]::new));
+    }
+
+    public static TraceabilityPredicate filterCasingPredicate() {
+        return new TraceabilityPredicate(blockWorldState -> {
+            ICleanroomFilter filter;
+            if ((filter = GCYLAPI.GCYL_FILTER_CASINGS.get(blockWorldState.getBlockState())) != null) {
+                List<ICleanroomFilter> filters = blockWorldState.getMatchContext().getOrCreate("filterCasings", ArrayList::new);
+                filters.add(filter);
+                return filters.get(0).getCleanroomType() == filter.getCleanroomType();
+            }
+            return false;
+        }, () -> GCYLAPI.GCYL_FILTER_CASINGS.entrySet().stream()
+                .sorted(Comparator.comparingInt(entry -> entry.getValue().getTier()))
+                .map(entry -> new BlockInfo(entry.getKey()))
+                .toArray(BlockInfo[]::new));
     }
 
     public static TraceabilityPredicate advFusionCoils() {
