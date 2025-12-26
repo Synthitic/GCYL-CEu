@@ -191,7 +191,7 @@ public class MetaTileEntityLargeRocketEngine extends FuelMultiblockController im
 
         private final MetaTileEntityLargeRocketEngine rocketEngine;
 
-        public static final FluidStack OXYGEN_STACK = Materials.Oxygen.getFluid(FluidStorageKeys.LIQUID,50);
+        public static final FluidStack OXYGEN_STACK = Materials.Oxygen.getFluid(FluidStorageKeys.LIQUID,1000);
         public static final FluidStack AIR_STACK = Materials.Air.getFluid(37500);
 
         public LREWorkableHandler(RecipeMapMultiblockController tileEntity) {
@@ -203,16 +203,9 @@ public class MetaTileEntityLargeRocketEngine extends FuelMultiblockController im
         protected void updateRecipeProgress() {
             if (canRecipeProgress && drawEnergy(recipeEUt, true)) {
                 drawEnergy(recipeEUt, false);
-                drainOxygen();
                 if (++progressTime > maxProgressTime) {
                     completeRecipe();
                 }
-            }
-        }
-
-        protected void drainOxygen() {
-            if (this.totalContinuousRunningTime % 20 == 0) {
-                this.isOxygenBoosted = OXYGEN_STACK.isFluidStackIdentical(this.rocketEngine.getInputFluidInventory().drain(OXYGEN_STACK, true));
             }
         }
 
@@ -224,6 +217,8 @@ public class MetaTileEntityLargeRocketEngine extends FuelMultiblockController im
             if (!AIR_STACK.isFluidStackIdentical(tanks.drain(AIR_STACK, false)))
                 return false;
             tanks.drain(AIR_STACK, true);
+            if (this.isOxygenBoosted = OXYGEN_STACK.isFluidStackIdentical(tanks.drain(OXYGEN_STACK, false)))
+                tanks.drain(OXYGEN_STACK, true);
             return true;
         }
 
