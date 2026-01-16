@@ -2,6 +2,7 @@ package com.fulltrix.gcyl.machines.multi.advance;
 
 import com.cleanroommc.modularui.api.drawable.IKey;
 import com.cleanroommc.modularui.value.sync.PanelSyncManager;
+import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.materials.GCYLMaterials;
 import com.fulltrix.gcyl.blocks.metal.MetalCasing1;
@@ -12,10 +13,7 @@ import gregtech.api.capability.IHeatingCoil;
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.metatileentity.multiblock.IMultiblockPart;
-import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.metatileentity.multiblock.ProgressBarMultiblock;
-import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
+import gregtech.api.metatileentity.multiblock.*;
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.metatileentity.multiblock.ui.TemplateBarBuilder;
 import gregtech.api.mui.GTGuiTextures;
@@ -25,7 +23,6 @@ import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.MultiblockShapeInfo;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.logic.OCParams;
 import gregtech.api.recipes.logic.OCResult;
@@ -59,7 +56,6 @@ import java.util.stream.Collectors;
 import static com.fulltrix.gcyl.client.ClientHandler.HASTELLOY_N_CASING;
 import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_1;
 
-import static gregtech.api.GTValues.ZPM;
 import static gregtech.api.GregTechAPI.HEATING_COILS;
 import static gregtech.api.recipes.logic.OverclockingLogic.heatingCoilOC;
 import static gregtech.api.util.RelativeDirection.*;
@@ -76,7 +72,8 @@ public class MetaTileEntityVolcanus extends GCYLRecipeMapMultiblockController im
     public MetaTileEntityVolcanus(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, RecipeMaps.BLAST_RECIPES, false);
         this.recipeMapWorkable = new MetaTileEntityVolcanus.VolcanusRecipeLogic(this);
-        this.recipeMapWorkable.setMaximumOverclockVoltage(Math.min(this.energyContainer.getInputVoltage() , GTValues.V[ZPM]));
+        if (GCYLConfig.Misc.volcanusMaxVoltage > 0)
+            this.recipeMapWorkable.setMaximumOverclockVoltage(Math.min(this.energyContainer.getInputVoltage(), GTValues.VOC[GCYLConfig.Misc.volcanusMaxVoltage]));
     }
 
     @Override
@@ -118,7 +115,8 @@ public class MetaTileEntityVolcanus extends GCYLRecipeMapMultiblockController im
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(I18n.format("gregtech.multiblock.volcanus.description.1"));
-        tooltip.add(I18n.format("gregtech.multiblock.volcanus.description.4"));
+        if (GCYLConfig.Misc.volcanusMaxVoltage > 0)
+            tooltip.add(I18n.format("gregtech.multiblock.volcanus.description.4", GTValues.VOCNF[GCYLConfig.Misc.volcanusMaxVoltage]));
         tooltip.add(I18n.format("gregtech.multiblock.volcanus.description.2"));
         tooltip.add(I18n.format("gregtech.multiblock.volcanus.description.3"));
         tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.1"));
@@ -239,14 +237,6 @@ public class MetaTileEntityVolcanus extends GCYLRecipeMapMultiblockController im
         }
 
         @Override
-        public void applyParallelBonus(@NotNull RecipeBuilder<?> builder) {
-            int currentParallel = builder.getParallel();
-            long currentRecipeEU = builder.getEUt() / currentParallel;
-            int currentRecipeDuration = builder.getDuration() / this.getParallelLimit();
-            builder.EUt(currentRecipeEU * 2).duration(currentRecipeDuration * currentParallel);
-        }
-
-        @Override
         protected void modifyOverclockPre(@NotNull OCParams ocParams, @NotNull RecipePropertyStorage storage) {
             super.modifyOverclockPre(ocParams, storage);
             ocParams.setEut(OverclockingLogic.applyCoilEUtDiscount(ocParams.eut(), getCurrentTemperature(), storage.get(TemperatureProperty.getInstance(), 0)));
@@ -256,6 +246,13 @@ public class MetaTileEntityVolcanus extends GCYLRecipeMapMultiblockController im
         protected void runOverclockingLogic(@NotNull OCParams ocParams, @NotNull OCResult ocResult,
                                             @NotNull RecipePropertyStorage propertyStorage, long maxVoltage) {
             heatingCoilOC(ocParams, ocResult, maxVoltage, getCurrentTemperature(), propertyStorage.get(TemperatureProperty.getInstance(), 0));
+        }
+
+        @Override
+        protected void modifyOverclockPost(@NotNull OCResult ocResult, @NotNull RecipePropertyStorage storage) {
+            super.modifyOverclockPost(ocResult, storage);
+            ocResult.setEut((long) (ocResult.eut() * 0.9));
+            ocResult.setDuration((int) (ocResult.duration() / 1.2));
         }
     }
 }

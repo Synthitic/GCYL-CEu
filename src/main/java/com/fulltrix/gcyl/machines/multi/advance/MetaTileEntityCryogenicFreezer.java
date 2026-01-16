@@ -2,6 +2,7 @@ package com.fulltrix.gcyl.machines.multi.advance;
 
 import com.cleanroommc.modularui.api.drawable.IKey;
 import com.cleanroommc.modularui.value.sync.PanelSyncManager;
+import com.fulltrix.gcyl.GCYLConfig;
 import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.materials.GCYLMaterials;
 import com.fulltrix.gcyl.client.ClientHandler;
@@ -22,8 +23,9 @@ import gregtech.api.mui.sync.FixedIntArraySyncValue;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
-import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.recipes.logic.OCResult;
+import gregtech.api.recipes.properties.RecipePropertyStorage;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.KeyUtil;
 import gregtech.client.renderer.ICubeRenderer;
@@ -45,8 +47,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.UnaryOperator;
 
-import static gregtech.api.GTValues.ZPM;
-
 //TODO: limit reflect in ui. update tooltip. improve performance
 
 public class MetaTileEntityCryogenicFreezer extends GCYLRecipeMapMultiblockController implements ProgressBarMultiblock {
@@ -58,7 +58,8 @@ public class MetaTileEntityCryogenicFreezer extends GCYLRecipeMapMultiblockContr
     public MetaTileEntityCryogenicFreezer(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, RecipeMaps.VACUUM_RECIPES, false);
         this.recipeMapWorkable = new MetaTileEntityCryogenicFreezer.CryogenicRecipeLogic(this);
-        this.recipeMapWorkable.setMaximumOverclockVoltage(Math.min(this.energyContainer.getInputVoltage() , GTValues.V[ZPM]));
+        if (GCYLConfig.Misc.cryogenicFreezerMaxVoltage > 0)
+            this.recipeMapWorkable.setMaximumOverclockVoltage(Math.min(this.energyContainer.getInputVoltage(), GTValues.VOC[GCYLConfig.Misc.cryogenicFreezerMaxVoltage]));
     }
 
     @Override
@@ -123,6 +124,9 @@ public class MetaTileEntityCryogenicFreezer extends GCYLRecipeMapMultiblockContr
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(I18n.format("gregtech.multiblock.cryogenic_freezer.description"));
         tooltip.add(I18n.format("gregtech.multiblock.vol_cryo.description"));
+        if (GCYLConfig.Misc.cryogenicFreezerMaxVoltage > 0)
+            tooltip.add(I18n.format("gregtech.multiblock.volcanus.description.4", GTValues.VOCNF[GCYLConfig.Misc.cryogenicFreezerMaxVoltage]));
+        tooltip.add(I18n.format("gregtech.multiblock.volcanus.description.3"));
     }
 
     @Override
@@ -171,11 +175,10 @@ public class MetaTileEntityCryogenicFreezer extends GCYLRecipeMapMultiblockContr
         }
 
         @Override
-        public void applyParallelBonus(@NotNull RecipeBuilder<?> builder) {
-            int currentParallel = builder.getParallel();
-            long currentRecipeEU = builder.getEUt() / currentParallel;
-            int currentRecipeDuration = builder.getDuration() / this.getParallelLimit();
-            builder.EUt(currentRecipeEU * 2).duration(currentRecipeDuration * currentParallel);
+        protected void modifyOverclockPost(@NotNull OCResult ocResult, @NotNull RecipePropertyStorage storage) {
+            super.modifyOverclockPost(ocResult, storage);
+            ocResult.setEut((long) (ocResult.duration() * 0.9));
+            ocResult.setDuration((int) (ocResult.duration() / 1.2));
         }
     }
 }
