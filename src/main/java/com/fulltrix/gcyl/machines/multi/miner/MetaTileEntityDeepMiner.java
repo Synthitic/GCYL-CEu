@@ -1,11 +1,17 @@
 package com.fulltrix.gcyl.machines.multi.miner;
 
 import codechicken.lib.raytracer.CuboidRayTraceResult;
+import com.cleanroommc.modularui.value.sync.PanelSyncManager;
+import com.cleanroommc.modularui.value.sync.StringSyncValue;
+import com.fulltrix.gcyl.api.pattern.TraceabilityPredicates;
 import com.fulltrix.gcyl.client.ClientHandler;
 import com.fulltrix.gcyl.materials.GCYLMaterials;
 import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.api.recipes.properties.GCYLTemperatureProperty;
 import gregicality.multiblocks.api.capability.impl.GCYMMultiblockRecipeLogic;
+import gregicality.multiblocks.common.GCYMConfigHolder;
+import gregicality.multiblocks.common.metatileentities.GCYMMetaTileEntities;
+import gregicality.multiblocks.common.metatileentities.multiblockpart.MetaTileEntityTieredHatch;
 import gregtech.api.block.IHeatingCoilBlockStats;
 import gregtech.api.capability.IHeatingCoil;
 import gregtech.api.capability.IMultipleTankHandler;
@@ -14,16 +20,18 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.metatileentity.multiblock.ProgressBarMultiblock;
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
-import gregtech.api.pattern.BlockPattern;
-import gregtech.api.pattern.FactoryBlockPattern;
-import gregtech.api.pattern.PatternMatchContext;
-import gregtech.api.pattern.TraceabilityPredicate;
+import gregtech.api.metatileentity.multiblock.ui.TemplateBarBuilder;
+import gregtech.api.mui.GTGuiTextures;
+import gregtech.api.mui.sync.FixedIntArraySyncValue;
+import gregtech.api.pattern.*;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.logic.OCParams;
 import gregtech.api.recipes.properties.RecipePropertyStorage;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.util.GTTransferUtils;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.KeyUtil;
 import gregtech.client.renderer.ICubeRenderer;
@@ -31,37 +39,54 @@ import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.MetaTileEntities;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
+
+import static gregtech.api.GregTechAPI.HEATING_COILS;
+import static gregtech.api.util.RelativeDirection.*;
 
 //TODO add fram and casing requirements to use helium and neutron plasma (traceability predicate stuff)
-//TODO implement breaking a blocks to bedrock
-public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController implements IHeatingCoil {
+public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController implements IHeatingCoil, ProgressBarMultiblock {
 
     protected final MetaTileEntity metaTileEntity;
     private final float TEMPERATURE_DURATION_MULTIPLIER = 1.11F;
     private final float TEMPERATURE_DURATION_MULTIPLIER_INVERSE = 0.90F;
+    private final BlockPos.MutableBlockPos minerPos = new BlockPos.MutableBlockPos();
+    private BlockPos offsetPos;
 
+    private boolean runRecipe;
+    private long maxVoltage;
     private int currentTemperature;
     private int maxTemperature;
     private int fluidType = 0;
+
     public MetaTileEntityDeepMiner(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap, boolean isParallel) {
         super(metaTileEntityId, recipeMap, isParallel);
         this.recipeMapWorkable = new MetaTileEntityDeepMiner.DeepMinerRecipeLogic(this);
@@ -87,8 +112,37 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
                 .where('C', states(getCasingState()).setMinGlobalLimited(50).or(autoAbilities(true,true,true,true,true,true,false)))
                 .where('S', selfPredicate())
                 .where('M', abilities(MultiblockAbility.MUFFLER_HATCH))
-                .where('T', tieredCasing())
+                .where('T', TraceabilityPredicates.tieredHatchPredicate())
                 .build();
+    }
+
+    @Override
+    public List<MultiblockShapeInfo> getMatchingShapes() {
+        MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder(RIGHT, DOWN, FRONT)
+                .aisle("##C###C##","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########")
+                .aisle("#CC###CC#","##C###C##","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########")
+                .aisle("CCCFFFCCC","#CCFFFCC#","##CmMEC##","##F###F##","##F###F##","##F###F##","##CFFFC##","#########","#########","#########","#########","#########","#########")
+                .aisle("##FTTTF##","##FHHHF##","##CHHHC##","###HHH###","###HHH###","###HHH###","##FCCCF##","####F####","####F####","####F####","#########","#########","#########")
+                .aisle("##FTATF##","##FHAHF##","##CHAHC##","###HAH###","###HAH###","###HAH###","##FCACF##","###FCF###","###FCF###","###FCF###","####F####","####F####","####F####")
+                .aisle("##FTTTF##","##FHHHF##","##CHHHC##","###HHH###","###HHH###","###HHH###","##FCCCF##","####F####","####F####","####F####","#########","#########","#########")
+                .aisle("CCCFFFCCC","#CCFFFCC#","##iISOo##","##F###F##","##F###F##","##F###F##","##CFFFC##","#########","#########","#########","#########","#########","#########")
+                .aisle("#CC###CC#","##C###C##","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########")
+                .aisle("##C###C##","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########","#########")
+                .where('S', this, EnumFacing.SOUTH)
+                .where('M', MetaTileEntities.MUFFLER_HATCH[1], EnumFacing.NORTH)
+                .where('m', MetaTileEntities.MAINTENANCE_HATCH, EnumFacing.NORTH)
+                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[3], EnumFacing.SOUTH)
+                .where('O', MetaTileEntities.ITEM_EXPORT_BUS[3], EnumFacing.SOUTH)
+                .where('i', MetaTileEntities.FLUID_IMPORT_HATCH[3], EnumFacing.SOUTH)
+                .where('o', MetaTileEntities.FLUID_EXPORT_HATCH[3], EnumFacing.SOUTH)
+                .where('C', this.getCasingState())
+                .where('F', MetaBlocks.FRAMES.get(Materials.Steel).getStateFromMeta(4));
+        return HEATING_COILS.entrySet().stream()
+                .sorted(Comparator.comparingInt(entry -> entry.getValue().getTier()))
+                .map(entry -> builder.where('H', entry.getKey())
+                        .where('T', GCYMMetaTileEntities.TIERED_HATCH[entry.getValue().getTier() + 1], EnumFacing.DOWN)
+                        .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[entry.getValue().getTier() + 1], EnumFacing.NORTH).build())
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -109,23 +163,30 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
 
     @Override
     protected void configureDisplayText(MultiblockUIBuilder builder) {
-            builder.structureFormed(this.isStructureFormed())
-                    .addMaintenanceProblemLines(this.maintenance_problems, this.hasMaintenanceProblems())
-                    .addCustom((keyManager, uiSyncer) -> {
-                        int currentTemp = uiSyncer.syncInt(getCurrentTemperature());
-                        int maxTemp = uiSyncer.syncInt(getMaxTemperature());
-                        keyManager.add(KeyUtil.lang("gregtech.multiblock.universal.vom.temperature", currentTemp));
-                        keyManager.add(KeyUtil.lang("gregtech.multiblock.deep_miner.max.temperature", maxTemp));
-                        keyManager.add(KeyUtil.lang("gregtech.multiblock.deep_miner.max.fluid consumption", uiSyncer.syncBoolean(this.recipeMapWorkable.isActive()) && currentTemp == maxTemp ? getHeatingFluidActiveMax(getFluidType()).amount : getHeatingFluid(getFluidType()).amount));
+        super.configureDisplayText(builder);
+            builder.addCustom((keyManager, uiSyncer) -> {
+                int currentTemp = uiSyncer.syncInt(getCurrentTemperature());
+                int maxTemp = uiSyncer.syncInt(getMaxTemperature());
+                int x = uiSyncer.syncInt(this.minerPos.getX());
+                int y = uiSyncer.syncInt(this.minerPos.getY());
+                int z = uiSyncer.syncInt(this.minerPos.getZ());
+                boolean runRecipe = uiSyncer.syncBoolean(this.runRecipe);
+                keyManager.add(KeyUtil.lang(TextFormatting.GRAY, "gregtech.multiblock.universal.vom.temperature", currentTemp));
+                keyManager.add(KeyUtil.lang(TextFormatting.GRAY, "gregtech.multiblock.deep_miner.max.temperature", maxTemp));
+                keyManager.add(KeyUtil.lang(TextFormatting.GRAY, "gregtech.multiblock.deep_miner.max.fluid consumption", uiSyncer.syncBoolean(this.recipeMapWorkable.isActive()) && currentTemp == maxTemp ? getHeatingFluidActiveMax(getFluidType()).amount : getHeatingFluid(getFluidType()).amount));
+                if (uiSyncer.syncBoolean(this.recipeMapWorkable.isActive()))
+                    keyManager.add(runRecipe ? KeyUtil.lang(TextFormatting.GREEN, "gcyl.multiblock.deep_miner.clear")
+                            : KeyUtil.lang("gregtech.multiblock.deep_miner_error", x, y, z));
             });
-        if(this.getPos().getY() > 8 && !this.getWorld().isRemote)
-            builder.addCustom((keyManager, uiSyncer) -> keyManager.add(KeyUtil.lang("gregtech.multiblock.deep_miner_error")));
     }
 
 
     @Override
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
+        int tier = context.getOrDefault("tiered_hatches", new ArrayList<MetaTileEntityTieredHatch>()).get(0).getTier() - 1;
+        this.maxVoltage = 32L << tier * 2;
+        this.offsetPos = this.getPos().offset(this.getFrontFacing().getOpposite(), 2);
         Object type = context.get("CoilType");
         if (type instanceof IHeatingCoilBlockStats) {
             this.maxTemperature = (int) (((IHeatingCoilBlockStats) type).getCoilTemperature() * getTemperatureModifierFromFluidType(getFluidType()));
@@ -138,25 +199,19 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
     protected void updateFormedValid() {
         super.updateFormedValid();
 
-        if(this.recipeMapWorkable.isWorkingEnabled() && checkHeatingFluid() && getCurrentTemperature() <= getMaxTemperature()) {
-            if(getOffsetTimer() % 20 == 0) {
-                if(getCurrentTemperature() < getMaxTemperature()) {
+        if (this.recipeMapWorkable.isWorkingEnabled() && checkHeatingFluid() && getCurrentTemperature() <= getMaxTemperature()) {
+            if (getOffsetTimer() % 20 == 0) {
+                if (getCurrentTemperature() < getMaxTemperature()) {
                     drainHeatingFluid();
                     increaseTemperature();
-                }
-                else if(getCurrentTemperature() == getMaxTemperature() && this.recipeMapWorkable.isActive()) {
+                } else if (getCurrentTemperature() == getMaxTemperature() && this.recipeMapWorkable.isActive()) {
                     drainHeatingFluidActiveMax();
-                }
-                else {
-                    if(!this.isActive())
-                        decreaseTemperature();
+                } else if (!this.isActive()) {
+                    decreaseTemperature();
                 }
             }
-        }
-        else {
-            if (getOffsetTimer() % 20 == 0 && getCurrentTemperature() != 0 && !this.recipeMapWorkable.isActive()) {
-                decreaseTemperature();
-            }
+        } else if (getOffsetTimer() % 20 == 0 && getCurrentTemperature() != 0 && !this.recipeMapWorkable.isActive()) {
+            decreaseTemperature();
         }
     }
 
@@ -268,6 +323,8 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
     public void invalidateStructure() {
         super.invalidateStructure();
         this.currentTemperature = 0;
+        this.maxVoltage = 0;
+        this.offsetPos = null;
     }
 
     @Override
@@ -337,14 +394,39 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
         super.writeToNBT(data);
         data.setTag("temperature", new NBTTagInt(getCurrentTemperature()));
         data.setTag("fluidtype", new NBTTagInt(getFluidType()));
+        data.setBoolean("runRecipe", this.runRecipe);
         return data;
     }
 
     @Override
     public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
-        currentTemperature = data.getInteger("temperature");
-        fluidType = data.getInteger("fluidtype");
+        this.currentTemperature = data.getInteger("temperature");
+        this.fluidType = data.getInteger("fluidtype");
+        this.runRecipe = data.getBoolean("runRecipe");
+    }
+
+    @Override
+    public int getProgressBarCount() {
+        return 1;
+    }
+
+    @Override
+    public void registerBars(List<UnaryOperator<TemplateBarBuilder>> bars, PanelSyncManager syncManager) {
+        StringSyncValue boosterNameValue = new StringSyncValue(() -> this.getHeatingFluid(this.getFluidType()).getFluid().getName());
+        syncManager.syncValue("booster_name", boosterNameValue);
+        FixedIntArraySyncValue boosterValue = new FixedIntArraySyncValue(this::getBoosterAmount, null);
+        syncManager.syncValue("booster_value", boosterValue);
+
+        bars.add(bar -> bar.progress(() -> boosterValue.getValue(1) == 0 ? 0 : 1.0 * boosterValue.getValue(0) / boosterValue.getValue(1))
+                .texture(GTGuiTextures.PROGRESS_BAR_LCE_FUEL)
+                .tooltipBuilder(tooltip -> this.createFuelTooltip(tooltip, boosterValue, boosterNameValue)));
+    }
+
+    private int[] getBoosterAmount() {
+        FluidStack booster = this.getHeatingFluid(this.getFluidType()).copy();
+        booster.amount = Integer.MAX_VALUE;
+        return this.getInputFluidInventory() != null ? this.getTotalFluidAmount(booster, this.getInputFluidInventory()) : new int[2];
     }
 
 
@@ -358,13 +440,65 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
         }
 
         @Override
+        protected void updateRecipeProgress() {
+            if (offsetPos != null && this.metaTileEntity.getOffsetTimer() % 20 == 0)
+                this.mineBlocks();
+            super.updateRecipeProgress();
+        }
+
+        @Override
+        protected boolean canProgressRecipe() {
+            return runRecipe && super.canProgressRecipe();
+        }
+
+        private void mineBlocks() {
+            runRecipe = false;
+            for (int y = offsetPos.getY(); y > -1; y--) {
+                minerPos.setPos(offsetPos.getX(), y, offsetPos.getZ());
+                World world = this.metaTileEntity.getWorld();
+                IBlockState state = world.getBlockState(minerPos);
+                Block block = state.getBlock();
+                if (block == Blocks.BEDROCK || y < 1) {
+                    runRecipe = true;
+                    break;
+                } else if (state.getMaterial().isLiquid() || block instanceof IFluidBlock) {
+                    this.replaceWithCobble(world, minerPos, state);
+                    break;
+                } else if (block != Blocks.AIR) {
+                    this.breakBlock(world, minerPos, state);
+                    break;
+                }
+            }
+        }
+
+        /**
+         * Replace 3x3 area with cobblestone if a fluid is hit
+         */
+        private void replaceWithCobble(World world, BlockPos pos, IBlockState state) {
+            BlockPos.MutableBlockPos newPos = new BlockPos.MutableBlockPos(pos);
+            for (int x = -1; x < 2; x++) {
+                for (int z = -1; z < 2; z++) {
+                    newPos.setPos(pos.getX() + x, pos.getY(), pos.getZ() + z);
+                    this.breakBlock(world, newPos, state);
+                    world.setBlockState(newPos, Blocks.COBBLESTONE.getDefaultState());
+                }
+            }
+        }
+
+        /**
+         * Break block and send its drops to item output. Doesn't check if the drops fit
+         */
+        private void breakBlock(World world, BlockPos pos, IBlockState state) {
+            NonNullList<ItemStack> itemDrops = NonNullList.create();
+            state.getBlock().getDrops(itemDrops, world, pos, state, 0);
+            world.destroyBlock(pos, false);
+            GTTransferUtils.addItemsToItemHandler(this.getOutputInventory(), false, itemDrops);
+        }
+
+        @Override
         public boolean checkRecipe(Recipe recipe) {
             if (!super.checkRecipe(recipe))
                 return false;
-
-            if(deepMiner.getPos().getY() > 8)
-                return false;
-
             return recipe.getProperty(GCYLTemperatureProperty.getInstance(), 0) <= deepMiner.getCurrentTemperature();
         }
 
@@ -376,6 +510,11 @@ public class MetaTileEntityDeepMiner extends GCYLRecipeMapMultiblockController i
             int temperatureDiff = deepMiner.getCurrentTemperature() - recipeTemperature;
             double durationModifier = temperatureDiff / 1000 < 1 ? 1 : TEMPERATURE_DURATION_MULTIPLIER * (temperatureDiff / 1000);
             ocParams.setDuration((int) (ocParams.duration() / durationModifier));
+        }
+
+        @Override
+        public long getMaxVoltage() {
+            return GCYMConfigHolder.globalMultiblocks.enableTieredCasings ? maxVoltage : super.getMaxVoltage();
         }
     }
 }

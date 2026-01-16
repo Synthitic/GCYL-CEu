@@ -3103,6 +3103,9 @@ gcyl.multiblock.void_miner.description.8=Fluid use does not reset unless overhea
 gcyl.multiblock.void_miner.description.9=Temperature will decrease slowly if work is paused.
 gcyl.multiblock.void_miner.description.5=If temperature is above the max temperature the Void Ore Miner will stop working and slowly cool down.
 gcyl.multiblock.void_miner.description.6=Used Drilling Mud, and 10 random ores with each having a stack size of (Temperature/1000)^2 every 10 seconds.
+gcyl.multiblock.void_miner.drilling_mud=§7(§4Drilling Mud§7) §4%,d / %,d L
+gcyl.multiblock.void_miner.pyrotheum=§7(§6Pyrotheum§7) §6%,d / %,d L
+gcyl.multiblock.void_miner.cryotheum=§7(§bCryotheum§7) §b%,d / %,d L
 gcyl.multiblock.large_transformer.description=Large Transformer can convert any GTEU/AMPS by any GTEU/AMPS.
 gcyl.multiblock.industrial_primitive_blast_furnace.description=The Industrial Primitive Blast Furnace is a large multiblock structure consisting of 1 to 64 "slices".
 gregtech.machine.primitive_blast_furnace.industrial.tooltip.1=It's an upgraded version of The Primitive Blast Furnace.
@@ -3146,7 +3149,7 @@ gregtech.multiblock.recipe=Screw to change recipe. Currently using: %s
 gregtech.universal.tooltip.efficiency=Efficiency: %s %%
 
 gregtech.multiblock.universal.energy_used=Energy Use: %d EU
-gregtech.multiblock.universal.vom.temperature=Temperature: %sK
+gregtech.multiblock.universal.vom.temperature=Temperature: §c%sK
 gregtech.multiblock.universal.vom.max_temperature=Max Temperature: %sK
 gregtech.multiblock.universal.drilling_fluid_amount=Fluids Consumption: %.2fmB
 gregtech.multiblock.universal.overheat=Overheated!
@@ -3233,6 +3236,7 @@ gcyl.multiblock.mega_blast_logic.tooltip.1=EU/t Usage: §eParallel Amount * Reci
 gcyl.multiblock.mega_blast_logic.tooltip.2=Prioritizes Parallel Recipes over Heating Coil Bonuses.
 
 gcyl.multiblock.chemical_plant.tooltip.1=Does not run in parallel when running chemical plant recipes.
+gcyl.multiblock.chemical_plant.tooltip.2=Every coil after §6Cupronickel reduces energy usage by §f5%%§7.
 
 gcyl.multiblock.preview.left_or_right=Can only be placed in the second layer, on the left or right sides, excluding the front and back faces
 gcyl.multiblock.preview.rear_output=Can only be placed in the second layer in the center of the back face
@@ -4730,7 +4734,7 @@ gcyl.multiblock.electric_blast_furnace.tooltip.1=For every §a900K§7 above the 
 gcyl.multiblock.electric_blast_furnace.tooltip.2=For every §a1800K§7 above the recipe temperature, one overclock becomes §a100%%§7 efficient.
 gcyl.multiblock.electric_blast_furnace.tooltip.3=For every voltage tier above §aMV§7, temperature is increased by §a100K§7.
 gregtech.multiblock.volcanus.description.1=Consumes pyrotheum 2^ max voltage tier mB of pyrotheum per tick.
-gregtech.multiblock.volcanus.description.4=Max Overclock Voltage of ZPM.
+gregtech.multiblock.volcanus.description.4=Max Overclock Voltage of %s.
 gregtech.multiblock.volcanus.description.2=Can run recipes of a higher tier given the right energy hatch, but there are no bonuses.
 gregtech.multiblock.volcanus.description.3=Parallels 8 times. Recipes run 120%% faster. EUt usage is 0.90
 recipemap.volcanus.name=Volcanus
@@ -4870,7 +4874,7 @@ gcyl.machine.deep_miner.config.1=Fluid type set to Pyrotheum
 gcyl.machine.deep_miner.config.2=Fluid type set to Helium Plasma
 gcyl.machine.deep_miner.config.3=Fluid type set to Neutron Plasma
 gcyl.multiblock.deep_miner.tooltip.1=For obtaining resources deep in §6Bedrock§r§7. §aRecipes require scanned Data§r§7.
-gcyl.multiblock.deep_miner.tooltip.2=Controller must be placed at §eY=8§r§7 or lower.
+gcyl.multiblock.deep_miner.tooltip.2=Mines all the way to §6Bedrock§r§7. Make sure things below the miner are clear.
 gcyl.multiblock.deep_miner.tooltip.3=Use a §bScrewdriver§r§7 to change between §bFluid§r§7 inputs.
 gcyl.multiblock.deep_miner.tooltip.4=Accepts §cLava§r§7 (.75), §6Pyrotheum§r§7 (1), §eHelium Plasma§r§7 (4), or §8Neutron Plasma§r§7 (16) with §bBonuses§r§7 increasing from left to right.
 gcyl.multiblock.deep_miner.tooltip.5=Maximum §bTemperature§r§7 depends on §bFluid§r§7 input and §bCoil§r§7 tier.
@@ -4880,9 +4884,10 @@ gcyl.multiblock.deep_miner.tooltip.7=Loses §cHeat§r§7 when not running §lOR�
 gcyl.multiblock.deep_miner.tooltip.8=For every §b1000K§r§7 above recipe temperature, the recipe duration is multiplied by §e%s§r§7. (Additive)
 gcyl.multiblock.deep_miner.tooltip.9=To use §eHelium Plasma§r§7, the casings and frames need to be §2Incoloy 813§r§7.
 gcyl.multiblock.deep_miner.tooltip.10=To use §8Neutron Plasma§r§7, the casings and frames need to be §aHastelloy K243§r§7.
-gregtech.multiblock.deep_miner.max.temperature=Max Temperature: %sK
-gregtech.multiblock.deep_miner.max.fluid consumption=Fluid Consumption: %smB
-gregtech.multiblock.deep_miner_error=§cY LEVEL TOO HIGH! RECIPES WILL NOT RUN!
+gcyl.multiblock.deep_miner.clear=Miner is clear to run!
+gregtech.multiblock.deep_miner.max.temperature=Max Temperature: §c%sK
+gregtech.multiblock.deep_miner.max.fluid consumption=Fluid Consumption: §e%smB
+gregtech.multiblock.deep_miner_error=§eMiner obstructed, Mining block at §7(§fX:%,d§7) (§fY:%,d§7) (§fZ:%,d§7)
 recipemap.deep_miner.name=Deep Miner
 
 gcyl.machine.decay_chamber.name=Decay Chamber (DC)
@@ -5309,3 +5314,5 @@ gcyl.machine.diode.high.uiv.name=Ultra Immense Voltage Hi-Amp Diode
 gcyl.machine.diode.high.uxv.name=Ultra Extreme Voltage Hi-Amp Diode
 gcyl.machine.diode.high.opv.name=Overpowered Voltage Hi-Amp Diode
 gcyl.machine.diode.high.max.name=Maximum Voltage Hi-Amp Diode
+
+gcyl.machine.fluid.tick.consuming=Consuming: (§b%s§7) §b%,d L/t

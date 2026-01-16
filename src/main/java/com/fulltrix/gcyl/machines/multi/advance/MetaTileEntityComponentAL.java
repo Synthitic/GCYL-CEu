@@ -1,6 +1,7 @@
 package com.fulltrix.gcyl.machines.multi.advance;
 
-import com.fulltrix.gcyl.api.block.IComponentALTier;
+import com.fulltrix.gcyl.api.multi.GCYLComputationRecipeLogic;
+import com.fulltrix.gcyl.api.multi.GCYLRecipeMapMultiblockController;
 import com.fulltrix.gcyl.api.recipes.ITier;
 import com.fulltrix.gcyl.api.recipes.properties.ComponentALProperty;
 import com.fulltrix.gcyl.blocks.GCYLMetaBlocks;
@@ -14,12 +15,10 @@ import gregtech.api.capability.IOpticalComputationHatch;
 import gregtech.api.capability.IOpticalComputationProvider;
 import gregtech.api.capability.IOpticalComputationReceiver;
 import gregtech.api.capability.impl.ComputationRecipeLogic;
-import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
@@ -30,14 +29,11 @@ import gregtech.api.util.KeyUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.common.blocks.*;
 import gregtech.common.metatileentities.MetaTileEntities;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -54,15 +50,14 @@ import static com.fulltrix.gcyl.machines.GCYLTileEntities.COMPONENT_ASSEMBLY_LIN
 import static gregtech.api.unification.material.Materials.TungstenSteel;
 import static gregtech.api.util.RelativeDirection.*;
 
-//TODO implement filter bonus, laser hatches
-public class MetaTileEntityComponentAL extends RecipeMapMultiblockController implements ITier, IOpticalComputationReceiver {
+public class MetaTileEntityComponentAL extends GCYLRecipeMapMultiblockController implements ITier, IOpticalComputationReceiver {
 
     private IOpticalComputationProvider computationProvider;
     private int tier;
     private int filterTier;
 
     public MetaTileEntityComponentAL(ResourceLocation metaTileEntityId) {
-        super(metaTileEntityId, COMPONENT_AL_RECIPES);
+        super(metaTileEntityId, COMPONENT_AL_RECIPES, false);
         this.recipeMapWorkable = new ComponentALRecipeLogic(this);
     }
 
@@ -110,15 +105,16 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
                 .where('S', selfPredicate())
 				.where('F', frames(TungstenSteel))
 				.where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.LAMINATED_GLASS)))
-				.where('T', filterCasings())
-				.where('I', componentALCasings())
+				.where('T', filterCasingPredicate())
+				.where('I', componentAssemblyLineCasingPredicate())
 				.where('A', states(MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_CONTROL)))
 				.where('B', states(MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_LINE_CASING)))
 				.where('P', states(MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.POLYTETRAFLUOROETHYLENE_PIPE)))
 				.where('C', states(GCYLMetaBlocks.METAL_CASING_2.getState(MetalCasing2.CasingType.IRIDIUM))
                 .setMinGlobalLimited(630)
                 .or(autoAbilities(true,true,true,true,true,false,false))
-                        .or(abilities(MultiblockAbility.COMPUTATION_DATA_RECEPTION).setExactLimit(1)))
+                        .or(abilities(MultiblockAbility.COMPUTATION_DATA_RECEPTION).setExactLimit(1))
+                        .or(abilities(MultiblockAbility.INPUT_LASER).setMaxGlobalLimited(1)))
                 .where('#', air())
                 .build();
     }
@@ -167,7 +163,6 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
                 .where('B', MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_LINE_CASING))
                 .where('P', MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.POLYTETRAFLUOROETHYLENE_PIPE))
                 .where('C', GCYLMetaBlocks.METAL_CASING_2.getState(MetalCasing2.CasingType.IRIDIUM))
-                .where('#', Blocks.AIR.getDefaultState())
                 .where('M', MetaTileEntities.MAINTENANCE_HATCH, EnumFacing.NORTH)
                 .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[9], EnumFacing.NORTH)
                 .where('Z', MetaTileEntities.ITEM_IMPORT_BUS[5], EnumFacing.NORTH)
@@ -201,33 +196,23 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
     @Override
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
-        Object type = context.get("ComponentALTier");
-        if(type instanceof IComponentALTier) {
-            this.tier = ((IComponentALTier) type).getTier() + 1;
-        }
-        else
-            this.tier = 0;
+        this.tier = context.getOrPut("componentAssemblyLineCasings", new ArrayList<GCYLComponentALCasing.CasingType>()).get(0).getTier() + 1;
+        this.filterTier = context.getOrPut("filterCasings", new ArrayList<ICleanroomFilter>()).get(0).getTier();
 
         List<IOpticalComputationHatch> providers = getAbilities(MultiblockAbility.COMPUTATION_DATA_RECEPTION);
-        if (providers != null && providers.size() >= 1) {
+        if (providers != null && !providers.isEmpty()) {
             computationProvider = providers.get(0);
         }
 
         if (computationProvider == null) {
             invalidateStructure();
         }
-
-        this.filterTier = ((ICleanroomFilter) context.get("FilterType")).getTier();
-    }
-
-    @Override
-    public boolean canBeDistinct() {
-        return true;
     }
 
     @Override
     public void invalidateStructure() {
         super.invalidateStructure();
+        this.filterTier = 0;
         this.tier = 0;
     }
 
@@ -238,8 +223,13 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
 
     @Override
     protected void configureDisplayText(MultiblockUIBuilder builder) {
-        builder.addCustom((keyManager, uiSyncer) -> {
-            keyManager.add(KeyUtil.lang("gcyl.multiblock.coal.max_recipe_tier", GTValues.VN[this.tier]));
+        super.configureDisplayText(builder);
+        ComponentALRecipeLogic recipeLogic = (ComponentALRecipeLogic)this.recipeMapWorkable;
+        builder.addComputationUsageLine(recipeLogic.getRecipeCWUt())
+                .addCustom((keyManager, uiSyncer) -> {
+            String tier = uiSyncer.syncString(GTValues.VOCNF[this.tier]);
+            if (uiSyncer.syncBoolean(this.isStructureFormed()))
+                keyManager.add(KeyUtil.lang(TextFormatting.GRAY, "gcyl.multiblock.coal.max_recipe_tier", tier));
         });
     }
 
@@ -255,8 +245,12 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
         return computationProvider;
     }
 
+    @Override
+    public boolean isTiered() {
+        return false;
+    }
 
-    private class ComponentALRecipeLogic extends ComputationRecipeLogic {
+    private class ComponentALRecipeLogic extends GCYLComputationRecipeLogic {
 
         MetaTileEntityComponentAL componentAL;
 
@@ -269,7 +263,6 @@ public class MetaTileEntityComponentAL extends RecipeMapMultiblockController imp
         public boolean checkRecipe(@NotNull Recipe recipe) {
             if (!super.checkRecipe(recipe))
                 return false;
-
             return recipe.getProperty(ComponentALProperty.getInstance(), 0) <= tier;
         }
 

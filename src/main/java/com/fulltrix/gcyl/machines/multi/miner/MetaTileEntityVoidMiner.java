@@ -3,6 +3,8 @@ package com.fulltrix.gcyl.machines.multi.miner;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import com.cleanroommc.modularui.api.drawable.IKey;
+import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 import com.fulltrix.gcyl.api.multi.IVoidMinerProvider;
 import com.fulltrix.gcyl.api.multi.VoidMinerLogic;
 import com.fulltrix.gcyl.blocks.metal.MetalCasing1;
@@ -18,12 +20,17 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
+import gregtech.api.metatileentity.multiblock.ProgressBarMultiblock;
 import gregtech.api.metatileentity.multiblock.ui.KeyManager;
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
+import gregtech.api.metatileentity.multiblock.ui.TemplateBarBuilder;
+import gregtech.api.mui.GTGuiTextures;
+import gregtech.api.mui.sync.FixedIntArraySyncValue;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
+import gregtech.api.unification.material.Materials;
 import gregtech.api.util.KeyUtil;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.client.renderer.ICubeRenderer;
@@ -41,6 +48,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandlerModifiable;
@@ -49,14 +57,19 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.function.UnaryOperator;
 
 import static com.fulltrix.gcyl.client.ClientHandler.*;
 import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_1;
 import static com.fulltrix.gcyl.blocks.GCYLMetaBlocks.METAL_CASING_2;
+import static com.fulltrix.gcyl.materials.GCYLMaterials.*;
 import static gregtech.api.unification.material.Materials.*;
 
-public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implements IWorkable, IVoidMinerProvider { //TODO: OpenComputers implementation
+public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implements IWorkable, IVoidMinerProvider, ProgressBarMultiblock { //TODO: OpenComputers implementation
     private static final int CONSUME_START = 100;
+    private static final FluidStack DRILLING_MUD = DrillingMud.getFluid(Integer.MAX_VALUE);
+    private static final FluidStack PYROTHEUM = Pyrotheum.getFluid(Integer.MAX_VALUE);
+    private static final FluidStack CRYOTHEUM = Cryotheum.getFluid(Integer.MAX_VALUE);
 
     private boolean isWorkingEnabled = false;
     private final int maxTemperature;
@@ -239,7 +252,7 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implement
     protected void configureDisplayText(MultiblockUIBuilder builder) {
         builder.setWorkingStatus(voidMinerLogic.isWorkingEnabled(), voidMinerLogic.isActive())
                 .addCustom((keyManager, uiSyncer) -> {
-            if(isStructureFormed()) {
+            if (uiSyncer.syncBoolean(this.isStructureFormed())) {
                 keyManager.add(KeyUtil.lang(TextFormatting.YELLOW,"gregtech.multiblock.universal.energy_used", energyDrain));
                 keyManager.add(KeyUtil.lang(TextFormatting.GOLD,"gregtech.multiblock.universal.vom.temperature", this.voidMinerLogic.getTemperature()));
                 keyManager.add(KeyUtil.lang(TextFormatting.RED,"gregtech.multiblock.universal.vom.max_temperature", this.voidMinerLogic.getMaxTemperature()));
@@ -399,5 +412,63 @@ public class MetaTileEntityVoidMiner extends MultiblockWithDisplayBase implement
     @Override
     public boolean isActive() {
         return super.isActive() && this.voidMinerLogic.isActive();
+    }
+
+    @Override
+    public int getProgressBarCount() {
+        return 3;
+    }
+
+    @Override
+    public void registerBars(List<UnaryOperator<TemplateBarBuilder>> bars, PanelSyncManager syncManager) {
+        FixedIntArraySyncValue drillingMudAmount = new FixedIntArraySyncValue(this::getDrillingMudAmount, null);
+        FixedIntArraySyncValue pyrotheumAmount = new FixedIntArraySyncValue(this::getPyrotheumAmount, null);
+        FixedIntArraySyncValue cryotheumAmount = new FixedIntArraySyncValue(this::getCryotheumAmount, null);
+        syncManager.syncValue("drilling_mud_amount", drillingMudAmount);
+        syncManager.syncValue("pyrotheum_amount", pyrotheumAmount);
+        syncManager.syncValue("cryotheum_amount", cryotheumAmount);
+
+        bars.add(bar -> bar.progress(() -> drillingMudAmount.getValue(1) == 0 ? 0 : 1.0 * drillingMudAmount.getValue(0) / drillingMudAmount.getValue(1))
+                .texture(GTGuiTextures.PROGRESS_BAR_LCE_FUEL)
+                .tooltipBuilder(tooltip -> tooltip.addLine(!this.isStructureFormed() ? IKey.lang("gregtech.multiblock.invalid_structure")
+                        : drillingMudAmount.getValue(0) == 0 ? IKey.lang("gregtech.multiblock.large_combustion_engine.fuel_none")
+                        : IKey.lang("gcyl.multiblock.void_miner.drilling_mud", drillingMudAmount.getValue(0), drillingMudAmount.getValue(1)))));
+        bars.add(bar -> bar.progress(() -> pyrotheumAmount.getValue(1) == 0 ? 0 : 1.0 * pyrotheumAmount.getValue(0) / pyrotheumAmount.getValue(1))
+                .texture(GTGuiTextures.PROGRESS_BAR_LCE_LUBRICANT)
+                .tooltipBuilder(tooltip -> tooltip.addLine(!this.isStructureFormed() ? IKey.lang("gregtech.multiblock.invalid_structure")
+                        : pyrotheumAmount.getValue(0) == 0 ? IKey.lang("gregtech.multiblock.large_combustion_engine.fuel_none")
+                        : IKey.lang("gcyl.multiblock.void_miner.pyrotheum", pyrotheumAmount.getValue(0), pyrotheumAmount.getValue(1)))));
+        bars.add(bar -> bar.progress(() -> cryotheumAmount.getValue(1) == 0 ? 0 : 1.0 * cryotheumAmount.getValue(0) / cryotheumAmount.getValue(1))
+                .texture(GTGuiTextures.PROGRESS_BAR_LCE_OXYGEN)
+                .tooltipBuilder(tooltip -> tooltip.addLine(!this.isStructureFormed() ? IKey.lang("gregtech.multiblock.invalid_structure")
+                        : cryotheumAmount.getValue(0) == 0 ? IKey.lang("gregtech.multiblock.large_combustion_engine.fuel_none")
+                        : IKey.lang("gcyl.multiblock.void_miner.cryotheum", cryotheumAmount.getValue(0), cryotheumAmount.getValue(1)))));
+    }
+
+    private int[] getDrillingMudAmount() {
+        return this.getImportFluidHandler() != null ? this.getTotalFluidAmount(DRILLING_MUD, this.getImportFluidHandler()) : new int[2];
+    }
+
+    private int[] getPyrotheumAmount() {
+        return this.getImportFluidHandler() != null ? this.getTotalFluidAmount(PYROTHEUM, this.getImportFluidHandler()) : new int[2];
+    }
+
+    private int[] getCryotheumAmount() {
+        return this.getImportFluidHandler() != null ? this.getTotalFluidAmount(CRYOTHEUM, this.getImportFluidHandler()) : new int[2];
+    }
+
+    protected int[] getTotalFluidAmount(FluidStack testStack, IMultipleTankHandler multiTank) {
+        int fluidAmount = 0;
+        int fluidCapacity = 0;
+        for (var tank : multiTank) {
+            if (tank != null) {
+                FluidStack drainStack = tank.drain(testStack, false);
+                if (drainStack != null && drainStack.amount > 0) {
+                    fluidAmount += drainStack.amount;
+                    fluidCapacity += tank.getCapacity();
+                }
+            }
+        }
+        return new int[] { fluidAmount, fluidCapacity };
     }
 }

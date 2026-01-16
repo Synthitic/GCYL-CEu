@@ -154,6 +154,15 @@ public class GCYLConfig {
         @Config.Comment("Efficiency level for the LuV rocket engine")
         public int LuVRocketEfficiency= 25;
 
+        @Config.Comment("Set the max overclocking voltage for Volcanus. LV = 1, MV = 2, HV = 3 etc. Set to 0 for no limit.")
+        @Config.Name("Volcanus Max Voltage")
+        @Config.RequiresMcRestart
+        public int volcanusMaxVoltage = GTValues.ZPM;
+
+        @Config.Comment("Set the max overclocking voltage for Cryogenic Freezer. LV = 1, MV = 2, HV = 3 etc. Set to 0 for no limit.")
+        @Config.Name("Cryogenic Freezer Max Voltage")
+        @Config.RequiresMcRestart
+        public int cryogenicFreezerMaxVoltage = GTValues.ZPM;
     }
 
 

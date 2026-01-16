@@ -129,7 +129,7 @@ public class GCYLTileEntities {
         HYPER_REACTOR[1] = registerMetaTileEntity(++id, new MetaTileEntityHyperReactor(gcylId("hyper_reactor.ii"), GTUtility.getTierByVoltage(GCYLConfig.multis.hyperReactors.euGeneration[1])));
         HYPER_REACTOR[2] = registerMetaTileEntity(++id, new MetaTileEntityHyperReactor(gcylId("hyper_reactor.iii"), GTUtility.getTierByVoltage(GCYLConfig.multis.hyperReactors.euGeneration[2])));
 
-        PLASMA_CONDENSER = registerMetaTileEntity(++id, new MetaTileEntityPlasmaCondenser(gcylId("plasma_condenser"), false));
+        PLASMA_CONDENSER = registerMetaTileEntity(++id, new MetaTileEntityPlasmaCondenser(gcylId("plasma_condenser")));
 
         ADVANCED_MIXER = registerMetaTileEntity(++id, new MetaTileEntityAdvMixer(gcylId("large_mixer")));
 
