@@ -15,6 +15,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.ProgressBarMultiblock;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
 import gregtech.api.metatileentity.multiblock.ui.TemplateBarBuilder;
 import gregtech.api.mui.GTGuiTextures;
 import gregtech.api.mui.sync.FixedIntArraySyncValue;
@@ -24,12 +25,14 @@ import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.util.GTUtility;
+import gregtech.api.util.KeyUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -50,7 +53,7 @@ public class MetaTileEntityCryogenicFreezer extends GCYLRecipeMapMultiblockContr
 
     private static final FluidStack CRYOTHEUM = GCYLMaterials.Cryotheum.getFluid(Integer.MAX_VALUE);
 
-    private FluidStack cryotheum;
+    private FluidStack cryotheum = CRYOTHEUM;
 
     public MetaTileEntityCryogenicFreezer(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, RecipeMaps.VACUUM_RECIPES, false);
@@ -64,9 +67,21 @@ public class MetaTileEntityCryogenicFreezer extends GCYLRecipeMapMultiblockContr
     }
 
     @Override
+    protected void configureDisplayText(MultiblockUIBuilder builder) {
+        super.configureDisplayText(builder);
+        builder.addCustom((key, syncer) -> key.add(KeyUtil.lang(TextFormatting.GRAY, "gcyl.machine.fluid.tick.consuming", this.cryotheum.getLocalizedName(), syncer.syncInt(this.cryotheum.amount))));
+    }
+
+    @Override
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
         this.cryotheum = GCYLMaterials.Cryotheum.getFluid((int) Math.pow(2, GTUtility.getTierByVoltage(this.energyContainer.getInputVoltage())));
+    }
+
+    @Override
+    public void invalidateStructure() {
+        super.invalidateStructure();
+        this.cryotheum = CRYOTHEUM;
     }
 
     @Override
@@ -157,10 +172,10 @@ public class MetaTileEntityCryogenicFreezer extends GCYLRecipeMapMultiblockContr
 
         @Override
         public void applyParallelBonus(@NotNull RecipeBuilder<?> builder) {
-            long EUt = (long) (builder.getEUt() * 0.9);
-
-            builder.EUt(EUt / builder.getParallel())
-                    .duration((int) (builder.getDuration() * (1.0F / 2.2F)));
+            int currentParallel = builder.getParallel();
+            long currentRecipeEU = builder.getEUt() / currentParallel;
+            int currentRecipeDuration = builder.getDuration() / this.getParallelLimit();
+            builder.EUt(currentRecipeEU * 2).duration(currentRecipeDuration * currentParallel);
         }
     }
 }

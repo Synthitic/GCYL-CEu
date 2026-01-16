@@ -5314,3 +5314,5 @@ gcyl.machine.diode.high.uiv.name=Ultra Immense Voltage Hi-Amp Diode
 gcyl.machine.diode.high.uxv.name=Ultra Extreme Voltage Hi-Amp Diode
 gcyl.machine.diode.high.opv.name=Overpowered Voltage Hi-Amp Diode
 gcyl.machine.diode.high.max.name=Maximum Voltage Hi-Amp Diode
+
+gcyl.machine.fluid.tick.consuming=Consuming: (§b%s§7) §b%,d L/t

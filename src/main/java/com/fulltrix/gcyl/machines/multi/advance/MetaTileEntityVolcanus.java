@@ -71,7 +71,7 @@ public class MetaTileEntityVolcanus extends GCYLRecipeMapMultiblockController im
     private static final FluidStack PYROTHEUM = GCYLMaterials.Pyrotheum.getFluid(Integer.MAX_VALUE);
 
     private int blastFurnaceTemperature;
-    private FluidStack pyrotheum;
+    private FluidStack pyrotheum = PYROTHEUM;
 
     public MetaTileEntityVolcanus(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, RecipeMaps.BLAST_RECIPES, false);
@@ -87,7 +87,10 @@ public class MetaTileEntityVolcanus extends GCYLRecipeMapMultiblockController im
     @Override
     protected void configureDisplayText(MultiblockUIBuilder builder) {
         super.configureDisplayText(builder);
-        builder.addCustom((keyManager, uiSyncer) -> keyManager.add(KeyUtil.lang(TextFormatting.RED, "gregtech.multiblock.blast_furnace.max_temperature", uiSyncer.syncInt(this.blastFurnaceTemperature))));
+        builder.addCustom((keyManager, uiSyncer) -> {
+            keyManager.add(KeyUtil.lang(TextFormatting.RED, "gregtech.multiblock.blast_furnace.max_temperature", uiSyncer.syncInt(this.blastFurnaceTemperature)));
+            keyManager.add(KeyUtil.lang(TextFormatting.GRAY, "gcyl.machine.fluid.tick.consuming", this.pyrotheum.getLocalizedName(), uiSyncer.syncInt(this.pyrotheum.amount)));
+        });
     }
 
     @Override
@@ -103,6 +106,7 @@ public class MetaTileEntityVolcanus extends GCYLRecipeMapMultiblockController im
     public void invalidateStructure() {
         super.invalidateStructure();
         this.blastFurnaceTemperature = 0;
+        this.pyrotheum = PYROTHEUM;
     }
 
     @Override
@@ -236,10 +240,10 @@ public class MetaTileEntityVolcanus extends GCYLRecipeMapMultiblockController im
 
         @Override
         public void applyParallelBonus(@NotNull RecipeBuilder<?> builder) {
-            long EUt = (long) (builder.getEUt() * 0.9);
-
-            builder.EUt(EUt / builder.getParallel())
-                    .duration((int) (builder.getDuration() * (1.0F / 2.2F)));
+            int currentParallel = builder.getParallel();
+            long currentRecipeEU = builder.getEUt() / currentParallel;
+            int currentRecipeDuration = builder.getDuration() / this.getParallelLimit();
+            builder.EUt(currentRecipeEU * 2).duration(currentRecipeDuration * currentParallel);
         }
 
         @Override

@@ -50,7 +50,6 @@ import static com.fulltrix.gcyl.machines.GCYLTileEntities.COMPONENT_ASSEMBLY_LIN
 import static gregtech.api.unification.material.Materials.TungstenSteel;
 import static gregtech.api.util.RelativeDirection.*;
 
-//TODO implement filter bonus, laser hatches
 public class MetaTileEntityComponentAL extends GCYLRecipeMapMultiblockController implements ITier, IOpticalComputationReceiver {
 
     private IOpticalComputationProvider computationProvider;
